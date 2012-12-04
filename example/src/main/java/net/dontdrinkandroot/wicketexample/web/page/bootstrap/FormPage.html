@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+	<title>DecoratorPage</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="box">
+			<h2>Disabling and Validation</h2>
+			<form wicket:id="validationForm" class="form-horizontal">
+				<div wicket:id="eMailField"></div>
+				<div wicket:id="requiredField"></div>
+				<div class="form-actions">
+					<input type="submit" wicket:id="submitLink" />
+				</div>
+			</form>
+		</div>
+	</wicket:extend>
+</body>
+</html>

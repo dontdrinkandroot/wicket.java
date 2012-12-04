@@ -1,0 +1,13 @@
+.ui-slider-handle {
+	width: 18px;
+	height: 18px;
+	display: block;
+	background: -moz-linear-gradient(top, #dedede 0%, #f0f0f0 100%);
+	border: solid 1px #bfbfbf;
+	margin-left: -10px;
+	margin-top: -10px;
+}
+
+.ui-corner-all {
+	border-radius: 10px;
+}

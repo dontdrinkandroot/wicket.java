@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+	<title>DecoratorPage</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<ul class="nav">
+						<li wicket:id="navItem"></li>
+					</ul>
+					<ul class="nav pull-right">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+		<wicket:child />
+		</div>
+	</wicket:extend>
+</body>
+</html>

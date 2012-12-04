@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:wicket>
+<head>
+	<title>DropDownChoiceButton</title>
+</head>
+<body>
+	<wicket:panel>
+	 	<button class="btn" wicket:id="selected" style="text-align: left">[label]</button> 
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			<li wicket:id="choiceItem"><a href="#" wicket:id="choiceLink">[choiceLabel]</a></li>
+		</ul>
+	</wicket:panel>
+</body>
+</html>

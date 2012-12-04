@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+<title>BootstrapIndexPage</title>
+</head>
+<body>
+	<wicket:panel>
+		<form wicket:id="disablingSubmitForm">
+			<legend>Disabling Submit Form</legend>
+			<label>Label name</label>
+			<input type="text" placeholder="Type something…" />
+			<span class="help-block">Example block-level help text here.</span>
+			
+			<div>
+				<label class="checkbox">
+					<input type="checkbox" value="" />
+					Option one is this and that—be sure to include why it's great
+				</label>
+			</div>
+			
+			<div>
+				<label class="radio">
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="checked" />
+					Option one is this and that—be sure to include why it's great
+				</label>
+				<label class="radio">
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+					Option two can be something else and selecting it will deselect option one
+				</label>
+			</div>
+			
+			<div>
+				<select>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+			
+			<div>
+				<textarea rows="3"></textarea>
+			</div>
+			
+			<input type="submit" wicket:id="submitLink" value="Submit" />
+		</form>
+	</wicket:panel>
+</body>
+</html>

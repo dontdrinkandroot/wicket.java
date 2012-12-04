@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<head>
+	<title>DecoratorPage</title>
+</head>
+<body>
+	<wicket:extend>
+		<div class="row">
+			<div class="span6">
+				<h2>Styles in Block Size</h2>
+				<div class="row">
+					<div class="span2">
+						<button type="button" wicket:id="defaultButton"></button>
+					</div>
+					<div class="span2">
+						<button type="button" wicket:id="primaryButton"></button>
+					</div>
+					<div class="span2">
+						<button type="button" wicket:id="infoButton"></button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2">
+						<button type="button" wicket:id="successButton"></button>
+					</div>
+					<div class="span2">
+						<button type="button" wicket:id="warningButton"></button>
+					</div>
+					<div class="span2">
+						<button type="button" wicket:id="dangerButton"></button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2">
+						<button type="button" wicket:id="inverseButton"></button>
+					</div>
+					<div class="span2">
+						<button type="button" wicket:id="linkButton"></button>
+					</div>
+				</div>
+			</div>
+			<div class="span3">
+				<h2>Sizes</h2>
+				<input type="button" wicket:id="miniButton" />
+				<input type="button" wicket:id="smallButton" />
+				<input type="button" wicket:id="normalButton" />
+				<input type="button" wicket:id="largeButton" />
+			</div>
+		</div>
+		<h2>State</h2>
+		<input type="button" wicket:id="disabledInputButton" />
+		<a href="#" wicket:id="disabledAButton"></a>
+		<input type="submit" wicket:id="disabledSubmitButton" />
+		
+		<h2>Button Group</h2>
+		
+		<h3>Single Group</h3>
+		<div wicket:id="singleButtonGroup"></div>
+	</wicket:extend>
+</body>
+</html>
