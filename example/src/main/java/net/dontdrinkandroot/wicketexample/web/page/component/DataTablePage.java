@@ -9,13 +9,13 @@ import net.dontdrinkandroot.wicket.bootstrap.component.pagination.AjaxPagination
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import net.dontdrinkandroot.wicketexample.dao.TestEntityDao;
 import net.dontdrinkandroot.wicketexample.entity.TestEntity;
+import net.dontdrinkandroot.wicketexample.entity.TestEntity_;
 import net.dontdrinkandroot.wicketexample.web.component.GenerateTestDataButton;
 import net.dontdrinkandroot.wicketexample.web.dataprovider.TestEntitySortableDataProvider;
 import net.dontdrinkandroot.wicketexample.web.model.entity.TestEntityIdStringModel;
 import net.dontdrinkandroot.wicketexample.web.model.entity.TestEntityIntegerFieldStringModel;
 import net.dontdrinkandroot.wicketexample.web.model.entity.TestEntityStringFieldModel;
 import net.dontdrinkandroot.wicketexample.web.page.DecoratorWidePage;
-import net.dontdrinkandroot.wickettest.entity.TestEntity_;
 
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
