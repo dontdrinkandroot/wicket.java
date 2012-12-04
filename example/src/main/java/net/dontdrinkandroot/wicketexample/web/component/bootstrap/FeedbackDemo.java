@@ -2,10 +2,11 @@ package net.dontdrinkandroot.wicketexample.web.component.bootstrap;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.CloseableFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
+
+import org.apache.wicket.markup.html.panel.GenericPanel;
 
 
-public class FeedbackDemo extends TypedPanel<Void> {
+public class FeedbackDemo extends GenericPanel<Void> {
 
 	public FeedbackDemo(String id) {
 

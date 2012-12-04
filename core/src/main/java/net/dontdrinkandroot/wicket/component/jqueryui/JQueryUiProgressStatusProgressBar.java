@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import net.dontdrinkandroot.utils.progressmonitor.ProgressStatus;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
 import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
 import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusMessageModel;
@@ -10,10 +9,11 @@ import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusPercentModel;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
 
-public class JQueryUiProgressStatusProgressBar extends TypedPanel<ProgressStatus> {
+public class JQueryUiProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 
 	private static final long serialVersionUID = 1L;
 

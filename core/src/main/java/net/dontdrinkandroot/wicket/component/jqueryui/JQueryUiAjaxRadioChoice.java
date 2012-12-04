@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import java.util.List;
 
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
 
 import org.apache.wicket.ajax.AjaxEventBehavior;
@@ -17,12 +16,13 @@ import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.WildcardListModel;
 
 
-public class JQueryUiAjaxRadioChoice<T> extends TypedPanel<T> {
+public class JQueryUiAjaxRadioChoice<T> extends GenericPanel<T> {
 
 	private static final long serialVersionUID = 1L;
 

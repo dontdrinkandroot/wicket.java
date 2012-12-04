@@ -5,23 +5,23 @@ import java.util.List;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.SpanClass;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.model.ListItemModel;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
 
-public abstract class ThumbnailsList<T> extends TypedPanel<List<T>> {
+public abstract class ThumbnailsList<T> extends GenericPanel<List<T>> {
 
 	private final RepeatingView itemView;
 
 	private final SpanClass spanClass;
 
 
-	public ThumbnailsList(String id, IModel<? extends List<T>> model, final SpanClass spanClass) {
+	public ThumbnailsList(String id, IModel<List<T>> model, final SpanClass spanClass) {
 
 		super(id, model);
 

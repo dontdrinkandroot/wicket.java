@@ -2,12 +2,12 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 
 
-public abstract class ButtonGroup<T> extends TypedPanel<T> {
+public abstract class ButtonGroup<T> extends GenericPanel<T> {
 
 	public ButtonGroup(String id) {
 

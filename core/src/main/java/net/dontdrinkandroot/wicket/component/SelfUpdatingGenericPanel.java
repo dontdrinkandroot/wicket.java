@@ -6,12 +6,12 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
 
 
-public class SelfUpdatingTypedPanel<T> extends GenericPanel<T> {
+public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
 
 	private static final long serialVersionUID = 1L;
 
 
-	public SelfUpdatingTypedPanel(final String id, Duration updateInterval) {
+	public SelfUpdatingGenericPanel(final String id, Duration updateInterval) {
 
 		super(id);
 		this.setOutputMarkupId(true);
@@ -20,7 +20,7 @@ public class SelfUpdatingTypedPanel<T> extends GenericPanel<T> {
 	}
 
 
-	public SelfUpdatingTypedPanel(final String id, final IModel<T> model, Duration updateInterval) {
+	public SelfUpdatingGenericPanel(final String id, final IModel<T> model, Duration updateInterval) {
 
 		super(id, model);
 		this.setOutputMarkupId(true);

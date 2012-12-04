@@ -2,16 +2,16 @@ package net.dontdrinkandroot.wicket.bootstrap.component.thumbnail;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
 
-public abstract class DefaultThumbnail<T> extends TypedPanel<T> {
+public abstract class DefaultThumbnail<T> extends GenericPanel<T> {
 
-	public DefaultThumbnail(String id, IModel<? extends T> model) {
+	public DefaultThumbnail(String id, IModel<T> model) {
 
 		super(id, model);
 	}

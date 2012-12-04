@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -12,13 +11,14 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 
-public class DropDownChoiceButton<T> extends TypedPanel<T> {
+public class DropDownChoiceButton<T> extends GenericPanel<T> {
 
-	public DropDownChoiceButton(String id, IModel<? extends T> model, List<T> choices) {
+	public DropDownChoiceButton(String id, IModel<T> model, List<T> choices) {
 
 		super(id, model);
 

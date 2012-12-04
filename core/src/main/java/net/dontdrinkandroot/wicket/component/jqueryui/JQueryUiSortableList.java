@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 import java.util.List;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.css.CssClass;
 import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
 
@@ -14,12 +13,13 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.string.StringValue;
 
 
 // TODO: check if markup is list
-public abstract class JQueryUiSortableList<T> extends TypedPanel<List<T>> {
+public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 
 	private final AbstractDefaultAjaxBehavior stopCallbackBehavior;
 

@@ -2,13 +2,13 @@ package net.dontdrinkandroot.wicketexample.web.component.bootstrap;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DisablingSubmitButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 
 
-public class FormDemo extends TypedPanel<Void> {
+public class FormDemo extends GenericPanel<Void> {
 
 	public FormDemo(String id) {
 

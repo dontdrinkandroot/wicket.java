@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import net.dontdrinkandroot.utils.oldprogressmonitor.ProgressMonitor;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
 import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
 import net.dontdrinkandroot.wicket.model.jqueryui.ProgressMonitorMessageModel;
@@ -12,11 +11,12 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
 
 
-public class JQueryUiSelfUpdatingProgressBar extends TypedPanel<ProgressMonitor> {
+public class JQueryUiSelfUpdatingProgressBar extends GenericPanel<ProgressMonitor> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -4,25 +4,25 @@ import java.util.List;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
 
-public class ButtonGroupChoice<T> extends TypedPanel<T> {
+public class ButtonGroupChoice<T> extends GenericPanel<T> {
 
-	public ButtonGroupChoice(String id, IModel<? extends T> model, List<T> choices) {
+	public ButtonGroupChoice(String id, IModel<T> model, List<T> choices) {
 
 		this(id, model, new ListModel<T>(choices));
 	}
 
 
-	public ButtonGroupChoice(String id, IModel<? extends T> model, IModel<List<T>> choicesModel) {
+	public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel) {
 
 		super(id, model);
 

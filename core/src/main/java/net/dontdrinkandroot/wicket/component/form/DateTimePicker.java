@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.choicerenderer.ShortMonthChoiceRenderer;
-import net.dontdrinkandroot.wicket.component.TypedPanel;
 import net.dontdrinkandroot.wicket.css.CoreCssClass;
 import net.dontdrinkandroot.wicket.model.IntegerRangeListModel;
 import net.dontdrinkandroot.wicket.model.calendar.CalendarDayModel;
@@ -15,10 +14,11 @@ import net.dontdrinkandroot.wicket.model.calendar.CalendarSecondModel;
 import net.dontdrinkandroot.wicket.model.calendar.CalendarYearModel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
 
-public class DateTimePicker extends TypedPanel<Calendar> {
+public class DateTimePicker extends GenericPanel<Calendar> {
 
 	private final AjaxDropDownChoice<Integer> yearChoice;
 
@@ -35,7 +35,7 @@ public class DateTimePicker extends TypedPanel<Calendar> {
 	private final AjaxDropDownChoice<Integer> secondChoice;
 
 
-	public DateTimePicker(String id, IModel<? extends Calendar> model, int minYear, int maxYear) {
+	public DateTimePicker(String id, IModel<Calendar> model, int minYear, int maxYear) {
 
 		super(id, model);
 

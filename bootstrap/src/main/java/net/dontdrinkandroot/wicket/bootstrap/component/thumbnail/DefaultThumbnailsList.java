@@ -11,7 +11,7 @@ import org.apache.wicket.model.IModel;
 
 public abstract class DefaultThumbnailsList<T> extends ThumbnailsList<T> {
 
-	public DefaultThumbnailsList(String id, IModel<? extends List<T>> model, SpanClass spanClass) {
+	public DefaultThumbnailsList(String id, IModel<List<T>> model, SpanClass spanClass) {
 
 		super(id, model, spanClass);
 	}
