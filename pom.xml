@@ -15,7 +15,7 @@
 		<module>bootstrap</module>
 		<module>example</module>
 	</modules>
-	
+
 	<developers>
 		<developer>
 			<name>Philip Washington Sorst</name>
@@ -41,8 +41,43 @@
 	<scm>
 		<developerConnection>scm:git:https://github.com/philipsorst/wicket.git</developerConnection>
 	</scm>
-	
+
 	<build>
+	
+		<!-- Make sure HTML files are also copied from resources -->
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+
 		<plugins>
 
 			<plugin>
