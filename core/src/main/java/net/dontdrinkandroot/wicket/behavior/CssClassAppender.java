@@ -8,6 +8,9 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.IModel;
 
 
+/**
+ * Appends a <tt>class</tt> attribute to an element.
+ */
 public class CssClassAppender extends AttributeAppender {
 
 	public CssClassAppender(final String classToAdd) {

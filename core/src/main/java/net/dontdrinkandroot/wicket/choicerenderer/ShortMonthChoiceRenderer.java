@@ -6,6 +6,12 @@ import java.util.Locale;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 
 
+/**
+ * Choice renderer that converts Integer values to the corresponding shortMonths String, based on
+ * the given locale.
+ * 
+ * @see DateFormatSymbols#getShortMonths()
+ */
 public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer> {
 
 	private final String[] months;

@@ -5,6 +5,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
+/**
+ * Sets the <tt>title</tt> attribute of an element.
+ */
 public class TitleModifier extends AttributeModifier {
 
 	public TitleModifier(IModel<?> replaceModel) {

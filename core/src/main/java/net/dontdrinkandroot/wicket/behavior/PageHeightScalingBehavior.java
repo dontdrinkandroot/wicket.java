@@ -19,8 +19,10 @@ public class PageHeightScalingBehavior extends Behavior {
 		super.renderHead(component, response);
 
 		StringBuffer scalingFunctionBuffer = new StringBuffer();
-		scalingFunctionBuffer.append("var offset = $('#" + component.getMarkupId() + "').offset();");
-		scalingFunctionBuffer.append("$('#" + component.getMarkupId() + "').height($(window).height() - offset.top);");
+		scalingFunctionBuffer.append(String.format("var offset = $('#%s').offset();", component.getMarkupId()));
+		scalingFunctionBuffer.append(String.format(
+				"$('#%s').height($(window).height() - offset.top);",
+				component.getMarkupId()));
 
 		response.render(OnDomReadyHeaderItem.forScript(scalingFunctionBuffer.toString()));
 		response.render(OnDomReadyHeaderItem.forScript("$(window).resize(function() {"
