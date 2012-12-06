@@ -2,9 +2,9 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import net.dontdrinkandroot.utils.progressmonitor.ProgressStatus;
 import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
-import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusMessageModel;
-import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusPercentModel;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
+import net.dontdrinkandroot.wicket.model.progress.ProgressStatusMessageModel;
+import net.dontdrinkandroot.wicket.model.progress.ProgressStatusPercentModel;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;

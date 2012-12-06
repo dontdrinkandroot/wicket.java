@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.css.CssClass;
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;

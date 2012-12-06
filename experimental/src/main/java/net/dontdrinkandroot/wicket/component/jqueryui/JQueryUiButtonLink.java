@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;

@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.model.jqueryui;
+package net.dontdrinkandroot.wicket.model.progress;
 
 import net.dontdrinkandroot.utils.progressmonitor.ProgressStatus;
 import net.dontdrinkandroot.wicket.model.AbstractChainedModel;

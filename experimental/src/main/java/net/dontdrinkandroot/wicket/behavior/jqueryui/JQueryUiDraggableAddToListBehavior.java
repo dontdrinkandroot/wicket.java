@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.behavior.jqueryui;
 
 import net.dontdrinkandroot.wicket.component.jqueryui.JQueryUiSortableList;
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;

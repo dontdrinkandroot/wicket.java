@@ -3,7 +3,7 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 import java.util.List;
 
 import net.dontdrinkandroot.wicket.component.form.AjaxDropDownChoice;
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;

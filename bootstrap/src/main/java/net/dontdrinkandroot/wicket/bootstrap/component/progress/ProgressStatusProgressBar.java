@@ -2,8 +2,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 
 import net.dontdrinkandroot.utils.progressmonitor.ProgressStatus;
 import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarClass;
-import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusMessageModel;
-import net.dontdrinkandroot.wicket.model.jqueryui.ProgressStatusPercentModel;
+import net.dontdrinkandroot.wicket.model.progress.ProgressStatusMessageModel;
+import net.dontdrinkandroot.wicket.model.progress.ProgressStatusPercentModel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;

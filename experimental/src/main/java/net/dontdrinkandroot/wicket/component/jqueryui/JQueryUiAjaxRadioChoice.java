@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import java.util.List;
 
-import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
+import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
