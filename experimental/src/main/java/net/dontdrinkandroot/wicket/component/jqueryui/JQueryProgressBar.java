@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.component.jquery;
+package net.dontdrinkandroot.wicket.component.jqueryui;
 
 import net.dontdrinkandroot.wicket.javascript.JQueryUiScript;
 
