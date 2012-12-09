@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.BoostrapResponsiveCssResourceReference;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapResponsiveCssResourceReference;
 
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -36,7 +36,7 @@ public abstract class ResponsiveBootstrapPage<T> extends AbstractBootstrapPage<T
 
 		response.render(StringHeaderItem.forString("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"));
 		if (this.includeBoostrapCss()) {
-			response.render(CssHeaderItem.forReference(new BoostrapResponsiveCssResourceReference()));
+			response.render(CssHeaderItem.forReference(new BootstrapResponsiveCssResourceReference()));
 		}
 	}
 }

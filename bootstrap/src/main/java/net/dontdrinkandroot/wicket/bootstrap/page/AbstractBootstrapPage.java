@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.BoostrapCssResourceReference;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssResourceReference;
 import net.dontdrinkandroot.wicket.bootstrap.javascript.BootstrapResourceReference;
 
 import org.apache.wicket.markup.head.CssHeaderItem;
@@ -56,7 +56,7 @@ public abstract class AbstractBootstrapPage<T> extends GenericWebPage<T> {
 		}
 
 		if (this.includeBoostrapCss()) {
-			response.render(CssHeaderItem.forReference(new BoostrapCssResourceReference()));
+			response.render(CssHeaderItem.forReference(new BootstrapCssResourceReference()));
 		}
 	}
 
