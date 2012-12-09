@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 
 import java.util.Collections;
 
-import net.dontdrinkandroot.wicket.bootstrap.javascript.BootstrapResourceReference;
+import net.dontdrinkandroot.wicket.bootstrap.javascript.BootstrapJsResourceReference;
 
 import org.apache.wicket.ajax.WicketEventJQueryResourceReference;
 import org.apache.wicket.markup.head.HeaderItem;
@@ -14,7 +14,7 @@ public class BootstrapJsHeaderItem extends JavaScriptReferenceHeaderItem {
 
 	public BootstrapJsHeaderItem(boolean defer) {
 
-		super(new BootstrapResourceReference(), null, "bootstrapjs", defer, null, null);
+		super(new BootstrapJsResourceReference(), null, "bootstrapjs", defer, null, null);
 	}
 
 

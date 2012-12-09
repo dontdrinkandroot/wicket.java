@@ -8,11 +8,11 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 
 
-public class BootstrapResourceReference extends JavaScriptResourceReference {
+public class BootstrapJsResourceReference extends JavaScriptResourceReference {
 
-	public BootstrapResourceReference() {
+	public BootstrapJsResourceReference() {
 
-		super(BootstrapResourceReference.class, "bootstrap-2.2.1.min.js");
+		super(BootstrapJsResourceReference.class, "bootstrap-2.2.1.min.js");
 	}
 
 

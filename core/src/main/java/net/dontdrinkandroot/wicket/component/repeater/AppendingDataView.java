@@ -27,7 +27,7 @@ public abstract class AppendingDataView<T> extends DataView<T> {
 		Iterator<IModel<T>> models = this.getItemModels();
 		Iterator<Item<T>> items = this.getItemReuseStrategy().getItems(this.newItemFactory(), models, this.getItems());
 
-		int index = 0;
+		int index = (int) this.getFirstItemOffset();
 		while (items.hasNext()) {
 
 			Item<T> item = items.next();

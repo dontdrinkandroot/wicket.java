@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicketexample.web;
 
+import net.dontdrinkandroot.wicket.bootstrap.util.WebApplicationUtils;
 import net.dontdrinkandroot.wicketexample.web.component.DateImageResource;
 import net.dontdrinkandroot.wicketexample.web.page.auth.LoginPage;
 import net.dontdrinkandroot.wicketexample.web.page.bootstrap.ButtonPage;
@@ -37,6 +38,8 @@ public class WicketApplication extends AuthenticatedWebApplication {
 		this.getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
 		this.getMarkupSettings().setStripWicketTags(true);
+
+		WebApplicationUtils.mountBoostrapResources(this);
 
 		this.getSharedResources().add(Resource.class, "dateImage", null, null, null, new DateImageResource());
 		ResourceReference dateImageResource =
