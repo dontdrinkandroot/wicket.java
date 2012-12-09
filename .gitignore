@@ -8,6 +8,10 @@
 /bootstrap/.settings
 /bootstrap/.project
 /bootstrap/.classpath
+/dontdrinkandroot/target
+/dontdrinkandroot/.settings
+/dontdrinkandroot/.project
+/dontdrinkandroot/.classpath
 /example/.settings
 /example/.classpath
 /example/.factorypath
