@@ -1,20 +1,25 @@
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
+import java.util.Collections;
 import java.util.List;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.css.CssClass;
-import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
+import net.dontdrinkandroot.wicket.headeritem.ExternalJQueryUiJsHeaderItem;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.CallbackParameter;
+import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.util.string.StringValue;
 
 
@@ -91,63 +96,60 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 	}
 
 
-	protected String getContainment() {
-
-		return null;
-	}
-
-
 	@Override
 	public void renderHead(IHeaderResponse response) {
 
 		super.renderHead(response);
 
-		StringBuffer sortableOptions = new StringBuffer();
+		CharSequence callbackFunction =
+				this.stopCallbackBehavior.getCallbackFunction(
+						CallbackParameter.explicit("oldPosition"),
+						CallbackParameter.explicit("newPosition"),
+						CallbackParameter.explicit("out"),
+						CallbackParameter.explicit("componentPath"));
 
-		if (this.getContainment() != null) {
-			sortableOptions.append("containment: '" + this.getContainment() + "', ");
+		String containment = "";
+		Component containmentComponent = this.getContainment();
+		if (containmentComponent != null) {
+			containment = "#" + containmentComponent.getMarkupId();
 		}
-		sortableOptions.append("start : function(event, ui) {$(this).data('oldPosition', ui.item.index()); $(this).data('out', false);}, ");
-		sortableOptions.append("items: 'li', ");
-		sortableOptions.append("beforeStop : function(event, ui) {"
-				+ "var componentPath = $(ui.helper).data('wicket.component.path'); "
-				+ "console.log(componentPath); "
-				+ this.beforeWicketCall()
-				+ "wicketAjaxGet('"
-				+ this.stopCallbackBehavior.getCallbackUrl()
-				+ "&oldPosition=' + $(this).data('oldPosition') + '&newPosition=' + ui.item.index() + '&out=' + $(this).data('out') + '&componentPath=' + componentPath);"
-				+ this.afterWicketCall()
-				+ "}, ");
-		sortableOptions.append("helper: function(event, ui) { "
-				+ "ui.data('wicket.component.path', '"
-				+ this.getPageRelativePath()
-				+ "'); "
-				+ "return ui; "
-				+ "},");
-		sortableOptions.append("out : function(event, ui) {$(this).data('out', true)}, ");
-		sortableOptions.append("placeholder : '" + this.getPlaceHolderClass() + "',");
-		sortableOptions.append("over : function(event, ui) {$(this).data('out', false)}");
 
-		response.render(OnDomReadyHeaderItem.forScript(new JQueryUiScript(this).append(
-				".sortable({" + sortableOptions + "})").toString()));
-	}
+		PackageResourceReference jQueryUiSortableListResourceReference =
+				new PackageResourceReference(JQueryUiSortableList.class, "jqueryuisortablelist.js");
 
+		final JavaScriptReferenceHeaderItem jQuerySortableListHeaderItem =
+				new JavaScriptReferenceHeaderItem(
+						jQueryUiSortableListResourceReference,
+						null,
+						"jqueryuisortablelist",
+						false,
+						null,
+						null) {
 
-	/**
-	 * Javascript that should be performed after the "onstop" callback was called.
-	 */
-	protected String afterWicketCall() {
+					@Override
+					public Iterable<? extends HeaderItem> getDependencies() {
 
-		return "";
-	}
+						return Collections.singletonList(new ExternalJQueryUiJsHeaderItem(false));
+					}
+				};
 
+		OnDomReadyHeaderItem initSortableList =
+				new OnDomReadyHeaderItem(String.format(
+						"initSortableList('%s', %s, '%s', '%s', '%s')",
+						this.getMarkupId(),
+						callbackFunction,
+						this.getPageRelativePath(),
+						this.getPlaceHolderClass(),
+						containment)) {
 
-	/**
-	 * Javascript that should be performed before the "onstop" callback is called.
-	 */
-	protected String beforeWicketCall() {
+					@Override
+					public Iterable<? extends HeaderItem> getDependencies() {
 
-		return "";
+						return Collections.singletonList(jQuerySortableListHeaderItem);
+					}
+				};
+
+		response.render(initSortableList);
 	}
 
 
@@ -155,9 +157,6 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 
 		return "placeholder";
 	}
-
-
-	protected abstract Component createChild(String id, IModel<T> model);
 
 
 	protected void onPositionChanged(AjaxRequestTarget target, int oldPosition, int newPosition) {
@@ -195,6 +194,12 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 	}
 
 
+	protected Component getContainment() {
+
+		return this;
+	}
+
+
 	protected IModel<? extends CssClass> appendItemClass() {
 
 		return null;
@@ -205,5 +210,8 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 
 		this.itemView.setReuseItems(reuseItems);
 	}
+
+
+	protected abstract Component createChild(String id, IModel<T> model);
 
 }

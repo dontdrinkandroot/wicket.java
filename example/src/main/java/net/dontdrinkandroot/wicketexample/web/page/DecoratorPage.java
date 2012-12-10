@@ -14,6 +14,7 @@ import net.dontdrinkandroot.wicketexample.web.page.auth.UserPage;
 import net.dontdrinkandroot.wicketexample.web.page.bootstrap.AbstractBootstrapPage;
 import net.dontdrinkandroot.wicketexample.web.page.bootstrap.ButtonPage;
 import net.dontdrinkandroot.wicketexample.web.page.component.DataTablePage;
+import net.dontdrinkandroot.wicketexample.web.page.component.JQueryUiSortableListPage;
 import net.dontdrinkandroot.wicketexample.web.page.component.PageHeightScalingPage;
 import net.dontdrinkandroot.wicketexample.web.page.cookie.CookiePage;
 import net.dontdrinkandroot.wicketexample.web.page.event.EventPage;
@@ -113,6 +114,10 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 						itemView.newChildId(),
 						DataTablePage.class,
 						"Data Table"));
+				itemView.add(new NavItemBookmarkablePageLink<Void>(
+						itemView.newChildId(),
+						JQueryUiSortableListPage.class,
+						"Sortable List"));
 			}
 		});
 
