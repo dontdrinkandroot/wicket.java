@@ -3,32 +3,27 @@ package net.dontdrinkandroot.wicket.component.jqueryui;
 import java.util.Collections;
 import java.util.List;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.css.CssClass;
+import net.dontdrinkandroot.wicket.component.basic.AbstractList;
 import net.dontdrinkandroot.wicket.headeritem.ExternalJQueryUiJsHeaderItem;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.CallbackParameter;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.util.string.StringValue;
 
 
-// TODO: check if markup is list
-public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
+public abstract class JQueryUiSortableList<T> extends AbstractList<T> {
 
 	private final AbstractDefaultAjaxBehavior stopCallbackBehavior;
-
-	private final ListView<T> itemView;
 
 
 	public JQueryUiSortableList(String id, final IModel<List<T>> model) {
@@ -36,20 +31,6 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 		super(id, model);
 
 		this.setOutputMarkupId(true);
-
-		this.itemView = new ListView<T>("item", this.getModel()) {
-
-			@Override
-			protected void populateItem(ListItem<T> item) {
-
-				item.add(JQueryUiSortableList.this.createChild("child", item.getModel()));
-				if (JQueryUiSortableList.this.appendItemClass() != null) {
-					item.add(new CssClassAppender(JQueryUiSortableList.this.appendItemClass()));
-				}
-			}
-
-		};
-		this.add(this.itemView);
 
 		this.stopCallbackBehavior = new AbstractDefaultAjaxBehavior() {
 
@@ -73,14 +54,18 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 
 				if (listPath.equals(droppedComponentPath)) {
 
+					/* The dropped component is one of our list items */
 					if (out) {
+						/* Item was dragged outside of the list, remove it */
 						JQueryUiSortableList.this.onRemove(target, oldPosition);
 					} else {
+						/* Item was dragged within the list, update position */
 						JQueryUiSortableList.this.onPositionChanged(target, oldPosition, newPosition);
 					}
 
 				} else {
 
+					/* Retrieve the dropped component by its path and insert its model into the list */
 					Component droppedComponent = JQueryUiSortableList.this.getPage().get(droppedComponentPath);
 					Object droppedComponentModelObject = null;
 					if (droppedComponent != null) {
@@ -153,6 +138,35 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 	}
 
 
+	@Override
+	protected void onComponentTag(ComponentTag tag) {
+
+		this.checkComponentTag(tag, "ul", "li");
+		super.onComponentTag(tag);
+	}
+
+
+	protected final void checkComponentTag(final ComponentTag tag, String... names) {
+
+		for (String name : names) {
+			if (tag.getName().equals(name)) {
+				return;
+			}
+		}
+
+		String joinedNames = StringUtils.join(names, ",");
+		String msg =
+				String.format(
+						"Component [%s] (path = [%s]) must be applied to a tag of type [%s], not: %s",
+						this.getId(),
+						this.getPath(),
+						joinedNames,
+						tag.toUserDebugString());
+
+		this.findMarkupStream().throwMarkupException(msg);
+	}
+
+
 	protected String getPlaceHolderClass() {
 
 		return "placeholder";
@@ -198,20 +212,5 @@ public abstract class JQueryUiSortableList<T> extends GenericPanel<List<T>> {
 
 		return this;
 	}
-
-
-	protected IModel<? extends CssClass> appendItemClass() {
-
-		return null;
-	}
-
-
-	public void setReuseItems(boolean reuseItems) {
-
-		this.itemView.setReuseItems(reuseItems);
-	}
-
-
-	protected abstract Component createChild(String id, IModel<T> model);
 
 }

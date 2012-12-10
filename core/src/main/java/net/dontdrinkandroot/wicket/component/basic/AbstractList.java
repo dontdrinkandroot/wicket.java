@@ -26,23 +26,24 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>> {
 
 		super.onInitialize();
 
-		this.itemView = new RepeatingView("item");
-		this.add(this.itemView);
-	}
+		this.itemView = new RepeatingView("item") {
 
+			@Override
+			protected void onPopulate() {
 
-	@Override
-	protected void onBeforeRender() {
+				this.removeAll();
 
-		super.onBeforeRender();
+				IModel<List<T>> model = AbstractList.this.getModel();
 
-		this.itemView.removeAll();
-		if (this.getModel() != null && this.getModelObject() != null) {
-			for (int idx = 0; idx < this.getModelObject().size(); idx++) {
-				IModel<T> itemModel = new ListItemModel<T>(this.getModel(), idx);
-				this.itemView.add(this.createComponent(this.itemView.newChildId(), itemModel));
+				if (model != null && model.getObject() != null) {
+					for (int idx = 0; idx < model.getObject().size(); idx++) {
+						IModel<T> itemModel = new ListItemModel<T>(model, idx);
+						this.add(AbstractList.this.createComponent(this.newChildId(), itemModel));
+					}
+				}
 			}
-		}
+		};
+		this.add(this.itemView);
 	}
 
 

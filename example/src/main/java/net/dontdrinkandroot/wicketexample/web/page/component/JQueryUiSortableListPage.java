@@ -37,17 +37,17 @@ public class JQueryUiSortableListPage extends DecoratorWidePage<Void> {
 				new JQueryUiSortableList<Integer>("sortableList", new ListModel<Integer>(values)) {
 
 					@Override
-					protected Component createChild(String id, IModel<Integer> model) {
-
-						return new Label(id, model);
-					}
-
-
-					@Override
 					protected void onPositionChanged(AjaxRequestTarget target, int oldPosition, int newPosition) {
 
 						this.info(String.format("old position: %d, new position: %s", oldPosition, newPosition));
 						target.add(JQueryUiSortableListPage.this.getFeedbackPanel());
+					}
+
+
+					@Override
+					protected Component createComponent(String id, IModel<Integer> model) {
+
+						return new Label(id, model);
 					}
 				};
 		this.add(jQueryUiSortableList);
