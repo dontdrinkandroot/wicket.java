@@ -1,4 +1,4 @@
-function initSortableList(markupId, wicketCallback, componentPath, placeholderClass, containment) {
+function initSortable(markupId, wicketCallback, componentPath, itemSelector, placeholderClass, containment) {
 	
 	var selector = "#" + markupId + "";
 	$(selector).sortable({
@@ -11,15 +11,14 @@ function initSortableList(markupId, wicketCallback, componentPath, placeholderCl
 		containment: containment, 
 		
 		beforeStop: function(event, ui) {
-			var componentPath = $(ui.helper).data('wicket.component.path');
 			wicketCallback(
 					$(this).data('oldPosition'),
 					ui.item.index(),
 					$(this).data('out'),
-					componentPath);
+					$(ui.helper).data('wicket.component.path'));
 		},
 		
-		items: 'li',
+		items: itemSelector,
 		
 		out: function(event, ui) {
 			$(this).data('out', true)

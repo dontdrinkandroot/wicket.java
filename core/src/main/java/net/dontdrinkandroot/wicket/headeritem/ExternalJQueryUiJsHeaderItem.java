@@ -12,7 +12,7 @@ public class ExternalJQueryUiJsHeaderItem extends JavaScriptUrlReferenceHeaderIt
 
 	public ExternalJQueryUiJsHeaderItem(boolean defer) {
 
-		super("http://code.jquery.com/ui/1.9.2/jquery-ui.js", "jqueryuijs", defer, null, null);
+		super("http://code.jquery.com/ui/1.9.2/jquery-ui.js", "jqueryui.base", defer, null, null);
 	}
 
 
