@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicketexample.web.page.bootstrap;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.NavItemBookmarkablePageLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicketexample.web.page.DecoratorSidebarPage;
 
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -18,10 +18,10 @@ public class AbstractBootstrapPage<T> extends DecoratorSidebarPage<T> {
 	@Override
 	protected void createNavItems(RepeatingView navItemView) {
 
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(navItemView.newChildId(), ButtonPage.class, "Buttons"));
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(navItemView.newChildId(), FormPage.class, "Forms"));
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(navItemView.newChildId(), IconPage.class, "Icons"));
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(navItemView.newChildId(), FeedbackPage.class, "Feedback"));
+		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), ButtonPage.class, "Buttons"));
+		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), FormPage.class, "Forms"));
+		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), IconPage.class, "Icons"));
+		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), FeedbackPage.class, "Feedback"));
 
 	}
 

@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.nav;
+package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
@@ -7,9 +7,9 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.Model;
 
 
-public class NavItemPanel<T> extends GenericPanel<T> {
+public class AbstractItem<T> extends GenericPanel<T> {
 
-	public NavItemPanel(String id) {
+	public AbstractItem(String id) {
 
 		super(id);
 	}
@@ -25,7 +25,7 @@ public class NavItemPanel<T> extends GenericPanel<T> {
 			@Override
 			public BootstrapCssClass getObject() {
 
-				if (NavItemPanel.this.isActive()) {
+				if (AbstractItem.this.isActive()) {
 					return super.getObject();
 				}
 

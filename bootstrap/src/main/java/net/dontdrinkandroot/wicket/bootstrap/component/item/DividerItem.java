@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.nav;
+package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
@@ -6,9 +6,9 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 
-public class NavItemDivider extends WebMarkupContainer {
+public class DividerItem extends WebMarkupContainer {
 
-	public NavItemDivider(String id) {
+	public DividerItem(String id) {
 
 		super(id);
 		this.add(new CssClassAppender(BootstrapCssClass.DIVIDER));

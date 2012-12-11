@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.nav;
+package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
@@ -8,7 +8,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
-public class NavItemBookmarkablePageLink<T> extends AbstractNavItemLink<T> {
+public class BookmarkablePageLinkItem<T> extends AbstractLinkItem<T> {
 
 	private BookmarkablePageLink<T> link;
 
@@ -17,7 +17,7 @@ public class NavItemBookmarkablePageLink<T> extends AbstractNavItemLink<T> {
 	private PageParameters parameters;
 
 
-	public <C extends Page> NavItemBookmarkablePageLink(String id, Class<C> pageClass, IModel<String> labelModel) {
+	public <C extends Page> BookmarkablePageLinkItem(String id, Class<C> pageClass, IModel<String> labelModel) {
 
 		super(id, labelModel);
 
@@ -25,7 +25,7 @@ public class NavItemBookmarkablePageLink<T> extends AbstractNavItemLink<T> {
 	}
 
 
-	public <C extends Page> NavItemBookmarkablePageLink(
+	public <C extends Page> BookmarkablePageLinkItem(
 			String id,
 			Class<C> pageClass,
 			String string,
@@ -37,7 +37,7 @@ public class NavItemBookmarkablePageLink<T> extends AbstractNavItemLink<T> {
 	}
 
 
-	public <C extends Page> NavItemBookmarkablePageLink(String id, Class<C> pageClass, String label) {
+	public <C extends Page> BookmarkablePageLinkItem(String id, Class<C> pageClass, String label) {
 
 		super(id, new Model<String>(label));
 

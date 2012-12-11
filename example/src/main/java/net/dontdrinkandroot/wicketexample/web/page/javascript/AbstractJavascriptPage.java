@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicketexample.web.page.javascript;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.NavItemBookmarkablePageLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicketexample.web.page.DecoratorSidebarPage;
 
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -18,12 +18,12 @@ public class AbstractJavascriptPage<T> extends DecoratorSidebarPage<T> {
 	@Override
 	protected void createNavItems(RepeatingView navItemView) {
 
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(navItemView.newChildId(), CallbackPage.class, "Callback"));
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(
+		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), CallbackPage.class, "Callback"));
+		navItemView.add(new BookmarkablePageLinkItem<Void>(
 				navItemView.newChildId(),
 				ScrollToBottomPage.class,
 				"ScrollToBottom"));
-		navItemView.add(new NavItemBookmarkablePageLink<Void>(
+		navItemView.add(new BookmarkablePageLinkItem<Void>(
 				navItemView.newChildId(),
 				PopulatingScrollToBottomPage.class,
 				"Populating ScrollToBottom"));

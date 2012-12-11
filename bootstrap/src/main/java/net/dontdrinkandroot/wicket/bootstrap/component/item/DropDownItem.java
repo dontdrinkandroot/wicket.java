@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.nav;
+package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
@@ -9,9 +9,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public abstract class NavItemDropDown<T> extends NavItemPanel<T> {
+public abstract class DropDownItem<T> extends AbstractItem<T> {
 
-	public NavItemDropDown(String id, IModel<String> labelModel) {
+	public DropDownItem(String id, IModel<String> labelModel) {
 
 		super(id);
 
@@ -19,7 +19,7 @@ public abstract class NavItemDropDown<T> extends NavItemPanel<T> {
 	}
 
 
-	public NavItemDropDown(String id, String label) {
+	public DropDownItem(String id, String label) {
 
 		super(id);
 
