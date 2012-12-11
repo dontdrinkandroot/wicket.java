@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.dropdown;
+package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 		super(id, model);
 
 		this.setOutputMarkupId(true);
-		this.add(new CssClassAppender("btn-group"));
+		this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
 
 		final RepeatingView choicesView = new RepeatingView("choice");
 		choicesView.setOutputMarkupId(true);
@@ -35,7 +35,7 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 
 		for (final T choice : choicesModel.getObject()) {
 
-			AjaxLink<Void> periodLink = new AjaxLink<Void>(choicesView.newChildId()) {
+			AjaxLink<Void> choiceLink = new AjaxLink<Void>(choicesView.newChildId()) {
 
 				@Override
 				public void onClick(AjaxRequestTarget target) {
@@ -43,8 +43,8 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 					ButtonGroupChoice.this.onSelectionChanged(choice, target);
 				}
 			};
-			periodLink.setBody(this.getDisplayModel(choice));
-			periodLink.add(new CssClassAppender(new Model<BootstrapCssClass>() {
+			choiceLink.setBody(this.getDisplayModel(choice));
+			choiceLink.add(new CssClassAppender(new Model<BootstrapCssClass>() {
 
 				@Override
 				public BootstrapCssClass getObject() {
@@ -57,7 +57,7 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 				}
 			}));
 
-			choicesView.add(periodLink);
+			choicesView.add(choiceLink);
 		}
 	}
 

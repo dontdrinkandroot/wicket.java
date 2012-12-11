@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
@@ -12,6 +13,12 @@ public class AbstractItem<T> extends GenericPanel<T> {
 	public AbstractItem(String id) {
 
 		super(id);
+	}
+
+
+	public AbstractItem(String id, IModel<T> model) {
+
+		super(id, model);
 	}
 
 
