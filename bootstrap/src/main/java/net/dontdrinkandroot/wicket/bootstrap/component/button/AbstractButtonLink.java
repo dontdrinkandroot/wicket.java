@@ -1,8 +1,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.css.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;

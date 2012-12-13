@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicketexample.web.page.bootstrap;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.css.BlockLevelBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.css.IconBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBlockLevelBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink;
@@ -36,7 +36,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.debug("defaultButton Clicked");
 			}
-		}.add(new BlockLevelBehavior()));
+		}.add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("primaryButton", null, new Model<String>("primaryButton")) {
 
 			@Override
@@ -44,7 +44,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.debug("primaryButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.PRIMARY).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.PRIMARY).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("infoButton", null, new Model<String>("infoButton")) {
 
 			@Override
@@ -52,7 +52,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.info("infoButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.INFO).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.INFO).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("successButton", null, new Model<String>("successButton")) {
 
 			@Override
@@ -60,7 +60,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.success("successButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.SUCCESS).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.SUCCESS).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("warningButton", null, new Model<String>("warningButton")) {
 
 			@Override
@@ -68,7 +68,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.success("warningButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.WARNING).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.WARNING).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("dangerButton", null, new Model<String>("dangerButton")) {
 
 			@Override
@@ -76,7 +76,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.debug("dangerButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.DANGER).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.DANGER).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("inverseButton", null, new Model<String>("inverseButton")) {
 
 			@Override
@@ -84,7 +84,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.debug("inverseButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.INVERSE).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.INVERSE).add(new ButtonBlockLevelBehavior()));
 		this.add(new ButtonLink<Void>("linkButton", null, new Model<String>("linkButton")) {
 
 			@Override
@@ -92,7 +92,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 				this.debug("linkButton Clicked");
 			}
-		}.setButtonStyle(ButtonStyle.LINK).add(new BlockLevelBehavior()));
+		}.setButtonStyle(ButtonStyle.LINK).add(new ButtonBlockLevelBehavior()));
 
 		this.add(new ButtonLink<Void>("miniButton", null, new Model<String>("miniButton")) {
 

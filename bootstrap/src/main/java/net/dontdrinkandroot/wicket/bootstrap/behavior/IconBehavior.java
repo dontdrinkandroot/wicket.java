@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.behavior.css;
+package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

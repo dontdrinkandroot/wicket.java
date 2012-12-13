@@ -1,12 +1,12 @@
-package net.dontdrinkandroot.wicket.bootstrap.behavior.css;
+package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public class BlockLevelBehavior extends CssClassAppender {
+public class ButtonBlockLevelBehavior extends CssClassAppender {
 
-	public BlockLevelBehavior() {
+	public ButtonBlockLevelBehavior() {
 
 		super(BootstrapCssClass.BTN_BLOCK);
 	}
