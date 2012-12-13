@@ -13,58 +13,31 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
+/**
+ * Prepends and/or appends an Icon to the body of the attached component.
+ */
 public class IconBehavior extends AbstractTransformerBehavior {
 
 	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
-	private IModel<IconClass> beforeIconModel;
+	private final IModel<IconClass> beforeIconModel = new Model<IconClass>();
 
 	private boolean beforeIconInverted = false;
 
-	private IModel<IconClass> afterIconModel;
+	private final IModel<IconClass> afterIconModel = new Model<IconClass>();
 
 	private boolean afterIconInverted = false;
 
 
-	public IconBehavior setBeforeIcon(IconClass beforeIcon, boolean inverted) {
+	public IconBehavior() {
 
-		this.beforeIconModel = Model.of(beforeIcon);
+	}
+
+
+	public IconBehavior(IconClass beforeIcon, boolean inverted) {
+
+		this.getBeforeIconModel().setObject(beforeIcon);
 		this.beforeIconInverted = inverted;
-
-		return this;
-	}
-
-
-	public IconBehavior setAfterIcon(IconClass afterIcon, boolean inverted) {
-
-		this.afterIconModel = Model.of(afterIcon);
-		this.afterIconInverted = inverted;
-
-		return this;
-	}
-
-
-	protected IModel<IconClass> getBeforeIconModel() {
-
-		return this.beforeIconModel;
-	}
-
-
-	protected IModel<IconClass> getAfterIconModel() {
-
-		return this.afterIconModel;
-	}
-
-
-	protected boolean isBeforeIconInverted() {
-
-		return this.beforeIconInverted;
-	}
-
-
-	protected boolean isAfterIconInverted() {
-
-		return this.afterIconInverted;
 	}
 
 
@@ -108,5 +81,59 @@ public class IconBehavior extends AbstractTransformerBehavior {
 		}
 
 		return new StringBuffer(open).append(before).append(body).append(after).append(close);
+	}
+
+
+	public IconClass getBeforeIcon() {
+
+		return this.getBeforeIconModel().getObject();
+	}
+
+
+	public IconBehavior setBeforeIcon(IconClass beforeIcon, boolean inverted) {
+
+		this.getBeforeIconModel().setObject(beforeIcon);
+		this.beforeIconInverted = inverted;
+
+		return this;
+	}
+
+
+	public IconClass getAfterIcon() {
+
+		return this.getAfterIconModel().getObject();
+	}
+
+
+	public IconBehavior setAfterIcon(IconClass afterIcon, boolean inverted) {
+
+		this.getAfterIconModel().setObject(afterIcon);
+		this.afterIconInverted = inverted;
+
+		return this;
+	}
+
+
+	public boolean isBeforeIconInverted() {
+
+		return this.beforeIconInverted;
+	}
+
+
+	public boolean isAfterIconInverted() {
+
+		return this.afterIconInverted;
+	}
+
+
+	protected IModel<IconClass> getBeforeIconModel() {
+
+		return this.beforeIconModel;
+	}
+
+
+	protected IModel<IconClass> getAfterIconModel() {
+
+		return this.afterIconModel;
 	}
 }

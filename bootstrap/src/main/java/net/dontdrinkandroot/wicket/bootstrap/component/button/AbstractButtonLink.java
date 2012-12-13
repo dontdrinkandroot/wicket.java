@@ -1,6 +1,5 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
@@ -9,17 +8,17 @@ import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
 
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 
 public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 
 	private IModel<String> labelModel;
 
-	private ButtonStyle buttonStyle;
+	private final IModel<ButtonStyle> buttonStyleModel = new Model<ButtonStyle>();
 
-	private ButtonSize buttonSize;
+	private final IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
 
 
 	public AbstractButtonLink(String id) {
@@ -42,17 +41,16 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 	}
 
 
-	public AbstractButtonLink<T> setButtonStyle(ButtonStyle buttonStyle) {
+	@Override
+	public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
 
-		this.buttonStyle = buttonStyle;
-		return this;
-	}
+		super.onComponentTagBody(markupStream, openTag);
 
-
-	public AbstractButtonLink<T> setButtonSize(ButtonSize buttonSize) {
-
-		this.buttonSize = buttonSize;
-		return this;
+		/* Set body to label if a */
+		if (this.labelModel != null
+				&& (openTag.getName().equalsIgnoreCase("a") || openTag.getName().equalsIgnoreCase("button"))) {
+			this.replaceComponentTagBody(markupStream, openTag, this.labelModel.getObject());
+		}
 	}
 
 
@@ -61,48 +59,8 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 
 		super.onInitialize();
 
-		this.add(new ButtonBehavior());
-		this.add(new CssClassAppender(this.getButtonStyleModel()));
-		this.add(new CssClassAppender(this.getButtonSizeModel()));
+		this.add(new ButtonBehavior(this.getButtonStyleModel(), this.getButtonSizeModel()));
 		this.add(new DisabledCssBehavior());
-	}
-
-
-	protected IModel<ButtonStyle> getButtonStyleModel() {
-
-		return new AbstractReadOnlyModel<ButtonStyle>() {
-
-			@Override
-			public ButtonStyle getObject() {
-
-				return AbstractButtonLink.this.buttonStyle;
-			}
-		};
-	}
-
-
-	protected IModel<ButtonSize> getButtonSizeModel() {
-
-		return new AbstractReadOnlyModel<ButtonSize>() {
-
-			@Override
-			public ButtonSize getObject() {
-
-				return AbstractButtonLink.this.buttonSize;
-			}
-		};
-	}
-
-
-	/**
-	 * Helper methods that both checks whether the link is enabled and whether the action ENABLE is
-	 * allowed.
-	 * 
-	 * @return whether the link should be rendered as enabled
-	 */
-	protected boolean isLinkEnabled() {
-
-		return this.isEnabledInHierarchy();
 	}
 
 
@@ -118,16 +76,41 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 	}
 
 
-	@Override
-	public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
+	public AbstractButtonLink<T> setButtonStyle(ButtonStyle buttonStyle) {
 
-		super.onComponentTagBody(markupStream, openTag);
+		this.buttonStyleModel.setObject(buttonStyle);
+		return this;
+	}
 
-		/* Set body to label if a */
-		if (this.labelModel != null
-				&& (openTag.getName().equalsIgnoreCase("a") || openTag.getName().equalsIgnoreCase("button"))) {
-			this.replaceComponentTagBody(markupStream, openTag, this.labelModel.getObject());
-		}
+
+	public AbstractButtonLink<T> setButtonSize(ButtonSize buttonSize) {
+
+		this.buttonSizeModel.setObject(buttonSize);
+		return this;
+	}
+
+
+	protected IModel<ButtonStyle> getButtonStyleModel() {
+
+		return this.buttonStyleModel;
+	}
+
+
+	protected IModel<ButtonSize> getButtonSizeModel() {
+
+		return this.buttonSizeModel;
+	}
+
+
+	/**
+	 * Helper methods that both checks whether the link is enabled and whether the action ENABLE is
+	 * allowed.
+	 * 
+	 * @return whether the link should be rendered as enabled
+	 */
+	protected boolean isLinkEnabled() {
+
+		return this.isEnabledInHierarchy();
 	}
 
 

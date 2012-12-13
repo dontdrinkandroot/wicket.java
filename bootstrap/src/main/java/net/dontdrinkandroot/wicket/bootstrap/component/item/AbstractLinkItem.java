@@ -82,28 +82,28 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 		link.add(new IconBehavior() {
 
 			@Override
-			protected IModel<IconClass> getBeforeIconModel() {
+			public IModel<IconClass> getBeforeIconModel() {
 
 				return AbstractLinkItem.this.getBeforeIconModel();
 			};
 
 
 			@Override
-			protected IModel<IconClass> getAfterIconModel() {
+			public IModel<IconClass> getAfterIconModel() {
 
 				return AbstractLinkItem.this.getAfterIconModel();
 			};
 
 
 			@Override
-			protected boolean isBeforeIconInverted() {
+			public boolean isBeforeIconInverted() {
 
 				return AbstractLinkItem.this.isBeforeIconInverted();
 			};
 
 
 			@Override
-			protected boolean isAfterIconInverted() {
+			public boolean isAfterIconInverted() {
 
 				return AbstractLinkItem.this.isAfterIconInverted();
 			};

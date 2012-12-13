@@ -12,7 +12,7 @@ import org.apache.wicket.model.Model;
 
 public class LabelBehavior extends Behavior {
 
-	private IModel<LabelStyle> labelStyleModel;
+	private IModel<LabelStyle> labelStyleModel = new Model<LabelStyle>();
 
 
 	public LabelBehavior() {
@@ -32,12 +32,24 @@ public class LabelBehavior extends Behavior {
 	}
 
 
+	public LabelStyle getLabeLStyle() {
+
+		return this.labelStyleModel.getObject();
+	}
+
+
+	protected IModel<LabelStyle> getLabelStyleModel() {
+
+		return this.labelStyleModel;
+	}
+
+
 	@Override
 	public void bind(Component component) {
 
 		super.bind(component);
 
 		component.add(new CssClassAppender(BootstrapCssClass.LABEL));
-		component.add(new CssClassAppender(this.labelStyleModel));
+		component.add(new CssClassAppender(this.getLabelStyleModel()));
 	}
 }

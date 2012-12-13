@@ -7,6 +7,10 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 
 
+/**
+ * Adds {@link BootstrapCssClass#DISABLED} to the class attribute of components that are not enabled
+ * in hierarchy.
+ */
 public class DisabledCssBehavior extends Behavior {
 
 	@Override
