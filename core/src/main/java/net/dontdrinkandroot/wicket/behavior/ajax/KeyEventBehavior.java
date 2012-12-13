@@ -1,7 +1,5 @@
 package net.dontdrinkandroot.wicket.behavior.ajax;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -155,13 +153,6 @@ public abstract class KeyEventBehavior extends AjaxEventBehavior {
 		public boolean isShiftKey() {
 
 			return this.shiftKey;
-		}
-
-
-		@Override
-		public String toString() {
-
-			return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 		}
 
 	}

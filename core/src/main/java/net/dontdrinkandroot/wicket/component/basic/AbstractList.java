@@ -4,12 +4,12 @@ import java.util.List;
 
 import net.dontdrinkandroot.wicket.model.ListItemModel;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.string.Strings;
 
 
 public abstract class AbstractList<T> extends GenericPanel<List<T>> {
@@ -65,7 +65,7 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>> {
 			}
 		}
 
-		String joinedNames = StringUtils.join(names, ",");
+		String joinedNames = Strings.join(",", names);
 		String msg =
 				String.format(
 						"Component [%s] (path = [%s]) must be applied to a tag of type [%s], not: %s",

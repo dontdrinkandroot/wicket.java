@@ -20,12 +20,6 @@
 			<artifactId>wicket-ioc</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>net.dontdrinkandroot</groupId>
-			<artifactId>utils</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
-		</dependency>
-
 	</dependencies>
 
 </project>
