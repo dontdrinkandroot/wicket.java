@@ -1,11 +1,13 @@
 package net.dontdrinkandroot.wicketexample.web.page.bootstrap;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.css.BlockLevelBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.css.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -198,6 +200,18 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 		};
 		this.add(singleButtonGroup);
+
+		ButtonLink<Void> iconButton = new ButtonLink<Void>("iconButton", null, Model.of("Icon Button")) {
+
+			@Override
+			public void onClick() {
+
+				// TODO Auto-generated method stub
+
+			}
+		};
+		iconButton.add(new IconBehavior().setBeforeIcon(IconClass.USER, false).setAfterIcon(IconClass.ASTERISK, true));
+		this.add(iconButton);
 
 	}
 
