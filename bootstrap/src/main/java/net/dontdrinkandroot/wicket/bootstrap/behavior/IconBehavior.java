@@ -15,21 +15,21 @@ import org.apache.wicket.model.Model;
 
 public class IconBehavior extends AbstractTransformerBehavior {
 
-	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)");
+	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
 	private IModel<IconClass> beforeIconModel;
 
-	private boolean beforeInverted = false;
+	private boolean beforeIconInverted = false;
 
 	private IModel<IconClass> afterIconModel;
 
-	private boolean afterInverted = false;
+	private boolean afterIconInverted = false;
 
 
 	public IconBehavior setBeforeIcon(IconClass beforeIcon, boolean inverted) {
 
 		this.beforeIconModel = Model.of(beforeIcon);
-		this.beforeInverted = inverted;
+		this.beforeIconInverted = inverted;
 
 		return this;
 	}
@@ -38,7 +38,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	public IconBehavior setAfterIcon(IconClass afterIcon, boolean inverted) {
 
 		this.afterIconModel = Model.of(afterIcon);
-		this.afterInverted = inverted;
+		this.afterIconInverted = inverted;
 
 		return this;
 	}
@@ -56,12 +56,31 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	}
 
 
+	protected boolean isBeforeIconInverted() {
+
+		return this.beforeIconInverted;
+	}
+
+
+	protected boolean isAfterIconInverted() {
+
+		return this.afterIconInverted;
+	}
+
+
 	@Override
 	public CharSequence transform(Component component, CharSequence output) throws Exception {
 
+		if ((this.getBeforeIconModel() == null || this.getBeforeIconModel().getObject() == null)
+				&& (this.getAfterIconModel() == null || this.getAfterIconModel().getObject() == null)) {
+			return output;
+		}
+
 		Matcher matcher = IconBehavior.PATTERN.matcher(output);
 		if (!matcher.matches()) {
-			throw new WicketRuntimeException("IconBehavior applied to a component that does not have a body");
+			throw new WicketRuntimeException(String.format(
+					"IconBehavior applied to a component that does not have a body: %s",
+					output));
 		}
 
 		String open = matcher.group(1);
@@ -71,7 +90,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 		StringBuffer before = new StringBuffer();
 		if (this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null) {
 			before.append("<i class=\"" + this.getBeforeIconModel().getObject().getClassString());
-			if (this.beforeInverted) {
+			if (this.isBeforeIconInverted()) {
 				before.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
 			}
 			before.append("\">");
@@ -81,7 +100,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 		StringBuffer after = new StringBuffer();
 		if (this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null) {
 			after.append(" <i class=\"" + this.getAfterIconModel().getObject().getClassString());
-			if (this.afterInverted) {
+			if (this.isAfterIconInverted()) {
 				after.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
 			}
 			after.append("\">");

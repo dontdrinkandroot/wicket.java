@@ -8,9 +8,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
-public class BookmarkablePageLinkItem<T> extends AbstractLinkItem<T> {
+public class BookmarkablePageLinkItem extends AbstractLinkItem {
 
-	private BookmarkablePageLink<T> link;
+	private BookmarkablePageLink<?> link;
 
 	private final Class<? extends Page> pageClass;
 
@@ -56,11 +56,11 @@ public class BookmarkablePageLinkItem<T> extends AbstractLinkItem<T> {
 	protected Component createLink(String id) {
 
 		if (this.parameters == null) {
-			this.link = new BookmarkablePageLink<T>(id, this.pageClass);
+			this.link = new BookmarkablePageLink<Void>(id, this.pageClass);
 		} else {
-			this.link = new BookmarkablePageLink<T>(id, this.pageClass, this.parameters);
+			this.link = new BookmarkablePageLink<Void>(id, this.pageClass, this.parameters);
 		}
-		this.link.setBody(this.labelModel);
+		this.link.setBody(this.getModel());
 
 		return this.link;
 	}

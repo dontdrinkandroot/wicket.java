@@ -18,11 +18,11 @@ public class AbstractBootstrapPage<T> extends DecoratorSidebarPage<T> {
 	@Override
 	protected void createNavItems(RepeatingView navItemView) {
 
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), ButtonPage.class, "Buttons"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), FormPage.class, "Forms"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), IconPage.class, "Icons"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), FeedbackPage.class, "Feedback"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), DropDownPage.class, "Drop Down"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), ButtonPage.class, "Buttons"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), FormPage.class, "Forms"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), IconPage.class, "Icons"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), FeedbackPage.class, "Feedback"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), DropDownPage.class, "Drop Down"));
 	}
 
 }

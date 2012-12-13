@@ -1,10 +1,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
 
-public class LabelItem extends AbstractItem<String> {
+public class LabelItem extends AbstractLinkItem {
 
 	public LabelItem(String id, IModel<String> model) {
 
@@ -13,11 +14,9 @@ public class LabelItem extends AbstractItem<String> {
 
 
 	@Override
-	protected void onInitialize() {
+	protected Component createLink(String id) {
 
-		super.onInitialize();
-
-		this.add(new Label("label", this.getModel()));
+		return new Label("label", this.getModel());
 	}
 
 }

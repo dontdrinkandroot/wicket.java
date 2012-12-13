@@ -32,7 +32,7 @@ public class DropDownPage extends AbstractBootstrapPage<Void> {
 			protected void createItems(RepeatingView itemView) {
 
 				itemView.add(new HeaderItem(itemView.newChildId(), Model.of("Header")));
-				itemView.add(new BookmarkablePageLinkItem<Void>(
+				itemView.add(new BookmarkablePageLinkItem(
 						itemView.newChildId(),
 						DropDownPage.class,
 						Model.of("Link Item")));

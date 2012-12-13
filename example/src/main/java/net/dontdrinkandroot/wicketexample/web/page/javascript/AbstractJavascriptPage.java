@@ -18,12 +18,12 @@ public class AbstractJavascriptPage<T> extends DecoratorSidebarPage<T> {
 	@Override
 	protected void createNavItems(RepeatingView navItemView) {
 
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), CallbackPage.class, "Callback"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), CallbackPage.class, "Callback"));
+		navItemView.add(new BookmarkablePageLinkItem(
 				navItemView.newChildId(),
 				ScrollToBottomPage.class,
 				"ScrollToBottom"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(
+		navItemView.add(new BookmarkablePageLinkItem(
 				navItemView.newChildId(),
 				PopulatingScrollToBottomPage.class,
 				"Populating ScrollToBottom"));

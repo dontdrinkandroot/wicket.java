@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.CloseableFeedbac
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
+import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import net.dontdrinkandroot.wicketexample.web.WicketTestWebSession;
 import net.dontdrinkandroot.wicketexample.web.page.auth.AbstractAuthPage;
@@ -22,6 +23,7 @@ import net.dontdrinkandroot.wicketexample.web.page.javascript.AbstractJavascript
 import net.dontdrinkandroot.wicketexample.web.page.javascript.CallbackPage;
 import net.dontdrinkandroot.wicketexample.web.page.resources.ResourcesPage;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
@@ -78,7 +80,7 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 
 	private void createNavItems(RepeatingView navItemView) {
 
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), ButtonPage.class, "Bootstrap") {
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), ButtonPage.class, "Bootstrap") {
 
 			@Override
 			protected boolean isActive() {
@@ -86,14 +88,8 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 				return AbstractBootstrapPage.class.isAssignableFrom(this.getPage().getClass());
 			}
 		});
-		navItemView.add(new BookmarkablePageLinkItem<Void>(
-				navItemView.newChildId(),
-				ResourcesPage.class,
-				"Resources"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(
-				navItemView.newChildId(),
-				CallbackPage.class,
-				"JavaScript") {
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), ResourcesPage.class, "Resources"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), CallbackPage.class, "JavaScript") {
 
 			@Override
 			protected boolean isActive() {
@@ -106,27 +102,33 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 			@Override
 			protected void createDropDownItems(RepeatingView itemView) {
 
-				itemView.add(new BookmarkablePageLinkItem<Void>(
+				itemView.add(new BookmarkablePageLinkItem(
 						itemView.newChildId(),
 						PageHeightScalingPage.class,
 						"PageHeight Scaling"));
-				itemView.add(new BookmarkablePageLinkItem<Void>(
-						itemView.newChildId(),
-						DataTablePage.class,
-						"Data Table"));
-				itemView.add(new BookmarkablePageLinkItem<Void>(
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), DataTablePage.class, "Data Table"));
+				itemView.add(new BookmarkablePageLinkItem(
 						itemView.newChildId(),
 						JQueryUiSortableListPage.class,
 						"Sortable List"));
 			}
 		});
 
-		navItemView.add(new DropDownItem(navItemView.newChildId(), "Authentication") {
+		navItemView.add(this.createAuthenticationNavigationItem(navItemView.newChildId()));
+
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), CookiePage.class, "Cookies"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), EventPage.class, "Events"));
+	}
+
+
+	private Component createAuthenticationNavigationItem(String id) {
+
+		DropDownItem authenticationItem = new DropDownItem(id, "Authentication") {
 
 			@Override
 			protected void createDropDownItems(RepeatingView itemView) {
 
-				itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), LoginPage.class, "Login") {
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), LoginPage.class, "Login") {
 
 					@Override
 					public boolean isVisible() {
@@ -134,7 +136,7 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 						return !WicketTestWebSession.get().isSignedIn();
 					}
 				});
-				itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), LogoutPage.class, "Logout") {
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), LogoutPage.class, "Logout") {
 
 					@Override
 					public boolean isVisible() {
@@ -142,8 +144,8 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 						return WicketTestWebSession.get().isSignedIn();
 					}
 				});
-				itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), UserPage.class, "User Page"));
-				itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), AdminPage.class, "Admin Page"));
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), UserPage.class, "User Page"));
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), AdminPage.class, "Admin Page"));
 			}
 
 
@@ -153,10 +155,10 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 				return AbstractAuthPage.class.isAssignableFrom(this.getPage().getClass());
 			}
 
-		});
+		};
+		authenticationItem.setBeforeIcon(IconClass.USER, false);
 
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), CookiePage.class, "Cookies"));
-		navItemView.add(new BookmarkablePageLinkItem<Void>(navItemView.newChildId(), EventPage.class, "Events"));
+		return authenticationItem;
 	}
 
 
