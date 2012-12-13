@@ -23,6 +23,7 @@ public class AbstractBootstrapPage<T> extends DecoratorSidebarPage<T> {
 		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), IconPage.class, "Icons"));
 		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), FeedbackPage.class, "Feedback"));
 		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), DropDownPage.class, "Drop Down"));
+		navItemView.add(new BookmarkablePageLinkItem(navItemView.newChildId(), LabelBadgePage.class, "Labels & Badges"));
 	}
 
 }
