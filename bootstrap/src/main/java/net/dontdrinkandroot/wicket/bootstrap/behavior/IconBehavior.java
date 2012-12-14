@@ -11,6 +11,7 @@ import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.transformer.AbstractTransformerBehavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.string.Strings;
 
 
 /**
@@ -44,8 +45,10 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	@Override
 	public CharSequence transform(Component component, CharSequence output) throws Exception {
 
-		if ((this.getBeforeIconModel() == null || this.getBeforeIconModel().getObject() == null)
-				&& (this.getAfterIconModel() == null || this.getAfterIconModel().getObject() == null)) {
+		boolean hasBeforeIcon = this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null;
+		boolean hasAfterIcon = this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null;
+
+		if (!hasBeforeIcon && !hasAfterIcon) {
 			return output;
 		}
 
@@ -60,6 +63,8 @@ public class IconBehavior extends AbstractTransformerBehavior {
 		String body = matcher.group(2);
 		String close = matcher.group(3);
 
+		boolean isBodyEmpty = Strings.isEmpty(body);
+
 		StringBuffer before = new StringBuffer();
 		if (this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null) {
 			before.append("<i class=\"" + this.getBeforeIconModel().getObject().getClassString());
@@ -67,12 +72,18 @@ public class IconBehavior extends AbstractTransformerBehavior {
 				before.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
 			}
 			before.append("\">");
-			before.append("</i> ");
+			before.append("</i>");
+			if (!isBodyEmpty || hasAfterIcon) {
+				before.append(" ");
+			}
 		}
 
 		StringBuffer after = new StringBuffer();
 		if (this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null) {
-			after.append(" <i class=\"" + this.getAfterIconModel().getObject().getClassString());
+			if (!isBodyEmpty) {
+				after.append(" ");
+			}
+			after.append("<i class=\"" + this.getAfterIconModel().getObject().getClassString());
 			if (this.isAfterIconInverted()) {
 				after.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
 			}

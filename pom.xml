@@ -46,7 +46,7 @@
 
 	<build>
 	
-		<!-- Make sure HTML files are also copied from resources -->
+		<!-- Make sure HTML files are also copied from main/java -->
 		<resources>
 			<resource>
 				<filtering>false</filtering>
