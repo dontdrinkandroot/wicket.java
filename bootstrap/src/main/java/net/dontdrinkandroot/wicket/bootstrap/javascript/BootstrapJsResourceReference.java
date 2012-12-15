@@ -12,7 +12,7 @@ public class BootstrapJsResourceReference extends JavaScriptResourceReference {
 
 	public BootstrapJsResourceReference() {
 
-		super(BootstrapJsResourceReference.class, "bootstrap-2.2.1.min.js");
+		super(BootstrapJsResourceReference.class, "bootstrap-2.2.2.min.js");
 	}
 
 

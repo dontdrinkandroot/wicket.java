@@ -7,7 +7,7 @@ public class DontdrinkandrootPlainBootstrapCssHeaderItem extends CssUrlReference
 
 	public DontdrinkandrootPlainBootstrapCssHeaderItem() {
 
-		super("http://design.dontdrinkandroot.net/css/bootstrap/bootstrap-2.2.1.min.css", "screen", null);
+		super("http://design.dontdrinkandroot.net/css/bootstrap/bootstrap-2.2.2.min.css", "screen", null);
 	}
 
 }
