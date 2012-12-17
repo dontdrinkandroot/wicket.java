@@ -8,6 +8,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -210,7 +211,8 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 			}
 		};
-		iconButton.add(new IconBehavior().setBeforeIcon(IconClass.USER, false).setAfterIcon(IconClass.ASTERISK, true));
+		iconButton.add(new IconBehavior().setBeforeIcon(new InvertibleIconClass(IconClass.USER)).setAfterIcon(
+				new InvertibleIconClass(IconClass.ASTERISK, false)));
 		this.add(iconButton);
 
 	}

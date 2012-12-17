@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
@@ -10,13 +10,9 @@ import org.apache.wicket.model.Model;
 
 public abstract class AbstractLinkItem extends AbstractItem<String> {
 
-	private IModel<IconClass> beforeIconModel;
+	private IModel<InvertibleIconClass> beforeIconModel;
 
-	private boolean beforeIconInverted = false;
-
-	private IModel<IconClass> afterIconModel;
-
-	private boolean afterIconInverted = false;
+	private IModel<InvertibleIconClass> afterIconModel;
 
 
 	public AbstractLinkItem(String id, IModel<String> labelModel) {
@@ -31,45 +27,39 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 	}
 
 
-	public AbstractLinkItem setBeforeIcon(IconClass beforeIcon, boolean inverted) {
+	public AbstractLinkItem setBeforeIcon(InvertibleIconClass beforeIcon) {
 
-		this.beforeIconModel = Model.of(beforeIcon);
-		this.beforeIconInverted = inverted;
-
-		return this;
-	}
-
-
-	public AbstractLinkItem setAfterIcon(IconClass afterIcon, boolean inverted) {
-
-		this.afterIconModel = Model.of(afterIcon);
-		this.afterIconInverted = inverted;
+		if (beforeIcon == null) {
+			this.beforeIconModel = null;
+		} else {
+			this.beforeIconModel = Model.of(beforeIcon);
+		}
 
 		return this;
 	}
 
 
-	public IModel<IconClass> getBeforeIconModel() {
+	public AbstractLinkItem setAfterIcon(InvertibleIconClass afterIcon) {
+
+		if (afterIcon == null) {
+			this.afterIconModel = null;
+		} else {
+			this.afterIconModel = Model.of(afterIcon);
+		}
+
+		return this;
+	}
+
+
+	public IModel<InvertibleIconClass> getBeforeIconModel() {
 
 		return this.beforeIconModel;
 	}
 
 
-	public IModel<IconClass> getAfterIconModel() {
+	public IModel<InvertibleIconClass> getAfterIconModel() {
 
 		return this.afterIconModel;
-	}
-
-
-	public boolean isBeforeIconInverted() {
-
-		return this.beforeIconInverted;
-	}
-
-
-	public boolean isAfterIconInverted() {
-
-		return this.afterIconInverted;
 	}
 
 
@@ -82,30 +72,16 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 		link.add(new IconBehavior() {
 
 			@Override
-			public IModel<IconClass> getBeforeIconModel() {
+			public IModel<InvertibleIconClass> getBeforeIconModel() {
 
 				return AbstractLinkItem.this.getBeforeIconModel();
 			};
 
 
 			@Override
-			public IModel<IconClass> getAfterIconModel() {
+			public IModel<InvertibleIconClass> getAfterIconModel() {
 
 				return AbstractLinkItem.this.getAfterIconModel();
-			};
-
-
-			@Override
-			public boolean isBeforeIconInverted() {
-
-				return AbstractLinkItem.this.isBeforeIconInverted();
-			};
-
-
-			@Override
-			public boolean isAfterIconInverted() {
-
-				return AbstractLinkItem.this.isAfterIconInverted();
 			};
 		});
 		this.add(link);

@@ -3,8 +3,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.WicketRuntimeException;
@@ -21,13 +20,9 @@ public class IconBehavior extends AbstractTransformerBehavior {
 
 	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
-	private final IModel<IconClass> beforeIconModel = new Model<IconClass>();
+	private IModel<InvertibleIconClass> beforeIconModel;
 
-	private boolean beforeIconInverted = false;
-
-	private final IModel<IconClass> afterIconModel = new Model<IconClass>();
-
-	private boolean afterIconInverted = false;
+	private IModel<InvertibleIconClass> afterIconModel;
 
 
 	public IconBehavior() {
@@ -35,10 +30,15 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	}
 
 
-	public IconBehavior(IconClass beforeIcon, boolean inverted) {
+	public IconBehavior(IModel<InvertibleIconClass> beforeIconModel) {
 
-		this.getBeforeIconModel().setObject(beforeIcon);
-		this.beforeIconInverted = inverted;
+		this.beforeIconModel = beforeIconModel;
+	}
+
+
+	public IconBehavior(InvertibleIconClass beforeIcon) {
+
+		this.setBeforeIcon(beforeIcon);
 	}
 
 
@@ -48,6 +48,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 		boolean hasBeforeIcon = this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null;
 		boolean hasAfterIcon = this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null;
 
+		/* Abort early if no icon is requested */
 		if (!hasBeforeIcon && !hasAfterIcon) {
 			return output;
 		}
@@ -67,10 +68,8 @@ public class IconBehavior extends AbstractTransformerBehavior {
 
 		StringBuffer before = new StringBuffer();
 		if (this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null) {
-			before.append("<i class=\"" + this.getBeforeIconModel().getObject().getClassString());
-			if (this.isBeforeIconInverted()) {
-				before.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
-			}
+			before.append("<i class=\"");
+			before.append(this.getBeforeIconModel().getObject().getClassString());
 			before.append("\">");
 			before.append("</i>");
 			if (!isBodyEmpty || hasAfterIcon) {
@@ -83,10 +82,8 @@ public class IconBehavior extends AbstractTransformerBehavior {
 			if (!isBodyEmpty) {
 				after.append(" ");
 			}
-			after.append("<i class=\"" + this.getAfterIconModel().getObject().getClassString());
-			if (this.isAfterIconInverted()) {
-				after.append(" " + BootstrapCssClass.ICON_WHITE.getClassString());
-			}
+			after.append("<i class=\"");
+			after.append(this.getAfterIconModel().getObject().getClassString());
 			after.append("\">");
 			after.append("</i>");
 		}
@@ -95,55 +92,73 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	}
 
 
-	public IconClass getBeforeIcon() {
+	public InvertibleIconClass getBeforeIcon() {
 
 		return this.getBeforeIconModel().getObject();
 	}
 
 
-	public IconBehavior setBeforeIcon(IconClass beforeIcon, boolean inverted) {
+	public IconBehavior setBeforeIcon(InvertibleIconClass beforeIcon) {
 
-		this.getBeforeIconModel().setObject(beforeIcon);
-		this.beforeIconInverted = inverted;
+		if (beforeIcon == null) {
+			this.beforeIconModel = null;
+			return this;
+		}
+
+		if (this.beforeIconModel == null) {
+			this.beforeIconModel = Model.of(beforeIcon);
+		} else {
+			this.beforeIconModel.setObject(beforeIcon);
+		}
 
 		return this;
 	}
 
 
-	public IconClass getAfterIcon() {
+	public IconBehavior setBeforeIconModel(IModel<InvertibleIconClass> beforeIconModel) {
+
+		this.beforeIconModel = beforeIconModel;
+
+		return this;
+	}
+
+
+	public InvertibleIconClass getAfterIcon() {
 
 		return this.getAfterIconModel().getObject();
 	}
 
 
-	public IconBehavior setAfterIcon(IconClass afterIcon, boolean inverted) {
+	public IconBehavior setAfterIcon(InvertibleIconClass afterIcon) {
 
-		this.getAfterIconModel().setObject(afterIcon);
-		this.afterIconInverted = inverted;
+		if (afterIcon == null) {
+			this.afterIconModel = null;
+			return this;
+		}
+
+		if (this.afterIconModel == null) {
+			this.afterIconModel = Model.of(afterIcon);
+		} else {
+			this.afterIconModel.setObject(afterIcon);
+		}
 
 		return this;
 	}
 
 
-	public boolean isBeforeIconInverted() {
+	public void setAfterIconModel(IModel<InvertibleIconClass> afterIconModel) {
 
-		return this.beforeIconInverted;
+		this.afterIconModel = afterIconModel;
 	}
 
 
-	public boolean isAfterIconInverted() {
-
-		return this.afterIconInverted;
-	}
-
-
-	protected IModel<IconClass> getBeforeIconModel() {
+	protected IModel<InvertibleIconClass> getBeforeIconModel() {
 
 		return this.beforeIconModel;
 	}
 
 
-	protected IModel<IconClass> getAfterIconModel() {
+	protected IModel<InvertibleIconClass> getAfterIconModel() {
 
 		return this.afterIconModel;
 	}

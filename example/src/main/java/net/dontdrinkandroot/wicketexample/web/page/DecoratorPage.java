@@ -5,6 +5,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import net.dontdrinkandroot.wicketexample.web.WicketTestWebSession;
 import net.dontdrinkandroot.wicketexample.web.page.auth.AbstractAuthPage;
@@ -156,7 +157,7 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 			}
 
 		};
-		authenticationItem.setBeforeIcon(IconClass.USER, false);
+		authenticationItem.setBeforeIcon(new InvertibleIconClass(IconClass.USER, false));
 
 		return authenticationItem;
 	}

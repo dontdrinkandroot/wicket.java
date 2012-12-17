@@ -12,8 +12,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.apache.wicket.WicketRuntimeException;
+import org.apache.wicket.request.http.WebResponse;
 import org.apache.wicket.request.resource.AbstractResource;
 import org.apache.wicket.util.io.IOUtils;
+import org.apache.wicket.util.time.Duration;
 import org.apache.wicket.util.time.Time;
 
 
@@ -83,10 +85,16 @@ public abstract class AbstractFileThumbnailResource extends AbstractResource {
 		};
 		resourceResponse.setContentType("image/jpeg");
 		resourceResponse.setLastModified(Time.millis(file.lastModified()));
-		resourceResponse.setCacheDurationToMaximum();
+		resourceResponse.setCacheDuration(this.getCacheDuration());
 		resourceResponse.setContentLength(imageBytes.length);
 
 		return resourceResponse;
+	}
+
+
+	protected Duration getCacheDuration() {
+
+		return WebResponse.MAX_CACHE_DURATION;
 	}
 
 
