@@ -17,6 +17,9 @@ public class ProgressStatusPercentModel extends AbstractChainedModel<ProgressSta
 	@Override
 	public Integer getObject() {
 
+		if (this.getParent() == null) {
+			return 0;
+		}
 		return this.getParent().getObject().getProgress();
 	}
 
