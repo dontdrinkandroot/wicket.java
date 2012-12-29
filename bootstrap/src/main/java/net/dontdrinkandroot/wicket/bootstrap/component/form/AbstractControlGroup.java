@@ -22,7 +22,9 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 
 	private Label help;
 
-	private final F formComponent;
+	private F formComponent;
+
+	protected Class<T> type = null;
 
 
 	public AbstractControlGroup(String id, IModel<T> model, String label) {
@@ -33,16 +35,24 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 
 	public AbstractControlGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
-		super(id, model);
-		this.labelModel = labelModel;
+		this(id, model, labelModel, null);
 
+	}
+
+
+	public AbstractControlGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
+
+		super(id, model);
 		this.setOutputMarkupId(true);
-		this.add(new CssClassAppender(BootstrapCssClass.CONTROL_GROUP));
+
+		this.labelModel = labelModel;
+		this.type = type;
 
 		this.formComponent = this.createFormComponent("formComponent");
 		this.formComponent.setOutputMarkupId(true);
 		this.formComponent.setLabel(this.labelModel);
 		this.add(this.formComponent);
+
 	}
 
 
@@ -50,6 +60,8 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 	protected void onInitialize() {
 
 		super.onInitialize();
+
+		this.add(new CssClassAppender(BootstrapCssClass.CONTROL_GROUP));
 
 		Label label = new Label("label", this.labelModel);
 		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));

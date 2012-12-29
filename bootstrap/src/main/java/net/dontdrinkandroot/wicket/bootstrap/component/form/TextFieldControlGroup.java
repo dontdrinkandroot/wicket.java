@@ -6,9 +6,6 @@ import org.apache.wicket.model.IModel;
 
 public class TextFieldControlGroup<T> extends AbstractControlGroup<T, TextField<T>> {
 
-	private Class<T> type = null;
-
-
 	public TextFieldControlGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
@@ -17,8 +14,7 @@ public class TextFieldControlGroup<T> extends AbstractControlGroup<T, TextField<
 
 	public TextFieldControlGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
 
-		super(id, model, labelModel);
-		this.type = type;
+		super(id, model, labelModel, type);
 	}
 
 
