@@ -4,7 +4,7 @@ import org.apache.wicket.model.IModel;
 
 
 /**
- * Returns the name of an enum in lower case or null if not set.
+ * Returns the name of an enum Model in lower case or null if not set.
  */
 public class EnumLowerCaseNameModel extends AbstractChainedModel<Enum<?>, String> {
 

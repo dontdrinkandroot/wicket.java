@@ -42,4 +42,5 @@ public abstract class AbstractChainedModel<P, T> implements IModel<T> {
 
 		throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
 	}
+
 }

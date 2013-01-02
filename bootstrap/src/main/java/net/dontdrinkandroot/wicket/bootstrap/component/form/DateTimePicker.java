@@ -1,26 +1,26 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownChoiceButton;
 import net.dontdrinkandroot.wicket.choicerenderer.ShortMonthChoiceRenderer;
 import net.dontdrinkandroot.wicket.css.CoreCssClass;
 import net.dontdrinkandroot.wicket.model.IntegerRangeListModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarDayModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarHourModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarMinuteModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarMonthModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarSecondModel;
-import net.dontdrinkandroot.wicket.model.calendar.CalendarYearModel;
+import net.dontdrinkandroot.wicket.model.date.DateAvailableDaysModel;
+import net.dontdrinkandroot.wicket.model.date.DateDayModel;
+import net.dontdrinkandroot.wicket.model.date.DateHourModel;
+import net.dontdrinkandroot.wicket.model.date.DateMinuteModel;
+import net.dontdrinkandroot.wicket.model.date.DateMonthModel;
+import net.dontdrinkandroot.wicket.model.date.DateSecondModel;
+import net.dontdrinkandroot.wicket.model.date.DateYearModel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
 
-//TODO: Make it based on Date, nobody wants to use calendar.
-public class DateTimePicker extends GenericPanel<Calendar> {
+public class DateTimePicker extends GenericPanel<Date> {
 
 	private final DropDownChoiceButton<Integer> yearChoice;
 
@@ -34,22 +34,17 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 
 	private final DropDownChoiceButton<Integer> secondChoice;
 
-	private final IntegerRangeListModel dayRangeModel;
 
-
-	public DateTimePicker(String id, IModel<Calendar> model, int minYear, int maxYear) {
+	public DateTimePicker(String id, final IModel<Date> model, int minYear, int maxYear) {
 
 		super(id, model);
 
 		this.add(new CssClassAppender(CoreCssClass.DATE_PICKER));
 
-		this.dayRangeModel =
-				new IntegerRangeListModel(1, this.getModelObject().getActualMaximum(Calendar.DAY_OF_MONTH));
-
 		this.yearChoice =
 				new DropDownChoiceButton<Integer>(
 						"year",
-						new CalendarYearModel(this.getModel()),
+						new DateYearModel(this.getModel()),
 						new IntegerRangeListModel(minYear, maxYear)) {
 
 					@Override
@@ -64,15 +59,13 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 		this.monthChoice =
 				new DropDownChoiceButton<Integer>(
 						"month",
-						new CalendarMonthModel(this.getModel()),
+						new DateMonthModel(this.getModel()),
 						new IntegerRangeListModel(0, 11),
 						new ShortMonthChoiceRenderer(this.getLocale())) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
 
-						DateTimePicker.this.dayRangeModel.setMax(DateTimePicker.this.getModelObject().getActualMaximum(
-								Calendar.DAY_OF_MONTH));
 						target.add(DateTimePicker.this.dayChoice);
 						DateTimePicker.this.onMonthChanged(target);
 						DateTimePicker.this.onDateTimeChanged(target);
@@ -81,7 +74,8 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 		this.add(this.monthChoice);
 
 		this.dayChoice =
-				new DropDownChoiceButton<Integer>("day", new CalendarDayModel(this.getModel()), this.dayRangeModel) {
+				new DropDownChoiceButton<Integer>("day", new DateDayModel(this.getModel()), new DateAvailableDaysModel(
+						this.getModel())) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -95,7 +89,7 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 		this.hourChoice =
 				new DropDownChoiceButton<Integer>(
 						"hour",
-						new CalendarHourModel(this.getModel()),
+						new DateHourModel(this.getModel()),
 						new IntegerRangeListModel(0, 23)) {
 
 					@Override
@@ -110,7 +104,7 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 		this.minuteChoice =
 				new DropDownChoiceButton<Integer>(
 						"minute",
-						new CalendarMinuteModel(this.getModel()),
+						new DateMinuteModel(this.getModel()),
 						new IntegerRangeListModel(0, 59)) {
 
 					@Override
@@ -125,7 +119,7 @@ public class DateTimePicker extends GenericPanel<Calendar> {
 		this.secondChoice =
 				new DropDownChoiceButton<Integer>(
 						"second",
-						new CalendarSecondModel(this.getModel()),
+						new DateSecondModel(this.getModel()),
 						new IntegerRangeListModel(0, 59)) {
 
 					@Override
