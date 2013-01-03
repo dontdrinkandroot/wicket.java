@@ -14,45 +14,63 @@ import org.apache.wicket.util.string.Strings;
 
 
 /**
- * Prepends and/or appends an Icon to the body of the attached component.
+ * Prepends and/or appends an Icon to the body of the attached component. Icons are specified by an
+ * {@link InvertibleIconClass}.
+ * 
+ * @author Philip W. Sorst <philip@sorst.net>
  */
 public class IconBehavior extends AbstractTransformerBehavior {
 
+	/** Pattern that matches openclose tags and is able to extract the open tag, body and close tag. */
 	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
-	private IModel<InvertibleIconClass> beforeIconModel;
+	private IModel<InvertibleIconClass> prependIconModel;
 
-	private IModel<InvertibleIconClass> afterIconModel;
+	private IModel<InvertibleIconClass> appendIconModel;
 
 
+	/**
+	 * Create an IconBehavior that does not add any Icon initially.
+	 */
 	public IconBehavior() {
 
+		/* Noop */
 	}
 
 
+	/**
+	 * Creates an IconBehavior that prepends the given icon.
+	 */
 	public IconBehavior(IModel<InvertibleIconClass> beforeIconModel) {
 
-		this.beforeIconModel = beforeIconModel;
+		this.prependIconModel = beforeIconModel;
 	}
 
 
+	/**
+	 * Creates an IconBehavior that prepends the given icon.
+	 */
 	public IconBehavior(InvertibleIconClass beforeIcon) {
 
-		this.setBeforeIcon(beforeIcon);
+		this.setPrependIcon(beforeIcon);
 	}
 
 
 	@Override
 	public CharSequence transform(Component component, CharSequence output) throws Exception {
 
-		boolean hasBeforeIcon = this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null;
-		boolean hasAfterIcon = this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null;
+		boolean hasPrependIcon = this.getPrependIconModel() != null && this.getPrependIconModel().getObject() != null;
+		boolean hasAppendIcon = this.getAppendIconModel() != null && this.getAppendIconModel().getObject() != null;
 
 		/* Abort early if no icon is requested */
-		if (!hasBeforeIcon && !hasAfterIcon) {
+		if (!hasPrependIcon && !hasAppendIcon) {
 			return output;
 		}
 
+		/*
+		 * Fail if there if the component does not have a body and therefore is a single tag (e.g.
+		 * <input />)
+		 */
 		Matcher matcher = IconBehavior.PATTERN.matcher(output);
 		if (!matcher.matches()) {
 			throw new WicketRuntimeException(String.format(
@@ -60,106 +78,146 @@ public class IconBehavior extends AbstractTransformerBehavior {
 					output));
 		}
 
-		String open = matcher.group(1);
+		/* Extract the parts */
+		String openTag = matcher.group(1);
 		String body = matcher.group(2);
-		String close = matcher.group(3);
+		String closeTag = matcher.group(3);
+		boolean bodyIsEmpty = Strings.isEmpty(body);
 
-		boolean isBodyEmpty = Strings.isEmpty(body);
+		StringBuffer outputBuffer = new StringBuffer(openTag);
 
-		StringBuffer before = new StringBuffer();
-		if (this.getBeforeIconModel() != null && this.getBeforeIconModel().getObject() != null) {
-			before.append("<i class=\"");
-			before.append(this.getBeforeIconModel().getObject().getClassString());
-			before.append("\">");
-			before.append("</i>");
-			if (!isBodyEmpty || hasAfterIcon) {
-				before.append(" ");
+		/* Prepend icon if requested */
+		if (hasPrependIcon) {
+			outputBuffer.append(this.renderIcon(this.getPrependIconModel()));
+			if (!bodyIsEmpty || hasAppendIcon) {
+				outputBuffer.append(" ");
 			}
 		}
 
-		StringBuffer after = new StringBuffer();
-		if (this.getAfterIconModel() != null && this.getAfterIconModel().getObject() != null) {
-			if (!isBodyEmpty) {
-				after.append(" ");
+		outputBuffer.append(body);
+
+		/* Append icon if requested */
+		if (hasAppendIcon) {
+			if (!bodyIsEmpty) {
+				outputBuffer.append(" ");
 			}
-			after.append("<i class=\"");
-			after.append(this.getAfterIconModel().getObject().getClassString());
-			after.append("\">");
-			after.append("</i>");
+			outputBuffer.append(this.renderIcon(this.getAppendIconModel()));
 		}
 
-		return new StringBuffer(open).append(before).append(body).append(after).append(close);
+		outputBuffer.append(closeTag);
+
+		return outputBuffer;
 	}
 
 
-	public InvertibleIconClass getBeforeIcon() {
+	/**
+	 * Get the iocn to prepend if set or null.
+	 */
+	public InvertibleIconClass getPrependIcon() {
 
-		return this.getBeforeIconModel().getObject();
+		if (this.prependIconModel == null) {
+			return null;
+		}
+		return this.getPrependIconModel().getObject();
 	}
 
 
-	public IconBehavior setBeforeIcon(InvertibleIconClass beforeIcon) {
+	/**
+	 * Get the icon to append if set or null.
+	 */
+	public InvertibleIconClass getAppendIcon() {
+
+		if (this.appendIconModel == null) {
+			return null;
+		}
+		return this.getAppendIconModel().getObject();
+	}
+
+
+	/**
+	 * Set the icon to prepend, if it is null no icon will be prepended.
+	 */
+	public IconBehavior setPrependIcon(InvertibleIconClass beforeIcon) {
 
 		if (beforeIcon == null) {
-			this.beforeIconModel = null;
+			this.prependIconModel = null;
 			return this;
 		}
 
-		if (this.beforeIconModel == null) {
-			this.beforeIconModel = Model.of(beforeIcon);
+		if (this.prependIconModel == null) {
+			this.prependIconModel = Model.of(beforeIcon);
 		} else {
-			this.beforeIconModel.setObject(beforeIcon);
+			this.prependIconModel.setObject(beforeIcon);
 		}
 
 		return this;
 	}
 
 
-	public IconBehavior setBeforeIconModel(IModel<InvertibleIconClass> beforeIconModel) {
-
-		this.beforeIconModel = beforeIconModel;
-
-		return this;
-	}
-
-
-	public InvertibleIconClass getAfterIcon() {
-
-		return this.getAfterIconModel().getObject();
-	}
-
-
-	public IconBehavior setAfterIcon(InvertibleIconClass afterIcon) {
+	/**
+	 * Set the icon to append, if it is null no icon will be appended.
+	 */
+	public IconBehavior setAppendIcon(InvertibleIconClass afterIcon) {
 
 		if (afterIcon == null) {
-			this.afterIconModel = null;
+			this.appendIconModel = null;
 			return this;
 		}
 
-		if (this.afterIconModel == null) {
-			this.afterIconModel = Model.of(afterIcon);
+		if (this.appendIconModel == null) {
+			this.appendIconModel = Model.of(afterIcon);
 		} else {
-			this.afterIconModel.setObject(afterIcon);
+			this.appendIconModel.setObject(afterIcon);
 		}
 
 		return this;
 	}
 
 
-	public void setAfterIconModel(IModel<InvertibleIconClass> afterIconModel) {
+	/**
+	 * Set the model of the icon to prepend, if it or its object is null no icon will be prepended.
+	 */
+	public IconBehavior setPrependIconModel(IModel<InvertibleIconClass> prependIconModel) {
 
-		this.afterIconModel = afterIconModel;
+		this.prependIconModel = prependIconModel;
+		return this;
 	}
 
 
-	protected IModel<InvertibleIconClass> getBeforeIconModel() {
+	/**
+	 * Set the model of the icon to append, if it or its object is null no icon will be prepended.
+	 */
+	public IconBehavior setAppendIconModel(IModel<InvertibleIconClass> appendIconModel) {
 
-		return this.beforeIconModel;
+		this.appendIconModel = appendIconModel;
+		return this;
 	}
 
 
-	protected IModel<InvertibleIconClass> getAfterIconModel() {
+	/**
+	 * Get the model of the icon to prepend.
+	 */
+	protected IModel<InvertibleIconClass> getPrependIconModel() {
 
-		return this.afterIconModel;
+		return this.prependIconModel;
+	}
+
+
+	/**
+	 * Get the model of the icon to append.
+	 */
+	protected IModel<InvertibleIconClass> getAppendIconModel() {
+
+		return this.appendIconModel;
+	}
+
+
+	/**
+	 * Transforms an {@link InvertibleIconClass} Model into an italic tag String with the
+	 * corresponding class attributes.
+	 */
+	protected String renderIcon(IModel<InvertibleIconClass> iconModel) {
+
+		return String.format("<i class=\"%s\"></i>", iconModel.getObject().getClassString());
 	}
 }

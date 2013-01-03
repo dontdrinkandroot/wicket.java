@@ -72,14 +72,14 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 		link.add(new IconBehavior() {
 
 			@Override
-			public IModel<InvertibleIconClass> getBeforeIconModel() {
+			public IModel<InvertibleIconClass> getPrependIconModel() {
 
 				return AbstractLinkItem.this.getBeforeIconModel();
 			};
 
 
 			@Override
-			public IModel<InvertibleIconClass> getAfterIconModel() {
+			public IModel<InvertibleIconClass> getAppendIconModel() {
 
 				return AbstractLinkItem.this.getAfterIconModel();
 			};

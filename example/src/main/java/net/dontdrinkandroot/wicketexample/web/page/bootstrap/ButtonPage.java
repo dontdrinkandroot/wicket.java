@@ -211,7 +211,7 @@ public class ButtonPage extends AbstractBootstrapPage<Void> {
 
 			}
 		};
-		iconButton.add(new IconBehavior().setBeforeIcon(new InvertibleIconClass(IconClass.USER)).setAfterIcon(
+		iconButton.add(new IconBehavior().setPrependIcon(new InvertibleIconClass(IconClass.USER)).setAppendIcon(
 				new InvertibleIconClass(IconClass.ASTERISK, false)));
 		this.add(iconButton);
 
