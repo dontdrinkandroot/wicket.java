@@ -40,7 +40,7 @@
 	</repositories>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/philipsorst/wicket.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/dontdrinkandroot/wicket.git</developerConnection>
 	</scm>
 
 	<build>
