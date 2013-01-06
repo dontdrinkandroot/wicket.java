@@ -1,5 +1,11 @@
 package net.dontdrinkandroot.wicketexample.web.page.bootstrap;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.DefaultBadge;
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.ImportantBadge;
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.InfoBadge;
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.InverseBadge;
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.SuccessBadge;
+import net.dontdrinkandroot.wicket.bootstrap.component.badge.WarningBadge;
 import net.dontdrinkandroot.wicket.bootstrap.component.label.DefaultLabel;
 import net.dontdrinkandroot.wicket.bootstrap.component.label.ImportantLabel;
 import net.dontdrinkandroot.wicket.bootstrap.component.label.InfoLabel;
@@ -31,6 +37,13 @@ public class LabelBadgePage extends AbstractBootstrapPage<Void> {
 		this.add(new WarningLabel("warningLabel", Model.of("Warning")));
 		this.add(new InverseLabel("inverseLabel", Model.of("Inverse")));
 		this.add(new ImportantLabel("importantLabel", Model.of("Important")));
+
+		this.add(new DefaultBadge("defaultBadge", Model.of("Default")));
+		this.add(new InfoBadge("infoBadge", Model.of("Info")));
+		this.add(new SuccessBadge("successBadge", Model.of("Success")));
+		this.add(new WarningBadge("warningBadge", Model.of("Warning")));
+		this.add(new InverseBadge("inverseBadge", Model.of("Inverse")));
+		this.add(new ImportantBadge("importantBadge", Model.of("Important")));
 	}
 
 

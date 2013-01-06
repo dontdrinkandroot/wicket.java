@@ -16,7 +16,7 @@ public class LabelItem extends AbstractLinkItem {
 	@Override
 	protected Component createLink(String id) {
 
-		return new Label("label", this.getModel());
+		return new Label(id, this.getModel());
 	}
 
 }
