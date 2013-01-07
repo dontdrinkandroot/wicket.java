@@ -13,16 +13,29 @@ import org.apache.wicket.model.IModel;
 
 public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 
-	private final ProgressBar bar;
+	private ProgressBar bar;
 
-	private final Label label;
+	private Label label;
+
+
+	public ProgressStatusProgressBar(String id) {
+
+		super(id);
+	}
 
 
 	public ProgressStatusProgressBar(String id, IModel<ProgressStatus> model) {
 
 		super(id, model);
+	}
 
-		this.label = new Label("label", new ProgressStatusMessageModel(model));
+
+	@Override
+	protected void onInitialize() {
+
+		super.onInitialize();
+
+		this.label = new Label("label", new ProgressStatusMessageModel(this.getModel()));
 		this.label.setOutputMarkupId(true);
 		this.label.setEscapeModelStrings(false);
 		this.add(this.label);
