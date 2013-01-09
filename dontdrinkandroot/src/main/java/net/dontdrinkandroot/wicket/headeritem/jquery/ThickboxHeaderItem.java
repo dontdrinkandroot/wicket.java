@@ -5,6 +5,7 @@ import net.dontdrinkandroot.wicket.javascript.jquery.ThickboxResourceReference;
 import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 
 
+//TODO: Externalize to design
 public class ThickboxHeaderItem extends JavaScriptReferenceHeaderItem {
 
 	public ThickboxHeaderItem() {
