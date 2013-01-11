@@ -21,19 +21,18 @@ public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 	public ProgressStatusProgressBar(String id) {
 
 		super(id);
+		this.init();
 	}
 
 
 	public ProgressStatusProgressBar(String id, IModel<ProgressStatus> model) {
 
 		super(id, model);
+		this.init();
 	}
 
 
-	@Override
-	protected void onInitialize() {
-
-		super.onInitialize();
+	private void init() {
 
 		this.label = new Label("label", new ProgressStatusMessageModel(this.getModel()));
 		this.label.setOutputMarkupId(true);
