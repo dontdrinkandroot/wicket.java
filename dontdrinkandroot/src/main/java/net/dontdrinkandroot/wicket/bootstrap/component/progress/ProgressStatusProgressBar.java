@@ -18,13 +18,6 @@ public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 	private Label label;
 
 
-	public ProgressStatusProgressBar(String id) {
-
-		super(id);
-		this.init();
-	}
-
-
 	public ProgressStatusProgressBar(String id, IModel<ProgressStatus> model) {
 
 		super(id, model);
