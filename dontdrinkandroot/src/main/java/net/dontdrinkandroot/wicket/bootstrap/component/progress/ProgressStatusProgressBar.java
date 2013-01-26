@@ -5,10 +5,12 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarClass;
 import net.dontdrinkandroot.wicket.model.progress.ProgressStatusMessageModel;
 import net.dontdrinkandroot.wicket.model.progress.ProgressStatusPercentModel;
 
+import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.time.Duration;
 
 
 public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
@@ -16,6 +18,8 @@ public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 	private ProgressBar bar;
 
 	private Label label;
+
+	private AbstractAjaxTimerBehavior selfUpdatingBehavior;
 
 
 	public ProgressStatusProgressBar(String id, IModel<ProgressStatus> model) {
@@ -65,6 +69,35 @@ public class ProgressStatusProgressBar extends GenericPanel<ProgressStatus> {
 	public void setBarActive(boolean active) {
 
 		this.bar.setActive(active);
+	}
+
+
+	public void setSelfUpdating(Duration duration) {
+
+		this.selfUpdatingBehavior = new AbstractAjaxTimerBehavior(duration) {
+
+			@Override
+			protected void onTimer(AjaxRequestTarget target) {
+
+				ProgressStatusProgressBar.this.update(target);
+			}
+		};
+		this.add(this.selfUpdatingBehavior);
+	}
+
+
+	public void stopSelfUpdating(AjaxRequestTarget target) {
+
+		if (this.selfUpdatingBehavior != null) {
+			this.selfUpdatingBehavior.stop(target);
+			this.remove(this.selfUpdatingBehavior);
+		}
+	}
+
+
+	public AbstractAjaxTimerBehavior getSelfUpdatingBehavior() {
+
+		return this.selfUpdatingBehavior;
 	}
 
 }
