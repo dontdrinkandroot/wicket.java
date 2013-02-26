@@ -1,17 +1,13 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
-import java.io.Serializable;
-
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.InlineFencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.feedback.FeedbackMessage;
-import org.apache.wicket.feedback.FeedbackMessages;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -19,8 +15,6 @@ import org.apache.wicket.model.Model;
 public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extends GenericPanel<T> {
 
 	private final IModel<String> labelModel;
-
-	private Label help;
 
 	private F formComponent;
 
@@ -67,31 +61,8 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
 		this.add(label);
 
-		this.help = new Label("help", new AbstractReadOnlyModel<Serializable>() {
-
-			@Override
-			public Serializable getObject() {
-
-				if (AbstractControlGroup.this.getFormComponent().hasErrorMessage()) {
-
-					StringBuffer messageBuffer = new StringBuffer();
-					FeedbackMessages feedbackMessages =
-							AbstractControlGroup.this.getFormComponent().getFeedbackMessages();
-					for (FeedbackMessage feedbackMessage : feedbackMessages) {
-						if (feedbackMessage.isError()) {
-							feedbackMessage.markRendered();
-							messageBuffer.append(feedbackMessage.getMessage().toString());
-						}
-					}
-
-					return messageBuffer.toString();
-				}
-
-				return null;
-			}
-
-		});
-		this.add(this.help);
+		InlineFencedFeedbackPanel feedback = new InlineFencedFeedbackPanel("feedback", this);
+		this.add(feedback);
 
 		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ERROR) {
 

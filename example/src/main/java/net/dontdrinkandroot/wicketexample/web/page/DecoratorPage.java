@@ -1,12 +1,11 @@
 package net.dontdrinkandroot.wicketexample.web.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.feedback.CloseableFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.CloseableFencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.IconClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
-import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
+import net.dontdrinkandroot.wicket.bootstrap.page.ResponsiveBootstrapPage;
 import net.dontdrinkandroot.wicketexample.web.WicketTestWebSession;
 import net.dontdrinkandroot.wicketexample.web.page.auth.AbstractAuthPage;
 import net.dontdrinkandroot.wicketexample.web.page.auth.AdminPage;
@@ -28,15 +27,16 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
-public abstract class DecoratorPage<T> extends BootstrapPage<T> {
+public abstract class DecoratorPage<T> extends ResponsiveBootstrapPage<T> {
 
-	private CloseableFeedbackPanel feedbackPanel;
+	private FeedbackPanel feedbackPanel;
 
 
 	public DecoratorPage(PageParameters parameters) {
@@ -56,7 +56,7 @@ public abstract class DecoratorPage<T> extends BootstrapPage<T> {
 
 		super.onInitialize();
 
-		this.feedbackPanel = new CloseableFeedbackPanel("feedbackPanel");
+		this.feedbackPanel = new CloseableFencedFeedbackPanel("feedbackPanel");
 		this.feedbackPanel.setOutputMarkupId(true);
 		this.add(this.feedbackPanel);
 
