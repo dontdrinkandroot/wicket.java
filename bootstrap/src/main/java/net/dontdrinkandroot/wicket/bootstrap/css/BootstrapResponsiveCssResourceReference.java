@@ -12,7 +12,7 @@ public class BootstrapResponsiveCssResourceReference extends CssResourceReferenc
 
 	public BootstrapResponsiveCssResourceReference() {
 
-		super(BootstrapResponsiveCssResourceReference.class, "bootstrap-responsive-2.2.2.min.css");
+		super(BootstrapResponsiveCssResourceReference.class, "bootstrap-responsive-2.3.0.min.css");
 	}
 
 
