@@ -3,20 +3,26 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
+/**
+ * Holds a CssClass that refers to an item CssClass and also provides the ability to invert this
+ * icon, so it can be used to fully specify the icon.
+ * 
+ * @author Philip W. Sorst<philip@sorst.net>
+ */
 public class InvertibleIconClass implements CssClass {
 
-	private final IconClass iconClass;
+	private final CssClass iconClass;
 
 	private boolean inverted = false;
 
 
-	public InvertibleIconClass(IconClass iconClass) {
+	public InvertibleIconClass(CssClass iconClass) {
 
 		this.iconClass = iconClass;
 	}
 
 
-	public InvertibleIconClass(IconClass iconClass, boolean inverted) {
+	public InvertibleIconClass(CssClass iconClass, boolean inverted) {
 
 		this.iconClass = iconClass;
 		this.inverted = inverted;
@@ -40,9 +46,10 @@ public class InvertibleIconClass implements CssClass {
 	}
 
 
-	public void invert() {
+	public InvertibleIconClass invert() {
 
 		this.inverted = !this.inverted;
+		return this;
 	}
 
 
