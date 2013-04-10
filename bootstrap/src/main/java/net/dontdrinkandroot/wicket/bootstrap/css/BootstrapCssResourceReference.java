@@ -7,7 +7,7 @@ public class BootstrapCssResourceReference extends CssResourceReference {
 
 	public BootstrapCssResourceReference() {
 
-		super(BootstrapCssResourceReference.class, "bootstrap-2.3.0.min.css");
+		super(BootstrapCssResourceReference.class, "bootstrap-2.3.1.min.css");
 	}
 
 }
