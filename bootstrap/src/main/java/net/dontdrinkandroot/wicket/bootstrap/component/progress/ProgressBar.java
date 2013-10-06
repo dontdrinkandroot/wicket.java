@@ -19,7 +19,15 @@ public class ProgressBar extends GenericPanel<Integer> {
 
 	private boolean active = false;
 
-	private ProgressBarClass barStyle = ProgressBarClass.INFO;
+	private boolean striped = false;
+
+	private ProgressBarClass barStyle;
+
+
+	public ProgressBar(String id) {
+
+		this(id, new Model<Integer>(0));
+	}
 
 
 	public ProgressBar(String id, IModel<Integer> model) {
@@ -28,11 +36,30 @@ public class ProgressBar extends GenericPanel<Integer> {
 	}
 
 
+	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style) {
+
+		super(id, model);
+
+		this.barStyle = style;
+	}
+
+
 	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style, boolean active) {
 
 		super(id, model);
+
 		this.barStyle = style;
 		this.active = active;
+	}
+
+
+	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style, boolean active, boolean striped) {
+
+		super(id, model);
+
+		this.barStyle = style;
+		this.active = active;
+		this.striped = striped;
 	}
 
 
@@ -42,16 +69,6 @@ public class ProgressBar extends GenericPanel<Integer> {
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.PROGRESS));
-
-		/* Style */
-		this.add(new CssClassAppender(new AbstractReadOnlyModel<ProgressBarClass>() {
-
-			@Override
-			public ProgressBarClass getObject() {
-
-				return ProgressBar.this.barStyle;
-			}
-		}));
 
 		/* Active */
 		this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
@@ -67,7 +84,24 @@ public class ProgressBar extends GenericPanel<Integer> {
 			}
 		}));
 
+		/* Striped */
+		this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
+
+			@Override
+			public BootstrapCssClass getObject() {
+
+				if (ProgressBar.this.isStriped()) {
+					return BootstrapCssClass.PROGRESS_STRIPED;
+				}
+
+				return null;
+			}
+		}));
+
 		this.bar = new WebMarkupContainer("bar");
+
+		this.bar.add(new AttributeModifier("aria-valuenow", this.getModel()));
+
 		this.bar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
 
 			@Override
@@ -76,6 +110,17 @@ public class ProgressBar extends GenericPanel<Integer> {
 				return String.format("width: %d%%;", ProgressBar.this.getModelObject());
 			}
 		}));
+
+		/* Style */
+		this.bar.add(new CssClassAppender(new AbstractReadOnlyModel<ProgressBarClass>() {
+
+			@Override
+			public ProgressBarClass getObject() {
+
+				return ProgressBar.this.barStyle;
+			}
+		}));
+
 		this.bar.setOutputMarkupId(true);
 		this.add(this.bar);
 	}
@@ -93,9 +138,10 @@ public class ProgressBar extends GenericPanel<Integer> {
 	}
 
 
-	public void setActive(boolean active) {
+	public ProgressBar setActive(boolean active) {
 
 		this.active = active;
+		return this;
 	}
 
 
@@ -105,9 +151,16 @@ public class ProgressBar extends GenericPanel<Integer> {
 	}
 
 
-	public ProgressBar(String id) {
+	public ProgressBar setStriped(boolean striped) {
 
-		this(id, new Model<Integer>(0));
+		this.striped = striped;
+		return this;
+	}
+
+
+	public boolean isStriped() {
+
+		return this.striped;
 	}
 
 
@@ -115,6 +168,10 @@ public class ProgressBar extends GenericPanel<Integer> {
 
 		target.appendJavaScript(String.format(
 				"$('#%s').css({width: '%d%%'});",
+				this.bar.getMarkupId(),
+				this.getModelObject()));
+		target.appendJavaScript(String.format(
+				"$('#%s').attr('aria-valuenow', %d);",
 				this.bar.getMarkupId(),
 				this.getModelObject()));
 	}

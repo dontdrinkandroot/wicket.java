@@ -98,6 +98,7 @@ public enum BootstrapCssClass implements CssClass {
 	PAGER("pager"),
 	PREVIOUS("previous"),
 	PROGRESS("progress"),
+	PROGRESS_STRIPED("progress-striped"),
 	PULL_LEFT("pull-left"),
 	PULL_RIGHT("pull-right"),
 	RADIO("radio"),

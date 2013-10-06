@@ -5,15 +5,10 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum ProgressBarClass implements CssClass {
 
-	INFO("progress-info"),
-	SUCCESS("progress-success"),
-	WARNING("progress-warning"),
-	DANGER("progress-danger"),
-
-	INFO_STRIPED("progress-info progress-striped"),
-	SUCCESS_STRIPED("progress-success progress-striped"),
-	WARNING_STRIPED("progress-warning progress-striped"),
-	DANGER_STRIPED("progress-danger progress-striped");
+	INFO("progress-bar-info"),
+	SUCCESS("progress-bar-success"),
+	WARNING("progress-bar-warning"),
+	DANGER("progress-bar-danger");
 
 	private String classString;
 
