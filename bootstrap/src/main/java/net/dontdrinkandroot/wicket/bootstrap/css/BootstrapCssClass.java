@@ -126,7 +126,13 @@ public enum BootstrapCssClass implements CssClass {
 	UNSTYLED("unstyled"),
 	WARNING("warning"),
 	WELL("well"),
-	BTN_BLOCK("btn-block");
+	BTN_BLOCK("btn-block"),
+	/* BS3 Additions */
+	CLEARFIX("clearfix"),
+	LIST_GROUP("list-group"),
+	LIST_GROUP_ITEM("list-group-item"),
+	LIST_INLINE("list-inline"),
+	LIST_UNSTYLED("list-unstyled");
 
 	private String classString;
 
