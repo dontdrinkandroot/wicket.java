@@ -5,13 +5,13 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum ButtonStyle implements CssClass {
 
-	DANGER("btn-danger"),
-	INFO("btn-info"),
-	INVERSE("btn-inverse"),
-	LINK("btn-link"),
+	DEFAULT("btn-default"),
 	PRIMARY("btn-primary"),
 	SUCCESS("btn-success"),
-	WARNING("btn-warning");
+	INFO("btn-info"),
+	WARNING("btn-warning"),
+	DANGER("btn-danger"),
+	LINK("btn-link");
 
 	private String classString;
 

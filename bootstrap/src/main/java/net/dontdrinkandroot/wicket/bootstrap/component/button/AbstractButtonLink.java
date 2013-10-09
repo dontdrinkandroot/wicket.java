@@ -16,7 +16,7 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 
 	private IModel<String> labelModel;
 
-	private final IModel<ButtonStyle> buttonStyleModel = new Model<ButtonStyle>();
+	private final IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
 	private final IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
 

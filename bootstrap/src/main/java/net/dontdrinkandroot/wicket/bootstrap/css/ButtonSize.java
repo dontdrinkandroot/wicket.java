@@ -5,9 +5,9 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum ButtonSize implements CssClass {
 
-	MINI("btn-mini"),
-	SMALL("btn-small"),
-	LARGE("btn-large");
+	EXTRA_SMALL("btn-xs"),
+	SMALL("btn-sm"),
+	LARGE("btn-lg");
 
 	private String classString;
 
