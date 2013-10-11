@@ -30,14 +30,14 @@ public class Heading extends Label {
 	}
 
 
-	public Heading(final String id, Level level, Serializable label) {
+	public Heading(final String id, Serializable label, Level level) {
 
 		super(id, Model.of(label));
 		this.level = level;
 	}
 
 
-	public Heading(final String id, Level level, IModel<?> model) {
+	public Heading(final String id, IModel<?> model, Level level) {
 
 		super(id, model);
 		this.level = level;

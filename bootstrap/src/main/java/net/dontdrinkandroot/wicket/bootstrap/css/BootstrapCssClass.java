@@ -132,7 +132,12 @@ public enum BootstrapCssClass implements CssClass {
 	LIST_GROUP("list-group"),
 	LIST_GROUP_ITEM("list-group-item"),
 	LIST_INLINE("list-inline"),
-	LIST_UNSTYLED("list-unstyled");
+	LIST_UNSTYLED("list-unstyled"),
+	PANEL("panel"),
+	PANEL_BODY("panel-body"),
+	PANEL_FOOTER("panel-footer"),
+	PANEL_HEADING("panel-heading"),
+	PANEL_TITLE("panel-title");
 
 	private String classString;
 
