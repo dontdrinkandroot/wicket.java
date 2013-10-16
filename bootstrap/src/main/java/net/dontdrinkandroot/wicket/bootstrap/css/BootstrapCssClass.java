@@ -26,7 +26,6 @@ public enum BootstrapCssClass implements CssClass {
 	CONTAINER("container"),
 	CONTAINER_FLUID("container-fluid"),
 	CONTROLS("controls"),
-	CONTROL_GROUP("control-group"),
 	CONTROL_LABEL("control-label"),
 	DISABLED("disabled"),
 	DIVIDER("divider"),
@@ -117,6 +116,7 @@ public enum BootstrapCssClass implements CssClass {
 	BTN_BLOCK("btn-block"),
 	/* BS3 Additions */
 	CLEARFIX("clearfix"),
+	FORM_GROUP("form-group"),
 	LIST_GROUP("list-group"),
 	LIST_GROUP_ITEM("list-group-item"),
 	LIST_INLINE("list-inline"),

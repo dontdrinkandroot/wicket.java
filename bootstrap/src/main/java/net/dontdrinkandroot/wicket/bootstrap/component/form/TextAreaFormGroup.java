@@ -4,9 +4,9 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 
 
-public class TextAreaControlGroup<T> extends AbstractControlGroup<T, TextArea<T>> {
+public class TextAreaFormGroup<T> extends AbstractFormGroup<T, TextArea<T>> {
 
-	public TextAreaControlGroup(String id, IModel<T> model, IModel<String> labelModel) {
+	public TextAreaFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
 	}

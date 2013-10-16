@@ -4,15 +4,15 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
 
-public class TextFieldControlGroup<T> extends AbstractControlGroup<T, TextField<T>> {
+public class TextFieldFormGroup<T> extends AbstractFormGroup<T, TextField<T>> {
 
-	public TextFieldControlGroup(String id, IModel<T> model, IModel<String> labelModel) {
+	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
 	}
 
 
-	public TextFieldControlGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
+	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
 
 		super(id, model, labelModel, type);
 	}

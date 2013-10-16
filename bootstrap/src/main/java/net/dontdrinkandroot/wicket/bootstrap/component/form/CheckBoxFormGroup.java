@@ -4,15 +4,15 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.IModel;
 
 
-public class CheckBoxControlGroup extends AbstractControlGroup<Boolean, CheckBox> {
+public class CheckBoxFormGroup extends AbstractFormGroup<Boolean, CheckBox> {
 
-	public CheckBoxControlGroup(String id, IModel<Boolean> model, String label) {
+	public CheckBoxFormGroup(String id, IModel<Boolean> model, String label) {
 
 		super(id, model, label);
 	}
 
 
-	public CheckBoxControlGroup(String id, IModel<Boolean> model, IModel<String> labelModel) {
+	public CheckBoxFormGroup(String id, IModel<Boolean> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
 	}

@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extends GenericPanel<T> {
+public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T> {
 
 	private final IModel<String> labelModel;
 
@@ -21,20 +21,20 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 	protected Class<T> type = null;
 
 
-	public AbstractControlGroup(String id, IModel<T> model, String label) {
+	public AbstractFormGroup(String id, IModel<T> model, String label) {
 
 		this(id, model, new Model<String>(label));
 	}
 
 
-	public AbstractControlGroup(String id, IModel<T> model, IModel<String> labelModel) {
+	public AbstractFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		this(id, model, labelModel, null);
 
 	}
 
 
-	public AbstractControlGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
+	public AbstractFormGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
 
 		super(id, model);
 		this.setOutputMarkupId(true);
@@ -55,7 +55,7 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 
 		super.onInitialize();
 
-		this.add(new CssClassAppender(BootstrapCssClass.CONTROL_GROUP));
+		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
 		Label label = new Label("label", this.labelModel);
 		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
@@ -69,7 +69,7 @@ public abstract class AbstractControlGroup<T, F extends FormComponent<T>> extend
 			@Override
 			public BootstrapCssClass getObject() {
 
-				if (!AbstractControlGroup.this.getFormComponent().isValid()) {
+				if (!AbstractFormGroup.this.getFormComponent().isValid()) {
 					return super.getObject();
 				}
 
