@@ -2,6 +2,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.feedback;
 
 import java.io.Serializable;
 
+import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
@@ -40,17 +41,17 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
 
 			case FeedbackMessage.WARNING:
 			case FeedbackMessage.DEBUG:
-				break;
+				return AlertStyle.WARNING;
 
 			case FeedbackMessage.SUCCESS:
-				return BootstrapCssClass.ALERT_SUCCESS;
+				return AlertStyle.SUCCESS;
 
 			case FeedbackMessage.INFO:
-				return BootstrapCssClass.ALERT_INFO;
+				return AlertStyle.INFO;
 
 			case FeedbackMessage.ERROR:
 			case FeedbackMessage.FATAL:
-				return BootstrapCssClass.ALERT_ERROR;
+				return AlertStyle.DANGER;
 		}
 
 		return null;
