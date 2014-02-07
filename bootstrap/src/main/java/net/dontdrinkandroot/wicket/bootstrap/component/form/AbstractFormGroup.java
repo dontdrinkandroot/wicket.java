@@ -5,11 +5,14 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.InlineFencedFeed
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.crypt.StringUtils;
+import org.apache.wicket.util.string.Strings;
 
 
 public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T> {
@@ -19,6 +22,8 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	private F formComponent;
 
 	protected Class<T> type = null;
+
+	private WebMarkupContainer componentContainer;
 
 
 	public AbstractFormGroup(String id, IModel<T> model, String label) {
@@ -42,10 +47,13 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.labelModel = labelModel;
 		this.type = type;
 
+		this.componentContainer = new WebMarkupContainer("componentContainer");
+		this.add(this.componentContainer);
+
 		this.formComponent = this.createFormComponent("formComponent");
 		this.formComponent.setOutputMarkupId(true);
 		this.formComponent.setLabel(this.labelModel);
-		this.add(this.formComponent);
+		this.componentContainer.add(this.formComponent);
 
 	}
 
@@ -57,12 +65,18 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
-		Label label = new Label("label", this.labelModel);
+		Label label = new Label("label", this.labelModel) {
+			@Override
+			public boolean isVisible() {
+				
+				return this.getDefaultModel() != null && !Strings.isEmpty(getDefaultModelObjectAsString());
+			}
+		};
 		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
 		this.add(label);
 
 		InlineFencedFeedbackPanel feedback = new InlineFencedFeedbackPanel("feedback", this);
-		this.add(feedback);
+		this.componentContainer.add(feedback);
 
 		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ERROR) {
 
