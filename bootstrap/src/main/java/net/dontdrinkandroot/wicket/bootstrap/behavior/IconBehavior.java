@@ -3,7 +3,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.WicketRuntimeException;
@@ -24,9 +24,9 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/** Pattern that matches openclose tags and is able to extract the open tag, body and close tag. */
 	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
-	private IModel<InvertibleIconClass> prependIconModel;
+	private IModel<CssClass> prependIconModel;
 
-	private IModel<InvertibleIconClass> appendIconModel;
+	private IModel<CssClass> appendIconModel;
 
 
 	/**
@@ -41,7 +41,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Creates an IconBehavior that prepends the given icon.
 	 */
-	public IconBehavior(IModel<InvertibleIconClass> beforeIconModel) {
+	public IconBehavior(IModel<CssClass> beforeIconModel) {
 
 		this.prependIconModel = beforeIconModel;
 	}
@@ -50,7 +50,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Creates an IconBehavior that prepends the given icon.
 	 */
-	public IconBehavior(InvertibleIconClass beforeIcon) {
+	public IconBehavior(CssClass beforeIcon) {
 
 		this.setPrependIcon(beforeIcon);
 	}
@@ -113,7 +113,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Get the iocn to prepend if set or null.
 	 */
-	public InvertibleIconClass getPrependIcon() {
+	public CssClass getPrependIcon() {
 
 		if (this.prependIconModel == null) {
 			return null;
@@ -125,7 +125,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Get the icon to append if set or null.
 	 */
-	public InvertibleIconClass getAppendIcon() {
+	public CssClass getAppendIcon() {
 
 		if (this.appendIconModel == null) {
 			return null;
@@ -137,7 +137,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Set the icon to prepend, if it is null no icon will be prepended.
 	 */
-	public IconBehavior setPrependIcon(InvertibleIconClass beforeIcon) {
+	public IconBehavior setPrependIcon(CssClass beforeIcon) {
 
 		if (beforeIcon == null) {
 			this.prependIconModel = null;
@@ -157,7 +157,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Set the icon to append, if it is null no icon will be appended.
 	 */
-	public IconBehavior setAppendIcon(InvertibleIconClass afterIcon) {
+	public IconBehavior setAppendIcon(CssClass afterIcon) {
 
 		if (afterIcon == null) {
 			this.appendIconModel = null;
@@ -177,7 +177,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Set the model of the icon to prepend, if it or its object is null no icon will be prepended.
 	 */
-	public IconBehavior setPrependIconModel(IModel<InvertibleIconClass> prependIconModel) {
+	public IconBehavior setPrependIconModel(IModel<CssClass> prependIconModel) {
 
 		this.prependIconModel = prependIconModel;
 		return this;
@@ -187,7 +187,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Set the model of the icon to append, if it or its object is null no icon will be prepended.
 	 */
-	public IconBehavior setAppendIconModel(IModel<InvertibleIconClass> appendIconModel) {
+	public IconBehavior setAppendIconModel(IModel<CssClass> appendIconModel) {
 
 		this.appendIconModel = appendIconModel;
 		return this;
@@ -197,7 +197,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Get the model of the icon to prepend.
 	 */
-	protected IModel<InvertibleIconClass> getPrependIconModel() {
+	protected IModel<CssClass> getPrependIconModel() {
 
 		return this.prependIconModel;
 	}
@@ -206,7 +206,7 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	/**
 	 * Get the model of the icon to append.
 	 */
-	protected IModel<InvertibleIconClass> getAppendIconModel() {
+	protected IModel<CssClass> getAppendIconModel() {
 
 		return this.appendIconModel;
 	}
@@ -216,8 +216,8 @@ public class IconBehavior extends AbstractTransformerBehavior {
 	 * Transforms an {@link InvertibleIconClass} Model into an italic tag String with the
 	 * corresponding class attributes.
 	 */
-	protected String renderIcon(IModel<InvertibleIconClass> iconModel) {
+	protected String renderIcon(IModel<CssClass> iconModel) {
 
-		return String.format("<i class=\"%s\"></i>", iconModel.getObject().getClassString());
+		return String.format("<span class=\"%s\"></span>", iconModel.getObject().getClassString());
 	}
 }

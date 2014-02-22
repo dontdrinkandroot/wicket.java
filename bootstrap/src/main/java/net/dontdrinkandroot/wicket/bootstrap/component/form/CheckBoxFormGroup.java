@@ -9,12 +9,14 @@ public class CheckBoxFormGroup extends AbstractFormGroup<Boolean, CheckBox> {
 	public CheckBoxFormGroup(String id, IModel<Boolean> model, String label) {
 
 		super(id, model, label);
+		this.createComponents();
 	}
 
 
 	public CheckBoxFormGroup(String id, IModel<Boolean> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
+		this.createComponents();
 	}
 
 

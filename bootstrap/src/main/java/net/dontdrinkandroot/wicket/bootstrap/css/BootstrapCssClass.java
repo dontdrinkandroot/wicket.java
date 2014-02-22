@@ -112,6 +112,9 @@ public enum BootstrapCssClass implements CssClass {
 	/* BS3 Additions */
 	CLEARFIX("clearfix"),
 	FORM_GROUP("form-group"),
+	HAS_ERROR("has-error"),
+	HAS_SUCCESS("has-success"),
+	HAS_WARNING("has-warning"),
 	LIST_GROUP("list-group"),
 	LIST_GROUP_ITEM("list-group-item"),
 	LIST_INLINE("list-inline"),

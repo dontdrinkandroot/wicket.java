@@ -7,11 +7,11 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.crypt.StringUtils;
 import org.apache.wicket.util.string.Strings;
 
 
@@ -46,6 +46,13 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 		this.labelModel = labelModel;
 		this.type = type;
+	}
+
+
+	/**
+	 * MUST be called as last method in children constructors.
+	 */
+	protected void createComponents() {
 
 		this.componentContainer = new WebMarkupContainer("componentContainer");
 		this.add(this.componentContainer);
@@ -54,7 +61,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.formComponent.setOutputMarkupId(true);
 		this.formComponent.setLabel(this.labelModel);
 		this.componentContainer.add(this.formComponent);
-
 	}
 
 
@@ -66,10 +72,11 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
 		Label label = new Label("label", this.labelModel) {
+
 			@Override
 			public boolean isVisible() {
-				
-				return this.getDefaultModel() != null && !Strings.isEmpty(getDefaultModelObjectAsString());
+
+				return this.getDefaultModel() != null && !Strings.isEmpty(this.getDefaultModelObjectAsString());
 			}
 		};
 		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
@@ -78,7 +85,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		InlineFencedFeedbackPanel feedback = new InlineFencedFeedbackPanel("feedback", this);
 		this.componentContainer.add(feedback);
 
-		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ERROR) {
+		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.HAS_ERROR) {
 
 			@Override
 			public BootstrapCssClass getObject() {
@@ -90,6 +97,12 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 				return null;
 			}
 		}));
+
+		Form<?> form = this.getFormComponent().getForm();
+		if (form instanceof FormHorizontal) {
+			label.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
+			this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
+		}
 	}
 
 

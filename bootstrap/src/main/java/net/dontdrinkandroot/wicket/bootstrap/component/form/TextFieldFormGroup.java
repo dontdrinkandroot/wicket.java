@@ -9,12 +9,14 @@ public class TextFieldFormGroup<T> extends AbstractFormGroup<T, TextField<T>> {
 	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
+		this.createComponents();
 	}
 
 
 	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
 
 		super(id, model, labelModel, type);
+		this.createComponents();
 	}
 
 

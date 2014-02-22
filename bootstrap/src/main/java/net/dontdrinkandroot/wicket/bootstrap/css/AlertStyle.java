@@ -8,7 +8,7 @@ public enum AlertStyle implements CssClass {
 	DANGER("alert-danger"),
 	INFO("alert-info"),
 	SUCCESS("alert-success"),
-	WARNING("alter-warning");
+	WARNING("alert-warning");
 
 	private String classString;
 

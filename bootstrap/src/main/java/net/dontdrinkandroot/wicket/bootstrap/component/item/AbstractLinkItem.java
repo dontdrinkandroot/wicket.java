@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.InvertibleIconClass;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
@@ -10,9 +10,9 @@ import org.apache.wicket.model.Model;
 
 public abstract class AbstractLinkItem extends AbstractItem<String> {
 
-	private IModel<InvertibleIconClass> beforeIconModel;
+	private IModel<CssClass> beforeIconModel;
 
-	private IModel<InvertibleIconClass> afterIconModel;
+	private IModel<CssClass> afterIconModel;
 
 
 	public AbstractLinkItem(String id, IModel<String> labelModel) {
@@ -27,7 +27,7 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 	}
 
 
-	public AbstractLinkItem setBeforeIcon(InvertibleIconClass beforeIcon) {
+	public AbstractLinkItem setBeforeIcon(CssClass beforeIcon) {
 
 		if (beforeIcon == null) {
 			this.beforeIconModel = null;
@@ -39,7 +39,7 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 	}
 
 
-	public AbstractLinkItem setAfterIcon(InvertibleIconClass afterIcon) {
+	public AbstractLinkItem setAfterIcon(CssClass afterIcon) {
 
 		if (afterIcon == null) {
 			this.afterIconModel = null;
@@ -51,13 +51,13 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 	}
 
 
-	public IModel<InvertibleIconClass> getBeforeIconModel() {
+	public IModel<CssClass> getBeforeIconModel() {
 
 		return this.beforeIconModel;
 	}
 
 
-	public IModel<InvertibleIconClass> getAfterIconModel() {
+	public IModel<CssClass> getAfterIconModel() {
 
 		return this.afterIconModel;
 	}
@@ -72,14 +72,14 @@ public abstract class AbstractLinkItem extends AbstractItem<String> {
 		link.add(new IconBehavior() {
 
 			@Override
-			public IModel<InvertibleIconClass> getPrependIconModel() {
+			public IModel<CssClass> getPrependIconModel() {
 
 				return AbstractLinkItem.this.getBeforeIconModel();
 			};
 
 
 			@Override
-			public IModel<InvertibleIconClass> getAppendIconModel() {
+			public IModel<CssClass> getAppendIconModel() {
 
 				return AbstractLinkItem.this.getAfterIconModel();
 			};

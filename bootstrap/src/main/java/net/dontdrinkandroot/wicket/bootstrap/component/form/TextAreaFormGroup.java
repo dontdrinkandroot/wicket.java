@@ -9,6 +9,7 @@ public class TextAreaFormGroup<T> extends AbstractFormGroup<T, TextArea<T>> {
 	public TextAreaFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
+		this.createComponents();
 	}
 
 

@@ -12,6 +12,7 @@ public abstract class BootstrapWebApplication extends WebApplication {
 
 		super.init();
 		WebApplicationUtils.mountBoostrapResources(this);
+		WebApplicationUtils.mountGlyphiconFonts(this);
 	}
 
 }

@@ -7,7 +7,7 @@ public class BootstrapJsResourceReference extends JQueryPluginResourceReference 
 
 	public BootstrapJsResourceReference() {
 
-		super(BootstrapJsResourceReference.class, "bootstrap-3.0.1.min.js");
+		super(BootstrapJsResourceReference.class, "bootstrap-3.1.1.min.js");
 	}
 
 }
