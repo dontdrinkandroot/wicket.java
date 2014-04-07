@@ -123,7 +123,8 @@ public enum BootstrapCssClass implements CssClass {
 	PANEL_BODY("panel-body"),
 	PANEL_FOOTER("panel-footer"),
 	PANEL_HEADING("panel-heading"),
-	PANEL_TITLE("panel-title");
+	PANEL_TITLE("panel-title"),
+	IMG_RESPONSIVE("img-responsive");
 
 	private String classString;
 

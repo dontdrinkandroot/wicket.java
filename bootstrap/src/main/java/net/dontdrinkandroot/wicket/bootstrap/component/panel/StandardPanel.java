@@ -14,8 +14,6 @@ public abstract class StandardPanel<T> extends Panel<T> {
 
 	private final Level headingLevel;
 
-	private Heading heading;
-
 
 	public StandardPanel(String id, IModel<String> headingModel, Heading.Level headingLevel) {
 
