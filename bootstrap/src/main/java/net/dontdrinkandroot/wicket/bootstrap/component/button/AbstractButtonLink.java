@@ -151,4 +151,10 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 		}
 	}
 
+
+	public void setLabelModel(IModel<String> labelModel) {
+
+		this.labelModel = labelModel;
+	}
+
 }

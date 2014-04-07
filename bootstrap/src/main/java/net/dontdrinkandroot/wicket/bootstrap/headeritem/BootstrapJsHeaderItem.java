@@ -17,7 +17,14 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 
+import java.util.Arrays;
+
+import org.apache.wicket.Application;
+import org.apache.wicket.markup.head.HeaderItem;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.head.JavaScriptUrlReferenceHeaderItem;
+import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.resource.JQueryResourceReference;
 
 
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem {
@@ -27,4 +34,17 @@ public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem {
 		super("http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
 	}
 
+
+	@Override
+	public Iterable<? extends HeaderItem> getDependencies() {
+
+		final ResourceReference backingLibraryReference;
+		if (Application.exists()) {
+			backingLibraryReference = Application.get().getJavaScriptLibrarySettings().getJQueryReference();
+		} else {
+			backingLibraryReference = JQueryResourceReference.get();
+		}
+
+		return Arrays.asList(JavaScriptHeaderItem.forReference(backingLibraryReference));
+	}
 }
