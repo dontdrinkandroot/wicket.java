@@ -41,7 +41,7 @@ public class DateAvailableDaysModel extends AbstractDateCalendarModel<List<Integ
 
 		if (this.list == null) {
 			this.list = new ArrayList<Integer>();
-			for (int i = 0; i <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+			for (int i = 1; i <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
 				this.list.add(i);
 			}
 		}

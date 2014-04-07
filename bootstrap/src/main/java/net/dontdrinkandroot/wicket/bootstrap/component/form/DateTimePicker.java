@@ -1,6 +1,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownChoiceButton;
@@ -16,11 +18,11 @@ import net.dontdrinkandroot.wicket.model.date.DateSecondModel;
 import net.dontdrinkandroot.wicket.model.date.DateYearModel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.model.IModel;
 
 
-public class DateTimePicker extends GenericPanel<Date> {
+public class DateTimePicker extends FormComponentPanel<Date> {
 
 	private final DropDownChoiceButton<Integer> yearChoice;
 
@@ -45,7 +47,8 @@ public class DateTimePicker extends GenericPanel<Date> {
 				new DropDownChoiceButton<Integer>(
 						"year",
 						new DateYearModel(this.getModel()),
-						new IntegerRangeListModel(minYear, maxYear)) {
+						new IntegerRangeListModel(minYear, maxYear),
+						Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -61,7 +64,8 @@ public class DateTimePicker extends GenericPanel<Date> {
 						"month",
 						new DateMonthModel(this.getModel()),
 						new IntegerRangeListModel(0, 11),
-						new ShortMonthChoiceRenderer(this.getLocale())) {
+						new ShortMonthChoiceRenderer(this.getLocale()),
+						Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -75,7 +79,7 @@ public class DateTimePicker extends GenericPanel<Date> {
 
 		this.dayChoice =
 				new DropDownChoiceButton<Integer>("day", new DateDayModel(this.getModel()), new DateAvailableDaysModel(
-						this.getModel())) {
+						this.getModel()), Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -90,7 +94,8 @@ public class DateTimePicker extends GenericPanel<Date> {
 				new DropDownChoiceButton<Integer>(
 						"hour",
 						new DateHourModel(this.getModel()),
-						new IntegerRangeListModel(0, 23)) {
+						new IntegerRangeListModel(0, 23),
+						Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -105,7 +110,8 @@ public class DateTimePicker extends GenericPanel<Date> {
 				new DropDownChoiceButton<Integer>(
 						"minute",
 						new DateMinuteModel(this.getModel()),
-						new IntegerRangeListModel(0, 59)) {
+						new IntegerRangeListModel(0, 59),
+						Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -120,7 +126,8 @@ public class DateTimePicker extends GenericPanel<Date> {
 				new DropDownChoiceButton<Integer>(
 						"second",
 						new DateSecondModel(this.getModel()),
-						new IntegerRangeListModel(0, 59)) {
+						new IntegerRangeListModel(0, 59),
+						Integer.class) {
 
 					@Override
 					protected void onSelectionChanged(AjaxRequestTarget target) {
@@ -130,6 +137,22 @@ public class DateTimePicker extends GenericPanel<Date> {
 					}
 				};
 		this.add(this.secondChoice);
+	}
+
+
+	@Override
+	protected void convertInput() {
+
+		GregorianCalendar calendar = new GregorianCalendar();
+
+		calendar.set(Calendar.YEAR, this.yearChoice.getConvertedInput());
+		calendar.set(Calendar.MONTH, this.monthChoice.getConvertedInput());
+		calendar.set(Calendar.DAY_OF_MONTH, this.dayChoice.getConvertedInput());
+		calendar.set(Calendar.HOUR_OF_DAY, this.hourChoice.getConvertedInput());
+		calendar.set(Calendar.MINUTE, this.minuteChoice.getConvertedInput());
+		calendar.set(Calendar.SECOND, this.secondChoice.getConvertedInput());
+
+		this.setConvertedInput(calendar.getTime());
 	}
 
 

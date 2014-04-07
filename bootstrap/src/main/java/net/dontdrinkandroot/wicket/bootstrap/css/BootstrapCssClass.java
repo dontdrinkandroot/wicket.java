@@ -42,6 +42,7 @@ public enum BootstrapCssClass implements CssClass {
 	HIDE("hide"),
 	ICON_WHITE("icon-white"),
 	IMG_CIRCLE("img-circle"),
+	@Deprecated
 	IMG_POLAROID("img-polaroid"),
 	IMG_ROUNDED("img-rounded"),
 	INFO("info"),
@@ -124,7 +125,8 @@ public enum BootstrapCssClass implements CssClass {
 	PANEL_FOOTER("panel-footer"),
 	PANEL_HEADING("panel-heading"),
 	PANEL_TITLE("panel-title"),
-	IMG_RESPONSIVE("img-responsive");
+	IMG_RESPONSIVE("img-responsive"),
+	IMG_THUMBNAIL("img-thumbnail");
 
 	private String classString;
 

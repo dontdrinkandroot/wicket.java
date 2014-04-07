@@ -11,19 +11,24 @@ import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
+import org.apache.wicket.markup.html.form.FormComponentPanel;
+import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.ListModel;
 
 
-public class DropDownChoiceButton<T> extends GenericPanel<T> {
+public class DropDownChoiceButton<T> extends FormComponentPanel<T> {
 
 	private final IModel<List<T>> choicesModel;
 
 	private IChoiceRenderer<? super T> choiceRenderer;
+
+	private Class<T> type;
+
+	private HiddenField<T> valueInputField;
 
 
 	public DropDownChoiceButton(String id, IModel<T> model, List<T> choices) {
@@ -48,6 +53,27 @@ public class DropDownChoiceButton<T> extends GenericPanel<T> {
 
 		this.choicesModel = choicesModel;
 		this.choiceRenderer = choiceRenderer;
+	}
+
+
+	public DropDownChoiceButton(String id, IModel<T> model, IModel<List<T>> choicesModel, Class<T> type) {
+
+		this(id, model, choicesModel, new ChoiceRenderer<T>(), type);
+	}
+
+
+	public DropDownChoiceButton(
+			String id,
+			IModel<T> model,
+			IModel<List<T>> choicesModel,
+			IChoiceRenderer<? super T> choiceRenderer,
+			Class<T> type) {
+
+		super(id, model);
+
+		this.choicesModel = choicesModel;
+		this.choiceRenderer = choiceRenderer;
+		this.type = type;
 	}
 
 
@@ -84,6 +110,9 @@ public class DropDownChoiceButton<T> extends GenericPanel<T> {
 
 		};
 		this.add(choicesView);
+
+		this.valueInputField = new HiddenField<T>("valueInput", this.getModel(), this.type);
+		this.add(this.valueInputField);
 	}
 
 
@@ -110,6 +139,13 @@ public class DropDownChoiceButton<T> extends GenericPanel<T> {
 		// DropDownChoiceButton.class,
 		// "dropdownchoicescale.js"), "dropdownchoicescale"));
 		// response.render(OnLoadHeaderItem.forScript("scaleDropDownChoices()"));
+	}
+
+
+	@Override
+	protected void convertInput() {
+
+		this.setConvertedInput(this.valueInputField.getConvertedInput());
 	}
 
 

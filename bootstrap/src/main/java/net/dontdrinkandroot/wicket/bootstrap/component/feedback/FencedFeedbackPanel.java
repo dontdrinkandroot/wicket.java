@@ -8,32 +8,31 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
-import org.apache.wicket.feedback.FencedFeedbackPanel;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;
 
 
-public class CloseableFencedFeedbackPanel extends FencedFeedbackPanel {
+public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedbackPanel {
 
-	public CloseableFencedFeedbackPanel(String id) {
+	public FencedFeedbackPanel(String id) {
 
 		super(id);
 	}
 
 
-	public CloseableFencedFeedbackPanel(String id, Component fence) {
+	public FencedFeedbackPanel(String id, Component fence) {
 
 		super(id, fence);
 	}
 
 
-	public CloseableFencedFeedbackPanel(String id, IFeedbackMessageFilter filter) {
+	public FencedFeedbackPanel(String id, IFeedbackMessageFilter filter) {
 
 		super(id, filter);
 	}
 
 
-	public CloseableFencedFeedbackPanel(String id, Component fence, IFeedbackMessageFilter filter) {
+	public FencedFeedbackPanel(String id, Component fence, IFeedbackMessageFilter filter) {
 
 		super(id, fence, filter);
 	}
