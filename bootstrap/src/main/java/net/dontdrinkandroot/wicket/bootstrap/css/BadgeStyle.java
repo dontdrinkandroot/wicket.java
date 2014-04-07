@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2012, 2013 Philip W. Sorst <philip@sorst.net>
+ * Copyright (C) 2012-2014 Philip W. Sorst <philip@sorst.net>
  * and individual contributors as indicated
  * by the @authors tag.
  *
