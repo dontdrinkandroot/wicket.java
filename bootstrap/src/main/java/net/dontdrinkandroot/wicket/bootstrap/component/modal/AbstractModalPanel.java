@@ -17,6 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
@@ -40,9 +44,17 @@ public abstract class AbstractModalPanel<T> extends AbstractBaseModalPanel<T> {
 
 		super.onInitialize();
 
-		this.add(new Label("heading", this.createHeadingModel()));
-		this.add(this.createBody("body"));
-		this.add(this.createFooter("footer"));
+		Label headingLabel = new Label("heading", this.createHeadingModel());
+		headingLabel.add(new CssClassAppender(BootstrapCssClass.MODAL_TITLE));
+		this.add(headingLabel);
+
+		Component body = this.createBody("body");
+		body.add(new CssClassAppender(BootstrapCssClass.MODAL_BODY));
+		this.add(body);
+
+		Component footer = this.createFooter("footer");
+		footer.add(new CssClassAppender(BootstrapCssClass.MODAL_FOOTER));
+		this.add(footer);
 	}
 
 }

@@ -48,7 +48,6 @@ public abstract class AbstractBaseModalPanel<T> extends GenericPanel<T> {
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.MODAL));
-		this.add(new CssClassAppender(BootstrapCssClass.HIDE));
 		this.add(new CssClassAppender(BootstrapCssClass.FADE));
 	}
 

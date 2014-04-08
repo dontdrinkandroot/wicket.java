@@ -47,15 +47,22 @@ public abstract class AbstractFormModalPanel<T> extends AbstractBaseModalPanel<T
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.MODAL));
-		this.add(new CssClassAppender(BootstrapCssClass.HIDE));
 		this.add(new CssClassAppender(BootstrapCssClass.FADE));
 
 		Form<T> form = this.createForm("form");
 		this.add(form);
 
-		form.add(new Label("heading", this.createHeadingModel()));
-		form.add(this.createBody("body"));
-		form.add(this.createFooter("footer"));
+		Label headingLabel = new Label("heading", this.createHeadingModel());
+		headingLabel.add(new CssClassAppender(BootstrapCssClass.MODAL_TITLE));
+		form.add(headingLabel);
+
+		Component body = this.createBody("body");
+		body.add(new CssClassAppender(BootstrapCssClass.MODAL_BODY));
+		form.add(body);
+
+		Component footer = this.createFooter("footer");
+		footer.add(new CssClassAppender(BootstrapCssClass.MODAL_FOOTER));
+		form.add(footer);
 	}
 
 
