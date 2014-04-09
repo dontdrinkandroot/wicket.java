@@ -30,7 +30,7 @@ import org.apache.wicket.model.Model;
 
 public class ButtonBehavior extends Behavior {
 
-	private IModel<ButtonStyle> buttonStyleModel = new Model<ButtonStyle>();
+	private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
 	private IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
 

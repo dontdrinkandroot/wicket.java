@@ -24,12 +24,14 @@ public enum FontAwesomeIconClass implements CssClass {
 
 	ASTERISK("fa-asterisk"),
 	CHECK("fa-check"),
+	COG("fa-cog"),
 	FEMALE("fa-female"),
 	LOCK("fa-lock"),
 	MALE("fa-male"),
 	PENCIL("fa-pencil"),
 	PLUS("fa-plus"),
 	POWER_OFF("fa-power-off"),
+	TIMES("fa-times"),
 	TRASH("fa-trash");
 
 	private final String classString;
