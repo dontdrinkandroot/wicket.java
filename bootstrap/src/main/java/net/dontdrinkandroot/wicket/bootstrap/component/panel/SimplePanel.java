@@ -25,14 +25,14 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
 
-public abstract class StandardPanel<T> extends Panel<T> {
+public abstract class SimplePanel<T> extends Panel<T> {
 
 	private final IModel<String> headingModel;
 
 	private final Level headingLevel;
 
 
-	public StandardPanel(String id, IModel<String> headingModel, Heading.Level headingLevel) {
+	public SimplePanel(String id, IModel<String> headingModel, Heading.Level headingLevel) {
 
 		super(id);
 
@@ -41,7 +41,7 @@ public abstract class StandardPanel<T> extends Panel<T> {
 	}
 
 
-	public StandardPanel(String id, IModel<T> model, IModel<String> headingModel, Heading.Level headingLevel) {
+	public SimplePanel(String id, IModel<T> model, IModel<String> headingModel, Heading.Level headingLevel) {
 
 		super(id, model);
 
