@@ -29,7 +29,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
+public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> implements IButton {
 
 	private IModel<String> labelModel;
 
@@ -93,6 +93,18 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 	}
 
 
+	@Override
+	public ButtonStyle getButtonStyle() {
+
+		if (this.buttonStyleModel != null) {
+			return this.buttonStyleModel.getObject();
+		}
+
+		return null;
+	}
+
+
+	@Override
 	public AbstractButtonLink<T> setButtonStyle(ButtonStyle buttonStyle) {
 
 		this.buttonStyleModel.setObject(buttonStyle);
@@ -100,6 +112,18 @@ public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> {
 	}
 
 
+	@Override
+	public ButtonSize getButtonSize() {
+
+		if (this.buttonSizeModel != null) {
+			return this.buttonSizeModel.getObject();
+		}
+
+		return null;
+	}
+
+
+	@Override
 	public AbstractButtonLink<T> setButtonSize(ButtonSize buttonSize) {
 
 		this.buttonSizeModel.setObject(buttonSize);

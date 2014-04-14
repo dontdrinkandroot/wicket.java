@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
@@ -28,7 +29,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public class ButtonBehavior extends Behavior {
+public class ButtonBehavior extends Behavior implements IButton {
 
 	private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
@@ -59,12 +60,14 @@ public class ButtonBehavior extends Behavior {
 	}
 
 
+	@Override
 	public ButtonSize getButtonSize() {
 
 		return this.getButtonSizeModel().getObject();
 	}
 
 
+	@Override
 	public ButtonBehavior setButtonSize(ButtonSize buttonSize) {
 
 		this.getButtonSizeModel().setObject(buttonSize);
@@ -72,12 +75,14 @@ public class ButtonBehavior extends Behavior {
 	}
 
 
+	@Override
 	public ButtonStyle getButtonStyle() {
 
 		return this.getButtonStyleModel().getObject();
 	}
 
 
+	@Override
 	public ButtonBehavior setButtonStyle(ButtonStyle buttonStyle) {
 
 		this.getButtonStyleModel().setObject(buttonStyle);
