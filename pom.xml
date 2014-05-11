@@ -34,7 +34,7 @@
 	</scm>
 	
 	<properties>
-		<org.apache.wicket.version>6.14.0</org.apache.wicket.version>
+		<org.apache.wicket.version>6.15.0</org.apache.wicket.version>
 	</properties>
 
 	<build>
