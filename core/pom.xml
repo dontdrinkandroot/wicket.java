@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>net.dontdrinkandroot</groupId>
 		<artifactId>wicket.parent</artifactId>
-		<version>0.4.5-SNAPSHOT</version>
+		<version>0.5.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>wicket.core</artifactId>
@@ -12,13 +12,13 @@
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-core</artifactId>
-			<version>${org.apache.wicket.version}</version>
+			<version>${version.org.apache.wicket}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-ioc</artifactId>
-			<version>${org.apache.wicket.version}</version>
+			<version>${version.org.apache.wicket}</version>
 		</dependency>
 
 	</dependencies>

@@ -21,6 +21,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.FormComponentPanel;
+import org.apache.wicket.model.IModel;
+
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownChoiceButton;
 import net.dontdrinkandroot.wicket.choicerenderer.ShortMonthChoiceRenderer;
@@ -34,12 +38,9 @@ import net.dontdrinkandroot.wicket.model.date.DateMonthModel;
 import net.dontdrinkandroot.wicket.model.date.DateSecondModel;
 import net.dontdrinkandroot.wicket.model.date.DateYearModel;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.form.FormComponentPanel;
-import org.apache.wicket.model.IModel;
 
-
-public class DateTimePicker extends FormComponentPanel<Date> {
+public class DateTimePicker extends FormComponentPanel<Date>
+{
 
 	private final DropDownChoiceButton<Integer> yearChoice;
 
@@ -54,113 +55,109 @@ public class DateTimePicker extends FormComponentPanel<Date> {
 	private final DropDownChoiceButton<Integer> secondChoice;
 
 
-	public DateTimePicker(String id, final IModel<Date> model, int minYear, int maxYear) {
-
+	public DateTimePicker(String id, final IModel<Date> model, int minYear, int maxYear)
+	{
 		super(id, model);
 
 		this.add(new CssClassAppender(CoreCssClass.DATE_PICKER));
 
-		this.yearChoice =
-				new DropDownChoiceButton<Integer>(
-						"year",
-						new DateYearModel(this.getModel()),
-						new IntegerRangeListModel(minYear, maxYear),
-						Integer.class) {
+		this.yearChoice = new DropDownChoiceButton<Integer>(
+				"year",
+				new DateYearModel(this.getModel()),
+				new IntegerRangeListModel(minYear, maxYear),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						DateTimePicker.this.onYearChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					};
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				DateTimePicker.this.onYearChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			};
+		};
 		this.add(this.yearChoice);
 
-		this.monthChoice =
-				new DropDownChoiceButton<Integer>(
-						"month",
-						new DateMonthModel(this.getModel()),
-						new IntegerRangeListModel(0, 11),
-						new ShortMonthChoiceRenderer(this.getLocale()),
-						Integer.class) {
+		this.monthChoice = new DropDownChoiceButton<Integer>(
+				"month",
+				new DateMonthModel(this.getModel()),
+				new IntegerRangeListModel(0, 11),
+				new ShortMonthChoiceRenderer(this.getLocale()),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						target.add(DateTimePicker.this.dayChoice);
-						DateTimePicker.this.onMonthChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					}
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				target.add(DateTimePicker.this.dayChoice);
+				DateTimePicker.this.onMonthChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			}
+		};
 		this.add(this.monthChoice);
 
-		this.dayChoice =
-				new DropDownChoiceButton<Integer>("day", new DateDayModel(this.getModel()), new DateAvailableDaysModel(
-						this.getModel()), Integer.class) {
+		this.dayChoice = new DropDownChoiceButton<Integer>(
+				"day",
+				new DateDayModel(this.getModel()),
+				new DateAvailableDaysModel(this.getModel()),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						DateTimePicker.this.onDayChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					}
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				DateTimePicker.this.onDayChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			}
+		};
 		this.add(this.dayChoice);
 
-		this.hourChoice =
-				new DropDownChoiceButton<Integer>(
-						"hour",
-						new DateHourModel(this.getModel()),
-						new IntegerRangeListModel(0, 23),
-						Integer.class) {
+		this.hourChoice = new DropDownChoiceButton<Integer>(
+				"hour",
+				new DateHourModel(this.getModel()),
+				new IntegerRangeListModel(0, 23),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						DateTimePicker.this.onHourChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					}
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				DateTimePicker.this.onHourChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			}
+		};
 		this.add(this.hourChoice);
 
-		this.minuteChoice =
-				new DropDownChoiceButton<Integer>(
-						"minute",
-						new DateMinuteModel(this.getModel()),
-						new IntegerRangeListModel(0, 59),
-						Integer.class) {
+		this.minuteChoice = new DropDownChoiceButton<Integer>(
+				"minute",
+				new DateMinuteModel(this.getModel()),
+				new IntegerRangeListModel(0, 59),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						DateTimePicker.this.onMinuteChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					}
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				DateTimePicker.this.onMinuteChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			}
+		};
 		this.add(this.minuteChoice);
 
-		this.secondChoice =
-				new DropDownChoiceButton<Integer>(
-						"second",
-						new DateSecondModel(this.getModel()),
-						new IntegerRangeListModel(0, 59),
-						Integer.class) {
+		this.secondChoice = new DropDownChoiceButton<Integer>(
+				"second",
+				new DateSecondModel(this.getModel()),
+				new IntegerRangeListModel(0, 59),
+				Integer.class) {
 
-					@Override
-					protected void onSelectionChanged(AjaxRequestTarget target) {
-
-						DateTimePicker.this.onSecondChanged(target);
-						DateTimePicker.this.onDateTimeChanged(target);
-					}
-				};
+			@Override
+			protected void onSelectionChanged(AjaxRequestTarget target)
+			{
+				DateTimePicker.this.onSecondChanged(target);
+				DateTimePicker.this.onDateTimeChanged(target);
+			}
+		};
 		this.add(this.secondChoice);
 	}
 
-
 	@Override
-	protected void convertInput() {
-
-		GregorianCalendar calendar = new GregorianCalendar();
+	public void convertInput()
+	{
+		final GregorianCalendar calendar = new GregorianCalendar();
 
 		calendar.set(Calendar.YEAR, this.yearChoice.getConvertedInput());
 		calendar.set(Calendar.MONTH, this.monthChoice.getConvertedInput());
@@ -172,38 +169,37 @@ public class DateTimePicker extends FormComponentPanel<Date> {
 		this.setConvertedInput(calendar.getTime());
 	}
 
+	protected void onYearChanged(AjaxRequestTarget target)
+	{
+	}
 
-	protected void onYearChanged(AjaxRequestTarget target) {
+	protected void onMonthChanged(AjaxRequestTarget target)
+	{
 
 	}
 
-
-	protected void onMonthChanged(AjaxRequestTarget target) {
-
-	}
-
-
-	protected void onDayChanged(AjaxRequestTarget target) {
+	protected void onDayChanged(AjaxRequestTarget target)
+	{
 
 	}
 
-
-	protected void onHourChanged(AjaxRequestTarget target) {
-
-	}
-
-
-	protected void onMinuteChanged(AjaxRequestTarget target) {
+	protected void onHourChanged(AjaxRequestTarget target)
+	{
 
 	}
 
-
-	protected void onSecondChanged(AjaxRequestTarget target) {
+	protected void onMinuteChanged(AjaxRequestTarget target)
+	{
 
 	}
 
+	protected void onSecondChanged(AjaxRequestTarget target)
+	{
 
-	protected void onDateTimeChanged(AjaxRequestTarget target) {
+	}
+
+	protected void onDateTimeChanged(AjaxRequestTarget target)
+	{
 
 	}
 }

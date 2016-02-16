@@ -21,19 +21,17 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.link.Link;
 
 
-public abstract class AbstractPageLink extends Link<Void> {
+public abstract class AbstractPageLink extends Link<Void>
+{
 
-	public AbstractPageLink(String id) {
-
+	public AbstractPageLink(String id)
+	{
 		super(id);
-		this.setBeforeDisabledLink("");
-		this.setAfterDisabledLink("");
 	}
 
-
 	@Override
-	protected void disableLink(ComponentTag tag) {
-
+	protected void disableLink(ComponentTag tag)
+	{
 		tag.setName("span");
 
 		/* Remove any href from the old link */
