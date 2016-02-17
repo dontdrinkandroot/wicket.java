@@ -90,13 +90,13 @@ public class ButtonBehavior extends Behavior implements IButton {
 	}
 
 
-	protected IModel<ButtonSize> getButtonSizeModel() {
+	public IModel<ButtonSize> getButtonSizeModel() {
 
 		return this.buttonSizeModel;
 	}
 
 
-	protected IModel<ButtonStyle> getButtonStyleModel() {
+	public IModel<ButtonStyle> getButtonStyleModel() {
 
 		return this.buttonStyleModel;
 	}
