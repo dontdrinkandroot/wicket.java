@@ -21,7 +21,7 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
+import net.dontdrinkandroot.wicket.component.GenericWebMarkupContainer;
 
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
@@ -29,7 +29,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public class AbstractButtonLink<T> extends TypedWebMarkupContainer<T> implements IButton {
+public class AbstractButtonLink<T> extends GenericWebMarkupContainer<T> implements IButton {
 
 	private IModel<String> labelModel;
 

@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
-import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
+import net.dontdrinkandroot.wicket.component.GenericWebMarkupContainer;
 import net.dontdrinkandroot.wicket.javascript.jqueryui.JQueryUiScript;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -25,7 +25,7 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 
 
-public class JqueryUiProgressBar extends TypedWebMarkupContainer<Integer> {
+public class JqueryUiProgressBar extends GenericWebMarkupContainer<Integer> {
 
 	private static final long serialVersionUID = 1L;
 

@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.component.jqueryui;
 
-import net.dontdrinkandroot.wicket.component.TypedWebMarkupContainer;
+import net.dontdrinkandroot.wicket.component.GenericWebMarkupContainer;
 
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -29,7 +29,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.util.string.StringValue;
 
 
-public class JQueryUiAjaxSlider extends TypedWebMarkupContainer<Integer> implements IHeaderContributor {
+public class JQueryUiAjaxSlider extends GenericWebMarkupContainer<Integer> implements IHeaderContributor {
 
 	private final AbstractDefaultAjaxBehavior valueChangedBehaviour;
 
