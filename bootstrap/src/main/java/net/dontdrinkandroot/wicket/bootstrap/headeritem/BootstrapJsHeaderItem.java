@@ -33,7 +33,7 @@ public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 
 	public BootstrapJsHeaderItem(boolean defer)
 	{
-		super("http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
+		super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
 	}
 
 	@Override

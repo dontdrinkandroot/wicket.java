@@ -20,11 +20,12 @@ package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 
 
-public class BootstrapCssHeaderItem extends CssUrlReferenceHeaderItem {
+public class BootstrapCssHeaderItem extends CssUrlReferenceHeaderItem
+{
 
-	public BootstrapCssHeaderItem() {
-
-		super("http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", "screen", null);
+	public BootstrapCssHeaderItem()
+	{
+		super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", "screen", null);
 	}
 
 }

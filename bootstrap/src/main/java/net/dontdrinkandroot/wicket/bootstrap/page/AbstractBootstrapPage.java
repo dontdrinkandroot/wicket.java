@@ -17,52 +17,48 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
-import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
-
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
 
-public abstract class AbstractBootstrapPage<T> extends GenericWebPage<T> {
 
-	public AbstractBootstrapPage() {
+public abstract class AbstractBootstrapPage<T> extends GenericWebPage<T>
+{
 
+	public AbstractBootstrapPage()
+	{
 		super();
 	}
 
-
-	public AbstractBootstrapPage(PageParameters parameters) {
-
+	public AbstractBootstrapPage(PageParameters parameters)
+	{
 		super(parameters);
 	}
 
-
-	public AbstractBootstrapPage(IModel<T> model) {
-
+	public AbstractBootstrapPage(IModel<T> model)
+	{
 		super(model);
 	}
 
-
 	@Override
-	protected void onInitialize() {
-
+	protected void onInitialize()
+	{
 		super.onInitialize();
 
 		this.add(new Label("pageTitle", this.getPageTitleModel()));
 	}
 
-
 	@Override
-	public void renderHead(IHeaderResponse response) {
-
+	public void renderHead(IHeaderResponse response)
+	{
 		super.renderHead(response);
 
 		if (this.includeBootstrapJavaScript()) {
-
 			response.render(new BootstrapJsHeaderItem(false));
 		}
 
@@ -71,18 +67,15 @@ public abstract class AbstractBootstrapPage<T> extends GenericWebPage<T> {
 		}
 	}
 
-
-	protected boolean includeBootstrapJavaScript() {
-
+	protected boolean includeBootstrapJavaScript()
+	{
 		return true;
 	}
 
-
-	protected boolean includeBoostrapCss() {
-
+	protected boolean includeBoostrapCss()
+	{
 		return true;
 	}
-
 
 	protected abstract IModel<String> getPageTitleModel();
 

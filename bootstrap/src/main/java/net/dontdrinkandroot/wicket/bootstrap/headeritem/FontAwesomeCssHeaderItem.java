@@ -20,11 +20,12 @@ package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 
 
-public class FontAwesomeCssHeaderItem extends CssUrlReferenceHeaderItem {
+public class FontAwesomeCssHeaderItem extends CssUrlReferenceHeaderItem
+{
 
-	public FontAwesomeCssHeaderItem() {
-
-		super("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", "screen", null);
+	public FontAwesomeCssHeaderItem()
+	{
+		super("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", "screen", null);
 	}
 
 }
