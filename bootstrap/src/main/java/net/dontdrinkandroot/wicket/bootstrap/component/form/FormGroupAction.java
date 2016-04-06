@@ -28,20 +28,20 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
 
-public class ActionFormGroup<T> extends GenericPanel<T> {
+public class FormGroupAction<T> extends GenericPanel<T> {
 
 	private WebMarkupContainer spaceHolder;
 
 	private WebMarkupContainer actionContainer;
 
 
-	public ActionFormGroup(String id) {
+	public FormGroupAction(String id) {
 
 		super(id);
 	}
 
 
-	public ActionFormGroup(String id, IModel<T> model) {
+	public FormGroupAction(String id, IModel<T> model) {
 
 		super(id, model);
 	}

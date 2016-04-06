@@ -1,6 +1,8 @@
 wicket
 ======
 
+[![Build Status](https://travis-ci.org/dontdrinkandroot/wicket.java.svg?branch=master)](https://travis-ci.org/dontdrinkandroot/wicket.java)
+
 Wicket extensions and Twitter Bootstrap bindings
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=shoxrocks&url=http://www.dontdrinkandroot.net/github/wicket.java&title=Wicket%20extensions%20and%20Twitter%20Bootstrap%20bindings&language=&tags=github&category=software)

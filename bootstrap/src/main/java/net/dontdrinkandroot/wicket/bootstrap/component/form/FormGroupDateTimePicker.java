@@ -17,23 +17,31 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
-import org.apache.wicket.markup.html.form.TextArea;
+import java.util.Date;
+
 import org.apache.wicket.model.IModel;
 
 
-public class TextAreaFormGroup<T> extends AbstractFormGroup<T, TextArea<T>> {
+public class FormGroupDateTimePicker extends AbstractFormGroup<Date, DateTimePicker> {
 
-	public TextAreaFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
+	private final int maxYear;
 
-		super(id, model, labelModel);
+	private final int minYear;
+
+
+	public FormGroupDateTimePicker(String id, IModel<Date> model, String label, int minYear, int maxYear) {
+
+		super(id, model, label);
+		this.minYear = minYear;
+		this.maxYear = maxYear;
 		this.createComponents();
 	}
 
 
 	@Override
-	protected TextArea<T> createFormComponent(String id) {
+	protected DateTimePicker createFormComponent(String id) {
 
-		return new TextArea<T>(id, this.getModel());
+		return new DateTimePicker(id, this.getModel(), this.minYear, this.maxYear);
 	}
 
 }

@@ -17,30 +17,35 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
+import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
 
-public class TextFieldFormGroup<T> extends AbstractFormGroup<T, TextField<T>> {
+public class FormGroupTextField<T> extends AbstractFormGroup<T, TextField<T>>
+{
 
-	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel) {
+	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel)
+	{
 
 		super(id, model, labelModel);
 		this.createComponents();
 	}
 
-
-	public TextFieldFormGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type) {
+	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
+	{
 
 		super(id, model, labelModel, type);
 		this.createComponents();
 	}
 
-
 	@Override
-	protected TextField<T> createFormComponent(String id) {
+	protected TextField<T> createFormComponent(String id)
+	{
 
-		return new TextField<T>(id, this.getModel(), this.type);
+		TextField<T> textField = new TextField<T>(id, this.getModel(), this.type);
+		textField.add(new HTML5Attributes());
+		return textField;
 	}
 
 }

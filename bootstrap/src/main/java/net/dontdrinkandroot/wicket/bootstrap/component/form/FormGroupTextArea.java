@@ -17,20 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
-import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 
 
-public class CheckBoxFormGroup extends AbstractFormGroup<Boolean, CheckBox> {
+public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>> {
 
-	public CheckBoxFormGroup(String id, IModel<Boolean> model, String label) {
-
-		super(id, model, label);
-		this.createComponents();
-	}
-
-
-	public CheckBoxFormGroup(String id, IModel<Boolean> model, IModel<String> labelModel) {
+	public FormGroupTextArea(String id, IModel<T> model, IModel<String> labelModel) {
 
 		super(id, model, labelModel);
 		this.createComponents();
@@ -38,9 +31,9 @@ public class CheckBoxFormGroup extends AbstractFormGroup<Boolean, CheckBox> {
 
 
 	@Override
-	protected CheckBox createFormComponent(String id) {
+	protected TextArea<T> createFormComponent(String id) {
 
-		return new CheckBox(id, this.getModel());
+		return new TextArea<T>(id, this.getModel());
 	}
 
 }

@@ -26,14 +26,14 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.WildcardListModel;
 
 
-public class SelectFormGroup<T> extends AbstractFormGroup<T, DropDownChoice<T>> {
+public class FormGroupSelect<T> extends AbstractFormGroup<T, DropDownChoice<T>> {
 
 	private final WildcardListModel<T> choicesModel;
 
 	private IChoiceRenderer<T> choiceRenderer = new ChoiceRenderer<T>();
 
 
-	public SelectFormGroup(String id, IModel<T> model, String label, List<T> choices) {
+	public FormGroupSelect(String id, IModel<T> model, String label, List<T> choices) {
 
 		super(id, model, label);
 		this.choicesModel = new WildcardListModel<T>(choices);
@@ -41,7 +41,7 @@ public class SelectFormGroup<T> extends AbstractFormGroup<T, DropDownChoice<T>> 
 	}
 
 
-	public SelectFormGroup(String id, IModel<T> model, IModel<String> labelModel, List<T> choices) {
+	public FormGroupSelect(String id, IModel<T> model, IModel<String> labelModel, List<T> choices) {
 
 		super(id, model, labelModel);
 		this.choicesModel = new WildcardListModel<T>(choices);
@@ -49,7 +49,7 @@ public class SelectFormGroup<T> extends AbstractFormGroup<T, DropDownChoice<T>> 
 	}
 
 
-	public SelectFormGroup(String id, IModel<T> model, String label, List<T> choices, IChoiceRenderer<T> choiceRenderer) {
+	public FormGroupSelect(String id, IModel<T> model, String label, List<T> choices, IChoiceRenderer<T> choiceRenderer) {
 
 		super(id, model, label);
 		this.choicesModel = new WildcardListModel<T>(choices);
@@ -58,7 +58,7 @@ public class SelectFormGroup<T> extends AbstractFormGroup<T, DropDownChoice<T>> 
 	}
 
 
-	public SelectFormGroup(
+	public FormGroupSelect(
 			String id,
 			IModel<T> model,
 			IModel<String> labelModel,
