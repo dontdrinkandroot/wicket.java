@@ -15,9 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormHorizontal;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 import org.apache.wicket.WicketRuntimeException;

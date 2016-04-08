@@ -15,37 +15,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.markup.html.HTML5Attributes;
-import org.apache.wicket.markup.html.form.TextField;
+import java.util.Date;
+
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.DateTimePicker;
 
-public class FormGroupTextField<T> extends AbstractFormGroup<T, TextField<T>>
-{
 
-	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel)
-	{
+public class FormGroupDateTimePicker extends AbstractFormGroup<Date, DateTimePicker> {
 
-		super(id, model, labelModel);
+	private final int maxYear;
+
+	private final int minYear;
+
+
+	public FormGroupDateTimePicker(String id, IModel<Date> model, String label, int minYear, int maxYear) {
+
+		super(id, model, label);
+		this.minYear = minYear;
+		this.maxYear = maxYear;
 		this.createComponents();
 	}
 
-	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
-	{
-
-		super(id, model, labelModel, type);
-		this.createComponents();
-	}
 
 	@Override
-	protected TextField<T> createFormComponent(String id)
-	{
+	protected DateTimePicker createFormComponent(String id) {
 
-		TextField<T> textField = new TextField<T>(id, this.getModel(), this.type);
-		textField.add(new HTML5Attributes());
-		return textField;
+		return new DateTimePicker(id, this.getModel(), this.minYear, this.maxYear);
 	}
 
 }

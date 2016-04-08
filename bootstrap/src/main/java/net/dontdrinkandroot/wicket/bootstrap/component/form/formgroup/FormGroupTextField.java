@@ -15,32 +15,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.HTML5Attributes;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox> {
+public class FormGroupTextField<T> extends AbstractFormGroupTextField<T, TextField<T>>
+{
 
-	public FormGroupCheckBox(String id, IModel<Boolean> model, String label) {
-
-		super(id, model, label);
-		this.createComponents();
-	}
-
-
-	public FormGroupCheckBox(String id, IModel<Boolean> model, IModel<String> labelModel) {
-
+	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel)
+	{
 		super(id, model, labelModel);
 		this.createComponents();
 	}
 
+	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
+	{
+		super(id, model, labelModel, type);
+		this.createComponents();
+	}
 
 	@Override
-	protected CheckBox createFormComponent(String id) {
-
-		return new CheckBox(id, this.getModel());
+	protected TextField<T> createFormComponent(String id)
+	{
+		TextField<T> textField = new TextField<T>(id, this.getModel(), this.type);
+		textField.add(new HTML5Attributes());
+		return textField;
 	}
 
 }

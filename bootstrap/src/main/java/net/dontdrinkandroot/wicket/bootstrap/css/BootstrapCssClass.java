@@ -20,7 +20,8 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public enum BootstrapCssClass implements CssClass {
+public enum BootstrapCssClass implements CssClass
+{
 
 	ACTIVE("active"),
 	ADD_ON("add-on"),
@@ -59,8 +60,7 @@ public enum BootstrapCssClass implements CssClass {
 	HIDE("hide"),
 	ICON_WHITE("icon-white"),
 	IMG_CIRCLE("img-circle"),
-	@Deprecated
-	IMG_POLAROID("img-polaroid"),
+	@Deprecated IMG_POLAROID("img-polaroid"),
 	IMG_ROUNDED("img-rounded"),
 	INFO("info"),
 	INITIALISM("initialism"),
@@ -133,6 +133,7 @@ public enum BootstrapCssClass implements CssClass {
 	HAS_ERROR("has-error"),
 	HAS_SUCCESS("has-success"),
 	HAS_WARNING("has-warning"),
+	HAS_FEEDBACK("has-feedback"),
 	LIST_GROUP("list-group"),
 	LIST_GROUP_ITEM("list-group-item"),
 	LIST_INLINE("list-inline"),
@@ -151,14 +152,15 @@ public enum BootstrapCssClass implements CssClass {
 	private String classString;
 
 
-	private BootstrapCssClass(String classString) {
+	private BootstrapCssClass(String classString)
+	{
 
 		this.classString = classString;
 	}
 
-
 	@Override
-	public String getClassString() {
+	public String getClassString()
+	{
 
 		return this.classString;
 	}

@@ -27,92 +27,84 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
 
 
-public abstract class AjaxButtonLink<T> extends AbstractButtonLink<T> implements IAjaxLink {
+public abstract class AjaxButtonLink<T> extends AbstractButtonLink<T> implements IAjaxLink
+{
 
-	public AjaxButtonLink(String id) {
-
+	public AjaxButtonLink(String id)
+	{
 		super(id);
 	}
 
-
-	public AjaxButtonLink(String id, IModel<T> model) {
-
+	public AjaxButtonLink(String id, IModel<T> model)
+	{
 		super(id, model);
 	}
 
-
-	public AjaxButtonLink(String id, IModel<T> model, IModel<String> labelModel) {
-
+	public AjaxButtonLink(String id, IModel<T> model, IModel<String> labelModel)
+	{
 		super(id, model, labelModel);
 	}
 
-
 	@Override
-	protected void onInitialize() {
-
+	protected void onInitialize()
+	{
 		super.onInitialize();
-		this.add(this.newAjaxEventBehavior("onclick"));
+		this.add(this.newAjaxEventBehavior("click"));
 	}
-
 
 	/**
 	 * @param event
 	 *            the name of the default event on which this link will listen to
 	 * @return the ajax behavior which will be executed when the user clicks the link
 	 */
-	protected AjaxEventBehavior newAjaxEventBehavior(String event) {
-
+	protected AjaxEventBehavior newAjaxEventBehavior(String event)
+	{
 		return new AjaxEventBehavior(event) {
 
 			private static final long serialVersionUID = 1L;
 
 
 			@Override
-			protected void onEvent(AjaxRequestTarget target) {
-
+			protected void onEvent(AjaxRequestTarget target)
+			{
 				AjaxButtonLink.this.onClick(target);
 			}
 
-
 			@Override
-			protected void onComponentTag(ComponentTag tag) {
-
+			protected void onComponentTag(ComponentTag tag)
+			{
 				// add the onclick handler only if link is enabled
 				if (AjaxButtonLink.this.isLinkEnabled()) {
 					super.onComponentTag(tag);
 				}
 			}
 
-
 			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
-
+			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			{
 				super.updateAjaxAttributes(attributes);
 				AjaxButtonLink.this.updateAjaxAttributes(attributes);
 			}
 		};
 	}
 
-
-	protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
-
+	protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+	{
 	}
-
 
 	/**
 	 * @return the channel that manages how Ajax calls are executed
 	 * @see AbstractDefaultAjaxBehavior#getChannel()
 	 */
 	@Deprecated
-	protected AjaxChannel getChannel() {
-
+	protected AjaxChannel getChannel()
+	{
 		return null;
 	}
 
-
 	@Override
-	protected void onComponentTag(ComponentTag tag) {
-
+	protected void onComponentTag(ComponentTag tag)
+	{
 		super.onComponentTag(tag);
 
 		if (this.isLinkEnabled()) {
@@ -128,10 +120,9 @@ public abstract class AjaxButtonLink<T> extends AbstractButtonLink<T> implements
 
 	}
 
-
 	/**
 	 * Listener method invoked on the ajax request generated when the user clicks the link
-	 * 
+	 *
 	 * @param target
 	 */
 	@Override
