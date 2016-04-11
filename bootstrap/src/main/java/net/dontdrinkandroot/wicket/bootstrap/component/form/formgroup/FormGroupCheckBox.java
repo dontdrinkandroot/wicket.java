@@ -17,30 +17,59 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormHorizontal;
 
-public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox> {
 
-	public FormGroupCheckBox(String id, IModel<Boolean> model, String label) {
+public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
+{
 
+	private WebMarkupContainer offset;
+
+
+	public FormGroupCheckBox(String id, IModel<Boolean> model, String label)
+	{
 		super(id, model, label);
-		this.createComponents();
 	}
 
-
-	public FormGroupCheckBox(String id, IModel<Boolean> model, IModel<String> labelModel) {
-
+	public FormGroupCheckBox(String id, IModel<Boolean> model, IModel<String> labelModel)
+	{
 		super(id, model, labelModel);
-		this.createComponents();
 	}
-
 
 	@Override
-	protected CheckBox createFormComponent(String id) {
-
+	protected CheckBox createFormComponent(String id)
+	{
 		return new CheckBox(id, this.getModel());
+	}
+
+	@Override
+	protected void onInitialize()
+	{
+		this.offset = new WebMarkupContainer("offset");
+		super.onInitialize();
+	}
+
+	@Override
+	protected void applyComponentAdd()
+	{
+		this.add(this.componentContainer);
+		this.componentContainer.add(this.formComponent);
+		this.componentContainer.add(this.label);
+		this.componentContainer.add(this.feedback);
+		this.add(this.offset);
+	}
+
+	@Override
+	protected void applyHorizontalStyle(Form<?> form)
+	{
+		this.offset.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
+		this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
 	}
 
 }

@@ -21,18 +21,17 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>> {
+public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>>
+{
 
-	public FormGroupTextArea(String id, IModel<T> model, IModel<String> labelModel) {
-
+	public FormGroupTextArea(String id, IModel<T> model, IModel<String> labelModel)
+	{
 		super(id, model, labelModel);
-		this.createComponents();
 	}
 
-
 	@Override
-	protected TextArea<T> createFormComponent(String id) {
-
+	protected TextArea<T> createFormComponent(String id)
+	{
 		return new TextArea<T>(id, this.getModel());
 	}
 

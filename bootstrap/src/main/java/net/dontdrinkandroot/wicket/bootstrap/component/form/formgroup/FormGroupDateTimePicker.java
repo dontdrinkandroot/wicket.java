@@ -24,25 +24,24 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.DateTimePicker;
 
 
-public class FormGroupDateTimePicker extends AbstractFormGroup<Date, DateTimePicker> {
+public class FormGroupDateTimePicker extends AbstractFormGroup<Date, DateTimePicker>
+{
 
 	private final int maxYear;
 
 	private final int minYear;
 
 
-	public FormGroupDateTimePicker(String id, IModel<Date> model, String label, int minYear, int maxYear) {
-
+	public FormGroupDateTimePicker(String id, IModel<Date> model, String label, int minYear, int maxYear)
+	{
 		super(id, model, label);
 		this.minYear = minYear;
 		this.maxYear = maxYear;
-		this.createComponents();
 	}
 
-
 	@Override
-	protected DateTimePicker createFormComponent(String id) {
-
+	protected DateTimePicker createFormComponent(String id)
+	{
 		return new DateTimePicker(id, this.getModel(), this.minYear, this.maxYear);
 	}
 

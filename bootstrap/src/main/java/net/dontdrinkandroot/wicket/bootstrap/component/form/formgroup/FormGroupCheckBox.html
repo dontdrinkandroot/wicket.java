@@ -20,8 +20,17 @@
 <!DOCTYPE html>
 <html xmlns:wicket>
 	<body>
-		<wicket:extend>
-			<input type="checkbox" wicket:id="formComponent" />
-		</wicket:extend>
+		<wicket:panel>
+			<div wicket:id="offset"></div>
+			<div wicket:id="componentContainer">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" wicket:id="formComponent"/>
+						<span wicket:id="label"></span>
+					</label>
+				</div>
+				<div class="help-block" wicket:id="feedback">[helpText]</div>
+			</div>
+		</wicket:panel>
 	</body>
 </html>

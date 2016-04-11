@@ -42,13 +42,15 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	private final IModel<String> labelModel;
 
-	private F formComponent;
+	protected F formComponent;
 
 	protected Class<T> type = null;
 
-	private WebMarkupContainer componentContainer;
+	protected Label label;
 
-	private FencedFeedbackPanel feedback;
+	protected WebMarkupContainer componentContainer;
+
+	protected FencedFeedbackPanel feedback;
 
 	private AjaxFormComponentUpdatingBehavior onBlurValidationBehavior;
 
@@ -67,23 +69,13 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	{
 		super(id, model);
 		this.setOutputMarkupId(true);
-
-		this.labelModel = labelModel;
-		this.type = type;
-	}
-
-	/**
-	 * MUST be called as last method in children constructors.
-	 */
-	protected void createComponents()
-	{
-		this.componentContainer = new WebMarkupContainer("componentContainer");
-		this.add(this.componentContainer);
-
+		/* Initialize form component early, so it is available before onInitialize takes place */
 		this.formComponent = this.createFormComponent("formComponent");
 		this.formComponent.setOutputMarkupId(true);
 		this.formComponent.setLabel(this.labelModel);
-		this.componentContainer.add(this.formComponent);
+
+		this.labelModel = labelModel;
+		this.type = type;
 	}
 
 	@Override
@@ -91,9 +83,11 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	{
 		super.onInitialize();
 
+		this.componentContainer = new WebMarkupContainer("componentContainer");
+
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
-		Label label = new Label("label", this.labelModel) {
+		this.label = new Label("label", this.labelModel) {
 
 			@Override
 			public boolean isVisible()
@@ -102,8 +96,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 				return (this.getDefaultModel() != null) && !Strings.isEmpty(this.getDefaultModelObjectAsString());
 			}
 		};
-		label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
-		this.add(label);
+		this.label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
 
 		this.feedback = new FencedFeedbackPanel("feedback", this) {
 
@@ -114,7 +107,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			}
 		};
 		this.feedback.setOutputMarkupId(true);
-		this.componentContainer.add(this.feedback);
 
 		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.HAS_ERROR) {
 
@@ -130,11 +122,12 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			}
 		}));
 
+		this.applyComponentAdd();
+
 		/* Apply horizontal style if requested */
 		Form<?> form = this.getFormComponent().getForm();
 		if (form instanceof FormHorizontal) {
-			label.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
-			this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
+			this.applyHorizontalStyle(form);
 		}
 	}
 
@@ -187,6 +180,20 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			};
 			this.getFormComponent().add(this.onBlurValidationBehavior);
 		}
+	}
+
+	protected void applyHorizontalStyle(Form<?> form)
+	{
+		this.label.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
+		this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
+	}
+
+	protected void applyComponentAdd()
+	{
+		this.add(this.componentContainer);
+		this.componentContainer.add(this.formComponent);
+		this.add(this.label);
+		this.componentContainer.add(this.feedback);
 	}
 
 	protected abstract F createFormComponent(String id);

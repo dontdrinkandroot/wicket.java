@@ -12,13 +12,11 @@ public class FormGroupUrlTextField extends AbstractFormGroupTextField<String, Ur
 	public FormGroupUrlTextField(String id, IModel<String> model, String label)
 	{
 		super(id, model, label);
-		this.createComponents();
 	}
 
 	public FormGroupUrlTextField(String id, IModel<String> model, IModel<String> labelModel)
 	{
 		super(id, model, labelModel);
-		this.createComponents();
 	}
 
 	@Override
