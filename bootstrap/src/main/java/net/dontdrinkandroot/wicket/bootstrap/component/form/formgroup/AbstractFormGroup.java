@@ -19,6 +19,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -52,8 +54,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	protected FencedFeedbackPanel feedback;
 
-	private AjaxFormComponentUpdatingBehavior onBlurValidationBehavior;
-
 
 	public AbstractFormGroup(String id, IModel<T> model, String label)
 	{
@@ -69,13 +69,14 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	{
 		super(id, model);
 		this.setOutputMarkupId(true);
+
+		this.labelModel = labelModel;
+		this.type = type;
+
 		/* Initialize form component early, so it is available before onInitialize takes place */
 		this.formComponent = this.createFormComponent("formComponent");
 		this.formComponent.setOutputMarkupId(true);
 		this.formComponent.setLabel(this.labelModel);
-
-		this.labelModel = labelModel;
-		this.type = type;
 	}
 
 	@Override
@@ -92,7 +93,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			@Override
 			public boolean isVisible()
 			{
-
 				return (this.getDefaultModel() != null) && !Strings.isEmpty(this.getDefaultModelObjectAsString());
 			}
 		};
@@ -113,7 +113,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			@Override
 			public BootstrapCssClass getObject()
 			{
-
 				if (!AbstractFormGroup.this.getFormComponent().isValid()) {
 					return super.getObject();
 				}
@@ -133,53 +132,58 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	public F getFormComponent()
 	{
-
 		return this.formComponent;
 	}
 
 	public void setRequired(boolean required)
 	{
-
 		this.getFormComponent().setRequired(required);
 	}
 
-	public void setOnBlurValidation(boolean active)
+	public void addOnlineValidation(String eventName)
 	{
-		if ((null != this.onBlurValidationBehavior) && !active) {
-			this.getFormComponent().remove(this.onBlurValidationBehavior);
-			return;
-		}
+		this.addOnlineValidation(eventName, null);
+	}
 
-		if (active) {
-			this.onBlurValidationBehavior = new AjaxFormComponentUpdatingBehavior("blur") {
+	public void addOnlineValidation(String eventName, final ThrottlingSettings throttlingSettings)
+	{
+		AjaxFormComponentUpdatingBehavior onlineValidationBehavior = new AjaxFormComponentUpdatingBehavior(eventName) {
 
-				@Override
-				protected void onUpdate(AjaxRequestTarget target)
-				{
-					target.appendJavaScript(
-							new JQueryScript(AbstractFormGroup.this).addClass(
-									BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
-					target.appendJavaScript(
-							new JQueryScript(AbstractFormGroup.this).removeClass(
-									BootstrapCssClass.HAS_ERROR.getClassString()).toString());
-					target.add(AbstractFormGroup.this.feedback);
+			@Override
+			protected void onUpdate(AjaxRequestTarget target)
+			{
+				target.appendJavaScript(
+						new JQueryScript(AbstractFormGroup.this).addClass(
+								BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
+				target.appendJavaScript(
+						new JQueryScript(AbstractFormGroup.this).removeClass(
+								BootstrapCssClass.HAS_ERROR.getClassString()).toString());
+				target.add(AbstractFormGroup.this.feedback);
+			}
+
+			@Override
+			protected void onError(AjaxRequestTarget target, RuntimeException e)
+			{
+				super.onError(target, e);
+				target.appendJavaScript(
+						new JQueryScript(AbstractFormGroup.this).removeClass(
+								BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
+				target.appendJavaScript(
+						new JQueryScript(AbstractFormGroup.this).addClass(
+								BootstrapCssClass.HAS_ERROR.getClassString()).toString());
+				target.add(AbstractFormGroup.this.feedback);
+			}
+
+			@Override
+			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			{
+				super.updateAjaxAttributes(attributes);
+				if (null != throttlingSettings) {
+					attributes.setThrottlingSettings(throttlingSettings);
 				}
-
-				@Override
-				protected void onError(AjaxRequestTarget target, RuntimeException e)
-				{
-					super.onError(target, e);
-					target.appendJavaScript(
-							new JQueryScript(AbstractFormGroup.this).removeClass(
-									BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
-					target.appendJavaScript(
-							new JQueryScript(AbstractFormGroup.this).addClass(
-									BootstrapCssClass.HAS_ERROR.getClassString()).toString());
-					target.add(AbstractFormGroup.this.feedback);
-				}
-			};
-			this.getFormComponent().add(this.onBlurValidationBehavior);
-		}
+			}
+		};
+		this.getFormComponent().add(onlineValidationBehavior);
 	}
 
 	protected void applyHorizontalStyle(Form<?> form)

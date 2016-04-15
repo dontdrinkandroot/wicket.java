@@ -17,52 +17,54 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
 
-public class LabelBehavior extends Behavior {
+
+public class LabelBehavior extends Behavior
+{
 
 	private IModel<LabelStyle> labelStyleModel = new Model<LabelStyle>();
 
 
-	public LabelBehavior() {
-
+	public LabelBehavior()
+	{
+		this.labelStyleModel = Model.of(LabelStyle.DEFAULT);
 	}
 
-
-	public LabelBehavior(LabelStyle labelStyle) {
+	public LabelBehavior(LabelStyle labelStyle)
+	{
 
 		this.labelStyleModel = Model.of(labelStyle);
 	}
 
-
-	public LabelBehavior(IModel<LabelStyle> labelStyleModel) {
+	public LabelBehavior(IModel<LabelStyle> labelStyleModel)
+	{
 
 		this.labelStyleModel = labelStyleModel;
 	}
 
-
-	public LabelStyle getLabeLStyle() {
+	public LabelStyle getLabeLStyle()
+	{
 
 		return this.labelStyleModel.getObject();
 	}
 
-
-	protected IModel<LabelStyle> getLabelStyleModel() {
+	protected IModel<LabelStyle> getLabelStyleModel()
+	{
 
 		return this.labelStyleModel;
 	}
 
-
 	@Override
-	public void bind(Component component) {
+	public void bind(Component component)
+	{
 
 		super.bind(component);
 

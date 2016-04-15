@@ -42,5 +42,4 @@ public class FormGroupTextField<T> extends AbstractFormGroupTextField<T, TextFie
 		textField.add(new HTML5Attributes());
 		return textField;
 	}
-
 }

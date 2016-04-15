@@ -20,8 +20,10 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public enum LabelStyle implements CssClass {
+public enum LabelStyle implements CssClass
+{
 
+	DEFAULT("label-default"),
 	IMPORTANT("label-important"),
 	INFO("label-info"),
 	INVERSE("label-inverse"),
@@ -31,15 +33,14 @@ public enum LabelStyle implements CssClass {
 	private String classString;
 
 
-	private LabelStyle(String classString) {
-
+	private LabelStyle(String classString)
+	{
 		this.classString = classString;
 	}
 
-
 	@Override
-	public String getClassString() {
-
+	public String getClassString()
+	{
 		return this.classString;
 	}
 }
