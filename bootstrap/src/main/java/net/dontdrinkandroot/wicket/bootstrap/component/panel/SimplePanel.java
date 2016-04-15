@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.component.basic.Heading;
@@ -50,25 +49,7 @@ public class SimplePanel<T> extends Panel<T>
 	}
 
 	@Override
-	protected Component createFooterComponent(String id)
-	{
-		final WebMarkupContainer footerContainer = new WebMarkupContainer(id);
-		footerContainer.setVisible(false);
-
-		return footerContainer;
-	}
-
-	@Override
-	protected Component createAfterBodyComponent(String id)
-	{
-		final WebMarkupContainer afterBodyContainer = new WebMarkupContainer(id);
-		afterBodyContainer.setVisible(false);
-
-		return afterBodyContainer;
-	}
-
-	@Override
-	protected Component createHeadingComponent(String id)
+	protected Component createHeading(String id)
 	{
 		return new PanelHeading(id, this.headingModel, this.headingLevel);
 	}
