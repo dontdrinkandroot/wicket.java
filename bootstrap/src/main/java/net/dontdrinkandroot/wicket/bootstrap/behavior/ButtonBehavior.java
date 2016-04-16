@@ -45,6 +45,11 @@ public class ButtonBehavior extends Behavior implements IButton
 		super();
 	}
 
+	public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonStyleModel = buttonStyleModel;
+	}
+
 	public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel, IModel<ButtonSize> buttonSizeModel)
 	{
 		this.buttonStyleModel = buttonStyleModel;
