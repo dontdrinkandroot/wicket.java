@@ -17,52 +17,61 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
-import org.apache.wicket.Component;
+import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
+import net.dontdrinkandroot.wicket.markup.html.link.AjaxBookmarkablePageLink;
 
 
-public class AjaxPaginationPanel extends PaginationPanel
+public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
 {
 
-	public AjaxPaginationPanel(String id, IPageable pageable)
+	public AjaxBookmarkablePaginationPanel(String id, IPageable pageable)
 	{
 		super(id, pageable);
 		this.setOutputMarkupId(true);
 	}
 
-	public AjaxPaginationPanel(String id, IPageable pageable, PaginationSize size)
+	public AjaxBookmarkablePaginationPanel(String id, IPageable pageable, PaginationSize size)
 	{
 		super(id, pageable, size);
 		this.setOutputMarkupId(true);
 	}
 
 	@Override
-	protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+	protected AbstractLink createLink(String id, final IModel<Long> paginablePageModel)
 	{
-		return new AjaxLink<Long>(id, paginablePageModel) {
+		return new AjaxBookmarkablePageLink<Long>(id, Page.class) {
 
 			@Override
 			public void onClick(AjaxRequestTarget target)
 			{
-				AjaxPaginationPanel.this.getPageable().setCurrentPage(this.getModelObject());
-				AjaxPaginationPanel.this.onPageChanged(target);
+				AjaxBookmarkablePaginationPanel.this.getPageable().setCurrentPage(paginablePageModel.getObject());
+				AjaxBookmarkablePaginationPanel.this.onPageChanged(target);
+			}
+
+			@Override
+			public PageParameters getPageParameters()
+			{
+				PageParameters parameters = new PageParameters(this.getPage().getPageParameters());
+				/* Zero based page index */
+				parameters.set("page", paginablePageModel.getObject() + 1);
+				return parameters;
+			}
+
+			@Override
+			protected CharSequence getURL()
+			{
+				PageParameters parameters = this.getPageParameters();
+
+				return this.urlFor(this.getPage().getClass(), parameters);
 			}
 		};
-	}
-
-	protected void onPageChanged(AjaxRequestTarget target)
-	{
-		if (this.getPageable() instanceof Component) {
-			target.add((Component) this.getPageable());
-		}
-
-		target.add(this);
 	}
 
 }

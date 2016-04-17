@@ -22,8 +22,12 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIcon;
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 
-public class FirstPageLinkItem extends AbstractPageLinkItem
+
+public abstract class FirstPageLinkItem extends AbstractPageLinkItem
 {
 
 	public FirstPageLinkItem(String id, IPageable pageable)
@@ -34,20 +38,14 @@ public class FirstPageLinkItem extends AbstractPageLinkItem
 	@Override
 	protected IModel<String> createLabel()
 	{
-		return new Model<String>("<<");
+		return new Model<String>("");
 	}
 
 	@Override
-	protected AbstractLink createLink(String id)
+	protected void onLinkCreated(AbstractLink link)
 	{
-		return new AbstractPageLink(id) {
-
-			@Override
-			public void onClick()
-			{
-				FirstPageLinkItem.this.setPage();
-			}
-		};
+		super.onLinkCreated(link);
+		link.add(new IconBehavior(new FontAwesomeIcon(FontAwesomeIconClass.ANGLE_DOUBLE_LEFT)));
 	}
 
 	@Override
@@ -57,9 +55,15 @@ public class FirstPageLinkItem extends AbstractPageLinkItem
 	}
 
 	@Override
-	protected void setPage()
+	protected void setPaginablePage()
 	{
 		this.getPageable().setCurrentPage(0);
+	}
+
+	@Override
+	protected IModel<Long> getPaginablePageModel()
+	{
+		return Model.of(0L);
 	};
 
 }

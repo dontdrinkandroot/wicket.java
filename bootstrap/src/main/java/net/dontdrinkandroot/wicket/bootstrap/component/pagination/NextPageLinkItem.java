@@ -17,54 +17,65 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIcon;
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 
-public class NextPageLinkItem extends AbstractPageLinkItem {
 
-	public NextPageLinkItem(String id, IPageable pageable) {
+public abstract class NextPageLinkItem extends AbstractPageLinkItem
+{
 
+	public NextPageLinkItem(String id, IPageable pageable)
+	{
 		super(id, pageable);
 	}
 
-
 	@Override
-	protected IModel<String> createLabel() {
-
-		return new Model<String>(">");
+	protected IModel<String> createLabel()
+	{
+		return new Model<String>("");
 	}
 
-
 	@Override
-	protected AbstractLink createLink(String id) {
-
-		return new AbstractPageLink(id) {
-
-			@Override
-			public void onClick() {
-
-				NextPageLinkItem.this.setPage();
-			}
-		};
+	protected void onLinkCreated(AbstractLink link)
+	{
+		super.onLinkCreated(link);
+		link.add(new AttributeAppender("rel", "next"));
+		link.add(new IconBehavior(new FontAwesomeIcon(FontAwesomeIconClass.ANGLE_RIGHT)));
 	}
 
-
 	@Override
-	public boolean isEnabled() {
-
-		return this.getPageable().getPageCount() != 0
-				&& this.getPageable().getCurrentPage() != this.getPageable().getPageCount() - 1;
+	public boolean isEnabled()
+	{
+		return (this.getPageable().getPageCount() != 0)
+				&& (this.getPageable().getCurrentPage() != (this.getPageable().getPageCount() - 1));
 	}
 
-
 	@Override
-	protected void setPage() {
-
+	protected void setPaginablePage()
+	{
 		this.getPageable().setCurrentPage(
 				Math.min(this.getPageable().getPageCount() - 1, this.getPageable().getCurrentPage() + 1));
+	}
+
+	@Override
+	protected IModel<Long> getPaginablePageModel()
+	{
+		return new AbstractReadOnlyModel<Long>() {
+
+			@Override
+			public Long getObject()
+			{
+				return NextPageLinkItem.this.getPageable().getCurrentPage() + 1;
+			}
+		};
 	};
 
 }

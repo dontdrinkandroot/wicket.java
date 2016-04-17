@@ -38,8 +38,8 @@ public abstract class AbstractPageLinkItem extends Panel
 		super(id);
 		this.pageable = pageable;
 
-		this.link = this.createLink("link");
-		this.link.setBody(this.createLabel());
+		this.link = this.createLink("link", this.getPaginablePageModel());
+		this.onLinkCreated(this.link);
 		this.add(this.link);
 
 		this.add(new DisabledCssBehavior());
@@ -60,10 +60,18 @@ public abstract class AbstractPageLinkItem extends Panel
 		return this.link;
 	}
 
-	protected abstract void setPage();
+	protected void onLinkCreated(AbstractLink link)
+	{
+		this.link.setBody(this.createLabel());
+		link.add(new DisabledCssBehavior());
+	}
+
+	protected abstract IModel<Long> getPaginablePageModel();
+
+	protected abstract void setPaginablePage();
 
 	protected abstract IModel<String> createLabel();
 
-	protected abstract AbstractLink createLink(String id);
+	protected abstract AbstractLink createLink(String id, IModel<Long> paginablePageModel);
 
 }
