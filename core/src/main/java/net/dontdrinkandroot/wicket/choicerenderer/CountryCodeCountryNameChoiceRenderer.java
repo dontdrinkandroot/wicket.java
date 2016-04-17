@@ -41,8 +41,7 @@ public class CountryCodeCountryNameChoiceRenderer implements IChoiceRenderer<Str
 	@Override
 	public String getObject(String id, IModel<? extends List<? extends String>> choices)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 }
