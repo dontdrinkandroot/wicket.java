@@ -39,18 +39,35 @@ public class FormGroupSelect<T> extends AbstractFormGroup<T, DropDownChoice<T>>
 		this.getFormComponent().setChoices(choices);
 	}
 
-	public FormGroupSelect(String id, IModel<T> model, String label, List<T> choices, IChoiceRenderer<T> choiceRenderer)
+	public FormGroupSelect(
+			String id,
+			IModel<T> model,
+			IModel<String> labelModel,
+			List<T> choices,
+			IChoiceRenderer<T> choiceRenderer)
+	{
+		super(id, model, labelModel);
+		this.getFormComponent().setChoices(choices);
+		this.getFormComponent().setChoiceRenderer(choiceRenderer);
+	}
+
+	public FormGroupSelect(String id, IModel<T> model, String label, IModel<List<T>> choices)
 	{
 		super(id, model, label);
 		this.getFormComponent().setChoices(choices);
-		this.getFormComponent().setChoiceRenderer(choiceRenderer);
+	}
+
+	public FormGroupSelect(String id, IModel<T> model, IModel<String> labelModel, IModel<List<T>> choices)
+	{
+		super(id, model, labelModel);
+		this.getFormComponent().setChoices(choices);
 	}
 
 	public FormGroupSelect(
 			String id,
 			IModel<T> model,
 			IModel<String> labelModel,
-			List<T> choices,
+			IModel<List<T>> choices,
 			IChoiceRenderer<T> choiceRenderer)
 	{
 		super(id, model, labelModel);
