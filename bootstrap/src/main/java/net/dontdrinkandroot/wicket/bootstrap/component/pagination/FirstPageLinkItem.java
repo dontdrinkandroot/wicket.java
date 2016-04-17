@@ -23,45 +23,42 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public class FirstPageLinkItem extends AbstractPageLinkItem {
+public class FirstPageLinkItem extends AbstractPageLinkItem
+{
 
-	public FirstPageLinkItem(String id, IPageable pageable) {
-
+	public FirstPageLinkItem(String id, IPageable pageable)
+	{
 		super(id, pageable);
 	}
 
-
 	@Override
-	protected IModel<String> createLabel() {
-
+	protected IModel<String> createLabel()
+	{
 		return new Model<String>("<<");
 	}
 
-
 	@Override
-	protected AbstractLink createLink(String id) {
-
+	protected AbstractLink createLink(String id)
+	{
 		return new AbstractPageLink(id) {
 
 			@Override
-			public void onClick() {
-
+			public void onClick()
+			{
 				FirstPageLinkItem.this.setPage();
 			}
 		};
 	}
 
-
 	@Override
-	public boolean isEnabled() {
-
+	public boolean isEnabled()
+	{
 		return this.getPageable().getCurrentPage() != 0;
 	}
 
-
 	@Override
-	protected void setPage() {
-
+	protected void setPage()
+	{
 		this.getPageable().setCurrentPage(0);
 	};
 

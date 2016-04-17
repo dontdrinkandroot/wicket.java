@@ -17,43 +17,52 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
-
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 
-public abstract class AbstractPageLinkItem extends Panel {
+
+public abstract class AbstractPageLinkItem extends Panel
+{
 
 	private final IPageable pageable;
 
+	private AbstractLink link;
 
-	public AbstractPageLinkItem(String id, IPageable pageable) {
 
+	public AbstractPageLinkItem(String id, IPageable pageable)
+	{
 		super(id);
 		this.pageable = pageable;
 
-		AbstractLink link = this.createLink("link");
-		link.setBody(this.createLabel());
-		this.add(link);
+		this.link = this.createLink("link");
+		this.link.setBody(this.createLabel());
+		this.add(this.link);
 
 		this.add(new DisabledCssBehavior());
 	}
 
-
-	public IPageable getPageable() {
-
+	public IPageable getPageable()
+	{
 		return this.pageable;
 	}
 
+	public void setLabel(IModel<String> label)
+	{
+		this.link.setBody(label);
+	}
+
+	public AbstractLink getLink()
+	{
+		return this.link;
+	}
 
 	protected abstract void setPage();
 
-
 	protected abstract IModel<String> createLabel();
-
 
 	protected abstract AbstractLink createLink(String id);
 

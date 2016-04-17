@@ -27,10 +27,15 @@ import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
 public class SimplePanel<T> extends Panel<T>
 {
 
-	private final IModel<String> headingModel;
+	protected IModel<String> headingModel;
 
-	private final Level headingLevel;
+	protected Level headingLevel;
 
+
+	public SimplePanel(String id, IModel<T> model)
+	{
+		super(id, model);
+	}
 
 	public SimplePanel(String id, IModel<String> headingModel, Heading.Level headingLevel)
 	{
@@ -51,7 +56,17 @@ public class SimplePanel<T> extends Panel<T>
 	@Override
 	protected Component createHeading(String id)
 	{
-		return new PanelHeading(id, this.headingModel, this.headingLevel);
+		return new PanelHeading(id, this.getHeadingModel(), this.getHeadingLevel());
+	}
+
+	public IModel<String> getHeadingModel()
+	{
+		return this.headingModel;
+	}
+
+	public Level getHeadingLevel()
+	{
+		return this.headingLevel;
 	}
 
 }
