@@ -7,7 +7,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.AjaxCallListener;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
@@ -16,16 +15,20 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 {
 
-	private IModel<String> loadingTextModel = new Model<String>("Submitting...");
+	private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
-	private ButtonBehavior buttonBehavior;
+	private Model<String> loadingTextModel = new Model<String>("Submitting...");
 
 
 	public DisablingSubmitButtonLink(String id)
 	{
 		super(id);
-		this.buttonBehavior = new ButtonBehavior();
-		this.add(this.getButtonBehavior());
+	}
+
+	public DisablingSubmitButtonLink(String id, Model<String> loadingTextModel)
+	{
+		super(id);
+		this.loadingTextModel = loadingTextModel;
 	}
 
 	@Override
@@ -34,6 +37,7 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 		super.onInitialize();
 
 		this.add(new AttributeModifier("data-loading-text", this.getLoadingTextModel()));
+		this.add(this.getButtonBehavior());
 	}
 
 	@Override
@@ -48,15 +52,18 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 			{
 				StringBuffer sb = new StringBuffer();
 				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('loading');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " input').attr('disabled', 'disabled');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " textarea').attr('disabled', 'disabled');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " select').attr('disabled', 'disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " input').attr('disabled', 'disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " textarea').attr('disabled', 'disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " select').attr('disabled', 'disabled');");
 
 				return sb.toString();
 			}
@@ -66,34 +73,32 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 			{
 				StringBuffer sb = new StringBuffer();
 				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('reset');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " input').removeAttr('disabled');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " textarea').removeAttr('disabled');");
-				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-						+ " select').removeAttr('disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " input').removeAttr('disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " textarea').removeAttr('disabled');");
+				sb.append(
+						"$('#"
+								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+								+ " select').removeAttr('disabled');");
 
 				return sb.toString();
 			}
 		});
 	}
 
-	public IModel<String> getLoadingTextModel()
-	{
-		return this.loadingTextModel;
-	}
-
-	public void setLoadingTextModel(IModel<String> loadingTextModel)
-	{
-		this.loadingTextModel = loadingTextModel;
-	}
-
 	public ButtonBehavior getButtonBehavior()
 	{
 		return this.buttonBehavior;
+	}
+
+	public Model<String> getLoadingTextModel()
+	{
+		return this.loadingTextModel;
 	}
 
 }
