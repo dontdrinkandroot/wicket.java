@@ -61,7 +61,7 @@ public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
 		this.add(this.componentContainer);
 		this.componentContainer.add(this.formComponent);
 		this.componentContainer.add(this.label);
-		this.componentContainer.add(this.feedback);
+		this.componentContainer.add(this.helpBlock);
 		this.add(this.offset);
 	}
 

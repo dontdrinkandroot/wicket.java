@@ -17,11 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
-import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -33,10 +29,11 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.util.string.Strings;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.FormGroupOnlineValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.FormHorizontal;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.javascript.JQueryScript;
+import net.dontdrinkandroot.wicket.component.form.FormComponentLabel;
 
 
 public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
@@ -54,7 +51,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	protected WebMarkupContainer componentContainer;
 
-	protected FencedFeedbackPanel feedback;
+	protected FencedFeedbackPanel helpBlock;
 
 
 	public AbstractFormGroup(String id, IModel<T> model, String label)
@@ -86,21 +83,11 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	{
 		super.onInitialize();
 
-		this.componentContainer = new WebMarkupContainer("componentContainer");
-
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
-		this.label = new Label("label", this.labelModel) {
-
-			@Override
-			public boolean isVisible()
-			{
-				return (this.getDefaultModel() != null) && !Strings.isEmpty(this.getDefaultModelObjectAsString());
-			}
-		};
-		this.label.add(new AttributeModifier("for", this.getFormComponent().getMarkupId()));
-
-		this.feedback = new FencedFeedbackPanel("feedback", this) {
+		this.componentContainer = new WebMarkupContainer("componentContainer");
+		this.label = new FormComponentLabel("label", this.getFormComponent());
+		this.helpBlock = new FencedFeedbackPanel("helpBlock", this) {
 
 			@Override
 			protected String getCSSClass(FeedbackMessage message)
@@ -118,7 +105,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 				super.onBeforeRender();
 			}
 		};
-		this.feedback.setOutputMarkupId(true);
+		this.helpBlock.setOutputMarkupId(true);
 
 		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.HAS_ERROR) {
 
@@ -157,6 +144,11 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.helpTextModel = helpTextModel;
 	}
 
+	public FencedFeedbackPanel getHelpBlock()
+	{
+		return this.helpBlock;
+	}
+
 	public void addOnlineValidation(String eventName)
 	{
 		this.addOnlineValidation(eventName, null);
@@ -164,43 +156,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	public void addOnlineValidation(String eventName, final ThrottlingSettings throttlingSettings)
 	{
-		AjaxFormComponentUpdatingBehavior onlineValidationBehavior = new AjaxFormComponentUpdatingBehavior(eventName) {
-
-			@Override
-			protected void onUpdate(AjaxRequestTarget target)
-			{
-				target.appendJavaScript(
-						new JQueryScript(AbstractFormGroup.this).addClass(
-								BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
-				target.appendJavaScript(
-						new JQueryScript(AbstractFormGroup.this).removeClass(
-								BootstrapCssClass.HAS_ERROR.getClassString()).toString());
-				target.add(AbstractFormGroup.this.feedback);
-			}
-
-			@Override
-			protected void onError(AjaxRequestTarget target, RuntimeException e)
-			{
-				super.onError(target, e);
-				target.appendJavaScript(
-						new JQueryScript(AbstractFormGroup.this).removeClass(
-								BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
-				target.appendJavaScript(
-						new JQueryScript(AbstractFormGroup.this).addClass(
-								BootstrapCssClass.HAS_ERROR.getClassString()).toString());
-				target.add(AbstractFormGroup.this.feedback);
-			}
-
-			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
-			{
-				super.updateAjaxAttributes(attributes);
-				if (null != throttlingSettings) {
-					attributes.setThrottlingSettings(throttlingSettings);
-				}
-			}
-		};
-		this.getFormComponent().add(onlineValidationBehavior);
+		this.getFormComponent().add(new FormGroupOnlineValidationBehavior(eventName, this, throttlingSettings));
 	}
 
 	protected void applyHorizontalStyle(Form<?> form)
@@ -214,7 +170,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.add(this.componentContainer);
 		this.componentContainer.add(this.formComponent);
 		this.add(this.label);
-		this.componentContainer.add(this.feedback);
+		this.componentContainer.add(this.helpBlock);
 	}
 
 	protected abstract F createFormComponent(String id);
