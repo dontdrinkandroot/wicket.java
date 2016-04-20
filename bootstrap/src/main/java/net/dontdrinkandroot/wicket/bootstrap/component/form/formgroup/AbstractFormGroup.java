@@ -42,7 +42,9 @@ import net.dontdrinkandroot.wicket.javascript.JQueryScript;
 public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
 {
 
-	private final IModel<String> labelModel;
+	protected final IModel<String> labelModel;
+
+	protected IModel<String> helpTextModel;
 
 	protected F formComponent;
 
@@ -103,7 +105,17 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			@Override
 			protected String getCSSClass(FeedbackMessage message)
 			{
-				return null;
+				return message.getLevelAsString().toLowerCase();
+			}
+
+			@Override
+			protected void onBeforeRender()
+			{
+				if ((null != AbstractFormGroup.this.helpTextModel)
+						&& !Strings.isEmpty(AbstractFormGroup.this.helpTextModel.getObject())) {
+					this.info(AbstractFormGroup.this.helpTextModel.getObject());
+				}
+				super.onBeforeRender();
 			}
 		};
 		this.feedback.setOutputMarkupId(true);
@@ -138,6 +150,11 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	public void setRequired(boolean required)
 	{
 		this.getFormComponent().setRequired(required);
+	}
+
+	public void setHelpTextModel(IModel<String> helpTextModel)
+	{
+		this.helpTextModel = helpTextModel;
 	}
 
 	public void addOnlineValidation(String eventName)
