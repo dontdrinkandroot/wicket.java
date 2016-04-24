@@ -17,24 +17,25 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public abstract class AbstractFormModalPanel<T> extends AbstractBaseModalPanel<T>
+public abstract class SimpleFormModal<T> extends GenericPanel<T>
 {
 
-	public AbstractFormModalPanel(String id)
+	public SimpleFormModal(String id)
 	{
 		super(id);
 	}
 
-	public AbstractFormModalPanel(String id, IModel<T> model)
+	public SimpleFormModal(String id, IModel<T> model)
 	{
 		super(id, model);
 	}
@@ -44,6 +45,9 @@ public abstract class AbstractFormModalPanel<T> extends AbstractBaseModalPanel<T
 	{
 		super.onInitialize();
 
+		this.add(new CssClassAppender(BootstrapCssClass.MODAL));
+		this.add(new CssClassAppender(BootstrapCssClass.FADE));
+
 		Form<T> form = this.createForm("form");
 		this.add(form);
 
@@ -51,18 +55,46 @@ public abstract class AbstractFormModalPanel<T> extends AbstractBaseModalPanel<T
 		headingLabel.add(new CssClassAppender(BootstrapCssClass.MODAL_TITLE));
 		form.add(headingLabel);
 
-		Component body = this.createBody("body");
-		body.add(new CssClassAppender(BootstrapCssClass.MODAL_BODY));
-		form.add(body);
+		RepeatingView formGroupView = new RepeatingView("formGroup");
+		this.populateFormGroups(formGroupView);
+		form.add(formGroupView);
 
-		Component footer = this.createFooter("footer");
-		footer.add(new CssClassAppender(BootstrapCssClass.MODAL_FOOTER));
-		form.add(footer);
+		RepeatingView formActionView = new RepeatingView("formAction");
+		this.populateFormActions(formActionView);
+		form.add(formActionView);
 	}
 
 	protected Form<T> createForm(String id)
 	{
 		return new Form<T>(id, this.getModel());
 	}
+
+	protected void populateFormActions(RepeatingView formActionView)
+	{
+	}
+
+	protected void populateFormGroups(RepeatingView formGroupView)
+	{
+	}
+
+	public CharSequence getHideScript()
+	{
+
+		return String.format("$('#%s').modal('hide');", this.getMarkupId());
+	}
+
+	public CharSequence getShowScript()
+	{
+
+		return String.format("$('#%s').modal('show');", this.getMarkupId());
+	}
+
+	public CharSequence getToggleScript()
+	{
+
+		return String.format("$('#%s').modal('toggle');", this.getMarkupId());
+	}
+
+	protected abstract IModel<?> createHeadingModel();
 
 }
