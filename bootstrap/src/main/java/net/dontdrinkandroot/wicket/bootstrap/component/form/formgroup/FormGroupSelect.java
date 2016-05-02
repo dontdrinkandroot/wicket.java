@@ -27,6 +27,11 @@ import org.apache.wicket.model.IModel;
 public class FormGroupSelect<T> extends AbstractFormGroup<T, DropDownChoice<T>>
 {
 
+	protected FormGroupSelect(String id, IModel<T> model, IModel<String> label)
+	{
+		super(id, model, label);
+	}
+
 	public FormGroupSelect(String id, IModel<T> model, String label, List<T> choices)
 	{
 		super(id, model, label);

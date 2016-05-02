@@ -79,19 +79,16 @@ public abstract class SimpleFormModal<T> extends GenericPanel<T>
 
 	public CharSequence getHideScript()
 	{
-
 		return String.format("$('#%s').modal('hide');", this.getMarkupId());
 	}
 
 	public CharSequence getShowScript()
 	{
-
-		return String.format("$('#%s').modal('show');", this.getMarkupId());
+		return String.format("$('#%s').modal({'show': true, 'backdrop':'static'});", this.getMarkupId());
 	}
 
 	public CharSequence getToggleScript()
 	{
-
 		return String.format("$('#%s').modal('toggle');", this.getMarkupId());
 	}
 
