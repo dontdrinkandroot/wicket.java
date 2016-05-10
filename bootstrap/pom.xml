@@ -15,13 +15,6 @@
 			<version>${project.version}</version>
 		</dependency>
 		
-		<dependency>
-    		<groupId>com.esotericsoftware.yamlbeans</groupId>
-    		<artifactId>yamlbeans</artifactId>
-    		<version>1.09</version>
-    		<scope>test</scope>
-		</dependency>
-		
 	</dependencies>
 	
 </project>
