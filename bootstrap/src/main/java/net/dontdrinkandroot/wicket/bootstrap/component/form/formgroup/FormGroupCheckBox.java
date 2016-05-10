@@ -19,11 +19,10 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.FormHorizontal;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 
 
 public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
@@ -66,10 +65,12 @@ public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
 	}
 
 	@Override
-	protected void applyHorizontalStyle(Form<?> form)
+	protected void applyHorizontalStyleIfSet(BootstrapForm<?> form)
 	{
-		this.offset.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
-		this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
+		if ((null != form.getLabelColumnSize()) && (null != form.getFormComponentColumnSize())) {
+			this.offset.add(new CssClassAppender(form.getLabelColumnSize()));
+			this.componentContainer.add(new CssClassAppender(form.getFormComponentColumnSize()));
+		}
 	}
 
 }

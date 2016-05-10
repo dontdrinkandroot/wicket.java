@@ -4,7 +4,6 @@ import org.apache.wicket.IQueueRegion;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.IMarkupFragment;
 import org.apache.wicket.markup.html.MarkupUtil;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
@@ -12,9 +11,10 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 
 
-public class SimpleForm<T> extends Form<T> implements IQueueRegion
+public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
 {
 
 	private FeedbackPanel feedbackPanel;
@@ -40,12 +40,18 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 		this.add(this.feedbackPanel);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");
-		this.populateFormGroupView(formGroupView);
+		this.populateFormGroups(formGroupView);
 		this.add(formGroupView);
 
-		RepeatingView buttonView = new RepeatingView("button");
-		this.populateButtonView(buttonView);
-		this.add(buttonView);
+		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>("actions") {
+
+			@Override
+			protected void createActions(RepeatingView actionView)
+			{
+				SimpleForm.this.populateActions(actionView);
+			}
+		};
+		this.add(formGroupActions);
 	}
 
 	/**
@@ -83,12 +89,12 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 		super.onComponentTag(tag);
 	}
 
-	protected void populateFormGroupView(RepeatingView formGroupView)
+	protected void populateFormGroups(RepeatingView formGroupView)
 	{
 		/* Hook */
 	}
 
-	protected void populateButtonView(RepeatingView buttonView)
+	protected void populateActions(RepeatingView buttonView)
 	{
 		/* Hook */
 	}
@@ -97,5 +103,4 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 	{
 		return this.feedbackPanel;
 	}
-
 }

@@ -1,8 +1,9 @@
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -18,32 +19,41 @@ public class FontAwesomeEnumGenerator
 
 	public static void main(String[] args) throws IOException
 	{
-		InputStream inputStream = FontAwesomeEnumGenerator.class.getClassLoader().getResourceAsStream("icons.yml");
+		URL iconUrl = new URL("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/src/icons.yml");
+		BufferedReader urlReader = new BufferedReader(new InputStreamReader(iconUrl.openStream()));
+		try {
 
-		YamlReader reader = new YamlReader(new InputStreamReader(inputStream));
-		List iconList = (List) reader.read(Map.class).get("icons");
+			YamlReader yamlReader = new YamlReader(urlReader);
+			@SuppressWarnings("unchecked")
+			List<Object> iconList = (List<Object>) yamlReader.read(Map.class).get("icons");
 
-		iconList.sort(new Comparator<Object>() {
+			iconList.sort(new Comparator<Object>() {
 
-			@Override
-			public int compare(Object o1, Object o2)
-			{
-				Map icon1 = (Map) o1;
-				Map icon2 = (Map) o2;
-				String id1 = (String) icon1.get("id");
-				String id2 = (String) icon2.get("id");
+				@Override
+				public int compare(Object o1, Object o2)
+				{
+					@SuppressWarnings("unchecked")
+					Map<String, String> icon1 = (Map<String, String>) o1;
+					@SuppressWarnings("unchecked")
+					Map<String, String> icon2 = (Map<String, String>) o2;
+					String id1 = icon1.get("id");
+					String id2 = icon2.get("id");
 
-				return id1.compareTo(id2);
+					return id1.compareTo(id2);
+				}
+			});
+
+			for (Object iconObject : iconList) {
+				@SuppressWarnings("unchecked")
+				Map<String, String> icon = (Map<String, String>) iconObject;
+				String id = icon.get("id");
+				String created = icon.get("created");
+
+				System.out.println(
+						String.format("%s(\"fa-%s\", \"%s\"),", id.replace("-", "_").toUpperCase(), id, created));
 			}
-		});
-
-		for (Object iconObject : iconList) {
-			Map icon = (Map) iconObject;
-			String id = (String) icon.get("id");
-			String created = (String) icon.get("created");
-
-			System.out.println(
-					String.format("%s(\"fa-%s\", \"%s\"),", id.replace("-", "_").toUpperCase(), id, created));
+		} finally {
+			urlReader.close();
 		}
 	}
 

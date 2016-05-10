@@ -31,7 +31,7 @@ import org.apache.wicket.util.string.Strings;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.FormGroupOnlineValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.FormHorizontal;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.component.form.FormComponentLabel;
 
@@ -124,8 +124,8 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 		/* Apply horizontal style if requested */
 		Form<?> form = this.getFormComponent().getForm();
-		if (form instanceof FormHorizontal) {
-			this.applyHorizontalStyle(form);
+		if (form instanceof BootstrapForm<?>) {
+			this.applyHorizontalStyleIfSet((BootstrapForm<?>) form);
 		}
 	}
 
@@ -159,10 +159,12 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.getFormComponent().add(new FormGroupOnlineValidationBehavior(eventName, this, throttlingSettings));
 	}
 
-	protected void applyHorizontalStyle(Form<?> form)
+	protected void applyHorizontalStyleIfSet(BootstrapForm<?> form)
 	{
-		this.label.add(new CssClassAppender(((FormHorizontal<?>) form).getLabelColumnSize()));
-		this.componentContainer.add(new CssClassAppender(((FormHorizontal<?>) form).getFormComponentColumnSize()));
+		if ((null != form.getLabelColumnSize()) && (null != form.getFormComponentColumnSize())) {
+			this.label.add(new CssClassAppender(form.getLabelColumnSize()));
+			this.componentContainer.add(new CssClassAppender(form.getFormComponentColumnSize()));
+		}
 	}
 
 	protected void applyComponentAdd()
@@ -174,5 +176,4 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	}
 
 	protected abstract F createFormComponent(String id);
-
 }
