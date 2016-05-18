@@ -44,6 +44,9 @@ public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
 	@Override
 	public Object getDisplayValue(Integer object)
 	{
+		if (null == object) {
+			return "";
+		}
 		return this.months[object.intValue()];
 	}
 
