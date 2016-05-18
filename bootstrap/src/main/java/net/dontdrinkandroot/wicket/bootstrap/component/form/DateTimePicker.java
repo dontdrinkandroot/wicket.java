@@ -27,7 +27,7 @@ import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownChoiceButton;
-import net.dontdrinkandroot.wicket.choicerenderer.ShortMonthChoiceRenderer;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.MonthDropDownChoiceButton;
 import net.dontdrinkandroot.wicket.css.CoreCssClass;
 import net.dontdrinkandroot.wicket.model.IntegerRangeListModel;
 import net.dontdrinkandroot.wicket.model.date.DateAvailableDaysModel;
@@ -76,12 +76,7 @@ public class DateTimePicker extends FormComponentPanel<Date>
 		};
 		this.add(this.yearChoice);
 
-		this.monthChoice = new DropDownChoiceButton<Integer>(
-				"month",
-				new DateMonthModel(this.getModel()),
-				new IntegerRangeListModel(0, 11),
-				new ShortMonthChoiceRenderer(this.getLocale()),
-				Integer.class) {
+		this.monthChoice = new MonthDropDownChoiceButton("month", new DateMonthModel(this.getModel())) {
 
 			@Override
 			protected void onSelectionChanged(AjaxRequestTarget target)

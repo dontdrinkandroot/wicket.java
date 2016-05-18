@@ -68,7 +68,7 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		super(id, model);
 
 		this.choicesModel = choicesModel;
-		this.choiceRenderer = choiceRenderer;
+		this.setChoiceRenderer(choiceRenderer);
 	}
 
 	public DropDownChoiceButton(String id, IModel<T> model, IModel<List<T>> choicesModel, Class<T> type)
@@ -86,7 +86,7 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		super(id, model);
 
 		this.choicesModel = choicesModel;
-		this.choiceRenderer = choiceRenderer;
+		this.setChoiceRenderer(choiceRenderer);
 		this.type = type;
 	}
 
@@ -159,6 +159,17 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 	}
 
 
+	public IChoiceRenderer<? super T> getChoiceRenderer()
+	{
+		return choiceRenderer;
+	}
+
+	public void setChoiceRenderer(IChoiceRenderer<? super T> choiceRenderer)
+	{
+		this.choiceRenderer = choiceRenderer;
+	}
+
+
 	class ChoiceModel extends AbstractChainedModel<T, Object>
 	{
 
@@ -170,7 +181,7 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		@Override
 		public Object getObject()
 		{
-			return DropDownChoiceButton.this.choiceRenderer.getDisplayValue(this.getParentObject());
+			return DropDownChoiceButton.this.getChoiceRenderer().getDisplayValue(this.getParentObject());
 		}
 
 	}
