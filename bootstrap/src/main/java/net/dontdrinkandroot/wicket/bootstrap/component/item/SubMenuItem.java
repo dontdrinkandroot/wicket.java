@@ -44,13 +44,13 @@ public abstract class SubMenuItem extends AbstractItem<String> {
 		this.add(new DropDownMenu("dropDownMenu") {
 
 			@Override
-			protected void createItems(RepeatingView itemView) {
+			protected void populateItems(RepeatingView itemView) {
 
-				SubMenuItem.this.createItems(itemView);
+				SubMenuItem.this.populateItems(itemView);
 			}
 		});
 	}
 
 
-	protected abstract void createItems(RepeatingView itemView);
+	protected abstract void populateItems(RepeatingView itemView);
 }

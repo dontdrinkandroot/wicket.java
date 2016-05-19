@@ -47,6 +47,7 @@ public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
 		if (null == object) {
 			return "";
 		}
+
 		return this.months[object.intValue()];
 	}
 

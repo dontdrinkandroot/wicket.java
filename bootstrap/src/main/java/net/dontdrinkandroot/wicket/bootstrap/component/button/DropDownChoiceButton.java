@@ -108,18 +108,7 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 			@Override
 			protected void populateItem(final ListItem<T> item)
 			{
-
-				final AjaxLink<Void> choiceLink = new AjaxLink<Void>("choiceLink") {
-
-					@Override
-					public void onClick(AjaxRequestTarget target)
-					{
-						DropDownChoiceButton.this.onSelectionChanged(target, item.getModelObject());
-					}
-
-				};
-				choiceLink.setBody(new ChoiceModel(item.getModel()));
-				item.add(choiceLink);
+				DropDownChoiceButton.this.populateItem(item);
 			}
 
 		};
@@ -127,6 +116,21 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 
 		this.valueInputField = new HiddenField<T>("valueInput", this.getModel(), this.type);
 		this.add(this.valueInputField);
+	}
+
+	protected void populateItem(final ListItem<T> item)
+	{
+		final AjaxLink<Void> choiceLink = new AjaxLink<Void>("choiceLink") {
+
+			@Override
+			public void onClick(AjaxRequestTarget target)
+			{
+				DropDownChoiceButton.this.onSelectionChanged(target, item.getModelObject());
+			}
+
+		};
+		choiceLink.setBody(new ChoiceModel(item.getModel()));
+		item.add(choiceLink);
 	}
 
 	protected void onSelectionChanged(AjaxRequestTarget target, T selection)
@@ -158,10 +162,9 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		this.setConvertedInput(this.valueInputField.getConvertedInput());
 	}
 
-
 	public IChoiceRenderer<? super T> getChoiceRenderer()
 	{
-		return choiceRenderer;
+		return this.choiceRenderer;
 	}
 
 	public void setChoiceRenderer(IChoiceRenderer<? super T> choiceRenderer)
@@ -185,5 +188,4 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		}
 
 	}
-
 }

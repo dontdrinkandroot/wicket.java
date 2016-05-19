@@ -17,25 +17,28 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.dropdown;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-public abstract class DropDownMenu extends Panel {
 
-	public DropDownMenu(String id) {
+public abstract class DropDownMenu extends Panel
+{
+
+	public DropDownMenu(String id)
+	{
 
 		super(id);
 	}
 
-
 	@Override
-	protected void onInitialize() {
+	protected void onInitialize()
+	{
 
 		super.onInitialize();
 
@@ -44,11 +47,18 @@ public abstract class DropDownMenu extends Panel {
 		// TODO: include aria-labelledby
 
 		RepeatingView itemView = new RepeatingView("item");
-		this.createItems(itemView);
+		this.populateItems(itemView);
 		this.add(itemView);
 	}
 
+	@Override
+	protected void onComponentTag(ComponentTag tag)
+	{
+		super.onComponentTag(tag);
 
-	protected abstract void createItems(RepeatingView itemView);
+		tag.setName("ul");
+	}
+
+	protected abstract void populateItems(RepeatingView itemView);
 
 }

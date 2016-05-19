@@ -6,9 +6,13 @@
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu">
-			<li wicket:id="choiceItem"><a href="#" wicket:id="choiceLink">[choiceLabel]</a></li>
-		</ul>
+		<div class="dropdown-menu">
+			<div class="row">
+				<span wicket:id="choiceItem" class="col-xs-4">
+					<a href="#" wicket:id="choiceLink">[choiceLabel]</a>
+				</span>
+			</div>
+		</div>
 		<input wicket:id="valueInput" type="hidden" />
 	</wicket:panel>
 </body>
