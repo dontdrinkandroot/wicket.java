@@ -9,18 +9,18 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-abstract public class SplitDropdownButton<T> extends GenericPanel<T>
+abstract public class SplitDropDownButton<T> extends GenericPanel<T>
 {
 
 	private WebMarkupContainer toggle;
 
 
-	public SplitDropdownButton(String id)
+	public SplitDropDownButton(String id)
 	{
 		super(id);
 	}
 
-	public SplitDropdownButton(String id, IModel<T> model)
+	public SplitDropDownButton(String id, IModel<T> model)
 	{
 		super(id, model);
 	}
@@ -41,7 +41,7 @@ abstract public class SplitDropdownButton<T> extends GenericPanel<T>
 		return this.toggle;
 	}
 
-	protected abstract Component createButton(String string);
+	protected abstract Component createButton(String id);
 
-	protected abstract Component createDropDownMenu(String string);
+	protected abstract Component createDropDownMenu(String id);
 }
