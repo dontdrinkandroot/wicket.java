@@ -86,7 +86,9 @@ public class DaySelectionTable extends GenericPanel<Integer>
 		referenceCalendar.set(Calendar.DAY_OF_MONTH, maxDayOfMonth);
 		int endWeek = referenceCalendar.get(Calendar.WEEK_OF_YEAR);
 
-		for (int currentWeek = startWeek; currentWeek <= endWeek; currentWeek++) {
+		// TODO: We have a problem if the year starts with week 53
+
+		for (int currentWeek = startWeek; (currentWeek <= endWeek); currentWeek++) {
 
 			WebMarkupContainer rowContainer = new WebMarkupContainer(this.rowRepeater.newChildId());
 			this.rowRepeater.add(rowContainer);
