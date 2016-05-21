@@ -82,9 +82,22 @@ public class DaySelectionTable extends GenericPanel<Integer>
 		int minDayOfMonth = referenceCalendar.getActualMinimum(Calendar.DAY_OF_MONTH);
 		int maxDayOfMonth = referenceCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-		int startWeek = referenceCalendar.get(Calendar.WEEK_OF_YEAR);
-		referenceCalendar.set(Calendar.DAY_OF_MONTH, maxDayOfMonth);
-		int endWeek = referenceCalendar.get(Calendar.WEEK_OF_YEAR);
+		if ((this.getModelObject() != null) && (maxDayOfMonth < this.getModelObject())) {
+			this.setModelObject(null);
+		}
+
+		Calendar startDate = (Calendar) referenceCalendar.clone();
+
+		Calendar endDate = (Calendar) referenceCalendar.clone();
+		endDate.set(Calendar.DAY_OF_MONTH, maxDayOfMonth);
+
+		int startWeek = startDate.get(Calendar.WEEK_OF_YEAR);
+		int endWeek = endDate.get(Calendar.WEEK_OF_YEAR);
+
+		/* Wrap around */
+		if ((startWeek == 53) || (startWeek == 52)) {
+			startWeek = 0;
+		}
 
 		// TODO: We have a problem if the year starts with week 53
 
