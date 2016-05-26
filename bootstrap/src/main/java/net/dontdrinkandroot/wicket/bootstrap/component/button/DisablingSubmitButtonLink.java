@@ -48,22 +48,25 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 		attributes.getAjaxCallListeners().add(new AjaxCallListener() {
 
 			@Override
+			public CharSequence getBeforeHandler(Component component)
+			{
+				return "console.log(attrs)";
+			}
+
+			@Override
 			public CharSequence getAfterHandler(Component component)
 			{
 				StringBuffer sb = new StringBuffer();
 				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('loading');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " input').attr('disabled', 'disabled');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " textarea').attr('disabled', 'disabled');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " select').attr('disabled', 'disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " input').attr('disabled', 'disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " textarea').attr('disabled', 'disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " select').attr('disabled', 'disabled');");
 
 				return sb.toString();
 			}
@@ -73,18 +76,15 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 			{
 				StringBuffer sb = new StringBuffer();
 				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('reset');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " input').removeAttr('disabled');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " textarea').removeAttr('disabled');");
-				sb.append(
-						"$('#"
-								+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
-								+ " select').removeAttr('disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " input').removeAttr('disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " textarea').removeAttr('disabled');");
+				sb.append("$('#"
+						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ " select').removeAttr('disabled');");
 
 				return sb.toString();
 			}
