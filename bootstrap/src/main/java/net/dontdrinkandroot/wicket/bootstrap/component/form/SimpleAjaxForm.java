@@ -9,15 +9,15 @@ import org.apache.wicket.model.IModel;
 public class SimpleAjaxForm<T> extends SimpleForm<T>
 {
 
-	public SimpleAjaxForm(String id, IModel<T> model)
-	{
-		super(id, model);
-		this.createSubmitBehavior();
-	}
-
 	public SimpleAjaxForm(String id)
 	{
 		super(id);
+		this.createSubmitBehavior();
+	}
+
+	public SimpleAjaxForm(String id, IModel<T> model)
+	{
+		super(id, model);
 		this.createSubmitBehavior();
 	}
 
@@ -67,6 +67,7 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
 
 	protected void onError(AjaxRequestTarget target)
 	{
+		target.add(this);
 		/* Hook */
 	}
 

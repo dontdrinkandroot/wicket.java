@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.IQueueRegion;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.IMarkupFragment;
@@ -43,7 +44,13 @@ public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
 		this.populateFormGroups(formGroupView);
 		this.add(formGroupView);
 
-		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>("actions") {
+		Component formGroupActions = this.createActionsView("actions");
+		this.add(formGroupActions);
+	}
+
+	protected Component createActionsView(String id)
+	{
+		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(id) {
 
 			@Override
 			protected void createActions(RepeatingView actionView)
@@ -51,7 +58,7 @@ public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
 				SimpleForm.this.populateActions(actionView);
 			}
 		};
-		this.add(formGroupActions);
+		return formGroupActions;
 	}
 
 	/**

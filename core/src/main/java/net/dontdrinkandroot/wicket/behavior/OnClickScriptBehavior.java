@@ -22,15 +22,11 @@ import org.apache.wicket.behavior.AttributeAppender;
 import net.dontdrinkandroot.wicket.model.StringModel;
 
 
-public class AddOnClickScriptBehavior extends AttributeAppender
+public class OnClickScriptBehavior extends AttributeAppender
 {
 
-	private static final long serialVersionUID = 6000872232041944136L;
-
-
-	public AddOnClickScriptBehavior(final String script)
+	public OnClickScriptBehavior(final String script)
 	{
-		super("click", new StringModel(script), " ");
+		super("onclick", new StringModel(script), " ");
 	}
-
 }

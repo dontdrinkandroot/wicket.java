@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
@@ -14,7 +15,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 public class SubmitLabelButton extends Label implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+	private ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
 
 
 	public SubmitLabelButton(String id)
@@ -68,6 +69,7 @@ public class SubmitLabelButton extends Label implements IButton
 	@Override
 	protected void onComponentTag(ComponentTag tag)
 	{
+		tag.setName("button");
 		tag.put("type", "submit");
 		super.onComponentTag(tag);
 	}
