@@ -72,19 +72,21 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
 	}
 
 	@Override
-	protected void onError()
+	protected final void onError()
 	{
-		if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
-			this.onError(null);
-		}
+		/* Noop */
+		// if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
+		// this.onError(null);
+		// }
 	}
 
 	@Override
-	protected void onSubmit()
+	protected final void onSubmit()
 	{
-		if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
-			this.onSubmit(null);
-			this.onAfterSubmit(null);
-		}
+		/* Noop */
+		// if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
+		// this.onSubmit(null);
+		// this.onAfterSubmit(null);
+		// }
 	}
 }
