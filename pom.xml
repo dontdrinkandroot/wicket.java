@@ -13,6 +13,7 @@
 	<modules>
 		<module>core</module>
 		<module>bootstrap</module>
+		<module>example</module>
 	</modules>
 
 	<developers>
