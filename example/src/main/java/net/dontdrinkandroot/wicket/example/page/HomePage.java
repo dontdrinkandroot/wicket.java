@@ -3,10 +3,8 @@ package net.dontdrinkandroot.wicket.example.page;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 
-
-public class HomePage extends StandardBootstrapPage<Void>
+public class HomePage extends DecoratorPage<Void>
 {
 
 	@Override

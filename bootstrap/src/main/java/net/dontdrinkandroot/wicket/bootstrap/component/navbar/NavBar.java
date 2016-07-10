@@ -17,18 +17,69 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.repeater.RepeatingView;
+
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-import org.apache.wicket.markup.html.panel.GenericPanel;
 
+public abstract class NavBar extends GenericPanel<Void>
+{
 
-public class NavBar extends GenericPanel<Void> {
-
-	public NavBar(String id) {
+	public NavBar(String id)
+	{
 
 		super(id);
+	}
+
+	@Override
+	protected void onInitialize()
+	{
+		super.onInitialize();
+
 		this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
+		this.add(new CssClassAppender("navbar-default"));
+
+		this.add(this.createBrandLink("brand"));
+
+		RepeatingView navbarLeftItemView = new RepeatingView("navbarLeftItem");
+		this.populateNavbarLeftItems(navbarLeftItemView);
+		this.add(navbarLeftItemView);
+
+		this.add(this.createNavBarForm("navbarForm"));
+
+		RepeatingView navbarRightItemView = new RepeatingView("navbarRightItem");
+		this.populateNavbarLeftItems(navbarRightItemView);
+		this.add(navbarRightItemView);
+	}
+
+	protected Component createBrandLink(String id)
+	{
+		WebMarkupContainer brandLink = new WebMarkupContainer(id);
+		brandLink.setVisible(false);
+
+		return brandLink;
+	};
+
+	protected Component createNavBarForm(String id)
+	{
+		WebMarkupContainer navbarForm = new WebMarkupContainer(id);
+		navbarForm.setVisible(false);
+
+		return navbarForm;
+	}
+
+	protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+	{
+		/* Overwrite to add navbar items on the left side */
+	}
+
+	protected void populateNavbarRightItems(RepeatingView navbarLeftItemView)
+	{
+		/* Overwrite to add navbar items on the right side */
 	}
 
 }
