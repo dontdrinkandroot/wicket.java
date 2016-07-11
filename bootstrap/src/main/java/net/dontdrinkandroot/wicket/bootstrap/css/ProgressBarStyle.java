@@ -15,40 +15,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.label;
+package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.LabelBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
-
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.model.IModel;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public class SuccessLabel extends Label {
+public enum ProgressBarStyle implements CssClass
+{
 
-	public SuccessLabel(String id) {
+	DEFAULT(""),
+	SUCCESS("progress-bar-success"),
+	INFO("progress-bar-info"),
+	WARNING("progress-bar-warning"),
+	DANGER("progress-bar-danger");
 
-		super(id);
+	private String classString;
+
+
+	private ProgressBarStyle(String classString)
+	{
+
+		this.classString = classString;
 	}
-
-
-	public SuccessLabel(String id, IModel<?> model) {
-
-		super(id, model);
-	}
-
-
-	public SuccessLabel(String id, String label) {
-
-		super(id, label);
-	}
-
 
 	@Override
-	protected void onInitialize() {
+	public String getClassString()
+	{
 
-		super.onInitialize();
-		this.add(new LabelBehavior(LabelStyle.SUCCESS));
+		return this.classString;
 	}
-
 }

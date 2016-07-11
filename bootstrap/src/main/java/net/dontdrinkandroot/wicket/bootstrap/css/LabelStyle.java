@@ -24,11 +24,11 @@ public enum LabelStyle implements CssClass
 {
 
 	DEFAULT("label-default"),
-	IMPORTANT("label-important"),
-	INFO("label-info"),
-	INVERSE("label-inverse"),
+	PRIMARY("label-primary"),
 	SUCCESS("label-success"),
-	WARNING("label-warning");
+	INFO("label-info"),
+	WARNING("label-warning"),
+	DANGER("label-danger");
 
 	private String classString;
 

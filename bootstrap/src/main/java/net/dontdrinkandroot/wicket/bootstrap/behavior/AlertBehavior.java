@@ -23,43 +23,38 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
 
 
-public class LabelBehavior extends Behavior
+public class AlertBehavior extends Behavior
 {
 
-	private IModel<LabelStyle> labelStyleModel = new Model<LabelStyle>();
+	private IModel<AlertStyle> alertStyleModel = new Model<AlertStyle>();
 
 
-	public LabelBehavior()
+	public AlertBehavior(AlertStyle alertStyle)
 	{
-		this.labelStyleModel = Model.of(LabelStyle.DEFAULT);
+
+		this.alertStyleModel = Model.of(alertStyle);
 	}
 
-	public LabelBehavior(LabelStyle labelStyle)
+	public AlertBehavior(IModel<AlertStyle> alertStyleModel)
 	{
 
-		this.labelStyleModel = Model.of(labelStyle);
+		this.alertStyleModel = alertStyleModel;
 	}
 
-	public LabelBehavior(IModel<LabelStyle> labelStyleModel)
+	public AlertStyle getStyle()
 	{
 
-		this.labelStyleModel = labelStyleModel;
+		return this.alertStyleModel.getObject();
 	}
 
-	public LabelStyle getStyle()
+	protected IModel<AlertStyle> getStyleModel()
 	{
 
-		return this.labelStyleModel.getObject();
-	}
-
-	protected IModel<LabelStyle> getStyleModel()
-	{
-
-		return this.labelStyleModel;
+		return this.alertStyleModel;
 	}
 
 	@Override
@@ -68,7 +63,7 @@ public class LabelBehavior extends Behavior
 
 		super.bind(component);
 
-		component.add(new CssClassAppender(BootstrapCssClass.LABEL));
+		component.add(new CssClassAppender(BootstrapCssClass.ALERT));
 		component.add(new CssClassAppender(this.getStyleModel()));
 	}
 }

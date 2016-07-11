@@ -3,10 +3,15 @@ package net.dontdrinkandroot.wicket.example.page;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 
@@ -35,6 +40,48 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 		Component navBar = super.createNavBar(id);
 		navBar.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FIXED_TOP));
 		return navBar;
+	}
+
+	@Override
+	protected Component createBrandLink(String id)
+	{
+		BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink(id, HomePage.class);
+		brandLink.setBody(Model.of("wicket.example"));
+
+		return brandLink;
+	}
+
+	@Override
+	protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+	{
+		super.populateNavbarLeftItems(navbarLeftItemView);
+		navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Components")) {
+
+			@Override
+			protected void populateItems(RepeatingView itemView)
+			{
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Labels"), LabelPage.class));
+				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Alerts and Feedback"),
+								AlertPage.class));
+				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Progress Bars"),
+								ProgressBarPage.class));
+				itemView.add(
+						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropDownPage.class));
+			}
+
+			@Override
+			protected boolean isActive()
+			{
+				return this.getPage() instanceof ComponentPage;
+			}
+		});
+
 	}
 
 	@Override

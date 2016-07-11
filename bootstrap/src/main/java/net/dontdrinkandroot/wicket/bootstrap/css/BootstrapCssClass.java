@@ -44,6 +44,7 @@ public enum BootstrapCssClass implements CssClass
 	DIVIDER("divider"),
 	DIVIDER_VERTICAL("divider-vertial"),
 	DROPDOWN("dropdown"),
+	DROPDOWN_HEADER("dropdown-header"),
 	DROPDOWN_MENU("dropdown-menu"),
 	DROPDOWN_SUBMENU("dropdown-submenu"),
 	DROPDOWN_TOGGLE("dropdown-toggle"),

@@ -67,8 +67,18 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
 	{
 		super.renderHead(response);
 
-		response.render(new BootstrapJsHeaderItem(false));
-		response.render(new BootstrapCssHeaderItem());
+		response.render(this.getBootstrapJavaScriptHeaderItem());
+		response.render(this.getBootstrapCssHeaderItem());
+	}
+
+	protected BootstrapJsHeaderItem getBootstrapJavaScriptHeaderItem()
+	{
+		return new BootstrapJsHeaderItem(false);
+	}
+
+	protected BootstrapCssHeaderItem getBootstrapCssHeaderItem()
+	{
+		return new BootstrapCssHeaderItem();
 	}
 
 	protected IModel<String> createPageTitlePrefixModel()

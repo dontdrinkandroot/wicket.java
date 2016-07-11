@@ -51,7 +51,7 @@ public abstract class DropDownItem extends AbstractLinkItem {
 
 		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 		RepeatingView dropDownItemView = new RepeatingView("dropDownItem");
-		this.createDropDownItems(dropDownItemView);
+		this.populateItems(dropDownItemView);
 		this.add(dropDownItemView);
 	}
 
@@ -75,5 +75,5 @@ public abstract class DropDownItem extends AbstractLinkItem {
 	}
 
 
-	protected abstract void createDropDownItems(RepeatingView itemView);
+	protected abstract void populateItems(RepeatingView itemView);
 }

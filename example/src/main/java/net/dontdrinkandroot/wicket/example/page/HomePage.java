@@ -16,6 +16,12 @@ public class HomePage extends DecoratorPage<Void>
 	@Override
 	protected IModel<String> createPageHeadingModel()
 	{
-		return Model.of("HomePage");
+		return Model.of("Components");
+	}
+
+	@Override
+	protected void onInitialize()
+	{
+		super.onInitialize();
 	}
 }

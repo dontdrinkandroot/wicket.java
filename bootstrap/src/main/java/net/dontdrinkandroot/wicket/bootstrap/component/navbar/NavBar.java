@@ -52,7 +52,7 @@ public abstract class NavBar extends GenericPanel<Void>
 		this.add(this.createNavBarForm("navbarForm"));
 
 		RepeatingView navbarRightItemView = new RepeatingView("navbarRightItem");
-		this.populateNavbarLeftItems(navbarRightItemView);
+		this.populateNavbarRightItems(navbarRightItemView);
 		this.add(navbarRightItemView);
 	}
 
@@ -77,7 +77,7 @@ public abstract class NavBar extends GenericPanel<Void>
 		/* Overwrite to add navbar items on the left side */
 	}
 
-	protected void populateNavbarRightItems(RepeatingView navbarLeftItemView)
+	protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
 	{
 		/* Overwrite to add navbar items on the right side */
 	}

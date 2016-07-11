@@ -20,24 +20,26 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public enum AlertStyle implements CssClass {
+public enum AlertStyle implements CssClass
+{
 
-	DANGER("alert-danger"),
-	INFO("alert-info"),
 	SUCCESS("alert-success"),
-	WARNING("alert-warning");
+	INFO("alert-info"),
+	WARNING("alert-warning"),
+	DANGER("alert-danger");
 
 	private String classString;
 
 
-	private AlertStyle(String classString) {
+	private AlertStyle(String classString)
+	{
 
 		this.classString = classString;
 	}
 
-
 	@Override
-	public String getClassString() {
+	public String getClassString()
+	{
 
 		return this.classString;
 	}

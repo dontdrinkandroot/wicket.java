@@ -54,11 +54,9 @@ public abstract class DropDownMenu extends Panel
 	@Override
 	protected void onComponentTag(ComponentTag tag)
 	{
-		super.onComponentTag(tag);
-
 		tag.setName("ul");
+		super.onComponentTag(tag);
 	}
 
 	protected abstract void populateItems(RepeatingView itemView);
-
 }

@@ -17,10 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarClass;
-
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -29,8 +25,13 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarStyle;
 
-public class ProgressBar extends GenericPanel<Integer> {
+
+public class ProgressBar extends GenericPanel<Integer>
+{
 
 	private WebMarkupContainer bar;
 
@@ -38,50 +39,51 @@ public class ProgressBar extends GenericPanel<Integer> {
 
 	private boolean striped = false;
 
-	private ProgressBarClass barStyle;
+	private IModel<ProgressBarStyle> styleModel;
 
 
-	public ProgressBar(String id) {
+	public ProgressBar(String id)
+	{
 
 		this(id, new Model<Integer>(0));
 	}
 
-
-	public ProgressBar(String id, IModel<Integer> model) {
+	public ProgressBar(String id, IModel<Integer> model)
+	{
 
 		super(id, model);
 	}
 
-
-	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style) {
+	public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style)
+	{
 
 		super(id, model);
 
-		this.barStyle = style;
+		this.styleModel = Model.of(style);
 	}
 
-
-	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style, boolean active) {
+	public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped)
+	{
 
 		super(id, model);
 
-		this.barStyle = style;
-		this.active = active;
+		this.styleModel = Model.of(style);
+		this.striped = striped;
 	}
 
-
-	public ProgressBar(String id, IModel<Integer> model, ProgressBarClass style, boolean active, boolean striped) {
+	public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped, boolean active)
+	{
 
 		super(id, model);
 
-		this.barStyle = style;
+		this.styleModel = Model.of(style);
 		this.active = active;
 		this.striped = striped;
 	}
 
-
 	@Override
-	protected void onInitialize() {
+	protected void onInitialize()
+	{
 
 		super.onInitialize();
 
@@ -91,7 +93,8 @@ public class ProgressBar extends GenericPanel<Integer> {
 		this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
 
 			@Override
-			public BootstrapCssClass getObject() {
+			public BootstrapCssClass getObject()
+			{
 
 				if (ProgressBar.this.isActive()) {
 					return BootstrapCssClass.ACTIVE;
@@ -105,7 +108,8 @@ public class ProgressBar extends GenericPanel<Integer> {
 		this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
 
 			@Override
-			public BootstrapCssClass getObject() {
+			public BootstrapCssClass getObject()
+			{
 
 				if (ProgressBar.this.isStriped()) {
 					return BootstrapCssClass.PROGRESS_STRIPED;
@@ -122,81 +126,70 @@ public class ProgressBar extends GenericPanel<Integer> {
 		this.bar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
 
 			@Override
-			public String getObject() {
+			public String getObject()
+			{
 
 				return String.format("width: %d%%;", ProgressBar.this.getModelObject());
 			}
 		}));
 
 		/* Style */
-		this.bar.add(new CssClassAppender(new AbstractReadOnlyModel<ProgressBarClass>() {
-
-			@Override
-			public ProgressBarClass getObject() {
-
-				return ProgressBar.this.barStyle;
-			}
-		}));
+		this.bar.add(new CssClassAppender(this.styleModel));
 
 		this.bar.setOutputMarkupId(true);
 		this.add(this.bar);
 	}
 
+	public void setBarStyle(ProgressBarStyle barStyle)
+	{
 
-	public void setBarStyle(ProgressBarClass barStyle) {
-
-		this.barStyle = barStyle;
+		this.styleModel.setObject(barStyle);
 	}
 
+	public ProgressBarStyle getBarStyle()
+	{
 
-	public ProgressBarClass getBarStyle() {
-
-		return this.barStyle;
+		return this.styleModel.getObject();
 	}
 
-
-	public ProgressBar setActive(boolean active) {
+	public ProgressBar setActive(boolean active)
+	{
 
 		this.active = active;
 		return this;
 	}
 
-
-	public boolean isActive() {
+	public boolean isActive()
+	{
 
 		return this.active;
 	}
 
-
-	public ProgressBar setStriped(boolean striped) {
+	public ProgressBar setStriped(boolean striped)
+	{
 
 		this.striped = striped;
 		return this;
 	}
 
-
-	public boolean isStriped() {
+	public boolean isStriped()
+	{
 
 		return this.striped;
 	}
 
+	public void update(AjaxRequestTarget target)
+	{
 
-	public void update(AjaxRequestTarget target) {
-
-		target.appendJavaScript(String.format(
-				"$('#%s').css({width: '%d%%'});",
-				this.bar.getMarkupId(),
-				this.getModelObject()));
-		target.appendJavaScript(String.format(
-				"$('#%s').attr('aria-valuenow', %d);",
-				this.bar.getMarkupId(),
-				this.getModelObject()));
+		target.appendJavaScript(
+				String.format("$('#%s').css({width: '%d%%'});", this.bar.getMarkupId(), this.getModelObject()));
+		target.appendJavaScript(
+				String.format("$('#%s').attr('aria-valuenow', %d);", this.bar.getMarkupId(), this.getModelObject()));
 	}
 
-
-	public WebMarkupContainer getBar() {
+	public WebMarkupContainer getBar()
+	{
 
 		return this.bar;
 	}
-
 }

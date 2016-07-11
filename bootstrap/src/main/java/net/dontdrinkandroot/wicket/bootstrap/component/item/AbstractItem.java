@@ -17,37 +17,40 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-public class AbstractItem<T> extends GenericPanel<T> {
 
-	public AbstractItem(String id) {
+public class AbstractItem<T> extends GenericPanel<T>
+{
+
+	public AbstractItem(String id)
+	{
 
 		super(id);
 	}
 
-
-	public AbstractItem(String id, IModel<T> model) {
+	public AbstractItem(String id, IModel<T> model)
+	{
 
 		super(id, model);
 	}
 
-
 	@Override
-	protected void onInitialize() {
+	protected void onInitialize()
+	{
 
 		super.onInitialize();
 
 		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ACTIVE) {
 
 			@Override
-			public BootstrapCssClass getObject() {
+			public BootstrapCssClass getObject()
+			{
 
 				if (AbstractItem.this.isActive()) {
 					return super.getObject();
@@ -58,10 +61,9 @@ public class AbstractItem<T> extends GenericPanel<T> {
 		}));
 	}
 
-
-	protected boolean isActive() {
+	protected boolean isActive()
+	{
 
 		return false;
 	}
-
 }

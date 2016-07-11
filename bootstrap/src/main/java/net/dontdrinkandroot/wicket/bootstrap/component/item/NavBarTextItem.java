@@ -15,40 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.label;
-
-import net.dontdrinkandroot.wicket.bootstrap.behavior.LabelBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
+package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-public class WarningLabel extends Label {
 
-	public WarningLabel(String id) {
+public class NavBarTextItem extends Label
+{
 
-		super(id);
+	public NavBarTextItem(String id, IModel<String> labelModel)
+	{
+		super(id, labelModel);
+		this.add(new CssClassAppender(BootstrapCssClass.NAVBAR_TEXT));
 	}
-
-
-	public WarningLabel(String id, IModel<?> model) {
-
-		super(id, model);
-	}
-
-
-	public WarningLabel(String id, String label) {
-
-		super(id, label);
-	}
-
-
-	@Override
-	protected void onInitialize() {
-
-		super.onInitialize();
-		this.add(new LabelBehavior(LabelStyle.WARNING));
-	}
-
 }

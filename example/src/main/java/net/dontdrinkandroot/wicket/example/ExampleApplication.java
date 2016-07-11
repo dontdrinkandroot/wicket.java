@@ -15,4 +15,12 @@ public class ExampleApplication extends WebApplication
 		return HomePage.class;
 	}
 
+	@Override
+	protected void init()
+	{
+		super.init();
+
+		this.getMarkupSettings().setStripWicketTags(true);
+	}
+
 }

@@ -7,6 +7,7 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
 
 
@@ -42,6 +43,13 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		RepeatingView primaryActionView = new RepeatingView("primaryAction");
 		this.populatePrimaryActions(primaryActionView);
 		this.add(primaryActionView);
+
+		this.add(this.createFeedbackPanel("feedback"));
+	}
+
+	protected Component createFeedbackPanel(String id)
+	{
+		return new FencedFeedbackPanel(id);
 	}
 
 	protected void populatePrimaryActions(RepeatingView primaryActionView)
@@ -72,9 +80,9 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 			}
 
 			@Override
-			protected void populateNavbarRightItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
 			{
-				StandardBootstrapPage.this.populateNavbarRightItems(navbarLeftItemView);
+				StandardBootstrapPage.this.populateNavbarRightItems(navbarRightItemView);
 			}
 		};
 		return navBar;
