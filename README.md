@@ -19,7 +19,7 @@ http://semver.org/.
 Copyright and license
 ---------------------
 
-Copyright (C) 2012-2016 Philip W. Sorst <philip@sorst.net>
+Copyright (C) 2012-2016 [Philip Washington Sorst](https://sorst.net)
 and individual contributors as indicated
 by the @authors tag.
  

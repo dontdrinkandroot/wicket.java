@@ -143,6 +143,7 @@ public enum BootstrapCssClass implements CssClass
 	MODAL_FOOTER("modal-footer"),
 	MODAL_TITLE("modal-title"),
 	NAVBAR_BTN("navbar-btn"),
+	NAVBAR_LEFT("navbar-left"),
 	PANEL("panel"),
 	PANEL_BODY("panel-body"),
 	PANEL_FOOTER("panel-footer"),

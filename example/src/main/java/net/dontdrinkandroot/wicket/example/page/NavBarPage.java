@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.example.page;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -9,6 +8,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DividerItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
@@ -16,7 +16,9 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.HeaderItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.NavBarButtonItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.NavBarTextItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.InnerNavBar;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
+import net.dontdrinkandroot.wicket.example.component.NavBarForm;
 
 
 public class NavBarPage extends ComponentPage
@@ -102,7 +104,10 @@ public class NavBarPage extends ComponentPage
 
 	protected Component createExampleNavBarForm(String id)
 	{
-		return new WebMarkupContainer(id);
+		NavBarForm navBarForm = new NavBarForm(id);
+		navBarForm.add(new CssClassAppender(BootstrapCssClass.NAVBAR_LEFT));
+
+		return navBarForm;
 	}
 
 	protected void populateExampleNavbarLeftItems(RepeatingView itemView)
