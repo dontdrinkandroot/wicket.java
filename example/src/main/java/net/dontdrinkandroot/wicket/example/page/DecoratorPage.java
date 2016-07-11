@@ -60,6 +60,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 			@Override
 			protected void populateItems(RepeatingView itemView)
 			{
+				itemView.add(
+						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Nav Bars"), NavBarPage.class));
 				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Labels"), LabelPage.class));
 				itemView.add(
 						new BookmarkablePageLinkItem(

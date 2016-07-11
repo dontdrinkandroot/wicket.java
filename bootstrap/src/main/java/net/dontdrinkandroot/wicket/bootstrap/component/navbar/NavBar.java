@@ -21,17 +21,22 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
 
 
 public abstract class NavBar extends GenericPanel<Void>
 {
 
+	private IModel<NavBarStyle> styleModel = Model.of(NavBarStyle.DEFAULT);
+
+
 	public NavBar(String id)
 	{
-
 		super(id);
 	}
 
@@ -41,7 +46,7 @@ public abstract class NavBar extends GenericPanel<Void>
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
-		this.add(new CssClassAppender("navbar-default"));
+		this.add(new CssClassAppender(this.styleModel));
 
 		this.add(this.createBrandLink("brand"));
 
@@ -80,6 +85,12 @@ public abstract class NavBar extends GenericPanel<Void>
 	protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
 	{
 		/* Overwrite to add navbar items on the right side */
+	}
+
+	public NavBar setStyle(NavBarStyle style)
+	{
+		this.styleModel.setObject(style);
+		return this;
 	}
 
 }
