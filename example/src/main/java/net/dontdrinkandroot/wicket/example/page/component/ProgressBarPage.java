@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.example.page;
+package net.dontdrinkandroot.wicket.example.page.component;
 
 import java.util.Iterator;
 

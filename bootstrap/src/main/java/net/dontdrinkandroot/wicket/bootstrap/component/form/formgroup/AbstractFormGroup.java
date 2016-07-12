@@ -24,6 +24,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.string.Strings;
@@ -34,6 +35,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPa
 import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.component.form.FormComponentLabel;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 
 public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
@@ -52,6 +54,8 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	protected WebMarkupContainer componentContainer;
 
 	protected FencedFeedbackPanel helpBlock;
+
+	protected boolean labelHidden = false;
 
 
 	public AbstractFormGroup(String id, IModel<T> model, String label)
@@ -86,7 +90,7 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
 		this.componentContainer = new WebMarkupContainer("componentContainer");
-		this.label = new FormComponentLabel("label", this.getFormComponent());
+		this.label = this.createLabel("label");
 		this.helpBlock = new FencedFeedbackPanel("helpBlock", this) {
 
 			@Override
@@ -98,11 +102,16 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			@Override
 			protected void onBeforeRender()
 			{
-				if ((null != AbstractFormGroup.this.helpTextModel)
-						&& !Strings.isEmpty(AbstractFormGroup.this.helpTextModel.getObject())) {
+				super.onBeforeRender();
+
+				boolean helpTextSet = (null != AbstractFormGroup.this.helpTextModel)
+						&& !Strings.isEmpty(AbstractFormGroup.this.helpTextModel.getObject());
+				if (helpTextSet) {
 					this.info(AbstractFormGroup.this.helpTextModel.getObject());
 				}
-				super.onBeforeRender();
+
+				this.setOutputMarkupPlaceholderTag(!this.hasFeedbackMessage());
+				this.setVisible(this.hasFeedbackMessage());
 			}
 		};
 		this.helpBlock.setOutputMarkupId(true);
@@ -127,6 +136,23 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		if (form instanceof BootstrapForm<?>) {
 			this.applyHorizontalStyleIfSet((BootstrapForm<?>) form);
 		}
+	}
+
+	private FormComponentLabel createLabel(String id)
+	{
+		FormComponentLabel label = new FormComponentLabel(id, this.getFormComponent());
+		label.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>() {
+
+			@Override
+			public CssClass getObject()
+			{
+				if (AbstractFormGroup.this.labelHidden) {
+					return BootstrapCssClass.SR_ONLY;
+				}
+				return null;
+			}
+		}));
+		return label;
 	}
 
 	public F getFormComponent()
@@ -173,6 +199,12 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.componentContainer.add(this.formComponent);
 		this.add(this.label);
 		this.componentContainer.add(this.helpBlock);
+	}
+
+	public AbstractFormGroup<T, F> setLabelHidden(boolean labelHidden)
+	{
+		this.labelHidden = labelHidden;
+		return this;
 	}
 
 	protected abstract F createFormComponent(String id);

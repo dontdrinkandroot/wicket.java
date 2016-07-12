@@ -25,12 +25,12 @@ import org.apache.wicket.model.IModel;
 public class FormGroupTextField<T> extends AbstractFormGroupTextField<T, TextField<T>>
 {
 
-	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel)
+	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model)
 	{
 		super(id, model, labelModel);
 	}
 
-	public FormGroupTextField(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
+	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
 		super(id, model, labelModel, type);
 	}
@@ -40,6 +40,7 @@ public class FormGroupTextField<T> extends AbstractFormGroupTextField<T, TextFie
 	{
 		TextField<T> textField = new TextField<T>(id, this.getModel(), this.type);
 		textField.add(new HTML5Attributes());
+
 		return textField;
 	}
 }

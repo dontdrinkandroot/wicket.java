@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.example.page;
+package net.dontdrinkandroot.wicket.example.page.component;
 
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -9,6 +9,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DividerItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.HeaderItem;
+import net.dontdrinkandroot.wicket.example.page.HomePage;
 
 
 public class DropDownPage extends ComponentPage

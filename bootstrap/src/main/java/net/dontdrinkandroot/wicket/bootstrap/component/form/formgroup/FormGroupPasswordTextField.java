@@ -25,7 +25,7 @@ import org.apache.wicket.model.IModel;
 public class FormGroupPasswordTextField extends AbstractFormGroupTextField<String, PasswordTextField>
 {
 
-	public FormGroupPasswordTextField(String id, IModel<String> model, IModel<String> labelModel)
+	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)
 	{
 		super(id, model, labelModel);
 	}

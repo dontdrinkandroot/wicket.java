@@ -24,7 +24,8 @@ public class NavBarForm extends Form<Void>
 		super.onInitialize();
 		this.add(new NavBarFormBehavior());
 		FormGroupTextField<String> searchGroup =
-				new FormGroupTextField<String>("searchGroup", new Model<String>(), Model.of("Search"));
+				new FormGroupTextField<String>("searchGroup", Model.of("Search"), new Model<String>());
+		searchGroup.setLabelHidden(true);
 		this.add(searchGroup);
 		this.add(new AjaxSubmitButtonLink("submit").setBody(Model.of("Search")));
 	}

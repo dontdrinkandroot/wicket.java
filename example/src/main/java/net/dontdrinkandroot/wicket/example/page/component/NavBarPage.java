@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.example.page;
+package net.dontdrinkandroot.wicket.example.page.component;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -19,6 +19,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.navbar.InnerNavBar;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
 import net.dontdrinkandroot.wicket.example.component.NavBarForm;
+import net.dontdrinkandroot.wicket.example.page.HomePage;
 
 
 public class NavBarPage extends ComponentPage

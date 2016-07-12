@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.example.page;
+package net.dontdrinkandroot.wicket.example.page.component;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;

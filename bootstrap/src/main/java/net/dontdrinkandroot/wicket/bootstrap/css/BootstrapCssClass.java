@@ -150,7 +150,8 @@ public enum BootstrapCssClass implements CssClass
 	PANEL_HEADING("panel-heading"),
 	PANEL_TITLE("panel-title"),
 	IMG_RESPONSIVE("img-responsive"),
-	IMG_THUMBNAIL("img-thumbnail");
+	IMG_THUMBNAIL("img-thumbnail"),
+	SR_ONLY("sr-only");
 
 	private String classString;
 

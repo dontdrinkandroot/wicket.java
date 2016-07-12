@@ -14,6 +14,14 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
+import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
+import net.dontdrinkandroot.wicket.example.page.component.ComponentPage;
+import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
+import net.dontdrinkandroot.wicket.example.page.component.LabelPage;
+import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
+import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
+import net.dontdrinkandroot.wicket.example.page.form.FormPage;
+import net.dontdrinkandroot.wicket.example.page.form.StandardFormPage;
 
 
 public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
@@ -84,6 +92,24 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 			}
 		});
 
+		navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Forms")) {
+
+			@Override
+			protected void populateItems(RepeatingView itemView)
+			{
+				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Standard Form"),
+								StandardFormPage.class));
+			}
+
+			@Override
+			protected boolean isActive()
+			{
+				return this.getPage() instanceof FormPage;
+			}
+		});
 	}
 
 	@Override

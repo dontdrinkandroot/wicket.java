@@ -24,7 +24,7 @@ public class FormGroupStatic extends GenericPanel<String>
 	private Label content;
 
 
-	public FormGroupStatic(String id, IModel<String> contentModel, IModel<String> labelModel)
+	public FormGroupStatic(String id, IModel<String> labelModel, IModel<String> contentModel)
 	{
 		super(id, contentModel);
 		this.labelModel = labelModel;
