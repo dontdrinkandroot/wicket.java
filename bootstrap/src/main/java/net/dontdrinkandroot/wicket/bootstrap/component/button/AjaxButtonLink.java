@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
@@ -9,32 +8,20 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 
 
-public class AjaxSubmitButtonLink extends AjaxSubmitLink implements IButton
+public abstract class AjaxButtonLink<T> extends AjaxLink<T> implements IButton
 {
 
 	private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
 
-	public AjaxSubmitButtonLink(String id)
+	public AjaxButtonLink(String id)
 	{
 		super(id);
 	}
 
-	public AjaxSubmitButtonLink(String id, IModel<String> bodyModel)
+	public AjaxButtonLink(String id, IModel<T> model)
 	{
-		super(id);
-		this.setBody(bodyModel);
-	}
-
-	public AjaxSubmitButtonLink(String id, Form<?> form)
-	{
-		super(id, form);
-	}
-
-	public AjaxSubmitButtonLink(String id, Form<?> form, IModel<String> bodyModel)
-	{
-		super(id, form);
-		this.setBody(bodyModel);
+		super(id, model);
 	}
 
 	@Override
@@ -51,7 +38,7 @@ public class AjaxSubmitButtonLink extends AjaxSubmitLink implements IButton
 	}
 
 	@Override
-	public AjaxSubmitButtonLink setButtonSize(ButtonSize buttonSize)
+	public AjaxButtonLink<T> setButtonSize(ButtonSize buttonSize)
 	{
 		this.buttonBehavior.setButtonSize(buttonSize);
 		return this;
@@ -64,7 +51,7 @@ public class AjaxSubmitButtonLink extends AjaxSubmitLink implements IButton
 	}
 
 	@Override
-	public AjaxSubmitButtonLink setButtonStyle(ButtonStyle buttonStyle)
+	public AjaxButtonLink<T> setButtonStyle(ButtonStyle buttonStyle)
 	{
 		this.buttonBehavior.setButtonStyle(buttonStyle);
 		return this;
