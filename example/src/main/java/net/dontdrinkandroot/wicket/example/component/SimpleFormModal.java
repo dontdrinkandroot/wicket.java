@@ -1,30 +1,31 @@
-package net.dontdrinkandroot.wicket.example.page.form;
+package net.dontdrinkandroot.wicket.example.component;
 
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupPasswordTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
-import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
+import net.dontdrinkandroot.wicket.bootstrap.component.modal.FormModal;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 
 
-public abstract class FormPage extends DecoratorPage<Void>
+public class SimpleFormModal extends FormModal<Void>
 {
 
-	public FormPage(PageParameters parameters)
+	public SimpleFormModal(String id)
 	{
-		super(parameters);
+		super(id);
 	}
 
 	@Override
-	protected IModel<String> createPageTitlePrefixModel()
+	protected IModel<String> createHeadingModel()
 	{
-		return Model.of("Forms");
+		return Model.of("This is a form modal");
 	}
 
+	@Override
 	protected void populateFormGroups(RepeatingView formGroupView)
 	{
 		formGroupView.add(
@@ -37,10 +38,13 @@ public abstract class FormPage extends DecoratorPage<Void>
 						formGroupView.newChildId(),
 						Model.of(FormGroupTextField.class.getSimpleName()),
 						Model.of("")));
-		formGroupView.add(
-				new FormGroupPasswordTextField(
-						formGroupView.newChildId(),
-						Model.of(FormGroupPasswordTextField.class.getSimpleName()),
-						Model.of("")));
 	}
+
+	@Override
+	protected void populateFormActions(RepeatingView formActionView)
+	{
+		formActionView.add(new AjaxSubmitButtonLink(formActionView.newChildId(), this.getForm(), Model.of("Submit")) {
+		}.setButtonStyle(ButtonStyle.PRIMARY));
+	}
+
 }

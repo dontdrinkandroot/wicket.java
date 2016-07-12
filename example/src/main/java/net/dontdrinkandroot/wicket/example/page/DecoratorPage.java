@@ -18,6 +18,7 @@ import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
 import net.dontdrinkandroot.wicket.example.page.component.ComponentPage;
 import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
 import net.dontdrinkandroot.wicket.example.page.component.LabelPage;
+import net.dontdrinkandroot.wicket.example.page.component.ModalPage;
 import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
 import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
 import net.dontdrinkandroot.wicket.example.page.form.FormPage;
@@ -83,6 +84,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 								ProgressBarPage.class));
 				itemView.add(
 						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropDownPage.class));
+				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Modals"), ModalPage.class));
 			}
 
 			@Override

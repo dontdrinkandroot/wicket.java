@@ -17,9 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
@@ -27,15 +26,18 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public abstract class SimpleFormModal<T> extends GenericPanel<T>
+public abstract class FormModal<T> extends Modal<T>
 {
 
-	public SimpleFormModal(String id)
+	private Form<T> form;
+
+
+	public FormModal(String id)
 	{
 		super(id);
 	}
 
-	public SimpleFormModal(String id, IModel<T> model)
+	public FormModal(String id, IModel<T> model)
 	{
 		super(id, model);
 	}
@@ -48,20 +50,33 @@ public abstract class SimpleFormModal<T> extends GenericPanel<T>
 		this.add(new CssClassAppender(BootstrapCssClass.MODAL));
 		this.add(new CssClassAppender(BootstrapCssClass.FADE));
 
-		Form<T> form = this.createForm("form");
-		this.add(form);
-
-		Label headingLabel = new Label("heading", this.createHeadingModel());
-		headingLabel.add(new CssClassAppender(BootstrapCssClass.MODAL_TITLE));
-		form.add(headingLabel);
+		this.form = this.createForm("form");
+		this.add(this.form);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");
 		this.populateFormGroups(formGroupView);
-		form.add(formGroupView);
+		this.form.add(formGroupView);
 
 		RepeatingView formActionView = new RepeatingView("formAction");
 		this.populateFormActions(formActionView);
-		form.add(formActionView);
+		this.add(formActionView);
+	}
+
+	@Override
+	protected final void addFooter()
+	{
+		/* Noop */
+	}
+
+	@Override
+	protected final Component createFooter(String id)
+	{
+		return null;
+	}
+
+	public Form<T> getForm()
+	{
+		return this.form;
 	}
 
 	protected Form<T> createForm(String id)
@@ -77,21 +92,21 @@ public abstract class SimpleFormModal<T> extends GenericPanel<T>
 	{
 	}
 
+	@Override
 	public CharSequence getHideScript()
 	{
 		return String.format("$('#%s').modal('hide');", this.getMarkupId());
 	}
 
+	@Override
 	public CharSequence getShowScript()
 	{
 		return String.format("$('#%s').modal({'show': true, 'backdrop':'static'});", this.getMarkupId());
 	}
 
+	@Override
 	public CharSequence getToggleScript()
 	{
 		return String.format("$('#%s').modal('toggle');", this.getMarkupId());
 	}
-
-	protected abstract IModel<?> createHeadingModel();
-
 }
