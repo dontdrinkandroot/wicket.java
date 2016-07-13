@@ -53,7 +53,7 @@ public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
 		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(id) {
 
 			@Override
-			protected void createActions(RepeatingView actionView)
+			protected void populateActions(RepeatingView actionView)
 			{
 				SimpleForm.this.populateActions(actionView);
 			}

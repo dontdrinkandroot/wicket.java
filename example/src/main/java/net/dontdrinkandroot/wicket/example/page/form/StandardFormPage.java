@@ -25,11 +25,12 @@ public class StandardFormPage extends FormPage
 	protected void onInitialize()
 	{
 		super.onInitialize();
+
 		Form<Void> form = new Form<Void>("form");
 		this.add(form);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");
-		this.populateFormGroups(formGroupView);
+		this.populateFormGroups(form, formGroupView);
 		form.add(formGroupView);
 	}
 

@@ -60,7 +60,7 @@ public class FormGroupActions<T> extends GenericPanel<T>
 		this.add(this.actionContainer);
 
 		RepeatingView actionView = new RepeatingView("action");
-		this.createActions(actionView);
+		this.populateActions(actionView);
 		this.actionContainer.add(actionView);
 
 		Form<?> form = this.getForm();
@@ -73,7 +73,7 @@ public class FormGroupActions<T> extends GenericPanel<T>
 		}
 	}
 
-	protected void createActions(RepeatingView actionView)
+	protected void populateActions(RepeatingView actionView)
 	{
 		/* Hook */
 	}

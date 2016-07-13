@@ -17,14 +17,19 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 
 public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>>
 {
 
-	public FormGroupTextArea(String id, IModel<T> model, IModel<String> labelModel)
+	private int rows = 5;
+
+
+	public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
 	{
 		super(id, model, labelModel);
 	}
@@ -32,7 +37,21 @@ public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>>
 	@Override
 	protected TextArea<T> createFormComponent(String id)
 	{
-		return new TextArea<T>(id, this.getModel());
+		TextArea<T> textArea = new TextArea<T>(id, this.getModel());
+		textArea.add(new AttributeAppender("rows", new AbstractReadOnlyModel<Integer>() {
+
+			@Override
+			public Integer getObject()
+			{
+				return FormGroupTextArea.this.rows;
+			}
+		}));
+		return textArea;
+	}
+
+	public void setRows(int rows)
+	{
+		this.rows = rows;
 	}
 
 }

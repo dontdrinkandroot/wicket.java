@@ -100,18 +100,17 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 			}
 
 			@Override
-			protected void onBeforeRender()
+			protected void onConfigure()
 			{
-				super.onBeforeRender();
-
+				super.onConfigure();
 				boolean helpTextSet = (null != AbstractFormGroup.this.helpTextModel)
 						&& !Strings.isEmpty(AbstractFormGroup.this.helpTextModel.getObject());
 				if (helpTextSet) {
 					this.info(AbstractFormGroup.this.helpTextModel.getObject());
 				}
 
-				this.setOutputMarkupPlaceholderTag(!this.hasFeedbackMessage());
-				this.setVisible(this.hasFeedbackMessage());
+				this.setOutputMarkupPlaceholderTag(this.getCurrentMessages().size() == 0);
+				this.setVisible(this.getCurrentMessages().size() > 0);
 			}
 		};
 		this.helpBlock.setOutputMarkupId(true);
