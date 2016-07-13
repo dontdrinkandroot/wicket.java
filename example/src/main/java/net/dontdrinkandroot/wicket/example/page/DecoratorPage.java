@@ -45,6 +45,12 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	}
 
 	@Override
+	protected IModel<String> createPageTitlePrefixModel()
+	{
+		return Model.of("wicket.example");
+	}
+
+	@Override
 	protected Component createNavBar(String id)
 	{
 		Component navBar = super.createNavBar(id);
@@ -65,6 +71,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
 	{
 		super.populateNavbarLeftItems(navbarLeftItemView);
+		navbarLeftItemView.add(
+				new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
 		navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Components")) {
 
 			@Override

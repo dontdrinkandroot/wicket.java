@@ -17,14 +17,45 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import net.dontdrinkandroot.wicket.css.CssClass;
-
-
-public interface ColumnOffset extends CssClass
+public enum ColumnSizeLarge implements ColumnSize
 {
 
-	ColumnSize getInverseColumnSize();
+	SIZE_1,
+	SIZE_2,
+	SIZE_3,
+	SIZE_4,
+	SIZE_5,
+	SIZE_6,
+	SIZE_7,
+	SIZE_8,
+	SIZE_9,
+	SIZE_10,
+	SIZE_11;
 
-	ColumnOffset getInverseColumnOffset();
+	private ColumnSizeLarge()
+	{
+	}
 
+	@Override
+	public String getClassString()
+	{
+		return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
+	}
+
+	@Override
+	public ColumnOffsetLarge getInverseColumnOffset()
+	{
+		return ColumnOffsetLarge.values()[10 - this.ordinal()];
+	}
+
+	@Override
+	public ColumnSizeLarge getInverseColumnSize()
+	{
+		return ColumnSizeLarge.values()[10 - this.ordinal()];
+	}
+
+	protected String getPrefix()
+	{
+		return "lg";
+	}
 }

@@ -18,6 +18,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupT
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
+import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 
 
 public abstract class FormPage extends DecoratorPage<Void>
@@ -31,7 +32,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 	@Override
 	protected IModel<String> createPageTitlePrefixModel()
 	{
-		return Model.of("Forms");
+		return new ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", Model.of("Forms"));
 	}
 
 	protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)

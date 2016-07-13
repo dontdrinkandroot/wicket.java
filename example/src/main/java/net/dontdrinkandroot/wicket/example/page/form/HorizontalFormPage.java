@@ -6,7 +6,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeMedium;
 
 
 public class HorizontalFormPage extends FormPage
@@ -29,7 +29,7 @@ public class HorizontalFormPage extends FormPage
 		super.onInitialize();
 
 		BootstrapForm<Void> form = new BootstrapForm<Void>("form");
-		form.setHorizontal(ColumnSize.MD_4, ColumnSize.MD_8);
+		form.setHorizontal(ColumnSizeMedium.SIZE_4);
 		this.add(form);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");

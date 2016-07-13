@@ -10,13 +10,13 @@ public class HomePage extends DecoratorPage<Void>
 	@Override
 	protected IModel<String> createPageTitlePrefixModel()
 	{
-		return Model.of("wicket.example");
+		return new Model<String>();
 	}
 
 	@Override
 	protected IModel<String> createPageHeadingModel()
 	{
-		return Model.of("Components");
+		return Model.of("wicket.example");
 	}
 
 	@Override

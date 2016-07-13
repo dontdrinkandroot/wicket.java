@@ -4,15 +4,16 @@ import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSize;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
 public class BootstrapForm<T> extends org.apache.wicket.markup.html.form.Form<T>
 {
 
-	private CssClass labelColumnSize;
+	private ColumnSize labelColumnSize;
 
-	private CssClass formComponentColumnSize;
+	private ColumnSize formComponentColumnSize;
 
 
 	public BootstrapForm(String id)
@@ -32,11 +33,11 @@ public class BootstrapForm<T> extends org.apache.wicket.markup.html.form.Form<T>
 		return this;
 	}
 
-	public BootstrapForm<T> setHorizontal(CssClass labelColumnSize, CssClass formComponentColumnSize)
+	public BootstrapForm<T> setHorizontal(ColumnSize labelColumnSize)
 	{
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_HORIZONTAL));
 		this.labelColumnSize = labelColumnSize;
-		this.formComponentColumnSize = formComponentColumnSize;
+		this.formComponentColumnSize = labelColumnSize.getInverseColumnSize();
 
 		return this;
 	}

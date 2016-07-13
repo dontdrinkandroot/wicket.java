@@ -17,37 +17,45 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import java.util.Arrays;
-import java.util.List;
+public enum ColumnSizeExtraSmall implements ColumnSize
+{
 
-import net.dontdrinkandroot.wicket.css.CssClass;
+	SIZE_1,
+	SIZE_2,
+	SIZE_3,
+	SIZE_4,
+	SIZE_5,
+	SIZE_6,
+	SIZE_7,
+	SIZE_8,
+	SIZE_9,
+	SIZE_10,
+	SIZE_11;
 
-
-public class CombinedColumnSize implements CssClass {
-
-	private final List<ColumnSize> columnSizes;
-
-
-	public CombinedColumnSize(ColumnSize... columnSizes) {
-
-		this.columnSizes = Arrays.asList(columnSizes);
+	private ColumnSizeExtraSmall()
+	{
 	}
-
 
 	@Override
-	public String getClassString() {
-
-		StringBuffer sb = new StringBuffer();
-		int count = 0;
-		for (ColumnSize columnSize : this.columnSizes) {
-			sb.append(columnSize.getClassString());
-			count++;
-			if (count < this.columnSizes.size()) {
-				sb.append(" ");
-			}
-		}
-
-		return sb.toString();
+	public String getClassString()
+	{
+		return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
 	}
 
+	@Override
+	public ColumnOffsetExtraSmall getInverseColumnOffset()
+	{
+		return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
+	}
+
+	@Override
+	public ColumnSizeExtraSmall getInverseColumnSize()
+	{
+		return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
+	}
+
+	protected String getPrefix()
+	{
+		return "xs";
+	}
 }
