@@ -27,55 +27,43 @@ import org.apache.wicket.model.IModel;
 public class FormGroupSelect<T> extends AbstractFormGroup<T, DropDownChoice<T>>
 {
 
-	protected FormGroupSelect(String id, IModel<T> model, IModel<String> label)
+	protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model)
 	{
-		super(id, model, label);
+		super(id, labelModel, model);
 	}
 
-	public FormGroupSelect(String id, IModel<T> model, String label, List<T> choices)
+	public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, List<T> choices)
 	{
-		super(id, model, label);
-		this.getFormComponent().setChoices(choices);
-	}
-
-	public FormGroupSelect(String id, IModel<T> model, IModel<String> labelModel, List<T> choices)
-	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 		this.getFormComponent().setChoices(choices);
 	}
 
 	public FormGroupSelect(
 			String id,
-			IModel<T> model,
 			IModel<String> labelModel,
+			IModel<T> model,
 			List<T> choices,
 			IChoiceRenderer<T> choiceRenderer)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 		this.getFormComponent().setChoices(choices);
 		this.getFormComponent().setChoiceRenderer(choiceRenderer);
 	}
 
-	public FormGroupSelect(String id, IModel<T> model, String label, IModel<List<T>> choices)
+	public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, IModel<List<T>> choices)
 	{
-		super(id, model, label);
-		this.getFormComponent().setChoices(choices);
-	}
-
-	public FormGroupSelect(String id, IModel<T> model, IModel<String> labelModel, IModel<List<T>> choices)
-	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 		this.getFormComponent().setChoices(choices);
 	}
 
 	public FormGroupSelect(
 			String id,
-			IModel<T> model,
 			IModel<String> labelModel,
+			IModel<T> model,
 			IModel<List<T>> choices,
 			IChoiceRenderer<T> choiceRenderer)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 		this.getFormComponent().setChoices(choices);
 		this.getFormComponent().setChoiceRenderer(choiceRenderer);
 	}

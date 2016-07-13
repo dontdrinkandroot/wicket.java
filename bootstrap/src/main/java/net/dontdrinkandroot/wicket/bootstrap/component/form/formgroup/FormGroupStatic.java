@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
@@ -12,10 +11,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public class FormGroupStatic extends GenericPanel<String>
+public class FormGroupStatic extends FormGroup<String>
 {
-
-	private IModel<String> labelModel;
 
 	private Label label;
 
@@ -26,8 +23,7 @@ public class FormGroupStatic extends GenericPanel<String>
 
 	public FormGroupStatic(String id, IModel<String> labelModel, IModel<String> contentModel)
 	{
-		super(id, contentModel);
-		this.labelModel = labelModel;
+		super(id, labelModel, contentModel);
 	}
 
 	@Override
@@ -73,5 +69,4 @@ public class FormGroupStatic extends GenericPanel<String>
 			}
 		}));
 	}
-
 }

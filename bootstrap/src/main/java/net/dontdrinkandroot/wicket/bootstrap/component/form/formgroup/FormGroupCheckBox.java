@@ -31,14 +31,9 @@ public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
 	private WebMarkupContainer offset;
 
 
-	public FormGroupCheckBox(String id, IModel<Boolean> model, String label)
+	public FormGroupCheckBox(String id, IModel<String> labelModel, IModel<Boolean> model)
 	{
-		super(id, model, label);
-	}
-
-	public FormGroupCheckBox(String id, IModel<Boolean> model, IModel<String> labelModel)
-	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

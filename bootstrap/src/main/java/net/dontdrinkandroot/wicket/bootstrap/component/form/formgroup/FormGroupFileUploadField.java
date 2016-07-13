@@ -24,17 +24,12 @@ import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupFileUpload extends AbstractFormGroup<List<FileUpload>, FileUploadField>
+public class FormGroupFileUploadField extends AbstractFormGroup<List<FileUpload>, FileUploadField>
 {
 
-	public FormGroupFileUpload(String id, IModel<List<FileUpload>> model, String label)
+	public FormGroupFileUploadField(String id, IModel<String> labelModel, IModel<List<FileUpload>> model)
 	{
-		super(id, model, label);
-	}
-
-	public FormGroupFileUpload(String id, IModel<List<FileUpload>> model, IModel<String> labelModel)
-	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

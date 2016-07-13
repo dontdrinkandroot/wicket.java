@@ -7,19 +7,14 @@ import org.apache.wicket.model.IModel;
 abstract public class AbstractFormGroupTextField<T, F extends TextField<T>> extends AbstractFormGroup<T, F>
 {
 
-	public AbstractFormGroupTextField(String id, IModel<T> model, String label)
+	public AbstractFormGroupTextField(String id, IModel<String> labelModel, IModel<T> model)
 	{
-		super(id, model, label);
+		super(id, labelModel, model);
 	}
 
-	public AbstractFormGroupTextField(String id, IModel<T> model, IModel<String> labelModel)
+	public AbstractFormGroupTextField(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
-		super(id, model, labelModel);
-	}
-
-	public AbstractFormGroupTextField(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
-	{
-		super(id, model, labelModel, type);
+		super(id, labelModel, model, type);
 	}
 
 }

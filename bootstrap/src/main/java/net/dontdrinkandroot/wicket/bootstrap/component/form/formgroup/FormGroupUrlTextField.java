@@ -9,14 +9,9 @@ import org.apache.wicket.model.IModel;
 public class FormGroupUrlTextField extends AbstractFormGroupTextField<String, UrlTextField>
 {
 
-	public FormGroupUrlTextField(String id, IModel<String> model, String label)
+	public FormGroupUrlTextField(String id, IModel<String> labelModel, IModel<String> model)
 	{
-		super(id, model, label);
-	}
-
-	public FormGroupUrlTextField(String id, IModel<String> model, IModel<String> labelModel)
-	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

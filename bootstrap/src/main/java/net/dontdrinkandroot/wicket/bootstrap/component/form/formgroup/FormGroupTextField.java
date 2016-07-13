@@ -27,12 +27,12 @@ public class FormGroupTextField<T> extends AbstractFormGroupTextField<T, TextFie
 
 	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
-		super(id, model, labelModel, type);
+		super(id, labelModel, model, type);
 	}
 
 	@Override

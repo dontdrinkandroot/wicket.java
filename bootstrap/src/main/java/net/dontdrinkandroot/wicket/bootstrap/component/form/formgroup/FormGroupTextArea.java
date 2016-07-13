@@ -31,7 +31,7 @@ public class FormGroupTextArea<T> extends AbstractFormGroup<T, TextArea<T>>
 
 	public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

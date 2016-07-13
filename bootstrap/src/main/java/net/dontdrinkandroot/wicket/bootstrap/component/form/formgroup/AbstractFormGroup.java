@@ -17,13 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -34,14 +34,10 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.FormGroupOnlineValidationB
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.component.form.FormComponentLabel;
-import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
+public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends FormGroup<T>
 {
-
-	protected final IModel<String> labelModel;
 
 	protected IModel<String> helpTextModel;
 
@@ -49,31 +45,23 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 
 	protected Class<T> type = null;
 
-	protected Label label;
+	protected Component label;
 
 	protected WebMarkupContainer componentContainer;
 
 	protected FencedFeedbackPanel helpBlock;
 
-	protected boolean labelHidden = false;
 
-
-	public AbstractFormGroup(String id, IModel<T> model, String label)
+	public AbstractFormGroup(String id, IModel<String> labelModel, IModel<T> model)
 	{
-		this(id, model, new Model<String>(label));
+		this(id, labelModel, model, null);
 	}
 
-	public AbstractFormGroup(String id, IModel<T> model, IModel<String> labelModel)
+	public AbstractFormGroup(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
-		this(id, model, labelModel, null);
-	}
-
-	public AbstractFormGroup(String id, IModel<T> model, IModel<String> labelModel, Class<T> type)
-	{
-		super(id, model);
+		super(id, labelModel, model);
 		this.setOutputMarkupId(true);
 
-		this.labelModel = labelModel;
 		this.type = type;
 
 		/* Initialize form component early, so it is available before onInitialize takes place */
@@ -86,8 +74,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 	protected void onInitialize()
 	{
 		super.onInitialize();
-
-		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
 		this.componentContainer = new WebMarkupContainer("componentContainer");
 		this.label = this.createLabel("label");
@@ -137,20 +123,19 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		}
 	}
 
-	private FormComponentLabel createLabel(String id)
+	@Override
+	protected Component createLabel(String id)
 	{
-		FormComponentLabel label = new FormComponentLabel(id, this.getFormComponent());
-		label.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>() {
+		Component label = super.createLabel(id);
+		label.add(new AttributeModifier("for", new AbstractReadOnlyModel<String>() {
 
 			@Override
-			public CssClass getObject()
+			public String getObject()
 			{
-				if (AbstractFormGroup.this.labelHidden) {
-					return BootstrapCssClass.SR_ONLY;
-				}
-				return null;
+				return AbstractFormGroup.this.getFormComponent().getMarkupId();
 			}
 		}));
+
 		return label;
 	}
 
@@ -198,12 +183,6 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends G
 		this.componentContainer.add(this.formComponent);
 		this.add(this.label);
 		this.componentContainer.add(this.helpBlock);
-	}
-
-	public AbstractFormGroup<T, F> setLabelHidden(boolean labelHidden)
-	{
-		this.labelHidden = labelHidden;
-		return this;
 	}
 
 	protected abstract F createFormComponent(String id);

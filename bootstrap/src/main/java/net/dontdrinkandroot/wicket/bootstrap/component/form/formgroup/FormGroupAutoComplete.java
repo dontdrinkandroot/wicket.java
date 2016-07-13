@@ -14,9 +14,9 @@ public abstract class FormGroupAutoComplete extends AbstractFormGroup<String, Te
 	private AutoCompleteTextField autoCompleteTextField;
 
 
-	public FormGroupAutoComplete(String id, IModel<String> model, IModel<String> labelModel)
+	public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

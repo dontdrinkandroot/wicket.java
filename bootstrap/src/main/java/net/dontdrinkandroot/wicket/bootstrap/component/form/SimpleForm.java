@@ -3,10 +3,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form;
 import org.apache.wicket.Component;
 import org.apache.wicket.IQueueRegion;
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.IMarkupFragment;
-import org.apache.wicket.markup.html.MarkupUtil;
 import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -68,25 +65,6 @@ public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
 	protected IMarkupSourcingStrategy newMarkupSourcingStrategy()
 	{
 		return new PanelMarkupSourcingStrategy(false);
-	}
-
-	/**
-	 * Returns the markup inside &lt;wicket:panel&gt; tag. If such tag is not found, all the markup is returned.
-	 *
-	 * @see IQueueRegion#getRegionMarkup()
-	 */
-	@Override
-	public IMarkupFragment getRegionMarkup()
-	{
-		IMarkupFragment markup = super.getRegionMarkup();
-
-		if (markup == null) {
-			return markup;
-		}
-
-		IMarkupFragment panelMarkup = MarkupUtil.findStartTag(markup, Panel.PANEL);
-
-		return panelMarkup != null ? panelMarkup : markup;
 	}
 
 	@Override

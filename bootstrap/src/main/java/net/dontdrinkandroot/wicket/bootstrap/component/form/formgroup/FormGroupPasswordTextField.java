@@ -27,7 +27,7 @@ public class FormGroupPasswordTextField extends AbstractFormGroupTextField<Strin
 
 	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)
 	{
-		super(id, model, labelModel);
+		super(id, labelModel, model);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import org.apache.wicket.util.time.Duration;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupPasswordTextField;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
@@ -35,11 +36,12 @@ public abstract class FormPage extends DecoratorPage<Void>
 
 	protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)
 	{
-		formGroupView.add(
-				new FormGroupStatic(
-						formGroupView.newChildId(),
-						Model.of(FormGroupStatic.class.getSimpleName()),
-						Model.of("A static label")));
+		FormGroupStatic formGroupStatic = new FormGroupStatic(
+				formGroupView.newChildId(),
+				Model.of(FormGroupStatic.class.getSimpleName()),
+				Model.of("A static label"));
+		formGroupView.add(formGroupStatic);
+
 		FormGroupTextField<String> formGroupTextField = new FormGroupTextField<String>(
 				formGroupView.newChildId(),
 				Model.of(FormGroupTextField.class.getSimpleName()),
@@ -48,18 +50,27 @@ public abstract class FormPage extends DecoratorPage<Void>
 		formGroupTextField.addOnlineValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
 		formGroupTextField.setHelpTextModel(Model.of("A help text"));
 		formGroupView.add(formGroupTextField);
-		formGroupView.add(
-				new FormGroupPasswordTextField(
-						formGroupView.newChildId(),
-						Model.of(FormGroupPasswordTextField.class.getSimpleName()),
-						Model.of("")));
+
+		FormGroupPasswordTextField formGroupPasswordTextField = new FormGroupPasswordTextField(
+				formGroupView.newChildId(),
+				Model.of(FormGroupPasswordTextField.class.getSimpleName()),
+				Model.of(""));
+		formGroupView.add(formGroupPasswordTextField);
+
 		FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<String>(
 				formGroupView.newChildId(),
 				Model.of(FormGroupTextArea.class.getSimpleName()),
 				Model.of(""));
 		formGroupTextArea.setRequired(true);
 		formGroupView.add(formGroupTextArea);
-		formGroupView.add(new FormGroupActions<Void>(formGroupView.newChildId()) {
+
+		FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
+				formGroupView.newChildId(),
+				Model.of(FormGroupCheckBox.class.getSimpleName()),
+				new Model<Boolean>());
+		formGroupView.add(formGroupCheckBox);
+
+		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId()) {
 
 			@Override
 			protected void populateActions(RepeatingView actionView)
@@ -77,6 +88,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 				submitButton.setButtonStyle(ButtonStyle.PRIMARY);
 				actionView.add(submitButton);
 			}
-		});
+		};
+		formGroupView.add(formGroupActions);
 	}
 }

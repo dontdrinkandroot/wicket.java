@@ -32,9 +32,9 @@ public class FormGroupDateTimePicker extends AbstractFormGroup<Date, DateTimePic
 	private final int minYear;
 
 
-	public FormGroupDateTimePicker(String id, IModel<Date> model, String label, int minYear, int maxYear)
+	public FormGroupDateTimePicker(String id, IModel<String> labelModel, IModel<Date> model, int minYear, int maxYear)
 	{
-		super(id, model, label);
+		super(id, labelModel, model);
 		this.minYear = minYear;
 		this.maxYear = maxYear;
 	}
