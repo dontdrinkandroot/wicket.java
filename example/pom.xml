@@ -15,7 +15,6 @@
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
