@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.string.Strings;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
@@ -47,11 +48,25 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		this.add(navBar);
 
 		Label pageHeading = new Label("pageHeading", this.pageHeadingModel);
-		this.add(pageHeading);
 
-		RepeatingView primaryActionView = new RepeatingView("primaryAction");
+		final RepeatingView primaryActionView = new RepeatingView("primaryAction");
 		this.populatePrimaryActions(primaryActionView);
-		this.add(primaryActionView);
+
+		WebMarkupContainer pageHeader = new WebMarkupContainer("pageHeader") {
+
+			@Override
+			protected void onConfigure()
+			{
+				super.onConfigure();
+				boolean hasHeading = (null != StandardBootstrapPage.this.pageHeadingModel)
+						&& !Strings.isEmpty(StandardBootstrapPage.this.pageHeadingModel.getObject());
+				boolean hasPrimaryActions = primaryActionView.size() > 0;
+				this.setVisible(hasHeading || hasPrimaryActions);
+			}
+		};
+		this.add(pageHeader);
+		pageHeader.add(pageHeading);
+		pageHeader.add(primaryActionView);
 
 		this.add(this.createFeedbackPanel("feedback"));
 	}
@@ -112,7 +127,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		return brandLink;
 	}
 
-	protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+	protected void populateNavbarLeftItems(RepeatingView itemView)
 	{
 		/* Overwrite to populate navbar items on left side */
 	}
@@ -125,7 +140,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		return navBarForm;
 	}
 
-	protected void populateNavbarRightItems(RepeatingView navbarLeftItemView)
+	protected void populateNavbarRightItems(RepeatingView itemView)
 	{
 		/* Overwrite to populate navbar items on right side */
 	}

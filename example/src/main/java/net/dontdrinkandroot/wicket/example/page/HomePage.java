@@ -8,15 +8,15 @@ public class HomePage extends DecoratorPage<Void>
 {
 
 	@Override
-	protected IModel<String> createPageTitlePrefixModel()
+	protected IModel<String> createPageTitleModel()
 	{
-		return new Model<String>();
+		return Model.of("wicket.example - Overview");
 	}
 
 	@Override
 	protected IModel<String> createPageHeadingModel()
 	{
-		return Model.of("wicket.example");
+		return null;
 	}
 
 	@Override

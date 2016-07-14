@@ -2,6 +2,7 @@ package net.dontdrinkandroot.wicket.example.page;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
+import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -14,6 +15,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
+import net.dontdrinkandroot.wicket.example.ExampleWebSession;
+import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
 import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
 import net.dontdrinkandroot.wicket.example.page.component.ComponentPage;
 import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
@@ -136,9 +139,23 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	}
 
 	@Override
+	protected void populateNavbarRightItems(RepeatingView itemView)
+	{
+		super.populateNavbarRightItems(itemView);
+		itemView.add(new ThemeDropDownItem(itemView.newChildId()));
+
+	}
+
+	@Override
 	public void renderHead(IHeaderResponse response)
 	{
-		super.renderHead(response);
-		response.render(new CssContentHeaderItem("body{padding-top: 50px;}", "bodyPadding", null));
+		response.render(this.getBootstrapJavaScriptHeaderItem());
+		response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentThemeUrl(), null, null));
+		response.render(
+				new CssUrlReferenceHeaderItem(
+						"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css",
+						null,
+						null));
+		response.render(new CssContentHeaderItem("body{padding-top: 70px;}", "bodyPadding", null));
 	}
 }

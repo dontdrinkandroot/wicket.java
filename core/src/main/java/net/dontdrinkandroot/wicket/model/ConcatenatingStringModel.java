@@ -35,13 +35,16 @@ public class ConcatenatingStringModel extends AbstractChainedModel<String, Strin
 	public String getObject()
 	{
 		String prefix = this.getParentObject();
+		if (null == this.suffixModel) {
+			return prefix;
+		}
 		String suffix = this.suffixModel.getObject();
 
 		StringBuffer concatenatedString = new StringBuffer();
 		if (null != prefix) {
 			concatenatedString.append(prefix);
 		}
-		if (null != this.separator && null != prefix && null != suffix) {
+		if ((null != this.separator) && (null != prefix) && (null != suffix)) {
 			concatenatedString.append(this.separator);
 		}
 		if (null != suffix) {
