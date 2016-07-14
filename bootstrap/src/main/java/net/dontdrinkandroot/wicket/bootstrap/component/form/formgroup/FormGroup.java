@@ -48,6 +48,7 @@ public class FormGroup<T> extends GenericPanel<T>
 	{
 		super.onInitialize();
 
+		this.setOutputMarkupId(true);
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
 
 		this.createComponents();

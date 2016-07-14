@@ -17,12 +17,14 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupPasswordTextField;
 
-public class FormGroupPasswordTextField extends AbstractFormGroupTextField<String, PasswordTextField>
+
+public class FormGroupPasswordTextField extends FormGroupInput<String, PasswordTextField, InputGroupPasswordTextField>
 {
 
 	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -31,10 +33,9 @@ public class FormGroupPasswordTextField extends AbstractFormGroupTextField<Strin
 	}
 
 	@Override
-	protected PasswordTextField createFormComponent(String id)
+	protected InputGroup<String, PasswordTextField> createInputGroup(String id)
 	{
-		PasswordTextField passwordField = new PasswordTextField(id, this.getModel());
-		passwordField.add(new HTML5Attributes());
-		return passwordField;
+		return new InputGroupPasswordTextField(id, this.getModel());
 	}
+
 }

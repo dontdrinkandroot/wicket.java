@@ -17,18 +17,23 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
 
 
-public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, CheckBox>
+public class FormGroupCheckBox extends FormGroupNonInput<Boolean, CheckBox>
 {
 
 	private WebMarkupContainer offset;
+
+	private WebMarkupContainer labelWrapper;
 
 
 	public FormGroupCheckBox(String id, IModel<String> labelModel, IModel<Boolean> model)
@@ -53,6 +58,8 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, CheckBox>
 	protected void createComponents()
 	{
 		super.createComponents();
+		this.labelWrapper = new WebMarkupContainer("labelWrapper");
+		this.labelWrapper.add(new ForComponentIdBehavior(this.getFormComponent()));
 		this.offset = new WebMarkupContainer("offset");
 	}
 
@@ -61,9 +68,17 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, CheckBox>
 	{
 		this.add(this.offset);
 		this.add(this.container);
+		this.container.add(this.labelWrapper);
 		this.container.add(this.helpBlock);
-		this.container.add(this.label);
-		this.container.add(this.formComponent);
+		this.labelWrapper.add(this.label);
+		this.labelWrapper.add(this.formComponent);
+	}
+
+	@Override
+	protected Component createLabel(String id)
+	{
+		Label label = new Label(id, this.labelModel);
+		return label;
 	}
 
 	@Override

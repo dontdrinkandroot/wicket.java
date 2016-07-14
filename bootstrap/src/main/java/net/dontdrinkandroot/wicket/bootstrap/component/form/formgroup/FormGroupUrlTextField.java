@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.UrlTextField;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupUrlTextField extends AbstractFormGroupTextField<String, UrlTextField>
+public class FormGroupUrlTextField extends FormGroupNonInput<String, UrlTextField>
 {
 
 	public FormGroupUrlTextField(String id, IModel<String> labelModel, IModel<String> model)

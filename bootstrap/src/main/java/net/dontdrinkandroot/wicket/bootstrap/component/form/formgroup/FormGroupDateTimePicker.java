@@ -24,7 +24,7 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.DateTimePicker;
 
 
-public class FormGroupDateTimePicker extends FormGroupFormComponent<Date, DateTimePicker>
+public class FormGroupDateTimePicker extends FormGroupNonInput<Date, DateTimePicker>
 {
 
 	private final int maxYear;

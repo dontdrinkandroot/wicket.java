@@ -15,7 +15,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupC
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupPasswordTextField;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextFieldString;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
@@ -43,9 +43,9 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of("A static label"));
 		formGroupView.add(formGroupStatic);
 
-		FormGroupTextField<String> formGroupTextField = new FormGroupTextField<String>(
+		FormGroupTextFieldString formGroupTextField = new FormGroupTextFieldString(
 				formGroupView.newChildId(),
-				Model.of(FormGroupTextField.class.getSimpleName()),
+				Model.of(FormGroupTextFieldString.class.getSimpleName()),
 				Model.of(""));
 		formGroupTextField.getFormComponent().setRequired(true);
 		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));

@@ -37,10 +37,6 @@ public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> exte
 
 	protected IModel<String> helpTextModel;
 
-	protected F formComponent;
-
-	protected Class<T> type = null;
-
 	protected FencedFeedbackPanel helpBlock;
 
 
@@ -52,14 +48,6 @@ public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> exte
 	public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
 		super(id, labelModel, model);
-		this.setOutputMarkupId(true);
-
-		this.type = type;
-
-		/* Initialize form component early, so it is available before onInitialize takes place */
-		this.formComponent = this.createFormComponent("formComponent");
-		this.formComponent.setOutputMarkupId(true);
-		this.formComponent.setLabel(this.labelModel);
 	}
 
 	@Override
@@ -109,7 +97,6 @@ public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> exte
 	{
 		super.addComponents();
 		this.container.add(this.helpBlock);
-		this.container.add(this.formComponent);
 	}
 
 	@Override
@@ -119,11 +106,6 @@ public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> exte
 		label.add(new ForComponentIdBehavior(this.getFormComponent()));
 
 		return label;
-	}
-
-	public F getFormComponent()
-	{
-		return this.formComponent;
 	}
 
 	public void setRequired(boolean required)
@@ -151,5 +133,6 @@ public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> exte
 		this.getFormComponent().add(new FormGroupOnlineValidationBehavior(eventName, this, throttlingSettings));
 	}
 
-	protected abstract F createFormComponent(String id);
+	public abstract F getFormComponent();
+
 }
