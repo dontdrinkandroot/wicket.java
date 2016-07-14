@@ -12,7 +12,7 @@ import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 public class FormStyleBehavior extends Behavior
 {
 
-	private ColumnSize labelSize;
+	private ColumnSize containerSize;
 
 	private boolean inline = false;
 
@@ -46,31 +46,34 @@ public class FormStyleBehavior extends Behavior
 
 	public boolean isHorizontal()
 	{
-		return null != this.labelSize;
+		return null != this.containerSize;
 	}
 
-	public FormStyleBehavior setHorizontal(ColumnSize labelSize)
+	/**
+	 * Apply horizontal style to form. Specify the ColumnSize for the container component, the ColumnSize for the label
+	 * component will be computed.
+	 */
+	public FormStyleBehavior setHorizontal(ColumnSize containerSize)
 	{
 		this.inline = false;
-		this.labelSize = labelSize;
+		this.containerSize = containerSize;
 		return this;
 	}
 
 	public FormStyleBehavior setInline(boolean inline)
 	{
 		this.inline = inline;
-		this.labelSize = null;
+		this.containerSize = null;
 		return this;
 	}
 
 	public ColumnSize getLabelSize()
 	{
-		return this.labelSize;
+		return this.containerSize.getInverseColumnSize();
 	}
 
 	public ColumnSize getContainerSize()
 	{
-		return this.labelSize.getInverseColumnSize();
+		return this.containerSize;
 	}
-
 }
