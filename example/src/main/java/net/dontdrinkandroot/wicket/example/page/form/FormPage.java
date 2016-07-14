@@ -48,7 +48,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of(FormGroupTextField.class.getSimpleName()),
 				Model.of(""));
 		formGroupTextField.getFormComponent().setRequired(true);
-		formGroupTextField.addOnlineValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
 		formGroupTextField.setHelpTextModel(Model.of("A help text"));
 		formGroupView.add(formGroupTextField);
 

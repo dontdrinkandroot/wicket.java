@@ -1,11 +1,11 @@
-package net.dontdrinkandroot.wicket.bootstrap.behavior;
+package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.AbstractFormGroup;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupFormComponent;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.javascript.JQueryScript;
 
@@ -15,10 +15,10 @@ public class FormGroupOnlineValidationBehavior extends AjaxFormComponentUpdating
 
 	private ThrottlingSettings throttlingSettings;
 
-	private AbstractFormGroup<?, ?> formGroup;
+	private FormGroupFormComponent<?, ?> formGroup;
 
 
-	public FormGroupOnlineValidationBehavior(String event, AbstractFormGroup<?, ?> formGroup)
+	public FormGroupOnlineValidationBehavior(String event, FormGroupFormComponent<?, ?> formGroup)
 	{
 		super(event);
 		this.formGroup = formGroup;
@@ -26,7 +26,7 @@ public class FormGroupOnlineValidationBehavior extends AjaxFormComponentUpdating
 
 	public FormGroupOnlineValidationBehavior(
 			String event,
-			AbstractFormGroup<?, ?> formGroup,
+			FormGroupFormComponent<?, ?> formGroup,
 			ThrottlingSettings throttlingSettings)
 	{
 		super(event);

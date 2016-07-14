@@ -21,11 +21,11 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
 
 
-public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
+public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, CheckBox>
 {
 
 	private WebMarkupContainer offset;
@@ -45,27 +45,31 @@ public class FormGroupCheckBox extends AbstractFormGroup<Boolean, CheckBox>
 	@Override
 	protected void onInitialize()
 	{
-		this.offset = new WebMarkupContainer("offset");
+
 		super.onInitialize();
 	}
 
 	@Override
-	protected void applyComponentAdd()
+	protected void createComponents()
 	{
-		this.add(this.componentContainer);
-		this.componentContainer.add(this.formComponent);
-		this.componentContainer.add(this.label);
-		this.componentContainer.add(this.helpBlock);
-		this.add(this.offset);
+		super.createComponents();
+		this.offset = new WebMarkupContainer("offset");
 	}
 
 	@Override
-	protected void applyHorizontalStyleIfSet(BootstrapForm<?> form)
+	protected void addComponents()
 	{
-		if ((null != form.getLabelColumnSize()) && (null != form.getFormComponentColumnSize())) {
-			this.offset.add(new CssClassAppender(form.getLabelColumnSize()));
-			this.componentContainer.add(new CssClassAppender(form.getFormComponentColumnSize()));
-		}
+		this.add(this.offset);
+		this.add(this.container);
+		this.container.add(this.helpBlock);
+		this.container.add(this.label);
+		this.container.add(this.formComponent);
 	}
 
+	@Override
+	protected void addBehaviors()
+	{
+		this.offset.add(new FormLabelSizeBehavior());
+		this.container.add(new FormContainerSizeBehavior());
+	}
 }

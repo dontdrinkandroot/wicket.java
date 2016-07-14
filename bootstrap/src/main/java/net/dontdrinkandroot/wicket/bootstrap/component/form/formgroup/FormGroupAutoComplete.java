@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.AutoCompleteTextField;
 
 
-public abstract class FormGroupAutoComplete extends AbstractFormGroup<String, TextField<String>>
+public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, TextField<String>>
 {
 
 	private AutoCompleteTextField autoCompleteTextField;
@@ -31,15 +31,6 @@ public abstract class FormGroupAutoComplete extends AbstractFormGroup<String, Te
 			}
 		};
 		return this.autoCompleteTextField.getTextField();
-	}
-
-	@Override
-	protected void applyComponentAdd()
-	{
-		this.add(this.componentContainer);
-		this.componentContainer.add(this.autoCompleteTextField);
-		this.add(this.label);
-		this.componentContainer.add(this.helpBlock);
 	}
 
 	protected abstract List<String> getChoices(String input);

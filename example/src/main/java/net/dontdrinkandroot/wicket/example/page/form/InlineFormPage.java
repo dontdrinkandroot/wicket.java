@@ -7,13 +7,12 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeMedium;
 
 
-public class HorizontalFormPage extends FormPage
+public class InlineFormPage extends FormPage
 {
 
-	public HorizontalFormPage(PageParameters parameters)
+	public InlineFormPage(PageParameters parameters)
 	{
 		super(parameters);
 	}
@@ -21,7 +20,7 @@ public class HorizontalFormPage extends FormPage
 	@Override
 	protected IModel<String> createPageHeadingModel()
 	{
-		return Model.of("Hoirzontal Form");
+		return Model.of("Inline Form");
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class HorizontalFormPage extends FormPage
 		super.onInitialize();
 
 		Form<Void> form = new Form<Void>("form");
-		form.add(new FormStyleBehavior().setHorizontal(ColumnSizeMedium.SIZE_4));
+		form.add(new FormStyleBehavior().setInline(true));
 		this.add(form);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");

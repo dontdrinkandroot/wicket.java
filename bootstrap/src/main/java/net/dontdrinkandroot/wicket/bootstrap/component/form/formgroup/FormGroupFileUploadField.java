@@ -24,7 +24,7 @@ import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupFileUploadField extends AbstractFormGroup<List<FileUpload>, FileUploadField>
+public class FormGroupFileUploadField extends FormGroupFormComponent<List<FileUpload>, FileUploadField>
 {
 
 	public FormGroupFileUploadField(String id, IModel<String> labelModel, IModel<List<FileUpload>> model)

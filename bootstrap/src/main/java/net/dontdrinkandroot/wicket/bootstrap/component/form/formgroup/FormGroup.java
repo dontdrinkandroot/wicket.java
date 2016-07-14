@@ -4,12 +4,14 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
+import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 
 
 public class FormGroup<T> extends GenericPanel<T>
@@ -17,7 +19,11 @@ public class FormGroup<T> extends GenericPanel<T>
 
 	protected IModel<String> labelModel;
 
-	private boolean labelScreenReaderOnly = false;
+	private IModel<Boolean> labelScreenReaderOnlyModel = Model.of(false);
+
+	protected Component label;
+
+	protected WebMarkupContainer container;
 
 
 	public FormGroup(String id)
@@ -43,23 +49,37 @@ public class FormGroup<T> extends GenericPanel<T>
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
+
+		this.createComponents();
+		this.addComponents();
+		this.addBehaviors();
+	}
+
+	protected void createComponents()
+	{
+		this.label = this.createLabel("label");
+		this.container = new WebMarkupContainer("container");
+	}
+
+	protected void addComponents()
+	{
+		this.add(this.label);
+		this.add(this.container);
+	}
+
+	protected void addBehaviors()
+	{
+		this.label.add(new FormLabelSizeBehavior());
+		this.container.add(new FormContainerSizeBehavior());
 	}
 
 	protected Component createLabel(String id)
 	{
 		Label label = new Label(id, this.labelModel);
-		label.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>() {
-
-			@Override
-			public CssClass getObject()
-			{
-				if (FormGroup.this.labelScreenReaderOnly) {
-					return BootstrapCssClass.SR_ONLY;
-				}
-				return null;
-			}
-		}));
-
+		label.add(
+				new CssClassAppender(
+						new CssClassToggleModel(this.labelScreenReaderOnlyModel, BootstrapCssClass.SR_ONLY)));
+		label.add(new CssClassAppender(BootstrapCssClass.CONTROL_LABEL));
 		return label;
 	}
 
@@ -70,7 +90,7 @@ public class FormGroup<T> extends GenericPanel<T>
 
 	public FormGroup<T> setLabelScreenReaderOnly(boolean labelScreenReaderOnly)
 	{
-		this.labelScreenReaderOnly = labelScreenReaderOnly;
+		this.labelScreenReaderOnlyModel.setObject(labelScreenReaderOnly);
 		return this;
 	}
 }

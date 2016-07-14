@@ -24,7 +24,7 @@ import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupSelect<T> extends AbstractFormGroup<T, DropDownChoice<T>>
+public class FormGroupSelect<T> extends FormGroupFormComponent<T, DropDownChoice<T>>
 {
 
 	protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model)

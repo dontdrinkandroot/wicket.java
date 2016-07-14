@@ -17,24 +17,14 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.WicketRuntimeException;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-
-public class FormGroupActions<T> extends GenericPanel<T>
+public class FormGroupActions<T> extends FormGroup<T>
 {
 
-	private WebMarkupContainer spaceHolder;
-
-	private WebMarkupContainer actionContainer;
+	private RepeatingView actionView;
 
 
 	public FormGroupActions(String id)
@@ -42,49 +32,33 @@ public class FormGroupActions<T> extends GenericPanel<T>
 		super(id);
 	}
 
-	public FormGroupActions(String id, IModel<T> model)
+	public FormGroupActions(String id, IModel<String> labelModel)
 	{
-		super(id, model);
+		super(id, labelModel);
+	}
+
+	public FormGroupActions(String id, IModel<String> labelModel, IModel<T> model)
+	{
+		super(id, labelModel, model);
 	}
 
 	@Override
-	protected void onInitialize()
+	protected void createComponents()
 	{
-		super.onInitialize();
+		super.createComponents();
+		this.actionView = new RepeatingView("action");
+		this.populateActions(this.actionView);
+	}
 
-		this.add(new CssClassAppender(BootstrapCssClass.FORM_GROUP));
-		this.spaceHolder = new WebMarkupContainer("spaceHolder");
-		this.add(this.spaceHolder);
-
-		this.actionContainer = new WebMarkupContainer("actionContainer");
-		this.add(this.actionContainer);
-
-		RepeatingView actionView = new RepeatingView("action");
-		this.populateActions(actionView);
-		this.actionContainer.add(actionView);
-
-		Form<?> form = this.getForm();
-		if (form instanceof BootstrapForm<?>) {
-			BootstrapForm<?> bootstrapForm = (BootstrapForm<?>) form;
-			if ((null != bootstrapForm.getLabelColumnSize()) && (null != bootstrapForm.getFormComponentColumnSize())) {
-				this.spaceHolder.add(new CssClassAppender(bootstrapForm.getLabelColumnSize()));
-				this.actionContainer.add(new CssClassAppender(bootstrapForm.getFormComponentColumnSize()));
-			}
-		}
+	@Override
+	protected void addComponents()
+	{
+		super.addComponents();
+		this.container.add(this.actionView);
 	}
 
 	protected void populateActions(RepeatingView actionView)
 	{
 		/* Hook */
 	}
-
-	public Form<?> getForm()
-	{
-		Form<?> form = Form.findForm(this);
-		if (form == null) {
-			throw new WicketRuntimeException("Could not find Form parent for " + this);
-		}
-		return form;
-	}
-
 }

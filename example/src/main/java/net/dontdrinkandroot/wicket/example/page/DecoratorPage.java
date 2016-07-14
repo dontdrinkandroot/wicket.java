@@ -23,6 +23,7 @@ import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
 import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
 import net.dontdrinkandroot.wicket.example.page.form.FormPage;
 import net.dontdrinkandroot.wicket.example.page.form.HorizontalFormPage;
+import net.dontdrinkandroot.wicket.example.page.form.InlineFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.StandardFormPage;
 
 
@@ -118,6 +119,12 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 								itemView.newChildId(),
 								Model.of("Horizontal Form"),
 								HorizontalFormPage.class));
+
+				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Inline Form"),
+								InlineFormPage.class));
 			}
 
 			@Override

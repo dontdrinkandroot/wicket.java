@@ -3,6 +3,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form;
 import org.apache.wicket.Component;
 import org.apache.wicket.IQueueRegion;
 import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -12,7 +13,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 
 
-public class SimpleForm<T> extends BootstrapForm<T> implements IQueueRegion
+public class SimpleForm<T> extends Form<T> implements IQueueRegion
 {
 
 	private FeedbackPanel feedbackPanel;

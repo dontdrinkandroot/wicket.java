@@ -17,26 +17,22 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.feedback.FeedbackMessage;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.string.Strings;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.FormGroupOnlineValidationBehavior;
+import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupOnlineValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.BootstrapForm;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends FormGroup<T>
+public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> extends FormGroup<T>
 {
 
 	protected IModel<String> helpTextModel;
@@ -45,19 +41,15 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends F
 
 	protected Class<T> type = null;
 
-	protected Component label;
-
-	protected WebMarkupContainer componentContainer;
-
 	protected FencedFeedbackPanel helpBlock;
 
 
-	public AbstractFormGroup(String id, IModel<String> labelModel, IModel<T> model)
+	public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model)
 	{
 		this(id, labelModel, model, null);
 	}
 
-	public AbstractFormGroup(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
+	public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
 	{
 		super(id, labelModel, model);
 		this.setOutputMarkupId(true);
@@ -71,12 +63,9 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends F
 	}
 
 	@Override
-	protected void onInitialize()
+	protected void createComponents()
 	{
-		super.onInitialize();
-
-		this.componentContainer = new WebMarkupContainer("componentContainer");
-		this.label = this.createLabel("label");
+		super.createComponents();
 		this.helpBlock = new FencedFeedbackPanel("helpBlock", this) {
 
 			@Override
@@ -89,10 +78,10 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends F
 			protected void onConfigure()
 			{
 				super.onConfigure();
-				boolean helpTextSet = (null != AbstractFormGroup.this.helpTextModel)
-						&& !Strings.isEmpty(AbstractFormGroup.this.helpTextModel.getObject());
+				boolean helpTextSet = (null != FormGroupFormComponent.this.helpTextModel)
+						&& !Strings.isEmpty(FormGroupFormComponent.this.helpTextModel.getObject());
 				if (helpTextSet) {
-					this.info(AbstractFormGroup.this.helpTextModel.getObject());
+					this.info(FormGroupFormComponent.this.helpTextModel.getObject());
 				}
 
 				this.setOutputMarkupPlaceholderTag(this.getCurrentMessages().size() == 0);
@@ -106,35 +95,28 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends F
 			@Override
 			public BootstrapCssClass getObject()
 			{
-				if (!AbstractFormGroup.this.getFormComponent().isValid()) {
+				if (!FormGroupFormComponent.this.getFormComponent().isValid()) {
 					return super.getObject();
 				}
 
 				return null;
 			}
 		}));
+	}
 
-		this.applyComponentAdd();
-
-		/* Apply horizontal style if requested */
-		Form<?> form = this.getFormComponent().getForm();
-		if (form instanceof BootstrapForm<?>) {
-			this.applyHorizontalStyleIfSet((BootstrapForm<?>) form);
-		}
+	@Override
+	protected void addComponents()
+	{
+		super.addComponents();
+		this.container.add(this.helpBlock);
+		this.container.add(this.formComponent);
 	}
 
 	@Override
 	protected Component createLabel(String id)
 	{
 		Component label = super.createLabel(id);
-		label.add(new AttributeModifier("for", new AbstractReadOnlyModel<String>() {
-
-			@Override
-			public String getObject()
-			{
-				return AbstractFormGroup.this.getFormComponent().getMarkupId();
-			}
-		}));
+		label.add(new ForComponentIdBehavior(this.getFormComponent()));
 
 		return label;
 	}
@@ -159,30 +141,14 @@ public abstract class AbstractFormGroup<T, F extends FormComponent<T>> extends F
 		return this.helpBlock;
 	}
 
-	public void addOnlineValidation(String eventName)
+	public void addAjaxValidation(String eventName)
 	{
-		this.addOnlineValidation(eventName, null);
+		this.addAjaxValidation(eventName, null);
 	}
 
-	public void addOnlineValidation(String eventName, final ThrottlingSettings throttlingSettings)
+	public void addAjaxValidation(String eventName, final ThrottlingSettings throttlingSettings)
 	{
 		this.getFormComponent().add(new FormGroupOnlineValidationBehavior(eventName, this, throttlingSettings));
-	}
-
-	protected void applyHorizontalStyleIfSet(BootstrapForm<?> form)
-	{
-		if ((null != form.getLabelColumnSize()) && (null != form.getFormComponentColumnSize())) {
-			this.label.add(new CssClassAppender(form.getLabelColumnSize()));
-			this.componentContainer.add(new CssClassAppender(form.getFormComponentColumnSize()));
-		}
-	}
-
-	protected void applyComponentAdd()
-	{
-		this.add(this.componentContainer);
-		this.componentContainer.add(this.formComponent);
-		this.add(this.label);
-		this.componentContainer.add(this.helpBlock);
 	}
 
 	protected abstract F createFormComponent(String id);

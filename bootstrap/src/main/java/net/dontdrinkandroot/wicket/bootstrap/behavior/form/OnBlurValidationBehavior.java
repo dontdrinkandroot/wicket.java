@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.behavior;
+package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
