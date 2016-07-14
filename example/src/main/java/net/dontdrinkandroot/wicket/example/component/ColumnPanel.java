@@ -43,11 +43,16 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
 				left.add(new CssClassAppender(columnSize));
 				item.add(left);
 
+				ColumnSize inverseColumnSize = columnSize.getInverseColumnSize();
 				WebMarkupContainer right = new WebMarkupContainer("right");
 				this.add(right);
-				Label rightLabel = new Label("label", Model.of(columnSize.getInverseColumnSize().getClassString()));
+				Label rightLabel = new Label(
+						"label",
+						Model.of(null == inverseColumnSize ? null : inverseColumnSize.getClassString()));
 				right.add(rightLabel);
-				right.add(new CssClassAppender(columnSize.getInverseColumnSize()));
+				if (null != inverseColumnSize) {
+					right.add(new CssClassAppender(inverseColumnSize));
+				}
 				item.add(right);
 			}
 		};

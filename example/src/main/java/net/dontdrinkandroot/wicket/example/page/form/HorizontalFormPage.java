@@ -30,7 +30,7 @@ public class HorizontalFormPage extends FormPage
 		super.onInitialize();
 
 		Form<Void> form = new Form<Void>("form");
-		form.add(new FormStyleBehavior().setHorizontal(ColumnSizeMedium.SIZE_4));
+		form.add(new FormStyleBehavior().setHorizontal(ColumnSizeMedium.COLUMNS_4));
 		this.add(form);
 
 		RepeatingView formGroupView = new RepeatingView("formGroup");

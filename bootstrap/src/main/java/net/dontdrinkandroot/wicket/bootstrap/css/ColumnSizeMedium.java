@@ -20,17 +20,18 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 public enum ColumnSizeMedium implements ColumnSize
 {
 
-	SIZE_1,
-	SIZE_2,
-	SIZE_3,
-	SIZE_4,
-	SIZE_5,
-	SIZE_6,
-	SIZE_7,
-	SIZE_8,
-	SIZE_9,
-	SIZE_10,
-	SIZE_11;
+	COLUMNS_1,
+	COLUMNS_2,
+	COLUMNS_3,
+	COLUMNS_4,
+	COLUMNS_5,
+	COLUMNS_6,
+	COLUMNS_7,
+	COLUMNS_8,
+	COLUMNS_9,
+	COLUMNS_10,
+	COLUMNS_11,
+	COLUMNS_12;
 
 	private ColumnSizeMedium()
 	{
@@ -45,12 +46,18 @@ public enum ColumnSizeMedium implements ColumnSize
 	@Override
 	public ColumnOffsetMedium getInverseColumnOffset()
 	{
+		if (this.ordinal() >= 11) {
+			return null;
+		}
 		return ColumnOffsetMedium.values()[10 - this.ordinal()];
 	}
 
 	@Override
 	public ColumnSizeMedium getInverseColumnSize()
 	{
+		if (this.ordinal() >= 11) {
+			return null;
+		}
 		return ColumnSizeMedium.values()[10 - this.ordinal()];
 	}
 

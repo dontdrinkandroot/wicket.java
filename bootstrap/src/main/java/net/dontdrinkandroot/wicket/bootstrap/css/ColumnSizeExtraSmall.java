@@ -20,21 +20,18 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 public enum ColumnSizeExtraSmall implements ColumnSize
 {
 
-	SIZE_1,
-	SIZE_2,
-	SIZE_3,
-	SIZE_4,
-	SIZE_5,
-	SIZE_6,
-	SIZE_7,
-	SIZE_8,
-	SIZE_9,
-	SIZE_10,
-	SIZE_11;
-
-	private ColumnSizeExtraSmall()
-	{
-	}
+	COLUMNS_1,
+	COLUMNS_2,
+	COLUMNS_3,
+	COLUMNS_4,
+	COLUMNS_5,
+	COLUMNS_6,
+	COLUMNS_7,
+	COLUMNS_8,
+	COLUMNS_9,
+	COLUMNS_10,
+	COLUMNS_11,
+	COLUMNS_12;
 
 	@Override
 	public String getClassString()
@@ -45,12 +42,18 @@ public enum ColumnSizeExtraSmall implements ColumnSize
 	@Override
 	public ColumnOffsetExtraSmall getInverseColumnOffset()
 	{
+		if (this.ordinal() >= 11) {
+			return null;
+		}
 		return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
 	}
 
 	@Override
 	public ColumnSizeExtraSmall getInverseColumnSize()
 	{
+		if (this.ordinal() >= 11) {
+			return null;
+		}
 		return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
 	}
 

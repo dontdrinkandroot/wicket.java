@@ -20,17 +20,17 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 public enum ColumnOffsetSmall implements ColumnOffset
 {
 
-	OFFSET_1,
-	OFFSET_2,
-	OFFSET_3,
-	OFFSET_4,
-	OFFSET_5,
-	OFFSET_6,
-	OFFSET_7,
-	OFFSET_8,
-	OFFSET_9,
-	OFFSET_10,
-	OFFSET_11;
+	COLUMNS_1,
+	COLUMNS_2,
+	COLUMNS_3,
+	COLUMNS_4,
+	COLUMNS_5,
+	COLUMNS_6,
+	COLUMNS_7,
+	COLUMNS_8,
+	COLUMNS_9,
+	COLUMNS_10,
+	COLUMNS_11;
 
 	private ColumnOffsetSmall()
 	{
