@@ -18,6 +18,23 @@
 			<url>https://sorst.net</url>
 		</developer>
 	</developers>
+	
+	<organization>
+		<name>dontdrinkandroot</name>
+		<url>https://dontdrinkandroot.net</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
 
 	<repositories>
 		<repository>
@@ -27,14 +44,36 @@
 	</repositories>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/dontdrinkandroot/wicket.java.git</developerConnection>
+		<url>git@github.com:dontdrinkandroot/wicket.java.git</url>
+		<connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/dontdrinkandroot/wicket.java.git</developerConnection>
+		<tag>HEAD</tag>
 	</scm>
+
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/dontdrinkandroot/wicket.java/issues</url>
+	</issueManagement>
+
 
 	<properties>
 		<version.org.apache.wicket>7.3.0</version.org.apache.wicket>
 	</properties>
 
 	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			
+		</plugins>
 
 		<!-- Make sure HTML files are also copied from main/java -->
 		<resources>
