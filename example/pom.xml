@@ -11,6 +11,8 @@
 
 	<properties>
 		<version.org.eclipse.jetty.jetty-maven-plugin>9.3.10.v20160621</version.org.eclipse.jetty.jetty-maven-plugin>
+		<version.junit>4.12</version.junit>
+		<version.javax.servlet-api>3.1.0</version.javax.servlet-api>
 	</properties>
 
 	<build>
@@ -29,6 +31,20 @@
 			<groupId>net.dontdrinkandroot</groupId>
 			<artifactId>wicket.bootstrap</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${version.javax.servlet-api}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
