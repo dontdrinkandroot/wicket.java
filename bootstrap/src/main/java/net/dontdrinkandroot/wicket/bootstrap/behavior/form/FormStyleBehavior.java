@@ -5,7 +5,7 @@ import org.apache.wicket.behavior.Behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 
 

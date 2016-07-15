@@ -7,7 +7,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeMedium;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeMedium;
 
 
 public class HorizontalFormPage extends FormPage

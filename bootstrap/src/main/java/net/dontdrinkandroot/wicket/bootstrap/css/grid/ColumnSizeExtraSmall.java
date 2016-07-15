@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.css;
+package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
-public enum ColumnOffsetLarge implements ColumnOffset
+public enum ColumnSizeExtraSmall implements ColumnSize
 {
 
 	COLUMNS_1,
@@ -30,28 +30,31 @@ public enum ColumnOffsetLarge implements ColumnOffset
 	COLUMNS_8,
 	COLUMNS_9,
 	COLUMNS_10,
-	COLUMNS_11;
-
-	private ColumnOffsetLarge()
-	{
-	}
+	COLUMNS_11,
+	COLUMNS_12;
 
 	@Override
 	public String getClassString()
 	{
-		return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
+		return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
 	}
 
 	@Override
-	public ColumnSizeLarge getInverseColumnSize()
+	public ColumnOffsetExtraSmall getInverseColumnOffset()
 	{
-		return ColumnSizeLarge.values()[10 - this.ordinal()];
+		if (this.ordinal() >= 11) {
+			return null;
+		}
+		return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
 	}
 
 	@Override
-	public ColumnOffsetLarge getInverseColumnOffset()
+	public ColumnSizeExtraSmall getInverseColumnSize()
 	{
-		return ColumnOffsetLarge.values()[10 - this.ordinal()];
+		if (this.ordinal() >= 11) {
+			return null;
+		}
+		return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
 	}
 
 	protected String getPrefix()

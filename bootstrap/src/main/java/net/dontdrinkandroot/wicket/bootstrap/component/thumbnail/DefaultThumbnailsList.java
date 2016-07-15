@@ -19,11 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.component.thumbnail;
 
 import java.util.List;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSize;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.model.IModel;
+
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
 
 
 public abstract class DefaultThumbnailsList<T> extends ThumbnailsList<T> {

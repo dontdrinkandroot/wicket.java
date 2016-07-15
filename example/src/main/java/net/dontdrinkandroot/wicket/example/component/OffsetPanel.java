@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnOffset;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffset;
 
 
 public class OffsetPanel extends GenericPanel<Void>

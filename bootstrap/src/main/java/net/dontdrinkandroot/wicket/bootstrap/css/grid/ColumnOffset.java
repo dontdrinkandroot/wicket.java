@@ -15,20 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.item;
+package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public class VerticalDividerItem extends WebMarkupContainer {
+public interface ColumnOffset extends CssClass
+{
 
-	public VerticalDividerItem(String id) {
+	ColumnSize getInverseColumnSize();
 
-		super(id);
-		this.add(new CssClassAppender(BootstrapCssClass.DIVIDER_VERTICAL));
-	}
+	ColumnOffset getInverseColumnOffset();
 
 }

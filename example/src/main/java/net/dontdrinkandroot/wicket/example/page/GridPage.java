@@ -3,14 +3,14 @@ package net.dontdrinkandroot.wicket.example.page;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnOffsetExtraSmall;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnOffsetLarge;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnOffsetMedium;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnOffsetSmall;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeExtraSmall;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeLarge;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeMedium;
-import net.dontdrinkandroot.wicket.bootstrap.css.ColumnSizeSmall;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffsetExtraSmall;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffsetLarge;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffsetMedium;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffsetSmall;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeExtraSmall;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeLarge;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeMedium;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeSmall;
 import net.dontdrinkandroot.wicket.example.component.ColumnPanel;
 import net.dontdrinkandroot.wicket.example.component.OffsetPanel;
 

@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.css;
+package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
 public class ColumnOffsetStack implements ColumnOffset
 {

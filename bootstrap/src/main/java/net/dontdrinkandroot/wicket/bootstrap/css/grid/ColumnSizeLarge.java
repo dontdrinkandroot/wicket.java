@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.css;
+package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
-public enum ColumnSizeMedium implements ColumnSize
+public enum ColumnSizeLarge implements ColumnSize
 {
 
 	COLUMNS_1,
@@ -33,7 +33,7 @@ public enum ColumnSizeMedium implements ColumnSize
 	COLUMNS_11,
 	COLUMNS_12;
 
-	private ColumnSizeMedium()
+	private ColumnSizeLarge()
 	{
 	}
 
@@ -44,25 +44,25 @@ public enum ColumnSizeMedium implements ColumnSize
 	}
 
 	@Override
-	public ColumnOffsetMedium getInverseColumnOffset()
+	public ColumnOffsetLarge getInverseColumnOffset()
 	{
 		if (this.ordinal() >= 11) {
 			return null;
 		}
-		return ColumnOffsetMedium.values()[10 - this.ordinal()];
+		return ColumnOffsetLarge.values()[10 - this.ordinal()];
 	}
 
 	@Override
-	public ColumnSizeMedium getInverseColumnSize()
+	public ColumnSizeLarge getInverseColumnSize()
 	{
 		if (this.ordinal() >= 11) {
 			return null;
 		}
-		return ColumnSizeMedium.values()[10 - this.ordinal()];
+		return ColumnSizeLarge.values()[10 - this.ordinal()];
 	}
 
 	protected String getPrefix()
 	{
-		return "md";
+		return "lg";
 	}
 }
