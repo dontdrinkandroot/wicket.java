@@ -18,7 +18,7 @@
 			<url>https://sorst.net</url>
 		</developer>
 	</developers>
-	
+
 	<organization>
 		<name>dontdrinkandroot</name>
 		<url>https://dontdrinkandroot.net</url>
@@ -55,6 +55,16 @@
 		<url>https://github.com/dontdrinkandroot/wicket.java/issues</url>
 	</issueManagement>
 
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>https://maven.dontdrinkandroot.net/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>https://maven.dontdrinkandroot.net/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<version.org.apache.wicket>7.3.0</version.org.apache.wicket>
@@ -74,7 +84,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 
 		<!-- Make sure HTML files are also copied from main/java -->
