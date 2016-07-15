@@ -64,15 +64,9 @@ public class NavBarPage extends ComponentPage
 			}
 
 			@Override
-			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarRightItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateExampleNavbarLeftCollapseItems(navbarLeftItemView);
-			}
-
-			@Override
-			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
-			{
-				NavBarPage.this.populateExampleNavbarRightCollapseItems(navbarRightItemView);
+				NavBarPage.this.populateNavbarRightItems(itemView);
 			}
 		};
 		this.add(navBarDefault);
@@ -100,15 +94,9 @@ public class NavBarPage extends ComponentPage
 			}
 
 			@Override
-			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarRightItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateExampleNavbarLeftCollapseItems(navbarLeftItemView);
-			}
-
-			@Override
-			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
-			{
-				NavBarPage.this.populateExampleNavbarRightCollapseItems(navbarRightItemView);
+				NavBarPage.this.populateNavbarRightItems(itemView);
 			}
 		};
 		navBarInverse.setStyle(NavBarStyle.INVERSE);
@@ -142,11 +130,6 @@ public class NavBarPage extends ComponentPage
 
 			}
 		});
-
-	}
-
-	protected void populateExampleNavbarLeftCollapseItems(RepeatingView itemView)
-	{
 		itemView.add(new NavBarButtonItem<Void>(itemView.newChildId()) {
 
 			@Override
@@ -155,7 +138,6 @@ public class NavBarPage extends ComponentPage
 				return new BookmarkablePageLink<Void>(id, HomePage.class).setBody(Model.of("Button"));
 			}
 		});
-
 	}
 
 	protected void populateExampleNavbarRightCollapseItems(RepeatingView itemView)

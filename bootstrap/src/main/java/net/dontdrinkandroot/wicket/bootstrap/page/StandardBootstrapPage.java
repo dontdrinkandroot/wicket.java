@@ -106,7 +106,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 			}
 
 			@Override
-			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
 			{
 				StandardBootstrapPage.this.populateNavbarLeftItems(navbarLeftItemView);
 			}
@@ -118,7 +118,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 			}
 
 			@Override
-			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
+			protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
 			{
 				StandardBootstrapPage.this.populateNavbarRightItems(navbarRightItemView);
 			}

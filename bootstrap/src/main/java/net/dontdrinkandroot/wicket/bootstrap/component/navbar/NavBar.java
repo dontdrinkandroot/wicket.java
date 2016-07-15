@@ -54,19 +54,11 @@ public abstract class NavBar extends GenericPanel<Void>
 		this.populateNavbarLeftItems(navBarLeftItemView);
 		this.add(navBarLeftItemView);
 
-		RepeatingView navbarLeftCollapseItemView = new RepeatingView("leftCollapseItem");
-		this.populateNavbarLeftCollapseItems(navbarLeftCollapseItemView);
-		this.add(navbarLeftCollapseItemView);
-
 		this.add(this.createForm("form"));
 
 		RepeatingView navbarRightItemView = new RepeatingView("rightItem");
 		this.populateNavbarRightItems(navbarRightItemView);
 		this.add(navbarRightItemView);
-
-		RepeatingView navbarRightCollapseItemView = new RepeatingView("rightCollapseItem");
-		this.populateNavbarRightCollapseItems(navbarRightCollapseItemView);
-		this.add(navbarRightCollapseItemView);
 	}
 
 	protected Component createBrand(String id)
@@ -100,15 +92,4 @@ public abstract class NavBar extends GenericPanel<Void>
 	{
 		/* Overwrite to add navbar items on the right side */
 	}
-
-	protected void populateNavbarLeftCollapseItems(RepeatingView itemView)
-	{
-		/* Overwrite to add navbar items on the left side */
-	}
-
-	protected void populateNavbarRightCollapseItems(RepeatingView itemView)
-	{
-		/* Overwrite to add navbar items on the right side */
-	}
-
 }
