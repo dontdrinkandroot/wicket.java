@@ -11,6 +11,7 @@
 
 	<properties>
 		<version.org.eclipse.jetty.jetty-maven-plugin>9.3.10.v20160621</version.org.eclipse.jetty.jetty-maven-plugin>
+		<version.org.slf4j>1.7.21</version.org.slf4j>
 		<version.junit>4.12</version.junit>
 		<version.javax.servlet-api>3.1.0</version.javax.servlet-api>
 	</properties>
@@ -31,6 +32,12 @@
 			<groupId>net.dontdrinkandroot</groupId>
 			<artifactId>wicket.bootstrap</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${version.org.slf4j}</version>
 		</dependency>
 
 		<dependency>
