@@ -48,20 +48,28 @@ public abstract class NavBar extends GenericPanel<Void>
 		this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
 		this.add(new CssClassAppender(this.styleModel));
 
-		this.add(this.createBrandLink("brand"));
+		this.add(this.createBrand("brand"));
 
-		RepeatingView navbarLeftItemView = new RepeatingView("navbarLeftItem");
-		this.populateNavbarLeftItems(navbarLeftItemView);
-		this.add(navbarLeftItemView);
+		RepeatingView navBarLeftItemView = new RepeatingView("leftItem");
+		this.populateNavbarLeftItems(navBarLeftItemView);
+		this.add(navBarLeftItemView);
 
-		this.add(this.createNavBarForm("navbarForm"));
+		RepeatingView navbarLeftCollapseItemView = new RepeatingView("leftCollapseItem");
+		this.populateNavbarLeftCollapseItems(navbarLeftCollapseItemView);
+		this.add(navbarLeftCollapseItemView);
 
-		RepeatingView navbarRightItemView = new RepeatingView("navbarRightItem");
+		this.add(this.createForm("form"));
+
+		RepeatingView navbarRightItemView = new RepeatingView("rightItem");
 		this.populateNavbarRightItems(navbarRightItemView);
 		this.add(navbarRightItemView);
+
+		RepeatingView navbarRightCollapseItemView = new RepeatingView("rightCollapseItem");
+		this.populateNavbarRightCollapseItems(navbarRightCollapseItemView);
+		this.add(navbarRightCollapseItemView);
 	}
 
-	protected Component createBrandLink(String id)
+	protected Component createBrand(String id)
 	{
 		WebMarkupContainer brandLink = new WebMarkupContainer(id);
 		brandLink.setVisible(false);
@@ -69,7 +77,7 @@ public abstract class NavBar extends GenericPanel<Void>
 		return brandLink;
 	};
 
-	protected Component createNavBarForm(String id)
+	protected Component createForm(String id)
 	{
 		WebMarkupContainer navbarForm = new WebMarkupContainer(id);
 		navbarForm.setVisible(false);
@@ -77,20 +85,30 @@ public abstract class NavBar extends GenericPanel<Void>
 		return navbarForm;
 	}
 
-	protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
-	{
-		/* Overwrite to add navbar items on the left side */
-	}
-
-	protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
-	{
-		/* Overwrite to add navbar items on the right side */
-	}
-
 	public NavBar setStyle(NavBarStyle style)
 	{
 		this.styleModel.setObject(style);
 		return this;
+	}
+
+	protected void populateNavbarLeftItems(RepeatingView itemView)
+	{
+		/* Overwrite to add navbar items on the left side */
+	}
+
+	protected void populateNavbarRightItems(RepeatingView itemView)
+	{
+		/* Overwrite to add navbar items on the right side */
+	}
+
+	protected void populateNavbarLeftCollapseItems(RepeatingView itemView)
+	{
+		/* Overwrite to add navbar items on the left side */
+	}
+
+	protected void populateNavbarRightCollapseItems(RepeatingView itemView)
+	{
+		/* Overwrite to add navbar items on the right side */
 	}
 
 }

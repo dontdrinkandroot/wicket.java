@@ -44,7 +44,7 @@ public class NavBarPage extends ComponentPage
 		InnerNavBar navBarDefault = new InnerNavBar("navBarDefault") {
 
 			@Override
-			protected Component createBrandLink(String id)
+			protected Component createBrand(String id)
 			{
 				BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<Void>(id, HomePage.class);
 				brandLink.setBody(Model.of("Brand"));
@@ -52,21 +52,27 @@ public class NavBarPage extends ComponentPage
 			}
 
 			@Override
-			protected Component createNavBarForm(String id)
+			protected Component createForm(String id)
 			{
 				return NavBarPage.this.createExampleNavBarForm(id);
 			}
 
 			@Override
-			protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarLeftItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateExampleNavbarLeftItems(navbarLeftItemView);
+				NavBarPage.this.populateNavbarLeftItems(itemView);
 			}
 
 			@Override
-			protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
+			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
 			{
-				NavBarPage.this.populateExampleNavbarRightItems(navbarRightItemView);
+				NavBarPage.this.populateExampleNavbarLeftCollapseItems(navbarLeftItemView);
+			}
+
+			@Override
+			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
+			{
+				NavBarPage.this.populateExampleNavbarRightCollapseItems(navbarRightItemView);
 			}
 		};
 		this.add(navBarDefault);
@@ -74,7 +80,7 @@ public class NavBarPage extends ComponentPage
 		InnerNavBar navBarInverse = new InnerNavBar("navBarInverse") {
 
 			@Override
-			protected Component createBrandLink(String id)
+			protected Component createBrand(String id)
 			{
 				BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<Void>(id, HomePage.class);
 				brandLink.setBody(Model.of("Brand"));
@@ -82,21 +88,27 @@ public class NavBarPage extends ComponentPage
 			}
 
 			@Override
-			protected Component createNavBarForm(String id)
+			protected Component createForm(String id)
 			{
 				return NavBarPage.this.createExampleNavBarForm(id);
 			}
 
 			@Override
-			protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarLeftItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateExampleNavbarLeftItems(navbarLeftItemView);
+				NavBarPage.this.populateNavbarLeftItems(itemView);
 			}
 
 			@Override
-			protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
+			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
 			{
-				NavBarPage.this.populateExampleNavbarRightItems(navbarRightItemView);
+				NavBarPage.this.populateExampleNavbarLeftCollapseItems(navbarLeftItemView);
+			}
+
+			@Override
+			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
+			{
+				NavBarPage.this.populateExampleNavbarRightCollapseItems(navbarRightItemView);
 			}
 		};
 		navBarInverse.setStyle(NavBarStyle.INVERSE);
@@ -111,7 +123,8 @@ public class NavBarPage extends ComponentPage
 		return navBarForm;
 	}
 
-	protected void populateExampleNavbarLeftItems(RepeatingView itemView)
+	@Override
+	protected void populateNavbarLeftItems(RepeatingView itemView)
 	{
 		itemView.add(new DropDownItem(itemView.newChildId(), Model.of("DropDown")) {
 
@@ -129,6 +142,11 @@ public class NavBarPage extends ComponentPage
 
 			}
 		});
+
+	}
+
+	protected void populateExampleNavbarLeftCollapseItems(RepeatingView itemView)
+	{
 		itemView.add(new NavBarButtonItem<Void>(itemView.newChildId()) {
 
 			@Override
@@ -140,7 +158,7 @@ public class NavBarPage extends ComponentPage
 
 	}
 
-	protected void populateExampleNavbarRightItems(RepeatingView itemView)
+	protected void populateExampleNavbarRightCollapseItems(RepeatingView itemView)
 	{
 		itemView.add(new NavBarTextItem(itemView.newChildId(), Model.of("Text")));
 	}

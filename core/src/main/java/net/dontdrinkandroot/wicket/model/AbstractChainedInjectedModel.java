@@ -36,7 +36,9 @@ public abstract class AbstractChainedInjectedModel<P, T> extends AbstractInjecte
 	@Override
 	public void detach()
 	{
-		this.parent.detach();
+		if (null != this.parent) {
+			this.parent.detach();
+		}
 	}
 
 	public IModel<? extends P> getParent()

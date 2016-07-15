@@ -31,7 +31,9 @@ public abstract class AbstractChainedInjectedLoadableDetachableModel<P, T> exten
 	public void detach()
 	{
 		super.detach();
-		this.parentModel.detach();
+		if (null != this.parentModel) {
+			this.parentModel.detach();
+		}
 	}
 
 	@Override

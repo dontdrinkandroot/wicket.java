@@ -8,6 +8,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -21,6 +22,9 @@ import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
 
 public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 {
+
+	private FeedbackPanel feedbackPanel;
+
 
 	public StandardBootstrapPage()
 	{
@@ -68,7 +72,9 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		pageHeader.add(pageHeading);
 		pageHeader.add(primaryActionView);
 
-		this.add(this.createFeedbackPanel("feedback"));
+		this.feedbackPanel = this.createFeedbackPanel("feedback");
+		this.feedbackPanel.setOutputMarkupId(true);
+		this.add(this.feedbackPanel);
 	}
 
 	private Component createModal(String id)
@@ -79,7 +85,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		return modalContainer;
 	}
 
-	protected Component createFeedbackPanel(String id)
+	protected FeedbackPanel createFeedbackPanel(String id)
 	{
 		return new FencedFeedbackPanel(id);
 	}
@@ -94,25 +100,25 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		NavBar navBar = new NavBar(id) {
 
 			@Override
-			protected Component createBrandLink(String id)
+			protected Component createBrand(String id)
 			{
-				return StandardBootstrapPage.this.createBrandLink(id);
+				return StandardBootstrapPage.this.createBrand(id);
 			}
 
 			@Override
-			protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
+			protected void populateNavbarLeftCollapseItems(RepeatingView navbarLeftItemView)
 			{
 				StandardBootstrapPage.this.populateNavbarLeftItems(navbarLeftItemView);
 			}
 
 			@Override
-			protected Component createNavBarForm(String id)
+			protected Component createForm(String id)
 			{
 				return StandardBootstrapPage.this.createNavBarForm(id);
 			}
 
 			@Override
-			protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
+			protected void populateNavbarRightCollapseItems(RepeatingView navbarRightItemView)
 			{
 				StandardBootstrapPage.this.populateNavbarRightItems(navbarRightItemView);
 			}
@@ -120,7 +126,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		return navBar;
 	}
 
-	protected Component createBrandLink(String id)
+	protected Component createBrand(String id)
 	{
 		WebMarkupContainer brandLink = new WebMarkupContainer(id);
 		brandLink.setVisible(false);
@@ -143,6 +149,11 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	protected void populateNavbarRightItems(RepeatingView itemView)
 	{
 		/* Overwrite to populate navbar items on right side */
+	}
+
+	public FeedbackPanel getFeedbackPanel()
+	{
+		return this.feedbackPanel;
 	}
 
 	@Override

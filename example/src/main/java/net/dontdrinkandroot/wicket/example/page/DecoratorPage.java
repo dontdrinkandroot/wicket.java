@@ -18,6 +18,7 @@ import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
 import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
+import net.dontdrinkandroot.wicket.example.page.component.ButtonPage;
 import net.dontdrinkandroot.wicket.example.page.component.ComponentPage;
 import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
 import net.dontdrinkandroot.wicket.example.page.component.LabelPage;
@@ -63,7 +64,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	}
 
 	@Override
-	protected Component createBrandLink(String id)
+	protected Component createBrand(String id)
 	{
 		BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink(id, HomePage.class);
 		brandLink.setBody(Model.of("wicket.example"));
@@ -82,6 +83,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 			@Override
 			protected void populateItems(RepeatingView itemView)
 			{
+				itemView.add(
+						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Buttons"), ButtonPage.class));
 				itemView.add(
 						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Nav Bars"), NavBarPage.class));
 				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Labels"), LabelPage.class));
