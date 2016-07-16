@@ -77,6 +77,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	{
 		super.populateNavbarLeftItems(navbarLeftItemView);
 		navbarLeftItemView.add(
+				new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("CSS"), CssPage.class));
+		navbarLeftItemView.add(
 				new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
 		navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Components")) {
 

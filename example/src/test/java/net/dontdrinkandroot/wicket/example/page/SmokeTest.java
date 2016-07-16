@@ -34,6 +34,7 @@ public class SmokeTest
 	public void homepageRendersSuccessfully()
 	{
 		this.testPage(HomePage.class);
+		this.testPage(CssPage.class);
 		this.testPage(GridPage.class);
 		this.testPage(AlertPage.class);
 		this.testPage(ButtonPage.class);
