@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.AutoCompleteTextField;
 
 
-public abstract class FormGroupAutoComplete extends FormGroupNonInput<String, TextField<String>>
+public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, TextField<String>>
 {
 
 	private AutoCompleteTextField autoCompleteTextField;

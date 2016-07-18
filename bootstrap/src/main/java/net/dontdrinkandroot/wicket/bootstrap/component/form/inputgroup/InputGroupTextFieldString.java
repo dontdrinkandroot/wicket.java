@@ -29,5 +29,4 @@ public class InputGroupTextFieldString extends InputGroup<String, TextField<Stri
 		textField.add(new HTML5Attributes());
 		return textField;
 	}
-
 }

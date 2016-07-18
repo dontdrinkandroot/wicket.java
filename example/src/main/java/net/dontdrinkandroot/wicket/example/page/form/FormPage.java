@@ -1,5 +1,8 @@
 package net.dontdrinkandroot.wicket.example.page.form;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.markup.html.form.Form;
@@ -12,10 +15,14 @@ import org.apache.wicket.util.time.Duration;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupEmailTextField;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupPasswordTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupRadioChoice;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupSelect;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextFieldString;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupUrlTextField;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
@@ -37,6 +44,8 @@ public abstract class FormPage extends DecoratorPage<Void>
 
 	protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)
 	{
+		List<String> choices = Arrays.asList(new String[] { "Apple", "Banana", "Pear" });
+
 		FormGroupStatic formGroupStatic = new FormGroupStatic(
 				formGroupView.newChildId(),
 				Model.of(FormGroupStatic.class.getSimpleName()),
@@ -58,6 +67,18 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of(""));
 		formGroupView.add(formGroupPasswordTextField);
 
+		FormGroupEmailTextField formGroupEmailTextField = new FormGroupEmailTextField(
+				formGroupView.newChildId(),
+				Model.of(FormGroupEmailTextField.class.getSimpleName()),
+				Model.of(""));
+		formGroupView.add(formGroupEmailTextField);
+
+		FormGroupUrlTextField formGroupUrlTextField = new FormGroupUrlTextField(
+				formGroupView.newChildId(),
+				Model.of(FormGroupUrlTextField.class.getSimpleName()),
+				Model.of(""));
+		formGroupView.add(formGroupUrlTextField);
+
 		FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<String>(
 				formGroupView.newChildId(),
 				Model.of(FormGroupTextArea.class.getSimpleName()),
@@ -70,6 +91,22 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of(FormGroupCheckBox.class.getSimpleName()),
 				new Model<Boolean>());
 		formGroupView.add(formGroupCheckBox);
+
+		FormGroupRadioChoice<String> formGroupRadioChoice = new FormGroupRadioChoice<String>(
+				formGroupView.newChildId(),
+				Model.of(FormGroupRadioChoice.class.getSimpleName()),
+				Model.of(""),
+				choices);
+		formGroupView.add(formGroupRadioChoice);
+
+		FormGroupSelect<String> formGroupSelect = new FormGroupSelect<String>(
+				formGroupView.newChildId(),
+				Model.of(FormGroupSelect.class.getSimpleName()),
+				Model.of(""),
+				choices);
+		formGroupSelect.setRequired(false);
+		formGroupSelect.setNullValid(true);
+		formGroupView.add(formGroupSelect);
 
 		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId()) {
 

@@ -24,7 +24,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupPasswordTextField;
 
 
-public class FormGroupPasswordTextField extends FormGroupInput<String, PasswordTextField, InputGroupPasswordTextField>
+public class FormGroupPasswordTextField extends FormGroupInputGroup<String, PasswordTextField, InputGroupPasswordTextField>
 {
 
 	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)

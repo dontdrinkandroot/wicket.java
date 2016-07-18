@@ -11,7 +11,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
  * @deprecated Use the type specific implementations.
  */
 @Deprecated
-public class FormGroupTextField<T> extends FormGroupInput<T, TextField<T>, InputGroupTextField<T>>
+public class FormGroupTextField<T> extends FormGroupInputGroup<T, TextField<T>, InputGroupTextField<T>>
 {
 
 	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model)

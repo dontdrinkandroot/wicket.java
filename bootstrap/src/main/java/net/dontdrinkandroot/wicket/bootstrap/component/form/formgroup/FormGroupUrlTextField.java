@@ -1,12 +1,13 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.markup.html.form.UrlTextField;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupUrlTextField;
 
-public class FormGroupUrlTextField extends FormGroupNonInput<String, UrlTextField>
+
+public class FormGroupUrlTextField extends FormGroupInputGroup<String, UrlTextField, InputGroupUrlTextField>
 {
 
 	public FormGroupUrlTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -15,13 +16,8 @@ public class FormGroupUrlTextField extends FormGroupNonInput<String, UrlTextFiel
 	}
 
 	@Override
-	protected UrlTextField createFormComponent(String id)
+	protected InputGroup<String, UrlTextField> createInputGroup(String id)
 	{
-		UrlTextField urlTextField = new UrlTextField(id, this.getModel());
-		urlTextField.add(new HTML5Attributes());
-		urlTextField.add(new AttributeModifier("type", "url"));
-
-		return urlTextField;
+		return new InputGroupUrlTextField(id, this.getModel());
 	}
-
 }

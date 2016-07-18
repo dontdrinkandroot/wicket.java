@@ -6,14 +6,14 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
 
 
-public abstract class FormGroupInput<T, F extends FormComponent<T>, I extends InputGroup<T, F>>
-		extends FormGroupFormComponent<T, F>
+public abstract class FormGroupInputGroup<T, F extends FormComponent<T>, I extends InputGroup<T, F>>
+		extends FormGroupValidatable<T, F>
 {
 
 	private InputGroup<T, F> inputGroup;
 
 
-	public FormGroupInput(String id, IModel<String> labelModel, IModel<T> model)
+	public FormGroupInputGroup(String id, IModel<String> labelModel, IModel<T> model)
 	{
 		super(id, labelModel, model);
 		this.inputGroup = this.createInputGroup("inputGroup");
