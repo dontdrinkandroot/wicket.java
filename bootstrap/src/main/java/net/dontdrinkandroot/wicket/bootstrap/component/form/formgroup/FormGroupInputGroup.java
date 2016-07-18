@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
@@ -32,6 +33,18 @@ public abstract class FormGroupInputGroup<T, F extends FormComponent<T>, I exten
 	public F getFormComponent()
 	{
 		return this.inputGroup.getFormComponent();
+	}
+
+	public FormGroupInputGroup<T, F, I> setInputGroupAddonBefore(Component component)
+	{
+		this.inputGroup.setInputGroupAddonBefore(component);
+		return this;
+	}
+
+	public FormGroupInputGroup<T, F, I> setInputGroupAddonAfter(Component component)
+	{
+		this.inputGroup.setInputGroupAddonAfter(component);
+		return this;
 	}
 
 	protected abstract InputGroup<T, F> createInputGroup(String id);

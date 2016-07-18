@@ -2,16 +2,29 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import java.util.List;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
+import org.apache.wicket.ajax.attributes.ThrottlingSettings;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.time.Duration;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.AutoCompleteTextField;
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
 public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, TextField<String>>
 {
 
-	private AutoCompleteTextField autoCompleteTextField;
+	private WebMarkupContainer dropDownMenu;
+
+	private ListView<String> suggestionView;
 
 
 	public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model)
@@ -20,17 +33,81 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
 	}
 
 	@Override
-	protected TextField<String> createFormComponent(String id)
+	protected void createComponents()
 	{
-		this.autoCompleteTextField = new AutoCompleteTextField(id, this.getModel()) {
+		super.createComponents();
+
+		this.dropDownMenu = new WebMarkupContainer("dropDownMenu");
+		this.dropDownMenu.setOutputMarkupId(true);
+		this.add(this.dropDownMenu);
+
+		this.suggestionView = new ListView<String>("suggestionItem", new AbstractReadOnlyModel<List<String>>() {
 
 			@Override
-			protected List<String> getChoices(String input)
+			public List<String> getObject()
 			{
-				return FormGroupAutoComplete.this.getChoices(input);
+				return FormGroupAutoComplete.this.getChoices(FormGroupAutoComplete.this.getModelObject());
+			}
+		}) {
+
+			@Override
+			protected void populateItem(ListItem<String> item)
+			{
+				AjaxLink<String> link = new AjaxLink<String>("link", item.getModel()) {
+
+					@Override
+					public void onClick(AjaxRequestTarget target)
+					{
+						FormGroupAutoComplete.this.getModel().setObject(this.getModelObject());
+						target.add(FormGroupAutoComplete.this.formComponent);
+						target.add(FormGroupAutoComplete.this.dropDownMenu);
+					}
+				};
+				link.setBody(link.getModel());
+				item.add(link);
 			}
 		};
-		return this.autoCompleteTextField.getTextField();
+		this.dropDownMenu.add(this.suggestionView);
+	}
+
+	@Override
+	protected void addComponents()
+	{
+		super.addComponents();
+
+		this.container.add(this.dropDownMenu);
+		this.dropDownMenu.add(this.suggestionView);
+	}
+
+	@Override
+	protected void addBehaviors()
+	{
+		super.addBehaviors();
+
+		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
+		this.add(new CssClassAppender("autocomplete"));
+		this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input") {
+
+			@Override
+			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			{
+				super.updateAjaxAttributes(attributes);
+				attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250)));
+			}
+
+			@Override
+			protected void onUpdate(AjaxRequestTarget target)
+			{
+				target.add(FormGroupAutoComplete.this.dropDownMenu);
+			}
+		});
+	}
+
+	@Override
+	protected TextField<String> createFormComponent(String id)
+	{
+		TextField<String> textField = new TextField<String>(id, this.getModel());
+		return textField;
 	}
 
 	protected abstract List<String> getChoices(String input);

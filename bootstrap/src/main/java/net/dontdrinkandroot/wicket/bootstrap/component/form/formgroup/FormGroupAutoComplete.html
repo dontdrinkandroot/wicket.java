@@ -2,7 +2,12 @@
 <html xmlns:wicket>
 <body>
 	<wicket:extend>
-		<div wicket:id="formComponent"></div>
+		<input type="text" wicket:id="formComponent" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" autocomplete="off"/>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu" wicket:id="dropDownMenu">
+			<li wicket:id="suggestionItem">
+				<a wicket:id="link"></a>
+			</li>
+		</ul>
 	</wicket:extend>
 </body>
 </html>

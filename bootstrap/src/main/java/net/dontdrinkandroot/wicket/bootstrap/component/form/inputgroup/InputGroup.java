@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -13,9 +14,15 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 public abstract class InputGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
 {
 
-	private Component inputGroupAddonBefore;
+	public static final String INPUT_GROUP_ADDON_BEFORE_ID = "inputGroupAddonBefore";
 
-	private Component inputGroupAddonAfter;
+	public static final String INPUT_GROUP_ADDON_AFTER_ID = "inputGroupAddonAfter";
+
+	private Component inputGroupAddonBefore =
+			new WebMarkupContainer(InputGroup.INPUT_GROUP_ADDON_BEFORE_ID).setVisible(false);
+
+	private Component inputGroupAddonAfter =
+			new WebMarkupContainer(InputGroup.INPUT_GROUP_ADDON_AFTER_ID).setVisible(false);
 
 	private F formComponent;
 
@@ -38,9 +45,6 @@ public abstract class InputGroup<T, F extends FormComponent<T>> extends GenericP
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.INPUT_GROUP));
-
-		this.inputGroupAddonBefore = this.createInputGroupAddonBefore("inputGroupAddonBefore");
-		this.inputGroupAddonAfter = this.createInputGroupAddonAfter("inputGroupAddonAfter");
 
 		this.add(this.formComponent);
 		this.add(this.inputGroupAddonBefore);
@@ -67,18 +71,24 @@ public abstract class InputGroup<T, F extends FormComponent<T>> extends GenericP
 		return this.formComponent;
 	}
 
-	protected Component createInputGroupAddonBefore(String id)
+	public InputGroup<T, F> setInputGroupAddonBefore(Component component)
 	{
-		WebMarkupContainer inputGroupAddon = new WebMarkupContainer(id);
-		inputGroupAddon.setVisible(false);
-		return inputGroupAddon;
+		if (!InputGroup.INPUT_GROUP_ADDON_BEFORE_ID.equals(component.getId())) {
+			throw new WicketRuntimeException("Component must have id " + InputGroup.INPUT_GROUP_ADDON_BEFORE_ID);
+		}
+		this.inputGroupAddonBefore = component;
+
+		return this;
 	}
 
-	protected Component createInputGroupAddonAfter(String id)
+	public InputGroup<T, F> setInputGroupAddonAfter(Component component)
 	{
-		WebMarkupContainer inputGroupAddon = new WebMarkupContainer(id);
-		inputGroupAddon.setVisible(false);
-		return inputGroupAddon;
+		if (!InputGroup.INPUT_GROUP_ADDON_AFTER_ID.equals(component.getId())) {
+			throw new WicketRuntimeException("Component must have id " + InputGroup.INPUT_GROUP_ADDON_AFTER_ID);
+		}
+		this.inputGroupAddonAfter = component;
+
+		return this;
 	}
 
 	protected abstract F createFormComponent(String id);
