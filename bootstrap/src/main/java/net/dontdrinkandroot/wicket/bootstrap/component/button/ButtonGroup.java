@@ -40,11 +40,11 @@ public abstract class ButtonGroup<T> extends GenericPanel<T> {
 		this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
 
 		RepeatingView buttonView = new RepeatingView("button");
-		this.createButtons(buttonView);
+		this.populateButtons(buttonView);
 		this.add(buttonView);
 	}
 
 
-	protected abstract void createButtons(RepeatingView buttonView);
+	protected abstract void populateButtons(RepeatingView buttonView);
 
 }
