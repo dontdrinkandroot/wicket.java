@@ -29,6 +29,7 @@ import net.dontdrinkandroot.wicket.example.page.form.FormPage;
 import net.dontdrinkandroot.wicket.example.page.form.HorizontalFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.InlineFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.StandardFormPage;
+import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 
 
 public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
@@ -127,12 +128,16 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 								itemView.newChildId(),
 								Model.of("Horizontal Form"),
 								HorizontalFormPage.class));
-
 				itemView.add(
 						new BookmarkablePageLinkItem(
 								itemView.newChildId(),
 								Model.of("Inline Form"),
 								InlineFormPage.class));
+				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Validations"),
+								ValidationPage.class));
 			}
 
 			@Override
