@@ -12,7 +12,7 @@ import org.apache.wicket.model.Model;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 
 
-public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
+public abstract class DisablingSubmitButton extends AjaxSubmitLink
 {
 
 	private ButtonBehavior buttonBehavior = new ButtonBehavior();
@@ -20,12 +20,12 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 	private Model<String> loadingTextModel = new Model<String>("Submitting...");
 
 
-	public DisablingSubmitButtonLink(String id)
+	public DisablingSubmitButton(String id)
 	{
 		super(id);
 	}
 
-	public DisablingSubmitButtonLink(String id, Model<String> loadingTextModel)
+	public DisablingSubmitButton(String id, Model<String> loadingTextModel)
 	{
 		super(id);
 		this.loadingTextModel = loadingTextModel;
@@ -57,15 +57,15 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 			public CharSequence getAfterHandler(Component component)
 			{
 				StringBuffer sb = new StringBuffer();
-				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('loading');");
+				sb.append("$('#" + DisablingSubmitButton.this.getMarkupId() + "').button('loading');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " input').attr('disabled', 'disabled');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " textarea').attr('disabled', 'disabled');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " select').attr('disabled', 'disabled');");
 
 				return sb.toString();
@@ -75,15 +75,15 @@ public abstract class DisablingSubmitButtonLink extends AjaxSubmitLink
 			public CharSequence getCompleteHandler(Component component)
 			{
 				StringBuffer sb = new StringBuffer();
-				sb.append("$('#" + DisablingSubmitButtonLink.this.getMarkupId() + "').button('reset');");
+				sb.append("$('#" + DisablingSubmitButton.this.getMarkupId() + "').button('reset');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " input').removeAttr('disabled');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " textarea').removeAttr('disabled');");
 				sb.append("$('#"
-						+ DisablingSubmitButtonLink.this.getForm().getMarkupId()
+						+ DisablingSubmitButton.this.getForm().getMarkupId()
 						+ " select').removeAttr('disabled');");
 
 				return sb.toString();

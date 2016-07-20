@@ -4,7 +4,7 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.FormModal;
@@ -43,7 +43,7 @@ public class SimpleFormModal extends FormModal<Void>
 	@Override
 	protected void populateFormActions(RepeatingView formActionView)
 	{
-		formActionView.add(new AjaxSubmitButtonLink(formActionView.newChildId(), this.getForm(), Model.of("Submit")) {
+		formActionView.add(new AjaxSubmitButton(formActionView.newChildId(), this.getForm(), Model.of("Submit")) {
 		}.setButtonStyle(ButtonStyle.PRIMARY));
 	}
 

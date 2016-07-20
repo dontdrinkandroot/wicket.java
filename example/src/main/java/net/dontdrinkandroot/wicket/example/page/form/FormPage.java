@@ -12,7 +12,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupEmailTextField;
@@ -113,7 +113,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 			@Override
 			protected void populateActions(RepeatingView actionView)
 			{
-				AjaxSubmitButtonLink submitButton = new AjaxSubmitButtonLink(actionView.newChildId()) {
+				AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId()) {
 
 					@Override
 					protected void onError(AjaxRequestTarget target, Form<?> form)

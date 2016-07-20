@@ -112,7 +112,7 @@ public class ThemeDropDownItem extends DropDownItem
 
 	protected AbstractLinkItem createThemeLinkItem(String id, String name, final String url)
 	{
-		AbstractLinkItem themeLinkItem = new AbstractLinkItem(id, name) {
+		AbstractLinkItem themeLinkItem = new AbstractLinkItem(id, Model.of(name)) {
 
 			@Override
 			protected Component createLink(String id)

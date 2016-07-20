@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.NavBarFormBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
 
 
@@ -27,7 +27,7 @@ public class NavBarForm extends Form<Void>
 				new FormGroupTextField<String>("searchGroup", Model.of("Search"), new Model<String>());
 		searchGroup.setLabelScreenReaderOnly(true);
 		this.add(searchGroup);
-		this.add(new AjaxSubmitButtonLink("submit").setBody(Model.of("Search")));
+		this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));
 	}
 
 	@Override

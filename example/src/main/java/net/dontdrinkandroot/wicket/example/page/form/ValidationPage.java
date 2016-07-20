@@ -12,7 +12,7 @@ import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.ValidationError;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButtonLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextFieldString;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
@@ -70,7 +70,7 @@ public class ValidationPage extends FormPage
 			@Override
 			protected void populateActions(RepeatingView actionView)
 			{
-				AjaxSubmitButtonLink submitButton = new AjaxSubmitButtonLink(actionView.newChildId()) {
+				AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId()) {
 
 					@Override
 					protected void onError(AjaxRequestTarget target, Form<?> form)
