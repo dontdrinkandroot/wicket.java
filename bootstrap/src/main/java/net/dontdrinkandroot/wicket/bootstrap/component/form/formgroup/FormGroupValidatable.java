@@ -29,7 +29,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
 
 
 public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extends FormGroup<T>
@@ -66,7 +66,7 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 			protected void onConfigure()
 			{
 				super.onConfigure();
-				boolean helpTextSet = (null != FormGroupValidatable.this.helpTextModel)
+				boolean helpTextSet = null != FormGroupValidatable.this.helpTextModel
 						&& !Strings.isEmpty(FormGroupValidatable.this.helpTextModel.getObject());
 				if (helpTextSet) {
 					this.info(FormGroupValidatable.this.helpTextModel.getObject());
@@ -78,10 +78,10 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 		};
 		this.helpBlock.setOutputMarkupId(true);
 
-		this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.HAS_ERROR) {
+		this.add(new CssClassAppender(new Model<ValidationState>(ValidationState.ERROR) {
 
 			@Override
-			public BootstrapCssClass getObject()
+			public ValidationState getObject()
 			{
 				if (!FormGroupValidatable.this.getFormComponent().isValid()) {
 					return super.getObject();

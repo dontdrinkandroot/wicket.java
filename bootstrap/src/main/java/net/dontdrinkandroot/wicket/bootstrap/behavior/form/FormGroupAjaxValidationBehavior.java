@@ -6,7 +6,7 @@ import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupValidatable;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
 import net.dontdrinkandroot.wicket.javascript.JQueryScript;
 
 
@@ -38,9 +38,9 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 	protected void onUpdate(AjaxRequestTarget target)
 	{
 		target.appendJavaScript(
-				new JQueryScript(this.formGroup).addClass(BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
+				new JQueryScript(this.formGroup).addClass(ValidationState.SUCCESS.getClassString()).toString());
 		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(BootstrapCssClass.HAS_ERROR.getClassString()).toString());
+				new JQueryScript(this.formGroup).removeClass(ValidationState.ERROR.getClassString()).toString());
 		target.add(this.formGroup.getHelpBlock());
 	}
 
@@ -49,10 +49,9 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 	{
 		super.onError(target, e);
 		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(
-						BootstrapCssClass.HAS_SUCCESS.getClassString()).toString());
+				new JQueryScript(this.formGroup).removeClass(ValidationState.SUCCESS.getClassString()).toString());
 		target.appendJavaScript(
-				new JQueryScript(this.formGroup).addClass(BootstrapCssClass.HAS_ERROR.getClassString()).toString());
+				new JQueryScript(this.formGroup).addClass(ValidationState.ERROR.getClassString()).toString());
 		target.add(this.formGroup.getHelpBlock());
 	}
 
