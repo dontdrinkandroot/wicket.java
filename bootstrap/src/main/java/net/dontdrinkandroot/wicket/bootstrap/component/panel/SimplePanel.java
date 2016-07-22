@@ -45,6 +45,14 @@ public class SimplePanel<T> extends Panel<T>
 		this.headingLevel = headingLevel;
 	}
 
+	public SimplePanel(String id, IModel<T> model, IModel<String> headingModel)
+	{
+		super(id, model);
+
+		this.headingModel = headingModel;
+		this.headingLevel = Heading.Level.H2;
+	}
+
 	public SimplePanel(String id, IModel<T> model, IModel<String> headingModel, Heading.Level headingLevel)
 	{
 		super(id, model);

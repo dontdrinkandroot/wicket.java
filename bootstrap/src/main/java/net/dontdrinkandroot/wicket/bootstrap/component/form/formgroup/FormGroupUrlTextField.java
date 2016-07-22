@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.UrlTextField;
 import org.apache.wicket.model.IModel;
 
@@ -18,6 +19,19 @@ public class FormGroupUrlTextField extends FormGroupInputGroup<String, UrlTextFi
 	@Override
 	protected InputGroup<String, UrlTextField> createInputGroup(String id)
 	{
-		return new InputGroupUrlTextField(id, this.getModel());
+		return new InputGroupUrlTextField(id, this.getModel()) {
+
+			@Override
+			protected Component createInputGroupAddonBefore(String id)
+			{
+				return FormGroupUrlTextField.this.createInputGroupAddonBefore(id);
+			}
+
+			@Override
+			protected Component createInputGroupAddonAfter(String id)
+			{
+				return FormGroupUrlTextField.this.createInputGroupAddonAfter(id);
+			}
+		};
 	}
 }

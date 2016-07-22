@@ -24,6 +24,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
 
@@ -39,7 +40,7 @@ public abstract class Panel<T> extends GenericPanel<T>
 
 	public static final String AFTER_BODY_ID = "afterBody";
 
-	private final IModel<PanelStyle> styleModel = Model.of(PanelStyle.DEFAULT);
+	private PanelBehavior panelBehavior = new PanelBehavior(this.createStyleModel());
 
 	protected Component heading;
 
@@ -62,9 +63,7 @@ public abstract class Panel<T> extends GenericPanel<T>
 	protected void onInitialize()
 	{
 		super.onInitialize();
-
-		this.add(new CssClassAppender(BootstrapCssClass.PANEL));
-		this.add(new CssClassAppender(this.styleModel));
+		this.add(this.panelBehavior);
 
 		this.heading = this.createHeading(Panel.HEADING_ID);
 		this.heading.add(new CssClassAppender(BootstrapCssClass.PANEL_HEADING));
@@ -80,13 +79,13 @@ public abstract class Panel<T> extends GenericPanel<T>
 
 	public Panel<T> setPanelStyle(PanelStyle style)
 	{
-		this.styleModel.setObject(style);
+		this.panelBehavior.setStyle(style);
 		return this;
 	}
 
 	public PanelStyle getPanelStyle()
 	{
-		return this.styleModel.getObject();
+		return this.panelBehavior.getStyle();
 	}
 
 	protected Component createHeading(String id)
@@ -111,5 +110,10 @@ public abstract class Panel<T> extends GenericPanel<T>
 		footerContainer.setVisible(false);
 
 		return footerContainer;
+	}
+
+	protected IModel<PanelStyle> createStyleModel()
+	{
+		return Model.of(PanelStyle.DEFAULT);
 	}
 }

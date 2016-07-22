@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.model.IModel;
 
@@ -24,7 +25,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupPasswordTextField;
 
 
-public class FormGroupPasswordTextField extends FormGroupInputGroup<String, PasswordTextField, InputGroupPasswordTextField>
+public class FormGroupPasswordTextField
+		extends FormGroupInputGroup<String, PasswordTextField, InputGroupPasswordTextField>
 {
 
 	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -35,7 +37,20 @@ public class FormGroupPasswordTextField extends FormGroupInputGroup<String, Pass
 	@Override
 	protected InputGroup<String, PasswordTextField> createInputGroup(String id)
 	{
-		return new InputGroupPasswordTextField(id, this.getModel());
+		return new InputGroupPasswordTextField(id, this.getModel()) {
+
+			@Override
+			protected Component createInputGroupAddonBefore(String id)
+			{
+				return FormGroupPasswordTextField.this.createInputGroupAddonBefore(id);
+			}
+
+			@Override
+			protected Component createInputGroupAddonAfter(String id)
+			{
+				return FormGroupPasswordTextField.this.createInputGroupAddonAfter(id);
+			}
+		};
 	}
 
 }

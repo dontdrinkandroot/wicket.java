@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
@@ -22,6 +23,19 @@ public class FormGroupTextField<T> extends FormGroupInputGroup<T, TextField<T>, 
 	@Override
 	protected InputGroup<T, TextField<T>> createInputGroup(String id)
 	{
-		return new InputGroupTextField<T>(id, this.getModel());
+		return new InputGroupTextField<T>(id, this.getModel()) {
+
+			@Override
+			protected Component createInputGroupAddonBefore(String id)
+			{
+				return FormGroupTextField.this.createInputGroupAddonBefore(id);
+			}
+
+			@Override
+			protected Component createInputGroupAddonAfter(String id)
+			{
+				return FormGroupTextField.this.createInputGroupAddonAfter(id);
+			}
+		};
 	}
 }

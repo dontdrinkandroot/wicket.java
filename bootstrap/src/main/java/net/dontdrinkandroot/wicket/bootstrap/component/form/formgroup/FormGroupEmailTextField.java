@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.model.IModel;
 
@@ -18,6 +19,19 @@ public class FormGroupEmailTextField extends FormGroupInputGroup<String, EmailTe
 	@Override
 	protected InputGroup<String, EmailTextField> createInputGroup(String id)
 	{
-		return new InputGroupEmailTextField(id, this.getModel());
+		return new InputGroupEmailTextField(id, this.getModel()) {
+
+			@Override
+			protected Component createInputGroupAddonBefore(String id)
+			{
+				return FormGroupEmailTextField.this.createInputGroupAddonBefore(id);
+			}
+
+			@Override
+			protected Component createInputGroupAddonAfter(String id)
+			{
+				return FormGroupEmailTextField.this.createInputGroupAddonAfter(id);
+			}
+		};
 	}
 }
