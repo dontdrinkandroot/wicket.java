@@ -167,5 +167,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 						null,
 						null));
 		response.render(new CssContentHeaderItem("body{padding-top: 70px;}", "bodyPadding", null));
+		response.render(
+				new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
 	}
 }

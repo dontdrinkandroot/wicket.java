@@ -45,6 +45,7 @@ public class ValidationPage extends FormPage
 		FormGroupTextFieldString requiredFormGroup =
 				new FormGroupTextFieldString(formGroupView.newChildId(), Model.of("Required"), new Model<String>());
 		requiredFormGroup.setRequired(true);
+		requiredFormGroup.getFormComponent().warn("This field is required");
 		formGroupView.add(requiredFormGroup);
 
 		FormGroupTextFieldString ajaxValidationFormGroup = new FormGroupTextFieldString(
@@ -71,6 +72,14 @@ public class ValidationPage extends FormPage
 			protected void populateActions(RepeatingView actionView)
 			{
 				AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId()) {
+
+					@Override
+					protected void onSubmit(AjaxRequestTarget target, Form<?> form)
+					{
+						this.success("Your form is valid");
+						target.add(ValidationPage.this.getFeedbackPanel());
+						target.add(form);
+					}
 
 					@Override
 					protected void onError(AjaxRequestTarget target, Form<?> form)

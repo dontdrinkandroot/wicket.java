@@ -21,21 +21,20 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.util.string.Strings;
+import org.apache.wicket.validation.IValidator;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 
 public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extends FormGroup<T>
 {
-
-	protected IModel<String> helpTextModel;
 
 	protected FencedFeedbackPanel helpBlock;
 
@@ -65,29 +64,18 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 			@Override
 			protected void onConfigure()
 			{
-				super.onConfigure();
-				boolean helpTextSet = null != FormGroupValidatable.this.helpTextModel
-						&& !Strings.isEmpty(FormGroupValidatable.this.helpTextModel.getObject());
-				if (helpTextSet) {
-					this.info(FormGroupValidatable.this.helpTextModel.getObject());
-				}
-
-				this.setOutputMarkupPlaceholderTag(this.getCurrentMessages().size() == 0);
-				this.setVisible(this.getCurrentMessages().size() > 0);
+				this.setOutputMarkupPlaceholderTag(!this.anyMessage());
+				this.setVisible(this.anyMessage());
 			}
 		};
 		this.helpBlock.setOutputMarkupId(true);
 
-		this.add(new CssClassAppender(new Model<ValidationState>(ValidationState.ERROR) {
+		this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>() {
 
 			@Override
-			public ValidationState getObject()
+			public CssClass getObject()
 			{
-				if (!FormGroupValidatable.this.getFormComponent().isValid()) {
-					return super.getObject();
-				}
-
-				return null;
+				return FormGroupValidatable.this.getValidationState();
 			}
 		}));
 	}
@@ -113,11 +101,6 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 		this.getFormComponent().setRequired(required);
 	}
 
-	public void setHelpTextModel(IModel<String> helpTextModel)
-	{
-		this.helpTextModel = helpTextModel;
-	}
-
 	public FencedFeedbackPanel getHelpBlock()
 	{
 		return this.helpBlock;
@@ -131,6 +114,33 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 	public void addAjaxValidation(String eventName, final ThrottlingSettings throttlingSettings)
 	{
 		this.getFormComponent().add(new FormGroupAjaxValidationBehavior(eventName, this, throttlingSettings));
+	}
+
+	public ValidationState getValidationState()
+	{
+		if (!this.getFormComponent().isValid()) {
+			return ValidationState.ERROR;
+		}
+
+		if (this.helpBlock.anyMessage(FeedbackMessage.FATAL) || this.helpBlock.anyMessage(FeedbackMessage.ERROR)) {
+			return ValidationState.ERROR;
+		}
+
+		if (this.helpBlock.anyMessage(FeedbackMessage.WARNING)) {
+			return ValidationState.WARNING;
+		}
+
+		if (this.helpBlock.anyMessage(FeedbackMessage.SUCCESS)
+				|| this.getFormComponent().hasBeenRendered() && this.getFormComponent().isValid()) {
+			return ValidationState.SUCCESS;
+		}
+
+		return null;
+	}
+
+	public void addValidator(IValidator<T> validator)
+	{
+		this.getFormComponent().add(validator);
 	}
 
 	public abstract F getFormComponent();

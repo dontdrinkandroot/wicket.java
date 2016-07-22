@@ -37,22 +37,31 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 	@Override
 	protected void onUpdate(AjaxRequestTarget target)
 	{
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).addClass(ValidationState.SUCCESS.getClassString()).toString());
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(ValidationState.ERROR.getClassString()).toString());
-		target.add(this.formGroup.getHelpBlock());
+		this.renderValidation(target);
 	}
 
 	@Override
 	protected void onError(AjaxRequestTarget target, RuntimeException e)
 	{
 		super.onError(target, e);
+		this.renderValidation(target);
+
+	}
+
+	protected void renderValidation(AjaxRequestTarget target)
+	{
+		target.appendJavaScript(
+				new JQueryScript(this.formGroup).removeClass(ValidationState.ERROR.getClassString()).toString());
+		target.appendJavaScript(
+				new JQueryScript(this.formGroup).removeClass(ValidationState.WARNING.getClassString()).toString());
 		target.appendJavaScript(
 				new JQueryScript(this.formGroup).removeClass(ValidationState.SUCCESS.getClassString()).toString());
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).addClass(ValidationState.ERROR.getClassString()).toString());
-		target.add(this.formGroup.getHelpBlock());
+		ValidationState validationState = this.formGroup.getValidationState();
+		if (null != validationState) {
+			target.appendJavaScript(
+					new JQueryScript(this.formGroup).addClass(validationState.getClassString()).toString());
+			target.add(this.formGroup.getHelpBlock());
+		}
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.HelpTextBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
@@ -58,7 +59,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of(""));
 		formGroupTextField.getFormComponent().setRequired(true);
 		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
-		formGroupTextField.setHelpTextModel(Model.of("A help text"));
+		formGroupTextField.add(new HelpTextBehavior(Model.of("A help text")));
 		formGroupView.add(formGroupTextField);
 
 		FormGroupPasswordTextField formGroupPasswordTextField = new FormGroupPasswordTextField(
