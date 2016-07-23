@@ -21,14 +21,19 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
 
 
 public abstract class DropDownMenu extends Panel
 {
+
+	private IModel<DropDownAlignment> alignmentModel = Model.of(DropDownAlignment.LEFT);
+
 
 	public DropDownMenu(String id)
 	{
@@ -43,6 +48,7 @@ public abstract class DropDownMenu extends Panel
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_MENU));
+		this.add(new CssClassAppender(this.alignmentModel));
 		this.add(new AttributeModifier("role", Model.of("menu")));
 		// TODO: include aria-labelledby
 
@@ -56,6 +62,12 @@ public abstract class DropDownMenu extends Panel
 	{
 		tag.setName("ul");
 		super.onComponentTag(tag);
+	}
+
+	public DropDownMenu setAlignment(DropDownAlignment alignment)
+	{
+		this.alignmentModel.setObject(alignment);
+		return this;
 	}
 
 	protected abstract void populateItems(RepeatingView itemView);

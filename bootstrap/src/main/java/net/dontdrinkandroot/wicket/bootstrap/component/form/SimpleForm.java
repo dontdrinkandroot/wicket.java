@@ -4,12 +4,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.IQueueRegion;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 
 
@@ -34,7 +35,7 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 	{
 		super.onInitialize();
 
-		this.feedbackPanel = new FeedbackPanel("feedback");
+		this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
 		this.feedbackPanel.setOutputMarkupId(true);
 		this.add(this.feedbackPanel);
 

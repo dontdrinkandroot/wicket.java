@@ -8,10 +8,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextField;
 
 
-/**
- * @deprecated Use the type specific implementations.
- */
-@Deprecated
 public class FormGroupTextField<T> extends FormGroupInputGroup<T, TextField<T>, InputGroupTextField<T>>
 {
 
