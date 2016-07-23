@@ -12,7 +12,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 public class BookmarkablePageButton<T> extends BookmarkablePageLink<T> implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
 
 	public <C extends Page> BookmarkablePageButton(String id, Class<C> pageClass)

@@ -679,4 +679,9 @@ public enum FontAwesomeIconClass implements CssClass
 		return this.sinceVersion;
 	}
 
+	public FontAwesomeIcon createIcon()
+	{
+		return new FontAwesomeIcon(this);
+	}
+
 }

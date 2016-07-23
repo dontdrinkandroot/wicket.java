@@ -185,7 +185,7 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Set the model of the icon to prepend, if it or its object is null no icon will be prepended.
 	 */
-	public IconBehavior setPrependIconModel(IModel<CssClass> prependIconModel)
+	public IconBehavior setPrependIcon(IModel<CssClass> prependIconModel)
 	{
 		this.prependIconModel = prependIconModel;
 		return this;
@@ -194,7 +194,7 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Set the model of the icon to append, if it or its object is null no icon will be prepended.
 	 */
-	public IconBehavior setAppendIconModel(IModel<CssClass> appendIconModel)
+	public IconBehavior setAppendIcon(IModel<CssClass> appendIconModel)
 	{
 		this.appendIconModel = appendIconModel;
 		return this;

@@ -15,7 +15,7 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 public abstract class DisablingSubmitButton extends AjaxSubmitLink
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
 	private Model<String> loadingTextModel = new Model<String>("Submitting...");
 

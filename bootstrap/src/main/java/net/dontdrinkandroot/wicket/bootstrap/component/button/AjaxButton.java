@@ -11,7 +11,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 public abstract class AjaxButton<T> extends AjaxLink<T> implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
 
 	public AjaxButton(String id)

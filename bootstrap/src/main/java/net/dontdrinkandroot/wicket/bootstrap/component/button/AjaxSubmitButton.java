@@ -12,7 +12,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
 
 	public AjaxSubmitButton(String id)

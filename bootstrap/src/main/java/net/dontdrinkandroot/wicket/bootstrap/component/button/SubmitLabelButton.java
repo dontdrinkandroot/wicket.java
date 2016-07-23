@@ -15,7 +15,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 public class SubmitLabelButton extends Label implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
+	protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
 
 
 	public SubmitLabelButton(String id)
