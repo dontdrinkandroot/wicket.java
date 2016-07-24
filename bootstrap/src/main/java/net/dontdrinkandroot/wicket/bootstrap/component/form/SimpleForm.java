@@ -10,12 +10,16 @@ import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
 
 
 public class SimpleForm<T> extends Form<T> implements IQueueRegion
 {
+
+	private FormStyleBehavior formStyleBehavior = new FormStyleBehavior();
 
 	private FeedbackPanel feedbackPanel;
 
@@ -34,6 +38,7 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 	protected void onInitialize()
 	{
 		super.onInitialize();
+		this.add(this.formStyleBehavior);
 
 		this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
 		this.feedbackPanel.setOutputMarkupId(true);
@@ -89,5 +94,17 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 	public FeedbackPanel getFeedbackPanel()
 	{
 		return this.feedbackPanel;
+	}
+
+	public SimpleForm<T> setHorizontal(ColumnSize containerSize)
+	{
+		this.formStyleBehavior.setHorizontal(containerSize);
+		return this;
+	}
+
+	public SimpleForm<T> setInline(boolean inline)
+	{
+		this.formStyleBehavior.setInline(inline);
+		return this;
 	}
 }

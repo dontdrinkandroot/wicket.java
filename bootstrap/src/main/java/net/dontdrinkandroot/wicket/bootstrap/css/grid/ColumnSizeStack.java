@@ -3,6 +3,15 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public class ColumnSizeStack implements ColumnSize
 {
 
+	/**
+	 * Reasonable defaults for a full screen form.
+	 */
+	public static final ColumnSize FORM_DEFAULT = new ColumnSizeStack(
+			null,
+			ColumnSizeSmall.COLUMNS_8,
+			ColumnSizeMedium.COLUMNS_9,
+			ColumnSizeLarge.COLUMNS_10);
+
 	private ColumnSizeExtraSmall columnSizeExtraSmall;
 
 	private ColumnSizeSmall columnSizeSmall;

@@ -48,6 +48,10 @@ public class SimpleDateFormatModel extends AbstractChainedModel<Date, String>
 	@Override
 	public String getObject()
 	{
+		if ((null == this.getParent()) || (null == this.getParentObject())) {
+			return "n/a";
+		}
+
 		return this.sdf.format(this.getParentObject());
 	}
 
