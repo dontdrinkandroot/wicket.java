@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup;
+package net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon;
 
 import java.io.Serializable;
 
