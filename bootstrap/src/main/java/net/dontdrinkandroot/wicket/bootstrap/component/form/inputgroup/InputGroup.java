@@ -10,7 +10,15 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public abstract class InputGroup<T, F extends FormComponent<T>> extends GenericPanel<T>
+/**
+ * @param <T>
+ *            Type of the Model Object.
+ * @param <M>
+ *            Type of the FormComponent Model Object.
+ * @param <F>
+ *            Type of the FormComponent.
+ */
+public abstract class InputGroup<T, M, F extends FormComponent<M>> extends GenericPanel<T>
 {
 
 	public static final String INPUT_GROUP_ADDON_BEFORE_ID = "inputGroupAddonBefore";

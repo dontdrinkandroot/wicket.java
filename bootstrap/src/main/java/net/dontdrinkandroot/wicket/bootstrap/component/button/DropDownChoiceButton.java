@@ -186,6 +186,5 @@ public class DropDownChoiceButton<T> extends FormComponentPanel<T>
 		{
 			return DropDownChoiceButton.this.getChoiceRenderer().getDisplayValue(this.getParentObject());
 		}
-
 	}
 }

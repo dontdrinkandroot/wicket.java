@@ -23,7 +23,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupTextArea<T> extends FormGroupFormComponent<T, TextArea<T>>
+public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<T>>
 {
 
 	private int rows = 5;

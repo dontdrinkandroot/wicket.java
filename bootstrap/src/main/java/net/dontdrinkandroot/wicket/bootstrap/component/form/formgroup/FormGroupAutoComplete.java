@@ -19,7 +19,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 
-public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, TextField<String>>
+public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, String, TextField<String>>
 {
 
 	private WebMarkupContainer dropDownMenu;

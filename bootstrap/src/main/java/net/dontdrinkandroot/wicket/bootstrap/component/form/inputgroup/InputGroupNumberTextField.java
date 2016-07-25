@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.model.IModel;
 
 
-public class InputGroupNumberTextField<N extends Number & Comparable<N>> extends InputGroup<N, NumberTextField<N>>
+public class InputGroupNumberTextField<N extends Number & Comparable<N>> extends InputGroup<N, N, NumberTextField<N>>
 {
 
 	public InputGroupNumberTextField(String id, IModel<N> model)

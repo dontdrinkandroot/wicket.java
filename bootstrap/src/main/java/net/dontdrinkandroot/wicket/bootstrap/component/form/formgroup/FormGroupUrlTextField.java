@@ -4,11 +4,10 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.UrlTextField;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupUrlTextField;
 
 
-public class FormGroupUrlTextField extends FormGroupInputGroup<String, UrlTextField, InputGroupUrlTextField>
+public class FormGroupUrlTextField extends FormGroupInputGroup<String, String, UrlTextField, InputGroupUrlTextField>
 {
 
 	public FormGroupUrlTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -17,7 +16,7 @@ public class FormGroupUrlTextField extends FormGroupInputGroup<String, UrlTextFi
 	}
 
 	@Override
-	protected InputGroup<String, UrlTextField> createInputGroup(String id)
+	protected InputGroupUrlTextField createInputGroup(String id)
 	{
 		return new InputGroupUrlTextField(id, this.getModel()) {
 

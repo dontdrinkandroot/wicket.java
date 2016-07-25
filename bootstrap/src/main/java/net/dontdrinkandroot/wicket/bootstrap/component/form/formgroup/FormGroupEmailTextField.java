@@ -4,11 +4,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupEmailTextField;
 
 
-public class FormGroupEmailTextField extends FormGroupInputGroup<String, EmailTextField, InputGroupEmailTextField>
+public class FormGroupEmailTextField
+		extends FormGroupInputGroup<String, String, EmailTextField, InputGroupEmailTextField>
 {
 
 	public FormGroupEmailTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -17,7 +17,7 @@ public class FormGroupEmailTextField extends FormGroupInputGroup<String, EmailTe
 	}
 
 	@Override
-	protected InputGroup<String, EmailTextField> createInputGroup(String id)
+	protected InputGroupEmailTextField createInputGroup(String id)
 	{
 		return new InputGroupEmailTextField(id, this.getModel()) {
 

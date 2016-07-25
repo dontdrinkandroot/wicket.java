@@ -8,11 +8,11 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
 
 
-public abstract class FormGroupInputGroup<T, F extends FormComponent<T>, I extends InputGroup<T, F>>
-		extends FormGroupValidatable<T, F>
+public abstract class FormGroupInputGroup<T, M, F extends FormComponent<M>, I extends InputGroup<T, M, F>>
+		extends FormGroupValidatable<T, M, F>
 {
 
-	private InputGroup<T, F> inputGroup;
+	private InputGroup<T, M, F> inputGroup;
 
 
 	public FormGroupInputGroup(String id, IModel<String> labelModel, IModel<T> model)
@@ -46,6 +46,6 @@ public abstract class FormGroupInputGroup<T, F extends FormComponent<T>, I exten
 		return new WebMarkupContainer(id).setVisible(false);
 	}
 
-	protected abstract InputGroup<T, F> createInputGroup(String id);
+	protected abstract InputGroup<T, M, F> createInputGroup(String id);
 
 }

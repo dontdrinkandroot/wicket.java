@@ -8,7 +8,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 
 
 public class FormGroupNumberTextField<N extends Number & Comparable<N>>
-		extends FormGroupInputGroup<N, NumberTextField<N>, InputGroupNumberTextField<N>>
+		extends FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumberTextField<N>>
 {
 
 	public FormGroupNumberTextField(String id, IModel<String> labelModel, IModel<N> model)

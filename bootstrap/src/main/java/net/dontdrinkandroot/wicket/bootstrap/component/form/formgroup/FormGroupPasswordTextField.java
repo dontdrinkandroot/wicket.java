@@ -26,7 +26,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 
 
 public class FormGroupPasswordTextField
-		extends FormGroupInputGroup<String, PasswordTextField, InputGroupPasswordTextField>
+		extends FormGroupInputGroup<String, String, PasswordTextField, InputGroupPasswordTextField>
 {
 
 	public FormGroupPasswordTextField(String id, IModel<String> labelModel, IModel<String> model)
@@ -35,7 +35,7 @@ public class FormGroupPasswordTextField
 	}
 
 	@Override
-	protected InputGroup<String, PasswordTextField> createInputGroup(String id)
+	protected InputGroup<String, String, PasswordTextField> createInputGroup(String id)
 	{
 		return new InputGroupPasswordTextField(id, this.getModel()) {
 

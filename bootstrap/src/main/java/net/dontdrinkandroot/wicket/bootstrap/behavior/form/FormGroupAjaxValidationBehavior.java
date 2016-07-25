@@ -15,10 +15,10 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 
 	private ThrottlingSettings throttlingSettings;
 
-	private FormGroupValidatable<?, ?> formGroup;
+	private FormGroupValidatable<?, ?, ?> formGroup;
 
 
-	public FormGroupAjaxValidationBehavior(String event, FormGroupValidatable<?, ?> formGroup)
+	public FormGroupAjaxValidationBehavior(String event, FormGroupValidatable<?, ?, ?> formGroup)
 	{
 		super(event);
 		this.formGroup = formGroup;
@@ -26,7 +26,7 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 
 	public FormGroupAjaxValidationBehavior(
 			String event,
-			FormGroupValidatable<?, ?> formGroup,
+			FormGroupValidatable<?, ?, ?> formGroup,
 			ThrottlingSettings throttlingSettings)
 	{
 		super(event);

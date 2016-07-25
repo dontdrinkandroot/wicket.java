@@ -33,7 +33,16 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
 import net.dontdrinkandroot.wicket.css.CssClass;
 
 
-public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extends FormGroup<T>
+/**
+ *
+ * @param <T>
+ *            Type of the Model Object.
+ * @param <M>
+ *            Type of the FormComponent Model Object.
+ * @param <F>
+ *            Type of the Form Component.
+ */
+public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> extends FormGroup<T>
 {
 
 	protected FencedFeedbackPanel helpBlock;
@@ -140,11 +149,10 @@ public abstract class FormGroupValidatable<T, F extends FormComponent<T>> extend
 		return null;
 	}
 
-	public void addValidator(IValidator<T> validator)
+	public void addValidator(IValidator<M> validator)
 	{
 		this.getFormComponent().add(validator);
 	}
 
 	public abstract F getFormComponent();
-
 }

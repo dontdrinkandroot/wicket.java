@@ -7,7 +7,8 @@ import org.apache.wicket.model.IModel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextFieldString;
 
 
-public class FormGroupTextFieldString extends FormGroupInputGroup<String, TextField<String>, InputGroupTextFieldString>
+public class FormGroupTextFieldString
+		extends FormGroupInputGroup<String, String, TextField<String>, InputGroupTextFieldString>
 {
 
 	public FormGroupTextFieldString(String id, IModel<String> labelModel, IModel<String> model)

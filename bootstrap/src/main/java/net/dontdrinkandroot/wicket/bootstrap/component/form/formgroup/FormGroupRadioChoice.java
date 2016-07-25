@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, RadioChoice<T>>
+public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioChoice<T>>
 {
 
 	public FormGroupRadioChoice(

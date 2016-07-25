@@ -8,7 +8,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGrou
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextField;
 
 
-public class FormGroupTextField<T> extends FormGroupInputGroup<T, TextField<T>, InputGroupTextField<T>>
+public class FormGroupTextField<T> extends FormGroupInputGroup<T, T, TextField<T>, InputGroupTextField<T>>
 {
 
 	public FormGroupTextField(String id, IModel<String> labelModel, IModel<T> model)
@@ -17,7 +17,7 @@ public class FormGroupTextField<T> extends FormGroupInputGroup<T, TextField<T>, 
 	}
 
 	@Override
-	protected InputGroup<T, TextField<T>> createInputGroup(String id)
+	protected InputGroup<T, T, TextField<T>> createInputGroup(String id)
 	{
 		return new InputGroupTextField<T>(id, this.getModel()) {
 

@@ -28,7 +28,7 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBeha
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
 
 
-public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, CheckBox>
+public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, CheckBox>
 {
 
 	private WebMarkupContainer offset;

@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
 
-public abstract class FormGroupFormComponent<T, F extends FormComponent<T>> extends FormGroupValidatable<T, F>
+public abstract class FormGroupFormComponent<T, M, F extends FormComponent<M>> extends FormGroupValidatable<T, M, F>
 {
 
 	protected F formComponent;

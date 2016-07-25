@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
 
-public class InputGroupTextFieldString extends InputGroup<String, TextField<String>>
+public class InputGroupTextFieldString extends InputGroup<String, String, TextField<String>>
 {
 
 	public InputGroupTextFieldString(String id, IModel<String> model)

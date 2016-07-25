@@ -26,7 +26,8 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupFileUploadField extends FormGroupFormComponent<List<FileUpload>, FileUploadField>
+public class FormGroupFileUploadField
+		extends FormGroupFormComponent<List<FileUpload>, List<FileUpload>, FileUploadField>
 {
 
 	private boolean multiple = false;
