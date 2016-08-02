@@ -166,7 +166,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	public void renderHead(IHeaderResponse response)
 	{
 		response.render(this.getBootstrapJavaScriptHeaderItem());
-		response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentThemeUrl(), null, null));
+		response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
 		response.render(
 				new CssUrlReferenceHeaderItem(
 						"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css",

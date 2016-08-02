@@ -4,11 +4,13 @@ import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.Request;
 
+import net.dontdrinkandroot.wicket.example.model.Theme;
+
 
 public class ExampleWebSession extends WebSession
 {
 
-	private String currentThemeUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+	private Theme currentTheme;
 
 
 	public ExampleWebSession(Request request)
@@ -21,13 +23,17 @@ public class ExampleWebSession extends WebSession
 		return (ExampleWebSession) Session.get();
 	}
 
-	public String getCurrentThemeUrl()
+	public Theme getCurrentTheme()
 	{
-		return this.currentThemeUrl;
+		if (null == this.currentTheme) {
+			this.currentTheme = Theme.getAvailableThemes().iterator().next();
+		}
+
+		return this.currentTheme;
 	}
 
-	public void setCurrentThemeUrl(String currentThemeUrl)
+	public void setCurrentTheme(Theme theme)
 	{
-		this.currentThemeUrl = currentThemeUrl;
+		this.currentTheme = theme;
 	}
 }
