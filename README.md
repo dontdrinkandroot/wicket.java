@@ -22,15 +22,21 @@ http://semver.org/.
 Demo
 ----
 
-To run the demo, do the following:
+You can find the demo [here](http://wicket.dontdrinkandroot.net).
+
+To run the demo locally, do the following:
+
 
 ```
 git clone https://github.com/dontdrinkandroot/wicket.java
-cd wicket.java/example/
+cd wicket.java
+mvn clean install
+cd example
 mvn jetty:run
 ```
 
-Now you can point your browser to ``http://localhost:8080`` 
+Now you can point your browser to http://localhost:8080
+ 
 
 Copyright and license
 ---------------------
