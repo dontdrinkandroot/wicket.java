@@ -6,10 +6,10 @@ import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.model.IModel;
 
 
-public class InputGroupEmailTextField extends InputGroup<String, String, EmailTextField>
+public class InputGroupEmail extends InputGroup<String, String, EmailTextField>
 {
 
-	public InputGroupEmailTextField(String id, IModel<String> model)
+	public InputGroupEmail(String id, IModel<String> model)
 	{
 		super(id, model);
 	}

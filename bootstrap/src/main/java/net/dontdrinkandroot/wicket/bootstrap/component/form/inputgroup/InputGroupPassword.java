@@ -6,10 +6,10 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.model.IModel;
 
 
-public class InputGroupPasswordTextField extends InputGroup<String, String, PasswordTextField>
+public class InputGroupPassword extends InputGroup<String, String, PasswordTextField>
 {
 
-	public InputGroupPasswordTextField(String id, IModel<String> model)
+	public InputGroupPassword(String id, IModel<String> model)
 	{
 		super(id, model);
 	}

@@ -16,14 +16,14 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.HelpTextBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupEmailTextField;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupPasswordTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupRadioChoice;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupSelect;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextFieldString;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupUrlTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputUrl;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
@@ -53,30 +53,30 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of("A static label"));
 		formGroupView.add(formGroupStatic);
 
-		FormGroupTextFieldString formGroupTextField = new FormGroupTextFieldString(
+		FormGroupInputText formGroupTextField = new FormGroupInputText(
 				formGroupView.newChildId(),
-				Model.of(FormGroupTextFieldString.class.getSimpleName()),
+				Model.of(FormGroupInputText.class.getSimpleName()),
 				Model.of(""));
 		formGroupTextField.getFormComponent().setRequired(true);
 		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
 		formGroupTextField.add(new HelpTextBehavior(Model.of("A help text")));
 		formGroupView.add(formGroupTextField);
 
-		FormGroupPasswordTextField formGroupPasswordTextField = new FormGroupPasswordTextField(
+		FormGroupInputPassword formGroupPasswordTextField = new FormGroupInputPassword(
 				formGroupView.newChildId(),
-				Model.of(FormGroupPasswordTextField.class.getSimpleName()),
+				Model.of(FormGroupInputPassword.class.getSimpleName()),
 				Model.of(""));
 		formGroupView.add(formGroupPasswordTextField);
 
-		FormGroupEmailTextField formGroupEmailTextField = new FormGroupEmailTextField(
+		FormGroupInputEmail formGroupEmailTextField = new FormGroupInputEmail(
 				formGroupView.newChildId(),
-				Model.of(FormGroupEmailTextField.class.getSimpleName()),
+				Model.of(FormGroupInputEmail.class.getSimpleName()),
 				Model.of(""));
 		formGroupView.add(formGroupEmailTextField);
 
-		FormGroupUrlTextField formGroupUrlTextField = new FormGroupUrlTextField(
+		FormGroupInputUrl formGroupUrlTextField = new FormGroupInputUrl(
 				formGroupView.newChildId(),
-				Model.of(FormGroupUrlTextField.class.getSimpleName()),
+				Model.of(FormGroupInputUrl.class.getSimpleName()),
 				Model.of(""));
 		formGroupView.add(formGroupUrlTextField);
 

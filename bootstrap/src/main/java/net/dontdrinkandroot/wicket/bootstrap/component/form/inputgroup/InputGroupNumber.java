@@ -6,10 +6,10 @@ import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.model.IModel;
 
 
-public class InputGroupNumberTextField<N extends Number & Comparable<N>> extends InputGroup<N, N, NumberTextField<N>>
+public class InputGroupNumber<N extends Number & Comparable<N>> extends InputGroup<N, N, NumberTextField<N>>
 {
 
-	public InputGroupNumberTextField(String id, IModel<N> model)
+	public InputGroupNumber(String id, IModel<N> model)
 	{
 		super(id, model);
 	}
@@ -17,7 +17,7 @@ public class InputGroupNumberTextField<N extends Number & Comparable<N>> extends
 	@Override
 	protected NumberTextField<N> createFormComponent(String id)
 	{
-		NumberTextField<N> textField = new NumberTextField<N>(id, this.getModel()) {
+		NumberTextField<N> formComponent = new NumberTextField<N>(id, this.getModel()) {
 
 			@Override
 			protected void onComponentTag(ComponentTag tag)
@@ -26,7 +26,8 @@ public class InputGroupNumberTextField<N extends Number & Comparable<N>> extends
 				super.onComponentTag(tag);
 			}
 		};
-		textField.add(new HTML5Attributes());
-		return textField;
+		formComponent.add(new HTML5Attributes());
+
+		return formComponent;
 	}
 }

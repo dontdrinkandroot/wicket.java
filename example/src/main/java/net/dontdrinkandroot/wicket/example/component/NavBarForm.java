@@ -7,7 +7,7 @@ import org.apache.wicket.model.Model;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.NavBarFormBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextField;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 
 
 public class NavBarForm extends Form<Void>
@@ -23,8 +23,7 @@ public class NavBarForm extends Form<Void>
 	{
 		super.onInitialize();
 		this.add(new NavBarFormBehavior());
-		FormGroupTextField<String> searchGroup =
-				new FormGroupTextField<String>("searchGroup", Model.of("Search"), new Model<String>());
+		FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
 		searchGroup.setLabelScreenReaderOnly(true);
 		this.add(searchGroup);
 		this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));

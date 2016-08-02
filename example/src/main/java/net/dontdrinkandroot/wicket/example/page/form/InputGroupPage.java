@@ -6,7 +6,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextFieldString;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupText;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupLabel;
 
@@ -24,7 +24,7 @@ public class InputGroupPage extends FormPage
 	{
 		super.onInitialize();
 
-		InputGroupTextFieldString labels = new InputGroupTextFieldString("labels", Model.of("")) {
+		InputGroupText labels = new InputGroupText("labels", Model.of("")) {
 
 			@Override
 			protected Component createInputGroupAddonBefore(String id)
@@ -41,7 +41,7 @@ public class InputGroupPage extends FormPage
 		};
 		this.add(labels);
 
-		InputGroupTextFieldString buttons = new InputGroupTextFieldString("buttons", Model.of("")) {
+		InputGroupText buttons = new InputGroupText("buttons", Model.of("")) {
 
 			@Override
 			protected Component createInputGroupAddonBefore(String id)

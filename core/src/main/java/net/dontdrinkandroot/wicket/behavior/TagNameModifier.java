@@ -5,13 +5,13 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 
 
-public class TagModifier extends Behavior
+public class TagNameModifier extends Behavior
 {
 
 	private String tagName;
 
 
-	public TagModifier(String tagName)
+	public TagNameModifier(String tagName)
 	{
 		this.tagName = tagName;
 	}

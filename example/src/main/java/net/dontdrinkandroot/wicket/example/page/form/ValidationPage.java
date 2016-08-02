@@ -14,7 +14,7 @@ import org.apache.wicket.validation.ValidationError;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextFieldString;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 
 
@@ -42,13 +42,13 @@ public class ValidationPage extends FormPage
 		RepeatingView formGroupView = new RepeatingView("formGroup");
 		form.add(formGroupView);
 
-		FormGroupTextFieldString requiredFormGroup =
-				new FormGroupTextFieldString(formGroupView.newChildId(), Model.of("Required"), new Model<String>());
+		FormGroupInputText requiredFormGroup =
+				new FormGroupInputText(formGroupView.newChildId(), Model.of("Required"), new Model<String>());
 		requiredFormGroup.setRequired(true);
 		requiredFormGroup.getFormComponent().warn("This field is required");
 		formGroupView.add(requiredFormGroup);
 
-		FormGroupTextFieldString ajaxValidationFormGroup = new FormGroupTextFieldString(
+		FormGroupInputText ajaxValidationFormGroup = new FormGroupInputText(
 				formGroupView.newChildId(),
 				Model.of("Ajax Validation"),
 				new Model<String>("Type to see what's happening"));
