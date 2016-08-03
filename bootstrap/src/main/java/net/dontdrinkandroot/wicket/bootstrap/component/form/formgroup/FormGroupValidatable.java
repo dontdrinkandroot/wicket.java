@@ -47,6 +47,8 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
 
 	protected FencedFeedbackPanel helpBlock;
 
+	protected IModel<String> helpTextModel;
+
 
 	public FormGroupValidatable(String id, IModel<String> labelModel, IModel<T> model)
 	{
@@ -73,6 +75,12 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
 			@Override
 			protected void onConfigure()
 			{
+				/* Always renotify of help text if set so it gets rendered every time */
+				IModel<String> helpTextModel = FormGroupValidatable.this.helpTextModel;
+				if ((null != helpTextModel) && (null != helpTextModel.getObject())) {
+					this.info(helpTextModel.getObject());
+				}
+
 				this.setOutputMarkupPlaceholderTag(!this.anyMessage());
 				this.setVisible(this.anyMessage());
 			}
@@ -152,6 +160,11 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
 	public void addValidator(IValidator<M> validator)
 	{
 		this.getFormComponent().add(validator);
+	}
+
+	public void setHelpText(IModel<String> helpTextModel)
+	{
+		this.helpTextModel = helpTextModel;
 	}
 
 	public abstract F getFormComponent();

@@ -12,18 +12,17 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.form.HelpTextBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputUrl;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupRadioChoice;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupSelect;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputUrl;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
@@ -59,7 +58,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 				Model.of(""));
 		formGroupTextField.getFormComponent().setRequired(true);
 		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
-		formGroupTextField.add(new HelpTextBehavior(Model.of("A help text")));
+		formGroupTextField.setHelpText(Model.of("A help text"));
 		formGroupView.add(formGroupTextField);
 
 		FormGroupInputPassword formGroupPasswordTextField = new FormGroupInputPassword(
