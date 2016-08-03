@@ -147,10 +147,7 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
 			return ValidationState.WARNING;
 		}
 
-		// TODO: The hasBeenRendered check is not sufficient. Is there a way to see if a form component has really been
-		// validated?
-		if (this.helpBlock.anyMessage(FeedbackMessage.SUCCESS)
-				|| (this.getFormComponent().hasBeenRendered() && this.getFormComponent().isValid())) {
+		if (this.helpBlock.anyMessage(FeedbackMessage.SUCCESS)) {
 			return ValidationState.SUCCESS;
 		}
 
