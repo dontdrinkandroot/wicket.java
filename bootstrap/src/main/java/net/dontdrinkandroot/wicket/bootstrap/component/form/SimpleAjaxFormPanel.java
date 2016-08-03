@@ -3,11 +3,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
 import net.dontdrinkandroot.wicket.component.basic.Heading;
 import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
 
@@ -15,7 +12,7 @@ import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
 public class SimpleAjaxFormPanel<T> extends SimpleAjaxForm<T>
 {
 
-	private final IModel<PanelStyle> styleModel = Model.of(PanelStyle.DEFAULT);
+	private PanelBehavior panelBehavior = new PanelBehavior();
 
 	private Level headingLevel = Level.H2;
 
@@ -39,8 +36,7 @@ public class SimpleAjaxFormPanel<T> extends SimpleAjaxForm<T>
 	{
 		super.onInitialize();
 
-		this.add(new CssClassAppender(BootstrapCssClass.PANEL));
-		this.add(new CssClassAppender(this.styleModel));
+		this.add(this.panelBehavior);
 
 		Heading title = new Heading("title", this.titleModel, this.headingLevel);
 		this.add(title);

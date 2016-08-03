@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSubmitLink;
@@ -101,7 +102,7 @@ public class ButtonBehavior extends Behavior implements IButton
 		/* Check if it is a button without a type and try to determine it */
 		if (tag.getName().equalsIgnoreCase("button")) {
 			if (null == tag.getAttribute("type")) {
-				if (component instanceof AbstractSubmitLink) {
+				if ((component instanceof AbstractSubmitLink) && !(component instanceof AjaxSubmitLink)) {
 					tag.put("type", "submit");
 				} else {
 					tag.put("type", "button");
@@ -111,9 +112,9 @@ public class ButtonBehavior extends Behavior implements IButton
 
 		/* If this is an input button set the bodyModel as its value attribute */
 		if (tag.getName().equalsIgnoreCase("input") && (component instanceof AbstractLink)) {
-			IModel<?> tmpBodyModel = ((AbstractLink) component).getBody();
-			if ((tmpBodyModel != null) && (tmpBodyModel.getObject() != null)) {
-				tag.put("value", component.getDefaultModelObjectAsString(tmpBodyModel.getObject()));
+			IModel<?> bodyModel = ((AbstractLink) component).getBody();
+			if ((bodyModel != null) && (bodyModel.getObject() != null)) {
+				tag.put("value", component.getDefaultModelObjectAsString(bodyModel.getObject()));
 			}
 		}
 	}
