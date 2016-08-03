@@ -24,12 +24,11 @@ import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
 import net.dontdrinkandroot.wicket.example.page.component.LabelPage;
 import net.dontdrinkandroot.wicket.example.page.component.ModalPage;
 import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
+import net.dontdrinkandroot.wicket.example.page.component.PaginationPage;
 import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
+import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
 import net.dontdrinkandroot.wicket.example.page.form.FormPage;
-import net.dontdrinkandroot.wicket.example.page.form.HorizontalFormPage;
-import net.dontdrinkandroot.wicket.example.page.form.InlineFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
-import net.dontdrinkandroot.wicket.example.page.form.StandardFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 
 
@@ -103,6 +102,11 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 								Model.of("Progress Bars"),
 								ProgressBarPage.class));
 				itemView.add(
+						new BookmarkablePageLinkItem(
+								itemView.newChildId(),
+								Model.of("Pagination"),
+								PaginationPage.class));
+				itemView.add(
 						new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropDownPage.class));
 				itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Modals"), ModalPage.class));
 			}
@@ -122,18 +126,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 				itemView.add(
 						new BookmarkablePageLinkItem(
 								itemView.newChildId(),
-								Model.of("Standard Form"),
-								StandardFormPage.class));
-				itemView.add(
-						new BookmarkablePageLinkItem(
-								itemView.newChildId(),
-								Model.of("Horizontal Form"),
-								HorizontalFormPage.class));
-				itemView.add(
-						new BookmarkablePageLinkItem(
-								itemView.newChildId(),
-								Model.of("Inline Form"),
-								InlineFormPage.class));
+								Model.of("Form Groups and Form Styles"),
+								FormGroupPage.class));
 				itemView.add(
 						new BookmarkablePageLinkItem(
 								itemView.newChildId(),

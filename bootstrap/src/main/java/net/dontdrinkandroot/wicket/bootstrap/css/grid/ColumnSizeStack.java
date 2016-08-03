@@ -6,11 +6,8 @@ public class ColumnSizeStack implements ColumnSize
 	/**
 	 * Reasonable defaults for a full screen form.
 	 */
-	public static final ColumnSize FORM_DEFAULT = new ColumnSizeStack(
-			null,
-			ColumnSizeSmall.COLUMNS_8,
-			ColumnSizeMedium.COLUMNS_9,
-			ColumnSizeLarge.COLUMNS_10);
+	public static final ColumnSize FORM_DEFAULT =
+			new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_7, ColumnSizeMedium.COLUMNS_8, ColumnSizeLarge.COLUMNS_9);
 
 	private ColumnSizeExtraSmall columnSizeExtraSmall;
 

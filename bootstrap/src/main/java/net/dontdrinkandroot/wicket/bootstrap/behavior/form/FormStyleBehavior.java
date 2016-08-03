@@ -67,6 +67,13 @@ public class FormStyleBehavior extends Behavior
 		return this;
 	}
 
+	public void reset()
+	{
+		this.inline = false;
+		this.containerSize = null;
+
+	}
+
 	public ColumnSize getLabelSize()
 	{
 		return this.containerSize.getInverseColumnSize();
@@ -76,4 +83,5 @@ public class FormStyleBehavior extends Behavior
 	{
 		return this.containerSize;
 	}
+
 }

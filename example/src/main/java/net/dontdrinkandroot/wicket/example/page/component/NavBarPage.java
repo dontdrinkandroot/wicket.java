@@ -60,13 +60,13 @@ public class NavBarPage extends ComponentPage
 			@Override
 			protected void populateNavbarLeftItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateNavbarLeftItems(itemView);
+				NavBarPage.this.populateExampleNavbarLeftItems(itemView);
 			}
 
 			@Override
 			protected void populateNavbarRightItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateNavbarRightItems(itemView);
+				NavBarPage.this.populateExampleNavbarRightItems(itemView);
 			}
 		};
 		this.add(navBarDefault);
@@ -90,13 +90,13 @@ public class NavBarPage extends ComponentPage
 			@Override
 			protected void populateNavbarLeftItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateNavbarLeftItems(itemView);
+				NavBarPage.this.populateExampleNavbarLeftItems(itemView);
 			}
 
 			@Override
 			protected void populateNavbarRightItems(RepeatingView itemView)
 			{
-				NavBarPage.this.populateNavbarRightItems(itemView);
+				NavBarPage.this.populateExampleNavbarRightItems(itemView);
 			}
 		};
 		navBarInverse.setStyle(NavBarStyle.INVERSE);
@@ -111,8 +111,7 @@ public class NavBarPage extends ComponentPage
 		return navBarForm;
 	}
 
-	@Override
-	protected void populateNavbarLeftItems(RepeatingView itemView)
+	protected void populateExampleNavbarLeftItems(RepeatingView itemView)
 	{
 		itemView.add(new DropDownItem(itemView.newChildId(), Model.of("DropDown")) {
 
@@ -140,7 +139,7 @@ public class NavBarPage extends ComponentPage
 		});
 	}
 
-	protected void populateExampleNavbarRightCollapseItems(RepeatingView itemView)
+	protected void populateExampleNavbarRightItems(RepeatingView itemView)
 	{
 		itemView.add(new NavBarTextItem(itemView.newChildId(), Model.of("Text")));
 	}

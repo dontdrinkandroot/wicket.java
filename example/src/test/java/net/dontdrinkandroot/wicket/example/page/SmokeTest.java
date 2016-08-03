@@ -12,10 +12,9 @@ import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
 import net.dontdrinkandroot.wicket.example.page.component.LabelPage;
 import net.dontdrinkandroot.wicket.example.page.component.ModalPage;
 import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
+import net.dontdrinkandroot.wicket.example.page.component.PaginationPage;
 import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
-import net.dontdrinkandroot.wicket.example.page.form.HorizontalFormPage;
-import net.dontdrinkandroot.wicket.example.page.form.InlineFormPage;
-import net.dontdrinkandroot.wicket.example.page.form.StandardFormPage;
+import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
 
 
 public class SmokeTest
@@ -31,7 +30,7 @@ public class SmokeTest
 	}
 
 	@Test
-	public void homepageRendersSuccessfully()
+	public void testPages()
 	{
 		this.testPage(HomePage.class);
 		this.testPage(CssPage.class);
@@ -43,9 +42,8 @@ public class SmokeTest
 		this.testPage(ModalPage.class);
 		this.testPage(NavBarPage.class);
 		this.testPage(ProgressBarPage.class);
-		this.testPage(StandardFormPage.class);
-		this.testPage(HorizontalFormPage.class);
-		this.testPage(InlineFormPage.class);
+		this.testPage(FormGroupPage.class);
+		this.testPage(PaginationPage.class);
 	}
 
 	protected <T extends Page> void testPage(Class<T> pageClass)

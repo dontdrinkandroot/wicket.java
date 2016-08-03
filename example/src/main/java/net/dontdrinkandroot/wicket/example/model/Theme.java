@@ -1,11 +1,12 @@
 package net.dontdrinkandroot.wicket.example.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class Theme
+public class Theme implements Serializable
 {
 
 	private String name;

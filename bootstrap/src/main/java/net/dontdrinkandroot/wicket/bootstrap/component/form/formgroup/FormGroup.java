@@ -10,6 +10,7 @@ import org.apache.wicket.model.Model;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.InlineFormScreenReaderOnlyLabelBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 
@@ -81,6 +82,7 @@ public class FormGroup<T> extends GenericPanel<T>
 				new CssClassAppender(
 						new CssClassToggleModel(this.labelScreenReaderOnlyModel, BootstrapCssClass.SR_ONLY)));
 		label.add(new CssClassAppender(BootstrapCssClass.CONTROL_LABEL));
+		label.add(new InlineFormScreenReaderOnlyLabelBehavior());
 		return label;
 	}
 

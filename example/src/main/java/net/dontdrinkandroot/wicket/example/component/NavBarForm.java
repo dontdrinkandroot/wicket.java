@@ -22,6 +22,7 @@ public class NavBarForm extends Form<Void>
 	protected void onInitialize()
 	{
 		super.onInitialize();
+
 		this.add(new NavBarFormBehavior());
 		FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
 		searchGroup.setLabelScreenReaderOnly(true);

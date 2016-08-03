@@ -8,12 +8,10 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
-import org.apache.wicket.validation.IValidatable;
-import org.apache.wicket.validation.IValidator;
-import org.apache.wicket.validation.ValidationError;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 
@@ -39,30 +37,38 @@ public class ValidationPage extends FormPage
 		Form<Void> form = new Form<Void>("form");
 		this.add(form);
 
+		RepeatingView stateFormGroupView = new RepeatingView("stateFormGroup");
+		this.add(stateFormGroupView);
+
+		FormGroupInputText formGroupInputText;
+		formGroupInputText = new FormGroupInputText(stateFormGroupView.newChildId(), Model.of("Success"), Model.of(""));
+		formGroupInputText.getFormComponent().success("Success message");
+		stateFormGroupView.add(formGroupInputText);
+
+		formGroupInputText = new FormGroupInputText(stateFormGroupView.newChildId(), Model.of("Warning"), Model.of(""));
+		formGroupInputText.getFormComponent().warn("Warn message");
+		stateFormGroupView.add(formGroupInputText);
+
+		formGroupInputText = new FormGroupInputText(stateFormGroupView.newChildId(), Model.of("Error"), Model.of(""));
+		formGroupInputText.getFormComponent().error("Error message");
+		stateFormGroupView.add(formGroupInputText);
+
 		RepeatingView formGroupView = new RepeatingView("formGroup");
 		form.add(formGroupView);
 
-		FormGroupInputText requiredFormGroup =
-				new FormGroupInputText(formGroupView.newChildId(), Model.of("Required"), new Model<String>());
-		requiredFormGroup.setRequired(true);
-		requiredFormGroup.getFormComponent().warn("This field is required");
-		formGroupView.add(requiredFormGroup);
-
-		FormGroupInputText ajaxValidationFormGroup = new FormGroupInputText(
+		FormGroupInputEmail validationFormGroup = new FormGroupInputEmail(
 				formGroupView.newChildId(),
-				Model.of("Ajax Validation"),
+				Model.of("Validation (email)"),
+				new Model<String>(""));
+		validationFormGroup.setRequired(true);
+		validationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+		formGroupView.add(validationFormGroup);
+
+		FormGroupInputEmail ajaxValidationFormGroup = new FormGroupInputEmail(
+				formGroupView.newChildId(),
+				Model.of("Ajax Validation (email)"),
 				new Model<String>("Type to see what's happening"));
 		ajaxValidationFormGroup.setRequired(true);
-		ajaxValidationFormGroup.getFormComponent().add(new IValidator<String>() {
-
-			@Override
-			public void validate(IValidatable<String> validatable)
-			{
-				if (!"your mother".equals(validatable.getValue())) {
-					validatable.error(new ValidationError("I only accept 'your mother'"));
-				}
-			}
-		});
 		ajaxValidationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
 		formGroupView.add(ajaxValidationFormGroup);
 
