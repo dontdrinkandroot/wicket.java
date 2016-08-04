@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
@@ -46,6 +47,7 @@ public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<
 				return FormGroupTextArea.this.rows;
 			}
 		}));
+		textArea.add(new HTML5Attributes());
 		return textArea;
 	}
 
