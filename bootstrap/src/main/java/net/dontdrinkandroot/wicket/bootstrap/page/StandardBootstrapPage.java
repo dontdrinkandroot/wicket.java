@@ -17,11 +17,15 @@ import org.apache.wicket.util.string.Strings;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
+import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
+import net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest;
 import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
 
 
 public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 {
+
+	public static final String MODAL_ID = "modal";
 
 	private FeedbackPanel feedbackPanel;
 
@@ -46,7 +50,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	{
 		super.onInitialize();
 
-		this.add(this.createModal("modal"));
+		this.add(this.createModal(StandardBootstrapPage.MODAL_ID));
 
 		Component navBar = this.createNavBar("navBar");
 		this.add(navBar);
@@ -160,33 +164,48 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	public void onEvent(IEvent<?> event)
 	{
 		super.onEvent(event);
-		if (event.getPayload() instanceof OpenModalRequest<?>) {
-			OpenModalRequest<?> openModalRequest = (OpenModalRequest<?>) event.getPayload();
-			Class<? extends Modal<?>> modalClass = openModalRequest.getModalClass();
-			IModel<?> model = openModalRequest.getModel();
-			AjaxRequestTarget target = openModalRequest.getTarget();
-			try {
-				Modal<?> modal;
-				if (null == model) {
-					modal = modalClass.getConstructor(String.class).newInstance("modal");
-				} else {
-					modal = modalClass.getConstructor(String.class, IModel.class).newInstance("modal", model);
+		if (event.getPayload() instanceof ModalRequest) {
+			if (event.getPayload() instanceof OpenModalRequest) {
+				OpenModalRequest openModalRequest = (OpenModalRequest) event.getPayload();
+				AjaxRequestTarget target = openModalRequest.getTarget();
+				Modal<?> modal = openModalRequest.getModal();
+				if (!StandardBootstrapPage.MODAL_ID.equals(modal.getId())) {
+					throw new WicketRuntimeException("Unexpected Modal ID");
 				}
 				this.replace(modal);
 				target.add(modal);
 				target.appendJavaScript(modal.getShowScript());
-			} catch (InstantiationException e) {
-				throw new WicketRuntimeException(e);
-			} catch (IllegalAccessException e) {
-				throw new WicketRuntimeException(e);
-			} catch (IllegalArgumentException e) {
-				throw new WicketRuntimeException(e);
-			} catch (InvocationTargetException e) {
-				throw new WicketRuntimeException(e);
-			} catch (NoSuchMethodException e) {
-				throw new WicketRuntimeException(e);
-			} catch (SecurityException e) {
-				throw new WicketRuntimeException(e);
+			}
+			if (event.getPayload() instanceof CreateAndOpenModalRequest<?>) {
+				CreateAndOpenModalRequest<?> openModalRequest = (CreateAndOpenModalRequest<?>) event.getPayload();
+				Class<? extends Modal<?>> modalClass = openModalRequest.getModalClass();
+				IModel<?> model = openModalRequest.getModel();
+				AjaxRequestTarget target = openModalRequest.getTarget();
+				try {
+					Modal<?> modal;
+					if (null == model) {
+						modal = modalClass.getConstructor(String.class).newInstance(StandardBootstrapPage.MODAL_ID);
+					} else {
+						modal = modalClass.getConstructor(String.class, IModel.class).newInstance(
+								StandardBootstrapPage.MODAL_ID,
+								model);
+					}
+					this.replace(modal);
+					target.add(modal);
+					target.appendJavaScript(modal.getShowScript());
+				} catch (InstantiationException e) {
+					throw new WicketRuntimeException(e);
+				} catch (IllegalAccessException e) {
+					throw new WicketRuntimeException(e);
+				} catch (IllegalArgumentException e) {
+					throw new WicketRuntimeException(e);
+				} catch (InvocationTargetException e) {
+					throw new WicketRuntimeException(e);
+				} catch (NoSuchMethodException e) {
+					throw new WicketRuntimeException(e);
+				} catch (SecurityException e) {
+					throw new WicketRuntimeException(e);
+				}
 			}
 		}
 	}

@@ -7,7 +7,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxButton;
-import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
+import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
 import net.dontdrinkandroot.wicket.example.component.SimpleFormModal;
 import net.dontdrinkandroot.wicket.example.component.SimpleModal;
 
@@ -35,7 +35,7 @@ public class ModalPage extends ComponentPage
 			@Override
 			public void onClick(AjaxRequestTarget target)
 			{
-				this.send(this, Broadcast.BUBBLE, new OpenModalRequest<Void>(target, SimpleModal.class));
+				this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<Void>(target, SimpleModal.class));
 			}
 		}.setBody(Model.of("Standard Modal")));
 
@@ -44,7 +44,7 @@ public class ModalPage extends ComponentPage
 			@Override
 			public void onClick(AjaxRequestTarget target)
 			{
-				this.send(this, Broadcast.BUBBLE, new OpenModalRequest<Void>(target, SimpleFormModal.class));
+				this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<Void>(target, SimpleFormModal.class));
 			}
 		}.setBody(Model.of("Form Modal")));
 	}

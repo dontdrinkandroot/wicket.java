@@ -55,7 +55,7 @@ public abstract class Modal<T> extends GenericPanel<T>
 
 	public CharSequence getHideScript()
 	{
-		return String.format("$('%s').modal('hide');", this.getMarkupId());
+		return String.format("$('#%s').modal('hide');", this.getMarkupId());
 	}
 
 	public CharSequence getShowScript()
@@ -65,7 +65,7 @@ public abstract class Modal<T> extends GenericPanel<T>
 
 	public CharSequence getToggleScript()
 	{
-		return String.format("$('%s').modal('toggle');", this.getMarkupId());
+		return String.format("$('#%s').modal('toggle');", this.getMarkupId());
 	}
 
 	protected abstract IModel<String> createHeadingModel();
