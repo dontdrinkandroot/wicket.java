@@ -130,6 +130,7 @@ public enum BootstrapCssClass implements CssClass
 	NAVBAR_FORM("navbar-form"),
 	NAVBAR_LEFT("navbar-left"),
 	NAVBAR_FIXED_TOP("navbar-fixed-top"),
+	NAV_JUSTIFIED("nav-justified"),
 	NAVBAR_RIGHT("navbar-right"),
 	NAVBAR_TEXT("navbar-text"),
 	PAGINATION("pagination"),

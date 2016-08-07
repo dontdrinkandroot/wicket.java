@@ -51,4 +51,13 @@ public class CssClassToggleModel extends AbstractReadOnlyModel<CssClass>
 		return this.toggleModel.getObject().booleanValue();
 	}
 
+	@Override
+	public void detach()
+	{
+		super.detach();
+		if (null != this.toggleModel) {
+			this.toggleModel.detach();
+		}
+	}
+
 }
