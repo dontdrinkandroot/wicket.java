@@ -79,6 +79,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		this.feedbackPanel = this.createFeedbackPanel("feedback");
 		this.feedbackPanel.setOutputMarkupId(true);
 		this.add(this.feedbackPanel);
+
+		this.add(this.createFooter("footer"));
 	}
 
 	private Component createModal(String id)
@@ -153,6 +155,11 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	protected void populateNavbarRightItems(RepeatingView itemView)
 	{
 		/* Overwrite to populate navbar items on right side */
+	}
+
+	protected Component createFooter(String id)
+	{
+		return new WebMarkupContainer(id).setVisible(false);
 	}
 
 	public FeedbackPanel getFeedbackPanel()
