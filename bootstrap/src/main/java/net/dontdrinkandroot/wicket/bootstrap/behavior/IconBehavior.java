@@ -45,6 +45,8 @@ public class IconBehavior extends AbstractTransformerBehavior
 
 	private IModel<CssClass> appendIconModel;
 
+	private String separator = "&nbsp;&nbsp;";
+
 
 	/**
 	 * Create an IconBehavior that does not add any Icon initially.
@@ -57,17 +59,17 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Creates an IconBehavior that prepends the given icon.
 	 */
-	public IconBehavior(IModel<CssClass> beforeIconModel)
+	public IconBehavior(IModel<CssClass> prependIconModel)
 	{
-		this.prependIconModel = beforeIconModel;
+		this.prependIconModel = prependIconModel;
 	}
 
 	/**
 	 * Creates an IconBehavior that prepends the given icon.
 	 */
-	public IconBehavior(CssClass beforeIcon)
+	public IconBehavior(CssClass prependIcon)
 	{
-		this.setPrependIcon(beforeIcon);
+		this.setPrependIcon(prependIcon);
 	}
 
 	@Override
@@ -102,8 +104,8 @@ public class IconBehavior extends AbstractTransformerBehavior
 		/* Prepend icon if requested */
 		if (hasPrependIcon) {
 			outputBuffer.append(this.renderIcon(this.getPrependIconModel()));
-			if (!bodyIsEmpty || hasAppendIcon) {
-				outputBuffer.append("&nbsp;&nbsp;");
+			if (((null != this.separator) && !bodyIsEmpty) || hasAppendIcon) {
+				outputBuffer.append(this.separator);
 			}
 		}
 
@@ -111,8 +113,8 @@ public class IconBehavior extends AbstractTransformerBehavior
 
 		/* Append icon if requested */
 		if (hasAppendIcon) {
-			if (!bodyIsEmpty) {
-				outputBuffer.append("&nbsp;&nbsp;");
+			if ((null != this.separator) && !bodyIsEmpty) {
+				outputBuffer.append(this.separator);
 			}
 			outputBuffer.append(this.renderIcon(this.getAppendIconModel()));
 		}
@@ -147,17 +149,17 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Set the icon to prepend, if it is null no icon will be prepended.
 	 */
-	public IconBehavior setPrependIcon(CssClass beforeIcon)
+	public IconBehavior setPrependIcon(CssClass prependIcon)
 	{
-		if (beforeIcon == null) {
+		if (prependIcon == null) {
 			this.prependIconModel = null;
 			return this;
 		}
 
 		if (this.prependIconModel == null) {
-			this.prependIconModel = Model.of(beforeIcon);
+			this.prependIconModel = Model.of(prependIcon);
 		} else {
-			this.prependIconModel.setObject(beforeIcon);
+			this.prependIconModel.setObject(prependIcon);
 		}
 
 		return this;
@@ -166,17 +168,17 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Set the icon to append, if it is null no icon will be appended.
 	 */
-	public IconBehavior setAppendIcon(CssClass afterIcon)
+	public IconBehavior setAppendIcon(CssClass appendIcon)
 	{
-		if (afterIcon == null) {
+		if (appendIcon == null) {
 			this.appendIconModel = null;
 			return this;
 		}
 
 		if (this.appendIconModel == null) {
-			this.appendIconModel = Model.of(afterIcon);
+			this.appendIconModel = Model.of(appendIcon);
 		} else {
-			this.appendIconModel.setObject(afterIcon);
+			this.appendIconModel.setObject(appendIcon);
 		}
 
 		return this;
@@ -214,6 +216,18 @@ public class IconBehavior extends AbstractTransformerBehavior
 	protected IModel<CssClass> getAppendIconModel()
 	{
 		return this.appendIconModel;
+	}
+
+	/**
+	 * Sets the (HTML) String that is added between the icon and the body. By default this is some extra non breaking
+	 * spacing.
+	 *
+	 * @return
+	 */
+	public IconBehavior setSeparator(String separator)
+	{
+		this.separator = separator;
+		return this;
 	}
 
 	/**

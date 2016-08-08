@@ -2,13 +2,11 @@
 <html xmlns:wicket>
 <body>
 	<wicket:panel>
-		<button type="button" wicket:id="button"></button>
-		<button type="button" wicket:id="toggle" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<span class="caret"></span>
+		<button wicket:id="button" type="button"></button>
+		<button wicket:id="toggle" type="button">
 			<span class="sr-only">Toggle Dropdown</span>
 		</button>
-		<div wicket:id="dropdownMenu" class="dropdown-menu">
-		</div>
+		<ul wicket:id="dropdownMenu"></ul>
 	</wicket:panel>
 </body>
 </html>

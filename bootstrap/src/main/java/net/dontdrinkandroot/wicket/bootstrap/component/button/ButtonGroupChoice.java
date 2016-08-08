@@ -19,27 +19,36 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import java.util.List;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 
-public class ButtonGroupChoice<T> extends GenericPanel<T> {
 
-	public ButtonGroupChoice(String id, IModel<T> model, List<T> choices) {
+public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
+{
+
+	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+
+
+	public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
+	{
 
 		this(id, model, new ListModel<T>(choices));
 	}
 
-
-	public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel) {
+	public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
+	{
 
 		super(id, model);
 
@@ -55,19 +64,22 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 			AjaxLink<Void> choiceLink = new AjaxLink<Void>(choicesView.newChildId()) {
 
 				@Override
-				public void onClick(AjaxRequestTarget target) {
+				public void onClick(AjaxRequestTarget target)
+				{
 
 					ButtonGroupChoice.this.onSelectionChanged(choice, target);
 				}
 			};
 			choiceLink.setBody(this.getDisplayModel(choice));
-			choiceLink.add(new CssClassAppender(new Model<BootstrapCssClass>() {
+			choiceLink.add(this.buttonBehavior);
+			choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
 
 				@Override
-				public BootstrapCssClass getObject() {
+				public BootstrapCssClass getObject()
+				{
 
 					if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-						super.getObject();
+						return BootstrapCssClass.ACTIVE;
 					}
 
 					return null;
@@ -78,15 +90,41 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> {
 		}
 	}
 
+	@Override
+	public ButtonSize getButtonSize()
+	{
+		return this.buttonBehavior.getButtonSize();
+	}
 
-	protected void onSelectionChanged(T choice, AjaxRequestTarget target) {
+	@Override
+	public ButtonGroupChoice<T> setButtonSize(ButtonSize buttonSize)
+	{
+		this.buttonBehavior.setButtonSize(buttonSize);
+		return this;
+	}
+
+	@Override
+	public ButtonStyle getButtonStyle()
+	{
+		return this.buttonBehavior.getButtonStyle();
+	}
+
+	@Override
+	public ButtonGroupChoice<T> setButtonStyle(ButtonStyle buttonStyle)
+	{
+		this.buttonBehavior.setButtonStyle(buttonStyle);
+		return this;
+	}
+
+	protected void onSelectionChanged(T choice, AjaxRequestTarget target)
+	{
 
 		this.setModelObject(choice);
 		target.add(ButtonGroupChoice.this);
 	}
 
-
-	protected IModel<String> getDisplayModel(T choice) {
+	protected IModel<String> getDisplayModel(T choice)
+	{
 
 		return new Model<String>(choice.toString());
 	}

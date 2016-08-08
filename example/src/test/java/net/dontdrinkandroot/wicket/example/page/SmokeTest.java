@@ -15,6 +15,8 @@ import net.dontdrinkandroot.wicket.example.page.component.NavBarPage;
 import net.dontdrinkandroot.wicket.example.page.component.PaginationPage;
 import net.dontdrinkandroot.wicket.example.page.component.ProgressBarPage;
 import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
+import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
+import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 
 
 public class SmokeTest
@@ -41,6 +43,8 @@ public class SmokeTest
 		this.testPage(LabelPage.class);
 		this.testPage(ModalPage.class);
 		this.testPage(NavBarPage.class);
+		this.testPage(ValidationPage.class);
+		this.testPage(InputGroupPage.class);
 		this.testPage(ProgressBarPage.class);
 		this.testPage(FormGroupPage.class);
 		this.testPage(PaginationPage.class);

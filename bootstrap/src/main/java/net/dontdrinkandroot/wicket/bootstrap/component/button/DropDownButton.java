@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -7,6 +8,8 @@ import org.apache.wicket.model.IModel;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
@@ -48,6 +51,8 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 	protected void createComponents()
 	{
 		this.toggle = new Label("toggle", this.labelModel);
+		this.toggle.add(new DropDownToggleBehavior());
+		this.addCaret(this.toggle);
 		this.menu = new DropDownMenu("menu") {
 
 			@Override
@@ -109,6 +114,11 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 	{
 		this.menu.setAlignment(alignment);
 		return this;
+	}
+
+	protected void addCaret(Component toggle)
+	{
+		toggle.add(new IconBehavior().setAppendIcon(BootstrapCssClass.CARET));
 	}
 
 	protected abstract void populateItems(RepeatingView itemView);
