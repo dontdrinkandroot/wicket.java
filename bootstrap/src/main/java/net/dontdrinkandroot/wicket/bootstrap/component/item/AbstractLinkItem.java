@@ -29,63 +29,56 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public abstract class AbstractLinkItem extends AbstractItem<String>
 {
 
-	private IModel<CssClass> beforeIconModel;
+	private IModel<CssClass> prependIconModel;
 
-	private IModel<CssClass> afterIconModel;
+	private IModel<CssClass> appendIconModel;
 
 
 	public AbstractLinkItem(String id, IModel<String> labelModel)
 	{
-
 		super(id, labelModel);
 	}
 
 	public AbstractLinkItem(String id, String label)
 	{
-
 		super(id, Model.of(label));
 	}
 
-	public AbstractLinkItem setBeforeIcon(CssClass beforeIcon)
+	public AbstractLinkItem setPrependIcon(CssClass prependIcon)
 	{
-
-		if (beforeIcon == null) {
-			this.beforeIconModel = null;
+		if (prependIcon == null) {
+			this.prependIconModel = null;
 		} else {
-			this.beforeIconModel = Model.of(beforeIcon);
+			this.prependIconModel = Model.of(prependIcon);
 		}
 
 		return this;
 	}
 
-	public AbstractLinkItem setAfterIcon(CssClass afterIcon)
+	public AbstractLinkItem setAppendIcon(CssClass appendIcon)
 	{
-
-		if (afterIcon == null) {
-			this.afterIconModel = null;
+		if (appendIcon == null) {
+			this.appendIconModel = null;
 		} else {
-			this.afterIconModel = Model.of(afterIcon);
+			this.appendIconModel = Model.of(appendIcon);
 		}
 
 		return this;
 	}
 
-	public IModel<CssClass> getBeforeIconModel()
+	public IModel<CssClass> getPrependIconModel()
 	{
-
-		return this.beforeIconModel;
+		return this.prependIconModel;
 	}
 
-	public IModel<CssClass> getAfterIconModel()
+	public IModel<CssClass> setAppendIconModel()
 	{
-
-		return this.afterIconModel;
+		return this.appendIconModel;
 	}
 
 	@Override
 	protected void onInitialize()
 	{
-
 		super.onInitialize();
 
 		this.add(new DisabledCssBehavior());
@@ -95,15 +88,13 @@ public abstract class AbstractLinkItem extends AbstractItem<String>
 			@Override
 			public IModel<CssClass> getPrependIconModel()
 			{
-
-				return AbstractLinkItem.this.getBeforeIconModel();
+				return AbstractLinkItem.this.getPrependIconModel();
 			};
 
 			@Override
 			public IModel<CssClass> getAppendIconModel()
 			{
-
-				return AbstractLinkItem.this.getAfterIconModel();
+				return AbstractLinkItem.this.setAppendIconModel();
 			};
 		});
 		this.add(link);

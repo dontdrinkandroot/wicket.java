@@ -17,63 +17,70 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
-public abstract class DropDownItem extends AbstractLinkItem {
 
-	public DropDownItem(String id, IModel<String> labelModel) {
+public abstract class DropDownItem extends AbstractLinkItem
+{
+
+	protected DropDownMenu dropDownMenu;
+
+
+	public DropDownItem(String id, IModel<String> labelModel)
+	{
 
 		super(id, labelModel);
 	}
 
-
-	public DropDownItem(String id, String label) {
+	public DropDownItem(String id, String label)
+	{
 
 		super(id, Model.of(label));
 	}
 
-
 	@Override
-	protected void onInitialize() {
+	protected void onInitialize()
+	{
 
 		super.onInitialize();
 
 		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
-		RepeatingView dropDownItemView = new RepeatingView("dropDownItem");
-		this.populateItems(dropDownItemView);
-		this.add(dropDownItemView);
-	}
 
-
-	@Override
-	protected Component createLink(String id) {
-
-		Label label = new Label(id, this.getModel()) {
+		this.dropDownMenu = new DropDownMenu("dropDownMenu") {
 
 			@Override
-			public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
-
-				this.replaceComponentTagBody(markupStream, openTag, this.getDefaultModelObjectAsString()
-						+ " <span class=\"caret\"></span>");
+			protected void populateItems(RepeatingView itemView)
+			{
+				DropDownItem.this.populateItems(itemView);
 			}
 		};
-		label.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_TOGGLE));
-		label.add(new AttributeModifier("data-toggle", Model.of("dropdown")));
+		this.add(this.dropDownMenu);
+	}
+
+	@Override
+	protected Component createLink(String id)
+	{
+
+		Label label = new Label(id, this.getModel());
+		label.add(new DropDownToggleBehavior());
+		this.addCaret(label);
 
 		return label;
 	}
 
+	protected void addCaret(Component toggle)
+	{
+		this.setAppendIcon(BootstrapCssClass.CARET);
+	}
 
 	protected abstract void populateItems(RepeatingView itemView);
 }

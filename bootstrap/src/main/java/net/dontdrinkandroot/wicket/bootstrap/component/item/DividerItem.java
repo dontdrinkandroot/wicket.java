@@ -29,8 +29,8 @@ public class DividerItem extends WebMarkupContainer
 
 	public DividerItem(String id)
 	{
-
 		super(id);
+
 		this.add(new CssClassAppender(BootstrapCssClass.DIVIDER));
 		this.add(new AttributeModifier("role", "separator"));
 	}

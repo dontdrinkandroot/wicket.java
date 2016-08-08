@@ -32,7 +32,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
 public abstract class DropDownMenu extends Panel
 {
 
-	private IModel<DropDownAlignment> alignmentModel = Model.of(DropDownAlignment.LEFT);
+	private IModel<DropDownAlignment> alignmentModel = Model.of();
 
 
 	public DropDownMenu(String id)
