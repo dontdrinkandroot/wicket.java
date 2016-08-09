@@ -48,7 +48,7 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
 		this.toggle = new WebMarkupContainer("toggle");
 		this.toggle.add(this.buttonBehavior);
 		this.toggle.add(new DropDownToggleBehavior());
-		this.addCaret(this.toggle);
+		this.toggle.add(new IconBehavior().setAppendIcon(this.getCaretClass()).setSeparator(null));
 		this.add(this.toggle);
 
 		this.add(this.createDropDownMenu("dropdownMenu"));
@@ -99,9 +99,9 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
 		return this;
 	}
 
-	protected void addCaret(Component toggle)
+	protected BootstrapCssClass getCaretClass()
 	{
-		toggle.add(new IconBehavior().setAppendIcon(BootstrapCssClass.CARET).setSeparator(null));
+		return BootstrapCssClass.CARET;
 	}
 
 	protected abstract Component createAction(String id);

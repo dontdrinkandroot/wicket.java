@@ -27,6 +27,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 
 public abstract class DropDownItem extends AbstractLinkItem
@@ -69,17 +70,16 @@ public abstract class DropDownItem extends AbstractLinkItem
 	@Override
 	protected Component createLink(String id)
 	{
-
 		Label label = new Label(id, this.getModel());
 		label.add(new DropDownToggleBehavior());
-		this.addCaret(label);
+		this.setAppendIcon(this.getCaretClass());
 
 		return label;
 	}
 
-	protected void addCaret(Component toggle)
+	protected CssClass getCaretClass()
 	{
-		this.setAppendIcon(BootstrapCssClass.CARET);
+		return BootstrapCssClass.CARET;
 	}
 
 	protected abstract void populateItems(RepeatingView itemView);
