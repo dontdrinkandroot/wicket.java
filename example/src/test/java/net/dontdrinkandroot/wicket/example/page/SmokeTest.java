@@ -1,11 +1,9 @@
 package net.dontdrinkandroot.wicket.example.page;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
 import org.junit.Test;
 
-import net.dontdrinkandroot.wicket.example.ExampleTestApplication;
+import net.dontdrinkandroot.wicket.example.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
 import net.dontdrinkandroot.wicket.example.page.component.ButtonPage;
 import net.dontdrinkandroot.wicket.example.page.component.DropDownPage;
@@ -19,17 +17,8 @@ import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
 import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 
 
-public class SmokeTest
+public class SmokeTest extends AbstractWicketTest
 {
-
-	private WicketTester tester;
-
-
-	@Before
-	public void setUp()
-	{
-		this.tester = new WicketTester(new ExampleTestApplication());
-	}
 
 	@Test
 	public void testPages()

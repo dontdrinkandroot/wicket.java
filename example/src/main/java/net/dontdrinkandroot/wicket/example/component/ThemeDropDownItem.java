@@ -1,8 +1,7 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
@@ -44,20 +43,21 @@ public class ThemeDropDownItem extends DropDownItem
 			@Override
 			protected Component createLink(String id)
 			{
-				AjaxLink<Void> themeLink = new AjaxLink<Void>(id) {
+				StatelessLink<Void> themeLink = new StatelessLink<Void>(id) {
 
 					@Override
-					public void onClick(AjaxRequestTarget target)
+					public void onClick()
 					{
 						ExampleWebSession.get().setCurrentTheme(theme);
 						this.setResponsePage(this.getPage());
 					}
 				};
 				themeLink.setBody(Model.of(this.getModel()));
+
 				return themeLink;
 			}
-
 		};
+
 		return themeLinkItem;
 	}
 
