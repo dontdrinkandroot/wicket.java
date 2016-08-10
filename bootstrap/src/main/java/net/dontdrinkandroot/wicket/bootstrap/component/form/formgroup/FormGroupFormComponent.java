@@ -12,6 +12,11 @@ public abstract class FormGroupFormComponent<T, M, F extends FormComponent<M>> e
 	protected Class<T> type = null;
 
 
+	public FormGroupFormComponent(String id, IModel<String> labelModel)
+	{
+		this(id, labelModel, null, null);
+	}
+
 	public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model)
 	{
 		this(id, labelModel, model, null);

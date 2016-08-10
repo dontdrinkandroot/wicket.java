@@ -26,14 +26,19 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 
-public class FormGroupFileUploadField
+public class FormGroupInputFile
 		extends FormGroupFormComponent<List<FileUpload>, List<FileUpload>, FileUploadField>
 {
 
 	private boolean multiple = false;
 
 
-	public FormGroupFileUploadField(String id, IModel<String> labelModel, IModel<List<FileUpload>> model)
+	public FormGroupInputFile(String id, IModel<String> labelModel)
+	{
+		super(id, labelModel);
+	}
+
+	public FormGroupInputFile(String id, IModel<String> labelModel, IModel<List<FileUpload>> model)
 	{
 		super(id, labelModel, model);
 	}
@@ -47,7 +52,7 @@ public class FormGroupFileUploadField
 			@Override
 			public String getObject()
 			{
-				if (FormGroupFileUploadField.this.multiple) {
+				if (FormGroupInputFile.this.multiple) {
 					return "multiple";
 				}
 				return null;

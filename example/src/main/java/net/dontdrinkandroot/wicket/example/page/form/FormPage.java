@@ -16,6 +16,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputFile;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputUrl;
@@ -107,6 +108,10 @@ public abstract class FormPage extends DecoratorPage<Void>
 		formGroupSelect.setRequired(false);
 		formGroupSelect.setNullValid(true);
 		formGroupView.add(formGroupSelect);
+
+		FormGroupInputFile formGroupInputFile =
+				new FormGroupInputFile(formGroupView.newChildId(), Model.of(FormGroupInputFile.class.getSimpleName()));
+		formGroupView.add(formGroupInputFile);
 
 		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId()) {
 
