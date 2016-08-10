@@ -1,6 +1,9 @@
 package net.dontdrinkandroot.wicket.example.page;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.RuntimeConfigurationType;
+import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -15,6 +18,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
+import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
 import net.dontdrinkandroot.wicket.example.page.component.AlertPage;
@@ -54,6 +58,24 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 	protected IModel<String> createPageTitlePrefixModel()
 	{
 		return Model.of("wicket.example");
+	}
+
+	@Override
+	protected void onInitialize()
+	{
+		super.onInitialize();
+		DebugBar debugBar = new DebugBar("debugBar") {
+
+			@Override
+			protected void onConfigure()
+			{
+				super.onConfigure();
+				this.setVisible(
+						RuntimeConfigurationType.DEVELOPMENT.equals(ExampleApplication.get().getConfigurationType()));
+			}
+		};
+		debugBar.add(new AttributeModifier("style", "z-index: 1030; bottom: -43px; top: initial;"));
+		this.add(debugBar);
 	}
 
 	@Override
