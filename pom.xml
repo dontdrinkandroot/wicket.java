@@ -69,6 +69,8 @@
 	<properties>
 		<version.org.apache.wicket>7.4.0</version.org.apache.wicket>
 		<version.maven-compiler-plugin>3.5.1</version.maven-compiler-plugin>
+		<version.junit>4.12</version.junit>
+		<version.javax.servlet-api>3.1.0</version.javax.servlet-api>
 	</properties>
 
 	<build>
@@ -122,5 +124,21 @@
 		</testResources>
 
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${version.javax.servlet-api}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
