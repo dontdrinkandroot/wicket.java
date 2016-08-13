@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.component.calendar;
+package net.dontdrinkandroot.wicket.bootstrap.component.calendar;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
