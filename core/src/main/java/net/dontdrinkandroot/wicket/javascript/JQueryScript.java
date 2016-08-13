@@ -24,40 +24,43 @@ import java.util.Properties;
 import org.apache.wicket.Component;
 
 
-public class JQueryScript
+/**
+ * Utilities to programmatically assemble simple JQuery Scripts.
+ * 
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class JQueryScript implements CharSequence
 {
 
 	public static Integer DEFAULT_ANIMATION_DURATION = Integer.valueOf(400);
 
 	public static String DEFAULT_EASING_FUNCTION = "swing";
 
-	public static String ANIMATE_TEMPLATE = ".animate(%s, %d, '%s', function() {%s})";
+	public static String TEMPLATE_ANIMATE = ".animate(%s, %d, '%s', function() {%s})";
 
-	public static String CHILDREN_TEMPLATE = ".children(%s)";
+	public static String TEMPLATE_CHILDREN = ".children(%s)";
 
-	public static String HIDE_TEMPLATE = ".hide(%d, '%s', function() {%s})";
+	public static String TEMPLATE_HIDE = ".hide(%d, '%s', function() {%s})";
 
-	public static String SHOW_TEMPLATE = ".show(%d, '%s', function() {%s})";
+	public static String TEMPLATE_SHOW = ".show(%d, '%s', function() {%s})";
 
-	public static String HOVER_INTENT_TEMPLATE = ".hoverIntent(function() {%s}, function() {%s})";
+	public static String TEMPLATE_FADEIN = ".fadeIn(%d, '%s', function() {%s})";
 
-	public static String FADEIN_TEMPLATE = ".fadeIn(%d, '%s', function() {%s})";
+	public static String TEMPLATE_FADETOGGLE = ".fadeToggle(%d, '%s', function() {%s})";
 
-	public static String FADETOGGLE_TEMPLATE = ".fadeToggle(%d, '%s', function() {%s})";
+	public static String TEMPLATE_FADEOUT = ".fadeOut(%d, '%s', function() {%s})";
 
-	public static String FADEOUT_TEMPLATE = ".fadeOut(%d, '%s', function() {%s})";
+	public static String TEMPLATE_TOGGLE = ".toggle(%d, '%s', function() {%s})";
 
-	public static String TOGGLE_TEMPLATE = ".toggle(%d, '%s', function() {%s})";
+	public static String TEMPLATE_SLIDEDOWN = ".slideDown(%d, '%s', function() {%s})";
 
-	public static String SLIDEDOWN_TEMPLATE = ".slideDown(%d, '%s', function() {%s})";
+	public static String TEMPLATE_SLIDEUP = ".slideUp(%d, '%s', function() {%s})";
 
-	public static String SLIDEUP_TEMPLATE = ".slideUp(%d, '%s', function() {%s})";
+	public static String TEMPLATE_SLIDETOGGLE = ".slideToggle(%d, '%s', function() {%s})";
 
-	public static String SLIDETOGGLE_TEMPLATE = ".slideToggle(%d, '%s', function() {%s})";
+	public static String TEMPLATE_KEYPRESS = ".keypress(function(event) {%s})";
 
-	public static String KEYPRESS_TEMPLATE = ".keypress(function(event) {%s})";
-
-	public static String CLICK_TEMPLATE = ".click(function(event) {%s})";
+	public static String TEMPLATE_CLICK = ".click(function(event) {%s})";
 
 	protected final StringBuffer scriptBuffer;
 
@@ -67,19 +70,19 @@ public class JQueryScript
 	 */
 	public JQueryScript()
 	{
-		this.scriptBuffer = new StringBuffer("$(this)");
+		this.scriptBuffer = new StringBuffer("jQuery(this)");
 	}
 
 	/**
-	 * Create a new JQuery Script using the components markupid as a selector. This will fail if the markupid is not
-	 * set, so always use {@link Component#setMarkupId(String)}.
+	 * Create a new JQuery Script using the components markupid as a selector.
 	 *
 	 * @param component
 	 *            The component to be selected.
 	 */
 	public JQueryScript(final Component component)
 	{
-		this.scriptBuffer = new StringBuffer("$('#" + component.getMarkupId() + "')");
+		this("#" + component.getMarkupId());
+		component.setOutputMarkupId(true);
 	}
 
 	/**
@@ -90,7 +93,43 @@ public class JQueryScript
 	 */
 	public JQueryScript(final String selector)
 	{
-		this.scriptBuffer = new StringBuffer("$('" + selector + "')");
+		this.scriptBuffer = new StringBuffer(String.format("jQuery('%s')", selector));
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.scriptBuffer.toString();
+	}
+
+	@Override
+	public char charAt(int position)
+	{
+		return this.scriptBuffer.charAt(position);
+	}
+
+	@Override
+	public int length()
+	{
+		return this.scriptBuffer.length();
+	}
+
+	@Override
+	public CharSequence subSequence(int start, int end)
+	{
+		return this.scriptBuffer.subSequence(start, end);
+	}
+
+	/**
+	 * Perform a custom animation of a set of CSS properties.
+	 *
+	 * @param properties
+	 *            A map of CSS properties that the animation will move toward.
+	 * @return This script for chaining.
+	 */
+	public JQueryScript animate(final Properties properties)
+	{
+		return this.animate(properties, null, null, null);
 	}
 
 	/**
@@ -114,7 +153,7 @@ public class JQueryScript
 	{
 		this.scriptBuffer.append(
 				String.format(
-						JQueryScript.ANIMATE_TEMPLATE,
+						JQueryScript.TEMPLATE_ANIMATE,
 						this.parseProperties(properties),
 						this.parseDurationWithDefault(duration),
 						this.parseEasingWithDefault(easing),
@@ -132,7 +171,7 @@ public class JQueryScript
 	 */
 	public JQueryScript children(final String selector)
 	{
-		this.scriptBuffer.append(String.format(JQueryScript.CHILDREN_TEMPLATE, this.nullSafeEscapedString(selector)));
+		this.scriptBuffer.append(String.format(JQueryScript.TEMPLATE_CHILDREN, this.nullSafeEscapedString(selector)));
 		return this;
 	}
 
@@ -189,7 +228,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.FADEIN_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_FADEIN, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -233,7 +272,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.FADEOUT_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_FADEOUT, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -283,7 +322,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.FADETOGGLE_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_FADETOGGLE, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -296,26 +335,6 @@ public class JQueryScript
 	public JQueryScript hide()
 	{
 		return this.hide(null, null, null);
-	}
-
-	/**
-	 * Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.
-	 *
-	 * @param callBackIn
-	 *            A script to execute when the mouse pointer enters the element.
-	 * @param callBackOut
-	 *            A script to execute when the mouse pointer leaves the element.
-	 * @return
-	 */
-	public JQueryScript hoverIntent(final CharSequence callBackIn, final CharSequence callBackOut)
-	{
-		this.scriptBuffer.append(
-				String.format(
-						JQueryScript.HOVER_INTENT_TEMPLATE,
-						this.parseScriptWithDefault(callBackIn),
-						this.parseScriptWithDefault(callBackOut)));
-		return this;
-
 	}
 
 	/**
@@ -348,7 +367,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.HIDE_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_HIDE, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -360,7 +379,7 @@ public class JQueryScript
 			actualCallbackScript = callbackScript;
 		}
 
-		this.scriptBuffer.append(String.format(JQueryScript.CLICK_TEMPLATE, actualCallbackScript));
+		this.scriptBuffer.append(String.format(JQueryScript.TEMPLATE_CLICK, actualCallbackScript));
 
 		return this;
 	}
@@ -405,7 +424,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.SHOW_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_SHOW, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -449,7 +468,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.SLIDEDOWN_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_SLIDEDOWN, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -493,7 +512,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.SLIDEUP_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_SLIDEUP, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -537,7 +556,7 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.SLIDETOGGLE_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_SLIDETOGGLE, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -582,15 +601,9 @@ public class JQueryScript
 		}
 
 		this.scriptBuffer.append(
-				String.format(JQueryScript.TOGGLE_TEMPLATE, actualDuration, actualEasing, actualCallbackScript));
+				String.format(JQueryScript.TEMPLATE_TOGGLE, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
-	}
-
-	@Override
-	public String toString()
-	{
-		return this.scriptBuffer.toString();
 	}
 
 	private Integer parseDurationWithDefault(final Integer duration)

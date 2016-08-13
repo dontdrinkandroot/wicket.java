@@ -50,12 +50,9 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 
 	protected void renderValidation(AjaxRequestTarget target)
 	{
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(ValidationState.ERROR.getClassString()).toString());
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(ValidationState.WARNING.getClassString()).toString());
-		target.appendJavaScript(
-				new JQueryScript(this.formGroup).removeClass(ValidationState.SUCCESS.getClassString()).toString());
+		target.appendJavaScript(new JQueryScript(this.formGroup).removeClass(ValidationState.ERROR.getClassString()));
+		target.appendJavaScript(new JQueryScript(this.formGroup).removeClass(ValidationState.WARNING.getClassString()));
+		target.appendJavaScript(new JQueryScript(this.formGroup).removeClass(ValidationState.SUCCESS.getClassString()));
 
 		ValidationState validationState = this.formGroup.getValidationState();
 		if ((null == validationState) && this.formGroup.getFormComponent().isValid()) {
