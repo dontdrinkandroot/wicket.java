@@ -15,5 +15,4 @@ public class AbstractWicketTest
 	{
 		this.tester = new WicketTester(new TestApplication());
 	}
-
 }
