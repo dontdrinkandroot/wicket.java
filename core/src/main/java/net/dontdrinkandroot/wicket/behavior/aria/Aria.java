@@ -26,7 +26,7 @@ public enum Aria
 	BUSY("aria-busy", true),
 	CHECKED("aria-checked", true),
 	CONTROLS("aria-controls", false),
-	DESCIBEDBY("aria-describedby", false),
+	DESCRIBEDBY("aria-describedby", false),
 	DISABLED("aria-disabled", true),
 	DROPEFFECT("aria-dropeffect", false),
 	EXPANDED("aria-expanded", true),
@@ -44,7 +44,7 @@ public enum Aria
 	ORIENTATION("aria-orientation", false),
 	OWNS("aria-owns", false),
 	POSINSET("aria-posinset", false),
-	PRESSET("aria-pressed", true),
+	PRESSED("aria-pressed", true),
 	READONLY("aria-readonly", false),
 	RELEVANT("aria-relevant", false),
 	REQUIRED("aria-required", false),
@@ -54,7 +54,7 @@ public enum Aria
 	VALUEMAX("aria-valuemax", false),
 	VALUEMIN("aria-valuemin", false),
 	VALUENOW("aria-valuenow", false),
-	TEXT("aria-valuetext", false);
+	VALUETEXT("aria-valuetext", false);
 
 	private String attribute;
 
