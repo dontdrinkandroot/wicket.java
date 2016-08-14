@@ -70,4 +70,18 @@ public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 		return this;
 	}
 
+	@Override
+	public AjaxSubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public AjaxSubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 }

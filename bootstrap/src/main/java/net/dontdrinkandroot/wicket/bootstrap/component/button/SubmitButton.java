@@ -67,4 +67,18 @@ public class SubmitButton extends SubmitLink implements IButton
 		this.buttonBehavior.setButtonStyle(buttonStyle);
 		return this;
 	}
+
+	@Override
+	public SubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public SubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
 }

@@ -2,6 +2,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
@@ -56,6 +57,18 @@ public class BookmarkablePageButton<T> extends BookmarkablePageLink<T> implement
 	public BookmarkablePageButton<T> setButtonStyle(ButtonStyle buttonStyle)
 	{
 		this.buttonBehavior.setButtonStyle(buttonStyle);
+		return this;
+	}
+
+	public BookmarkablePageButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	public BookmarkablePageButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
 		return this;
 	}
 }

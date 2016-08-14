@@ -57,4 +57,16 @@ public abstract class AjaxButton<T> extends AjaxLink<T> implements IButton
 		return this;
 	}
 
+	public AjaxButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	public AjaxButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 }

@@ -67,6 +67,20 @@ public class SubmitLabelButton extends Label implements IButton
 	}
 
 	@Override
+	public SubmitLabelButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public SubmitLabelButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
+	@Override
 	protected void onComponentTag(ComponentTag tag)
 	{
 		tag.setName("button");

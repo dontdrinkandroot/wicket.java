@@ -23,6 +23,7 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSubmitLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -63,8 +64,34 @@ public class ButtonBehavior extends Behavior implements IButton
 		super.bind(component);
 
 		component.add(new CssClassAppender(BootstrapCssClass.BTN));
-		component.add(new CssClassAppender(this.getButtonStyleModel()));
-		component.add(new CssClassAppender(this.getButtonSizeModel()));
+		component.add(new CssClassAppender(new AbstractReadOnlyModel<ButtonStyle>() {
+
+			@Override
+			public ButtonStyle getObject()
+			{
+				return ButtonBehavior.this.getButtonStyleModel().getObject();
+			}
+
+			@Override
+			public void detach()
+			{
+				ButtonBehavior.this.getButtonStyleModel().detach();
+			}
+		}));
+		component.add(new CssClassAppender(new AbstractReadOnlyModel<ButtonSize>() {
+
+			@Override
+			public ButtonSize getObject()
+			{
+				return ButtonBehavior.this.getButtonSizeModel().getObject();
+			}
+
+			@Override
+			public void detach()
+			{
+				ButtonBehavior.this.getButtonSizeModel().detach();
+			}
+		}));
 		component.add(new DisabledCssBehavior());
 	}
 
@@ -124,9 +151,20 @@ public class ButtonBehavior extends Behavior implements IButton
 		return this.buttonSizeModel;
 	}
 
+	public ButtonBehavior setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonSizeModel = buttonSizeModel;
+		return this;
+	}
+
 	public IModel<ButtonStyle> getButtonStyleModel()
 	{
 		return this.buttonStyleModel;
 	}
 
+	public ButtonBehavior setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonStyleModel = buttonStyleModel;
+		return this;
+	}
 }

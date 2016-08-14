@@ -100,6 +100,20 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 		return this;
 	}
 
+	@Override
+	public DropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public DropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 	public Label getToggle()
 	{
 		return this.toggle;

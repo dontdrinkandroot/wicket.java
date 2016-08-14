@@ -63,4 +63,18 @@ public class LabelButton extends Label implements IButton
 	{
 		return this.buttonBehavior.getButtonStyle();
 	}
+
+	@Override
+	public LabelButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public LabelButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
 }

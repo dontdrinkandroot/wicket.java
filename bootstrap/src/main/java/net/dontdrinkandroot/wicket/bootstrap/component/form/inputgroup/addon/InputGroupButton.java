@@ -65,5 +65,19 @@ public abstract class InputGroupButton<T> extends GenericPanel<T> implements IBu
 		return this;
 	}
 
+	@Override
+	public InputGroupButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public InputGroupButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 	protected abstract Component createLink(String id);
 }

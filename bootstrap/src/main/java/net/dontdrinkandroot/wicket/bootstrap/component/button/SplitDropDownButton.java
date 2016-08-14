@@ -99,6 +99,20 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
 		return this;
 	}
 
+	@Override
+	public SplitDropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public SplitDropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 	protected BootstrapCssClass getCaretClass()
 	{
 		return BootstrapCssClass.CARET;

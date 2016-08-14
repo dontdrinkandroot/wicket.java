@@ -43,13 +43,11 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 
 	public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
 	{
-
 		this(id, model, new ListModel<T>(choices));
 	}
 
 	public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
 	{
-
 		super(id, model);
 
 		this.setOutputMarkupId(true);
@@ -116,16 +114,28 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 		return this;
 	}
 
+	@Override
+	public ButtonGroupChoice<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+	{
+		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+		return this;
+	}
+
+	@Override
+	public ButtonGroupChoice<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+	{
+		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+		return this;
+	}
+
 	protected void onSelectionChanged(T choice, AjaxRequestTarget target)
 	{
-
 		this.setModelObject(choice);
 		target.add(ButtonGroupChoice.this);
 	}
 
 	protected IModel<String> getDisplayModel(T choice)
 	{
-
 		return new Model<String>(choice.toString());
 	}
 
