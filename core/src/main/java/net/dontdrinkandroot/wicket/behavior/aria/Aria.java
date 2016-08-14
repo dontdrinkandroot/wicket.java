@@ -17,7 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.behavior.aria;
 
-public enum Aria {
+public enum Aria
+{
 
 	ACTIVEDESCENDANT("aria-activedescendant", false),
 	ATOMIC("aria-atomic", false),
@@ -43,7 +44,7 @@ public enum Aria {
 	ORIENTATION("aria-orientation", false),
 	OWNS("aria-owns", false),
 	POSINSET("aria-posinset", false),
-	PRESSET("aria-pressed (state)", false),
+	PRESSET("aria-pressed", true),
 	READONLY("aria-readonly", false),
 	RELEVANT("aria-relevant", false),
 	REQUIRED("aria-required", false),
@@ -60,20 +61,21 @@ public enum Aria {
 	private boolean withState;
 
 
-	private Aria(String attribute, boolean withState) {
+	private Aria(String attribute, boolean withState)
+	{
 
 		this.attribute = attribute;
 		this.withState = withState;
 	}
 
-
-	public String getAttribute() {
+	public String getAttribute()
+	{
 
 		return this.attribute;
 	}
 
-
-	public boolean isWithState() {
+	public boolean isWithState()
+	{
 
 		return this.withState;
 	}
