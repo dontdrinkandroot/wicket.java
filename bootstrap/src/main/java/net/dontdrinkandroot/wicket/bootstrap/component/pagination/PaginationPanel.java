@@ -30,6 +30,9 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class PaginationPanel extends Panel
 {
 
