@@ -23,7 +23,6 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSubmitLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -64,34 +63,8 @@ public class ButtonBehavior extends Behavior implements IButton
 		super.bind(component);
 
 		component.add(new CssClassAppender(BootstrapCssClass.BTN));
-		component.add(new CssClassAppender(new AbstractReadOnlyModel<ButtonStyle>() {
-
-			@Override
-			public ButtonStyle getObject()
-			{
-				return ButtonBehavior.this.getButtonStyleModel().getObject();
-			}
-
-			@Override
-			public void detach()
-			{
-				ButtonBehavior.this.getButtonStyleModel().detach();
-			}
-		}));
-		component.add(new CssClassAppender(new AbstractReadOnlyModel<ButtonSize>() {
-
-			@Override
-			public ButtonSize getObject()
-			{
-				return ButtonBehavior.this.getButtonSizeModel().getObject();
-			}
-
-			@Override
-			public void detach()
-			{
-				ButtonBehavior.this.getButtonSizeModel().detach();
-			}
-		}));
+		component.add(new CssClassAppender(this.getButtonStyleModel()));
+		component.add(new CssClassAppender(this.getButtonSizeModel()));
 		component.add(new DisabledCssBehavior());
 	}
 
@@ -129,7 +102,7 @@ public class ButtonBehavior extends Behavior implements IButton
 		/* Check if it is a button without a type and try to determine it */
 		if (tag.getName().equalsIgnoreCase("button")) {
 			if (null == tag.getAttribute("type")) {
-				if ((component instanceof AbstractSubmitLink) && !(component instanceof AjaxSubmitLink)) {
+				if (component instanceof AbstractSubmitLink && !(component instanceof AjaxSubmitLink)) {
 					tag.put("type", "submit");
 				} else {
 					tag.put("type", "button");
@@ -138,9 +111,9 @@ public class ButtonBehavior extends Behavior implements IButton
 		}
 
 		/* If this is an input button set the bodyModel as its value attribute */
-		if (tag.getName().equalsIgnoreCase("input") && (component instanceof AbstractLink)) {
+		if (tag.getName().equalsIgnoreCase("input") && component instanceof AbstractLink) {
 			IModel<?> bodyModel = ((AbstractLink) component).getBody();
-			if ((bodyModel != null) && (bodyModel.getObject() != null)) {
+			if (bodyModel != null && bodyModel.getObject() != null) {
 				tag.put("value", component.getDefaultModelObjectAsString(bodyModel.getObject()));
 			}
 		}
@@ -151,6 +124,7 @@ public class ButtonBehavior extends Behavior implements IButton
 		return this.buttonSizeModel;
 	}
 
+	@Override
 	public ButtonBehavior setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
 	{
 		this.buttonSizeModel = buttonSizeModel;
@@ -162,6 +136,7 @@ public class ButtonBehavior extends Behavior implements IButton
 		return this.buttonStyleModel;
 	}
 
+	@Override
 	public ButtonBehavior setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
 	{
 		this.buttonStyleModel = buttonStyleModel;
