@@ -13,4 +13,4 @@ env:
   - secure: fv6rcAzz9lkSZ1LfJHoqb5fdFbcfRaHrTRSPZndi0q8Kq2Y+mgiQ2eFGayW6be/NbQig7xgybh1/rkjH0BHmQfm2IUyG0ZbrRKr58kE/ppB/IrT2NYXt0TZWQBgxePe2+45AxJ8kcKHK+lVQQKc219DxLM6MyHmmnm8rb+hV5Ds=
   
 script:
-  - mvn -DfailOnServiceError=false clean deploy cobertura:cobertura coveralls:report --settings travis-maven-settings.xml
+  - mvn -DfailOnServiceError=false clean deploy jacoco:report coveralls:report --settings travis-maven-settings.xml
