@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.pagination;
+package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
 import java.util.List;
 

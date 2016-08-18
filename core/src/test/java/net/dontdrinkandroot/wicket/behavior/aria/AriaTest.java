@@ -1,9 +1,7 @@
-package net.dontdrinkandroot.wicket.javascript.behavior.aria;
+package net.dontdrinkandroot.wicket.behavior.aria;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import net.dontdrinkandroot.wicket.behavior.aria.Aria;
 
 
 public class AriaTest
@@ -12,7 +10,9 @@ public class AriaTest
 	@Test
 	public void testNaming()
 	{
-		for (Aria aria : Aria.values()) {
+		Aria[] ariaValues = Aria.values();
+		Assert.assertEquals(35, ariaValues.length);
+		for (Aria aria : ariaValues) {
 			Assert.assertEquals("aria-" + aria.name().toLowerCase(), aria.getAttribute());
 		}
 	}
