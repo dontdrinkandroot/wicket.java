@@ -21,8 +21,6 @@ public class ProgressBarTest extends AbstractWicketTest
 		ProgressBar component = new ProgressBar("id", Model.of(33));
 		String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
-		System.out.println(componentMarkup);
-
 		TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
 		Assert.assertTrue(componentTester.getAttributeContains("class", "progress"));
 
