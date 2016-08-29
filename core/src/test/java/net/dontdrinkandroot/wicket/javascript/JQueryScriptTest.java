@@ -93,4 +93,36 @@ public class JQueryScriptTest
 		jQueryScript.slideToggle();
 		Assert.assertEquals("jQuery(this).slideToggle(400, 'swing', function() {})", jQueryScript.toString());
 	}
+
+	@Test
+	public void testChildren()
+	{
+		JQueryScript jQueryScript = new JQueryScript();
+		jQueryScript.children(".test");
+		Assert.assertEquals("jQuery(this).children('.test')", jQueryScript.toString());
+	}
+
+	@Test
+	public void testSiblings()
+	{
+		JQueryScript jQueryScript = new JQueryScript();
+		jQueryScript.siblings(".test");
+		Assert.assertEquals("jQuery(this).siblings('.test')", jQueryScript.toString());
+	}
+
+	@Test
+	public void testAddClass()
+	{
+		JQueryScript jQueryScript = new JQueryScript();
+		jQueryScript.addClass(".test");
+		Assert.assertEquals("jQuery(this).addClass('.test')", jQueryScript.toString());
+	}
+
+	@Test
+	public void testRemoveClass()
+	{
+		JQueryScript jQueryScript = new JQueryScript();
+		jQueryScript.removeClass(".test");
+		Assert.assertEquals("jQuery(this).removeClass('.test')", jQueryScript.toString());
+	}
 }

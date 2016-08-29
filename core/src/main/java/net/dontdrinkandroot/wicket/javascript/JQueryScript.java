@@ -26,7 +26,7 @@ import org.apache.wicket.Component;
 
 /**
  * Utilities to programmatically assemble simple JQuery Scripts.
- * 
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class JQueryScript implements CharSequence
@@ -366,8 +366,8 @@ public class JQueryScript implements CharSequence
 			actualCallbackScript = callbackScript;
 		}
 
-		this.scriptBuffer.append(
-				String.format(JQueryScript.TEMPLATE_HIDE, actualDuration, actualEasing, actualCallbackScript));
+		this.scriptBuffer
+				.append(String.format(JQueryScript.TEMPLATE_HIDE, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -423,8 +423,8 @@ public class JQueryScript implements CharSequence
 			actualCallbackScript = callbackScript;
 		}
 
-		this.scriptBuffer.append(
-				String.format(JQueryScript.TEMPLATE_SHOW, actualDuration, actualEasing, actualCallbackScript));
+		this.scriptBuffer
+				.append(String.format(JQueryScript.TEMPLATE_SHOW, actualDuration, actualEasing, actualCallbackScript));
 
 		return this;
 	}
@@ -641,8 +641,14 @@ public class JQueryScript implements CharSequence
 			final Iterator<Entry<Object, Object>> propIt = properties.entrySet().iterator();
 			while (propIt.hasNext()) {
 				final Entry<Object, Object> propertyEntry = propIt.next();
-				sb.append("'").append(propertyEntry.getKey()).append("'").append(": ").append("'").append(
-						propertyEntry.getValue()).append("'");
+				sb
+						.append("'")
+						.append(propertyEntry.getKey())
+						.append("'")
+						.append(": ")
+						.append("'")
+						.append(propertyEntry.getValue())
+						.append("'");
 				if (propIt.hasNext()) {
 					sb.append(", ");
 				}
@@ -656,7 +662,6 @@ public class JQueryScript implements CharSequence
 
 	private String nullSafeEscapedString(final String s)
 	{
-
 		if (s == null) {
 			return "";
 		} else {
