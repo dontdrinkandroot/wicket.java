@@ -33,12 +33,14 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 /**
  * Prepends and/or appends an Icon to the body of the attached component.
  *
- * @author Philip W. Sorst <philip@sorst.net>
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class IconBehavior extends AbstractTransformerBehavior
 {
 
-	/** Pattern that matches openclose tags and is able to extract the open tag, body and close tag. */
+	/**
+	 * Pattern that matches html tags and is able to extract the open tag, body and close tag.
+	 */
 	private final static Pattern PATTERN = Pattern.compile("(<.*?>)(.*)(</.*?>)", Pattern.DOTALL);
 
 	private IModel<CssClass> prependIconModel;
@@ -75,8 +77,7 @@ public class IconBehavior extends AbstractTransformerBehavior
 	@Override
 	public CharSequence transform(Component component, CharSequence output) throws Exception
 	{
-		boolean hasPrependIcon =
-				(this.getPrependIconModel() != null) && (this.getPrependIconModel().getObject() != null);
+		boolean hasPrependIcon = (this.getPrependIconModel() != null) && (this.getPrependIconModel().getObject() != null);
 		boolean hasAppendIcon = (this.getAppendIconModel() != null) && (this.getAppendIconModel().getObject() != null);
 
 		/* Abort early if no icon is requested */
@@ -221,8 +222,6 @@ public class IconBehavior extends AbstractTransformerBehavior
 	/**
 	 * Sets the (HTML) String that is added between the icon and the body. By default this is some extra non breaking
 	 * spacing.
-	 *
-	 * @return
 	 */
 	public IconBehavior setSeparator(String separator)
 	{
@@ -231,8 +230,7 @@ public class IconBehavior extends AbstractTransformerBehavior
 	}
 
 	/**
-	 * Transforms an {@link InvertibleIconClass} Model into an italic tag String with the corresponding class
-	 * attributes.
+	 * Renders a span element with the given CssClass.
 	 */
 	protected String renderIcon(IModel<CssClass> iconModel)
 	{

@@ -35,32 +35,27 @@ public class AlertBehavior extends Behavior
 
 	public AlertBehavior(AlertStyle alertStyle)
 	{
-
 		this.alertStyleModel = Model.of(alertStyle);
 	}
 
 	public AlertBehavior(IModel<AlertStyle> alertStyleModel)
 	{
-
 		this.alertStyleModel = alertStyleModel;
 	}
 
 	public AlertStyle getStyle()
 	{
-
 		return this.alertStyleModel.getObject();
 	}
 
 	protected IModel<AlertStyle> getStyleModel()
 	{
-
 		return this.alertStyleModel;
 	}
 
 	@Override
 	public void bind(Component component)
 	{
-
 		super.bind(component);
 
 		component.add(new CssClassAppender(BootstrapCssClass.ALERT));
