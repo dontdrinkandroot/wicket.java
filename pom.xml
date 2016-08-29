@@ -5,6 +5,7 @@
 	<artifactId>wicket.parent</artifactId>
 	<version>0.5.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<inceptionYear>2012</inceptionYear>
 
 	<modules>
 		<module>core</module>
@@ -74,6 +75,7 @@
 		<version.javax.servlet-api>3.1.0</version.javax.servlet-api>
 		<version.org.jacoco.jacoco-maven-plugin>0.7.7.201606060606</version.org.jacoco.jacoco-maven-plugin>
 		<version.org.eluder.coveralls.coveralls-maven-plugin>4.2.0</version.org.eluder.coveralls.coveralls-maven-plugin>
+		<version.org.codehaus.mojo.license-maven-plugin>1.9</version.org.codehaus.mojo.license-maven-plugin>
 	</properties>
 
 	<build>
@@ -109,6 +111,15 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>${version.org.eluder.coveralls.coveralls-maven-plugin}</version>
             </plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${version.org.codehaus.mojo.license-maven-plugin}</version>
+				<configuration>
+					<licenseName>apache_v2</licenseName>
+				</configuration>
+			</plugin>
 
 		</plugins>
 
