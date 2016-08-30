@@ -47,6 +47,7 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
 			{
 				super.updateAjaxAttributes(attributes);
 				attributes.setPreventDefault(true);
+				attributes.setEventPropagation(AjaxRequestAttributes.EventPropagation.STOP_IMMEDIATE);
 			}
 
 			@Override

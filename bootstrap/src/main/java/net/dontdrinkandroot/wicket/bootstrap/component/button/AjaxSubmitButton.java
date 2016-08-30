@@ -17,13 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.IModel;
-
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 
 
 public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
@@ -101,4 +101,10 @@ public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 		return this;
 	}
 
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form)
+	{
+		super.onError(target, form);
+		target.add(form);
+	}
 }
