@@ -15,15 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior.ajax;
+package net.dontdrinkandroot.wicket;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.Page;
+import org.apache.wicket.protocol.http.WebApplication;
 
-public abstract class AbstractOnClickBehavior extends AjaxEventBehavior
+public class TestApplication extends WebApplication
 {
 
-	public AbstractOnClickBehavior()
+	@Override
+	public Class<? extends Page> getHomePage()
 	{
-		super("onclick");
+		return TestPage.class;
 	}
 }

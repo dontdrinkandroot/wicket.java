@@ -15,15 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior.ajax;
+package net.dontdrinkandroot.wicket;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.repeater.RepeatingView;
 
-public abstract class AbstractOnClickBehavior extends AjaxEventBehavior
+public class TestPage extends WebPage
 {
-
-	public AbstractOnClickBehavior()
+	@Override
+	protected void onInitialize()
 	{
-		super("onclick");
+		super.onInitialize();
+
+		RepeatingView componentView = new RepeatingView("component");
+		this.populateComponents(componentView);
+		this.add(componentView);
+	}
+
+	protected void populateComponents(RepeatingView componentView)
+	{
+		/* Hook */
 	}
 }

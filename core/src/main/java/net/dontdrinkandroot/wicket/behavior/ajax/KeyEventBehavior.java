@@ -22,155 +22,140 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.util.string.StringValue;
 
+public abstract class KeyEventBehavior extends AjaxEventBehavior
+{
+    public KeyEventBehavior()
+    {
+        super("keyup");
+    }
 
-public abstract class KeyEventBehavior extends AjaxEventBehavior {
+    public KeyEventBehavior(String event)
+    {
+        super(event);
+    }
 
-	public KeyEventBehavior() {
+    @Override
+    protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+    {
+        super.updateAjaxAttributes(attributes);
 
-		super("keyup");
-	}
+        StringBuffer keyEvtBuffer = new StringBuffer();
+        keyEvtBuffer.append("return {");
+        keyEvtBuffer.append("'keyEvent.altKey': attrs.event.altKey,");
+        keyEvtBuffer.append("'keyEvent.charCode': attrs.event.charCode,");
+        keyEvtBuffer.append("'keyEvent.ctrlKey': attrs.event.ctrlKey,");
+        keyEvtBuffer.append("'keyEvent.keyCode': attrs.event.keyCode,");
+        keyEvtBuffer.append("'keyEvent.metaKey': attrs.event.metaKey,");
+        keyEvtBuffer.append("'keyEvent.shiftKey': attrs.event.shiftKey,");
+        keyEvtBuffer.append("'keyEvent.which': attrs.event.which");
+        keyEvtBuffer.append("}");
 
+        attributes.getDynamicExtraParameters().add(keyEvtBuffer.toString());
+    }
 
-	public KeyEventBehavior(String event) {
+    @Override
+    protected void onEvent(AjaxRequestTarget target)
+    {
+        final StringValue altKeyValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.altKey");
+        final boolean altKey = altKeyValue.toBoolean();
 
-		super(event);
-	}
+        final StringValue charCodeValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.charCode");
+        final int charCode = charCodeValue.toInt(-1);
 
+        final StringValue ctrlKeyValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.ctrlKey");
+        final boolean ctrlKey = ctrlKeyValue.toBoolean();
 
-	@Override
-	protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+        final StringValue keyCodeValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.keyCode");
+        final int keyCode = keyCodeValue.toInt(-1);
 
-		super.updateAjaxAttributes(attributes);
+        final StringValue metaKeyValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.metaKey");
+        final boolean metaKey = metaKeyValue.toBoolean();
 
-		StringBuffer keyEvtBuffer = new StringBuffer();
-		keyEvtBuffer.append("return {");
-		keyEvtBuffer.append("'keyEvent.altKey': attrs.event.altKey,");
-		keyEvtBuffer.append("'keyEvent.charCode': attrs.event.charCode,");
-		keyEvtBuffer.append("'keyEvent.ctrlKey': attrs.event.ctrlKey,");
-		keyEvtBuffer.append("'keyEvent.keyCode': attrs.event.keyCode,");
-		keyEvtBuffer.append("'keyEvent.metaKey': attrs.event.metaKey,");
-		keyEvtBuffer.append("'keyEvent.shiftKey': attrs.event.shiftKey,");
-		keyEvtBuffer.append("'keyEvent.which': attrs.event.which");
-		keyEvtBuffer.append("}");
+        final StringValue shiftKeyValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.shiftKey");
+        final boolean shiftKey = shiftKeyValue.toBoolean();
 
-		attributes.getDynamicExtraParameters().add(keyEvtBuffer.toString());
-	}
+        final StringValue whichValue =
+                this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.which");
+        final int which = whichValue.toInt(-1);
 
+        this.onEvent(target, new KeyEventResponse(which, keyCode, charCode, altKey, ctrlKey, metaKey, shiftKey));
+    }
 
-	@Override
-	protected void onEvent(AjaxRequestTarget target) {
+    protected abstract void onEvent(AjaxRequestTarget target, KeyEventResponse keyPressResponse);
 
-		final StringValue altKeyValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.altKey");
-		final boolean altKey = altKeyValue.toBoolean();
+    public class KeyEventResponse
+    {
+        private final int which;
 
-		final StringValue charCodeValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.charCode");
-		final int charCode = charCodeValue.toInt();
+        private final int keyCode;
 
-		final StringValue ctrlKeyValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.ctrlKey");
-		final boolean ctrlKey = ctrlKeyValue.toBoolean();
+        private final int charCode;
 
-		final StringValue keyCodeValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.keyCode");
-		final int keyCode = keyCodeValue.toInt();
+        private final boolean altKey;
 
-		final StringValue metaKeyValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.metaKey");
-		final boolean metaKey = metaKeyValue.toBoolean();
+        private final boolean ctrlKey;
 
-		final StringValue shiftKeyValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.shiftKey");
-		final boolean shiftKey = shiftKeyValue.toBoolean();
+        private final boolean metaKey;
 
-		final StringValue whichValue =
-				this.getComponent().getRequest().getQueryParameters().getParameterValue("keyEvent.which");
-		final int which = whichValue.toInt();
+        private final boolean shiftKey;
 
-		this.onEvent(target, new KeyEventResponse(which, keyCode, charCode, altKey, ctrlKey, metaKey, shiftKey));
-	}
+        public KeyEventResponse(
+                int which,
+                int keyCode,
+                int charCode,
+                boolean altKey,
+                boolean ctrlKey,
+                boolean metaKey,
+                boolean shiftKey)
+        {
+            this.which = which;
+            this.keyCode = keyCode;
+            this.charCode = charCode;
+            this.altKey = altKey;
+            this.ctrlKey = ctrlKey;
+            this.metaKey = metaKey;
+            this.shiftKey = shiftKey;
+        }
 
+        public int getWhich()
+        {
+            return this.which;
+        }
 
-	protected abstract void onEvent(AjaxRequestTarget target, KeyEventResponse keyPressResponse);
+        public int getKeyCode()
+        {
+            return this.keyCode;
+        }
 
+        public int getCharCode()
+        {
+            return this.charCode;
+        }
 
-	public class KeyEventResponse {
+        public boolean isAltKey()
+        {
+            return this.altKey;
+        }
 
-		private final int which;
+        public boolean isCtrlKey()
+        {
+            return this.ctrlKey;
+        }
 
-		private final int keyCode;
+        public boolean isMetaKey()
+        {
+            return this.metaKey;
+        }
 
-		private final int charCode;
-
-		private final boolean altKey;
-
-		private final boolean ctrlKey;
-
-		private final boolean metaKey;
-
-		private final boolean shiftKey;
-
-
-		public KeyEventResponse(
-				int which,
-				int keyCode,
-				int charCode,
-				boolean altKey,
-				boolean ctrlKey,
-				boolean metaKey,
-				boolean shiftKey) {
-
-			this.which = which;
-			this.keyCode = keyCode;
-			this.charCode = charCode;
-			this.altKey = altKey;
-			this.ctrlKey = ctrlKey;
-			this.metaKey = metaKey;
-			this.shiftKey = shiftKey;
-		}
-
-
-		public int getWhich() {
-
-			return this.which;
-		}
-
-
-		public int getKeyCode() {
-
-			return this.keyCode;
-		}
-
-
-		public int getCharCode() {
-
-			return this.charCode;
-		}
-
-
-		public boolean isAltKey() {
-
-			return this.altKey;
-		}
-
-
-		public boolean isCtrlKey() {
-
-			return this.ctrlKey;
-		}
-
-
-		public boolean isMetaKey() {
-
-			return this.metaKey;
-		}
-
-
-		public boolean isShiftKey() {
-
-			return this.shiftKey;
-		}
-
-	}
+        public boolean isShiftKey()
+        {
+            return this.shiftKey;
+        }
+    }
 }

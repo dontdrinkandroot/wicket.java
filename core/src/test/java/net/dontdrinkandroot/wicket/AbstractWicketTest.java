@@ -15,15 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior.ajax;
+package net.dontdrinkandroot.wicket;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Before;
 
-public abstract class AbstractOnClickBehavior extends AjaxEventBehavior
+public class AbstractWicketTest
 {
+	protected WicketTester tester;
 
-	public AbstractOnClickBehavior()
+	@Before
+	public void setUp()
 	{
-		super("onclick");
+		this.tester = new WicketTester(new TestApplication());
 	}
 }
