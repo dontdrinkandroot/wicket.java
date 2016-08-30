@@ -17,14 +17,34 @@
  */
 package net.dontdrinkandroot.wicket.javascript;
 
-import java.util.Properties;
-
+import net.dontdrinkandroot.wicket.AbstractWicketTest;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Properties;
 
-public class JQueryScriptTest
+
+public class JQueryScriptTest extends AbstractWicketTest
 {
+	@Test
+	public void testComponentConstructor()
+	{
+		WebMarkupContainer container = new WebMarkupContainer("test");
+		container.setMarkupId("test");
+		JQueryScript jQueryScript = new JQueryScript(container);
+		Assert.assertEquals("jQuery('#test')", jQueryScript.toString());
+		Assert.assertTrue(container.getOutputMarkupId());
+	}
+
+	@Test
+	public void testCharSequenceImplementstion()
+	{
+		JQueryScript jQueryScript = new JQueryScript();
+		Assert.assertEquals('Q', jQueryScript.charAt(1));
+		Assert.assertEquals(12, jQueryScript.length());
+		Assert.assertEquals("Qu", jQueryScript.subSequence(1, 3));
+	}
 
 	@Test
 	public void testShow()
