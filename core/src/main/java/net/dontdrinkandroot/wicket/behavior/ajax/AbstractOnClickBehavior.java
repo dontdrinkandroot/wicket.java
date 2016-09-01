@@ -24,6 +24,6 @@ public abstract class AbstractOnClickBehavior extends AjaxEventBehavior
 
 	public AbstractOnClickBehavior()
 	{
-		super("onclick");
+		super("click");
 	}
 }
