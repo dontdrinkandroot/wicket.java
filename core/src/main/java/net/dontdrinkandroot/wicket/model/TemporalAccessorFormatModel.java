@@ -19,26 +19,34 @@ package net.dontdrinkandroot.wicket.model;
 
 import org.apache.wicket.model.IModel;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
 
-public class SimpleDateFormatModel extends AbstractChainedModel<Date, String>
+public class TemporalAccessorFormatModel extends AbstractChainedModel<TemporalAccessor, String>
 {
 	// TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.
 
-	private final SimpleDateFormat sdf;
+	private String pattern;
 
-	public SimpleDateFormatModel(IModel<? extends Date> parent, String pattern)
+	private Locale locale;
+
+	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent)
 	{
 		super(parent);
-		this.sdf = new SimpleDateFormat(pattern);
 	}
 
-	public SimpleDateFormatModel(IModel<? extends Date> parent, String pattern, Locale locale)
+	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern)
 	{
 		super(parent);
-		this.sdf = new SimpleDateFormat(pattern, locale);
+		this.pattern = pattern;
+	}
+
+	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
+	{
+		super(parent);
+		this.pattern = pattern;
+		this.locale = locale;
 	}
 
 	@Override
@@ -48,6 +56,17 @@ public class SimpleDateFormatModel extends AbstractChainedModel<Date, String>
 			return "n/a";
 		}
 
-		return this.sdf.format(this.getParentObject());
+		if (null == pattern) {
+			return getParentObject().toString();
+		}
+
+		DateTimeFormatter dateTimeFormatter;
+		if (null == locale) {
+			dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+		} else {
+			dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, locale);
+		}
+
+		return dateTimeFormatter.format(getParentObject());
 	}
 }
