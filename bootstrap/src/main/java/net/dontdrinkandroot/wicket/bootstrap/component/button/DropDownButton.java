@@ -17,11 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.IModel;
-
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
@@ -32,6 +27,10 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
 import net.dontdrinkandroot.wicket.css.CssClass;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.IModel;
 
 
 public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
@@ -147,7 +146,7 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 		return this;
 	}
 
-	private CssClass getCaretClass()
+	protected CssClass getCaretClass()
 	{
 		return BootstrapCssClass.CARET;
 	}
