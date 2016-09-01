@@ -10,6 +10,7 @@
 	<modules>
 		<module>core</module>
 		<module>bootstrap</module>
+		<module>extras</module>
 		<module>example</module>
 	</modules>
 

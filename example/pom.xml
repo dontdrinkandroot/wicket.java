@@ -30,7 +30,7 @@
 
 		<dependency>
 			<groupId>net.dontdrinkandroot</groupId>
-			<artifactId>wicket.bootstrap</artifactId>
+			<artifactId>wicket.extras</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
