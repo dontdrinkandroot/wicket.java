@@ -17,8 +17,12 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
-import java.lang.reflect.InvocationTargetException;
-
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
+import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
+import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
+import net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest;
+import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
 import org.apache.wicket.Component;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -31,13 +35,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
-import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
-import net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest;
-import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
-
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 {
@@ -45,7 +43,6 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	public static final String MODAL_ID = "modal";
 
 	private FeedbackPanel feedbackPanel;
-
 
 	public StandardBootstrapPage()
 	{
@@ -77,12 +74,13 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 		final RepeatingView primaryActionView = new RepeatingView("primaryAction");
 		this.populatePrimaryActions(primaryActionView);
 
-		WebMarkupContainer pageHeader = new WebMarkupContainer("pageHeader") {
-
+		WebMarkupContainer pageHeader = new WebMarkupContainer("pageHeader")
+		{
 			@Override
 			protected void onConfigure()
 			{
 				super.onConfigure();
+
 				boolean hasHeading = (null != StandardBootstrapPage.this.pageHeadingModel)
 						&& !Strings.isEmpty(StandardBootstrapPage.this.pageHeadingModel.getObject());
 				boolean hasPrimaryActions = primaryActionView.size() > 0;
@@ -120,8 +118,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 
 	protected Component createNavBar(String id)
 	{
-		NavBar navBar = new NavBar(id) {
-
+		NavBar navBar = new NavBar(id)
+		{
 			@Override
 			protected Component createBrand(String id)
 			{
@@ -188,6 +186,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 	public void onEvent(IEvent<?> event)
 	{
 		super.onEvent(event);
+
 		if (event.getPayload() instanceof ModalRequest) {
 			if (event.getPayload() instanceof OpenModalRequest) {
 				OpenModalRequest openModalRequest = (OpenModalRequest) event.getPayload();
@@ -212,22 +211,20 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 					} else {
 						modal = modalClass.getConstructor(String.class, IModel.class).newInstance(
 								StandardBootstrapPage.MODAL_ID,
-								model);
+								model
+						);
 					}
 					this.replace(modal);
 					target.add(modal);
 					target.appendJavaScript(modal.getShowScript());
-				} catch (InstantiationException e) {
-					throw new WicketRuntimeException(e);
-				} catch (IllegalAccessException e) {
-					throw new WicketRuntimeException(e);
-				} catch (IllegalArgumentException e) {
-					throw new WicketRuntimeException(e);
-				} catch (InvocationTargetException e) {
-					throw new WicketRuntimeException(e);
-				} catch (NoSuchMethodException e) {
-					throw new WicketRuntimeException(e);
-				} catch (SecurityException e) {
+				} catch (
+						InstantiationException
+								| IllegalAccessException
+								| IllegalArgumentException
+								| InvocationTargetException
+								| NoSuchMethodException
+								| SecurityException e
+						) {
 					throw new WicketRuntimeException(e);
 				}
 			}
