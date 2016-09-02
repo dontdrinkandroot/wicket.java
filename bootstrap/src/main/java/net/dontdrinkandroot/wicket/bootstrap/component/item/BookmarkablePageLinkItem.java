@@ -21,23 +21,18 @@ import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-
 
 public class BookmarkablePageLinkItem extends AbstractLinkItem
 {
-
 	private BookmarkablePageLink<?> link;
 
 	private final Class<? extends Page> pageClass;
 
 	private PageParameters parameters;
 
-
 	public <C extends Page> BookmarkablePageLinkItem(String id, IModel<String> labelModel, Class<C> pageClass)
 	{
-
 		super(id, labelModel);
 
 		this.pageClass = pageClass;
@@ -47,47 +42,23 @@ public class BookmarkablePageLinkItem extends AbstractLinkItem
 			String id,
 			IModel<String> labelModel,
 			Class<C> pageClass,
-			PageParameters parameters)
+			PageParameters parameters
+	)
 	{
-
 		this(id, labelModel, pageClass);
 
 		this.parameters = parameters;
 	}
 
-	@Deprecated
-	public <C extends Page> BookmarkablePageLinkItem(
-			String id,
-			String label,
-			Class<C> pageClass,
-			PageParameters parameters)
-	{
-
-		this(id, label, pageClass);
-
-		this.parameters = parameters;
-	}
-
-	@Deprecated
-	public <C extends Page> BookmarkablePageLinkItem(String id, String label, Class<C> pageClass)
-	{
-
-		super(id, new Model<String>(label));
-
-		this.pageClass = pageClass;
-	}
-
 	@Override
 	protected boolean isActive()
 	{
-
 		return this.getPage().getClass().isAssignableFrom(this.link.getPageClass());
 	}
 
 	@Override
 	protected Component createLink(String id)
 	{
-
 		if (this.parameters == null) {
 			this.link = new BookmarkablePageLink<Void>(id, this.pageClass);
 		} else {
