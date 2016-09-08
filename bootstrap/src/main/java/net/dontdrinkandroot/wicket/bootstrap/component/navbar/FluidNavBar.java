@@ -23,9 +23,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 public class FluidNavBar extends NavBar
 {
 
-	public FluidNavBar(String id)
-	{
-		super(id);
-	}
+    public FluidNavBar(String id)
+    {
+        super(id);
+    }
 
 }

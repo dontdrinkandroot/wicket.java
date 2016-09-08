@@ -25,18 +25,17 @@ import org.apache.wicket.model.IModel;
 public class ScreenReaderOnlyBehavior extends Behavior
 {
 
-	private IModel<Boolean> screenReaderOnlyModel;
+    private IModel<Boolean> screenReaderOnlyModel;
 
+    public ScreenReaderOnlyBehavior(IModel<Boolean> screenReaderOnlyModel)
+    {
+        this.screenReaderOnlyModel = screenReaderOnlyModel;
+    }
 
-	public ScreenReaderOnlyBehavior(IModel<Boolean> screenReaderOnlyModel)
-	{
-		this.screenReaderOnlyModel = screenReaderOnlyModel;
-	}
-
-	@Override
-	public void bind(Component component)
-	{
-		super.bind(component);
-	}
+    @Override
+    public void bind(Component component)
+    {
+        super.bind(component);
+    }
 
 }

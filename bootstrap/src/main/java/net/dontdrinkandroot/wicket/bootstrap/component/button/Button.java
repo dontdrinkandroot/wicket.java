@@ -25,60 +25,60 @@ import org.apache.wicket.model.IModel;
 
 public abstract class Button<T> extends Link<T> implements IButton
 {
-	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
+    protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
-	public Button(String id)
-	{
-		super(id);
-	}
+    public Button(String id)
+    {
+        super(id);
+    }
 
-	public Button(String id, IModel<T> model)
-	{
-		super(id, model);
-	}
+    public Button(String id, IModel<T> model)
+    {
+        super(id, model);
+    }
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
-		this.add(this.buttonBehavior);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
+        this.add(this.buttonBehavior);
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.buttonBehavior.getButtonSize();
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.buttonBehavior.getButtonSize();
+    }
 
-	@Override
-	public Button<T> setButtonSize(ButtonSize buttonSize)
-	{
-		this.buttonBehavior.setButtonSize(buttonSize);
-		return this;
-	}
+    @Override
+    public Button<T> setButtonSize(ButtonSize buttonSize)
+    {
+        this.buttonBehavior.setButtonSize(buttonSize);
+        return this;
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.buttonBehavior.getButtonStyle();
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.buttonBehavior.getButtonStyle();
+    }
 
-	@Override
-	public Button<T> setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.buttonBehavior.setButtonStyle(buttonStyle);
-		return this;
-	}
+    @Override
+    public Button<T> setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.buttonBehavior.setButtonStyle(buttonStyle);
+        return this;
+    }
 
-	public Button<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
-		return this;
-	}
+    public Button<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+        return this;
+    }
 
-	public Button<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
-		return this;
-	}
+    public Button<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+        return this;
+    }
 }

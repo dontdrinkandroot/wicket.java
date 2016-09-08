@@ -22,29 +22,29 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum GlyphIconClass implements CssClass {
 
-	ASTERISK("glyphicon-asterisk"),
-	PLUS("glyphicon-plus"),
-	EURO("glyphicon-euro"),
-	MINUS("glyphicon-minus"),
-	CLOUD("glyphicon-cloud"),
-	ENVELOPE("glyphicon-envelope"),
-	PENCIL("glyphicon-pencil"),
-	GLASS("glyphicon-glass"),
-	USER("glyphicon-user");
+    ASTERISK("glyphicon-asterisk"),
+    PLUS("glyphicon-plus"),
+    EURO("glyphicon-euro"),
+    MINUS("glyphicon-minus"),
+    CLOUD("glyphicon-cloud"),
+    ENVELOPE("glyphicon-envelope"),
+    PENCIL("glyphicon-pencil"),
+    GLASS("glyphicon-glass"),
+    USER("glyphicon-user");
 
-	private final String classString;
+    private final String classString;
 
+    private GlyphIconClass(String classString)
+    {
 
-	private GlyphIconClass(String classString) {
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-
-	@Override
-	public String getClassString() {
-
-		return "glyphicon " + this.classString;
-	}
+        return "glyphicon " + this.classString;
+    }
 
 }

@@ -23,24 +23,23 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public enum AlertStyle implements CssClass
 {
 
-	SUCCESS("alert-success"),
-	INFO("alert-info"),
-	WARNING("alert-warning"),
-	DANGER("alert-danger");
+    SUCCESS("alert-success"),
+    INFO("alert-info"),
+    WARNING("alert-warning"),
+    DANGER("alert-danger");
 
-	private String classString;
+    private String classString;
 
+    private AlertStyle(String classString)
+    {
 
-	private AlertStyle(String classString)
-	{
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-	@Override
-	public String getClassString()
-	{
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 }

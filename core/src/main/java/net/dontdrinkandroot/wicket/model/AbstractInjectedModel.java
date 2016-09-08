@@ -23,13 +23,13 @@ import org.apache.wicket.model.IModel;
 
 public abstract class AbstractInjectedModel<T> implements IModel<T> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
+    public AbstractInjectedModel()
+    {
 
-	public AbstractInjectedModel() {
-
-		super();
-		Injector.get().inject(this);
-	}
+        super();
+        Injector.get().inject(this);
+    }
 
 }

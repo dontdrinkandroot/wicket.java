@@ -23,22 +23,21 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public enum NavBarStyle implements CssClass
 {
 
-	DEFAULT("navbar-default"),
-	INVERSE("navbar-inverse");
+    DEFAULT("navbar-default"),
+    INVERSE("navbar-inverse");
 
-	private String classString;
+    private String classString;
 
+    private NavBarStyle(String classString)
+    {
 
-	private NavBarStyle(String classString)
-	{
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-	@Override
-	public String getClassString()
-	{
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 }

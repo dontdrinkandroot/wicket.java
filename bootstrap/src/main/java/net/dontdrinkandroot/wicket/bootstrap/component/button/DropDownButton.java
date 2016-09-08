@@ -36,120 +36,120 @@ import org.apache.wicket.model.IModel;
 public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
 {
 
-	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
+    protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
-	private IModel<String> labelModel;
+    private IModel<String> labelModel;
 
-	private Label toggle;
+    private Label toggle;
 
-	private DropDownMenu menu;
+    private DropDownMenu menu;
 
+    public DropDownButton(String id)
+    {
+        super(id);
+        this.createComponents();
+    }
 
-	public DropDownButton(String id)
-	{
-		super(id);
-		this.createComponents();
-	}
+    public DropDownButton(String id, IModel<T> model)
+    {
+        super(id, model);
+        this.createComponents();
+    }
 
-	public DropDownButton(String id, IModel<T> model)
-	{
-		super(id, model);
-		this.createComponents();
-	}
+    public DropDownButton(String id, IModel<T> model, IModel<String> labelModel)
+    {
+        super(id, model);
+        this.labelModel = labelModel;
+        this.createComponents();
+    }
 
-	public DropDownButton(String id, IModel<T> model, IModel<String> labelModel)
-	{
-		super(id, model);
-		this.labelModel = labelModel;
-		this.createComponents();
-	}
+    protected void createComponents()
+    {
+        this.toggle = new Label("toggle", this.labelModel);
+        this.toggle.add(new DropDownToggleBehavior());
+        this.menu = new DropDownMenu("menu")
+        {
 
-	protected void createComponents()
-	{
-		this.toggle = new Label("toggle", this.labelModel);
-		this.toggle.add(new DropDownToggleBehavior());
-		this.menu = new DropDownMenu("menu") {
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                DropDownButton.this.populateItems(itemView);
+            }
+        };
+    }
 
-			@Override
-			protected void populateItems(RepeatingView itemView)
-			{
-				DropDownButton.this.populateItems(itemView);
-			}
-		};
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
+        this.toggle.add(this.buttonBehavior);
+        this.toggle.add(new IconBehavior().setAppendIcon(this.getCaretClass()));
+        this.add(this.toggle);
+        this.add(this.menu);
+    }
 
-		this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
-		this.toggle.add(this.buttonBehavior);
-		this.toggle.add(new IconBehavior().setAppendIcon(this.getCaretClass()));
-		this.add(this.toggle);
-		this.add(this.menu);
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.buttonBehavior.getButtonSize();
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.buttonBehavior.getButtonSize();
-	}
+    @Override
+    public DropDownButton<T> setButtonSize(ButtonSize buttonSize)
+    {
+        this.buttonBehavior.setButtonSize(buttonSize);
+        return this;
+    }
 
-	@Override
-	public DropDownButton<T> setButtonSize(ButtonSize buttonSize)
-	{
-		this.buttonBehavior.setButtonSize(buttonSize);
-		return this;
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.buttonBehavior.getButtonStyle();
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.buttonBehavior.getButtonStyle();
-	}
+    @Override
+    public DropDownButton<T> setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.buttonBehavior.setButtonStyle(buttonStyle);
+        return this;
+    }
 
-	@Override
-	public DropDownButton<T> setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.buttonBehavior.setButtonStyle(buttonStyle);
-		return this;
-	}
+    @Override
+    public DropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+        return this;
+    }
 
-	@Override
-	public DropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
-		return this;
-	}
+    @Override
+    public DropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+        return this;
+    }
 
-	@Override
-	public DropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
-		return this;
-	}
+    public Label getToggle()
+    {
+        return this.toggle;
+    }
 
-	public Label getToggle()
-	{
-		return this.toggle;
-	}
+    public DropDownMenu getMenu()
+    {
+        return this.menu;
+    }
 
-	public DropDownMenu getMenu()
-	{
-		return this.menu;
-	}
+    public DropDownButton<T> setDropDownAlignment(DropDownAlignment alignment)
+    {
+        this.menu.setAlignment(alignment);
+        return this;
+    }
 
-	public DropDownButton<T> setDropDownAlignment(DropDownAlignment alignment)
-	{
-		this.menu.setAlignment(alignment);
-		return this;
-	}
+    protected CssClass getCaretClass()
+    {
+        return BootstrapCssClass.CARET;
+    }
 
-	protected CssClass getCaretClass()
-	{
-		return BootstrapCssClass.CARET;
-	}
-
-	protected abstract void populateItems(RepeatingView itemView);
+    protected abstract void populateItems(RepeatingView itemView);
 }

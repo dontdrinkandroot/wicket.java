@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -24,45 +25,44 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
-
 
 public class AjaxPaginationPanel extends PaginationPanel
 {
 
-	public AjaxPaginationPanel(String id, IPageable pageable)
-	{
-		super(id, pageable);
-		this.setOutputMarkupId(true);
-	}
+    public AjaxPaginationPanel(String id, IPageable pageable)
+    {
+        super(id, pageable);
+        this.setOutputMarkupId(true);
+    }
 
-	public AjaxPaginationPanel(String id, IPageable pageable, PaginationSize size)
-	{
-		super(id, pageable, size);
-		this.setOutputMarkupId(true);
-	}
+    public AjaxPaginationPanel(String id, IPageable pageable, PaginationSize size)
+    {
+        super(id, pageable, size);
+        this.setOutputMarkupId(true);
+    }
 
-	@Override
-	protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-	{
-		return new AjaxLink<Long>(id, paginablePageModel) {
+    @Override
+    protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+    {
+        return new AjaxLink<Long>(id, paginablePageModel)
+        {
 
-			@Override
-			public void onClick(AjaxRequestTarget target)
-			{
-				AjaxPaginationPanel.this.getPageable().setCurrentPage(this.getModelObject());
-				AjaxPaginationPanel.this.onPageChanged(target);
-			}
-		};
-	}
+            @Override
+            public void onClick(AjaxRequestTarget target)
+            {
+                AjaxPaginationPanel.this.getPageable().setCurrentPage(this.getModelObject());
+                AjaxPaginationPanel.this.onPageChanged(target);
+            }
+        };
+    }
 
-	protected void onPageChanged(AjaxRequestTarget target)
-	{
-		if (this.getPageable() instanceof Component) {
-			target.add((Component) this.getPageable());
-		}
+    protected void onPageChanged(AjaxRequestTarget target)
+    {
+        if (this.getPageable() instanceof Component) {
+            target.add((Component) this.getPageable());
+        }
 
-		target.add(this);
-	}
+        target.add(this);
+    }
 
 }

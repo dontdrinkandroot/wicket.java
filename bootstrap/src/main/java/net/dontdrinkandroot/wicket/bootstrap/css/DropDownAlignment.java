@@ -22,20 +22,19 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum DropDownAlignment implements CssClass
 {
-	LEFT("dropdown-menu-left"),
-	RIGHT("dropdown-menu-right");
+    LEFT("dropdown-menu-left"),
+    RIGHT("dropdown-menu-right");
 
-	private String classString;
+    private String classString;
 
+    private DropDownAlignment(String classString)
+    {
+        this.classString = classString;
+    }
 
-	private DropDownAlignment(String classString)
-	{
-		this.classString = classString;
-	}
-
-	@Override
-	public String getClassString()
-	{
-		return this.classString;
-	}
+    @Override
+    public String getClassString()
+    {
+        return this.classString;
+    }
 }

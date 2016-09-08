@@ -17,66 +17,67 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import java.util.List;
-
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
+
+import java.util.List;
 
 
 public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownChoice<T>>
 {
 
-	protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model)
-	{
-		super(id, labelModel, model);
-	}
+    protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
+    }
 
-	public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, List<T> choices)
-	{
-		super(id, labelModel, model);
-		this.getFormComponent().setChoices(choices);
-	}
+    public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, List<T> choices)
+    {
+        super(id, labelModel, model);
+        this.getFormComponent().setChoices(choices);
+    }
 
-	public FormGroupSelect(
-			String id,
-			IModel<String> labelModel,
-			IModel<T> model,
-			List<T> choices,
-			IChoiceRenderer<T> choiceRenderer)
-	{
-		super(id, labelModel, model);
-		this.getFormComponent().setChoices(choices);
-		this.getFormComponent().setChoiceRenderer(choiceRenderer);
-	}
+    public FormGroupSelect(
+            String id,
+            IModel<String> labelModel,
+            IModel<T> model,
+            List<T> choices,
+            IChoiceRenderer<T> choiceRenderer
+    )
+    {
+        super(id, labelModel, model);
+        this.getFormComponent().setChoices(choices);
+        this.getFormComponent().setChoiceRenderer(choiceRenderer);
+    }
 
-	public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, IModel<List<T>> choices)
-	{
-		super(id, labelModel, model);
-		this.getFormComponent().setChoices(choices);
-	}
+    public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, IModel<List<T>> choices)
+    {
+        super(id, labelModel, model);
+        this.getFormComponent().setChoices(choices);
+    }
 
-	public FormGroupSelect(
-			String id,
-			IModel<String> labelModel,
-			IModel<T> model,
-			IModel<List<T>> choices,
-			IChoiceRenderer<T> choiceRenderer)
-	{
-		super(id, labelModel, model);
-		this.getFormComponent().setChoices(choices);
-		this.getFormComponent().setChoiceRenderer(choiceRenderer);
-	}
+    public FormGroupSelect(
+            String id,
+            IModel<String> labelModel,
+            IModel<T> model,
+            IModel<List<T>> choices,
+            IChoiceRenderer<T> choiceRenderer
+    )
+    {
+        super(id, labelModel, model);
+        this.getFormComponent().setChoices(choices);
+        this.getFormComponent().setChoiceRenderer(choiceRenderer);
+    }
 
-	@Override
-	protected DropDownChoice<T> createFormComponent(String id)
-	{
-		return new DropDownChoice<T>(id, this.getModel(), (List<T>) null);
-	}
+    @Override
+    protected DropDownChoice<T> createFormComponent(String id)
+    {
+        return new DropDownChoice<T>(id, this.getModel(), (List<T>) null);
+    }
 
-	public void setNullValid(boolean nullValid)
-	{
-		this.getFormComponent().setNullValid(nullValid);
-
-	}
+    public void setNullValid(boolean nullValid)
+    {
+        this.getFormComponent().setNullValid(nullValid);
+    }
 }

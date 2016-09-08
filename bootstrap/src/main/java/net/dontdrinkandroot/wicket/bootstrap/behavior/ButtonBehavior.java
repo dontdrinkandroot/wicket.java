@@ -17,6 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.behavior.Behavior;
@@ -26,120 +31,113 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-
 
 public class ButtonBehavior extends Behavior implements IButton
 {
 
-	private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
+    private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
-	private IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
+    private IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
 
+    public ButtonBehavior()
+    {
+        super();
+    }
 
-	public ButtonBehavior()
-	{
-		super();
-	}
+    public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonStyleModel = buttonStyleModel;
+    }
 
-	public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonStyleModel = buttonStyleModel;
-	}
+    public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel, IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonStyleModel = buttonStyleModel;
+        this.buttonSizeModel = buttonSizeModel;
+    }
 
-	public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel, IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonStyleModel = buttonStyleModel;
-		this.buttonSizeModel = buttonSizeModel;
-	}
+    @Override
+    public void bind(Component component)
+    {
+        super.bind(component);
 
-	@Override
-	public void bind(Component component)
-	{
-		super.bind(component);
+        component.add(new CssClassAppender(BootstrapCssClass.BTN));
+        component.add(new CssClassAppender(this.getButtonStyleModel()));
+        component.add(new CssClassAppender(this.getButtonSizeModel()));
+        component.add(new DisabledCssBehavior());
+    }
 
-		component.add(new CssClassAppender(BootstrapCssClass.BTN));
-		component.add(new CssClassAppender(this.getButtonStyleModel()));
-		component.add(new CssClassAppender(this.getButtonSizeModel()));
-		component.add(new DisabledCssBehavior());
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.getButtonSizeModel().getObject();
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.getButtonSizeModel().getObject();
-	}
+    @Override
+    public ButtonBehavior setButtonSize(ButtonSize buttonSize)
+    {
+        this.getButtonSizeModel().setObject(buttonSize);
+        return this;
+    }
 
-	@Override
-	public ButtonBehavior setButtonSize(ButtonSize buttonSize)
-	{
-		this.getButtonSizeModel().setObject(buttonSize);
-		return this;
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.getButtonStyleModel().getObject();
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.getButtonStyleModel().getObject();
-	}
+    @Override
+    public ButtonBehavior setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.getButtonStyleModel().setObject(buttonStyle);
+        return this;
+    }
 
-	@Override
-	public ButtonBehavior setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.getButtonStyleModel().setObject(buttonStyle);
-		return this;
-	}
+    @Override
+    public void onComponentTag(Component component, ComponentTag tag)
+    {
+        super.onComponentTag(component, tag);
 
-	@Override
-	public void onComponentTag(Component component, ComponentTag tag)
-	{
-		super.onComponentTag(component, tag);
+        /* Check if it is a button without a type and try to determine it */
+        if (tag.getName().equalsIgnoreCase("button")) {
+            if (null == tag.getAttribute("type")) {
+                if (component instanceof AbstractSubmitLink && !(component instanceof AjaxSubmitLink)) {
+                    tag.put("type", "submit");
+                } else {
+                    tag.put("type", "button");
+                }
+            }
+        }
 
-		/* Check if it is a button without a type and try to determine it */
-		if (tag.getName().equalsIgnoreCase("button")) {
-			if (null == tag.getAttribute("type")) {
-				if (component instanceof AbstractSubmitLink && !(component instanceof AjaxSubmitLink)) {
-					tag.put("type", "submit");
-				} else {
-					tag.put("type", "button");
-				}
-			}
-		}
+        /* If this is an input button set the bodyModel as its value attribute */
+        if (tag.getName().equalsIgnoreCase("input") && component instanceof AbstractLink) {
+            IModel<?> bodyModel = ((AbstractLink) component).getBody();
+            if (bodyModel != null && bodyModel.getObject() != null) {
+                tag.put("value", component.getDefaultModelObjectAsString(bodyModel.getObject()));
+            }
+        }
+    }
 
-		/* If this is an input button set the bodyModel as its value attribute */
-		if (tag.getName().equalsIgnoreCase("input") && component instanceof AbstractLink) {
-			IModel<?> bodyModel = ((AbstractLink) component).getBody();
-			if (bodyModel != null && bodyModel.getObject() != null) {
-				tag.put("value", component.getDefaultModelObjectAsString(bodyModel.getObject()));
-			}
-		}
-	}
+    public IModel<ButtonSize> getButtonSizeModel()
+    {
+        return this.buttonSizeModel;
+    }
 
-	public IModel<ButtonSize> getButtonSizeModel()
-	{
-		return this.buttonSizeModel;
-	}
+    @Override
+    public ButtonBehavior setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonSizeModel = buttonSizeModel;
+        return this;
+    }
 
-	@Override
-	public ButtonBehavior setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonSizeModel = buttonSizeModel;
-		return this;
-	}
+    public IModel<ButtonStyle> getButtonStyleModel()
+    {
+        return this.buttonStyleModel;
+    }
 
-	public IModel<ButtonStyle> getButtonStyleModel()
-	{
-		return this.buttonStyleModel;
-	}
-
-	@Override
-	public ButtonBehavior setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonStyleModel = buttonStyleModel;
-		return this;
-	}
+    @Override
+    public ButtonBehavior setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonStyleModel = buttonStyleModel;
+        return this;
+    }
 }

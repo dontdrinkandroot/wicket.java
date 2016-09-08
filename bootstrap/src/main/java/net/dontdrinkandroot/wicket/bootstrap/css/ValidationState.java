@@ -22,24 +22,23 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum ValidationState implements CssClass
 {
-	SUCCESS("has-success"),
-	WARNING("has-warning"),
-	ERROR("has-error");
+    SUCCESS("has-success"),
+    WARNING("has-warning"),
+    ERROR("has-error");
 
-	private String classString;
+    private String classString;
 
+    private ValidationState(String classString)
+    {
 
-	private ValidationState(String classString)
-	{
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-	@Override
-	public String getClassString()
-	{
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 
 }

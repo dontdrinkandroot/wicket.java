@@ -23,25 +23,24 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public enum ProgressBarStyle implements CssClass
 {
 
-	DEFAULT(""),
-	SUCCESS("progress-bar-success"),
-	INFO("progress-bar-info"),
-	WARNING("progress-bar-warning"),
-	DANGER("progress-bar-danger");
+    DEFAULT(""),
+    SUCCESS("progress-bar-success"),
+    INFO("progress-bar-info"),
+    WARNING("progress-bar-warning"),
+    DANGER("progress-bar-danger");
 
-	private String classString;
+    private String classString;
 
+    private ProgressBarStyle(String classString)
+    {
 
-	private ProgressBarStyle(String classString)
-	{
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-	@Override
-	public String getClassString()
-	{
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 }

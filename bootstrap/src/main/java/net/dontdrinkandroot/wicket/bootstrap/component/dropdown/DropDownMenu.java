@@ -17,6 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.dropdown;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -24,51 +27,46 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
-
 
 public abstract class DropDownMenu extends Panel
 {
 
-	private IModel<DropDownAlignment> alignmentModel = Model.of();
+    private IModel<DropDownAlignment> alignmentModel = Model.of();
 
+    public DropDownMenu(String id)
+    {
 
-	public DropDownMenu(String id)
-	{
+        super(id);
+    }
 
-		super(id);
-	}
+    @Override
+    protected void onInitialize()
+    {
 
-	@Override
-	protected void onInitialize()
-	{
+        super.onInitialize();
 
-		super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_MENU));
+        this.add(new CssClassAppender(this.alignmentModel));
+        this.add(new AttributeModifier("role", Model.of("menu")));
+        // TODO: include aria-labelledby
 
-		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_MENU));
-		this.add(new CssClassAppender(this.alignmentModel));
-		this.add(new AttributeModifier("role", Model.of("menu")));
-		// TODO: include aria-labelledby
+        RepeatingView itemView = new RepeatingView("item");
+        this.populateItems(itemView);
+        this.add(itemView);
+    }
 
-		RepeatingView itemView = new RepeatingView("item");
-		this.populateItems(itemView);
-		this.add(itemView);
-	}
+    @Override
+    protected void onComponentTag(ComponentTag tag)
+    {
+        tag.setName("ul");
+        super.onComponentTag(tag);
+    }
 
-	@Override
-	protected void onComponentTag(ComponentTag tag)
-	{
-		tag.setName("ul");
-		super.onComponentTag(tag);
-	}
+    public DropDownMenu setAlignment(DropDownAlignment alignment)
+    {
+        this.alignmentModel.setObject(alignment);
+        return this;
+    }
 
-	public DropDownMenu setAlignment(DropDownAlignment alignment)
-	{
-		this.alignmentModel.setObject(alignment);
-		return this;
-	}
-
-	protected abstract void populateItems(RepeatingView itemView);
+    protected abstract void populateItems(RepeatingView itemView);
 }

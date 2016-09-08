@@ -17,26 +17,25 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.util.io.IClusterable;
-
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.io.IClusterable;
 
 
 public interface IButton
 {
 
-	ButtonSize getButtonSize();
+    ButtonSize getButtonSize();
 
-	IClusterable setButtonSize(ButtonSize buttonSize);
+    IClusterable setButtonSize(ButtonSize buttonSize);
 
-	IClusterable setButtonSizeModel(IModel<ButtonSize> buttonSizeModel);
+    IClusterable setButtonSizeModel(IModel<ButtonSize> buttonSizeModel);
 
-	ButtonStyle getButtonStyle();
+    ButtonStyle getButtonStyle();
 
-	IClusterable setButtonStyle(ButtonStyle buttonStyle);
+    IClusterable setButtonStyle(ButtonStyle buttonStyle);
 
-	IClusterable setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel);
+    IClusterable setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel);
 
 }

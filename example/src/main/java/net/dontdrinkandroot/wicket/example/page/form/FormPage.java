@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.example.page.form;
 
-import java.util.Arrays;
-import java.util.List;
-
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.*;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
+import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.markup.html.form.Form;
@@ -29,126 +31,124 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputFile;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputUrl;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupRadioChoice;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupSelect;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupTextArea;
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
-import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
+import java.util.Arrays;
+import java.util.List;
 
 
 public abstract class FormPage extends DecoratorPage<Void>
 {
 
-	public FormPage(PageParameters parameters)
-	{
-		super(parameters);
-	}
+    public FormPage(PageParameters parameters)
+    {
+        super(parameters);
+    }
 
-	@Override
-	protected IModel<String> createPageTitlePrefixModel()
-	{
-		return new ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", Model.of("Forms"));
-	}
+    @Override
+    protected IModel<String> createPageTitlePrefixModel()
+    {
+        return new ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", Model.of("Forms"));
+    }
 
-	protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)
-	{
-		List<String> choices = Arrays.asList(new String[] { "Apple", "Banana", "Pear" });
+    protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)
+    {
+        List<String> choices = Arrays.asList(new String[]{"Apple", "Banana", "Pear"});
 
-		FormGroupStatic formGroupStatic = new FormGroupStatic(
-				formGroupView.newChildId(),
-				Model.of(FormGroupStatic.class.getSimpleName()),
-				Model.of("A static label"));
-		formGroupView.add(formGroupStatic);
+        FormGroupStatic formGroupStatic = new FormGroupStatic(
+                formGroupView.newChildId(),
+                Model.of(FormGroupStatic.class.getSimpleName()),
+                Model.of("A static label")
+        );
+        formGroupView.add(formGroupStatic);
 
-		FormGroupInputText formGroupTextField = new FormGroupInputText(
-				formGroupView.newChildId(),
-				Model.of(FormGroupInputText.class.getSimpleName()),
-				Model.of(""));
-		formGroupTextField.getFormComponent().setRequired(true);
-		formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
-		formGroupTextField.setHelpText(Model.of("A help text"));
-		formGroupView.add(formGroupTextField);
+        FormGroupInputText formGroupTextField = new FormGroupInputText(
+                formGroupView.newChildId(),
+                Model.of(FormGroupInputText.class.getSimpleName()),
+                Model.of("")
+        );
+        formGroupTextField.getFormComponent().setRequired(true);
+        formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+        formGroupTextField.setHelpText(Model.of("A help text"));
+        formGroupView.add(formGroupTextField);
 
-		FormGroupInputPassword formGroupPasswordTextField = new FormGroupInputPassword(
-				formGroupView.newChildId(),
-				Model.of(FormGroupInputPassword.class.getSimpleName()),
-				Model.of(""));
-		formGroupView.add(formGroupPasswordTextField);
+        FormGroupInputPassword formGroupPasswordTextField = new FormGroupInputPassword(
+                formGroupView.newChildId(),
+                Model.of(FormGroupInputPassword.class.getSimpleName()),
+                Model.of("")
+        );
+        formGroupView.add(formGroupPasswordTextField);
 
-		FormGroupInputEmail formGroupEmailTextField = new FormGroupInputEmail(
-				formGroupView.newChildId(),
-				Model.of(FormGroupInputEmail.class.getSimpleName()),
-				Model.of(""));
-		formGroupView.add(formGroupEmailTextField);
+        FormGroupInputEmail formGroupEmailTextField = new FormGroupInputEmail(
+                formGroupView.newChildId(),
+                Model.of(FormGroupInputEmail.class.getSimpleName()),
+                Model.of("")
+        );
+        formGroupView.add(formGroupEmailTextField);
 
-		FormGroupInputUrl formGroupUrlTextField = new FormGroupInputUrl(
-				formGroupView.newChildId(),
-				Model.of(FormGroupInputUrl.class.getSimpleName()),
-				Model.of(""));
-		formGroupView.add(formGroupUrlTextField);
+        FormGroupInputUrl formGroupUrlTextField = new FormGroupInputUrl(
+                formGroupView.newChildId(),
+                Model.of(FormGroupInputUrl.class.getSimpleName()),
+                Model.of("")
+        );
+        formGroupView.add(formGroupUrlTextField);
 
-		FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<String>(
-				formGroupView.newChildId(),
-				Model.of(FormGroupTextArea.class.getSimpleName()),
-				Model.of(""));
-		formGroupTextArea.setRequired(true);
-		formGroupView.add(formGroupTextArea);
+        FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<String>(
+                formGroupView.newChildId(),
+                Model.of(FormGroupTextArea.class.getSimpleName()),
+                Model.of("")
+        );
+        formGroupTextArea.setRequired(true);
+        formGroupView.add(formGroupTextArea);
 
-		FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
-				formGroupView.newChildId(),
-				Model.of(FormGroupCheckBox.class.getSimpleName()),
-				new Model<Boolean>());
-		formGroupView.add(formGroupCheckBox);
+        FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
+                formGroupView.newChildId(),
+                Model.of(FormGroupCheckBox.class.getSimpleName()),
+                new Model<Boolean>()
+        );
+        formGroupView.add(formGroupCheckBox);
 
-		FormGroupRadioChoice<String> formGroupRadioChoice = new FormGroupRadioChoice<String>(
-				formGroupView.newChildId(),
-				Model.of(FormGroupRadioChoice.class.getSimpleName()),
-				Model.of(""),
-				choices);
-		formGroupView.add(formGroupRadioChoice);
+        FormGroupRadioChoice<String> formGroupRadioChoice = new FormGroupRadioChoice<String>(
+                formGroupView.newChildId(),
+                Model.of(FormGroupRadioChoice.class.getSimpleName()),
+                Model.of(""),
+                choices
+        );
+        formGroupView.add(formGroupRadioChoice);
 
-		FormGroupSelect<String> formGroupSelect = new FormGroupSelect<String>(
-				formGroupView.newChildId(),
-				Model.of(FormGroupSelect.class.getSimpleName()),
-				Model.of(""),
-				choices);
-		formGroupSelect.setRequired(false);
-		formGroupSelect.setNullValid(true);
-		formGroupView.add(formGroupSelect);
+        FormGroupSelect<String> formGroupSelect = new FormGroupSelect<String>(
+                formGroupView.newChildId(),
+                Model.of(FormGroupSelect.class.getSimpleName()),
+                Model.of(""),
+                choices
+        );
+        formGroupSelect.setRequired(false);
+        formGroupSelect.setNullValid(true);
+        formGroupView.add(formGroupSelect);
 
-		FormGroupInputFile formGroupInputFile =
-				new FormGroupInputFile(formGroupView.newChildId(), Model.of(FormGroupInputFile.class.getSimpleName()));
-		formGroupView.add(formGroupInputFile);
+        FormGroupInputFile formGroupInputFile =
+                new FormGroupInputFile(formGroupView.newChildId(), Model.of(FormGroupInputFile.class.getSimpleName()));
+        formGroupView.add(formGroupInputFile);
 
-		FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId()) {
+        FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId())
+        {
 
-			@Override
-			protected void populateActions(RepeatingView actionView)
-			{
-				AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId()) {
+            @Override
+            protected void populateActions(RepeatingView actionView)
+            {
+                AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId())
+                {
 
-					@Override
-					protected void onError(AjaxRequestTarget target, Form<?> form)
-					{
-						super.onError(target, form);
-						target.add(form);
-					}
-				};
-				submitButton.setBody(Model.of("Submit"));
-				submitButton.setButtonStyle(ButtonStyle.PRIMARY);
-				actionView.add(submitButton);
-			}
-		};
-		formGroupView.add(formGroupActions);
-	}
+                    @Override
+                    protected void onError(AjaxRequestTarget target, Form<?> form)
+                    {
+                        super.onError(target, form);
+                        target.add(form);
+                    }
+                };
+                submitButton.setBody(Model.of("Submit"));
+                submitButton.setButtonStyle(ButtonStyle.PRIMARY);
+                actionView.add(submitButton);
+            }
+        };
+        formGroupView.add(formGroupActions);
+    }
 }

@@ -27,46 +27,47 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 public class NoAntiCacheImage extends Image {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
+    public NoAntiCacheImage(final String id, final ResourceReference resourceReference)
+    {
 
-	public NoAntiCacheImage(final String id, final ResourceReference resourceReference) {
+        super(id, resourceReference, null);
+    }
 
-		super(id, resourceReference, null);
-	}
+    public NoAntiCacheImage(
+            final String id,
+            final ResourceReference resourceReference,
+            final PageParameters resourceParameters
+    )
+    {
 
+        super(id, resourceReference, resourceParameters);
+    }
 
-	public NoAntiCacheImage(
-			final String id,
-			final ResourceReference resourceReference,
-			final PageParameters resourceParameters) {
+    public NoAntiCacheImage(final String id, final IResource imageResource)
+    {
 
-		super(id, resourceReference, resourceParameters);
-	}
+        super(id, imageResource);
+    }
 
+    public NoAntiCacheImage(final String id, final IModel<?> model)
+    {
 
-	public NoAntiCacheImage(final String id, final IResource imageResource) {
+        super(id, model);
+    }
 
-		super(id, imageResource);
-	}
+    public NoAntiCacheImage(final String id, final String string)
+    {
 
+        this(id, new Model<String>(string));
+    }
 
-	public NoAntiCacheImage(final String id, final IModel<?> model) {
+    @Override
+    protected boolean shouldAddAntiCacheParameter()
+    {
 
-		super(id, model);
-	}
-
-
-	public NoAntiCacheImage(final String id, final String string) {
-
-		this(id, new Model<String>(string));
-	}
-
-
-	@Override
-	protected boolean shouldAddAntiCacheParameter() {
-
-		return false;
-	}
+        return false;
+    }
 
 }

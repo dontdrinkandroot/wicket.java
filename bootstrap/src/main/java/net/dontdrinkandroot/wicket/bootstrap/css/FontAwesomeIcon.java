@@ -22,82 +22,82 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public class FontAwesomeIcon implements CssClass {
 
-	private boolean fixedWidth = false;
+    private boolean fixedWidth = false;
 
-	private boolean spinning = false;
+    private boolean spinning = false;
 
-	private Boolean outline = null;
+    private Boolean outline = null;
 
-	private String shape = null;
+    private String shape = null;
 
-	private String direction = null;
+    private String direction = null;
 
-	private final FontAwesomeIconClass iconClass;
+    private final FontAwesomeIconClass iconClass;
 
+    public FontAwesomeIcon(FontAwesomeIconClass iconClass)
+    {
 
-	public FontAwesomeIcon(FontAwesomeIconClass iconClass) {
+        this.iconClass = iconClass;
+    }
 
-		this.iconClass = iconClass;
-	}
+    @Override
+    public String getClassString()
+    {
 
+        StringBuilder builder = new StringBuilder("fa ");
+        builder.append(this.iconClass.getClassString());
+        if (this.shape != null) {
+            builder.append("-");
+            builder.append(this.shape);
+        }
+        if (this.outline != null && this.outline.booleanValue()) {
+            builder.append("-o");
+        }
+        if (this.direction != null) {
+            builder.append("-");
+            builder.append(this.direction);
+        }
+        if (this.fixedWidth) {
+            builder.append(" fa-fw");
+        }
+        if (this.spinning) {
+            builder.append(" fa-spin");
+        }
+        return builder.toString();
+    }
 
-	@Override
-	public String getClassString() {
+    public FontAwesomeIcon setFixedWidth(boolean fixedWidth)
+    {
 
-		StringBuilder builder = new StringBuilder("fa ");
-		builder.append(this.iconClass.getClassString());
-		if (this.shape != null) {
-			builder.append("-");
-			builder.append(this.shape);
-		}
-		if (this.outline != null && this.outline.booleanValue()) {
-			builder.append("-o");
-		}
-		if (this.direction != null) {
-			builder.append("-");
-			builder.append(this.direction);
-		}
-		if (this.fixedWidth) {
-			builder.append(" fa-fw");
-		}
-		if (this.spinning) {
-			builder.append(" fa-spin");
-		}
-		return builder.toString();
-	}
+        this.fixedWidth = fixedWidth;
+        return this;
+    }
 
+    public FontAwesomeIcon setSpinning(boolean spinning)
+    {
 
-	public FontAwesomeIcon setFixedWidth(boolean fixedWidth) {
+        this.spinning = spinning;
+        return this;
+    }
 
-		this.fixedWidth = fixedWidth;
-		return this;
-	}
+    public FontAwesomeIcon setOutline(Boolean outline)
+    {
 
+        this.outline = outline;
+        return this;
+    }
 
-	public FontAwesomeIcon setSpinning(boolean spinning) {
+    public FontAwesomeIcon setShape(String shape)
+    {
 
-		this.spinning = spinning;
-		return this;
-	}
+        this.shape = shape;
+        return this;
+    }
 
+    public FontAwesomeIcon setDirection(String direction)
+    {
 
-	public FontAwesomeIcon setOutline(Boolean outline) {
-
-		this.outline = outline;
-		return this;
-	}
-
-
-	public FontAwesomeIcon setShape(String shape) {
-
-		this.shape = shape;
-		return this;
-	}
-
-
-	public FontAwesomeIcon setDirection(String direction) {
-
-		this.direction = direction;
-		return this;
-	}
+        this.direction = direction;
+        return this;
+    }
 }

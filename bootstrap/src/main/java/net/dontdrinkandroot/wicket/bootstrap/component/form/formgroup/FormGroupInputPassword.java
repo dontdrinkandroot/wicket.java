@@ -17,40 +17,40 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupPassword;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupPassword;
-
 
 public class FormGroupInputPassword
-		extends FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>
+        extends FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>
 {
 
-	public FormGroupInputPassword(String id, IModel<String> labelModel, IModel<String> model)
-	{
-		super(id, labelModel, model);
-	}
+    public FormGroupInputPassword(String id, IModel<String> labelModel, IModel<String> model)
+    {
+        super(id, labelModel, model);
+    }
 
-	@Override
-	protected InputGroup<String, String, PasswordTextField> createInputGroup(String id)
-	{
-		return new InputGroupPassword(id, this.getModel()) {
+    @Override
+    protected InputGroup<String, String, PasswordTextField> createInputGroup(String id)
+    {
+        return new InputGroupPassword(id, this.getModel())
+        {
 
-			@Override
-			protected Component createInputGroupAddonBefore(String id)
-			{
-				return FormGroupInputPassword.this.createInputGroupAddonBefore(id);
-			}
+            @Override
+            protected Component createInputGroupAddonBefore(String id)
+            {
+                return FormGroupInputPassword.this.createInputGroupAddonBefore(id);
+            }
 
-			@Override
-			protected Component createInputGroupAddonAfter(String id)
-			{
-				return FormGroupInputPassword.this.createInputGroupAddonAfter(id);
-			}
-		};
-	}
+            @Override
+            protected Component createInputGroupAddonAfter(String id)
+            {
+                return FormGroupInputPassword.this.createInputGroupAddonAfter(id);
+            }
+        };
+    }
 
 }

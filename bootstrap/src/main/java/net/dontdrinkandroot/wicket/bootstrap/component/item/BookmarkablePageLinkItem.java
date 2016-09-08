@@ -25,47 +25,47 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class BookmarkablePageLinkItem extends AbstractLinkItem
 {
-	private BookmarkablePageLink<?> link;
+    private BookmarkablePageLink<?> link;
 
-	private final Class<? extends Page> pageClass;
+    private final Class<? extends Page> pageClass;
 
-	private PageParameters parameters;
+    private PageParameters parameters;
 
-	public <C extends Page> BookmarkablePageLinkItem(String id, IModel<String> labelModel, Class<C> pageClass)
-	{
-		super(id, labelModel);
+    public <C extends Page> BookmarkablePageLinkItem(String id, IModel<String> labelModel, Class<C> pageClass)
+    {
+        super(id, labelModel);
 
-		this.pageClass = pageClass;
-	}
+        this.pageClass = pageClass;
+    }
 
-	public <C extends Page> BookmarkablePageLinkItem(
-			String id,
-			IModel<String> labelModel,
-			Class<C> pageClass,
-			PageParameters parameters
-	)
-	{
-		this(id, labelModel, pageClass);
+    public <C extends Page> BookmarkablePageLinkItem(
+            String id,
+            IModel<String> labelModel,
+            Class<C> pageClass,
+            PageParameters parameters
+    )
+    {
+        this(id, labelModel, pageClass);
 
-		this.parameters = parameters;
-	}
+        this.parameters = parameters;
+    }
 
-	@Override
-	protected boolean isActive()
-	{
-		return this.getPage().getClass().isAssignableFrom(this.link.getPageClass());
-	}
+    @Override
+    protected boolean isActive()
+    {
+        return this.getPage().getClass().isAssignableFrom(this.link.getPageClass());
+    }
 
-	@Override
-	protected Component createLink(String id)
-	{
-		if (this.parameters == null) {
-			this.link = new BookmarkablePageLink<Void>(id, this.pageClass);
-		} else {
-			this.link = new BookmarkablePageLink<Void>(id, this.pageClass, this.parameters);
-		}
-		this.link.setBody(this.getModel());
+    @Override
+    protected Component createLink(String id)
+    {
+        if (this.parameters == null) {
+            this.link = new BookmarkablePageLink<Void>(id, this.pageClass);
+        } else {
+            this.link = new BookmarkablePageLink<Void>(id, this.pageClass, this.parameters);
+        }
+        this.link.setBody(this.getModel());
 
-		return this.link;
-	}
+        return this.link;
+    }
 }

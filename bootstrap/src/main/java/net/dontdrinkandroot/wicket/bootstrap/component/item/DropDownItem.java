@@ -17,70 +17,69 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
-
 
 public abstract class DropDownItem extends AbstractLinkItem
 {
 
-	protected DropDownMenu dropDownMenu;
+    protected DropDownMenu dropDownMenu;
 
+    public DropDownItem(String id, IModel<String> labelModel)
+    {
 
-	public DropDownItem(String id, IModel<String> labelModel)
-	{
+        super(id, labelModel);
+    }
 
-		super(id, labelModel);
-	}
+    public DropDownItem(String id, String label)
+    {
 
-	public DropDownItem(String id, String label)
-	{
+        super(id, Model.of(label));
+    }
 
-		super(id, Model.of(label));
-	}
+    @Override
+    protected void onInitialize()
+    {
 
-	@Override
-	protected void onInitialize()
-	{
+        super.onInitialize();
 
-		super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 
-		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
+        this.dropDownMenu = new DropDownMenu("dropDownMenu")
+        {
 
-		this.dropDownMenu = new DropDownMenu("dropDownMenu") {
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                DropDownItem.this.populateItems(itemView);
+            }
+        };
+        this.add(this.dropDownMenu);
+    }
 
-			@Override
-			protected void populateItems(RepeatingView itemView)
-			{
-				DropDownItem.this.populateItems(itemView);
-			}
-		};
-		this.add(this.dropDownMenu);
-	}
+    @Override
+    protected Component createLink(String id)
+    {
+        Label label = new Label(id, this.getModel());
+        label.add(new DropDownToggleBehavior());
+        this.setAppendIcon(this.getCaretClass());
 
-	@Override
-	protected Component createLink(String id)
-	{
-		Label label = new Label(id, this.getModel());
-		label.add(new DropDownToggleBehavior());
-		this.setAppendIcon(this.getCaretClass());
+        return label;
+    }
 
-		return label;
-	}
+    protected CssClass getCaretClass()
+    {
+        return BootstrapCssClass.CARET;
+    }
 
-	protected CssClass getCaretClass()
-	{
-		return BootstrapCssClass.CARET;
-	}
-
-	protected abstract void populateItems(RepeatingView itemView);
+    protected abstract void populateItems(RepeatingView itemView);
 }

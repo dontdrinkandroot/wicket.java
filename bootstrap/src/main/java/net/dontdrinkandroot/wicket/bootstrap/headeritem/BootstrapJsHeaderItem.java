@@ -17,9 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
@@ -27,25 +24,28 @@ import org.apache.wicket.markup.head.JavaScriptUrlReferenceHeaderItem;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
+import java.util.Collections;
+import java.util.List;
+
 
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 {
 
-	public BootstrapJsHeaderItem(boolean defer)
-	{
-		super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
-	}
+    public BootstrapJsHeaderItem(boolean defer)
+    {
+        super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
+    }
 
-	@Override
-	public List<HeaderItem> getDependencies()
-	{
-		final ResourceReference backingLibraryReference;
-		if (Application.exists()) {
-			backingLibraryReference = Application.get().getJavaScriptLibrarySettings().getJQueryReference();
-		} else {
-			backingLibraryReference = JQueryResourceReference.get();
-		}
+    @Override
+    public List<HeaderItem> getDependencies()
+    {
+        final ResourceReference backingLibraryReference;
+        if (Application.exists()) {
+            backingLibraryReference = Application.get().getJavaScriptLibrarySettings().getJQueryReference();
+        } else {
+            backingLibraryReference = JQueryResourceReference.get();
+        }
 
-		return Collections.singletonList((HeaderItem) JavaScriptHeaderItem.forReference(backingLibraryReference));
-	}
+        return Collections.singletonList((HeaderItem) JavaScriptHeaderItem.forReference(backingLibraryReference));
+    }
 }

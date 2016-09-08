@@ -23,9 +23,9 @@ import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 public class FontAwesomeCssHeaderItem extends CssUrlReferenceHeaderItem
 {
 
-	public FontAwesomeCssHeaderItem()
-	{
-		super("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", "screen", null);
-	}
+    public FontAwesomeCssHeaderItem()
+    {
+        super("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", "screen", null);
+    }
 
 }

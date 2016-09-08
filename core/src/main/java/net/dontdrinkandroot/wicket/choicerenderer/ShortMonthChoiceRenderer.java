@@ -17,12 +17,12 @@
  */
 package net.dontdrinkandroot.wicket.choicerenderer;
 
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.model.IModel;
+
 import java.text.DateFormatSymbols;
 import java.util.List;
 import java.util.Locale;
-
-import org.apache.wicket.markup.html.form.IChoiceRenderer;
-import org.apache.wicket.model.IModel;
 
 
 /**
@@ -33,43 +33,42 @@ import org.apache.wicket.model.IModel;
 public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
 {
 
-	private final String[] months;
+    private final String[] months;
 
+    public ShortMonthChoiceRenderer(Locale locale)
+    {
+        this.months = new DateFormatSymbols(locale).getShortMonths();
+    }
 
-	public ShortMonthChoiceRenderer(Locale locale)
-	{
-		this.months = new DateFormatSymbols(locale).getShortMonths();
-	}
+    @Override
+    public Object getDisplayValue(Integer object)
+    {
+        if (null == object) {
+            return "";
+        }
 
-	@Override
-	public Object getDisplayValue(Integer object)
-	{
-		if (null == object) {
-			return "";
-		}
+        return this.months[object.intValue()];
+    }
 
-		return this.months[object.intValue()];
-	}
+    @Override
+    public String getIdValue(Integer object, int index)
+    {
+        return Integer.toString(index);
+    }
 
-	@Override
-	public String getIdValue(Integer object, int index)
-	{
-		return Integer.toString(index);
-	}
+    @Override
+    public Integer getObject(String id, IModel<? extends List<? extends Integer>> choices)
+    {
+        final List<? extends Integer> choicesObject = choices.getObject();
+        for (int index = 0; index < choicesObject.size(); index++) {
+            // Get next choice
+            final Integer choice = choicesObject.get(index);
+            if (this.getIdValue(choice, index).equals(id)) {
+                return choice;
+            }
+        }
 
-	@Override
-	public Integer getObject(String id, IModel<? extends List<? extends Integer>> choices)
-	{
-		final List<? extends Integer> choicesObject = choices.getObject();
-		for (int index = 0; index < choicesObject.size(); index++) {
-			// Get next choice
-			final Integer choice = choicesObject.get(index);
-			if (this.getIdValue(choice, index).equals(id)) {
-				return choice;
-			}
-		}
-
-		return null;
-	}
+        return null;
+    }
 
 }

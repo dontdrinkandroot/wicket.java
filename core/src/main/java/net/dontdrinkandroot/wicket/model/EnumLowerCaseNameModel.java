@@ -25,24 +25,25 @@ import org.apache.wicket.model.IModel;
  */
 public class EnumLowerCaseNameModel extends AbstractChainedModel<Enum<?>, String> {
 
-	public EnumLowerCaseNameModel(IModel<? extends Enum<?>> parent) {
+    public EnumLowerCaseNameModel(IModel<? extends Enum<?>> parent)
+    {
 
-		super(parent);
-	}
+        super(parent);
+    }
 
+    @Override
+    public String getObject()
+    {
 
-	@Override
-	public String getObject() {
+        if (this.getParent() == null) {
+            return null;
+        }
 
-		if (this.getParent() == null) {
-			return null;
-		}
+        if (this.getParentObject() == null) {
+            return null;
+        }
 
-		if (this.getParentObject() == null) {
-			return null;
-		}
-
-		return this.getParentObject().name().toLowerCase();
-	}
+        return this.getParentObject().name().toLowerCase();
+    }
 
 }

@@ -23,40 +23,39 @@ import org.apache.wicket.model.IModel;
 public abstract class AbstractChainedModel<P, T> implements IModel<T>
 {
 
-	private final IModel<? extends P> parent;
+    private final IModel<? extends P> parent;
 
+    public AbstractChainedModel(final IModel<? extends P> parent)
+    {
+        this.parent = parent;
+    }
 
-	public AbstractChainedModel(final IModel<? extends P> parent)
-	{
-		this.parent = parent;
-	}
+    @Override
+    public void detach()
+    {
+        if (null != this.parent) {
+            this.parent.detach();
+        }
+    }
 
-	@Override
-	public void detach()
-	{
-		if (null != this.parent) {
-			this.parent.detach();
-		}
-	}
+    public IModel<? extends P> getParent()
+    {
+        return this.parent;
+    }
 
-	public IModel<? extends P> getParent()
-	{
-		return this.parent;
-	}
+    public P getParentObject()
+    {
+        if (this.parent == null) {
+            return null;
+        }
 
-	public P getParentObject()
-	{
-		if (this.parent == null) {
-			return null;
-		}
+        return this.parent.getObject();
+    }
 
-		return this.parent.getObject();
-	}
-
-	@Override
-	public void setObject(final T object)
-	{
-		throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
-	}
+    @Override
+    public void setObject(final T object)
+    {
+        throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
+    }
 
 }

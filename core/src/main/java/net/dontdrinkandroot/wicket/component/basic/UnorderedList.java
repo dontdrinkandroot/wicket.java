@@ -17,30 +17,30 @@
  */
 package net.dontdrinkandroot.wicket.component.basic;
 
-import java.util.List;
-
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
+
+import java.util.List;
 
 
 public abstract class UnorderedList<T> extends AbstractList<T>
 {
 
-	public UnorderedList(String id)
-	{
-		super(id);
-	}
+    public UnorderedList(String id)
+    {
+        super(id);
+    }
 
-	public UnorderedList(String id, IModel<List<T>> model)
-	{
-		super(id, model);
-	}
+    public UnorderedList(String id, IModel<List<T>> model)
+    {
+        super(id, model);
+    }
 
-	@Override
-	protected void onComponentTag(ComponentTag tag)
-	{
-		tag.setName("ul");
-		super.onComponentTag(tag);
-	}
+    @Override
+    protected void onComponentTag(ComponentTag tag)
+    {
+        tag.setName("ul");
+        super.onComponentTag(tag);
+    }
 
 }

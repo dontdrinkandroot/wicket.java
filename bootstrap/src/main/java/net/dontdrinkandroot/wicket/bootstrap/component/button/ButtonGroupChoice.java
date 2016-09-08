@@ -17,8 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import java.util.List;
-
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -28,115 +31,112 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import java.util.List;
 
 
 public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 {
 
-	private ButtonBehavior buttonBehavior = new ButtonBehavior();
+    private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
+    public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
+    {
+        this(id, model, new ListModel<T>(choices));
+    }
 
-	public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
-	{
-		this(id, model, new ListModel<T>(choices));
-	}
+    public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
+    {
+        super(id, model);
 
-	public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
-	{
-		super(id, model);
+        this.setOutputMarkupId(true);
+        this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
 
-		this.setOutputMarkupId(true);
-		this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
+        final RepeatingView choicesView = new RepeatingView("choice");
+        choicesView.setOutputMarkupId(true);
+        this.add(choicesView);
 
-		final RepeatingView choicesView = new RepeatingView("choice");
-		choicesView.setOutputMarkupId(true);
-		this.add(choicesView);
+        for (final T choice : choicesModel.getObject()) {
 
-		for (final T choice : choicesModel.getObject()) {
+            AjaxLink<Void> choiceLink = new AjaxLink<Void>(choicesView.newChildId())
+            {
 
-			AjaxLink<Void> choiceLink = new AjaxLink<Void>(choicesView.newChildId()) {
+                @Override
+                public void onClick(AjaxRequestTarget target)
+                {
 
-				@Override
-				public void onClick(AjaxRequestTarget target)
-				{
+                    ButtonGroupChoice.this.onSelectionChanged(choice, target);
+                }
+            };
+            choiceLink.setBody(this.getDisplayModel(choice));
+            choiceLink.add(this.buttonBehavior);
+            choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
+            {
 
-					ButtonGroupChoice.this.onSelectionChanged(choice, target);
-				}
-			};
-			choiceLink.setBody(this.getDisplayModel(choice));
-			choiceLink.add(this.buttonBehavior);
-			choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>() {
+                @Override
+                public BootstrapCssClass getObject()
+                {
 
-				@Override
-				public BootstrapCssClass getObject()
-				{
+                    if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
+                        return BootstrapCssClass.ACTIVE;
+                    }
 
-					if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-						return BootstrapCssClass.ACTIVE;
-					}
+                    return null;
+                }
+            }));
 
-					return null;
-				}
-			}));
+            choicesView.add(choiceLink);
+        }
+    }
 
-			choicesView.add(choiceLink);
-		}
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.buttonBehavior.getButtonSize();
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.buttonBehavior.getButtonSize();
-	}
+    @Override
+    public ButtonGroupChoice<T> setButtonSize(ButtonSize buttonSize)
+    {
+        this.buttonBehavior.setButtonSize(buttonSize);
+        return this;
+    }
 
-	@Override
-	public ButtonGroupChoice<T> setButtonSize(ButtonSize buttonSize)
-	{
-		this.buttonBehavior.setButtonSize(buttonSize);
-		return this;
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.buttonBehavior.getButtonStyle();
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.buttonBehavior.getButtonStyle();
-	}
+    @Override
+    public ButtonGroupChoice<T> setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.buttonBehavior.setButtonStyle(buttonStyle);
+        return this;
+    }
 
-	@Override
-	public ButtonGroupChoice<T> setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.buttonBehavior.setButtonStyle(buttonStyle);
-		return this;
-	}
+    @Override
+    public ButtonGroupChoice<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+        return this;
+    }
 
-	@Override
-	public ButtonGroupChoice<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
-		return this;
-	}
+    @Override
+    public ButtonGroupChoice<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+        return this;
+    }
 
-	@Override
-	public ButtonGroupChoice<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
-		return this;
-	}
+    protected void onSelectionChanged(T choice, AjaxRequestTarget target)
+    {
+        this.setModelObject(choice);
+        target.add(ButtonGroupChoice.this);
+    }
 
-	protected void onSelectionChanged(T choice, AjaxRequestTarget target)
-	{
-		this.setModelObject(choice);
-		target.add(ButtonGroupChoice.this);
-	}
-
-	protected IModel<String> getDisplayModel(T choice)
-	{
-		return new Model<String>(choice.toString());
-	}
+    protected IModel<String> getDisplayModel(T choice)
+    {
+        return new Model<String>(choice.toString());
+    }
 
 }

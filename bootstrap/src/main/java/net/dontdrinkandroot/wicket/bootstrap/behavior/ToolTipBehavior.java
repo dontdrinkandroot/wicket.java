@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.model.EnumLowerCaseNameModel;
-
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
@@ -31,83 +30,83 @@ import org.apache.wicket.model.Model;
 
 public class ToolTipBehavior extends Behavior {
 
-	private final IModel<String> textModel;
+    private final IModel<String> textModel;
 
-	private final IModel<Position> positionModel = new Model<Position>();
+    private final IModel<Position> positionModel = new Model<Position>();
 
-	private final IModel<Integer> delayModel = new Model<Integer>();
+    private final IModel<Integer> delayModel = new Model<Integer>();
 
+    public ToolTipBehavior(IModel<String> textModel)
+    {
 
-	public ToolTipBehavior(IModel<String> textModel) {
+        this.textModel = textModel;
+    }
 
-		this.textModel = textModel;
-	}
+    @Override
+    public void bind(Component component)
+    {
 
+        super.bind(component);
 
-	@Override
-	public void bind(Component component) {
+        component.add(new AttributeModifier("title", this.textModel));
+        component.add(new CssClassAppender("has-tooltip"));
+        component.add(new AttributeModifier("data-placement", new EnumLowerCaseNameModel(this.getPositionModel())));
+        component.add(new AttributeModifier("data-delay", this.getDelayModel()));
+    }
 
-		super.bind(component);
+    @Override
+    public void renderHead(Component component, IHeaderResponse response)
+    {
 
-		component.add(new AttributeModifier("title", this.textModel));
-		component.add(new CssClassAppender("has-tooltip"));
-		component.add(new AttributeModifier("data-placement", new EnumLowerCaseNameModel(this.getPositionModel())));
-		component.add(new AttributeModifier("data-delay", this.getDelayModel()));
-	}
+        super.renderHead(component, response);
 
+        response.render(OnDomReadyHeaderItem.forScript("$('.has-tooltip').tooltip();"));
+    }
 
-	@Override
-	public void renderHead(Component component, IHeaderResponse response) {
+    public Integer getDelay()
+    {
 
-		super.renderHead(component, response);
+        return this.delayModel.getObject();
+    }
 
-		response.render(OnDomReadyHeaderItem.forScript("$('.has-tooltip').tooltip();"));
-	}
+    public ToolTipBehavior setDelay(Integer delay)
+    {
 
+        this.delayModel.setObject(delay);
+        return this;
+    }
 
-	public Integer getDelay() {
+    public Position getPosition()
+    {
 
-		return this.delayModel.getObject();
-	}
+        return this.positionModel.getObject();
+    }
 
+    public ToolTipBehavior setPosition(Position position)
+    {
 
-	public ToolTipBehavior setDelay(Integer delay) {
+        this.positionModel.setObject(position);
+        return this;
+    }
 
-		this.delayModel.setObject(delay);
-		return this;
-	}
+    protected IModel<Position> getPositionModel()
+    {
 
+        return this.positionModel;
+    }
 
-	public Position getPosition() {
+    protected IModel<Integer> getDelayModel()
+    {
 
-		return this.positionModel.getObject();
-	}
+        return this.delayModel;
+    }
 
-
-	public ToolTipBehavior setPosition(Position position) {
-
-		this.positionModel.setObject(position);
-		return this;
-	}
-
-
-	protected IModel<Position> getPositionModel() {
-
-		return this.positionModel;
-	}
-
-
-	protected IModel<Integer> getDelayModel() {
-
-		return this.delayModel;
-	}
-
-
-	public enum Position {
-		TOP,
-		BOTTOM,
-		LEFT,
-		RIGHT;
-	}
+    public enum Position
+    {
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT;
+    }
 
 }

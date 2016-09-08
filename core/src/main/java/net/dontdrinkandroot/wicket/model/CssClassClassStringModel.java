@@ -18,39 +18,39 @@
 package net.dontdrinkandroot.wicket.model;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
-
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
 public class CssClassClassStringModel extends AbstractChainedModel<CssClass, String> {
 
-	public CssClassClassStringModel(IModel<? extends CssClass> parent) {
+    public CssClassClassStringModel(IModel<? extends CssClass> parent)
+    {
 
-		super(parent);
-	}
+        super(parent);
+    }
 
+    public CssClassClassStringModel(CssClass cssClass)
+    {
 
-	public CssClassClassStringModel(CssClass cssClass) {
+        super(new Model<CssClass>(cssClass));
+    }
 
-		super(new Model<CssClass>(cssClass));
-	}
+    @Override
+    public String getObject()
+    {
 
+        if (this.getParentObject() == null || !this.isActive()) {
+            return null;
+        }
 
-	@Override
-	public String getObject() {
+        return this.getParentObject().getClassString();
+    }
 
-		if (this.getParentObject() == null || !this.isActive()) {
-			return null;
-		}
+    protected boolean isActive()
+    {
 
-		return this.getParentObject().getClassString();
-	}
-
-
-	protected boolean isActive() {
-
-		return true;
-	}
+        return true;
+    }
 
 }

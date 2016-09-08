@@ -25,13 +25,13 @@ import org.apache.wicket.model.IModel;
 public class EmptyModelInvisibleBehavior extends Behavior
 {
 
-	@Override
-	public void onConfigure(Component component)
-	{
-		super.onConfigure(component);
-		IModel<?> model = component.getDefaultModel();
-		if ((null == model) || (null == model.getObject())) {
-			component.setVisible(false);
-		}
-	}
+    @Override
+    public void onConfigure(Component component)
+    {
+        super.onConfigure(component);
+        IModel<?> model = component.getDefaultModel();
+        if ((null == model) || (null == model.getObject())) {
+            component.setVisible(false);
+        }
+    }
 }

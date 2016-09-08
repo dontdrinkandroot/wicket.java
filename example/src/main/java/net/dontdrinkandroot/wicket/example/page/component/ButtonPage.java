@@ -17,16 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroupChoice;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownButton;
@@ -34,77 +24,88 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.SplitDropDownButto
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ButtonPage extends ComponentPage
 {
 
-	public ButtonPage(PageParameters parameters)
-	{
-		super(parameters);
-	}
+    public ButtonPage(PageParameters parameters)
+    {
+        super(parameters);
+    }
 
-	@Override
-	protected IModel<String> createPageHeadingModel()
-	{
-		return Model.of("Buttons");
-	}
+    @Override
+    protected IModel<String> createPageHeadingModel()
+    {
+        return Model.of("Buttons");
+    }
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-		RepeatingView styleView = new RepeatingView("buttonStyle");
-		this.add(styleView);
-		for (ButtonStyle style : ButtonStyle.values()) {
-			Label button = new Label(styleView.newChildId(), Model.of(style.name().toLowerCase()));
-			button.add(new ButtonBehavior(Model.of(style)));
-			styleView.add(button);
-		}
+        RepeatingView styleView = new RepeatingView("buttonStyle");
+        this.add(styleView);
+        for (ButtonStyle style : ButtonStyle.values()) {
+            Label button = new Label(styleView.newChildId(), Model.of(style.name().toLowerCase()));
+            button.add(new ButtonBehavior(Model.of(style)));
+            styleView.add(button);
+        }
 
-		RepeatingView sizeView = new RepeatingView("buttonSize");
-		this.add(sizeView);
-		for (ButtonSize size : ButtonSize.values()) {
-			Label button = new Label(sizeView.newChildId(), Model.of(size.name().toLowerCase()));
-			button.add(new ButtonBehavior().setButtonSize(size));
-			sizeView.add(button);
-		}
+        RepeatingView sizeView = new RepeatingView("buttonSize");
+        this.add(sizeView);
+        for (ButtonSize size : ButtonSize.values()) {
+            Label button = new Label(sizeView.newChildId(), Model.of(size.name().toLowerCase()));
+            button.add(new ButtonBehavior().setButtonSize(size));
+            sizeView.add(button);
+        }
 
-		DropDownButton<Void> dropDownButton = new DropDownButton<Void>("dropDownButton", null, Model.of("My Label")) {
+        DropDownButton<Void> dropDownButton = new DropDownButton<Void>("dropDownButton", null, Model.of("My Label"))
+        {
 
-			@Override
-			protected void populateItems(RepeatingView itemView)
-			{
-				ButtonPage.this.populateDropDownItems(itemView);
-			}
-		};
-		this.add(dropDownButton);
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                ButtonPage.this.populateDropDownItems(itemView);
+            }
+        };
+        this.add(dropDownButton);
 
-		SplitDropDownButton<Void> splitDropDownButton = new SplitDropDownButton<Void>("splitDropDownButton") {
+        SplitDropDownButton<Void> splitDropDownButton = new SplitDropDownButton<Void>("splitDropDownButton")
+        {
 
-			@Override
-			protected Component createAction(String id)
-			{
-				return new Label(id, "Action");
-			}
+            @Override
+            protected Component createAction(String id)
+            {
+                return new Label(id, "Action");
+            }
 
-			@Override
-			protected void populateItems(RepeatingView itemView)
-			{
-				ButtonPage.this.populateDropDownItems(itemView);
-			}
-		};
-		this.add(splitDropDownButton);
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                ButtonPage.this.populateDropDownItems(itemView);
+            }
+        };
+        this.add(splitDropDownButton);
 
-		List<String> choices = Arrays.asList(new String[] { "Red", "Green", "Blue" });
-		ButtonGroupChoice<String> buttonGroupChoice =
-				new ButtonGroupChoice<String>("buttonGroupChoice", Model.of(choices.iterator().next()), choices);
-		this.add(buttonGroupChoice);
-	}
+        List<String> choices = Arrays.asList(new String[]{"Red", "Green", "Blue"});
+        ButtonGroupChoice<String> buttonGroupChoice =
+                new ButtonGroupChoice<String>("buttonGroupChoice", Model.of(choices.iterator().next()), choices);
+        this.add(buttonGroupChoice);
+    }
 
-	protected void populateDropDownItems(RepeatingView itemView)
-	{
-		itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("This is a link"), ButtonPage.class));
-	}
+    protected void populateDropDownItems(RepeatingView itemView)
+    {
+        itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("This is a link"), ButtonPage.class));
+    }
 }

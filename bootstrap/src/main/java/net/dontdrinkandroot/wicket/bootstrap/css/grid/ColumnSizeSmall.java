@@ -20,49 +20,49 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public enum ColumnSizeSmall implements ColumnSize
 {
 
-	COLUMNS_1,
-	COLUMNS_2,
-	COLUMNS_3,
-	COLUMNS_4,
-	COLUMNS_5,
-	COLUMNS_6,
-	COLUMNS_7,
-	COLUMNS_8,
-	COLUMNS_9,
-	COLUMNS_10,
-	COLUMNS_11,
-	COLUMNS_12;
+    COLUMNS_1,
+    COLUMNS_2,
+    COLUMNS_3,
+    COLUMNS_4,
+    COLUMNS_5,
+    COLUMNS_6,
+    COLUMNS_7,
+    COLUMNS_8,
+    COLUMNS_9,
+    COLUMNS_10,
+    COLUMNS_11,
+    COLUMNS_12;
 
-	private ColumnSizeSmall()
-	{
-	}
+    private ColumnSizeSmall()
+    {
+    }
 
-	@Override
-	public String getClassString()
-	{
-		return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
-	}
+    @Override
+    public String getClassString()
+    {
+        return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
+    }
 
-	@Override
-	public ColumnOffsetSmall getInverseColumnOffset()
-	{
-		if (this.ordinal() >= 11) {
-			return null;
-		}
-		return ColumnOffsetSmall.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnOffsetSmall getInverseColumnOffset()
+    {
+        if (this.ordinal() >= 11) {
+            return null;
+        }
+        return ColumnOffsetSmall.values()[10 - this.ordinal()];
+    }
 
-	@Override
-	public ColumnSizeSmall getInverseColumnSize()
-	{
-		if (this.ordinal() >= 11) {
-			return null;
-		}
-		return ColumnSizeSmall.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnSizeSmall getInverseColumnSize()
+    {
+        if (this.ordinal() >= 11) {
+            return null;
+        }
+        return ColumnSizeSmall.values()[10 - this.ordinal()];
+    }
 
-	protected String getPrefix()
-	{
-		return "sm";
-	}
+    protected String getPrefix()
+    {
+        return "sm";
+    }
 }

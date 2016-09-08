@@ -22,5 +22,5 @@ import java.io.Serializable;
 
 public interface CssClass extends Serializable {
 
-	String getClassString();
+    String getClassString();
 }

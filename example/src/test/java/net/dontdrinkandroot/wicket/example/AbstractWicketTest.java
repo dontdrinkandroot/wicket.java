@@ -30,32 +30,34 @@ import org.junit.Before;
 public class AbstractWicketTest
 {
 
-	protected WicketTester tester;
+    protected WicketTester tester;
 
+    @Before
+    public void setUp()
+    {
+        this.tester = new WicketTester(new ExampleTestApplication());
+    }
 
-	@Before
-	public void setUp()
-	{
-		this.tester = new WicketTester(new ExampleTestApplication());
-	}
+    protected void assertStateless(MarkupContainer component)
+    {
+        Visits.visitChildren(component, new IVisitor<Component, Void>()
+        {
 
-	protected void assertStateless(MarkupContainer component)
-	{
-		Visits.visitChildren(component, new IVisitor<Component, Void>() {
-
-			@Override
-			public void component(Component component, IVisit<Void> visit)
-			{
-				if (!component.isStateless()) {
-					Assert.assertTrue(
-							String.format(
-									"Component '%s' is not stateless. Type: %s, Path: %s",
-									component.getMarkupId(),
-									component.getClass().getCanonicalName(),
-									component.getPath()),
-							component.isStateless());
-				}
-			}
-		});
-	}
+            @Override
+            public void component(Component component, IVisit<Void> visit)
+            {
+                if (!component.isStateless()) {
+                    Assert.assertTrue(
+                            String.format(
+                                    "Component '%s' is not stateless. Type: %s, Path: %s",
+                                    component.getMarkupId(),
+                                    component.getClass().getCanonicalName(),
+                                    component.getPath()
+                            ),
+                            component.isStateless()
+                    );
+                }
+            }
+        });
+    }
 }

@@ -17,96 +17,94 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
 
 public abstract class FormModal<T> extends Modal<T>
 {
 
-	private Form<T> form;
+    private Form<T> form;
 
+    public FormModal(String id)
+    {
+        super(id);
+    }
 
-	public FormModal(String id)
-	{
-		super(id);
-	}
+    public FormModal(String id, IModel<T> model)
+    {
+        super(id, model);
+    }
 
-	public FormModal(String id, IModel<T> model)
-	{
-		super(id, model);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.MODAL));
+        this.add(new CssClassAppender(BootstrapCssClass.FADE));
 
-		this.add(new CssClassAppender(BootstrapCssClass.MODAL));
-		this.add(new CssClassAppender(BootstrapCssClass.FADE));
+        this.form = this.createForm("form");
+        this.add(this.form);
 
-		this.form = this.createForm("form");
-		this.add(this.form);
+        RepeatingView formGroupView = new RepeatingView("formGroup");
+        this.populateFormGroups(formGroupView);
+        this.form.add(formGroupView);
 
-		RepeatingView formGroupView = new RepeatingView("formGroup");
-		this.populateFormGroups(formGroupView);
-		this.form.add(formGroupView);
+        RepeatingView formActionView = new RepeatingView("formAction");
+        this.populateFormActions(formActionView);
+        this.add(formActionView);
+    }
 
-		RepeatingView formActionView = new RepeatingView("formAction");
-		this.populateFormActions(formActionView);
-		this.add(formActionView);
-	}
+    @Override
+    protected final void addFooter()
+    {
+        /* Noop */
+    }
 
-	@Override
-	protected final void addFooter()
-	{
-		/* Noop */
-	}
+    @Override
+    protected final Component createFooter(String id)
+    {
+        return null;
+    }
 
-	@Override
-	protected final Component createFooter(String id)
-	{
-		return null;
-	}
+    public Form<T> getForm()
+    {
+        return this.form;
+    }
 
-	public Form<T> getForm()
-	{
-		return this.form;
-	}
+    protected Form<T> createForm(String id)
+    {
+        return new Form<T>(id, this.getModel());
+    }
 
-	protected Form<T> createForm(String id)
-	{
-		return new Form<T>(id, this.getModel());
-	}
+    protected void populateFormActions(RepeatingView formActionView)
+    {
+    }
 
-	protected void populateFormActions(RepeatingView formActionView)
-	{
-	}
+    protected void populateFormGroups(RepeatingView formGroupView)
+    {
+    }
 
-	protected void populateFormGroups(RepeatingView formGroupView)
-	{
-	}
+    @Override
+    public CharSequence getHideScript()
+    {
+        return String.format("$('#%s').modal('hide');", this.getMarkupId());
+    }
 
-	@Override
-	public CharSequence getHideScript()
-	{
-		return String.format("$('#%s').modal('hide');", this.getMarkupId());
-	}
+    @Override
+    public CharSequence getShowScript()
+    {
+        return String.format("$('#%s').modal({'show': true, 'backdrop':'static'});", this.getMarkupId());
+    }
 
-	@Override
-	public CharSequence getShowScript()
-	{
-		return String.format("$('#%s').modal({'show': true, 'backdrop':'static'});", this.getMarkupId());
-	}
-
-	@Override
-	public CharSequence getToggleScript()
-	{
-		return String.format("$('#%s').modal('toggle');", this.getMarkupId());
-	}
+    @Override
+    public CharSequence getToggleScript()
+    {
+        return String.format("$('#%s').modal('toggle');", this.getMarkupId());
+    }
 }

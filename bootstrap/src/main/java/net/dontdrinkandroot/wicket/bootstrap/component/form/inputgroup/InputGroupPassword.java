@@ -26,25 +26,26 @@ import org.apache.wicket.model.IModel;
 public class InputGroupPassword extends InputGroup<String, String, PasswordTextField>
 {
 
-	public InputGroupPassword(String id, IModel<String> model)
-	{
-		super(id, model);
-	}
+    public InputGroupPassword(String id, IModel<String> model)
+    {
+        super(id, model);
+    }
 
-	@Override
-	protected PasswordTextField createFormComponent(String id)
-	{
-		PasswordTextField formComponent = new PasswordTextField(id, this.getModel()) {
+    @Override
+    protected PasswordTextField createFormComponent(String id)
+    {
+        PasswordTextField formComponent = new PasswordTextField(id, this.getModel())
+        {
 
-			@Override
-			protected void onComponentTag(ComponentTag tag)
-			{
-				tag.put("type", "password");
-				super.onComponentTag(tag);
-			}
-		};
-		formComponent.add(new HTML5Attributes());
+            @Override
+            protected void onComponentTag(ComponentTag tag)
+            {
+                tag.put("type", "password");
+                super.onComponentTag(tag);
+            }
+        };
+        formComponent.add(new HTML5Attributes());
 
-		return formComponent;
-	}
+        return formComponent;
+    }
 }

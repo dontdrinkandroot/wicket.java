@@ -24,21 +24,22 @@ import org.apache.wicket.model.IModel;
 
 public class AriaAppender extends AttributeAppender {
 
-	public AriaAppender(Aria attribute) {
+    public AriaAppender(Aria attribute)
+    {
 
-		super(attribute.getAttribute(), AttributeModifier.VALUELESS_ATTRIBUTE_ADD);
-	}
+        super(attribute.getAttribute(), AttributeModifier.VALUELESS_ATTRIBUTE_ADD);
+    }
 
+    public AriaAppender(Aria attribute, String value)
+    {
 
-	public AriaAppender(Aria attribute, String value) {
+        super(attribute.getAttribute(), value);
+    }
 
-		super(attribute.getAttribute(), value);
-	}
+    public AriaAppender(Aria attribute, IModel<String> value)
+    {
 
-
-	public AriaAppender(Aria attribute, IModel<String> value) {
-
-		super(attribute.getAttribute(), value);
-	}
+        super(attribute.getAttribute(), value);
+    }
 
 }

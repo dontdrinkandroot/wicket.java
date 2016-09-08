@@ -22,8 +22,8 @@ import org.apache.wicket.ajax.AjaxEventBehavior;
 public abstract class AbstractOnClickBehavior extends AjaxEventBehavior
 {
 
-	public AbstractOnClickBehavior()
-	{
-		super("click");
-	}
+    public AbstractOnClickBehavior()
+    {
+        super("click");
+    }
 }

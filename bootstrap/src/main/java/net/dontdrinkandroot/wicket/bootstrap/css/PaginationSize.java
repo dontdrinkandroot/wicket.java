@@ -22,22 +22,22 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum PaginationSize implements CssClass {
 
-	MINI("pagination-mini"),
-	SMALL("pagination-small"),
-	LARGE("pagination-large");
+    MINI("pagination-mini"),
+    SMALL("pagination-small"),
+    LARGE("pagination-large");
 
-	private final String classString;
+    private final String classString;
 
+    private PaginationSize(String classString)
+    {
 
-	private PaginationSize(String classString) {
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-
-	@Override
-	public String getClassString() {
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 }

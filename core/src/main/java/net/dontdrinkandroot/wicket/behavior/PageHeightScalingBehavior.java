@@ -25,26 +25,28 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
 public class PageHeightScalingBehavior extends Behavior {
 
-	public PageHeightScalingBehavior() {
+    public PageHeightScalingBehavior()
+    {
 
-	}
+    }
 
+    @Override
+    public void renderHead(Component component, IHeaderResponse response)
+    {
 
-	@Override
-	public void renderHead(Component component, IHeaderResponse response) {
+        super.renderHead(component, response);
 
-		super.renderHead(component, response);
+        StringBuffer scalingFunctionBuffer = new StringBuffer();
+        scalingFunctionBuffer.append(String.format("var offset = $('#%s').offset();", component.getMarkupId()));
+        scalingFunctionBuffer.append(String.format(
+                "$('#%s').height($(window).height() - offset.top);",
+                component.getMarkupId()
+        ));
 
-		StringBuffer scalingFunctionBuffer = new StringBuffer();
-		scalingFunctionBuffer.append(String.format("var offset = $('#%s').offset();", component.getMarkupId()));
-		scalingFunctionBuffer.append(String.format(
-				"$('#%s').height($(window).height() - offset.top);",
-				component.getMarkupId()));
-
-		response.render(OnDomReadyHeaderItem.forScript(scalingFunctionBuffer.toString()));
-		response.render(OnDomReadyHeaderItem.forScript("$(window).resize(function() {"
-				+ scalingFunctionBuffer.toString()
-				+ "})"));
-	}
+        response.render(OnDomReadyHeaderItem.forScript(scalingFunctionBuffer.toString()));
+        response.render(OnDomReadyHeaderItem.forScript("$(window).resize(function() {"
+                + scalingFunctionBuffer.toString()
+                + "})"));
+    }
 
 }

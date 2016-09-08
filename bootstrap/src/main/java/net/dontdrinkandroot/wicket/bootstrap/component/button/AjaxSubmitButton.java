@@ -29,82 +29,81 @@ import org.apache.wicket.model.Model;
 public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 {
 
-	protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
+    protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
 
+    public AjaxSubmitButton(String id)
+    {
+        super(id);
+    }
 
-	public AjaxSubmitButton(String id)
-	{
-		super(id);
-	}
+    public AjaxSubmitButton(String id, IModel<String> bodyModel)
+    {
+        super(id);
+        this.setBody(bodyModel);
+    }
 
-	public AjaxSubmitButton(String id, IModel<String> bodyModel)
-	{
-		super(id);
-		this.setBody(bodyModel);
-	}
+    public AjaxSubmitButton(String id, Form<?> form)
+    {
+        super(id, form);
+    }
 
-	public AjaxSubmitButton(String id, Form<?> form)
-	{
-		super(id, form);
-	}
+    public AjaxSubmitButton(String id, Form<?> form, IModel<String> bodyModel)
+    {
+        super(id, form);
+        this.setBody(bodyModel);
+    }
 
-	public AjaxSubmitButton(String id, Form<?> form, IModel<String> bodyModel)
-	{
-		super(id, form);
-		this.setBody(bodyModel);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
+        this.add(this.buttonBehavior);
+    }
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
-		this.add(this.buttonBehavior);
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.buttonBehavior.getButtonSize();
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.buttonBehavior.getButtonSize();
-	}
+    @Override
+    public AjaxSubmitButton setButtonSize(ButtonSize buttonSize)
+    {
+        this.buttonBehavior.setButtonSize(buttonSize);
+        return this;
+    }
 
-	@Override
-	public AjaxSubmitButton setButtonSize(ButtonSize buttonSize)
-	{
-		this.buttonBehavior.setButtonSize(buttonSize);
-		return this;
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.buttonBehavior.getButtonStyle();
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.buttonBehavior.getButtonStyle();
-	}
+    @Override
+    public AjaxSubmitButton setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.buttonBehavior.setButtonStyle(buttonStyle);
+        return this;
+    }
 
-	@Override
-	public AjaxSubmitButton setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.buttonBehavior.setButtonStyle(buttonStyle);
-		return this;
-	}
+    @Override
+    public AjaxSubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+        return this;
+    }
 
-	@Override
-	public AjaxSubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
-		return this;
-	}
+    @Override
+    public AjaxSubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+        return this;
+    }
 
-	@Override
-	public AjaxSubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
-		return this;
-	}
-
-	@Override
-	protected void onError(AjaxRequestTarget target, Form<?> form)
-	{
-		super.onError(target, form);
-		target.add(form);
-	}
+    @Override
+    protected void onError(AjaxRequestTarget target, Form<?> form)
+    {
+        super.onError(target, form);
+        target.add(form);
+    }
 }

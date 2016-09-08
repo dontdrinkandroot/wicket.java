@@ -17,6 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
+import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -24,73 +27,70 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
-import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
-import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
-
 
 public abstract class BootstrapPage<T> extends GenericWebPage<T>
 {
 
-	protected IModel<String> pageHeadingModel;
+    protected IModel<String> pageHeadingModel;
 
-	private IModel<String> pageTitleModel;
+    private IModel<String> pageTitleModel;
 
+    public BootstrapPage()
+    {
+        super();
+    }
 
-	public BootstrapPage()
-	{
-		super();
-	}
+    public BootstrapPage(PageParameters parameters)
+    {
+        super(parameters);
+    }
 
-	public BootstrapPage(PageParameters parameters)
-	{
-		super(parameters);
-	}
+    public BootstrapPage(IModel<T> model)
+    {
+        super(model);
+    }
 
-	public BootstrapPage(IModel<T> model)
-	{
-		super(model);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+        this.pageHeadingModel = this.createPageHeadingModel();
+        this.pageTitleModel = this.createPageTitleModel();
+        this.add(new Label("pageTitle", this.pageTitleModel));
+    }
 
-		this.pageHeadingModel = this.createPageHeadingModel();
-		this.pageTitleModel = this.createPageTitleModel();
-		this.add(new Label("pageTitle", this.pageTitleModel));
-	}
+    @Override
+    public void renderHead(IHeaderResponse response)
+    {
+        super.renderHead(response);
 
-	@Override
-	public void renderHead(IHeaderResponse response)
-	{
-		super.renderHead(response);
+        response.render(this.getBootstrapJavaScriptHeaderItem());
+        response.render(this.getBootstrapCssHeaderItem());
+    }
 
-		response.render(this.getBootstrapJavaScriptHeaderItem());
-		response.render(this.getBootstrapCssHeaderItem());
-	}
+    protected BootstrapJsHeaderItem getBootstrapJavaScriptHeaderItem()
+    {
+        return new BootstrapJsHeaderItem(false);
+    }
 
-	protected BootstrapJsHeaderItem getBootstrapJavaScriptHeaderItem()
-	{
-		return new BootstrapJsHeaderItem(false);
-	}
+    protected BootstrapCssHeaderItem getBootstrapCssHeaderItem()
+    {
+        return new BootstrapCssHeaderItem();
+    }
 
-	protected BootstrapCssHeaderItem getBootstrapCssHeaderItem()
-	{
-		return new BootstrapCssHeaderItem();
-	}
+    protected IModel<String> createPageTitlePrefixModel()
+    {
+        return new Model<String>();
+    }
 
-	protected IModel<String> createPageTitlePrefixModel()
-	{
-		return new Model<String>();
-	}
+    protected IModel<String> createPageTitleModel()
+    {
+        return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
+    }
 
-	protected IModel<String> createPageTitleModel()
-	{
-		return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
-	};
+    ;
 
-	protected abstract IModel<String> createPageHeadingModel();
+    protected abstract IModel<String> createPageHeadingModel();
 
 }

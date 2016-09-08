@@ -27,33 +27,33 @@ import org.apache.wicket.model.IModel;
 public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<T>>
 {
 
-	private int rows = 5;
+    private int rows = 5;
 
+    public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
+    }
 
-	public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
-	{
-		super(id, labelModel, model);
-	}
+    @Override
+    protected TextArea<T> createFormComponent(String id)
+    {
+        TextArea<T> textArea = new TextArea<T>(id, this.getModel());
+        textArea.add(new AttributeAppender("rows", new AbstractReadOnlyModel<Integer>()
+        {
 
-	@Override
-	protected TextArea<T> createFormComponent(String id)
-	{
-		TextArea<T> textArea = new TextArea<T>(id, this.getModel());
-		textArea.add(new AttributeAppender("rows", new AbstractReadOnlyModel<Integer>() {
+            @Override
+            public Integer getObject()
+            {
+                return FormGroupTextArea.this.rows;
+            }
+        }));
+        textArea.add(new HTML5Attributes());
+        return textArea;
+    }
 
-			@Override
-			public Integer getObject()
-			{
-				return FormGroupTextArea.this.rows;
-			}
-		}));
-		textArea.add(new HTML5Attributes());
-		return textArea;
-	}
-
-	public void setRows(int rows)
-	{
-		this.rows = rows;
-	}
+    public void setRows(int rows)
+    {
+        this.rows = rows;
+    }
 
 }

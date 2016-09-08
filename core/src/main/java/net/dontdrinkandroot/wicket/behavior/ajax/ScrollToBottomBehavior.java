@@ -30,77 +30,81 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 //TODO: This works only for pages at the moment
 public abstract class ScrollToBottomBehavior extends AbstractDefaultAjaxBehavior {
 
-	private final int offset;
+    private final int offset;
 
-	private static final String ACTIVE_PREFIX = "scollToBottomActive";
+    private static final String ACTIVE_PREFIX = "scollToBottomActive";
 
+    public ScrollToBottomBehavior(int offset)
+    {
 
-	public ScrollToBottomBehavior(int offset) {
+        this.offset = offset;
+    }
 
-		this.offset = offset;
-	}
+    @Override
+    public void renderHead(Component component, IHeaderResponse response)
+    {
 
+        super.renderHead(component, response);
 
-	@Override
-	public void renderHead(Component component, IHeaderResponse response) {
+        String componentSelector;
+        if (component instanceof Page) {
+            componentSelector = "window";
+        } else {
+            componentSelector = String.format("'#%s'", component.getMarkupId());
+        }
 
-		super.renderHead(component, response);
+        StringBuffer scriptBuffer = new StringBuffer();
+        scriptBuffer.append(String.format("var %s = true;", this.getActiveVarName(component)));
+        scriptBuffer.append(String.format("$(%s).scroll(function () {", componentSelector));
+        scriptBuffer.append(String.format(
+                "if (%s && $(%s).scrollTop() >= $(document).height() - $(%s).height() - %d) {",
+                this.getActiveVarName(component),
+                componentSelector,
+                componentSelector,
+                this.offset
+        ));
+        scriptBuffer.append(String.format("%s = false;", this.getActiveVarName(component)));
+        scriptBuffer.append(this.getCallbackScript());
+        scriptBuffer.append("}");
+        scriptBuffer.append("});");
 
-		String componentSelector;
-		if (component instanceof Page) {
-			componentSelector = "window";
-		} else {
-			componentSelector = String.format("'#%s'", component.getMarkupId());
-		}
+        response.render(JavaScriptHeaderItem.forScript(scriptBuffer, "scrollToBottom"));
+    }
 
-		StringBuffer scriptBuffer = new StringBuffer();
-		scriptBuffer.append(String.format("var %s = true;", this.getActiveVarName(component)));
-		scriptBuffer.append(String.format("$(%s).scroll(function () {", componentSelector));
-		scriptBuffer.append(String.format(
-				"if (%s && $(%s).scrollTop() >= $(document).height() - $(%s).height() - %d) {",
-				this.getActiveVarName(component),
-				componentSelector,
-				componentSelector,
-				this.offset));
-		scriptBuffer.append(String.format("%s = false;", this.getActiveVarName(component)));
-		scriptBuffer.append(this.getCallbackScript());
-		scriptBuffer.append("}");
-		scriptBuffer.append("});");
+    @Override
+    protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+    {
 
-		response.render(JavaScriptHeaderItem.forScript(scriptBuffer, "scrollToBottom"));
-	}
+        super.updateAjaxAttributes(attributes);
+        attributes.getAjaxCallListeners().add(new AjaxCallListener()
+        {
 
+            @Override
+            public CharSequence getSuccessHandler(Component component)
+            {
 
-	@Override
-	protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
+                return String.format(
+                        "%s = true;",
+                        ScrollToBottomBehavior.this.getActiveVarName(ScrollToBottomBehavior.this.getComponent())
+                );
+            }
+        });
+    }
 
-		super.updateAjaxAttributes(attributes);
-		attributes.getAjaxCallListeners().add(new AjaxCallListener() {
+    private String getActiveVarName(Component component)
+    {
 
-			@Override
-			public CharSequence getSuccessHandler(Component component) {
+        return ScrollToBottomBehavior.ACTIVE_PREFIX + "_" + component.getPath();
+    }
 
-				return String.format(
-						"%s = true;",
-						ScrollToBottomBehavior.this.getActiveVarName(ScrollToBottomBehavior.this.getComponent()));
-			}
-		});
-	}
+    @Override
+    public void onConfigure(Component component)
+    {
 
+        super.onConfigure(component);
 
-	private String getActiveVarName(Component component) {
-
-		return ScrollToBottomBehavior.ACTIVE_PREFIX + "_" + component.getPath();
-	}
-
-
-	@Override
-	public void onConfigure(Component component) {
-
-		super.onConfigure(component);
-
-		if (!(component instanceof Page)) {
-			throw new WicketRuntimeException("Behavior can only be bound to a Page");
-		}
-	}
+        if (!(component instanceof Page)) {
+            throw new WicketRuntimeException("Behavior can only be bound to a Page");
+        }
+    }
 }

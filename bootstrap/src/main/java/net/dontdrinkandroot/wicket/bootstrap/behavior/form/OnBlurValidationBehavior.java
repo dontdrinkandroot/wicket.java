@@ -25,26 +25,25 @@ import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 public class OnBlurValidationBehavior extends AjaxFormComponentUpdatingBehavior
 {
 
-	private Component targetComponent;
+    private Component targetComponent;
 
+    public OnBlurValidationBehavior(Component targetComponent)
+    {
+        super("blur");
+        this.targetComponent = targetComponent;
+    }
 
-	public OnBlurValidationBehavior(Component targetComponent)
-	{
-		super("blur");
-		this.targetComponent = targetComponent;
-	}
+    @Override
+    protected void onUpdate(AjaxRequestTarget target)
+    {
+        target.add(this.targetComponent);
+    }
 
-	@Override
-	protected void onUpdate(AjaxRequestTarget target)
-	{
-		target.add(this.targetComponent);
-	}
-
-	@Override
-	protected void onError(AjaxRequestTarget target, RuntimeException e)
-	{
-		super.onError(target, e);
-		target.add(this.targetComponent);
-	}
+    @Override
+    protected void onError(AjaxRequestTarget target, RuntimeException e)
+    {
+        super.onError(target, e);
+        target.add(this.targetComponent);
+    }
 
 }

@@ -23,9 +23,9 @@ import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 public class BootstrapCssHeaderItem extends CssUrlReferenceHeaderItem
 {
 
-	public BootstrapCssHeaderItem()
-	{
-		super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", null, null);
-	}
+    public BootstrapCssHeaderItem()
+    {
+        super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", null, null);
+    }
 
 }

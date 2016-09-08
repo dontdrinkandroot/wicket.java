@@ -17,73 +17,71 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.model.IModel;
-
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.model.IModel;
 
 
 public abstract class AjaxButton<T> extends AjaxLink<T> implements IButton
 {
 
-	protected ButtonBehavior buttonBehavior = new ButtonBehavior();
+    protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
+    public AjaxButton(String id)
+    {
+        super(id);
+    }
 
-	public AjaxButton(String id)
-	{
-		super(id);
-	}
+    public AjaxButton(String id, IModel<T> model)
+    {
+        super(id, model);
+    }
 
-	public AjaxButton(String id, IModel<T> model)
-	{
-		super(id, model);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
+        this.add(this.buttonBehavior);
+    }
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
-		this.add(this.buttonBehavior);
-	}
+    @Override
+    public ButtonSize getButtonSize()
+    {
+        return this.buttonBehavior.getButtonSize();
+    }
 
-	@Override
-	public ButtonSize getButtonSize()
-	{
-		return this.buttonBehavior.getButtonSize();
-	}
+    @Override
+    public AjaxButton<T> setButtonSize(ButtonSize buttonSize)
+    {
+        this.buttonBehavior.setButtonSize(buttonSize);
+        return this;
+    }
 
-	@Override
-	public AjaxButton<T> setButtonSize(ButtonSize buttonSize)
-	{
-		this.buttonBehavior.setButtonSize(buttonSize);
-		return this;
-	}
+    @Override
+    public ButtonStyle getButtonStyle()
+    {
+        return this.buttonBehavior.getButtonStyle();
+    }
 
-	@Override
-	public ButtonStyle getButtonStyle()
-	{
-		return this.buttonBehavior.getButtonStyle();
-	}
+    @Override
+    public AjaxButton<T> setButtonStyle(ButtonStyle buttonStyle)
+    {
+        this.buttonBehavior.setButtonStyle(buttonStyle);
+        return this;
+    }
 
-	@Override
-	public AjaxButton<T> setButtonStyle(ButtonStyle buttonStyle)
-	{
-		this.buttonBehavior.setButtonStyle(buttonStyle);
-		return this;
-	}
+    public AjaxButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    {
+        this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
+        return this;
+    }
 
-	public AjaxButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-	{
-		this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
-		return this;
-	}
-
-	public AjaxButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-	{
-		this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
-		return this;
-	}
+    public AjaxButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    {
+        this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
+        return this;
+    }
 
 }

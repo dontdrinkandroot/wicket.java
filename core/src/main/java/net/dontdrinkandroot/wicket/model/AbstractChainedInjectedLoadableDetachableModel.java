@@ -25,38 +25,37 @@ import org.apache.wicket.model.LoadableDetachableModel;
 public abstract class AbstractChainedInjectedLoadableDetachableModel<P, T> extends LoadableDetachableModel<T>
 {
 
-	private IModel<? extends P> parentModel;
+    private IModel<? extends P> parentModel;
 
+    public AbstractChainedInjectedLoadableDetachableModel(IModel<? extends P> parentModel)
+    {
+        this.parentModel = parentModel;
+        Injector.get().inject(this);
+    }
 
-	public AbstractChainedInjectedLoadableDetachableModel(IModel<? extends P> parentModel)
-	{
-		this.parentModel = parentModel;
-		Injector.get().inject(this);
-	}
+    public IModel<? extends P> getParent()
+    {
+        return this.parentModel;
+    }
 
-	public IModel<? extends P> getParent()
-	{
-		return this.parentModel;
-	}
+    public P getParentObject()
+    {
+        return this.parentModel.getObject();
+    }
 
-	public P getParentObject()
-	{
-		return this.parentModel.getObject();
-	}
+    @Override
+    public void detach()
+    {
+        super.detach();
+        if (null != this.parentModel) {
+            this.parentModel.detach();
+        }
+    }
 
-	@Override
-	public void detach()
-	{
-		super.detach();
-		if (null != this.parentModel) {
-			this.parentModel.detach();
-		}
-	}
-
-	@Override
-	public void setObject(final T object)
-	{
-		throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
-	}
+    @Override
+    public void setObject(final T object)
+    {
+        throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
+    }
 
 }

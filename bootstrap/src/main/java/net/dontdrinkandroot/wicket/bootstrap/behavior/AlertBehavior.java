@@ -17,48 +17,46 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-
 
 public class AlertBehavior extends Behavior
 {
 
-	private IModel<AlertStyle> alertStyleModel = new Model<AlertStyle>();
+    private IModel<AlertStyle> alertStyleModel = new Model<AlertStyle>();
 
+    public AlertBehavior(AlertStyle alertStyle)
+    {
+        this.alertStyleModel = Model.of(alertStyle);
+    }
 
-	public AlertBehavior(AlertStyle alertStyle)
-	{
-		this.alertStyleModel = Model.of(alertStyle);
-	}
+    public AlertBehavior(IModel<AlertStyle> alertStyleModel)
+    {
+        this.alertStyleModel = alertStyleModel;
+    }
 
-	public AlertBehavior(IModel<AlertStyle> alertStyleModel)
-	{
-		this.alertStyleModel = alertStyleModel;
-	}
+    public AlertStyle getStyle()
+    {
+        return this.alertStyleModel.getObject();
+    }
 
-	public AlertStyle getStyle()
-	{
-		return this.alertStyleModel.getObject();
-	}
+    protected IModel<AlertStyle> getStyleModel()
+    {
+        return this.alertStyleModel;
+    }
 
-	protected IModel<AlertStyle> getStyleModel()
-	{
-		return this.alertStyleModel;
-	}
+    @Override
+    public void bind(Component component)
+    {
+        super.bind(component);
 
-	@Override
-	public void bind(Component component)
-	{
-		super.bind(component);
-
-		component.add(new CssClassAppender(BootstrapCssClass.ALERT));
-		component.add(new CssClassAppender(this.getStyleModel()));
-	}
+        component.add(new CssClassAppender(BootstrapCssClass.ALERT));
+        component.add(new CssClassAppender(this.getStyleModel()));
+    }
 }

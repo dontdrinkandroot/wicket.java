@@ -17,40 +17,39 @@
  */
 package net.dontdrinkandroot.wicket.example.component;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.NavBarFormBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.NavBarFormBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
-
 
 public class NavBarForm extends Form<Void>
 {
 
-	public NavBarForm(String id)
-	{
-		super(id);
-	}
+    public NavBarForm(String id)
+    {
+        super(id);
+    }
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-		this.add(new NavBarFormBehavior());
-		FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
-		searchGroup.setLabelScreenReaderOnly(true);
-		this.add(searchGroup);
-		this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));
-	}
+        this.add(new NavBarFormBehavior());
+        FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
+        searchGroup.setLabelScreenReaderOnly(true);
+        this.add(searchGroup);
+        this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));
+    }
 
-	@Override
-	protected IMarkupSourcingStrategy newMarkupSourcingStrategy()
-	{
-		return new PanelMarkupSourcingStrategy(false);
-	}
+    @Override
+    protected IMarkupSourcingStrategy newMarkupSourcingStrategy()
+    {
+        return new PanelMarkupSourcingStrategy(false);
+    }
 
 }

@@ -17,73 +17,73 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.feedback;
 
-import java.io.Serializable;
-
 import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.basic.Label;
 
+import java.io.Serializable;
+
 
 public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackPanel {
 
-	public FeedbackPanel(String id) {
+    public FeedbackPanel(String id)
+    {
 
-		super(id);
-	}
+        super(id);
+    }
 
+    @Override
+    protected String getCSSClass(FeedbackMessage message)
+    {
 
-	@Override
-	protected String getCSSClass(FeedbackMessage message) {
+        int level = message.getLevel();
+        CssClass cssClass = this.getClassFromLevel(level);
 
-		int level = message.getLevel();
-		CssClass cssClass = this.getClassFromLevel(level);
+        String cssString = BootstrapCssClass.ALERT.getClassString();
 
-		String cssString = BootstrapCssClass.ALERT.getClassString();
+        if (cssClass != null) {
+            cssString += " " + cssClass.getClassString();
+        }
 
-		if (cssClass != null) {
-			cssString += " " + cssClass.getClassString();
-		}
+        return cssString;
+    }
 
-		return cssString;
-	}
+    protected CssClass getClassFromLevel(int level)
+    {
 
+        switch (level) {
 
-	protected CssClass getClassFromLevel(int level) {
+            case FeedbackMessage.WARNING:
+            case FeedbackMessage.DEBUG:
+                return AlertStyle.WARNING;
 
-		switch (level) {
+            case FeedbackMessage.SUCCESS:
+                return AlertStyle.SUCCESS;
 
-			case FeedbackMessage.WARNING:
-			case FeedbackMessage.DEBUG:
-				return AlertStyle.WARNING;
+            case FeedbackMessage.INFO:
+                return AlertStyle.INFO;
 
-			case FeedbackMessage.SUCCESS:
-				return AlertStyle.SUCCESS;
+            case FeedbackMessage.ERROR:
+            case FeedbackMessage.FATAL:
+                return AlertStyle.DANGER;
+        }
 
-			case FeedbackMessage.INFO:
-				return AlertStyle.INFO;
+        return null;
+    }
 
-			case FeedbackMessage.ERROR:
-			case FeedbackMessage.FATAL:
-				return AlertStyle.DANGER;
-		}
+    @Override
+    protected Component newMessageDisplayComponent(String id, FeedbackMessage message)
+    {
 
-		return null;
-	}
+        Serializable serializable = message.getMessage();
+        Label label = new Label(id, serializable == null ? "" : serializable.toString());
+        label.setEscapeModelStrings(this.getEscapeModelStrings());
+        label.setOutputMarkupId(false);
 
-
-	@Override
-	protected Component newMessageDisplayComponent(String id, FeedbackMessage message) {
-
-		Serializable serializable = message.getMessage();
-		Label label = new Label(id, serializable == null ? "" : serializable.toString());
-		label.setEscapeModelStrings(this.getEscapeModelStrings());
-		label.setOutputMarkupId(false);
-
-		return label;
-	}
+        return label;
+    }
 
 }

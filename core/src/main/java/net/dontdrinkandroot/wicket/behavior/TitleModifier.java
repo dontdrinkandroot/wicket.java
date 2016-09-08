@@ -27,15 +27,16 @@ import org.apache.wicket.model.Model;
  */
 public class TitleModifier extends AttributeModifier {
 
-	public TitleModifier(IModel<?> replaceModel) {
+    public TitleModifier(IModel<?> replaceModel)
+    {
 
-		super("title", replaceModel);
-	}
+        super("title", replaceModel);
+    }
 
+    public TitleModifier(String titleString)
+    {
 
-	public TitleModifier(String titleString) {
-
-		super("title", new Model<String>(titleString));
-	}
+        super("title", new Model<String>(titleString));
+    }
 
 }

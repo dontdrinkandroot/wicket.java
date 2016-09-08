@@ -17,6 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -24,72 +27,69 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
-
 
 public abstract class NavBar extends GenericPanel<Void>
 {
 
-	private IModel<NavBarStyle> styleModel = Model.of(NavBarStyle.DEFAULT);
+    private IModel<NavBarStyle> styleModel = Model.of(NavBarStyle.DEFAULT);
 
+    public NavBar(String id)
+    {
+        super(id);
+    }
 
-	public NavBar(String id)
-	{
-		super(id);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
+        this.add(new CssClassAppender(this.styleModel));
 
-		this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
-		this.add(new CssClassAppender(this.styleModel));
+        this.add(this.createBrand("brand"));
 
-		this.add(this.createBrand("brand"));
+        RepeatingView navBarLeftItemView = new RepeatingView("leftItem");
+        this.populateNavbarLeftItems(navBarLeftItemView);
+        this.add(navBarLeftItemView);
 
-		RepeatingView navBarLeftItemView = new RepeatingView("leftItem");
-		this.populateNavbarLeftItems(navBarLeftItemView);
-		this.add(navBarLeftItemView);
+        this.add(this.createForm("form"));
 
-		this.add(this.createForm("form"));
+        RepeatingView navbarRightItemView = new RepeatingView("rightItem");
+        this.populateNavbarRightItems(navbarRightItemView);
+        this.add(navbarRightItemView);
+    }
 
-		RepeatingView navbarRightItemView = new RepeatingView("rightItem");
-		this.populateNavbarRightItems(navbarRightItemView);
-		this.add(navbarRightItemView);
-	}
+    protected Component createBrand(String id)
+    {
+        WebMarkupContainer brandLink = new WebMarkupContainer(id);
+        brandLink.setVisible(false);
 
-	protected Component createBrand(String id)
-	{
-		WebMarkupContainer brandLink = new WebMarkupContainer(id);
-		brandLink.setVisible(false);
+        return brandLink;
+    }
 
-		return brandLink;
-	};
+    ;
 
-	protected Component createForm(String id)
-	{
-		WebMarkupContainer navbarForm = new WebMarkupContainer(id);
-		navbarForm.setVisible(false);
+    protected Component createForm(String id)
+    {
+        WebMarkupContainer navbarForm = new WebMarkupContainer(id);
+        navbarForm.setVisible(false);
 
-		return navbarForm;
-	}
+        return navbarForm;
+    }
 
-	public NavBar setStyle(NavBarStyle style)
-	{
-		this.styleModel.setObject(style);
-		return this;
-	}
+    public NavBar setStyle(NavBarStyle style)
+    {
+        this.styleModel.setObject(style);
+        return this;
+    }
 
-	protected void populateNavbarLeftItems(RepeatingView itemView)
-	{
-		/* Overwrite to add navbar items on the left side */
-	}
+    protected void populateNavbarLeftItems(RepeatingView itemView)
+    {
+        /* Overwrite to add navbar items on the left side */
+    }
 
-	protected void populateNavbarRightItems(RepeatingView itemView)
-	{
-		/* Overwrite to add navbar items on the right side */
-	}
+    protected void populateNavbarRightItems(RepeatingView itemView)
+    {
+        /* Overwrite to add navbar items on the right side */
+    }
 }

@@ -20,42 +20,42 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public enum ColumnOffsetExtraSmall implements ColumnOffset
 {
 
-	COLUMNS_1,
-	COLUMNS_2,
-	COLUMNS_3,
-	COLUMNS_4,
-	COLUMNS_5,
-	COLUMNS_6,
-	COLUMNS_7,
-	COLUMNS_8,
-	COLUMNS_9,
-	COLUMNS_10,
-	COLUMNS_11;
+    COLUMNS_1,
+    COLUMNS_2,
+    COLUMNS_3,
+    COLUMNS_4,
+    COLUMNS_5,
+    COLUMNS_6,
+    COLUMNS_7,
+    COLUMNS_8,
+    COLUMNS_9,
+    COLUMNS_10,
+    COLUMNS_11;
 
-	private ColumnOffsetExtraSmall()
-	{
-	}
+    private ColumnOffsetExtraSmall()
+    {
+    }
 
-	@Override
-	public String getClassString()
-	{
-		return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
-	}
+    @Override
+    public String getClassString()
+    {
+        return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
+    }
 
-	@Override
-	public ColumnSizeExtraSmall getInverseColumnSize()
-	{
-		return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnSizeExtraSmall getInverseColumnSize()
+    {
+        return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
+    }
 
-	@Override
-	public ColumnOffsetExtraSmall getInverseColumnOffset()
-	{
-		return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnOffsetExtraSmall getInverseColumnOffset()
+    {
+        return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
+    }
 
-	protected String getPrefix()
-	{
-		return "xs";
-	}
+    protected String getPrefix()
+    {
+        return "xs";
+    }
 }

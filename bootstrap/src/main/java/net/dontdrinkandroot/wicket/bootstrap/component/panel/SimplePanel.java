@@ -17,64 +17,62 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.model.IModel;
-
 import net.dontdrinkandroot.wicket.component.basic.Heading;
 import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
+import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
 
 
 public class SimplePanel<T> extends Panel<T>
 {
 
-	protected IModel<String> headingModel;
+    protected IModel<String> headingModel;
 
-	protected Level headingLevel;
+    protected Level headingLevel;
 
+    public SimplePanel(String id, IModel<T> model)
+    {
+        super(id, model);
+    }
 
-	public SimplePanel(String id, IModel<T> model)
-	{
-		super(id, model);
-	}
+    public SimplePanel(String id, IModel<String> headingModel, Heading.Level headingLevel)
+    {
+        super(id);
 
-	public SimplePanel(String id, IModel<String> headingModel, Heading.Level headingLevel)
-	{
-		super(id);
+        this.headingModel = headingModel;
+        this.headingLevel = headingLevel;
+    }
 
-		this.headingModel = headingModel;
-		this.headingLevel = headingLevel;
-	}
+    public SimplePanel(String id, IModel<T> model, IModel<String> headingModel)
+    {
+        super(id, model);
 
-	public SimplePanel(String id, IModel<T> model, IModel<String> headingModel)
-	{
-		super(id, model);
+        this.headingModel = headingModel;
+        this.headingLevel = Heading.Level.H2;
+    }
 
-		this.headingModel = headingModel;
-		this.headingLevel = Heading.Level.H2;
-	}
+    public SimplePanel(String id, IModel<T> model, IModel<String> headingModel, Heading.Level headingLevel)
+    {
+        super(id, model);
 
-	public SimplePanel(String id, IModel<T> model, IModel<String> headingModel, Heading.Level headingLevel)
-	{
-		super(id, model);
+        this.headingModel = headingModel;
+        this.headingLevel = headingLevel;
+    }
 
-		this.headingModel = headingModel;
-		this.headingLevel = headingLevel;
-	}
+    @Override
+    protected Component createHeading(String id)
+    {
+        return new PanelHeading(id, this.getHeadingModel(), this.getHeadingLevel());
+    }
 
-	@Override
-	protected Component createHeading(String id)
-	{
-		return new PanelHeading(id, this.getHeadingModel(), this.getHeadingLevel());
-	}
+    public IModel<String> getHeadingModel()
+    {
+        return this.headingModel;
+    }
 
-	public IModel<String> getHeadingModel()
-	{
-		return this.headingModel;
-	}
-
-	public Level getHeadingLevel()
-	{
-		return this.headingLevel;
-	}
+    public Level getHeadingLevel()
+    {
+        return this.headingLevel;
+    }
 
 }

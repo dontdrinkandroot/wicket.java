@@ -23,24 +23,23 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public enum LabelStyle implements CssClass
 {
 
-	DEFAULT("label-default"),
-	PRIMARY("label-primary"),
-	SUCCESS("label-success"),
-	INFO("label-info"),
-	WARNING("label-warning"),
-	DANGER("label-danger");
+    DEFAULT("label-default"),
+    PRIMARY("label-primary"),
+    SUCCESS("label-success"),
+    INFO("label-info"),
+    WARNING("label-warning"),
+    DANGER("label-danger");
 
-	private String classString;
+    private String classString;
 
+    private LabelStyle(String classString)
+    {
+        this.classString = classString;
+    }
 
-	private LabelStyle(String classString)
-	{
-		this.classString = classString;
-	}
-
-	@Override
-	public String getClassString()
-	{
-		return this.classString;
-	}
+    @Override
+    public String getClassString()
+    {
+        return this.classString;
+    }
 }

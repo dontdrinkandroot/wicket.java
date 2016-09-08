@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.behavior;
 
 import net.dontdrinkandroot.wicket.model.StringModel;
-
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.IModel;
 
@@ -28,18 +27,18 @@ import org.apache.wicket.model.IModel;
  */
 public class StyleAppender extends AttributeAppender {
 
-	private static final long serialVersionUID = 793104976029930067L;
+    private static final long serialVersionUID = 793104976029930067L;
 
+    public StyleAppender(final String style)
+    {
 
-	public StyleAppender(final String style) {
+        super("style", new StringModel(style), ";");
+    }
 
-		super("style", new StringModel(style), ";");
-	}
+    public StyleAppender(IModel<?> styleModel)
+    {
 
-
-	public StyleAppender(IModel<?> styleModel) {
-
-		super("style", styleModel, ";");
-	}
+        super("style", styleModel, ";");
+    }
 
 }

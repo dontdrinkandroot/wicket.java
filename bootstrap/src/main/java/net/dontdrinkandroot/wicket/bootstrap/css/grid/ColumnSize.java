@@ -23,8 +23,8 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 public interface ColumnSize extends CssClass
 {
 
-	ColumnOffset getInverseColumnOffset();
+    ColumnOffset getInverseColumnOffset();
 
-	ColumnSize getInverseColumnSize();
+    ColumnSize getInverseColumnSize();
 
 }

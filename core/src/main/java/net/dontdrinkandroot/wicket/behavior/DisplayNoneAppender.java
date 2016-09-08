@@ -22,9 +22,10 @@ package net.dontdrinkandroot.wicket.behavior;
  */
 public class DisplayNoneAppender extends StyleAppender {
 
-	public DisplayNoneAppender() {
+    public DisplayNoneAppender()
+    {
 
-		super("display: none");
-	}
+        super("display: none");
+    }
 
 }

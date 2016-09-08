@@ -23,18 +23,17 @@ import java.io.Serializable;
 public class SimpleCssClass implements CssClass, Serializable
 {
 
-	private String classString;
+    private String classString;
 
+    public SimpleCssClass(String classString)
+    {
+        this.classString = classString;
+    }
 
-	public SimpleCssClass(String classString)
-	{
-		this.classString = classString;
-	}
-
-	@Override
-	public String getClassString()
-	{
-		return this.classString;
-	}
+    @Override
+    public String getClassString()
+    {
+        return this.classString;
+    }
 
 }

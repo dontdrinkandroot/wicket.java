@@ -17,103 +17,101 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
-
 
 public abstract class Panel<T> extends GenericPanel<T>
 {
 
-	public static final String BODY_ID = "body";
+    public static final String BODY_ID = "body";
 
-	public static final String HEADING_ID = "heading";
+    public static final String HEADING_ID = "heading";
 
-	public static final String FOOTER_ID = "footer";
+    public static final String FOOTER_ID = "footer";
 
-	public static final String AFTER_BODY_ID = "afterBody";
+    public static final String AFTER_BODY_ID = "afterBody";
 
-	private PanelBehavior panelBehavior = new PanelBehavior(this.createStyleModel());
+    private PanelBehavior panelBehavior = new PanelBehavior(this.createStyleModel());
 
-	protected Component heading;
+    protected Component heading;
 
-	protected Component footer;
+    protected Component footer;
 
-	protected Component afterBody;
+    protected Component afterBody;
 
+    public Panel(final String id)
+    {
+        this(id, null);
+    }
 
-	public Panel(final String id)
-	{
-		this(id, null);
-	}
+    public Panel(final String id, final IModel<T> model)
+    {
+        super(id, model);
+    }
 
-	public Panel(final String id, final IModel<T> model)
-	{
-		super(id, model);
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
+        this.add(this.panelBehavior);
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
-		this.add(this.panelBehavior);
+        this.heading = this.createHeading(Panel.HEADING_ID);
+        this.heading.add(new CssClassAppender(BootstrapCssClass.PANEL_HEADING));
+        this.add(this.heading);
 
-		this.heading = this.createHeading(Panel.HEADING_ID);
-		this.heading.add(new CssClassAppender(BootstrapCssClass.PANEL_HEADING));
-		this.add(this.heading);
+        this.afterBody = this.createAfterBody(Panel.AFTER_BODY_ID);
+        this.add(this.afterBody);
 
-		this.afterBody = this.createAfterBody(Panel.AFTER_BODY_ID);
-		this.add(this.afterBody);
+        this.footer = this.createFooter(Panel.FOOTER_ID);
+        this.footer.add(new CssClassAppender(BootstrapCssClass.PANEL_FOOTER));
+        this.add(this.footer);
+    }
 
-		this.footer = this.createFooter(Panel.FOOTER_ID);
-		this.footer.add(new CssClassAppender(BootstrapCssClass.PANEL_FOOTER));
-		this.add(this.footer);
-	}
+    public Panel<T> setPanelStyle(PanelStyle style)
+    {
+        this.panelBehavior.setStyle(style);
+        return this;
+    }
 
-	public Panel<T> setPanelStyle(PanelStyle style)
-	{
-		this.panelBehavior.setStyle(style);
-		return this;
-	}
+    public PanelStyle getPanelStyle()
+    {
+        return this.panelBehavior.getStyle();
+    }
 
-	public PanelStyle getPanelStyle()
-	{
-		return this.panelBehavior.getStyle();
-	}
+    protected Component createHeading(String id)
+    {
+        final WebMarkupContainer headingContainer = new WebMarkupContainer(id);
+        headingContainer.setVisible(false);
 
-	protected Component createHeading(String id)
-	{
-		final WebMarkupContainer headingContainer = new WebMarkupContainer(id);
-		headingContainer.setVisible(false);
+        return headingContainer;
+    }
 
-		return headingContainer;
-	}
+    protected Component createAfterBody(String id)
+    {
+        final WebMarkupContainer afterBodyContainer = new WebMarkupContainer(id);
+        afterBodyContainer.setVisible(false);
 
-	protected Component createAfterBody(String id)
-	{
-		final WebMarkupContainer afterBodyContainer = new WebMarkupContainer(id);
-		afterBodyContainer.setVisible(false);
+        return afterBodyContainer;
+    }
 
-		return afterBodyContainer;
-	}
+    protected Component createFooter(String id)
+    {
+        final WebMarkupContainer footerContainer = new WebMarkupContainer(id);
+        footerContainer.setVisible(false);
 
-	protected Component createFooter(String id)
-	{
-		final WebMarkupContainer footerContainer = new WebMarkupContainer(id);
-		footerContainer.setVisible(false);
+        return footerContainer;
+    }
 
-		return footerContainer;
-	}
-
-	protected IModel<PanelStyle> createStyleModel()
-	{
-		return Model.of(PanelStyle.DEFAULT);
-	}
+    protected IModel<PanelStyle> createStyleModel()
+    {
+        return Model.of(PanelStyle.DEFAULT);
+    }
 }

@@ -23,9 +23,10 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 public class PullLeftBehavior extends CssClassAppender {
 
-	public PullLeftBehavior() {
+    public PullLeftBehavior()
+    {
 
-		super(BootstrapCssClass.PULL_LEFT);
-	}
+        super(BootstrapCssClass.PULL_LEFT);
+    }
 
 }

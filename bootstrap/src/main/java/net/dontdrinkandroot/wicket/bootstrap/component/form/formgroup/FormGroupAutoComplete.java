@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import java.util.List;
-
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
@@ -32,101 +32,103 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import java.util.List;
 
 
 public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, String, TextField<String>>
 {
 
-	private WebMarkupContainer dropDownMenu;
+    private WebMarkupContainer dropDownMenu;
 
-	private ListView<String> suggestionView;
+    private ListView<String> suggestionView;
 
+    public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model)
+    {
+        super(id, labelModel, model);
+    }
 
-	public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model)
-	{
-		super(id, labelModel, model);
-	}
+    @Override
+    protected void createComponents()
+    {
+        super.createComponents();
 
-	@Override
-	protected void createComponents()
-	{
-		super.createComponents();
+        this.dropDownMenu = new WebMarkupContainer("dropDownMenu");
+        this.dropDownMenu.setOutputMarkupId(true);
+        this.add(this.dropDownMenu);
 
-		this.dropDownMenu = new WebMarkupContainer("dropDownMenu");
-		this.dropDownMenu.setOutputMarkupId(true);
-		this.add(this.dropDownMenu);
+        this.suggestionView = new ListView<String>("suggestionItem", new AbstractReadOnlyModel<List<String>>()
+        {
 
-		this.suggestionView = new ListView<String>("suggestionItem", new AbstractReadOnlyModel<List<String>>() {
+            @Override
+            public List<String> getObject()
+            {
+                return FormGroupAutoComplete.this.getChoices(FormGroupAutoComplete.this.getModelObject());
+            }
+        })
+        {
 
-			@Override
-			public List<String> getObject()
-			{
-				return FormGroupAutoComplete.this.getChoices(FormGroupAutoComplete.this.getModelObject());
-			}
-		}) {
+            @Override
+            protected void populateItem(ListItem<String> item)
+            {
+                AjaxLink<String> link = new AjaxLink<String>("link", item.getModel())
+                {
 
-			@Override
-			protected void populateItem(ListItem<String> item)
-			{
-				AjaxLink<String> link = new AjaxLink<String>("link", item.getModel()) {
+                    @Override
+                    public void onClick(AjaxRequestTarget target)
+                    {
+                        FormGroupAutoComplete.this.getModel().setObject(this.getModelObject());
+                        target.add(FormGroupAutoComplete.this.formComponent);
+                        target.add(FormGroupAutoComplete.this.dropDownMenu);
+                    }
+                };
+                link.setBody(link.getModel());
+                item.add(link);
+            }
+        };
+        this.dropDownMenu.add(this.suggestionView);
+    }
 
-					@Override
-					public void onClick(AjaxRequestTarget target)
-					{
-						FormGroupAutoComplete.this.getModel().setObject(this.getModelObject());
-						target.add(FormGroupAutoComplete.this.formComponent);
-						target.add(FormGroupAutoComplete.this.dropDownMenu);
-					}
-				};
-				link.setBody(link.getModel());
-				item.add(link);
-			}
-		};
-		this.dropDownMenu.add(this.suggestionView);
-	}
+    @Override
+    protected void addComponents()
+    {
+        super.addComponents();
 
-	@Override
-	protected void addComponents()
-	{
-		super.addComponents();
+        this.container.add(this.dropDownMenu);
+        this.dropDownMenu.add(this.suggestionView);
+    }
 
-		this.container.add(this.dropDownMenu);
-		this.dropDownMenu.add(this.suggestionView);
-	}
+    @Override
+    protected void addBehaviors()
+    {
+        super.addBehaviors();
 
-	@Override
-	protected void addBehaviors()
-	{
-		super.addBehaviors();
+        this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
+        this.add(new CssClassAppender("autocomplete"));
+        this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input")
+        {
 
-		this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
-		this.add(new CssClassAppender("autocomplete"));
-		this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input") {
+            @Override
+            protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+            {
+                super.updateAjaxAttributes(attributes);
+                attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250)));
+            }
 
-			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
-			{
-				super.updateAjaxAttributes(attributes);
-				attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250)));
-			}
+            @Override
+            protected void onUpdate(AjaxRequestTarget target)
+            {
+                target.add(FormGroupAutoComplete.this.dropDownMenu);
+            }
+        });
+    }
 
-			@Override
-			protected void onUpdate(AjaxRequestTarget target)
-			{
-				target.add(FormGroupAutoComplete.this.dropDownMenu);
-			}
-		});
-	}
+    @Override
+    protected TextField<String> createFormComponent(String id)
+    {
+        TextField<String> textField = new TextField<String>(id, this.getModel());
+        return textField;
+    }
 
-	@Override
-	protected TextField<String> createFormComponent(String id)
-	{
-		TextField<String> textField = new TextField<String>(id, this.getModel());
-		return textField;
-	}
-
-	protected abstract List<String> getChoices(String input);
+    protected abstract List<String> getChoices(String input);
 
 }

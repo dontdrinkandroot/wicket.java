@@ -17,61 +17,59 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
-
 
 public abstract class AbstractPageLinkItem extends Panel
 {
 
-	private final IPageable pageable;
+    private final IPageable pageable;
 
-	private AbstractLink link;
+    private AbstractLink link;
 
+    public AbstractPageLinkItem(String id, IPageable pageable)
+    {
+        super(id);
+        this.pageable = pageable;
 
-	public AbstractPageLinkItem(String id, IPageable pageable)
-	{
-		super(id);
-		this.pageable = pageable;
+        this.link = this.createLink("link", this.getPaginablePageModel());
+        this.onLinkCreated(this.link);
+        this.add(this.link);
 
-		this.link = this.createLink("link", this.getPaginablePageModel());
-		this.onLinkCreated(this.link);
-		this.add(this.link);
+        this.add(new DisabledCssBehavior());
+    }
 
-		this.add(new DisabledCssBehavior());
-	}
+    public IPageable getPageable()
+    {
+        return this.pageable;
+    }
 
-	public IPageable getPageable()
-	{
-		return this.pageable;
-	}
+    public void setLabel(IModel<String> label)
+    {
+        this.link.setBody(label);
+    }
 
-	public void setLabel(IModel<String> label)
-	{
-		this.link.setBody(label);
-	}
+    public AbstractLink getLink()
+    {
+        return this.link;
+    }
 
-	public AbstractLink getLink()
-	{
-		return this.link;
-	}
+    protected void onLinkCreated(AbstractLink link)
+    {
+        this.link.setBody(this.createLabel());
+        link.add(new DisabledCssBehavior());
+    }
 
-	protected void onLinkCreated(AbstractLink link)
-	{
-		this.link.setBody(this.createLabel());
-		link.add(new DisabledCssBehavior());
-	}
+    protected abstract IModel<Long> getPaginablePageModel();
 
-	protected abstract IModel<Long> getPaginablePageModel();
+    protected abstract void setPaginablePage();
 
-	protected abstract void setPaginablePage();
+    protected abstract IModel<String> createLabel();
 
-	protected abstract IModel<String> createLabel();
-
-	protected abstract AbstractLink createLink(String id, IModel<Long> paginablePageModel);
+    protected abstract AbstractLink createLink(String id, IModel<Long> paginablePageModel);
 
 }

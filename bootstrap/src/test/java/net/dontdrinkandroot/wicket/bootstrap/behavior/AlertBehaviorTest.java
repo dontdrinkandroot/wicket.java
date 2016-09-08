@@ -29,15 +29,15 @@ import org.junit.Test;
 public class AlertBehaviorTest extends AbstractWicketTest
 {
 
-	@Test
-	public void testInfo()
-	{
-		WebMarkupContainer container = new WebMarkupContainer("id");
-		container.add(new AlertBehavior(AlertStyle.INFO));
-		CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
+    @Test
+    public void testInfo()
+    {
+        WebMarkupContainer container = new WebMarkupContainer("id");
+        container.add(new AlertBehavior(AlertStyle.INFO));
+        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-		TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-		Assert.assertTrue(tagTester.getAttributeContains("class", "alert"));
-		Assert.assertTrue(tagTester.getAttributeContains("class", "alert-info"));
-	}
+        TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
+        Assert.assertTrue(tagTester.getAttributeContains("class", "alert"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "alert-info"));
+    }
 }

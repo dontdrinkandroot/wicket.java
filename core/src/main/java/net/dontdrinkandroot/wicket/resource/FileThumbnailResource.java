@@ -22,39 +22,39 @@ import java.io.File;
 
 public class FileThumbnailResource extends AbstractFileThumbnailResource {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private final File file;
+    private final File file;
 
-	private Integer width = null;
+    private Integer width = null;
 
+    public FileThumbnailResource(final File file)
+    {
 
-	public FileThumbnailResource(final File file) {
+        super();
 
-		super();
+        this.file = file;
+    }
 
-		this.file = file;
-	}
+    public FileThumbnailResource(final File file, final int width)
+    {
 
+        this.file = file;
+        this.width = width;
+    }
 
-	public FileThumbnailResource(final File file, final int width) {
+    @Override
+    protected File resolveFile(final Attributes attributes)
+    {
 
-		this.file = file;
-		this.width = width;
-	}
+        return this.file;
+    }
 
+    @Override
+    protected Integer resolveWidth(final Attributes attributes)
+    {
 
-	@Override
-	protected File resolveFile(final Attributes attributes) {
-
-		return this.file;
-	}
-
-
-	@Override
-	protected Integer resolveWidth(final Attributes attributes) {
-
-		return this.width;
-	}
+        return this.width;
+    }
 
 }

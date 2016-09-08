@@ -25,24 +25,24 @@ import org.apache.wicket.util.time.Duration;
 
 public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
+    public SelfUpdatingGenericPanel(final String id, Duration updateInterval)
+    {
 
-	public SelfUpdatingGenericPanel(final String id, Duration updateInterval) {
+        super(id);
+        this.setOutputMarkupId(true);
 
-		super(id);
-		this.setOutputMarkupId(true);
+        this.add(new AjaxSelfUpdatingTimerBehavior(updateInterval));
+    }
 
-		this.add(new AjaxSelfUpdatingTimerBehavior(updateInterval));
-	}
+    public SelfUpdatingGenericPanel(final String id, final IModel<T> model, Duration updateInterval)
+    {
 
+        super(id, model);
+        this.setOutputMarkupId(true);
 
-	public SelfUpdatingGenericPanel(final String id, final IModel<T> model, Duration updateInterval) {
-
-		super(id, model);
-		this.setOutputMarkupId(true);
-
-		this.add(new AjaxSelfUpdatingTimerBehavior(updateInterval));
-	}
+        this.add(new AjaxSelfUpdatingTimerBehavior(updateInterval));
+    }
 
 }

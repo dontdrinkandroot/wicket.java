@@ -20,42 +20,42 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public enum ColumnOffsetMedium implements ColumnOffset
 {
 
-	COLUMNS_1,
-	COLUMNS_2,
-	COLUMNS_3,
-	COLUMNS_4,
-	COLUMNS_5,
-	COLUMNS_6,
-	COLUMNS_7,
-	COLUMNS_8,
-	COLUMNS_9,
-	COLUMNS_10,
-	COLUMNS_11;
+    COLUMNS_1,
+    COLUMNS_2,
+    COLUMNS_3,
+    COLUMNS_4,
+    COLUMNS_5,
+    COLUMNS_6,
+    COLUMNS_7,
+    COLUMNS_8,
+    COLUMNS_9,
+    COLUMNS_10,
+    COLUMNS_11;
 
-	private ColumnOffsetMedium()
-	{
-	}
+    private ColumnOffsetMedium()
+    {
+    }
 
-	@Override
-	public String getClassString()
-	{
-		return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
-	}
+    @Override
+    public String getClassString()
+    {
+        return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
+    }
 
-	@Override
-	public ColumnSizeMedium getInverseColumnSize()
-	{
-		return ColumnSizeMedium.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnSizeMedium getInverseColumnSize()
+    {
+        return ColumnSizeMedium.values()[10 - this.ordinal()];
+    }
 
-	@Override
-	public ColumnOffsetMedium getInverseColumnOffset()
-	{
-		return ColumnOffsetMedium.values()[10 - this.ordinal()];
-	}
+    @Override
+    public ColumnOffsetMedium getInverseColumnOffset()
+    {
+        return ColumnOffsetMedium.values()[10 - this.ordinal()];
+    }
 
-	protected String getPrefix()
-	{
-		return "xs";
-	}
+    protected String getPrefix()
+    {
+        return "xs";
+    }
 }

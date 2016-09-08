@@ -24,41 +24,40 @@ import org.apache.wicket.model.IModel;
 public class FormGroupActions<T> extends FormGroup<T>
 {
 
-	private RepeatingView actionView;
+    private RepeatingView actionView;
 
+    public FormGroupActions(String id)
+    {
+        super(id);
+    }
 
-	public FormGroupActions(String id)
-	{
-		super(id);
-	}
+    public FormGroupActions(String id, IModel<String> labelModel)
+    {
+        super(id, labelModel);
+    }
 
-	public FormGroupActions(String id, IModel<String> labelModel)
-	{
-		super(id, labelModel);
-	}
+    public FormGroupActions(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
+    }
 
-	public FormGroupActions(String id, IModel<String> labelModel, IModel<T> model)
-	{
-		super(id, labelModel, model);
-	}
+    @Override
+    protected void createComponents()
+    {
+        super.createComponents();
+        this.actionView = new RepeatingView("action");
+        this.populateActions(this.actionView);
+    }
 
-	@Override
-	protected void createComponents()
-	{
-		super.createComponents();
-		this.actionView = new RepeatingView("action");
-		this.populateActions(this.actionView);
-	}
+    @Override
+    protected void addComponents()
+    {
+        super.addComponents();
+        this.container.add(this.actionView);
+    }
 
-	@Override
-	protected void addComponents()
-	{
-		super.addComponents();
-		this.container.add(this.actionView);
-	}
-
-	protected void populateActions(RepeatingView actionView)
-	{
-		/* Hook */
-	}
+    protected void populateActions(RepeatingView actionView)
+    {
+        /* Hook */
+    }
 }

@@ -24,12 +24,11 @@ import org.junit.Before;
 public class AbstractWicketTest
 {
 
-	protected WicketTester tester;
+    protected WicketTester tester;
 
-
-	@Before
-	public void setUp()
-	{
-		this.tester = new WicketTester(new TestApplication());
-	}
+    @Before
+    public void setUp()
+    {
+        this.tester = new WicketTester(new TestApplication());
+    }
 }

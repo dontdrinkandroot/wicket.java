@@ -23,9 +23,10 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 
 public class ButtonBlockLevelBehavior extends CssClassAppender {
 
-	public ButtonBlockLevelBehavior() {
+    public ButtonBlockLevelBehavior()
+    {
 
-		super(BootstrapCssClass.BTN_BLOCK);
-	}
+        super(BootstrapCssClass.BTN_BLOCK);
+    }
 
 }

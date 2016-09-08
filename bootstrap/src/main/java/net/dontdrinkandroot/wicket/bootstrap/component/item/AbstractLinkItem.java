@@ -17,88 +17,91 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.css.CssClass;
+import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 
 public abstract class AbstractLinkItem extends AbstractItem<String>
 {
 
-	private IModel<CssClass> prependIconModel;
+    private IModel<CssClass> prependIconModel;
 
-	private IModel<CssClass> appendIconModel;
+    private IModel<CssClass> appendIconModel;
 
+    public AbstractLinkItem(String id, IModel<String> labelModel)
+    {
+        super(id, labelModel);
+    }
 
-	public AbstractLinkItem(String id, IModel<String> labelModel)
-	{
-		super(id, labelModel);
-	}
+    public AbstractLinkItem(String id, String label)
+    {
+        super(id, Model.of(label));
+    }
 
-	public AbstractLinkItem(String id, String label)
-	{
-		super(id, Model.of(label));
-	}
+    public AbstractLinkItem setPrependIcon(CssClass prependIcon)
+    {
+        if (prependIcon == null) {
+            this.prependIconModel = null;
+        } else {
+            this.prependIconModel = Model.of(prependIcon);
+        }
 
-	public AbstractLinkItem setPrependIcon(CssClass prependIcon)
-	{
-		if (prependIcon == null) {
-			this.prependIconModel = null;
-		} else {
-			this.prependIconModel = Model.of(prependIcon);
-		}
+        return this;
+    }
 
-		return this;
-	}
+    public AbstractLinkItem setAppendIcon(CssClass appendIcon)
+    {
+        if (appendIcon == null) {
+            this.appendIconModel = null;
+        } else {
+            this.appendIconModel = Model.of(appendIcon);
+        }
 
-	public AbstractLinkItem setAppendIcon(CssClass appendIcon)
-	{
-		if (appendIcon == null) {
-			this.appendIconModel = null;
-		} else {
-			this.appendIconModel = Model.of(appendIcon);
-		}
+        return this;
+    }
 
-		return this;
-	}
+    public IModel<CssClass> getPrependIconModel()
+    {
+        return this.prependIconModel;
+    }
 
-	public IModel<CssClass> getPrependIconModel()
-	{
-		return this.prependIconModel;
-	}
+    public IModel<CssClass> setAppendIconModel()
+    {
+        return this.appendIconModel;
+    }
 
-	public IModel<CssClass> setAppendIconModel()
-	{
-		return this.appendIconModel;
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+        this.add(new DisabledCssBehavior());
+        Component link = this.createLink("link");
+        link.add(new IconBehavior()
+        {
 
-		this.add(new DisabledCssBehavior());
-		Component link = this.createLink("link");
-		link.add(new IconBehavior() {
+            @Override
+            public IModel<CssClass> getPrependIconModel()
+            {
+                return AbstractLinkItem.this.getPrependIconModel();
+            }
 
-			@Override
-			public IModel<CssClass> getPrependIconModel()
-			{
-				return AbstractLinkItem.this.getPrependIconModel();
-			};
+            ;
 
-			@Override
-			public IModel<CssClass> getAppendIconModel()
-			{
-				return AbstractLinkItem.this.setAppendIconModel();
-			};
-		});
-		this.add(link);
-	}
+            @Override
+            public IModel<CssClass> getAppendIconModel()
+            {
+                return AbstractLinkItem.this.setAppendIconModel();
+            }
 
-	protected abstract Component createLink(String id);
+            ;
+        });
+        this.add(link);
+    }
+
+    protected abstract Component createLink(String id);
 }

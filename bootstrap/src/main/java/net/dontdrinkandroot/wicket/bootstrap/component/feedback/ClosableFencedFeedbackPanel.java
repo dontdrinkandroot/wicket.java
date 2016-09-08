@@ -23,26 +23,27 @@ import org.apache.wicket.feedback.IFeedbackMessageFilter;
 
 public class ClosableFencedFeedbackPanel extends FencedFeedbackPanel {
 
-	public ClosableFencedFeedbackPanel(String id) {
+    public ClosableFencedFeedbackPanel(String id)
+    {
 
-		super(id);
-	}
+        super(id);
+    }
 
+    public ClosableFencedFeedbackPanel(String id, Component fence)
+    {
 
-	public ClosableFencedFeedbackPanel(String id, Component fence) {
+        super(id, fence);
+    }
 
-		super(id, fence);
-	}
+    public ClosableFencedFeedbackPanel(String id, IFeedbackMessageFilter filter)
+    {
 
+        super(id, filter);
+    }
 
-	public ClosableFencedFeedbackPanel(String id, IFeedbackMessageFilter filter) {
+    public ClosableFencedFeedbackPanel(String id, Component fence, IFeedbackMessageFilter filter)
+    {
 
-		super(id, filter);
-	}
-
-
-	public ClosableFencedFeedbackPanel(String id, Component fence, IFeedbackMessageFilter filter) {
-
-		super(id, fence, filter);
-	}
+        super(id, fence, filter);
+    }
 }

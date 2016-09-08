@@ -26,32 +26,33 @@ import org.apache.wicket.model.IModel;
 public abstract class AjaxLinkItem extends AbstractLinkItem
 {
 
-	public AjaxLinkItem(String id, String label)
-	{
-		super(id, label);
-	}
+    public AjaxLinkItem(String id, String label)
+    {
+        super(id, label);
+    }
 
-	public AjaxLinkItem(String id, IModel<String> labelModel)
-	{
-		super(id, labelModel);
-	}
+    public AjaxLinkItem(String id, IModel<String> labelModel)
+    {
+        super(id, labelModel);
+    }
 
-	@Override
-	protected Component createLink(String id)
-	{
-		AjaxLink<Void> link = new AjaxLink<Void>(id) {
+    @Override
+    protected Component createLink(String id)
+    {
+        AjaxLink<Void> link = new AjaxLink<Void>(id)
+        {
 
-			@Override
-			public void onClick(AjaxRequestTarget target)
-			{
-				AjaxLinkItem.this.onClick(target);
-			}
-		};
-		link.setBody(this.getModel());
+            @Override
+            public void onClick(AjaxRequestTarget target)
+            {
+                AjaxLinkItem.this.onClick(target);
+            }
+        };
+        link.setBody(this.getModel());
 
-		return link;
-	}
+        return link;
+    }
 
-	protected abstract void onClick(AjaxRequestTarget target);
+    protected abstract void onClick(AjaxRequestTarget target);
 
 }

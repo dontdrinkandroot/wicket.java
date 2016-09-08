@@ -25,48 +25,48 @@ import java.util.Locale;
 
 public class TemporalAccessorFormatModel extends AbstractChainedModel<TemporalAccessor, String>
 {
-	// TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.
+    // TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.
 
-	private String pattern;
+    private String pattern;
 
-	private Locale locale;
+    private Locale locale;
 
-	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent)
-	{
-		super(parent);
-	}
+    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent)
+    {
+        super(parent);
+    }
 
-	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern)
-	{
-		super(parent);
-		this.pattern = pattern;
-	}
+    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern)
+    {
+        super(parent);
+        this.pattern = pattern;
+    }
 
-	public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
-	{
-		super(parent);
-		this.pattern = pattern;
-		this.locale = locale;
-	}
+    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
+    {
+        super(parent);
+        this.pattern = pattern;
+        this.locale = locale;
+    }
 
-	@Override
-	public String getObject()
-	{
-		if ((null == this.getParent()) || (null == this.getParentObject())) {
-			return "n/a";
-		}
+    @Override
+    public String getObject()
+    {
+        if ((null == this.getParent()) || (null == this.getParentObject())) {
+            return "n/a";
+        }
 
-		if (null == pattern) {
-			return getParentObject().toString();
-		}
+        if (null == pattern) {
+            return getParentObject().toString();
+        }
 
-		DateTimeFormatter dateTimeFormatter;
-		if (null == locale) {
-			dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
-		} else {
-			dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, locale);
-		}
+        DateTimeFormatter dateTimeFormatter;
+        if (null == locale) {
+            dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+        } else {
+            dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, locale);
+        }
 
-		return dateTimeFormatter.format(getParentObject());
-	}
+        return dateTimeFormatter.format(getParentObject());
+    }
 }

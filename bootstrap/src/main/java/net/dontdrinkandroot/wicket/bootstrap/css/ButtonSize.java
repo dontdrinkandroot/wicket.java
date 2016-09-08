@@ -22,22 +22,22 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum ButtonSize implements CssClass {
 
-	EXTRA_SMALL("btn-xs"),
-	SMALL("btn-sm"),
-	LARGE("btn-lg");
+    EXTRA_SMALL("btn-xs"),
+    SMALL("btn-sm"),
+    LARGE("btn-lg");
 
-	private String classString;
+    private String classString;
 
+    private ButtonSize(String classString)
+    {
 
-	private ButtonSize(String classString) {
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-
-	@Override
-	public String getClassString() {
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 }

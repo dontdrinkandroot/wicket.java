@@ -17,6 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -25,10 +28,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
-
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -36,167 +35,172 @@ import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 public class PaginationPanel extends Panel
 {
 
-	private final IPageable pageable;
+    private final IPageable pageable;
 
-	private RepeatingView pageItemView;
+    private RepeatingView pageItemView;
 
-	private int viewSize = 5;
+    private int viewSize = 5;
 
+    public PaginationPanel(String id, final IPageable pageable)
+    {
+        this(id, pageable, null);
+    }
 
-	public PaginationPanel(String id, final IPageable pageable)
-	{
-		this(id, pageable, null);
-	}
+    public PaginationPanel(String id, IPageable pageable, PaginationSize size)
+    {
+        super(id);
+        this.pageable = pageable;
+        if (size != null) {
+            this.add(new CssClassAppender(size));
+        }
+    }
 
-	public PaginationPanel(String id, IPageable pageable, PaginationSize size)
-	{
-		super(id);
-		this.pageable = pageable;
-		if (size != null) {
-			this.add(new CssClassAppender(size));
-		}
-	}
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
+        this.add(new CssClassAppender(BootstrapCssClass.PAGINATION));
 
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
-		this.add(new CssClassAppender(BootstrapCssClass.PAGINATION));
+        Component firstItem = this.createFirstPageItem("firstItem");
+        this.add(firstItem);
 
-		Component firstItem = this.createFirstPageItem("firstItem");
-		this.add(firstItem);
+        Component prevItem = this.createPrevPageItem("prevItem");
+        this.add(prevItem);
 
-		Component prevItem = this.createPrevPageItem("prevItem");
-		this.add(prevItem);
+        Component nextItem = this.createNextPageItem("nextItem");
+        this.add(nextItem);
 
-		Component nextItem = this.createNextPageItem("nextItem");
-		this.add(nextItem);
+        Component lastItem = this.createLastPageItem("lastItem");
+        this.add(lastItem);
 
-		Component lastItem = this.createLastPageItem("lastItem");
-		this.add(lastItem);
+        this.pageItemView = new RepeatingView("pageItem");
+        this.add(this.pageItemView);
+    }
 
-		this.pageItemView = new RepeatingView("pageItem");
-		this.add(this.pageItemView);
-	}
+    @Override
+    protected void onBeforeRender()
+    {
+        super.onBeforeRender();
 
-	@Override
-	protected void onBeforeRender()
-	{
-		super.onBeforeRender();
+        this.pageItemView.removeAll();
 
-		this.pageItemView.removeAll();
+        long curPage = this.pageable.getCurrentPage();
+        long pageCount = this.pageable.getPageCount();
 
-		long curPage = this.pageable.getCurrentPage();
-		long pageCount = this.pageable.getPageCount();
+        long desiredStart = curPage - (this.getViewSize() / 2);
+        long desiredEnd = curPage + (this.getViewSize() / 2);
 
-		long desiredStart = curPage - (this.getViewSize() / 2);
-		long desiredEnd = curPage + (this.getViewSize() / 2);
+        if (desiredStart < 0) {
+            long offset = 0 - desiredStart;
+            desiredStart = desiredStart + offset;
+            desiredEnd = desiredEnd + offset;
+        }
 
-		if (desiredStart < 0) {
-			long offset = 0 - desiredStart;
-			desiredStart = desiredStart + offset;
-			desiredEnd = desiredEnd + offset;
-		}
+        if (desiredEnd > (pageCount - 1)) {
+            long offset = desiredEnd - (pageCount - 1);
+            desiredStart = desiredStart - offset;
+            desiredEnd = desiredEnd - offset;
+        }
 
-		if (desiredEnd > (pageCount - 1)) {
-			long offset = desiredEnd - (pageCount - 1);
-			desiredStart = desiredStart - offset;
-			desiredEnd = desiredEnd - offset;
-		}
+        long displayStart = Math.max(0, desiredStart);
+        long displayEnd = Math.min(pageCount - 1, desiredEnd);
 
-		long displayStart = Math.max(0, desiredStart);
-		long displayEnd = Math.min(pageCount - 1, desiredEnd);
+        for (long page = displayStart; page <= displayEnd; page++) {
+            this.pageItemView.add(this.createPageItem(this.pageItemView.newChildId(), page));
+        }
+    }
 
-		for (long page = displayStart; page <= displayEnd; page++) {
-			this.pageItemView.add(this.createPageItem(this.pageItemView.newChildId(), page));
-		}
-	}
+    public void setViewSize(int viewSize)
+    {
+        this.viewSize = viewSize;
+    }
 
-	public void setViewSize(int viewSize)
-	{
-		this.viewSize = viewSize;
-	}
+    public int getViewSize()
+    {
+        return this.viewSize;
+    }
 
-	public int getViewSize()
-	{
-		return this.viewSize;
-	}
+    public IPageable getPageable()
+    {
+        return this.pageable;
+    }
 
-	public IPageable getPageable()
-	{
-		return this.pageable;
-	}
+    protected AbstractPageLinkItem createFirstPageItem(String id)
+    {
+        return new FirstPageLinkItem(id, this.pageable)
+        {
 
-	protected AbstractPageLinkItem createFirstPageItem(String id)
-	{
-		return new FirstPageLinkItem(id, this.pageable) {
+            @Override
+            protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+            {
+                return PaginationPanel.this.createLink(id, paginablePageModel);
+            }
+        };
+    }
 
-			@Override
-			protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-			{
-				return PaginationPanel.this.createLink(id, paginablePageModel);
-			}
-		};
-	}
+    protected AbstractPageLinkItem createPrevPageItem(String id)
+    {
+        return new PrevPageLinkItem(id, this.pageable)
+        {
 
-	protected AbstractPageLinkItem createPrevPageItem(String id)
-	{
-		return new PrevPageLinkItem(id, this.pageable) {
+            @Override
+            protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+            {
+                return PaginationPanel.this.createLink(id, paginablePageModel);
+            }
+        };
+    }
 
-			@Override
-			protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-			{
-				return PaginationPanel.this.createLink(id, paginablePageModel);
-			}
-		};
-	}
+    protected AbstractPageLinkItem createNextPageItem(String id)
+    {
+        return new NextPageLinkItem(id, this.pageable)
+        {
 
-	protected AbstractPageLinkItem createNextPageItem(String id)
-	{
-		return new NextPageLinkItem(id, this.pageable) {
+            @Override
+            protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+            {
+                return PaginationPanel.this.createLink(id, paginablePageModel);
+            }
+        };
+    }
 
-			@Override
-			protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-			{
-				return PaginationPanel.this.createLink(id, paginablePageModel);
-			}
-		};
-	}
+    protected AbstractPageLinkItem createLastPageItem(String id)
+    {
+        return new LastPageLinkItem(id, this.pageable)
+        {
 
-	protected AbstractPageLinkItem createLastPageItem(String id)
-	{
-		return new LastPageLinkItem(id, this.pageable) {
+            @Override
+            protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+            {
+                return PaginationPanel.this.createLink(id, paginablePageModel);
+            }
+        };
+    }
 
-			@Override
-			protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-			{
-				return PaginationPanel.this.createLink(id, paginablePageModel);
-			}
-		};
-	}
+    protected AbstractPageLinkItem createPageItem(String id, long page)
+    {
+        return new PageLinkItem(id, this.pageable, page)
+        {
 
-	protected AbstractPageLinkItem createPageItem(String id, long page)
-	{
-		return new PageLinkItem(id, this.pageable, page) {
+            @Override
+            protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+            {
+                return PaginationPanel.this.createLink(id, paginablePageModel);
+            }
+        };
+    }
 
-			@Override
-			protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-			{
-				return PaginationPanel.this.createLink(id, paginablePageModel);
-			}
-		};
-	}
+    protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
+    {
+        return new Link<Long>(id, paginablePageModel)
+        {
 
-	protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
-	{
-		return new Link<Long>(id, paginablePageModel) {
-
-			@Override
-			public void onClick()
-			{
-				PaginationPanel.this.pageable.setCurrentPage(this.getModelObject());
-			}
-		};
-	}
+            @Override
+            public void onClick()
+            {
+                PaginationPanel.this.pageable.setCurrentPage(this.getModelObject());
+            }
+        };
+    }
 
 }

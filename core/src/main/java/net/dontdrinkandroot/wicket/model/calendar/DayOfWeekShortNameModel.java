@@ -17,38 +17,36 @@
  */
 package net.dontdrinkandroot.wicket.model.calendar;
 
-import java.text.DateFormatSymbols;
-import java.util.Locale;
-
+import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
-import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
+import java.text.DateFormatSymbols;
+import java.util.Locale;
 
 
 public class DayOfWeekShortNameModel extends AbstractChainedModel<Integer, String>
 {
 
-	private Locale locale;
+    private Locale locale;
 
+    public DayOfWeekShortNameModel(IModel<? extends Integer> parent, Locale locale)
+    {
+        super(parent);
+        this.locale = locale;
+    }
 
-	public DayOfWeekShortNameModel(IModel<? extends Integer> parent, Locale locale)
-	{
-		super(parent);
-		this.locale = locale;
-	}
+    @Override
+    public String getObject()
+    {
+        Integer dayOfWeek = this.getParentObject();
+        if (null == dayOfWeek) {
+            return null;
+        }
 
-	@Override
-	public String getObject()
-	{
-		Integer dayOfWeek = this.getParentObject();
-		if (null == dayOfWeek) {
-			return null;
-		}
+        DateFormatSymbols symbols = new DateFormatSymbols(this.locale);
+        String[] names = symbols.getShortWeekdays();
 
-		DateFormatSymbols symbols = new DateFormatSymbols(this.locale);
-		String[] names = symbols.getShortWeekdays();
-
-		return names[dayOfWeek.intValue()];
-	}
+        return names[dayOfWeek.intValue()];
+    }
 
 }

@@ -22,23 +22,22 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 
 public enum FormGroupSize implements CssClass
 {
-	SMALL("form-group-sm"),
-	LARGE("form-group-lg");
+    SMALL("form-group-sm"),
+    LARGE("form-group-lg");
 
-	private String classString;
+    private String classString;
 
+    private FormGroupSize(String classString)
+    {
 
-	private FormGroupSize(String classString)
-	{
+        this.classString = classString;
+    }
 
-		this.classString = classString;
-	}
+    @Override
+    public String getClassString()
+    {
 
-	@Override
-	public String getClassString()
-	{
-
-		return this.classString;
-	}
+        return this.classString;
+    }
 
 }

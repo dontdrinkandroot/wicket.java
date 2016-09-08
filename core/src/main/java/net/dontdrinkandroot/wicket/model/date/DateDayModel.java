@@ -17,31 +17,32 @@
  */
 package net.dontdrinkandroot.wicket.model.date;
 
+import org.apache.wicket.model.IModel;
+
 import java.util.Calendar;
 import java.util.Date;
-
-import org.apache.wicket.model.IModel;
 
 
 public class DateDayModel extends AbstractDateCalendarModel<Integer> {
 
-	public DateDayModel(IModel<Date> parent) {
+    public DateDayModel(IModel<Date> parent)
+    {
 
-		super(parent);
-	}
+        super(parent);
+    }
 
+    @Override
+    protected Integer getFromCalendar(Calendar calendar)
+    {
 
-	@Override
-	protected Integer getFromCalendar(Calendar calendar) {
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
 
-		return calendar.get(Calendar.DAY_OF_MONTH);
-	}
+    @Override
+    protected void setToCalendar(Integer object, Calendar calendar)
+    {
 
-
-	@Override
-	protected void setToCalendar(Integer object, Calendar calendar) {
-
-		calendar.set(Calendar.DAY_OF_MONTH, object);
-	}
+        calendar.set(Calendar.DAY_OF_MONTH, object);
+    }
 
 }

@@ -22,18 +22,18 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 
 public class TestPage extends WebPage
 {
-	@Override
-	protected void onInitialize()
-	{
-		super.onInitialize();
+    @Override
+    protected void onInitialize()
+    {
+        super.onInitialize();
 
-		RepeatingView componentView = new RepeatingView("component");
-		this.populateComponents(componentView);
-		this.add(componentView);
-	}
+        RepeatingView componentView = new RepeatingView("component");
+        this.populateComponents(componentView);
+        this.add(componentView);
+    }
 
-	protected void populateComponents(RepeatingView componentView)
-	{
-		/* Hook */
-	}
+    protected void populateComponents(RepeatingView componentView)
+    {
+        /* Hook */
+    }
 }

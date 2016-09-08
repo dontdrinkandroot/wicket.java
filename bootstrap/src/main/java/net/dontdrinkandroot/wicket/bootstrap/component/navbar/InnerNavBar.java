@@ -23,9 +23,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 public class InnerNavBar extends NavBar
 {
 
-	public InnerNavBar(String id)
-	{
-		super(id);
-	}
+    public InnerNavBar(String id)
+    {
+        super(id);
+    }
 
 }

@@ -20,92 +20,92 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public class ColumnSizeStack implements ColumnSize
 {
 
-	/**
-	 * Reasonable defaults for a full screen horziontal form.
-	 */
-	public static final ColumnSize FORM_DEFAULT =
-			new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_7, ColumnSizeMedium.COLUMNS_8, ColumnSizeLarge.COLUMNS_9);
+    /**
+     * Reasonable defaults for a full screen horziontal form.
+     */
+    public static final ColumnSize FORM_DEFAULT =
+            new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_7, ColumnSizeMedium.COLUMNS_8, ColumnSizeLarge.COLUMNS_9);
 
-	/**
-	 * Split large screen into two equally sized columns.
-	 */
-	public static final ColumnSize TWO_COLUMNS =
-			new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_6, ColumnSizeMedium.COLUMNS_6, ColumnSizeLarge.COLUMNS_6);
+    /**
+     * Split large screen into two equally sized columns.
+     */
+    public static final ColumnSize TWO_COLUMNS =
+            new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_6, ColumnSizeMedium.COLUMNS_6, ColumnSizeLarge.COLUMNS_6);
 
-	private ColumnSizeExtraSmall columnSizeExtraSmall;
+    private ColumnSizeExtraSmall columnSizeExtraSmall;
 
-	private ColumnSizeSmall columnSizeSmall;
+    private ColumnSizeSmall columnSizeSmall;
 
-	private ColumnSizeMedium columnSizeMedium;
+    private ColumnSizeMedium columnSizeMedium;
 
-	private ColumnSizeLarge columnSizeLarge;
+    private ColumnSizeLarge columnSizeLarge;
 
+    public ColumnSizeStack(
+            ColumnSizeExtraSmall columnSizeExtraSmall,
+            ColumnSizeSmall columnSizeSmall,
+            ColumnSizeMedium columnSizeMedium,
+            ColumnSizeLarge columnSizeLarge
+    )
+    {
+        super();
+        this.columnSizeExtraSmall = columnSizeExtraSmall;
+        this.columnSizeSmall = columnSizeSmall;
+        this.columnSizeMedium = columnSizeMedium;
+        this.columnSizeLarge = columnSizeLarge;
+    }
 
-	public ColumnSizeStack(
-			ColumnSizeExtraSmall columnSizeExtraSmall,
-			ColumnSizeSmall columnSizeSmall,
-			ColumnSizeMedium columnSizeMedium,
-			ColumnSizeLarge columnSizeLarge)
-	{
-		super();
-		this.columnSizeExtraSmall = columnSizeExtraSmall;
-		this.columnSizeSmall = columnSizeSmall;
-		this.columnSizeMedium = columnSizeMedium;
-		this.columnSizeLarge = columnSizeLarge;
-	}
+    @Override
+    public String getClassString()
+    {
+        StringBuffer classBuffer = new StringBuffer();
+        if (null != this.columnSizeExtraSmall) {
+            classBuffer.append(this.columnSizeExtraSmall.getClassString());
+            classBuffer.append(" ");
+        }
+        if (null != this.columnSizeSmall) {
+            classBuffer.append(this.columnSizeSmall.getClassString());
+            classBuffer.append(" ");
+        }
+        if (null != this.columnSizeMedium) {
+            classBuffer.append(this.columnSizeMedium.getClassString());
+            classBuffer.append(" ");
+        }
+        if (null != this.columnSizeLarge) {
+            classBuffer.append(this.columnSizeLarge.getClassString());
+            classBuffer.append(" ");
+        }
 
-	@Override
-	public String getClassString()
-	{
-		StringBuffer classBuffer = new StringBuffer();
-		if (null != this.columnSizeExtraSmall) {
-			classBuffer.append(this.columnSizeExtraSmall.getClassString());
-			classBuffer.append(" ");
-		}
-		if (null != this.columnSizeSmall) {
-			classBuffer.append(this.columnSizeSmall.getClassString());
-			classBuffer.append(" ");
-		}
-		if (null != this.columnSizeMedium) {
-			classBuffer.append(this.columnSizeMedium.getClassString());
-			classBuffer.append(" ");
-		}
-		if (null != this.columnSizeLarge) {
-			classBuffer.append(this.columnSizeLarge.getClassString());
-			classBuffer.append(" ");
-		}
+        return classBuffer.toString().trim();
+    }
 
-		return classBuffer.toString().trim();
-	}
+    @Override
+    public ColumnOffset getInverseColumnOffset()
+    {
+        ColumnOffsetExtraSmall columnOffsetExtraSmall =
+                this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnOffset();
+        ColumnOffsetSmall columnOffsetSmall =
+                this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnOffset();
+        ColumnOffsetMedium columnOffsetMedium =
+                this.columnSizeMedium == null ? null : this.columnSizeMedium.getInverseColumnOffset();
+        ColumnOffsetLarge columnOffsetLarge =
+                this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnOffset();
 
-	@Override
-	public ColumnOffset getInverseColumnOffset()
-	{
-		ColumnOffsetExtraSmall columnOffsetExtraSmall =
-				this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnOffset();
-		ColumnOffsetSmall columnOffsetSmall =
-				this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnOffset();
-		ColumnOffsetMedium columnOffsetMedium =
-				this.columnSizeMedium == null ? null : this.columnSizeMedium.getInverseColumnOffset();
-		ColumnOffsetLarge columnOffsetLarge =
-				this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnOffset();
+        return new ColumnOffsetStack(columnOffsetExtraSmall, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
+    }
 
-		return new ColumnOffsetStack(columnOffsetExtraSmall, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
-	}
+    @Override
+    public ColumnSize getInverseColumnSize()
+    {
+        ColumnSizeExtraSmall columnSizeExtraSmall =
+                this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnSize();
+        ColumnSizeSmall columnSizeSmall =
+                this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnSize();
+        ColumnSizeMedium columnSizeMedium =
+                this.columnSizeMedium == null ? null : this.columnSizeMedium.getInverseColumnSize();
+        ColumnSizeLarge columnSizeLarge =
+                this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnSize();
 
-	@Override
-	public ColumnSize getInverseColumnSize()
-	{
-		ColumnSizeExtraSmall columnSizeExtraSmall =
-				this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnSize();
-		ColumnSizeSmall columnSizeSmall =
-				this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnSize();
-		ColumnSizeMedium columnSizeMedium =
-				this.columnSizeMedium == null ? null : this.columnSizeMedium.getInverseColumnSize();
-		ColumnSizeLarge columnSizeLarge =
-				this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnSize();
-
-		return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
-	}
+        return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
+    }
 
 }
