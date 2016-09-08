@@ -19,6 +19,20 @@ Versioning
 This project uses semantic versioning. For more information, please visit
 http://semver.org/.
 
+Maven
+-----
+
+This project is not yet available via Maven Central. In the meantime you can include the dontdrinkandroot repository:
+
+```xml
+<repositories>
+    <repository>
+        <id>dontdrinkandroot</id>
+        <url>https://maven.dontdrinkandroot.net/content/groups/public</url>
+    </repository>
+</repositories>
+```
+
 Demo
 ----
 
