@@ -30,10 +30,9 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public abstract class BootstrapPage<T> extends GenericWebPage<T>
 {
-
     protected IModel<String> pageHeadingModel;
 
-    private IModel<String> pageTitleModel;
+    protected IModel<String> pageTitleModel;
 
     public BootstrapPage()
     {
@@ -89,8 +88,5 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
         return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
     }
 
-    ;
-
     protected abstract IModel<String> createPageHeadingModel();
-
 }

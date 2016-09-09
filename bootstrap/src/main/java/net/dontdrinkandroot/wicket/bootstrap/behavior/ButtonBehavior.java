@@ -31,7 +31,6 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
 public class ButtonBehavior extends Behavior implements IButton
 {
 
@@ -42,6 +41,22 @@ public class ButtonBehavior extends Behavior implements IButton
     public ButtonBehavior()
     {
         super();
+    }
+
+    public ButtonBehavior(ButtonStyle buttonStyle)
+    {
+        this.buttonStyleModel = Model.of(buttonStyle);
+    }
+
+    public ButtonBehavior(ButtonSize buttonSize)
+    {
+        this.buttonSizeModel = Model.of(buttonSize);
+    }
+
+    public ButtonBehavior(ButtonStyle buttonStyle, ButtonSize buttonSize)
+    {
+        this.buttonStyleModel = Model.of(buttonStyle);
+        this.buttonSizeModel = Model.of(buttonSize);
     }
 
     public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel)
