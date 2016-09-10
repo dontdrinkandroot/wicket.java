@@ -12,11 +12,13 @@ public class SignOutPage extends BootstrapPage<Void>
 {
     public SignOutPage()
     {
+        this(null);
     }
 
     public SignOutPage(PageParameters parameters)
     {
         super(parameters);
+        this.getSession().invalidate();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.extras.page;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
@@ -55,6 +56,7 @@ public class SignInPage extends BootstrapPage<Void>
     protected void onInitialize()
     {
         super.onInitialize();
+
         StatelessForm<Void> form = new StatelessForm<Void>("form")
         {
             @Override
@@ -64,6 +66,8 @@ public class SignInPage extends BootstrapPage<Void>
             }
         };
         this.add(form);
+
+        form.add(new FeedbackPanel("feedback"));
 
         form.add(new Label("heading", this.pageHeadingModel));
 

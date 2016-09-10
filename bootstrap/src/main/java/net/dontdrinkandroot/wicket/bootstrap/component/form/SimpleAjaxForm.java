@@ -22,7 +22,7 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.model.IModel;
 
-
+//TODO: Still not able to handle double submits the way intended.
 public class SimpleAjaxForm<T> extends SimpleForm<T>
 {
 
@@ -42,7 +42,6 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
     {
         this.add(new AjaxFormSubmitBehavior(this, "submit")
         {
-
             @Override
             protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
             {
