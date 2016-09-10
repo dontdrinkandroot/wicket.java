@@ -71,7 +71,6 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
     {
         FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(id)
         {
-
             @Override
             protected void populateActions(RepeatingView actionView)
             {
