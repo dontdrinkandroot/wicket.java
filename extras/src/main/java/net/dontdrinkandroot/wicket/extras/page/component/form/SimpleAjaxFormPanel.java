@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.form;
+package net.dontdrinkandroot.wicket.extras.page.component.form;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
 import net.dontdrinkandroot.wicket.component.basic.Heading;
