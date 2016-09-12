@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.model.date;
 
 import org.apache.wicket.model.IModel;
 
@@ -25,14 +25,12 @@ import java.util.GregorianCalendar;
 
 
 public abstract class AbstractDateCalendarModel<T> implements IModel<T> {
-
     private GregorianCalendar calendar;
 
     private final IModel<Date> dateModel;
 
     public AbstractDateCalendarModel(IModel<Date> dateModel)
     {
-
         this.dateModel = dateModel;
         this.calendar = new GregorianCalendar();
     }
@@ -40,7 +38,6 @@ public abstract class AbstractDateCalendarModel<T> implements IModel<T> {
     @Override
     public T getObject()
     {
-
         if (this.calendar == null) {
             this.calendar = new GregorianCalendar();
         }
@@ -51,7 +48,6 @@ public abstract class AbstractDateCalendarModel<T> implements IModel<T> {
     @Override
     public void setObject(T object)
     {
-
         if (this.calendar == null) {
             this.calendar = new GregorianCalendar();
         }
@@ -62,19 +58,16 @@ public abstract class AbstractDateCalendarModel<T> implements IModel<T> {
     @Override
     public void detach()
     {
-
         this.calendar = null;
     }
 
     private Date getDate()
     {
-
         return this.dateModel.getObject();
     }
 
     private void setDate(Date date)
     {
-
         this.dateModel.setObject(date);
     }
 

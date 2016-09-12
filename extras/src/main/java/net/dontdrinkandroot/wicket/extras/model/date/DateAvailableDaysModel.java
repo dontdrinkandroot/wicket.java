@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.model.date;
 
 import org.apache.wicket.model.IModel;
 
@@ -33,21 +33,18 @@ public class DateAvailableDaysModel extends AbstractDateCalendarModel<List<Integ
 
     public DateAvailableDaysModel(IModel<Date> parent)
     {
-
         super(parent);
     }
 
     @Override
     protected void setToCalendar(List<Integer> object, Calendar calendar)
     {
-
         /* Noop */
     }
 
     @Override
     protected List<Integer> getFromCalendar(Calendar calendar)
     {
-
         int calendarMonth = calendar.get(Calendar.MONTH);
         if (this.currentMonth == null) {
             this.currentMonth = calendarMonth;
@@ -69,7 +66,6 @@ public class DateAvailableDaysModel extends AbstractDateCalendarModel<List<Integ
     @Override
     public void detach()
     {
-
         super.detach();
         this.currentMonth = null;
         this.list = null;

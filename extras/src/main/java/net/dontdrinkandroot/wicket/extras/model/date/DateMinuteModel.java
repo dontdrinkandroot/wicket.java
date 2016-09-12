@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.model.date;
 
 import org.apache.wicket.model.IModel;
 
@@ -23,26 +23,22 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class DateDayModel extends AbstractDateCalendarModel<Integer> {
+public class DateMinuteModel extends AbstractDateCalendarModel<Integer> {
 
-    public DateDayModel(IModel<Date> parent)
+    public DateMinuteModel(IModel<Date> parent)
     {
-
         super(parent);
     }
 
     @Override
     protected Integer getFromCalendar(Calendar calendar)
     {
-
-        return calendar.get(Calendar.DAY_OF_MONTH);
+        return calendar.get(Calendar.MINUTE);
     }
 
     @Override
     protected void setToCalendar(Integer object, Calendar calendar)
     {
-
-        calendar.set(Calendar.DAY_OF_MONTH, object);
+        calendar.set(Calendar.MINUTE, object);
     }
-
 }

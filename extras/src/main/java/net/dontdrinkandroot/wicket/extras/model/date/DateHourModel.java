@@ -15,38 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.calendar;
+package net.dontdrinkandroot.wicket.extras.model.date;
 
-import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
-import java.text.DateFormatSymbols;
-import java.util.Locale;
+import java.util.Calendar;
+import java.util.Date;
 
 
-public class DayOfWeekShortNameModel extends AbstractChainedModel<Integer, String>
-{
+public class DateHourModel extends AbstractDateCalendarModel<Integer> {
 
-    private Locale locale;
-
-    public DayOfWeekShortNameModel(IModel<? extends Integer> parent, Locale locale)
+    public DateHourModel(IModel<Date> parent)
     {
         super(parent);
-        this.locale = locale;
     }
 
     @Override
-    public String getObject()
+    protected Integer getFromCalendar(Calendar calendar)
     {
-        Integer dayOfWeek = this.getParentObject();
-        if (null == dayOfWeek) {
-            return null;
-        }
-
-        DateFormatSymbols symbols = new DateFormatSymbols(this.locale);
-        String[] names = symbols.getShortWeekdays();
-
-        return names[dayOfWeek.intValue()];
+        return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
+    @Override
+    protected void setToCalendar(Integer object, Calendar calendar)
+    {
+        calendar.set(Calendar.HOUR_OF_DAY, object);
+    }
 }

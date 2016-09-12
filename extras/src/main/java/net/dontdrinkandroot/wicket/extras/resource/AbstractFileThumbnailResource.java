@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.resource;
+package net.dontdrinkandroot.wicket.extras.resource;
 
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.request.http.WebResponse;
@@ -29,35 +29,31 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-
-public abstract class AbstractFileThumbnailResource extends AbstractResource {
+public abstract class AbstractFileThumbnailResource extends AbstractResource
+{
 
     private static final long serialVersionUID = 1L;
 
     @Override
     protected ResourceResponse newResourceResponse(final Attributes attributes)
     {
-
         final File file = this.resolveFile(attributes);
 
         final Integer width = this.resolveWidth(attributes);
 
         final byte[] imageBytes;
         try {
-
             if (width == null) {
-
                 final FileInputStream fis = new FileInputStream(file);
                 final ByteArrayOutputStream imageBytesStream = new ByteArrayOutputStream();
                 IOUtils.copy(fis, imageBytesStream);
                 imageBytes = imageBytesStream.toByteArray();
                 IOUtils.closeQuietly(fis);
             } else {
-
                 final BufferedImage bufferedImage = ImageIO.read(file);
                 final int oldWidth = bufferedImage.getWidth();
                 final int oldHeight = bufferedImage.getHeight();
-                final int newWidth = width.intValue();
+                final int newWidth = width;
                 final int newHeight = newWidth * oldHeight / oldWidth;
                 final BufferedImage scaledImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
                 final Graphics2D g2d = (Graphics2D) scaledImage.getGraphics();
@@ -74,18 +70,14 @@ public abstract class AbstractFileThumbnailResource extends AbstractResource {
 
         final ResourceResponse resourceResponse = new ResourceResponse()
         {
-
             @Override
             public WriteCallback getWriteCallback()
             {
-
                 return new WriteCallback()
                 {
-
                     @Override
                     public void writeData(final Attributes attributes)
                     {
-
                         try {
                             this.writeStream(attributes, new ByteArrayInputStream(imageBytes));
                         } catch (IOException e) {
@@ -105,7 +97,6 @@ public abstract class AbstractFileThumbnailResource extends AbstractResource {
 
     protected Duration getCacheDuration()
     {
-
         return WebResponse.MAX_CACHE_DURATION;
     }
 

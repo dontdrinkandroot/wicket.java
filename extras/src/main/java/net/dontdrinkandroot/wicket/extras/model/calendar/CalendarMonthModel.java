@@ -15,34 +15,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.model.calendar;
 
+import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
 import java.util.Calendar;
-import java.util.Date;
 
 
-public class DateSecondModel extends AbstractDateCalendarModel<Integer> {
+public class CalendarMonthModel extends AbstractChainedModel<Calendar, Integer> {
 
-    public DateSecondModel(IModel<Date> parent)
+    public CalendarMonthModel(IModel<? extends Calendar> parent)
     {
-
         super(parent);
     }
 
     @Override
-    protected Integer getFromCalendar(Calendar calendar)
+    public Integer getObject()
     {
-
-        return calendar.get(Calendar.SECOND);
+        return this.getParentObject().get(Calendar.MONTH);
     }
 
     @Override
-    protected void setToCalendar(Integer object, Calendar calendar)
+    public void setObject(Integer month)
     {
+        int oldDay = this.getParentObject().get(Calendar.DAY_OF_MONTH);
 
-        calendar.set(Calendar.SECOND, object);
+        this.getParentObject().set(Calendar.DAY_OF_MONTH, 1);
+        this.getParentObject().set(Calendar.MONTH, month);
+
+        int maxDay = this.getParentObject().getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        this.getParentObject().set(Calendar.DAY_OF_MONTH, Math.min(oldDay, maxDay));
     }
-
 }

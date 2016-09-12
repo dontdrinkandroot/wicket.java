@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.resource;
+package net.dontdrinkandroot.wicket.extras.resource;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.WicketRuntimeException;
@@ -28,19 +28,16 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
-public class FileResourceResponse extends ResourceResponse {
-
+public class FileResourceResponse extends ResourceResponse
+{
     private final File file;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public FileResourceResponse(final File file)
     {
-
         this.file = file;
         final String contentType = Application.get().getMimeType(this.file.getAbsolutePath());
         this.setContentType(contentType);
@@ -51,23 +48,17 @@ public class FileResourceResponse extends ResourceResponse {
     @Override
     public WriteCallback getWriteCallback()
     {
-
         return new WriteCallback()
         {
-
             @Override
             public void writeData(final Attributes attributes)
             {
-
                 try {
                     this.writeStream(attributes, new FileInputStream(FileResourceResponse.this.file));
-                } catch (final FileNotFoundException e) {
-                    throw new WicketRuntimeException(e);
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     throw new WicketRuntimeException(e);
                 }
             }
         };
     }
-
 }

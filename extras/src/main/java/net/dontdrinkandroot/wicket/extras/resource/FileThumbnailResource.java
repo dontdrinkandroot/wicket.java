@@ -15,34 +15,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.resource;
 
-import org.apache.wicket.model.IModel;
+import java.io.File;
 
-import java.util.Calendar;
-import java.util.Date;
+public class FileThumbnailResource extends AbstractFileThumbnailResource
+{
+    private static final long serialVersionUID = 1L;
 
+    private final File file;
 
-public class DateHourModel extends AbstractDateCalendarModel<Integer> {
+    private Integer width = null;
 
-    public DateHourModel(IModel<Date> parent)
+    public FileThumbnailResource(final File file)
     {
+        super();
+        this.file = file;
+    }
 
-        super(parent);
+    public FileThumbnailResource(final File file, final int width)
+    {
+        this.file = file;
+        this.width = width;
     }
 
     @Override
-    protected Integer getFromCalendar(Calendar calendar)
+    protected File resolveFile(final Attributes attributes)
     {
-
-        return calendar.get(Calendar.HOUR_OF_DAY);
+        return this.file;
     }
 
     @Override
-    protected void setToCalendar(Integer object, Calendar calendar)
+    protected Integer resolveWidth(final Attributes attributes)
     {
-
-        calendar.set(Calendar.HOUR_OF_DAY, object);
+        return this.width;
     }
-
 }

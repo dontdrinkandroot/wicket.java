@@ -15,34 +15,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model.date;
+package net.dontdrinkandroot.wicket.extras.model.calendar;
 
+import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
 import java.util.Calendar;
-import java.util.Date;
 
 
-public class DateYearModel extends AbstractDateCalendarModel<Integer> {
+public class CalendarYearModel extends AbstractChainedModel<Calendar, Integer> {
 
-    public DateYearModel(IModel<Date> parent)
+    public CalendarYearModel(IModel<? extends Calendar> parent)
     {
-
         super(parent);
     }
 
     @Override
-    protected Integer getFromCalendar(Calendar calendar)
+    public Integer getObject()
     {
-
-        return calendar.get(Calendar.YEAR);
+        return this.getParentObject().get(Calendar.YEAR);
     }
 
     @Override
-    protected void setToCalendar(Integer object, Calendar calendar)
+    public void setObject(Integer object)
     {
-
-        calendar.set(Calendar.YEAR, object);
+        this.getParentObject().set(Calendar.YEAR, object);
     }
-
 }
