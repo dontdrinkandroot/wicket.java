@@ -21,10 +21,11 @@ import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractChainedInjectedLoadableDetachableModel<P, T> extends LoadableDetachableModel<T>
 {
-
     private IModel<? extends P> parentModel;
 
     public AbstractChainedInjectedLoadableDetachableModel(IModel<? extends P> parentModel)
@@ -57,5 +58,4 @@ public abstract class AbstractChainedInjectedLoadableDetachableModel<P, T> exten
     {
         throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
     }
-
 }

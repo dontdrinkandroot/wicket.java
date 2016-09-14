@@ -23,6 +23,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SimpleDateFormatModel extends AbstractChainedModel<Date, String>
 {
     // TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.

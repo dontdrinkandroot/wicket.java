@@ -21,7 +21,9 @@ import org.apache.wicket.IGenericComponent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class GenericWebMarkupContainer<T> extends WebMarkupContainer  implements IGenericComponent<T> {
 
     private static final long serialVersionUID = 1L;

@@ -24,10 +24,11 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AjaxBookmarkablePageLink<T> extends BookmarkablePageLink<T>
 {
-
     public <C extends Page> AjaxBookmarkablePageLink(String id, Class<C> pageClass)
     {
         super(id, pageClass);
@@ -44,7 +45,6 @@ public class AjaxBookmarkablePageLink<T> extends BookmarkablePageLink<T>
         super.onInitialize();
         this.add(new AjaxEventBehavior("click")
         {
-
             @Override
             protected void onEvent(AjaxRequestTarget target)
             {

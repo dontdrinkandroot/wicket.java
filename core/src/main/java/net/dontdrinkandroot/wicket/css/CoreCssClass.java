@@ -17,23 +17,22 @@
  */
 package net.dontdrinkandroot.wicket.css;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum CoreCssClass implements CssClass {
-
     DATE_PICKER("datepicker");
 
     private String msgKey;
 
     private CoreCssClass(String msgKey)
     {
-
         this.msgKey = msgKey;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.msgKey;
     }
-
 }

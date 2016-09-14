@@ -31,7 +31,6 @@ import java.util.Properties;
  */
 public class JQueryScript implements CharSequence
 {
-
     public static Integer DEFAULT_ANIMATION_DURATION = Integer.valueOf(400);
 
     public static String DEFAULT_EASING_FUNCTION = "swing";

@@ -20,10 +20,11 @@ package net.dontdrinkandroot.wicket.model;
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractChainedInjectedModel<P, T> extends AbstractInjectedModel<T>
 {
-
     private final IModel<? extends P> parent;
 
     public AbstractChainedInjectedModel(final IModel<? extends P> parent)

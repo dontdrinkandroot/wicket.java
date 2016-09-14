@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.model;
 
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractChainedModel<P, T> implements IModel<T>
 {
-
     private final IModel<? extends P> parent;
 
     public AbstractChainedModel(final IModel<? extends P> parent)
@@ -57,5 +58,4 @@ public abstract class AbstractChainedModel<P, T> implements IModel<T>
     {
         throw new RuntimeException("Chained Model, cannot set Object, must override method in order to do so");
     }
-
 }

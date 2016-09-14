@@ -20,10 +20,11 @@ package net.dontdrinkandroot.wicket.model;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ConcatenatingStringModel extends AbstractChainedModel<String, String>
 {
-
     private IModel<String> suffixModel;
 
     private String separator;
@@ -69,5 +70,4 @@ public class ConcatenatingStringModel extends AbstractChainedModel<String, Strin
 
         return concatenatedString.toString();
     }
-
 }

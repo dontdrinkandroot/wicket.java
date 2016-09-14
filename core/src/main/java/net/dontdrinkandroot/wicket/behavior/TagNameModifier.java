@@ -21,10 +21,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class TagNameModifier extends Behavior
 {
-
     private String tagName;
 
     public TagNameModifier(String tagName)

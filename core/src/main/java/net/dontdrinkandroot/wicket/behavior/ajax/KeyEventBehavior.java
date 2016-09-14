@@ -22,6 +22,9 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.util.string.StringValue;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class KeyEventBehavior extends AjaxEventBehavior
 {
     public KeyEventBehavior()

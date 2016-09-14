@@ -24,14 +24,15 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class NoAntiCacheImage extends Image {
 
     private static final long serialVersionUID = 1L;
 
     public NoAntiCacheImage(final String id, final ResourceReference resourceReference)
     {
-
         super(id, resourceReference, null);
     }
 
@@ -41,33 +42,27 @@ public class NoAntiCacheImage extends Image {
             final PageParameters resourceParameters
     )
     {
-
         super(id, resourceReference, resourceParameters);
     }
 
     public NoAntiCacheImage(final String id, final IResource imageResource)
     {
-
         super(id, imageResource);
     }
 
     public NoAntiCacheImage(final String id, final IModel<?> model)
     {
-
         super(id, model);
     }
 
     public NoAntiCacheImage(final String id, final String string)
     {
-
         this(id, new Model<String>(string));
     }
 
     @Override
     protected boolean shouldAddAntiCacheParameter()
     {
-
         return false;
     }
-
 }

@@ -19,8 +19,10 @@ package net.dontdrinkandroot.wicket.css;
 
 import java.io.Serializable;
 
-
-public interface CssClass extends Serializable {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public interface CssClass extends Serializable
+{
     String getClassString();
 }

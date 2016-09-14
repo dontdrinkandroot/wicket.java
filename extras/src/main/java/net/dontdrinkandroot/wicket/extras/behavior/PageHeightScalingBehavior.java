@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.extras.behavior;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
@@ -27,13 +27,11 @@ public class PageHeightScalingBehavior extends Behavior {
 
     public PageHeightScalingBehavior()
     {
-
     }
 
     @Override
     public void renderHead(Component component, IHeaderResponse response)
     {
-
         super.renderHead(component, response);
 
         StringBuffer scalingFunctionBuffer = new StringBuffer();

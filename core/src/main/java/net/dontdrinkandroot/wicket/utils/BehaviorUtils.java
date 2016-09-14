@@ -21,10 +21,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.behavior.Behavior;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class BehaviorUtils
 {
-
     @SuppressWarnings("unchecked")
     public static <C extends Behavior> C findClosestBehavior(Component component, Class<C> behaviorClass)
     {
@@ -41,5 +42,4 @@ public class BehaviorUtils
 
         return BehaviorUtils.findClosestBehavior(current, behaviorClass);
     }
-
 }

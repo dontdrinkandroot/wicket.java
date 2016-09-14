@@ -19,14 +19,15 @@ package net.dontdrinkandroot.wicket.model;
 
 import org.apache.wicket.model.Model;
 
-
-public class StringModel extends Model<String> {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class StringModel extends Model<String>
+{
     private static final long serialVersionUID = -2002767337361576327L;
 
     public StringModel(final String modelString)
     {
         super(modelString);
     }
-
 }

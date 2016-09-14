@@ -27,10 +27,11 @@ import org.apache.wicket.util.string.Strings;
 
 import java.util.List;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractList<T> extends GenericPanel<List<T>>
 {
-
     private RepeatingView itemView;
 
     public AbstractList(String id)
@@ -50,7 +51,6 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>>
 
         this.itemView = new RepeatingView("item")
         {
-
             @Override
             protected void onPopulate()
             {
@@ -104,5 +104,4 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>>
     }
 
     protected abstract Component createListComponent(String id, IModel<T> model);
-
 }

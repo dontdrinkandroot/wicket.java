@@ -19,13 +19,12 @@ package net.dontdrinkandroot.wicket.behavior;
 
 /**
  * Adds the <tt>display: none</tt> style attribute to an element, making the element invisible.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class DisplayNoneAppender extends StyleAppender {
-
     public DisplayNoneAppender()
     {
-
         super("display: none");
     }
-
 }

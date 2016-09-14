@@ -26,18 +26,18 @@ import org.apache.wicket.model.Model;
 
 import java.io.Serializable;
 
-
-public class ToStringLabel extends WebComponent {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class ToStringLabel extends WebComponent
+{
     public <T extends Serializable> ToStringLabel(final String id, T label)
     {
-
         this(id, new Model<T>(label));
     }
 
     public <T extends Serializable> ToStringLabel(final String id, IModel<T> model)
     {
-
         super(id, model);
     }
 
@@ -47,7 +47,6 @@ public class ToStringLabel extends WebComponent {
     @Override
     public void onComponentTagBody(final MarkupStream markupStream, final ComponentTag openTag)
     {
-
         this.replaceComponentTagBody(markupStream, openTag, this.getDefaultModelObjectAsString());
     }
 
@@ -57,7 +56,6 @@ public class ToStringLabel extends WebComponent {
     @Override
     protected void onComponentTag(ComponentTag tag)
     {
-
         super.onComponentTag(tag);
 
         if (tag.isOpenClose()) {

@@ -23,6 +23,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class TemporalAccessorFormatModel extends AbstractChainedModel<TemporalAccessor, String>
 {
     // TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.

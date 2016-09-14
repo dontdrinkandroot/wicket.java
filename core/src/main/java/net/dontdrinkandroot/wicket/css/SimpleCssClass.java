@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.css;
 
 import java.io.Serializable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SimpleCssClass implements CssClass, Serializable
 {
-
     private String classString;
 
     public SimpleCssClass(String classString)
@@ -35,5 +36,4 @@ public class SimpleCssClass implements CssClass, Serializable
     {
         return this.classString;
     }
-
 }

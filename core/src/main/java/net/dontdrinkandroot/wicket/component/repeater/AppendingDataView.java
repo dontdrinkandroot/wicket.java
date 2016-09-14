@@ -26,27 +26,26 @@ import org.apache.wicket.model.IModel;
 
 import java.util.Iterator;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AppendingDataView<T> extends DataView<T> {
 
     private final String itemTagName;
 
     protected AppendingDataView(String id, IDataProvider<T> dataProvider, String itemTagName, long itemsPerPage)
     {
-
         super(id, dataProvider, itemsPerPage);
         this.itemTagName = itemTagName;
     }
 
     public void appendNewItems(AjaxRequestTarget target, Component parent)
     {
-
         Iterator<IModel<T>> models = this.getItemModels();
         Iterator<Item<T>> items = this.getItemReuseStrategy().getItems(this.newItemFactory(), models, this.getItems());
 
         int index = (int) this.getFirstItemOffset();
         while (items.hasNext()) {
-
             Item<T> item = items.next();
             item.setOutputMarkupId(true);
             item.setIndex(index);
@@ -66,7 +65,6 @@ public abstract class AppendingDataView<T> extends DataView<T> {
     @Override
     protected void onConfigure()
     {
-
         super.onConfigure();
 
         /*
@@ -75,5 +73,4 @@ public abstract class AppendingDataView<T> extends DataView<T> {
          */
         this.setCurrentPage(0);
     }
-
 }

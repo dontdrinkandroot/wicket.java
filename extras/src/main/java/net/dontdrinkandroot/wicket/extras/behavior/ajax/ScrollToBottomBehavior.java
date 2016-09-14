@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior.ajax;
+package net.dontdrinkandroot.wicket.extras.behavior.ajax;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.Page;
@@ -36,14 +36,12 @@ public abstract class ScrollToBottomBehavior extends AbstractDefaultAjaxBehavior
 
     public ScrollToBottomBehavior(int offset)
     {
-
         this.offset = offset;
     }
 
     @Override
     public void renderHead(Component component, IHeaderResponse response)
     {
-
         super.renderHead(component, response);
 
         String componentSelector;
@@ -74,8 +72,8 @@ public abstract class ScrollToBottomBehavior extends AbstractDefaultAjaxBehavior
     @Override
     protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
     {
-
         super.updateAjaxAttributes(attributes);
+
         attributes.getAjaxCallListeners().add(new AjaxCallListener()
         {
 
@@ -93,14 +91,12 @@ public abstract class ScrollToBottomBehavior extends AbstractDefaultAjaxBehavior
 
     private String getActiveVarName(Component component)
     {
-
         return ScrollToBottomBehavior.ACTIVE_PREFIX + "_" + component.getPath();
     }
 
     @Override
     public void onConfigure(Component component)
     {
-
         super.onConfigure(component);
 
         if (!(component instanceof Page)) {

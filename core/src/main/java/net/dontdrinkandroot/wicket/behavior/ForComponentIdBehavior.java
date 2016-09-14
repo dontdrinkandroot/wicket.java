@@ -27,7 +27,6 @@ import org.apache.wicket.markup.ComponentTag;
  */
 public class ForComponentIdBehavior extends Behavior
 {
-
     private Component targetComponent;
 
     public ForComponentIdBehavior(Component targetComponent)
@@ -41,5 +40,4 @@ public class ForComponentIdBehavior extends Behavior
         super.onComponentTag(component, tag);
         tag.put("for", this.targetComponent.getMarkupId());
     }
-
 }

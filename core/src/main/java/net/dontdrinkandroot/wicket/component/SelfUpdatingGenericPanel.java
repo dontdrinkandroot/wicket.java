@@ -22,14 +22,15 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
 
     private static final long serialVersionUID = 1L;
 
     public SelfUpdatingGenericPanel(final String id, Duration updateInterval)
     {
-
         super(id);
         this.setOutputMarkupId(true);
 
@@ -38,7 +39,6 @@ public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
 
     public SelfUpdatingGenericPanel(final String id, final IModel<T> model, Duration updateInterval)
     {
-
         super(id, model);
         this.setOutputMarkupId(true);
 

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.choicerenderer;
+package net.dontdrinkandroot.wicket.extras.choicerenderer;
 
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
@@ -24,10 +24,10 @@ import java.text.DateFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-
 /**
  * Choice renderer that converts Integer values to the corresponding shortMonths String, based on the given locale.
  *
+ * @author Philip Washington Sorst <philip@sorst.net>
  * @see DateFormatSymbols#getShortMonths()
  */
 public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
@@ -47,7 +47,7 @@ public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
             return "";
         }
 
-        return this.months[object.intValue()];
+        return this.months[object];
     }
 
     @Override
@@ -70,5 +70,4 @@ public class ShortMonthChoiceRenderer implements IChoiceRenderer<Integer>
 
         return null;
     }
-
 }

@@ -22,19 +22,17 @@ import org.apache.wicket.model.IModel;
 
 /**
  * Returns the name of an enum Model in lower case or null if not set.
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class EnumLowerCaseNameModel extends AbstractChainedModel<Enum<?>, String> {
-
     public EnumLowerCaseNameModel(IModel<? extends Enum<?>> parent)
     {
-
         super(parent);
     }
 
     @Override
     public String getObject()
     {
-
         if (this.getParent() == null) {
             return null;
         }
@@ -45,5 +43,4 @@ public class EnumLowerCaseNameModel extends AbstractChainedModel<Enum<?>, String
 
         return this.getParentObject().name().toLowerCase();
     }
-
 }

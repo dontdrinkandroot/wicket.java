@@ -22,10 +22,11 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class UnorderedList<T> extends AbstractList<T>
 {
-
     public UnorderedList(String id)
     {
         super(id);
@@ -42,5 +43,4 @@ public abstract class UnorderedList<T> extends AbstractList<T>
         tag.setName("ul");
         super.onComponentTag(tag);
     }
-
 }

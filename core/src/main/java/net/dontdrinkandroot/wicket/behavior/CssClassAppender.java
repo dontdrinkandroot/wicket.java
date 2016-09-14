@@ -23,28 +23,25 @@ import net.dontdrinkandroot.wicket.model.StringModel;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.IModel;
 
-
 /**
  * Appends a <tt>class</tt> attribute to an element.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class CssClassAppender extends AttributeAppender {
-
+public class CssClassAppender extends AttributeAppender
+{
     public CssClassAppender(final String classToAdd)
     {
-
         super("class", new StringModel(classToAdd), " ");
     }
 
     public CssClassAppender(CssClass cssClass)
     {
-
         super("class", new StringModel(cssClass.getClassString()), " ");
     }
 
     public CssClassAppender(IModel<? extends CssClass> cssClassModel)
     {
-
         super("class", new CssClassClassStringModel(cssClassModel), " ");
     }
-
 }
