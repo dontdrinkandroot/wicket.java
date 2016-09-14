@@ -26,7 +26,7 @@ import java.util.Locale;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class TemporalAccessorFormatModel extends AbstractChainedModel<TemporalAccessor, String>
+public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccessor, String>
 {
     // TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.
 
@@ -34,18 +34,18 @@ public class TemporalAccessorFormatModel extends AbstractChainedModel<TemporalAc
 
     private Locale locale;
 
-    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent)
+    public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent)
     {
         super(parent);
     }
 
-    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern)
+    public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent, String pattern)
     {
         super(parent);
         this.pattern = pattern;
     }
 
-    public TemporalAccessorFormatModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
+    public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
     {
         super(parent);
         this.pattern = pattern;
