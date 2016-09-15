@@ -22,15 +22,20 @@ http://semver.org/.
 Maven
 -----
 
-This project is not yet available via Maven Central. In the meantime you can include the dontdrinkandroot repository:
+This project is not yet available via Maven Central. In the meantime you can include the sonatype open source repository:
 
 ```xml
-<repositories>
-    <repository>
-        <id>dontdrinkandroot</id>
-        <url>https://maven.dontdrinkandroot.net/content/groups/public</url>
-    </repository>
-</repositories>
+<repository>
+    <id>oss-sonatype</id>
+    <name>oss-sonatype</name>
+    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+</repository>
 ```
 
 Demo

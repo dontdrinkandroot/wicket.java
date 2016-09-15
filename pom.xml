@@ -1,187 +1,235 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.dontdrinkandroot</groupId>
-	<artifactId>wicket.parent</artifactId>
-	<version>0.5.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<inceptionYear>2012</inceptionYear>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.dontdrinkandroot</groupId>
+    <artifactId>wicket.parent</artifactId>
+    <version>0.5.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <inceptionYear>2012</inceptionYear>
+    <description>Parent project for net.dontdrinkandroot.wicket modules</description>
 
-	<modules>
-		<module>core</module>
-		<module>bootstrap</module>
-		<module>extras</module>
-		<module>example</module>
-	</modules>
+    <modules>
+        <module>core</module>
+        <module>bootstrap</module>
+        <module>extras</module>
+        <module>example</module>
+    </modules>
 
-	<developers>
-		<developer>
-			<name>Philip Washington Sorst</name>
-			<url>https://sorst.net</url>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Philip Washington Sorst</name>
+            <url>https://sorst.net</url>
+        </developer>
+    </developers>
 
-	<organization>
-		<name>dontdrinkandroot</name>
-		<url>https://dontdrinkandroot.net</url>
-	</organization>
+    <organization>
+        <name>dontdrinkandroot</name>
+        <url>https://dontdrinkandroot.net</url>
+    </organization>
 
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
 
-	<repositories>
-		<repository>
-			<id>public</id>
-			<url>https://maven.dontdrinkandroot.net/content/groups/public</url>
-		</repository>
-	</repositories>
+    <scm>
+        <url>git@github.com:dontdrinkandroot/wicket.java.git</url>
+        <connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/dontdrinkandroot/wicket.java.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
-	<scm>
-		<url>git@github.com:dontdrinkandroot/wicket.java.git</url>
-		<connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/dontdrinkandroot/wicket.java.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/dontdrinkandroot/wicket.java/issues</url>
+    </issueManagement>
 
-	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/dontdrinkandroot/wicket.java/issues</url>
-	</issueManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<url>https://maven.dontdrinkandroot.net/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<url>https://maven.dontdrinkandroot.net/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.maven-compiler-plugin>3.5.1</version.maven-compiler-plugin>
+        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+        <version.maven-javadoc-plugin>2.10.4</version.maven-javadoc-plugin>
+        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
+        <version.org.jacoco.jacoco-maven-plugin>0.7.7.201606060606</version.org.jacoco.jacoco-maven-plugin>
+        <version.org.eluder.coveralls.coveralls-maven-plugin>4.2.0</version.org.eluder.coveralls.coveralls-maven-plugin>
+        <version.com.mycila.license-maven-plugin-parent>3.0</version.com.mycila.license-maven-plugin-parent>
+        <version.org.apache.wicket>7.4.0</version.org.apache.wicket>
+        <version.org.slf4j>1.7.7</version.org.slf4j>
+        <version.junit>4.12</version.junit>
+        <version.javax.servlet-api>3.1.0</version.javax.servlet-api>
+    </properties>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.org.apache.wicket>7.4.0</version.org.apache.wicket>
-		<version.maven-compiler-plugin>3.5.1</version.maven-compiler-plugin>
-		<version.junit>4.12</version.junit>
-		<version.javax.servlet-api>3.1.0</version.javax.servlet-api>
-		<version.org.jacoco.jacoco-maven-plugin>0.7.7.201606060606</version.org.jacoco.jacoco-maven-plugin>
-		<version.org.eluder.coveralls.coveralls-maven-plugin>4.2.0</version.org.eluder.coveralls.coveralls-maven-plugin>
-		<version.com.mycila.license-maven-plugin-parent>3.0</version.com.mycila.license-maven-plugin-parent>
-		<version.org.slf4j>1.7.7</version.org.slf4j>
-	</properties>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${version.maven-source-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${version.maven-javadoc-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${version.maven-gpg-plugin}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
-	<build>
 
-		<plugins>
+    <build>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${version.maven-compiler-plugin}</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			
-			 <plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${version.org.jacoco.jacoco-maven-plugin}</version>
-			</plugin>
-            
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven-compiler-plugin}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${version.org.jacoco.jacoco-maven-plugin}</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>${version.org.eluder.coveralls.coveralls-maven-plugin}</version>
             </plugin>
 
-			<plugin>
-				<groupId>com.mycila</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>${version.com.mycila.license-maven-plugin-parent}</version>
-				<configuration>
-					<header>LICENSE</header>
-					<mapping>
-						<java>SLASHSTAR_STYLE</java>
-					</mapping>
-					<excludes>
-						<exclude>LICENSE</exclude>
-						<exclude>**/*.xml</exclude>
-						<exclude>**/*.properties</exclude>
-						<exclude>**/*.html</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${version.com.mycila.license-maven-plugin-parent}</version>
+                <configuration>
+                    <header>LICENSE</header>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                    <excludes>
+                        <exclude>LICENSE</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.properties</exclude>
+                        <exclude>**/*.html</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
 
-		</plugins>
+        </plugins>
 
-		<!-- Make sure HTML files are also copied from main/java -->
-		<resources>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<filtering>false</filtering>
-				<directory>src/test/resources</directory>
-			</testResource>
-			<testResource>
-				<filtering>false</filtering>
-				<directory>src/test/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
+        <!-- Make sure HTML files are also copied from main/java -->
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
 
-	</build>
+    </build>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>${version.javax.servlet-api}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${version.org.slf4j}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${version.junit}</version>
-				<scope>test</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${version.javax.servlet-api}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${version.org.slf4j}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

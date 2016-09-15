@@ -8,6 +8,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>wicket.example</artifactId>
 	<packaging>war</packaging>
+	<description>Example application for net.dontdrinkandroot.wicket modules</description>
 
 	<properties>
 		<version.org.eclipse.jetty.jetty-maven-plugin>9.3.10.v20160621</version.org.eclipse.jetty.jetty-maven-plugin>

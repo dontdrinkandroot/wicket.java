@@ -7,6 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>wicket.bootstrap</artifactId>
+	<description>Apache Wicket bindings for Twitter Bootstrap</description>
 
 	<dependencies>
 

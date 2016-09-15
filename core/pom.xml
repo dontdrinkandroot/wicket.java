@@ -7,6 +7,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>wicket.core</artifactId>
+	<description>Apache Wicket core extensions</description>
 
 	<dependencies>
 
