@@ -26,13 +26,23 @@ import org.apache.wicket.request.Response;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.resource.UrlResourceReference;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class ExampleApplication extends WebApplication
 {
+
+    private Properties buildProperties;
 
     @Override
     public Class<? extends Page> getHomePage()
     {
         return HomePage.class;
+    }
+
+    public static ExampleApplication get()
+    {
+        return (ExampleApplication) WebApplication.get();
     }
 
     @Override
@@ -43,6 +53,18 @@ public class ExampleApplication extends WebApplication
         this.getMarkupSettings().setStripWicketTags(true);
         this.getJavaScriptLibrarySettings()
                 .setJQueryReference(new UrlResourceReference(Url.parse("https://code.jquery.com/jquery-2.2.4.min.js")));
+
+        try {
+            this.buildProperties = new Properties();
+            this.buildProperties.load(this.getClass().getClassLoader().getResourceAsStream("build.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Properties getBuildProperties()
+    {
+        return this.buildProperties;
     }
 
     @Override

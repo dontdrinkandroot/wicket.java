@@ -24,6 +24,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
+import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
 import net.dontdrinkandroot.wicket.example.page.component.*;
 import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
@@ -194,6 +195,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     {
         super.populateNavbarRightItems(itemView);
         itemView.add(new ThemeDropDownItem(itemView.newChildId()));
+        itemView.add(new BuildInfoItem(itemView.newChildId()));
     }
 
     @Override

@@ -52,6 +52,6 @@ public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
             backingLibraryReference = JQueryResourceReference.get();
         }
 
-        return Collections.singletonList((HeaderItem) JavaScriptHeaderItem.forReference(backingLibraryReference));
+        return Collections.singletonList(JavaScriptHeaderItem.forReference(backingLibraryReference));
     }
 }
