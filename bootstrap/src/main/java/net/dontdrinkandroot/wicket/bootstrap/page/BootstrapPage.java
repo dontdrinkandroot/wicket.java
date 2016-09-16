@@ -70,7 +70,7 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
 
     protected BootstrapJsHeaderItem getBootstrapJavaScriptHeaderItem()
     {
-        return new BootstrapJsHeaderItem(false);
+        return new BootstrapJsHeaderItem(true);
     }
 
     protected BootstrapCssHeaderItem getBootstrapCssHeaderItem()

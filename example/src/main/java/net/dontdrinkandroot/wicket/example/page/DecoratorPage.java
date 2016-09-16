@@ -46,6 +46,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 {
+    private static String FONT_AWESOME_VERSION = "4.6.3";
+
 
     public DecoratorPage()
     {
@@ -83,7 +85,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                         RuntimeConfigurationType.DEVELOPMENT.equals(ExampleApplication.get().getConfigurationType()));
             }
         };
-        debugBar.add(new AttributeModifier("style", "z-index: 1030; bottom: -43px; top: initial;"));
+        debugBar.add(new AttributeModifier("style", "z-index: 1030; top: 50px; position: fixed;"));
         this.add(debugBar);
     }
 
@@ -98,7 +100,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     @Override
     protected Component createBrand(String id)
     {
-        BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink(id, HomePage.class);
+        BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<>(id, HomePage.class);
         brandLink.setBody(Model.of("wicket.example"));
 
         return brandLink;
@@ -201,7 +203,10 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
         response.render(
                 new CssUrlReferenceHeaderItem(
-                        "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css",
+                        String.format(
+                                "https://maxcdn.bootstrapcdn.com/font-awesome/%s/css/font-awesome.min.css",
+                                FONT_AWESOME_VERSION
+                        ),
                         null,
                         null
                 ));

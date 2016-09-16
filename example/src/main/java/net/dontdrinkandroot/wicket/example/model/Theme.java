@@ -17,15 +17,15 @@
  */
 package net.dontdrinkandroot.wicket.example.model;
 
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class Theme implements Serializable
 {
-
     private String name;
 
     private String url;
@@ -33,6 +33,7 @@ public class Theme implements Serializable
     public Theme(String name, String url)
     {
         super();
+
         this.name = name;
         this.url = url;
     }
@@ -49,37 +50,39 @@ public class Theme implements Serializable
 
     public static List<Theme> getAvailableThemes()
     {
-        String version = "3.3.6";
         List<Theme> availableThemes = new ArrayList<Theme>();
         availableThemes.add(
                 new Theme(
                         "Vanilla",
-                        String.format("https://maxcdn.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css", version)
+                        String.format(
+                                "https://maxcdn.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css",
+                                BootstrapJsHeaderItem.BOOTSTRAP_VERSION
+                        )
                 ));
 
         List<String> bootswatchThemeNames = Arrays.asList(
-                new String[]{
-                        "Cerulean",
-                        "Cosmo",
-                        "Cyborg",
-                        "Darkly",
-                        "Flatly",
-                        "Journal",
-                        "Lumen",
-                        "Paper",
-                        "Readable",
-                        "Sandstone",
-                        "Simplex",
-                        "Slate",
-                        "Spacelab",
-                        "Superhero",
-                        "United",
-                        "Yeti",});
+                "Cerulean",
+                "Cosmo",
+                "Cyborg",
+                "Darkly",
+                "Flatly",
+                "Journal",
+                "Lumen",
+                "Paper",
+                "Readable",
+                "Sandstone",
+                "Simplex",
+                "Slate",
+                "Spacelab",
+                "Superhero",
+                "United",
+                "Yeti"
+        );
 
         for (String name : bootswatchThemeNames) {
             String url = String.format(
                     "https://maxcdn.bootstrapcdn.com/bootswatch/%s/%s/bootstrap.min.css",
-                    version,
+                    BootstrapJsHeaderItem.BOOTSTRAP_VERSION,
                     name.toLowerCase()
             );
             availableThemes.add(new Theme(name, url));

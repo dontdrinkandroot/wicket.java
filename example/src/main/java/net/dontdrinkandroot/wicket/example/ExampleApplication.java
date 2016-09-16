@@ -23,7 +23,8 @@ import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
-
+import org.apache.wicket.request.Url;
+import org.apache.wicket.request.resource.UrlResourceReference;
 
 public class ExampleApplication extends WebApplication
 {
@@ -40,6 +41,8 @@ public class ExampleApplication extends WebApplication
         super.init();
 
         this.getMarkupSettings().setStripWicketTags(true);
+        this.getJavaScriptLibrarySettings()
+                .setJQueryReference(new UrlResourceReference(Url.parse("https://code.jquery.com/jquery-2.2.4.min.js")));
     }
 
     @Override
@@ -47,5 +50,4 @@ public class ExampleApplication extends WebApplication
     {
         return new ExampleWebSession(request);
     }
-
 }

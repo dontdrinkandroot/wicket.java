@@ -27,13 +27,19 @@ import org.apache.wicket.resource.JQueryResourceReference;
 import java.util.Collections;
 import java.util.List;
 
-
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 {
+    public static String BOOTSTRAP_VERSION = "3.3.6";
 
     public BootstrapJsHeaderItem(boolean defer)
     {
-        super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", "bootstrap.js", defer, null, null);
+        super(
+                String.format("https://maxcdn.bootstrapcdn.com/bootstrap/%s/js/bootstrap.min.js", BOOTSTRAP_VERSION),
+                "bootstrap.js",
+                defer,
+                null,
+                null
+        );
     }
 
     @Override
