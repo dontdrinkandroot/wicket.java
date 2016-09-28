@@ -18,11 +18,11 @@
 package net.dontdrinkandroot.wicket.javascript;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.util.time.Duration;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Properties;
-
 
 /**
  * Utilities to programmatically assemble simple JQuery Scripts.
@@ -31,9 +31,9 @@ import java.util.Properties;
  */
 public class JQueryScript implements CharSequence
 {
-    public static Integer DEFAULT_ANIMATION_DURATION = Integer.valueOf(400);
+    public static Duration DEFAULT_ANIMATION_DURATION = Duration.milliseconds(400);
 
-    public static String DEFAULT_EASING_FUNCTION = "swing";
+    public static EasingFunction DEFAULT_EASING_FUNCTION = JQueryEasingFunction.SWING;
 
     public static String TEMPLATE_ANIMATE = ".animate(%s, %d, '%s', function() {%s})";
 
@@ -85,8 +85,7 @@ public class JQueryScript implements CharSequence
     /**
      * Create a new JQuery Script using the given selector.
      *
-     * @param selector
-     *            The selector to use.
+     * @param selector The selector to use.
      */
     public JQueryScript(final String selector)
     {
@@ -120,8 +119,7 @@ public class JQueryScript implements CharSequence
     /**
      * Perform a custom animation of a set of CSS properties.
      *
-     * @param properties
-     *            A map of CSS properties that the animation will move toward.
+     * @param properties A map of CSS properties that the animation will move toward.
      * @return This script for chaining.
      */
     public JQueryScript animate(final Properties properties)
@@ -132,20 +130,16 @@ public class JQueryScript implements CharSequence
     /**
      * Perform a custom animation of a set of CSS properties.
      *
-     * @param properties
-     *            A map of CSS properties that the animation will move toward.
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param properties     A map of CSS properties that the animation will move toward.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
     public JQueryScript animate(
             final Properties properties,
-            final Integer duration,
-            final String easing,
+            final Duration duration,
+            final EasingFunction easingFunction,
             final CharSequence callbackScript
     )
     {
@@ -154,7 +148,7 @@ public class JQueryScript implements CharSequence
                         JQueryScript.TEMPLATE_ANIMATE,
                         this.parseProperties(properties),
                         this.parseDurationWithDefault(duration),
-                        this.parseEasingWithDefault(easing),
+                        this.parseEasingFunctionWithDefault(easingFunction),
                         this.parseScriptWithDefault(callbackScript)
                 ));
 
@@ -164,8 +158,7 @@ public class JQueryScript implements CharSequence
     /**
      * Get the children of each element in the set of matched elements, optionally filtered by a selector.
      *
-     * @param selector
-     *            The selector to use.
+     * @param selector The selector to use.
      * @return This script for chaining.
      */
     public JQueryScript children(final String selector)
@@ -181,53 +174,31 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript fadeIn()
     {
-        return this.fadeIn(null, null, null);
+        this.scriptBuffer.append(".fadeIn()");
+        return this;
     }
 
     /**
      * Display the matched elements by fading them to opaque.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript fadeIn(final Integer duration, final CharSequence callbackScript)
+    public JQueryScript fadeIn(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final CharSequence callbackScript
+    )
     {
-        return this.fadeIn(duration, null, callbackScript);
-    }
-
-    /**
-     * Display the matched elements by fading them to opaque.
-     *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
-     * @return This script for chaining.
-     */
-    public JQueryScript fadeIn(final Integer duration, final String easing, final CharSequence callbackScript)
-    {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        CharSequence actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_FADEIN, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_FADEIN,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -239,39 +210,31 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript fadeOut()
     {
-        return this.fadeOut(null, null, null);
+        this.scriptBuffer.append(".fadeOut()");
+        return this;
     }
 
     /**
      * Hide the matched elements by fading them to transparent.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript fadeOut(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript fadeOut(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_FADEOUT, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_FADEOUT,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -279,49 +242,35 @@ public class JQueryScript implements CharSequence
     /**
      * Display or hide the matched elements by animating their opacity.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
     public JQueryScript fadeToggle()
     {
-        return this.fadeToggle(null, null, null);
+        this.scriptBuffer.append(".fadeToggle()");
+        return this;
     }
 
     /**
      * Display or hide the matched elements by animating their opacity.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript fadeToggle(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript fadeToggle(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_FADETOGGLE, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_FADETOGGLE,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -333,52 +282,38 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript hide()
     {
-        return this.hide(null, null, null);
+        this.scriptBuffer.append(".hide()");
+        return this;
     }
 
     /**
      * Hide the matched elements.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 0 (hiding
-     *            immediately).
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 0 (hiding
+     *                       immediately).
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript hide(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript hide(final Duration duration, final EasingFunction easingFunction, final String callbackScript)
     {
-        Integer actualDuration = Integer.valueOf(0);
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer
-                .append(String.format(JQueryScript.TEMPLATE_HIDE, actualDuration, actualEasing, actualCallbackScript));
+                .append(String.format(
+                        JQueryScript.TEMPLATE_HIDE,
+                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
 
     public JQueryScript click(String callbackScript)
     {
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
-        this.scriptBuffer.append(String.format(JQueryScript.TEMPLATE_CLICK, actualCallbackScript));
+        this.scriptBuffer.append(String.format(
+                JQueryScript.TEMPLATE_CLICK,
+                this.parseScriptWithDefault(callbackScript)
+        ));
 
         return this;
     }
@@ -390,40 +325,28 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript show()
     {
-        return this.show(null, null, null);
+        this.scriptBuffer.append(".show()");
+        return this;
     }
 
     /**
      * Display the matched elements.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 0 (showing
-     *            immediately).
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 0 (showing
+     *                       immediately).
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript show(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript show(final Duration duration, final EasingFunction easingFunction, final String callbackScript)
     {
-        Integer actualDuration = Integer.valueOf(0);
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer
-                .append(String.format(JQueryScript.TEMPLATE_SHOW, actualDuration, actualEasing, actualCallbackScript));
+                .append(String.format(
+                        JQueryScript.TEMPLATE_SHOW,
+                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -435,39 +358,31 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript slideDown()
     {
-        return this.slideDown(null, null, null);
+        this.scriptBuffer.append(".slideDown()");
+        return this;
     }
 
     /**
      * Display the matched elements with a sliding motion.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript slideDown(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript slideDown(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_SLIDEDOWN, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_SLIDEDOWN,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -479,39 +394,31 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript slideUp()
     {
-        return this.slideUp(null, null, null);
+        this.scriptBuffer.append(".slideUp()");
+        return this;
     }
 
     /**
      * Hide the matched elements with a sliding motion.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript slideUp(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript slideUp(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_SLIDEUP, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_SLIDEUP,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -523,39 +430,31 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript slideToggle()
     {
-        return this.slideToggle(null, null, null);
+        this.scriptBuffer.append(".slideToggle()");
+        return this;
     }
 
     /**
      * Display or hide the matched elements with a sliding motion.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 400.
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 400.
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript slideToggle(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript slideToggle(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = JQueryScript.DEFAULT_ANIMATION_DURATION;
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_SLIDETOGGLE, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_SLIDETOGGLE,
+                        this.parseDurationWithDefault(duration),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
@@ -567,69 +466,66 @@ public class JQueryScript implements CharSequence
      */
     public JQueryScript toggle()
     {
-        return this.toggle(null, null, null);
+        this.scriptBuffer.append(".toggle()");
+        return this;
     }
 
     /**
      * Display or hide the matched elements.
      *
-     * @param duration
-     *            A number determining how long the animation will run (in milliseconds), defaults to 0 (toggling
-     *            immediately).
-     * @param easing
-     *            A string indicating which easing function to use for the transition, defaults to "swing".
-     * @param callbackScript
-     *            A script to call once the animation is complete, defaults to an empty script.
+     * @param duration       A number determining how long the animation will run (in milliseconds), defaults to 0 (toggling
+     *                       immediately).
+     * @param easingFunction A string indicating which easing function to use for the transition, defaults to "swing".
+     * @param callbackScript A script to call once the animation is complete, defaults to an empty script.
      * @return This script for chaining.
      */
-    public JQueryScript toggle(final Integer duration, final String easing, final String callbackScript)
+    public JQueryScript toggle(
+            final Duration duration,
+            final EasingFunction easingFunction,
+            final String callbackScript
+    )
     {
-        Integer actualDuration = Integer.valueOf(0);
-        if (duration != null) {
-            actualDuration = duration;
-        }
-
-        String actualEasing = JQueryScript.DEFAULT_EASING_FUNCTION;
-        if (easing != null) {
-            actualEasing = easing;
-        }
-
-        String actualCallbackScript = "";
-        if (callbackScript != null) {
-            actualCallbackScript = callbackScript;
-        }
-
         this.scriptBuffer.append(
-                String.format(JQueryScript.TEMPLATE_TOGGLE, actualDuration, actualEasing, actualCallbackScript));
+                String.format(
+                        JQueryScript.TEMPLATE_TOGGLE,
+                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseEasingFunctionWithDefault(easingFunction),
+                        this.parseScriptWithDefault(callbackScript)
+                ));
 
         return this;
     }
 
-    private Integer parseDurationWithDefault(final Integer duration)
+    private long parseDurationWithDefault(final Duration duration)
     {
-        if (duration != null) {
-            return duration;
-        } else {
-            return JQueryScript.DEFAULT_ANIMATION_DURATION;
-        }
+        return this.parseDurationWithDefault(duration, JQueryScript.DEFAULT_ANIMATION_DURATION);
     }
 
-    private String parseEasingWithDefault(final String easing)
+    private long parseDurationWithDefault(Duration duration, Duration defaultValue)
     {
-        if (easing != null) {
-            return easing;
-        } else {
-            return JQueryScript.DEFAULT_EASING_FUNCTION;
+        if (null != duration) {
+            return duration.getMilliseconds();
         }
+
+        return defaultValue.getMilliseconds();
+    }
+
+    private String parseEasingFunctionWithDefault(final EasingFunction easingFunction)
+    {
+        if (null != easingFunction) {
+            return easingFunction.getName();
+        }
+
+        return JQueryScript.DEFAULT_EASING_FUNCTION.getName();
     }
 
     private CharSequence parseScriptWithDefault(final CharSequence callbackScript)
     {
         if (callbackScript == null) {
             return "";
-        } else {
-            return callbackScript;
         }
+
+        return callbackScript;
     }
 
     private CharSequence parseProperties(final Properties properties)
@@ -661,28 +557,25 @@ public class JQueryScript implements CharSequence
 
     private String nullSafeEscapedString(final String s)
     {
-        if (s == null) {
+        if (null == s) {
             return "";
-        } else {
-            return "'" + s + "'";
         }
+
+        return "'" + s + "'";
     }
 
-    // TODO refactor
     public JQueryScript siblings(final String selector)
     {
         this.scriptBuffer.append(".siblings(" + this.nullSafeEscapedString(selector) + ")");
         return this;
     }
 
-    // TODO refactor
     public JQueryScript removeClass(final String string)
     {
         this.scriptBuffer.append(".removeClass('" + string + "')");
         return this;
     }
 
-    // TODO refactor
     public JQueryScript addClass(final String string)
     {
         this.scriptBuffer.append(".addClass('" + string + "')");
