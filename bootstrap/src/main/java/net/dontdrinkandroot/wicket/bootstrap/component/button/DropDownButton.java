@@ -35,7 +35,6 @@ import org.apache.wicket.model.IModel;
 
 public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     private IModel<String> labelModel;
