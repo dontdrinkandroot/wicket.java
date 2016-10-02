@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
 public class ColumnOffsetStack implements ColumnOffset
 {
-
     private ColumnOffsetExtraSmall columnOffsetExtraSmall;
 
     private ColumnOffsetSmall columnOffsetSmall;
@@ -95,5 +94,4 @@ public class ColumnOffsetStack implements ColumnOffset
 
         return new ColumnOffsetStack(columnOffsetExtraSmall, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
     }
-
 }
