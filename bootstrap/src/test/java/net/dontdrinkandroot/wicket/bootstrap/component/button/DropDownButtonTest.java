@@ -25,7 +25,6 @@ public class DropDownButtonTest extends AbstractWicketTest
             }
         };
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        System.out.println(componentMarkup);
         TagTester componentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(componentTester.getAttributeContains("class", "btn-group"));
