@@ -22,21 +22,20 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
-public abstract class OrderedList<T> extends AbstractList<T> {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class OrderedList<T> extends AbstractList<T>
+{
     public OrderedList(String id, IModel<List<T>> model)
     {
-
         super(id, model);
     }
 
     @Override
     protected void onComponentTag(ComponentTag tag)
     {
-
         tag.setName("ol");
         super.onComponentTag(tag);
     }
-
 }

@@ -75,7 +75,7 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>>
     protected void onComponentTag(ComponentTag tag)
     {
         super.onComponentTag(tag);
-        this.checkComponentTag(tag, "ul", "li");
+        this.checkComponentTag(tag, "ul", "ol");
     }
 
     protected final void checkComponentTag(final ComponentTag tag, String... names)
