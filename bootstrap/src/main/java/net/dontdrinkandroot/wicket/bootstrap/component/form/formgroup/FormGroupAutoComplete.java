@@ -34,7 +34,6 @@ import org.apache.wicket.util.time.Duration;
 
 import java.util.List;
 
-
 public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, String, TextField<String>>
 {
 
@@ -58,7 +57,6 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
 
         this.suggestionView = new ListView<String>("suggestionItem", new AbstractReadOnlyModel<List<String>>()
         {
-
             @Override
             public List<String> getObject()
             {
@@ -66,13 +64,11 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
             }
         })
         {
-
             @Override
             protected void populateItem(ListItem<String> item)
             {
                 AjaxLink<String> link = new AjaxLink<String>("link", item.getModel())
                 {
-
                     @Override
                     public void onClick(AjaxRequestTarget target)
                     {
@@ -106,7 +102,6 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
         this.add(new CssClassAppender("autocomplete"));
         this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input")
         {
-
             @Override
             protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
             {
@@ -125,10 +120,8 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
     @Override
     protected TextField<String> createFormComponent(String id)
     {
-        TextField<String> textField = new TextField<String>(id, this.getModel());
-        return textField;
+        return new TextField<String>(id, this.getModel());
     }
 
     protected abstract List<String> getChoices(String input);
-
 }
