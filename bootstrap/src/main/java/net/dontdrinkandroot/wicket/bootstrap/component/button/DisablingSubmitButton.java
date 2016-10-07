@@ -26,10 +26,8 @@ import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
-public abstract class DisablingSubmitButton extends AjaxSubmitLink
+public class DisablingSubmitButton extends AjaxSubmitLink
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     private IModel<String> loadingTextModel = new Model<String>("Submitting...");
@@ -61,7 +59,6 @@ public abstract class DisablingSubmitButton extends AjaxSubmitLink
 
         attributes.getAjaxCallListeners().add(new AjaxCallListener()
         {
-
             @Override
             public CharSequence getBeforeHandler(Component component)
             {
@@ -115,5 +112,4 @@ public abstract class DisablingSubmitButton extends AjaxSubmitLink
     {
         return this.loadingTextModel;
     }
-
 }
