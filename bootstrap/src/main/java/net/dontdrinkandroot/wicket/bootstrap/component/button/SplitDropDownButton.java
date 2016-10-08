@@ -31,10 +31,8 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
 abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements IButton
 {
-
     private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     private WebMarkupContainer toggle;
@@ -78,7 +76,6 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
     {
         DropDownMenu dropDownMenu = new DropDownMenu(id)
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {
@@ -87,8 +84,6 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
         };
         return dropDownMenu;
     }
-
-    ;
 
     @Override
     public ButtonSize getButtonSize()
