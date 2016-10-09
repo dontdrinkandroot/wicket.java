@@ -28,7 +28,6 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
 public class ProgressBar extends GenericPanel<Integer>
 {
 
@@ -42,19 +41,16 @@ public class ProgressBar extends GenericPanel<Integer>
 
     public ProgressBar(String id)
     {
-
-        this(id, new Model<Integer>(0));
+        this(id, new Model<>(0));
     }
 
     public ProgressBar(String id, IModel<Integer> model)
     {
-
         super(id, model);
     }
 
     public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style)
     {
-
         super(id, model);
 
         this.styleModel = Model.of(style);
@@ -62,7 +58,6 @@ public class ProgressBar extends GenericPanel<Integer>
 
     public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped)
     {
-
         super(id, model);
 
         this.styleModel = Model.of(style);
@@ -71,7 +66,6 @@ public class ProgressBar extends GenericPanel<Integer>
 
     public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped, boolean active)
     {
-
         super(id, model);
 
         this.styleModel = Model.of(style);
@@ -82,7 +76,6 @@ public class ProgressBar extends GenericPanel<Integer>
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
 
         this.add(new CssClassAppender(BootstrapCssClass.PROGRESS));
@@ -90,11 +83,9 @@ public class ProgressBar extends GenericPanel<Integer>
         /* Active */
         this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
         {
-
             @Override
             public BootstrapCssClass getObject()
             {
-
                 if (ProgressBar.this.isActive()) {
                     return BootstrapCssClass.ACTIVE;
                 }
@@ -106,11 +97,9 @@ public class ProgressBar extends GenericPanel<Integer>
         /* Striped */
         this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
         {
-
             @Override
             public BootstrapCssClass getObject()
             {
-
                 if (ProgressBar.this.isStriped()) {
                     return BootstrapCssClass.PROGRESS_STRIPED;
                 }
@@ -125,11 +114,9 @@ public class ProgressBar extends GenericPanel<Integer>
 
         this.bar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>()
         {
-
             @Override
             public String getObject()
             {
-
                 return String.format("width: %d%%;", ProgressBar.this.getModelObject());
             }
         }));
@@ -143,45 +130,38 @@ public class ProgressBar extends GenericPanel<Integer>
 
     public void setBarStyle(ProgressBarStyle barStyle)
     {
-
         this.styleModel.setObject(barStyle);
     }
 
     public ProgressBarStyle getBarStyle()
     {
-
         return this.styleModel.getObject();
     }
 
     public ProgressBar setActive(boolean active)
     {
-
         this.active = active;
         return this;
     }
 
     public boolean isActive()
     {
-
         return this.active;
     }
 
     public ProgressBar setStriped(boolean striped)
     {
-
         this.striped = striped;
         return this;
     }
 
     public boolean isStriped()
     {
-
         return this.striped;
     }
 
     public void update(AjaxRequestTarget target)
     {
-
         target.appendJavaScript(
                 String.format("$('#%s').css({width: '%d%%'});", this.bar.getMarkupId(), this.getModelObject()));
         target.appendJavaScript(
@@ -190,7 +170,6 @@ public class ProgressBar extends GenericPanel<Integer>
 
     public WebMarkupContainer getBar()
     {
-
         return this.bar;
     }
 }

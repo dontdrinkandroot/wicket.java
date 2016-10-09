@@ -27,7 +27,6 @@ import org.junit.Test;
 
 public class ButtonBehaviorTest extends AbstractWicketTest
 {
-
     @Test
     public void testDefault()
     {
@@ -54,5 +53,4 @@ public class ButtonBehaviorTest extends AbstractWicketTest
         Assert.assertTrue(tagTester.getAttributeContains("class", "btn-default"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "disabled"));
     }
-
 }
