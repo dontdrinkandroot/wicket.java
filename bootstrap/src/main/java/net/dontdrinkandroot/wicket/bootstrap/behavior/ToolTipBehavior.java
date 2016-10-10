@@ -32,20 +32,18 @@ public class ToolTipBehavior extends Behavior {
 
     private final IModel<String> textModel;
 
-    private final IModel<Position> positionModel = new Model<Position>();
+    private final IModel<Position> positionModel = new Model<>();
 
-    private final IModel<Integer> delayModel = new Model<Integer>();
+    private final IModel<Integer> delayModel = new Model<>();
 
     public ToolTipBehavior(IModel<String> textModel)
     {
-
         this.textModel = textModel;
     }
 
     @Override
     public void bind(Component component)
     {
-
         super.bind(component);
 
         component.add(new AttributeModifier("title", this.textModel));
@@ -57,7 +55,6 @@ public class ToolTipBehavior extends Behavior {
     @Override
     public void renderHead(Component component, IHeaderResponse response)
     {
-
         super.renderHead(component, response);
 
         response.render(OnDomReadyHeaderItem.forScript("$('.has-tooltip').tooltip();"));
@@ -65,39 +62,33 @@ public class ToolTipBehavior extends Behavior {
 
     public Integer getDelay()
     {
-
         return this.delayModel.getObject();
     }
 
     public ToolTipBehavior setDelay(Integer delay)
     {
-
         this.delayModel.setObject(delay);
         return this;
     }
 
     public Position getPosition()
     {
-
         return this.positionModel.getObject();
     }
 
     public ToolTipBehavior setPosition(Position position)
     {
-
         this.positionModel.setObject(position);
         return this;
     }
 
     protected IModel<Position> getPositionModel()
     {
-
         return this.positionModel;
     }
 
     protected IModel<Integer> getDelayModel()
     {
-
         return this.delayModel;
     }
 
@@ -108,5 +99,4 @@ public class ToolTipBehavior extends Behavior {
         LEFT,
         RIGHT;
     }
-
 }
