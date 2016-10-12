@@ -22,10 +22,8 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.model.IModel;
 
-//TODO: Still not able to handle double submits the way intended.
 public class SimpleAjaxForm<T> extends SimpleForm<T>
 {
-
     public SimpleAjaxForm(String id)
     {
         super(id);
@@ -47,7 +45,6 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
             {
                 super.updateAjaxAttributes(attributes);
                 attributes.setPreventDefault(true);
-                attributes.setEventPropagation(AjaxRequestAttributes.EventPropagation.STOP_IMMEDIATE);
             }
 
             @Override
@@ -73,16 +70,6 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
         });
     }
 
-    protected void onAfterSubmit(AjaxRequestTarget target)
-    {
-        /* Hook */
-    }
-
-    protected void onSubmit(AjaxRequestTarget target)
-    {
-        /* Hook */
-    }
-
     protected void onError(AjaxRequestTarget target)
     {
         target.add(this);
@@ -91,7 +78,7 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
     @Override
     protected final void onError()
     {
-        if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
+        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
             this.onError(null);
         }
     }
@@ -99,9 +86,19 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
     @Override
     protected final void onSubmit()
     {
-        if (this.getRequestCycle().find(AjaxRequestTarget.class) == null) {
+        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
             this.onSubmit(null);
             this.onAfterSubmit(null);
         }
+    }
+
+    protected void onAfterSubmit(AjaxRequestTarget target)
+    {
+        /* Hook */
+    }
+
+    protected void onSubmit(AjaxRequestTarget target)
+    {
+        /* Hook */
     }
 }

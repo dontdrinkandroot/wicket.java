@@ -27,10 +27,7 @@ import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
 import net.dontdrinkandroot.wicket.example.page.component.*;
-import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
-import net.dontdrinkandroot.wicket.example.page.form.FormPage;
-import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
-import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
+import net.dontdrinkandroot.wicket.example.page.form.*;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.RuntimeConfigurationType;
@@ -179,6 +176,12 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                                 itemView.newChildId(),
                                 Model.of("Validations"),
                                 ValidationPage.class
+                        ));
+                itemView.add(
+                        new BookmarkablePageLinkItem(
+                                itemView.newChildId(),
+                                Model.of("Ajax Forms"),
+                                AjaxFormPage.class
                         ));
             }
 

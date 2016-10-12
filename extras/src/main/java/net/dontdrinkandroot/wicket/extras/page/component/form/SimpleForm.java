@@ -31,10 +31,8 @@ import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
 public class SimpleForm<T> extends Form<T> implements IQueueRegion
 {
-
     private FormStyleBehavior formStyleBehavior = new FormStyleBehavior();
 
     private FeedbackPanel feedbackPanel;
@@ -69,7 +67,7 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
 
     protected Component createActionsView(String id)
     {
-        FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(id)
+        return new FormGroupActions<Void>(id)
         {
             @Override
             protected void populateActions(RepeatingView actionView)
@@ -77,7 +75,6 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
                 SimpleForm.this.populateActions(actionView);
             }
         };
-        return formGroupActions;
     }
 
     /**

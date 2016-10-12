@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.example.page;
 
 import net.dontdrinkandroot.wicket.example.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.example.page.component.*;
+import net.dontdrinkandroot.wicket.example.page.form.AjaxFormPage;
 import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
 import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
 import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
@@ -28,7 +29,6 @@ import org.junit.Test;
 
 public class SmokeTest extends AbstractWicketTest
 {
-
     @Test
     public void testPages()
     {
@@ -46,6 +46,7 @@ public class SmokeTest extends AbstractWicketTest
         this.testPage(ProgressBarPage.class);
         this.testPage(FormGroupPage.class);
         this.testPage(PaginationPage.class);
+        this.testPage(AjaxFormPage.class);
     }
 
     protected <T extends Page> void testPage(Class<T> pageClass)
