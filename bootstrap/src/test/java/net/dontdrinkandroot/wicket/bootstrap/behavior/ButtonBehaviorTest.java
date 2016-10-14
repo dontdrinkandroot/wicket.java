@@ -18,17 +18,39 @@
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class ButtonBehaviorTest extends AbstractWicketTest
 {
     @Test
-    public void testDefault()
+    public void testGettersSetters()
+    {
+        ButtonBehavior buttonBehavior = new ButtonBehavior(ButtonStyle.PRIMARY, ButtonSize.LARGE);
+        Assert.assertEquals(ButtonStyle.PRIMARY, buttonBehavior.getButtonStyle());
+        Assert.assertEquals(ButtonSize.LARGE, buttonBehavior.getButtonSize());
+
+        buttonBehavior.setButtonStyle(ButtonStyle.DANGER);
+        Assert.assertEquals(ButtonStyle.DANGER, buttonBehavior.getButtonStyle());
+
+        buttonBehavior.setButtonStyleModel(Model.of(ButtonStyle.INFO));
+        Assert.assertEquals(ButtonStyle.INFO, buttonBehavior.getButtonStyle());
+
+        buttonBehavior.setButtonSize(ButtonSize.SMALL);
+        Assert.assertEquals(ButtonSize.SMALL, buttonBehavior.getButtonSize());
+
+        buttonBehavior.setButtonSizeModel(Model.of(ButtonSize.EXTRA_SMALL));
+        Assert.assertEquals(ButtonSize.EXTRA_SMALL, buttonBehavior.getButtonSize());
+    }
+
+    @Test
+    public void testDefaultMarkup()
     {
         WebMarkupContainer buttonContainer = new WebMarkupContainer("id");
         buttonContainer.add(new ButtonBehavior());
@@ -41,7 +63,7 @@ public class ButtonBehaviorTest extends AbstractWicketTest
     }
 
     @Test
-    public void testDisabled()
+    public void testDisabledMarkup()
     {
         WebMarkupContainer buttonContainer = new WebMarkupContainer("id");
         buttonContainer.setEnabled(false);
