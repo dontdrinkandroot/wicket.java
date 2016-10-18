@@ -27,10 +27,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
 public class ModalPage extends ComponentPage
 {
-
     public ModalPage(PageParameters parameters)
     {
         super(parameters);
@@ -46,9 +44,9 @@ public class ModalPage extends ComponentPage
     protected void onInitialize()
     {
         super.onInitialize();
+
         this.add(new AjaxButton<Void>("openStandardModalButton")
         {
-
             @Override
             public void onClick(AjaxRequestTarget target)
             {
@@ -58,7 +56,6 @@ public class ModalPage extends ComponentPage
 
         this.add(new AjaxButton<Void>("openFormModalButton")
         {
-
             @Override
             public void onClick(AjaxRequestTarget target)
             {
@@ -66,5 +63,4 @@ public class ModalPage extends ComponentPage
             }
         }.setBody(Model.of("Form Modal")));
     }
-
 }
