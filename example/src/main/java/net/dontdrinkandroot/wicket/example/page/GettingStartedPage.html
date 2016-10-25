@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<body>
+<wicket:extend>
+    <section>
+        <h2>Installation - Maven</h2>
+        The project is not available at <a href="https://search.maven.org/" rel="external">Maven Central</a> yet.
+
+        <h3>Manual</h3>
+
+        <p>You can clone it from GitHub and install it to your local repository:</p>
+
+        <pre><code>git clone https://github.com/dontdrinkandroot/wicket.java
+cd wicket.java
+mvn clean install</code></pre>
+
+        <h3>Sonatype</h3>
+
+        <p>The snapshots are currently deployed to the <a href="https://oss.sonatype.org/" rel="external">Sontatype Open
+            Source Software repository</a>. If you want to receive the latest version, simply include it in your
+            projects pom.xml:</p>
+        <pre><code>&lt;repositories&gt;
+    ...
+    &lt;repository&gt;
+        &lt;id&gt;oss-sonatype&lt;/id&gt;
+        &lt;name&gt;oss-sonatype&lt;/name&gt;
+        &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/releases&gt;
+    &lt;/repository&gt;
+    ...
+&lt;repositories&gt;</code></pre>
+        <h3>pom.xml</h3>
+        <p>Now add the library to the dependencies of your projects pom.xml:</p>
+        <pre><code>&lt;dependencies&gt;
+    ...
+    &lt;dependency&gt;
+        &lt;groupId&gt;net.dontdrinkandroot&lt;/groupId&gt;
+        &lt;artifactId&gt;wicket.extras&lt;/artifactId&gt;
+        &lt;version&gt;${version.dontdrinkandroot.wicket}&lt;/version&gt;
+    &lt;/dependency&gt;
+    ...
+&lt;/dependencies&gt;</code></pre>
+    </section>
+    <section>
+        <h2>Wicket setup</h2>
+        <p>Some Bootstrap CSS selectors will not work if there are Wicket tags in between, eg. <code>&lt;wicket:container&gt;</code>.
+            You will have to turn strip wicket tags on to get proper results. This is the default in production mode.
+            However, if you want to do so in development mode as well, you can do the following in your
+            WicketApplication:</p>
+
+        <pre><code>@Override
+protected void init()
+{
+    super.init();
+    this.getMarkupSettings().setStripWicketTags(true);
+}</code></pre>
+    </section>
+</wicket:extend>
+</body>
+</html>

@@ -41,11 +41,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
 public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 {
     private static String FONT_AWESOME_VERSION = "4.6.3";
-
 
     public DecoratorPage()
     {
@@ -108,6 +106,12 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
     {
         super.populateNavbarLeftItems(navbarLeftItemView);
+        navbarLeftItemView.add(
+                new BookmarkablePageLinkItem(
+                        navbarLeftItemView.newChildId(),
+                        Model.of("Getting Started"),
+                        GettingStartedPage.class
+                ));
         navbarLeftItemView.add(
                 new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         navbarLeftItemView.add(
