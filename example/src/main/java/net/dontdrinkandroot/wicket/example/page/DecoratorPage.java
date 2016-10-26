@@ -35,6 +35,7 @@ import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -222,5 +223,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(new CssContentHeaderItem("body{padding-top: 50px;}", "bodyPadding", null));
         response.render(
                 new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
+        response.render(new OnDomReadyHeaderItem(" $(\"a[rel='external']\").attr('target', '_blank');"));
     }
 }
