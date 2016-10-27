@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:wicket>
 <body>
-	<wicket:extend>
-		<h2>General</h2>
-		<p wicket:id="lead"></p>
+<wicket:extend>
 
-		<h2>Alignment</h2>
-		<p wicket:id="alignment"></p>
+    <h2>CssClassAppender</h2>
 
-		<h2>Transformation</h2>
-		<p wicket:id="transform"></p>
+    <p>You can add Css Classes to components by using the <code
+            title="net.dontdrinkandroot.wicket.behavior.CssClassAppender">CssClassAppender</code> Behavior. It has
+        constructors that either expect a <code>String</code>, a <code title="net.dontdrinkandroot.wicket.css.CssClass">CssClass</code>
+        or an <code>IModel</code> of a
+        <code>CssClass</code>. The <code>CssClass</code> is an interface that is implemented by many Enums that provide
+        refactoring safe Css Classes.
+    </p>
 
-		<h2>Initialism</h2>
-		This is <abbr wicket:id="initialism"></abbr> awesomeness.
-		
-		<h2>Blockquote</h2>
-		<blockquote>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Integer posuere erat a ante.</p>
-			<footer>
-				Someone famous in <cite title="Source Title">Source Title</cite>
-			</footer>
-		</blockquote>
+    <h2>General</h2>
+    <p wicket:id="lead"></p>
 
-		<blockquote wicket:id="blockQuoteReverse">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				Integer posuere erat a ante.</p>
-			<footer>
-				Someone famous in <cite title="Source Title">Source Title</cite>
-			</footer>
-		</blockquote>
-		
-		<h2>Contextual Colors</h2>
-		<p wicket:id="contextualColor"></p>
-		
-		<h2>Contextual Background</h2>
-		<p wicket:id="contextualBackground"></p>
-	</wicket:extend>
+    <h2>Alignment</h2>
+    <p wicket:id="alignment"></p>
+
+    <h2>Transformation</h2>
+    <p wicket:id="transform"></p>
+
+    <h2>Initialism</h2>
+    This is <abbr wicket:id="initialism"></abbr> awesomeness.
+
+    <h2>Blockquote</h2>
+    <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.</p>
+        <footer>
+            Someone famous in <cite title="Source Title">Source Title</cite>
+        </footer>
+    </blockquote>
+
+    <blockquote wicket:id="blockQuoteReverse">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.</p>
+        <footer>
+            Someone famous in <cite title="Source Title">Source Title</cite>
+        </footer>
+    </blockquote>
+
+    <h2>Contextual Colors</h2>
+    <p wicket:id="contextualColor"></p>
+
+    <h2>Contextual Background</h2>
+    <p wicket:id="contextualBackground"></p>
+</wicket:extend>
 </body>
 </html>
