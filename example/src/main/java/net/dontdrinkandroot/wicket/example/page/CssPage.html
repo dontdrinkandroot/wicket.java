@@ -3,21 +3,34 @@
 <body>
 <wicket:extend>
 
-    <h2>CssClassAppender</h2>
+    <section>
+        <h2>CssClassAppender</h2>
 
-    <p>You can add Css Classes to components by using the <code
-            title="net.dontdrinkandroot.wicket.behavior.CssClassAppender">CssClassAppender</code> Behavior. It has
-        constructors that either expect a <code>String</code>, a <code title="net.dontdrinkandroot.wicket.css.CssClass">CssClass</code>
-        or an <code>IModel</code> of a
-        <code>CssClass</code>. The <code>CssClass</code> is an interface that is implemented by many Enums that provide
-        refactoring safe Css Classes.
-    </p>
+        <p>You can add Css Classes to components by using the <code
+                title="net.dontdrinkandroot.wicket.behavior.CssClassAppender">CssClassAppender</code> Behavior. It has
+            constructors that either expect a <code>String</code>, a <code
+                    title="net.dontdrinkandroot.wicket.css.CssClass">CssClass</code>
+            or an <code>IModel</code> of a
+            <code>CssClass</code>. The <code>CssClass</code> is an interface that is implemented by many Enums that
+            provide
+            refactoring safe Css Classes.
+        </p>
+    </section>
 
-    <h2>General</h2>
-    <p wicket:id="lead"></p>
+    <section>
+        <h2>General</h2>
+        <p wicket:id="lead"></p>
+    </section>
 
-    <h2>Alignment</h2>
-    <p wicket:id="alignment"></p>
+    <section>
+        <h2>Alignment</h2>
+        <p>Test alignment can be achieved by using the <code
+                title="net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment">TextAlignment</code> Enumeration.</p>
+        <h3>Example</h3>
+        <pre><code>label.add(new CssClassAppender(TextAlignment.JUSTIFY));</code></pre>
+        <h3>Results</h3>
+        <p wicket:id="alignment"></p>
+    </section>
 
     <h2>Transformation</h2>
     <p wicket:id="transform"></p>
