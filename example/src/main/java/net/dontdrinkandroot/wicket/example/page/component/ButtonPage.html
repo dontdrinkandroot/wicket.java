@@ -8,6 +8,12 @@
         Behavior that manages the styling of components that should be shown as button.</p>
 
     <h2>Styles</h2>
+    <p>Button Styles are encapsulated in the <code title="net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle">ButtonStyle</code>
+        Enumeration</p>
+    <h3>Example Code</h3>
+    <pre><code>link.add(new ButtonBehavior(ButtonStyle.PRIMARY));
+link.add(new ButtonBehavior().setButtonStyle(ButtonStyle.PRIMARY));</code></pre>
+    <h3>Available Styles</h3>
     <p class="btn-toolbar">
         <span wicket:id="buttonStyle"></span>
     </p>
