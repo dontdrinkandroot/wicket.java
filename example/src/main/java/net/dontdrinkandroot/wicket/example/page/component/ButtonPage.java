@@ -57,7 +57,7 @@ public class ButtonPage extends ComponentPage
         RepeatingView styleView = new RepeatingView("buttonStyle");
         this.add(styleView);
         for (ButtonStyle style : ButtonStyle.values()) {
-            Label button = new Label(styleView.newChildId(), Model.of(style.name().toLowerCase()));
+            Label button = new Label(styleView.newChildId(), Model.of(style.name()));
             button.add(new ButtonBehavior(Model.of(style)));
             styleView.add(button);
         }
@@ -65,7 +65,7 @@ public class ButtonPage extends ComponentPage
         RepeatingView sizeView = new RepeatingView("buttonSize");
         this.add(sizeView);
         for (ButtonSize size : ButtonSize.values()) {
-            Label button = new Label(sizeView.newChildId(), Model.of(size.name().toLowerCase()));
+            Label button = new Label(sizeView.newChildId(), Model.of(size.name()));
             button.add(new ButtonBehavior().setButtonSize(size));
             sizeView.add(button);
         }
