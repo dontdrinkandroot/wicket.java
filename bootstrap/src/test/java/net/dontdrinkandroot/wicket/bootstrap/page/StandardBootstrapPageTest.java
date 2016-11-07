@@ -24,16 +24,13 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class StandardBootstrapPageTest extends AbstractWicketTest
 {
-
     @Test
     public void testDefaultMarkup()
     {
         this.tester.startPage(new StandardBootstrapPage<Void>()
         {
-
             @Override
             protected IModel<String> createPageHeadingModel()
             {

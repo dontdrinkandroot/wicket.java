@@ -13,5 +13,4 @@ env:
   - secure: JDpomF+Dfs8jBFAyI4H1+on0ztSFE9lEBUqky8GAMi6ZNnMd4fPDsadc7r8LmjYjXEn84jJnUKk0cFa8H9STS/mCqFGCjinIBc5J6LyoqR3SzjlCV6BqCeCjBf0RU+drw+MqPN6yO1j74CgXiTeSKo7UvI0VM+6ebVExu8ZS+sM=
 
 script:
-- mvn -DfailOnServiceError=false clean jacoco:prepare-agent test deploy jacoco:report
-  coveralls:report --settings travis-maven-settings.xml
+- mvn -DfailOnServiceError=false clean jacoco:prepare-agent test deploy jacoco:report coveralls:report --settings travis-maven-settings.xml

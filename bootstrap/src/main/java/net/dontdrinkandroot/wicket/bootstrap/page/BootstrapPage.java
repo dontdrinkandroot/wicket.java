@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.page;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
+import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.GenericWebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -68,12 +69,12 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
         response.render(this.getBootstrapCssHeaderItem());
     }
 
-    protected BootstrapJsHeaderItem getBootstrapJavaScriptHeaderItem()
+    protected HeaderItem getBootstrapJavaScriptHeaderItem()
     {
         return new BootstrapJsHeaderItem(true);
     }
 
-    protected BootstrapCssHeaderItem getBootstrapCssHeaderItem()
+    protected HeaderItem getBootstrapCssHeaderItem()
     {
         return new BootstrapCssHeaderItem();
     }
