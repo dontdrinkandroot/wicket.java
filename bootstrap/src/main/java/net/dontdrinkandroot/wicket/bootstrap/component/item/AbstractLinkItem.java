@@ -27,7 +27,6 @@ import org.apache.wicket.model.Model;
 
 public abstract class AbstractLinkItem extends AbstractItem<String>
 {
-
     private IModel<CssClass> prependIconModel;
 
     private IModel<CssClass> appendIconModel;
@@ -90,15 +89,11 @@ public abstract class AbstractLinkItem extends AbstractItem<String>
                 return AbstractLinkItem.this.getPrependIconModel();
             }
 
-            ;
-
             @Override
             public IModel<CssClass> getAppendIconModel()
             {
                 return AbstractLinkItem.this.setAppendIconModel();
             }
-
-            ;
         });
         this.add(link);
     }
