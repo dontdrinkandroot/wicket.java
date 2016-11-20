@@ -19,11 +19,17 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
-
+/**
+ * Base class for most items. Items can be used in Navs or DropDown menus. Items support an active state which can
+ * be changed by overriding the {@link AbstractItem#isActive()} method.
+ *
+ * @param <T> Type of the item.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AbstractItem<T> extends GenericPanel<T>
 {
     public AbstractItem(String id)
@@ -41,16 +47,12 @@ public class AbstractItem<T> extends GenericPanel<T>
     {
         super.onInitialize();
 
-        this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ACTIVE)
+        this.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
         {
             @Override
-            public BootstrapCssClass getObject()
+            protected boolean isActive()
             {
-                if (AbstractItem.this.isActive()) {
-                    return super.getObject();
-                }
-
-                return null;
+                return AbstractItem.this.isActive();
             }
         }));
     }

@@ -30,19 +30,16 @@ import org.apache.wicket.model.Model;
 
 public abstract class DropDownMenu extends Panel
 {
-
     private IModel<DropDownAlignment> alignmentModel = Model.of();
 
     public DropDownMenu(String id)
     {
-
         super(id);
     }
 
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_MENU));

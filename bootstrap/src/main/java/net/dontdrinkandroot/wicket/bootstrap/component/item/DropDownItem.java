@@ -24,47 +24,33 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-
 
 public abstract class DropDownItem extends AbstractLinkItem
 {
-
     protected DropDownMenu dropDownMenu;
-
-    public DropDownItem(String id, IModel<String> labelModel)
-    {
-
-        super(id, labelModel);
-    }
 
     public DropDownItem(String id, String label)
     {
+        super(id, label);
+    }
 
-        super(id, Model.of(label));
+    public DropDownItem(String id, IModel<String> labelModel)
+    {
+        super(id, labelModel);
     }
 
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 
-        this.dropDownMenu = new DropDownMenu("dropDownMenu")
-        {
-
-            @Override
-            protected void populateItems(RepeatingView itemView)
-            {
-                DropDownItem.this.populateItems(itemView);
-            }
-        };
+        this.dropDownMenu = createDropDownMenu("dropDownMenu");
         this.add(this.dropDownMenu);
     }
+
 
     @Override
     protected Component createLink(String id)
@@ -81,5 +67,5 @@ public abstract class DropDownItem extends AbstractLinkItem
         return BootstrapCssClass.CARET;
     }
 
-    protected abstract void populateItems(RepeatingView itemView);
+    protected abstract DropDownMenu createDropDownMenu(String id);
 }

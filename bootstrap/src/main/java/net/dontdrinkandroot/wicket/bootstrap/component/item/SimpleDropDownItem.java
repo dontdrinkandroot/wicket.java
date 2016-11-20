@@ -17,39 +17,35 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
-
-public abstract class AjaxLinkItem extends AbstractLinkItem
+public abstract class SimpleDropDownItem extends DropDownItem
 {
-    public AjaxLinkItem(String id, String label)
-    {
-        super(id, label);
-    }
-
-    public AjaxLinkItem(String id, IModel<String> labelModel)
+    public SimpleDropDownItem(String id, IModel<String> labelModel)
     {
         super(id, labelModel);
     }
 
-    @Override
-    protected Component createLink(String id)
+    public SimpleDropDownItem(String id, String label)
     {
-        AjaxLink<Void> link = new AjaxLink<Void>(id)
-        {
-            @Override
-            public void onClick(AjaxRequestTarget target)
-            {
-                AjaxLinkItem.this.onClick(target);
-            }
-        };
-        link.setBody(this.getModel());
-
-        return link;
+        super(id, Model.of(label));
     }
 
-    protected abstract void onClick(AjaxRequestTarget target);
+    @Override
+    protected DropDownMenu createDropDownMenu(String id)
+    {
+        return new DropDownMenu(id)
+        {
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                SimpleDropDownItem.this.populateItems(itemView);
+            }
+        };
+    }
+
+    protected abstract void populateItems(RepeatingView itemView);
 }

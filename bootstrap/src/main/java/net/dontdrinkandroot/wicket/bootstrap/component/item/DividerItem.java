@@ -25,7 +25,6 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 
 public class DividerItem extends WebMarkupContainer
 {
-
     public DividerItem(String id)
     {
         super(id);

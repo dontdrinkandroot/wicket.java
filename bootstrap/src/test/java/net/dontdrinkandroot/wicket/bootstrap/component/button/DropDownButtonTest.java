@@ -37,7 +37,7 @@ public class DropDownButtonTest extends AbstractWicketTest
         );
         TagTester menuTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "menu");
         Assert.assertEquals("<ul wicket:id=\"menu\" class=\"dropdown-menu\" role=\"menu\"><wicket:panel>\n" +
-                "\t\t\n" +
-                "\t</wicket:panel></ul>", menuTester.getMarkup());
+                "    \n" +
+                "</wicket:panel></ul>", menuTester.getMarkup());
     }
 }

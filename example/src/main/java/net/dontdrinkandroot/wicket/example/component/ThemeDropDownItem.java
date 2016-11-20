@@ -18,7 +18,7 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.item.AbstractLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.SimpleDropDownItem;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.model.Theme;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
@@ -28,8 +28,7 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
 
-
-public class ThemeDropDownItem extends DropDownItem
+public class ThemeDropDownItem extends SimpleDropDownItem
 {
 
     public ThemeDropDownItem(String id)

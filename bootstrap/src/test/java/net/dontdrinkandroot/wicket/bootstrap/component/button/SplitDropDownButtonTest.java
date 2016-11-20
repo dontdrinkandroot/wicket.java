@@ -38,8 +38,8 @@ public class SplitDropDownButtonTest extends AbstractWicketTest
                         "\t\t\t<span class=\"sr-only\">Toggle Dropdown</span>\n" +
                         "\t\t<span class=\"caret\"></span></button>\n" +
                         "\t\t<ul wicket:id=\"dropdownMenu\" class=\"dropdown-menu\" role=\"menu\"><wicket:panel>\n" +
-                        "\t\t\n" +
-                        "\t</wicket:panel></ul>\n" +
+                        "    \n" +
+                        "</wicket:panel></ul>\n" +
                         "\t</wicket:panel></wicket:container>",
                 componentMarkup.toString()
         );

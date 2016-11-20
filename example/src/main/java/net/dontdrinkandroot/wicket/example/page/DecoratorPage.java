@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.example.page;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.DropDownItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.SimpleDropDownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 import net.dontdrinkandroot.wicket.example.ExampleApplication;
@@ -117,7 +117,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         navbarLeftItemView.add(
                 new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
-        navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Components"))
+        navbarLeftItemView.add(new SimpleDropDownItem(navbarLeftItemView.newChildId(), Model.of("Components"))
         {
 
             @Override
@@ -158,7 +158,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         });
 
-        navbarLeftItemView.add(new DropDownItem(navbarLeftItemView.newChildId(), Model.of("Forms"))
+        navbarLeftItemView.add(new SimpleDropDownItem(navbarLeftItemView.newChildId(), Model.of("Forms"))
         {
 
             @Override
