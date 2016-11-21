@@ -25,10 +25,8 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
-
 public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBehavior
 {
-
     private ThrottlingSettings throttlingSettings;
 
     private FormGroupValidatable<?, ?, ?> formGroup;
@@ -76,7 +74,8 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 
         if (null != validationState) {
             target.appendJavaScript(
-                    new JQueryScript(this.formGroup).addClass(validationState.getClassString()).toString());
+                    new JQueryScript(this.formGroup).addClass(validationState.getClassString()).toString()
+            );
             target.add(this.formGroup.getHelpBlock());
         }
     }
@@ -89,5 +88,4 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
             attributes.setThrottlingSettings(this.throttlingSettings);
         }
     }
-
 }

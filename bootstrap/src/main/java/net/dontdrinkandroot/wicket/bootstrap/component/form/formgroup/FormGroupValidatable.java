@@ -31,19 +31,13 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.validation.IValidator;
 
-
 /**
- *
- * @param <T>
- *            Type of the Model Object.
- * @param <M>
- *            Type of the FormComponent Model Object.
- * @param <F>
- *            Type of the Form Component.
+ * @param <T> Type of the Model Object.
+ * @param <M> Type of the FormComponent Model Object.
+ * @param <F> Type of the Form Component.
  */
 public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> extends FormGroup<T>
 {
-
     protected FencedFeedbackPanel helpBlock;
 
     protected IModel<String> helpTextModel;
@@ -64,7 +58,6 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
         super.createComponents();
         this.helpBlock = new FencedFeedbackPanel("helpBlock", this)
         {
-
             @Override
             protected String getCSSClass(FeedbackMessage message)
             {
@@ -88,7 +81,6 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
 
         this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
         {
-
             @Override
             public CssClass getObject()
             {

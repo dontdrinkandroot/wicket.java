@@ -22,7 +22,8 @@ package net.dontdrinkandroot.wicket.behavior;
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DisplayNoneAppender extends StyleAppender {
+public class DisplayNoneAppender extends StyleAppender
+{
     public DisplayNoneAppender()
     {
         super("display: none");
