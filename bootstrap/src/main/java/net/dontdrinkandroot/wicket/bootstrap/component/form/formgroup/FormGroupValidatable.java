@@ -143,6 +143,10 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
             return ValidationState.SUCCESS;
         }
 
+        if (this.getFormComponent().isRequired() && null == this.getModelObject()) {
+            return ValidationState.WARNING;
+        }
+
         return null;
     }
 

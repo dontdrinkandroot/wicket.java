@@ -30,10 +30,8 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
 public class FormGroup<T> extends GenericPanel<T>
 {
-
     protected IModel<String> labelModel;
 
     private IModel<Boolean> labelScreenReaderOnlyModel = Model.of(false);
@@ -75,7 +73,7 @@ public class FormGroup<T> extends GenericPanel<T>
     protected void createComponents()
     {
         this.label = this.createLabel("label");
-        this.container = new WebMarkupContainer("container");
+        this.container = this.createContainer("container");
     }
 
     protected void addComponents()
