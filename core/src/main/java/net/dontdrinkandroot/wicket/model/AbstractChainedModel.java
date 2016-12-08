@@ -22,7 +22,7 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class AbstractChainedModel<P, T> implements IModel<T>
+public abstract class AbstractChainedModel<P, T> implements ChainedModel<P, T>
 {
     private final IModel<? extends P> parent;
 
