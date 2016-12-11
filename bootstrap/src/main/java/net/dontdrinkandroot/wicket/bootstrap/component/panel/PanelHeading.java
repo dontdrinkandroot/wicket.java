@@ -23,12 +23,13 @@ import net.dontdrinkandroot.wicket.component.basic.Heading;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-
-public class PanelHeading extends GenericPanel<String> {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class PanelHeading extends GenericPanel<String>
+{
     public PanelHeading(String id, IModel<String> model, Heading.Level level)
     {
-
         super(id, model);
 
         Heading heading = new Heading("heading", model, level);

@@ -25,7 +25,6 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 
 public abstract class Row extends Panel
 {
-
     public Row(String id)
     {
         super(id);
@@ -42,5 +41,4 @@ public abstract class Row extends Panel
     }
 
     protected abstract void populateColumns(RepeatingView columnView);
-
 }

@@ -22,15 +22,14 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * A readonly List Model that contains all Integers between the given min and max value, min and max
  * included.
- * 
+ *
  * @author Philip W. Sorst <philip@sorst.net>
- * 
  */
-public class IntegerRangeListModel extends AbstractReadOnlyModel<List<Integer>> {
+public class IntegerRangeListModel extends AbstractReadOnlyModel<List<Integer>>
+{
     private List<Integer> list;
 
     private int min;

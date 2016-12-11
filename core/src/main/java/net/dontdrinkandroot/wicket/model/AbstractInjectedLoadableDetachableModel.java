@@ -23,7 +23,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class AbstractInjectedLoadableDetachableModel<T> extends LoadableDetachableModel<T> {
+public abstract class AbstractInjectedLoadableDetachableModel<T> extends LoadableDetachableModel<T>
+{
     private static final long serialVersionUID = 1L;
 
     public AbstractInjectedLoadableDetachableModel()

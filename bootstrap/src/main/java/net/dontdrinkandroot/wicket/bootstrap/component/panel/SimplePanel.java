@@ -22,10 +22,12 @@ import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the Model Object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SimplePanel<T> extends Panel<T>
 {
-
     protected IModel<String> headingModel;
 
     protected Level headingLevel;
@@ -74,5 +76,4 @@ public class SimplePanel<T> extends Panel<T>
     {
         return this.headingLevel;
     }
-
 }

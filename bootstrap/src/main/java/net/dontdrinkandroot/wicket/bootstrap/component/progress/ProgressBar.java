@@ -28,9 +28,11 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ProgressBar extends GenericPanel<Integer>
 {
-
     private WebMarkupContainer bar;
 
     private boolean active = false;

@@ -24,7 +24,8 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class CssClassClassStringModel extends AbstractChainedModel<CssClass, String> {
+public class CssClassClassStringModel extends AbstractChainedModel<CssClass, String>
+{
     public CssClassClassStringModel(IModel<? extends CssClass> parent)
     {
         super(parent);

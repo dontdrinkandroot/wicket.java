@@ -57,7 +57,7 @@ public class ConcatenatingStringModel extends AbstractChainedModel<String, Strin
         }
         String suffix = this.suffixModel.getObject();
 
-        StringBuffer concatenatedString = new StringBuffer();
+        StringBuilder concatenatedString = new StringBuilder();
         if (null != prefix) {
             concatenatedString.append(prefix);
         }

@@ -39,10 +39,11 @@ import java.lang.reflect.InvocationTargetException;
 
 public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 {
-
     public static final String MODAL_ID = "modal";
 
     private FeedbackPanel feedbackPanel;
+
+    private Label pageHeading;
 
     public StandardBootstrapPage()
     {
@@ -69,7 +70,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         Component navBar = this.createNavBar("navBar");
         this.add(navBar);
 
-        Label pageHeading = new Label("pageHeading", this.pageHeadingModel);
+        this.pageHeading = new Label("pageHeading", this.pageHeadingModel);
 
         final RepeatingView primaryActionView = new RepeatingView("primaryAction");
         this.populatePrimaryActions(primaryActionView);
@@ -88,7 +89,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
             }
         };
         this.add(pageHeader);
-        pageHeader.add(pageHeading);
+        pageHeader.add(this.pageHeading);
         pageHeader.add(primaryActionView);
 
         this.feedbackPanel = this.createFeedbackPanel("feedback");
@@ -180,6 +181,11 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
     public FeedbackPanel getFeedbackPanel()
     {
         return this.feedbackPanel;
+    }
+
+    public Label getPageHeading()
+    {
+        return this.pageHeading;
     }
 
     @Override

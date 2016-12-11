@@ -23,7 +23,8 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class AbstractInjectedModel<T> implements IModel<T> {
+public abstract class AbstractInjectedModel<T> implements IModel<T>
+{
     private static final long serialVersionUID = 1L;
 
     public AbstractInjectedModel()

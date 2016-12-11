@@ -27,10 +27,12 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @param <T> Type of the Model Object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class Panel<T> extends GenericPanel<T>
 {
-
     public static final String BODY_ID = "body";
 
     public static final String HEADING_ID = "heading";

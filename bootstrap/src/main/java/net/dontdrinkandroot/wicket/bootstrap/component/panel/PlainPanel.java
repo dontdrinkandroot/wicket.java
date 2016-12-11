@@ -23,10 +23,12 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the Model Object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class PlainPanel<T> extends Panel<T>
 {
-
     protected Component body;
 
     public PlainPanel(String id)
