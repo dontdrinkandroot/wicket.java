@@ -26,10 +26,11 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class InputGroupPage extends FormPage
 {
-
     public InputGroupPage(PageParameters parameters)
     {
         super(parameters);

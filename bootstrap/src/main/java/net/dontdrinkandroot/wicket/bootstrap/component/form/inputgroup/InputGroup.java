@@ -25,18 +25,14 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-
 /**
- * @param <T>
- *            Type of the Model Object.
- * @param <M>
- *            Type of the FormComponent Model Object.
- * @param <F>
- *            Type of the FormComponent.
+ * @param <T> Type of the Model Object.
+ * @param <M> Type of the FormComponent Model Object.
+ * @param <F> Type of the FormComponent.
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public abstract class InputGroup<T, M, F extends FormComponent<M>> extends GenericPanel<T>
 {
-
     public static final String INPUT_GROUP_ADDON_BEFORE_ID = "inputGroupAddonBefore";
 
     public static final String INPUT_GROUP_ADDON_AFTER_ID = "inputGroupAddonAfter";
@@ -106,5 +102,4 @@ public abstract class InputGroup<T, M, F extends FormComponent<M>> extends Gener
     }
 
     protected abstract F createFormComponent(String id);
-
 }

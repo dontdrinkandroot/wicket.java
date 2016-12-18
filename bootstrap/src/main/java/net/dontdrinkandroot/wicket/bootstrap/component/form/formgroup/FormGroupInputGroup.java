@@ -23,11 +23,16 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the Model Object.
+ * @param <M> Type of the Form Component Model Object.
+ * @param <F> Type of the {@link FormComponent}
+ * @param <I> Type of the {@link InputGroup}
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class FormGroupInputGroup<T, M, F extends FormComponent<M>, I extends InputGroup<T, M, F>>
         extends FormGroupValidatable<T, M, F>
 {
-
     private InputGroup<T, M, F> inputGroup;
 
     public FormGroupInputGroup(String id, IModel<String> labelModel, IModel<T> model)

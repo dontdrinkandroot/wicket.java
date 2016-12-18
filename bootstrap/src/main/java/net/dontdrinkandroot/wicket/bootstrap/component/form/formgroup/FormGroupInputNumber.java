@@ -22,11 +22,13 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <N> Type of the Number.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupInputNumber<N extends Number & Comparable<N>>
         extends FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumber<N>>
 {
-
     public FormGroupInputNumber(String id, IModel<String> labelModel, IModel<N> model)
     {
         super(id, labelModel, model);
@@ -37,7 +39,6 @@ public class FormGroupInputNumber<N extends Number & Comparable<N>>
     {
         return new InputGroupNumber<N>(id, this.getModel())
         {
-
             @Override
             protected Component createInputGroupAddonBefore(String id)
             {

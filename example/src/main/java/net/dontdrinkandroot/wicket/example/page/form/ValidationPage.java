@@ -31,10 +31,11 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ValidationPage extends FormPage
 {
-
     public ValidationPage(PageParameters parameters)
     {
         super(parameters);

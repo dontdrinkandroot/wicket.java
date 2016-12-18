@@ -29,12 +29,14 @@ import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.time.Duration;
 import org.apache.wicket.validation.IValidator;
 
 /**
  * @param <T> Type of the Model Object.
  * @param <M> Type of the FormComponent Model Object.
  * @param <F> Type of the Form Component.
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> extends FormGroup<T>
 {
@@ -113,6 +115,14 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
     public FencedFeedbackPanel getHelpBlock()
     {
         return this.helpBlock;
+    }
+
+    /**
+     * Enables Ajax Validation for the "input" event with default thresholding of 250ms.
+     */
+    public void addDefaultAjaxInputValidation()
+    {
+        this.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
     }
 
     public void addAjaxValidation(String eventName)

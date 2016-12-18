@@ -23,10 +23,12 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
+/**
+ * @param <T> Type of the {@link DropDownChoice}.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownChoice<T>>
 {
-
     protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model)
     {
         super(id, labelModel, model);

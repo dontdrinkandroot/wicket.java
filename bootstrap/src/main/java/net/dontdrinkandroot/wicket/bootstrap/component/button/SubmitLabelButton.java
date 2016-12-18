@@ -27,10 +27,11 @@ import org.apache.wicket.model.Model;
 
 import java.io.Serializable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SubmitLabelButton extends Label implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
 
     public SubmitLabelButton(String id)
