@@ -97,6 +97,12 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
         /* Hook */
     }
 
+    /**
+     * Hook for handling the submission with Ajax. Do not perform any setResponsePage Actions here, as they will lead
+     * to a double subission. Use onAfterSubmit instead.
+     *
+     * @param target The current AjaxRequestTarget or null if non was
+     */
     protected void onSubmit(AjaxRequestTarget target)
     {
         /* Hook */

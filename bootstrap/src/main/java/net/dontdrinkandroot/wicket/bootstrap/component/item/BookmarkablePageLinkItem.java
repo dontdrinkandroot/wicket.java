@@ -59,13 +59,41 @@ public class BookmarkablePageLinkItem extends AbstractLinkItem
     @Override
     protected Component createLink(String id)
     {
-        if (this.parameters == null) {
-            this.link = new BookmarkablePageLink<Void>(id, this.pageClass);
-        } else {
-            this.link = new BookmarkablePageLink<Void>(id, this.pageClass, this.parameters);
-        }
+        this.link = new BookmarkablePageLink<Void>(id, this.pageClass)
+        {
+            @Override
+            public PageParameters getPageParameters()
+            {
+                PageParameters parameters = BookmarkablePageLinkItem.this.getParameters();
+                if (null == parameters) {
+                    parameters = new PageParameters();
+                }
+
+                return parameters;
+            }
+        };
         this.link.setBody(this.getModel());
 
         return this.link;
+    }
+
+    /**
+     * Set the parameters of the link.
+     *
+     * @param parameters The parameters to use in the link.
+     */
+    public void setParameters(PageParameters parameters)
+    {
+        this.parameters = parameters;
+    }
+
+    /**
+     * Get the parameters of the link.
+     *
+     * @return The current parameters.
+     */
+    public PageParameters getParameters()
+    {
+        return this.parameters;
     }
 }

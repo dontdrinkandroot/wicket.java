@@ -27,30 +27,28 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import java.io.Serializable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedbackPanel {
 
     public FencedFeedbackPanel(String id)
     {
-
         super(id);
     }
 
     public FencedFeedbackPanel(String id, Component fence)
     {
-
         super(id, fence);
     }
 
     public FencedFeedbackPanel(String id, IFeedbackMessageFilter filter)
     {
-
         super(id, filter);
     }
 
     public FencedFeedbackPanel(String id, Component fence, IFeedbackMessageFilter filter)
     {
-
         super(id, fence, filter);
     }
 
@@ -73,7 +71,6 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
     @Override
     protected Component newMessageDisplayComponent(String id, FeedbackMessage message)
     {
-
         Serializable serializable = message.getMessage();
         Label label = new Label(id, serializable == null ? "" : serializable.toString());
         label.setEscapeModelStrings(this.getEscapeModelStrings());
@@ -84,7 +81,6 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
 
     protected CssClass getClassFromLevel(int level)
     {
-
         switch (level) {
 
             case FeedbackMessage.WARNING:
@@ -104,5 +100,4 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
 
         return null;
     }
-
 }
