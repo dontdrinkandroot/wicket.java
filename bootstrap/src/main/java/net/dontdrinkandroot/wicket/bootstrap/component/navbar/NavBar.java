@@ -27,7 +27,6 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
 public abstract class NavBar extends GenericPanel<Void>
 {
 
@@ -66,8 +65,6 @@ public abstract class NavBar extends GenericPanel<Void>
 
         return brandLink;
     }
-
-    ;
 
     protected Component createForm(String id)
     {

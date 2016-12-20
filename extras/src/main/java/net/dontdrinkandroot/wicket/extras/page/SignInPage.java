@@ -7,6 +7,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupI
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
+import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.authentication.IAuthenticationStrategy;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -21,10 +22,10 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
  */
 public class SignInPage extends BootstrapPage<Void>
 {
-
     private Model<String> usernameModel = new Model<>();
     private Model<String> passwordModel = new Model<>();
     private Model<Boolean> rememberMeModel = new Model<>();
+    private IModel<String> pageTitleModel;
 
     public SignInPage(PageParameters parameters)
     {
@@ -55,6 +56,8 @@ public class SignInPage extends BootstrapPage<Void>
     @Override
     protected void onInitialize()
     {
+        this.pageTitleModel = this.createPageTitleModel();
+
         super.onInitialize();
 
         StatelessForm<Void> form = new StatelessForm<Void>("form")
@@ -69,7 +72,7 @@ public class SignInPage extends BootstrapPage<Void>
 
         form.add(new FeedbackPanel("feedback"));
 
-        form.add(new Label("heading", this.pageHeadingModel));
+        form.add(new Label("heading", this.pageTitleModel));
 
         form.add(new FormGroupInputText("username", this.createUsernameLabelModel(), this.usernameModel));
 
@@ -86,7 +89,6 @@ public class SignInPage extends BootstrapPage<Void>
 
         form.add(new Label("reset", this.createResetLabelModel()).add(new ButtonBehavior()));
     }
-
     private void onSubmit()
     {
         IAuthenticationStrategy strategy = this.getApplication().getSecuritySettings().getAuthenticationStrategy();
@@ -107,7 +109,12 @@ public class SignInPage extends BootstrapPage<Void>
     }
 
     @Override
-    protected IModel<String> createPageHeadingModel()
+    protected Component createPageTitle(String id)
+    {
+        return new Label(id, this.pageTitleModel);
+    }
+
+    protected IModel<String> createPageTitleModel()
     {
         return Model.of("Login");
     }

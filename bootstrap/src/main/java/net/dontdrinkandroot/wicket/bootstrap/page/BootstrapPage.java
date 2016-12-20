@@ -19,22 +19,18 @@ package net.dontdrinkandroot.wicket.bootstrap.page;
 
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
-import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
+import net.dontdrinkandroot.wicket.page.Html5ScaffoldPage;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.html.GenericWebPage;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
-public abstract class BootstrapPage<T> extends GenericWebPage<T>
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class BootstrapPage<T> extends Html5ScaffoldPage<T>
 {
-    protected IModel<String> pageHeadingModel;
-
-    protected IModel<String> pageTitleModel;
-
     public BootstrapPage()
     {
         super();
@@ -48,16 +44,6 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
     public BootstrapPage(IModel<T> model)
     {
         super(model);
-    }
-
-    @Override
-    protected void onInitialize()
-    {
-        super.onInitialize();
-
-        this.pageHeadingModel = this.createPageHeadingModel();
-        this.pageTitleModel = this.createPageTitleModel();
-        this.add(new Label("pageTitle", this.pageTitleModel));
     }
 
     @Override
@@ -78,16 +64,4 @@ public abstract class BootstrapPage<T> extends GenericWebPage<T>
     {
         return new BootstrapCssHeaderItem();
     }
-
-    protected IModel<String> createPageTitlePrefixModel()
-    {
-        return new Model<String>();
-    }
-
-    protected IModel<String> createPageTitleModel()
-    {
-        return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
-    }
-
-    protected abstract IModel<String> createPageHeadingModel();
 }

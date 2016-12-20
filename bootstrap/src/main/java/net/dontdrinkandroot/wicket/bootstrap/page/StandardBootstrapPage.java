@@ -23,6 +23,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
 import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
 import net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest;
 import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
+import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -32,6 +33,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
 
@@ -44,6 +46,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
     private FeedbackPanel feedbackPanel;
 
     private Label pageHeading;
+
+    private IModel<String> pageHeadingModel;
 
     public StandardBootstrapPage()
     {
@@ -63,6 +67,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
     @Override
     protected void onInitialize()
     {
+        this.pageHeadingModel = this.createPageHeadingModel();
+
         super.onInitialize();
 
         this.add(this.createModal(StandardBootstrapPage.MODAL_ID));
@@ -97,6 +103,12 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         this.add(this.feedbackPanel);
 
         this.add(this.createFooter("footer"));
+    }
+
+    @Override
+    protected Component createPageTitle(String id)
+    {
+        return new Label(id, this.createPageTitleModel());
     }
 
     private Component createModal(String id)
@@ -187,6 +199,18 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
     {
         return this.pageHeading;
     }
+
+    protected IModel<String> createPageTitlePrefixModel()
+    {
+        return new Model<>();
+    }
+
+    protected IModel<String> createPageTitleModel()
+    {
+        return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
+    }
+
+    protected abstract IModel<String> createPageHeadingModel();
 
     @Override
     public void onEvent(IEvent<?> event)

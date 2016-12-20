@@ -38,6 +38,7 @@ public abstract class FormGroupInputGroup<T, M, F extends FormComponent<M>, I ex
     public FormGroupInputGroup(String id, IModel<String> labelModel, IModel<T> model)
     {
         super(id, labelModel, model);
+
         this.inputGroup = this.createInputGroup("inputGroup");
         this.getFormComponent().setLabel(this.labelModel);
     }
