@@ -27,9 +27,11 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class NavBar extends GenericPanel<Void>
 {
-
     private IModel<NavBarStyle> styleModel = Model.of(NavBarStyle.DEFAULT);
 
     public NavBar(String id)

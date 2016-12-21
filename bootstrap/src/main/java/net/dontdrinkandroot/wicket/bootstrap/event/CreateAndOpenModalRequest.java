@@ -21,10 +21,12 @@ import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the modal model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class CreateAndOpenModalRequest<T> extends ModalRequest
 {
-
     private IModel<T> model;
 
     private Class<? extends Modal<?>> modalClass;
@@ -55,5 +57,4 @@ public class CreateAndOpenModalRequest<T> extends ModalRequest
     {
         return this.model;
     }
-
 }

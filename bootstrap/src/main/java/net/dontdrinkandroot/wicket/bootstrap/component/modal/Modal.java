@@ -25,10 +25,12 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the modal object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class Modal<T> extends GenericPanel<T>
 {
-
     public Modal(String id)
     {
         super(id);

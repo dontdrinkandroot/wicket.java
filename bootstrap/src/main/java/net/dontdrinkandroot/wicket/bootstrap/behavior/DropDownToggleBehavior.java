@@ -23,13 +23,13 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
-
 /**
  * Adds the required attributes for a DropDown Toggle.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class DropDownToggleBehavior extends Behavior
 {
-
     @Override
     public void bind(Component component)
     {

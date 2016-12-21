@@ -20,10 +20,11 @@ package net.dontdrinkandroot.wicket.bootstrap.event;
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class OpenModalRequest extends ModalRequest
 {
-
     private Modal<?> modal;
 
     public OpenModalRequest(AjaxRequestTarget target, Modal<?> modal)

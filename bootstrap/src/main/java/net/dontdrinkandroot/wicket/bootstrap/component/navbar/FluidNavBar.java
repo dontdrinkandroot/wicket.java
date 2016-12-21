@@ -19,13 +19,13 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
 /**
  * NavBar that provides a fluid container.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class FluidNavBar extends NavBar
 {
-
     public FluidNavBar(String id)
     {
         super(id);
     }
-
 }

@@ -22,7 +22,9 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AjaxLinkItem extends AbstractLinkItem
 {
     public AjaxLinkItem(String id, String label)

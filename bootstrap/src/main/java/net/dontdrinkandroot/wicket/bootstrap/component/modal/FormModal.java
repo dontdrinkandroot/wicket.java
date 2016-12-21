@@ -24,10 +24,12 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class FormModal<T> extends Modal<T>
 {
-
     private Form<T> form;
 
     public FormModal(String id)

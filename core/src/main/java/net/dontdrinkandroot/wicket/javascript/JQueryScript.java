@@ -156,6 +156,17 @@ public class JQueryScript implements CharSequence
     }
 
     /**
+     * Triggers the focus event on the selected element.
+     *
+     * @return This script for chaining.
+     */
+    public JQueryScript focus()
+    {
+        this.scriptBuffer.append(".focus()");
+        return this;
+    }
+
+    /**
      * Get the children of each element in the set of matched elements, optionally filtered by a selector.
      *
      * @param selector The selector to use.
