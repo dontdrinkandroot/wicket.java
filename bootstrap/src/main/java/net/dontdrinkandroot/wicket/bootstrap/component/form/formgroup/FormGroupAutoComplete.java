@@ -34,9 +34,11 @@ import org.apache.wicket.util.time.Duration;
 
 import java.util.List;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class FormGroupAutoComplete extends FormGroupFormComponent<String, String, TextField<String>>
 {
-
     private WebMarkupContainer dropDownMenu;
 
     private ListView<String> suggestionView;

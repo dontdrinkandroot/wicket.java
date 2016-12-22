@@ -26,9 +26,11 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
 
     public AjaxSubmitButton(String id)

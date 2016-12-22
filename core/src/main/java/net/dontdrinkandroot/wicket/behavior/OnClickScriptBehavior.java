@@ -17,13 +17,15 @@
  */
 package net.dontdrinkandroot.wicket.behavior;
 
-import net.dontdrinkandroot.wicket.model.StringModel;
 import org.apache.wicket.behavior.AttributeAppender;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class OnClickScriptBehavior extends AttributeAppender
 {
-    public OnClickScriptBehavior(final String script)
+    public OnClickScriptBehavior(CharSequence script)
     {
-        super("onclick", new StringModel(script), " ");
+        super("onclick", script.toString(), " ");
     }
 }
