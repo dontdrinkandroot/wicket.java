@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html xmlns:wicket>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body>
-	<wicket:panel>
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h3 wicket:id="heading">[heading]</h3>
-				</div>
-				<div class="modal-body">
-					<form wicket:id="form">
-						<div wicket:id="formGroup"></div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button wicket:id="formAction"></button>
-				</div>
-			</div>
-		</div>
-	</wicket:panel>
+<wicket:panel>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 wicket:id="heading">[heading]</h3>
+            </div>
+            <div class="modal-body">
+                <div wicket:id="feedback"></div>
+                <form wicket:id="form">
+                    <div wicket:id="formGroup"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button wicket:id="formAction"></button>
+            </div>
+        </div>
+    </div>
+</wicket:panel>
 </body>
 </html>

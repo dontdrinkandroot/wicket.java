@@ -25,11 +25,11 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
-public class FormGroupInputFile
-        extends FormGroupFormComponent<List<FileUpload>, List<FileUpload>, FileUploadField>
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class FormGroupInputFile extends FormGroupFormComponent<List<FileUpload>, List<FileUpload>, FileUploadField>
 {
-
     private boolean multiple = false;
 
     public FormGroupInputFile(String id, IModel<String> labelModel)
@@ -58,6 +58,7 @@ public class FormGroupInputFile
                 return null;
             }
         }));
+
         return fileUploadField;
     }
 

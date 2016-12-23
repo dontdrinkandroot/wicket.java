@@ -22,19 +22,20 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 
-
-public abstract class ButtonGroup<T> extends GenericPanel<T> {
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class ButtonGroup<T> extends GenericPanel<T>
+{
     public ButtonGroup(String id)
     {
-
         super(id);
     }
 
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
 
         this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
@@ -45,5 +46,4 @@ public abstract class ButtonGroup<T> extends GenericPanel<T> {
     }
 
     protected abstract void populateButtons(RepeatingView buttonView);
-
 }

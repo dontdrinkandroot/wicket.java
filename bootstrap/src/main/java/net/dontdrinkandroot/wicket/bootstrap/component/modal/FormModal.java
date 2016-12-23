@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
@@ -31,6 +32,8 @@ import org.apache.wicket.model.IModel;
 public abstract class FormModal<T> extends Modal<T>
 {
     private Form<T> form;
+
+    private FencedFeedbackPanel feedbackPanel;
 
     public FormModal(String id)
     {
@@ -50,6 +53,10 @@ public abstract class FormModal<T> extends Modal<T>
         this.add(new CssClassAppender(BootstrapCssClass.MODAL));
         this.add(new CssClassAppender(BootstrapCssClass.FADE));
 
+        this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
+        this.feedbackPanel.setOutputMarkupId(true);
+        this.add(this.feedbackPanel);
+
         this.form = this.createForm("form");
         this.add(this.form);
 
@@ -60,6 +67,11 @@ public abstract class FormModal<T> extends Modal<T>
         RepeatingView formActionView = new RepeatingView("formAction");
         this.populateFormActions(formActionView);
         this.add(formActionView);
+    }
+
+    protected Form<T> createForm(String id)
+    {
+        return new Form<T>(id, this.getModel());
     }
 
     @Override
@@ -79,17 +91,9 @@ public abstract class FormModal<T> extends Modal<T>
         return this.form;
     }
 
-    protected Form<T> createForm(String id)
+    public FencedFeedbackPanel getFeedbackPanel()
     {
-        return new Form<T>(id, this.getModel());
-    }
-
-    protected void populateFormActions(RepeatingView formActionView)
-    {
-    }
-
-    protected void populateFormGroups(RepeatingView formGroupView)
-    {
+        return this.feedbackPanel;
     }
 
     @Override
@@ -108,5 +112,13 @@ public abstract class FormModal<T> extends Modal<T>
     public CharSequence getToggleScript()
     {
         return String.format("$('#%s').modal('toggle');", this.getMarkupId());
+    }
+
+    protected void populateFormActions(RepeatingView formActionView)
+    {
+    }
+
+    protected void populateFormGroups(RepeatingView formGroupView)
+    {
     }
 }
