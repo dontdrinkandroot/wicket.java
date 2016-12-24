@@ -19,9 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
-public enum ButtonStyle implements CssClass {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public enum ButtonStyle implements CssClass
+{
     DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
     SUCCESS("btn-success"),
@@ -32,16 +34,14 @@ public enum ButtonStyle implements CssClass {
 
     private String classString;
 
-    private ButtonStyle(String classString)
+    ButtonStyle(String classString)
     {
-
         this.classString = classString;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.classString;
     }
 }

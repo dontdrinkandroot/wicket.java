@@ -21,10 +21,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ScreenReaderOnlyBehavior extends Behavior
 {
-
     private IModel<Boolean> screenReaderOnlyModel;
 
     public ScreenReaderOnlyBehavior(IModel<Boolean> screenReaderOnlyModel)
@@ -37,5 +38,4 @@ public class ScreenReaderOnlyBehavior extends Behavior
     {
         super.bind(component);
     }
-
 }

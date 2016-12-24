@@ -25,10 +25,11 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class LabelBehavior extends Behavior
 {
-
     private IModel<LabelStyle> labelStyleModel = new Model<LabelStyle>();
 
     public LabelBehavior()
@@ -38,32 +39,27 @@ public class LabelBehavior extends Behavior
 
     public LabelBehavior(LabelStyle labelStyle)
     {
-
         this.labelStyleModel = Model.of(labelStyle);
     }
 
     public LabelBehavior(IModel<LabelStyle> labelStyleModel)
     {
-
         this.labelStyleModel = labelStyleModel;
     }
 
     public LabelStyle getStyle()
     {
-
         return this.labelStyleModel.getObject();
     }
 
     protected IModel<LabelStyle> getStyleModel()
     {
-
         return this.labelStyleModel;
     }
 
     @Override
     public void bind(Component component)
     {
-
         super.bind(component);
 
         component.add(new CssClassAppender(BootstrapCssClass.LABEL));

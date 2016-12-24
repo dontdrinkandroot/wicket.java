@@ -25,10 +25,11 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class PanelBehavior extends Behavior
 {
-
     private IModel<PanelStyle> styleModel = Model.of(PanelStyle.DEFAULT);
 
     public PanelBehavior()
@@ -57,5 +58,4 @@ public class PanelBehavior extends Behavior
     {
         return this.styleModel.getObject();
     }
-
 }

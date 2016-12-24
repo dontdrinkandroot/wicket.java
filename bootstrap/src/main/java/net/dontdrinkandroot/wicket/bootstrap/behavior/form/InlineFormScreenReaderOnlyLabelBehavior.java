@@ -25,10 +25,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class InlineFormScreenReaderOnlyLabelBehavior extends Behavior
 {
-
     @Override
     public void bind(final Component component)
     {
@@ -52,5 +53,4 @@ public class InlineFormScreenReaderOnlyLabelBehavior extends Behavior
             }
         }));
     }
-
 }

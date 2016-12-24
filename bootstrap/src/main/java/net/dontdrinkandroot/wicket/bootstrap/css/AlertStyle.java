@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum AlertStyle implements CssClass
 {
-
     SUCCESS("alert-success"),
     INFO("alert-info"),
     WARNING("alert-warning"),
@@ -30,7 +31,7 @@ public enum AlertStyle implements CssClass
 
     private String classString;
 
-    private AlertStyle(String classString)
+    AlertStyle(String classString)
     {
 
         this.classString = classString;

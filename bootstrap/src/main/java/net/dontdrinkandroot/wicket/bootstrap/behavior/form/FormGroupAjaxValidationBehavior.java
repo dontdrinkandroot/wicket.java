@@ -25,6 +25,9 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBehavior
 {
     private ThrottlingSettings throttlingSettings;

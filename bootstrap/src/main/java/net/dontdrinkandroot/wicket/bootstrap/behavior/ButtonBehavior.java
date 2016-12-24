@@ -31,9 +31,11 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ButtonBehavior extends Behavior implements IButton
 {
-
     private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
     private IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();

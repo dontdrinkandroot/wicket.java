@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum BootstrapCssClass implements CssClass
 {
-
     /* Unchecked Classes */
 
     ADD_ON("add-on"),
@@ -149,7 +150,7 @@ public enum BootstrapCssClass implements CssClass
 
     private String classString;
 
-    private BootstrapCssClass(String classString)
+    BootstrapCssClass(String classString)
     {
         this.classString = classString;
     }
@@ -159,5 +160,4 @@ public enum BootstrapCssClass implements CssClass
     {
         return this.classString;
     }
-
 }

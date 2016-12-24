@@ -22,9 +22,11 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
-
-public class PageHeightScalingBehavior extends Behavior {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class PageHeightScalingBehavior extends Behavior
+{
     public PageHeightScalingBehavior()
     {
     }
@@ -46,5 +48,4 @@ public class PageHeightScalingBehavior extends Behavior {
                 + scalingFunctionBuffer.toString()
                 + "})"));
     }
-
 }

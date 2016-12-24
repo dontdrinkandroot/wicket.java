@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ContextualTextStyle implements CssClass
 {
-
     MUTED("text-muted"),
     PRIMARY("text-primary"),
     SUCCESS("text-success"),
@@ -32,7 +33,7 @@ public enum ContextualTextStyle implements CssClass
 
     private String classString;
 
-    private ContextualTextStyle(String classString)
+    ContextualTextStyle(String classString)
     {
         this.classString = classString;
     }

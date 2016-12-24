@@ -24,10 +24,11 @@ import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormStyleBehavior extends Behavior
 {
-
     private ColumnSize containerSize;
 
     private boolean inline = false;
@@ -99,5 +100,4 @@ public class FormStyleBehavior extends Behavior
     {
         return this.containerSize;
     }
-
 }

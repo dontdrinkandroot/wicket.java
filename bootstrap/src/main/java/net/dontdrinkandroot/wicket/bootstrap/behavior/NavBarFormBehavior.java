@@ -22,15 +22,15 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class NavBarFormBehavior extends Behavior
 {
-
     @Override
     public void bind(Component component)
     {
         super.bind(component);
         component.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FORM));
     }
-
 }

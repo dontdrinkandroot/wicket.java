@@ -25,10 +25,11 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AlertBehavior extends Behavior
 {
-
     private IModel<AlertStyle> alertStyleModel = new Model<AlertStyle>();
 
     public AlertBehavior(AlertStyle alertStyle)

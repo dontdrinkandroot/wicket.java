@@ -25,10 +25,11 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class NavPillsBehavior extends Behavior
 {
-
     private IModel<Boolean> justifiedModel = Model.of(Boolean.FALSE);
 
     private IModel<Boolean> stackedModel = Model.of(Boolean.FALSE);

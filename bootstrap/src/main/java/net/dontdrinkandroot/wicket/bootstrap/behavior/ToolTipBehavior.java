@@ -27,9 +27,11 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
-public class ToolTipBehavior extends Behavior {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class ToolTipBehavior extends Behavior
+{
     private final IModel<String> textModel;
 
     private final IModel<Position> positionModel = new Model<>();
@@ -97,6 +99,6 @@ public class ToolTipBehavior extends Behavior {
         TOP,
         BOTTOM,
         LEFT,
-        RIGHT;
+        RIGHT
     }
 }

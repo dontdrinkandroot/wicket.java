@@ -21,10 +21,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class OnBlurValidationBehavior extends AjaxFormComponentUpdatingBehavior
 {
-
     private Component targetComponent;
 
     public OnBlurValidationBehavior(Component targetComponent)
@@ -45,5 +46,4 @@ public class OnBlurValidationBehavior extends AjaxFormComponentUpdatingBehavior
         super.onError(target, e);
         target.add(this.targetComponent);
     }
-
 }

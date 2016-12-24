@@ -36,7 +36,6 @@ import java.util.regex.Pattern;
  */
 public class IconBehavior extends AbstractTransformerBehavior
 {
-
     /**
      * Pattern that matches html tags and is able to extract the open tag, body and close tag.
      */
