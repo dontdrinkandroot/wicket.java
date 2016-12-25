@@ -17,9 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -49,9 +47,6 @@ public abstract class FormModal<T> extends Modal<T>
     protected void onInitialize()
     {
         super.onInitialize();
-
-        this.add(new CssClassAppender(BootstrapCssClass.MODAL));
-        this.add(new CssClassAppender(BootstrapCssClass.FADE));
 
         this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
         this.feedbackPanel.setOutputMarkupId(true);

@@ -26,19 +26,16 @@ import org.junit.Test;
 
 import java.util.List;
 
-
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class PaginationPanelTest extends AbstractWicketTest
 {
-
     @Test
     public void testDefaultMarkup()
     {
         IPageable pageable = new IPageable()
         {
-
             private long page = 0;
 
             private long pageCount = 20;
@@ -83,5 +80,4 @@ public class PaginationPanelTest extends AbstractWicketTest
 
         TagTester lastItemTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "lastItem");
     }
-
 }
