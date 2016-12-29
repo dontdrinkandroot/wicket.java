@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.event;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ModalRequest
 {
-
     private AjaxRequestTarget target;
 
     public ModalRequest(AjaxRequestTarget target)

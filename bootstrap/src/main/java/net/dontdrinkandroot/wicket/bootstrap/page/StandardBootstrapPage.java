@@ -17,17 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.page;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ModalRequestBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.modal.Modal;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
-import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
-import net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest;
-import net.dontdrinkandroot.wicket.bootstrap.event.OpenModalRequest;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.Component;
-import org.apache.wicket.WicketRuntimeException;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -36,8 +30,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
-
-import java.lang.reflect.InvocationTargetException;
 
 public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 {
@@ -103,6 +95,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         this.add(this.feedbackPanel);
 
         this.add(this.createFooter("footer"));
+
+        this.add(new ModalRequestBehavior(MODAL_ID));
     }
 
     @Override
@@ -211,53 +205,4 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
     }
 
     protected abstract IModel<String> createPageHeadingModel();
-
-    @Override
-    public void onEvent(IEvent<?> event)
-    {
-        super.onEvent(event);
-
-        if (event.getPayload() instanceof ModalRequest) {
-            if (event.getPayload() instanceof OpenModalRequest) {
-                OpenModalRequest openModalRequest = (OpenModalRequest) event.getPayload();
-                AjaxRequestTarget target = openModalRequest.getTarget();
-                Modal<?> modal = openModalRequest.getModal();
-                if (!StandardBootstrapPage.MODAL_ID.equals(modal.getId())) {
-                    throw new WicketRuntimeException("Unexpected Modal ID");
-                }
-                this.replace(modal);
-                target.add(modal);
-                target.appendJavaScript(modal.getShowScript());
-            }
-            if (event.getPayload() instanceof CreateAndOpenModalRequest<?>) {
-                CreateAndOpenModalRequest<?> openModalRequest = (CreateAndOpenModalRequest<?>) event.getPayload();
-                Class<? extends Modal<?>> modalClass = openModalRequest.getModalClass();
-                IModel<?> model = openModalRequest.getModel();
-                AjaxRequestTarget target = openModalRequest.getTarget();
-                try {
-                    Modal<?> modal;
-                    if (null == model) {
-                        modal = modalClass.getConstructor(String.class).newInstance(StandardBootstrapPage.MODAL_ID);
-                    } else {
-                        modal = modalClass.getConstructor(String.class, IModel.class).newInstance(
-                                StandardBootstrapPage.MODAL_ID,
-                                model
-                        );
-                    }
-                    this.replace(modal);
-                    target.add(modal);
-                    target.appendJavaScript(modal.getShowScript());
-                } catch (
-                        InstantiationException
-                                | IllegalAccessException
-                                | IllegalArgumentException
-                                | InvocationTargetException
-                                | NoSuchMethodException
-                                | SecurityException e
-                        ) {
-                    throw new WicketRuntimeException(e);
-                }
-            }
-        }
-    }
 }
