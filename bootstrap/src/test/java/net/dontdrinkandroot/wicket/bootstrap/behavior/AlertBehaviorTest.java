@@ -25,10 +25,8 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class AlertBehaviorTest extends AbstractWicketTest
 {
-
     @Test
     public void testInfo()
     {

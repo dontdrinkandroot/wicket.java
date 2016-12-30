@@ -27,10 +27,8 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class IconBehaviorTest extends AbstractWicketTest
 {
-
     @Test
     public void testEmptyIconBehavior()
     {
@@ -98,5 +96,4 @@ public class IconBehaviorTest extends AbstractWicketTest
         Assert.assertEquals("appendIconClass2", iconBehavior.getAppendIcon().getClassString());
         Assert.assertNull(iconBehavior.getPrependIcon());
     }
-
 }
