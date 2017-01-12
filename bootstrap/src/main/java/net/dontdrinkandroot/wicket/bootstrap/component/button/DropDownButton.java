@@ -32,7 +32,10 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
 {
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
@@ -68,7 +71,6 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
         this.toggle.add(new DropDownToggleBehavior());
         this.menu = new DropDownMenu("menu")
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {

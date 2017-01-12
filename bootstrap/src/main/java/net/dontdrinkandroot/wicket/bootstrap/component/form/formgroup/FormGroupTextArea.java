@@ -23,10 +23,12 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<T>>
 {
-
     private int rows = 5;
 
     public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
@@ -55,5 +57,4 @@ public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<
     {
         this.rows = rows;
     }
-
 }

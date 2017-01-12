@@ -25,10 +25,12 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class ListGroup<T> extends UnorderedList<T>
 {
-
     public ListGroup(String id)
     {
         super(id);
@@ -52,5 +54,4 @@ public abstract class ListGroup<T> extends UnorderedList<T>
         super.processListComponent(listComponent);
         listComponent.add(new CssClassAppender(BootstrapCssClass.LIST_GROUP_ITEM));
     }
-
 }
