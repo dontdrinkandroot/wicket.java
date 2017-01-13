@@ -10,7 +10,6 @@ import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.authentication.IAuthenticationStrategy;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.IModel;
@@ -20,11 +19,14 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SignInPage extends BootstrapPage<Void>
+public abstract class SignInPage extends BootstrapPage<Void>
 {
     private Model<String> usernameModel = new Model<>();
+
     private Model<String> passwordModel = new Model<>();
+
     private Model<Boolean> rememberMeModel = new Model<>();
+
     private IModel<String> pageTitleModel;
 
     public SignInPage(PageParameters parameters)
@@ -89,6 +91,7 @@ public class SignInPage extends BootstrapPage<Void>
 
         form.add(new Label("reset", this.createResetLabelModel()).add(new ButtonBehavior()));
     }
+
     private void onSubmit()
     {
         IAuthenticationStrategy strategy = this.getApplication().getSecuritySettings().getAuthenticationStrategy();
@@ -166,13 +169,7 @@ public class SignInPage extends BootstrapPage<Void>
         this.setResponsePage(this.getApplication().getHomePage());
     }
 
-    private boolean isSignedIn()
-    {
-        return AuthenticatedWebSession.get().isSignedIn();
-    }
+    protected abstract boolean isSignedIn();
 
-    private boolean signIn(String username, String password)
-    {
-        return AuthenticatedWebSession.get().signIn(username, password);
-    }
+    protected abstract boolean signIn(String username, String password);
 }
