@@ -21,10 +21,11 @@ import net.dontdrinkandroot.wicket.example.AbstractWicketTest;
 import org.apache.wicket.Page;
 import org.junit.Test;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class HomePageTest extends AbstractWicketTest
 {
-
     @Test
     public void testPageStateless()
     {

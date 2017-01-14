@@ -26,10 +26,11 @@ import org.apache.wicket.util.visit.Visits;
 import org.junit.Assert;
 import org.junit.Before;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AbstractWicketTest
 {
-
     protected WicketTester tester;
 
     @Before
@@ -42,7 +43,6 @@ public class AbstractWicketTest
     {
         Visits.visitChildren(component, new IVisitor<Component, Void>()
         {
-
             @Override
             public void component(Component component, IVisit<Void> visit)
             {
