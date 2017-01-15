@@ -19,13 +19,19 @@ package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FontAwesomeCssHeaderItem extends CssUrlReferenceHeaderItem
 {
+    public static final String VERSION = "4.7.0";
 
     public FontAwesomeCssHeaderItem()
     {
-        super("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", "screen", null);
+        super(
+                String.format("https://maxcdn.bootstrapcdn.com/font-awesome/%s/css/font-awesome.min.css", VERSION),
+                "screen",
+                null
+        );
     }
-
 }

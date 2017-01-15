@@ -19,13 +19,20 @@ package net.dontdrinkandroot.wicket.bootstrap.headeritem;
 
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class BootstrapCssHeaderItem extends CssUrlReferenceHeaderItem
 {
-
     public BootstrapCssHeaderItem()
     {
-        super("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", null, null);
+        super(
+                String.format(
+                        "https://maxcdn.bootstrapcdn.com/bootstrap/%s/css/bootstrap.min.css",
+                        BootstrapJsHeaderItem.BOOTSTRAP_VERSION
+                ),
+                null,
+                null
+        );
     }
-
 }

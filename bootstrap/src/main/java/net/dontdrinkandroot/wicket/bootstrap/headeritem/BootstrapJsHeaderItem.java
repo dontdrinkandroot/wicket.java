@@ -27,9 +27,12 @@ import org.apache.wicket.resource.JQueryResourceReference;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 {
-    public static String BOOTSTRAP_VERSION = "3.3.6";
+    public static String BOOTSTRAP_VERSION = "3.3.7";
 
     public BootstrapJsHeaderItem(boolean defer)
     {

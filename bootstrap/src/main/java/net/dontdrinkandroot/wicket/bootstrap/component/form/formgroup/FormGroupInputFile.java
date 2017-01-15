@@ -48,7 +48,6 @@ public class FormGroupInputFile extends FormGroupFormComponent<List<FileUpload>,
         FileUploadField fileUploadField = new FileUploadField(id, this.getModel());
         fileUploadField.add(new AttributeAppender("multiple", new AbstractReadOnlyModel<String>()
         {
-
             @Override
             public String getObject()
             {
