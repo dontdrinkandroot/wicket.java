@@ -26,7 +26,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -39,6 +38,8 @@ import org.apache.wicket.model.IModel;
 public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
 {
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
+
+    protected IconBehavior iconBehavior = new IconBehavior(null, BootstrapCssClass.CARET);
 
     private IModel<String> labelModel;
 
@@ -69,7 +70,12 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
     {
         this.toggle = new Label("toggle", this.labelModel);
         this.toggle.add(new DropDownToggleBehavior());
-        this.menu = new DropDownMenu("menu")
+        this.menu = this.createDropDownMenu("menu");
+    }
+
+    protected DropDownMenu createDropDownMenu(String id)
+    {
+        return new DropDownMenu(id)
         {
             @Override
             protected void populateItems(RepeatingView itemView)
@@ -86,7 +92,7 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 
         this.add(new CssClassAppender(BootstrapCssClass.BTN_GROUP));
         this.toggle.add(this.buttonBehavior);
-        this.toggle.add(new IconBehavior().setAppendIcon(this.getCaretClass()));
+        this.toggle.add(this.iconBehavior);
         this.add(this.toggle);
         this.add(this.menu);
     }
@@ -147,10 +153,10 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
         return this;
     }
 
-    protected CssClass getCaretClass()
-    {
-        return BootstrapCssClass.CARET;
-    }
-
     protected abstract void populateItems(RepeatingView itemView);
+
+    public IconBehavior getIconBehavior()
+    {
+        return this.iconBehavior;
+    }
 }

@@ -28,7 +28,6 @@ import org.apache.wicket.util.string.Strings;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
  * Prepends and/or appends an Icon to the body of the attached component.
  *
@@ -69,6 +68,24 @@ public class IconBehavior extends AbstractTransformerBehavior
     public IconBehavior(CssClass prependIcon)
     {
         this.setPrependIcon(prependIcon);
+    }
+
+    /**
+     * Creates an IconBehavior with prepended and appended icon.
+     */
+    public IconBehavior(IModel<CssClass> prependIconModel, IModel<CssClass> appendIconModel)
+    {
+        this.prependIconModel = prependIconModel;
+        this.appendIconModel = appendIconModel;
+    }
+
+    /**
+     * Creates an IconBehavior with prepended and appended icon.
+     */
+    public IconBehavior(CssClass prependIcon, CssClass appendIcon)
+    {
+        this.setPrependIcon(prependIcon);
+        this.setAppendIcon(appendIcon);
     }
 
     @Override
