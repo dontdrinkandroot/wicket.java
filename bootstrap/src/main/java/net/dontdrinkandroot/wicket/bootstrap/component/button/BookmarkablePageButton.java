@@ -25,10 +25,12 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class BookmarkablePageButton<T> extends BookmarkablePageLink<T> implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public <C extends Page> BookmarkablePageButton(String id, Class<C> pageClass)

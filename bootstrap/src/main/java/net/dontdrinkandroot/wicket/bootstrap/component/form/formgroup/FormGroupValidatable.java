@@ -122,7 +122,7 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
      */
     public void addDefaultAjaxInputValidation()
     {
-        this.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+        this.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250), true));
     }
 
     public void addAjaxValidation(String eventName)
