@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ColumnSizeStack implements ColumnSize
 {
-
     /**
      * Reasonable defaults for a full screen horziontal form.
      */
@@ -107,5 +109,4 @@ public class ColumnSizeStack implements ColumnSize
 
         return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
     }
-
 }

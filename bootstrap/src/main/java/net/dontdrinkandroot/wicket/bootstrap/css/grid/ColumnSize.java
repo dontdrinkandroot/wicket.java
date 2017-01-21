@@ -19,12 +19,12 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public interface ColumnSize extends CssClass
 {
-
     ColumnOffset getInverseColumnOffset();
 
     ColumnSize getInverseColumnSize();
-
 }

@@ -32,18 +32,21 @@ public class ConcatenatingStringModel extends AbstractChainedModel<String, Strin
     public ConcatenatingStringModel(IModel<? extends String> parent, String appendString)
     {
         super(parent);
+
         this.suffixModel = Model.of(appendString);
     }
 
     public ConcatenatingStringModel(IModel<? extends String> parent, IModel<String> appendStringModel)
     {
         super(parent);
+
         this.suffixModel = appendStringModel;
     }
 
     public ConcatenatingStringModel(IModel<? extends String> parent, String separator, IModel<String> appendStringModel)
     {
         super(parent);
+
         this.suffixModel = appendStringModel;
         this.separator = separator;
     }

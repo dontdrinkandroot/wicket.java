@@ -23,9 +23,11 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.model.IModel;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SubmitButton extends Button implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public SubmitButton(String id)
