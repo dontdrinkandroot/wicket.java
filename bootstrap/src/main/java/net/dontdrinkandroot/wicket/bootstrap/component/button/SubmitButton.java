@@ -20,13 +20,13 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SubmitButton extends Button implements IButton
+public class SubmitButton extends SubmitLink implements IButton
 {
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
@@ -37,7 +37,8 @@ public class SubmitButton extends Button implements IButton
 
     public SubmitButton(String id, IModel<String> label)
     {
-        super(id, label);
+        super(id);
+        this.setBody(label);
     }
 
     @Override

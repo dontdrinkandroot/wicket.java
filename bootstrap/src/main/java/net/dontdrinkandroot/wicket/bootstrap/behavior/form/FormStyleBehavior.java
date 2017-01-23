@@ -39,7 +39,6 @@ public class FormStyleBehavior extends Behavior
         super.bind(component);
         component.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.FORM_HORIZONTAL)
         {
-
             @Override
             protected boolean isActive()
             {
@@ -48,7 +47,6 @@ public class FormStyleBehavior extends Behavior
         }));
         component.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.FORM_INLINE)
         {
-
             @Override
             protected boolean isActive()
             {

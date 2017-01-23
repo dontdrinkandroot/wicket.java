@@ -31,6 +31,10 @@ import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
+/**
+ * @param <T> Type of the Model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SimpleForm<T> extends Form<T> implements IQueueRegion
 {
     private FormStyleBehavior formStyleBehavior = new FormStyleBehavior();
