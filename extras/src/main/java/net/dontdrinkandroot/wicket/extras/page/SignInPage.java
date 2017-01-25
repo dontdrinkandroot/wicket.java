@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -76,9 +77,15 @@ public abstract class SignInPage extends BootstrapPage<Void>
 
         form.add(new Label("heading", this.pageTitleModel));
 
-        form.add(new FormGroupInputText("username", this.createUsernameLabelModel(), this.usernameModel));
+        FormGroupInputText formGroupUsername =
+                new FormGroupInputText("username", this.createUsernameLabelModel(), this.usernameModel);
+        formGroupUsername.setRequired(true);
+        form.add(formGroupUsername);
 
-        form.add(new FormGroupInputPassword("password", this.createPasswordLabelModel(), this.passwordModel));
+        FormGroupInputPassword formGroupPassword =
+                new FormGroupInputPassword("password", this.createPasswordLabelModel(), this.passwordModel);
+        formGroupPassword.setRequired(true);
+        form.add(formGroupPassword);
 
         FormGroupCheckBox formGroupRememberMe =
                 new FormGroupCheckBox("rememberMe", this.createRememberMeLabelModel(), this.rememberMeModel);
@@ -119,7 +126,7 @@ public abstract class SignInPage extends BootstrapPage<Void>
 
     protected IModel<String> createPageTitleModel()
     {
-        return Model.of("Login");
+        return new ResourceModel("login.title", Model.of("Login"));
     }
 
     protected boolean isRememberMeEnabled()
@@ -129,27 +136,27 @@ public abstract class SignInPage extends BootstrapPage<Void>
 
     protected IModel<String> createUsernameLabelModel()
     {
-        return Model.of("Username");
+        return new ResourceModel("login.username", Model.of("Username"));
     }
 
     protected IModel<String> createPasswordLabelModel()
     {
-        return Model.of("Password");
+        return new ResourceModel("login.password", Model.of("Password"));
     }
 
     protected IModel<String> createRememberMeLabelModel()
     {
-        return Model.of("Remember me");
+        return new ResourceModel("login.rememberMe", Model.of("Remember me"));
     }
 
     protected IModel<String> createResetLabelModel()
     {
-        return Model.of("Reset");
+        return new ResourceModel("login.reset", Model.of("Reset"));
     }
 
     protected IModel<String> createSubmitLabelModel()
     {
-        return Model.of("Submit");
+        return new ResourceModel("login.submit", Model.of("Submit"));
     }
 
     protected void onSignInRemembered()
@@ -160,7 +167,7 @@ public abstract class SignInPage extends BootstrapPage<Void>
 
     protected void onSignInFailed()
     {
-        this.error(this.getLocalizer().getString("signInFailed", this, "Sign in failed"));
+        this.error(this.getLocalizer().getString("login.signInFailed", this, "Sign in failed"));
     }
 
     protected void onSignInSucceeded()
