@@ -19,25 +19,24 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
-public enum PaginationSize implements CssClass {
-
-    MINI("pagination-mini"),
-    SMALL("pagination-small"),
-    LARGE("pagination-large");
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public enum PaginationSize implements CssClass
+{
+    SMALL("pagination-sm"),
+    LARGE("pagination-lg");
 
     private final String classString;
 
-    private PaginationSize(String classString)
+    PaginationSize(String classString)
     {
-
         this.classString = classString;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.classString;
     }
 }
