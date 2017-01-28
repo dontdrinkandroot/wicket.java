@@ -21,6 +21,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.IModel;
 
 /**
  * @param <T> Type of the model object.
@@ -31,6 +32,11 @@ public abstract class ButtonGroup<T> extends GenericPanel<T>
     public ButtonGroup(String id)
     {
         super(id);
+    }
+
+    public ButtonGroup(String id, IModel<T> model)
+    {
+        super(id, model);
     }
 
     @Override
