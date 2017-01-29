@@ -24,15 +24,17 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class PageLinkItem extends AbstractPageLinkItem
 {
-
     private final long page;
 
     public PageLinkItem(String id, IPageable pageable, long page)
     {
         super(id, pageable);
+
         this.page = page;
 
         this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ACTIVE)
@@ -69,8 +71,6 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
     {
         this.getPageable().setCurrentPage(Math.max(0, Math.min(this.page, this.getPageable().getPageCount() - 1)));
     }
-
-    ;
 
     protected boolean isCurrentPage()
     {

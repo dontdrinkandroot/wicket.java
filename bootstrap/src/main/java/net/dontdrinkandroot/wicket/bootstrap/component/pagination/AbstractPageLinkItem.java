@@ -23,10 +23,11 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractPageLinkItem extends Panel
 {
-
     private final IPageable pageable;
 
     private AbstractLink link;
@@ -34,6 +35,7 @@ public abstract class AbstractPageLinkItem extends Panel
     public AbstractPageLinkItem(String id, IPageable pageable)
     {
         super(id);
+
         this.pageable = pageable;
 
         this.link = this.createLink("link", this.getPaginablePageModel());
@@ -71,5 +73,4 @@ public abstract class AbstractPageLinkItem extends Panel
     protected abstract IModel<String> createLabel();
 
     protected abstract AbstractLink createLink(String id, IModel<Long> paginablePageModel);
-
 }

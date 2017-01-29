@@ -25,10 +25,11 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class BookmarkablePaginationPanel extends PaginationPanel
 {
-
     public BookmarkablePaginationPanel(String id, IPageable pageable)
     {
         super(id, pageable, null);
@@ -44,7 +45,6 @@ public class BookmarkablePaginationPanel extends PaginationPanel
     {
         return new BookmarkablePageLink<Long>(id, Page.class)
         {
-
             @Override
             public PageParameters getPageParameters()
             {

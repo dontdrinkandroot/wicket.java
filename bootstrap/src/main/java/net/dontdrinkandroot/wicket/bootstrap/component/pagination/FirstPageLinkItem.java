@@ -25,10 +25,11 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class FirstPageLinkItem extends AbstractPageLinkItem
 {
-
     public FirstPageLinkItem(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -64,7 +65,4 @@ public abstract class FirstPageLinkItem extends AbstractPageLinkItem
     {
         return Model.of(0L);
     }
-
-    ;
-
 }

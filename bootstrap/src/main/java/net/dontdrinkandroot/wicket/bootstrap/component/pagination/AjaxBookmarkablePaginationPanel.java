@@ -26,10 +26,11 @@ import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
 {
-
     public AjaxBookmarkablePaginationPanel(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -47,7 +48,6 @@ public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
     {
         return new AjaxBookmarkablePageLink<Long>(id, Page.class)
         {
-
             @Override
             public void onClick(AjaxRequestTarget target)
             {
@@ -73,5 +73,4 @@ public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
             }
         };
     }
-
 }

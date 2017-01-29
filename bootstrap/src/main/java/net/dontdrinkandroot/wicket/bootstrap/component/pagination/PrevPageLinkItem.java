@@ -27,10 +27,11 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class PrevPageLinkItem extends AbstractPageLinkItem
 {
-
     public PrevPageLinkItem(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -46,6 +47,7 @@ public abstract class PrevPageLinkItem extends AbstractPageLinkItem
     protected void onLinkCreated(AbstractLink link)
     {
         super.onLinkCreated(link);
+
         link.add(new AttributeAppender("rel", "prev"));
         link.add(new IconBehavior(new FontAwesomeIcon(FontAwesomeIconClass.ANGLE_LEFT)));
     }
@@ -75,7 +77,4 @@ public abstract class PrevPageLinkItem extends AbstractPageLinkItem
             }
         };
     }
-
-    ;
-
 }

@@ -28,13 +28,11 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class PaginationPanel extends Panel
 {
-
     private final IPageable pageable;
 
     private RepeatingView pageItemView;
@@ -49,6 +47,7 @@ public class PaginationPanel extends Panel
     public PaginationPanel(String id, IPageable pageable, PaginationSize size)
     {
         super(id);
+
         this.pageable = pageable;
         if (size != null) {
             this.add(new CssClassAppender(size));
@@ -129,7 +128,6 @@ public class PaginationPanel extends Panel
     {
         return new FirstPageLinkItem(id, this.pageable)
         {
-
             @Override
             protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
             {
@@ -142,7 +140,6 @@ public class PaginationPanel extends Panel
     {
         return new PrevPageLinkItem(id, this.pageable)
         {
-
             @Override
             protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
             {
@@ -155,7 +152,6 @@ public class PaginationPanel extends Panel
     {
         return new NextPageLinkItem(id, this.pageable)
         {
-
             @Override
             protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
             {
@@ -168,7 +164,6 @@ public class PaginationPanel extends Panel
     {
         return new LastPageLinkItem(id, this.pageable)
         {
-
             @Override
             protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
             {
@@ -181,7 +176,6 @@ public class PaginationPanel extends Panel
     {
         return new PageLinkItem(id, this.pageable, page)
         {
-
             @Override
             protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
             {
@@ -194,7 +188,6 @@ public class PaginationPanel extends Panel
     {
         return new Link<Long>(id, paginablePageModel)
         {
-
             @Override
             public void onClick()
             {
@@ -202,5 +195,4 @@ public class PaginationPanel extends Panel
             }
         };
     }
-
 }

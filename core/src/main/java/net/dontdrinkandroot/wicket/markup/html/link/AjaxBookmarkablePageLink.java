@@ -43,6 +43,7 @@ public class AjaxBookmarkablePageLink<T> extends BookmarkablePageLink<T>
     protected void onInitialize()
     {
         super.onInitialize();
+
         this.add(new AjaxEventBehavior("click")
         {
             @Override
@@ -55,6 +56,7 @@ public class AjaxBookmarkablePageLink<T> extends BookmarkablePageLink<T>
             protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
             {
                 super.updateAjaxAttributes(attributes);
+
                 attributes.setPreventDefault(true);
                 AjaxBookmarkablePageLink.this.updateAjaxAttributes(attributes);
             }

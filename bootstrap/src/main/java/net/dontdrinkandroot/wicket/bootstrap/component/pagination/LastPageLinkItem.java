@@ -26,10 +26,11 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class LastPageLinkItem extends AbstractPageLinkItem
 {
-
     public LastPageLinkItem(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -74,7 +75,4 @@ public abstract class LastPageLinkItem extends AbstractPageLinkItem
             }
         };
     }
-
-    ;
-
 }

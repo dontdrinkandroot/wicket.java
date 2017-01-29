@@ -25,10 +25,11 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class AjaxPaginationPanel extends PaginationPanel
 {
-
     public AjaxPaginationPanel(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -46,7 +47,6 @@ public class AjaxPaginationPanel extends PaginationPanel
     {
         return new AjaxLink<Long>(id, paginablePageModel)
         {
-
             @Override
             public void onClick(AjaxRequestTarget target)
             {
@@ -64,5 +64,4 @@ public class AjaxPaginationPanel extends PaginationPanel
 
         target.add(this);
     }
-
 }
