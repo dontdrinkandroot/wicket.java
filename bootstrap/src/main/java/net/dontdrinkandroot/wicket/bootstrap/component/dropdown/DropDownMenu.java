@@ -27,7 +27,9 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class DropDownMenu extends Panel
 {
     private IModel<DropDownAlignment> alignmentModel = Model.of();

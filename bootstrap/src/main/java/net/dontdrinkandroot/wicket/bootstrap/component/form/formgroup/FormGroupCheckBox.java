@@ -26,10 +26,11 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, CheckBox>
 {
-
     private WebMarkupContainer offset;
 
     private WebMarkupContainer labelWrapper;
@@ -48,7 +49,6 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, 
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
     }
 
@@ -56,6 +56,7 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, 
     protected void createComponents()
     {
         super.createComponents();
+
         this.labelWrapper = new WebMarkupContainer("labelWrapper");
         this.labelWrapper.add(new ForComponentIdBehavior(this.getFormComponent()));
         this.offset = new WebMarkupContainer("offset");
@@ -75,8 +76,7 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, 
     @Override
     protected Component createLabel(String id)
     {
-        Label label = new Label(id, this.labelModel);
-        return label;
+        return new Label(id, this.labelModel);
     }
 
     @Override

@@ -23,10 +23,12 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioChoice<T>>
 {
-
     public FormGroupRadioChoice(
             String id,
             IModel<String> labelModel,

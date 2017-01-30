@@ -25,10 +25,11 @@ import org.apache.wicket.model.IModel;
 
 import java.io.Serializable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class LabelButton extends Label implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public LabelButton(String id)

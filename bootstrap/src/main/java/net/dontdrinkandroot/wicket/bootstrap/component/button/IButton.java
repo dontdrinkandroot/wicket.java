@@ -22,10 +22,11 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.io.IClusterable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public interface IButton
 {
-
     ButtonSize getButtonSize();
 
     IClusterable setButtonSize(ButtonSize buttonSize);
@@ -37,5 +38,4 @@ public interface IButton
     IClusterable setButtonStyle(ButtonStyle buttonStyle);
 
     IClusterable setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel);
-
 }
