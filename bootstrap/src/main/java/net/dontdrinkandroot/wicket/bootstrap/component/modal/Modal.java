@@ -59,7 +59,9 @@ public abstract class Modal<T> extends GenericPanel<T>
 
     protected void addFooter()
     {
-        this.add(this.createFooter("footer"));
+        Component footer = this.createFooter("footer");
+        footer.add(new CssClassAppender(BootstrapCssClass.MODAL_FOOTER));
+        this.add(footer);
     }
 
     protected Component createFooter(String id)
