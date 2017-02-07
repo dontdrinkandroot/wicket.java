@@ -10,6 +10,7 @@ import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.authentication.IAuthenticationStrategy;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.IModel;
@@ -97,6 +98,9 @@ public abstract class SignInPage extends BootstrapPage<Void>
         form.add(submitLabel);
 
         form.add(new Label("reset", this.createResetLabelModel()).add(new ButtonBehavior()));
+
+        this.add(this.createBeforePanel("beforePanel"));
+        this.add(this.createAfterPanel("afterPanel"));
     }
 
     private void onSubmit()
@@ -174,6 +178,26 @@ public abstract class SignInPage extends BootstrapPage<Void>
     {
         this.continueToOriginalDestination();
         this.setResponsePage(this.getApplication().getHomePage());
+    }
+
+    /**
+     * Create a component that is displayed on top of the login panel.
+     *
+     * @param id The id of the component to create.
+     */
+    protected Component createBeforePanel(String id)
+    {
+        return new WebMarkupContainer(id).setVisible(false);
+    }
+
+    /**
+     * Create a component that is displayed on bottom of the login panel.
+     *
+     * @param id The id of the component to create.
+     */
+    protected Component createAfterPanel(String id)
+    {
+        return new WebMarkupContainer(id).setVisible(false);
     }
 
     protected abstract boolean isSignedIn();
