@@ -23,10 +23,12 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AjaxButton<T> extends AjaxLink<T> implements IButton
 {
-
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public AjaxButton(String id)
@@ -83,5 +85,4 @@ public abstract class AjaxButton<T> extends AjaxLink<T> implements IButton
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }
-
 }
