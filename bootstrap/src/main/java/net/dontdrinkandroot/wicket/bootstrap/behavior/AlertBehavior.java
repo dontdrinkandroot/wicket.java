@@ -30,7 +30,7 @@ import org.apache.wicket.model.Model;
  */
 public class AlertBehavior extends Behavior
 {
-    private IModel<AlertStyle> alertStyleModel = new Model<AlertStyle>();
+    private IModel<AlertStyle> alertStyleModel = new Model<>();
 
     public AlertBehavior(AlertStyle alertStyle)
     {

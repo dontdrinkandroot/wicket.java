@@ -38,7 +38,7 @@ public class ButtonBehavior extends Behavior implements IButton
 {
     private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
 
-    private IModel<ButtonSize> buttonSizeModel = new Model<ButtonSize>();
+    private IModel<ButtonSize> buttonSizeModel = new Model<>();
 
     public ButtonBehavior()
     {
