@@ -6,20 +6,21 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.head.IHeaderResponse;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class CompositeBehavior extends Behavior
 {
-    private Iterable<Behavior> behaviors;
+    private Collection<Behavior> behaviors;
 
     public CompositeBehavior(final Behavior... behaviors)
     {
         this(Arrays.asList(behaviors));
     }
 
-    public CompositeBehavior(final Iterable<Behavior> behaviors)
+    public CompositeBehavior(final Collection<Behavior> behaviors)
     {
         this.behaviors = behaviors;
     }
@@ -81,21 +82,23 @@ public class CompositeBehavior extends Behavior
     @Override
     public boolean getStatelessHint(final Component component)
     {
-        boolean back = true;
+        boolean stateless = true;
         for (final Behavior behavior : this.behaviors) {
-            back = back && behavior.getStatelessHint(component);
+            stateless = stateless && behavior.getStatelessHint(component);
         }
-        return back;
+
+        return stateless;
     }
 
     @Override
     public boolean isEnabled(final Component component)
     {
-        boolean back = true;
+        boolean enabled = true;
         for (final Behavior behavior : this.behaviors) {
-            back = back && behavior.isEnabled(component);
+            enabled = enabled && behavior.isEnabled(component);
         }
-        return back;
+
+        return enabled;
     }
 
     /**
@@ -132,5 +135,10 @@ public class CompositeBehavior extends Behavior
         for (final Behavior behavior : this.behaviors) {
             behavior.renderHead(component, response);
         }
+    }
+
+    protected void addBehavior(Behavior behavior)
+    {
+        this.behaviors.add(behavior);
     }
 }
