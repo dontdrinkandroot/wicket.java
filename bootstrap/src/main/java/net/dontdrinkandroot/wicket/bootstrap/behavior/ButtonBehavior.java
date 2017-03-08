@@ -17,70 +17,92 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
+import net.dontdrinkandroot.wicket.behavior.CompositeBehavior;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSubmitLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class ButtonBehavior extends Behavior implements IButton
+public class ButtonBehavior extends CompositeBehavior implements IButton
 {
-    private IModel<ButtonStyle> buttonStyleModel = Model.of(ButtonStyle.DEFAULT);
+    private IModel<ButtonStyle> buttonStyleModel;
 
-    private IModel<ButtonSize> buttonSizeModel = new Model<>();
+    private IModel<ButtonSize> buttonSizeModel;
 
     public ButtonBehavior()
     {
-        super();
+        this(Model.of(ButtonStyle.DEFAULT), new Model<>());
     }
 
     public ButtonBehavior(ButtonStyle buttonStyle)
     {
-        this.buttonStyleModel = Model.of(buttonStyle);
+        this(Model.of(buttonStyle), new Model<>());
     }
 
     public ButtonBehavior(ButtonSize buttonSize)
     {
-        this.buttonSizeModel = Model.of(buttonSize);
+        this(Model.of(ButtonStyle.DEFAULT), Model.of(buttonSize));
     }
 
     public ButtonBehavior(ButtonStyle buttonStyle, ButtonSize buttonSize)
     {
-        this.buttonStyleModel = Model.of(buttonStyle);
-        this.buttonSizeModel = Model.of(buttonSize);
+        this(Model.of(buttonStyle), Model.of(buttonSize));
     }
 
     public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel)
     {
-        this.buttonStyleModel = buttonStyleModel;
+        this(buttonStyleModel, new Model<>());
     }
 
     public ButtonBehavior(IModel<ButtonStyle> buttonStyleModel, IModel<ButtonSize> buttonSizeModel)
     {
+        super(new CssClassAppender(BootstrapCssClass.BTN), new DisabledCssBehavior());
+
         this.buttonStyleModel = buttonStyleModel;
         this.buttonSizeModel = buttonSizeModel;
-    }
 
-    @Override
-    public void bind(Component component)
-    {
-        super.bind(component);
+        this.addBehavior(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        {
+            @Override
+            public CssClass getObject()
+            {
+                return ButtonBehavior.this.getButtonStyleModel().getObject();
+            }
 
-        component.add(new CssClassAppender(BootstrapCssClass.BTN));
-        component.add(new CssClassAppender(this.getButtonStyleModel()));
-        component.add(new CssClassAppender(this.getButtonSizeModel()));
-        component.add(new DisabledCssBehavior());
+            @Override
+            public void detach()
+            {
+                ButtonBehavior.this.getButtonStyleModel().detach();
+            }
+        }));
+
+        this.addBehavior(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        {
+            @Override
+            public CssClass getObject()
+            {
+                return ButtonBehavior.this.getButtonSizeModel().getObject();
+            }
+
+            @Override
+            public void detach()
+            {
+                ButtonBehavior.this.getButtonStyleModel().detach();
+            }
+        }));
     }
 
     @Override

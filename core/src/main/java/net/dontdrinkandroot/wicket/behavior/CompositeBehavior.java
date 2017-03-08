@@ -5,6 +5,7 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.head.IHeaderResponse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,7 +18,7 @@ public class CompositeBehavior extends Behavior
 
     public CompositeBehavior(final Behavior... behaviors)
     {
-        this(Arrays.asList(behaviors));
+        this(new ArrayList<>(Arrays.asList(behaviors)));
     }
 
     public CompositeBehavior(final Collection<Behavior> behaviors)
@@ -132,6 +133,7 @@ public class CompositeBehavior extends Behavior
     public void renderHead(final Component component, final IHeaderResponse response)
     {
         super.renderHead(component, response);
+
         for (final Behavior behavior : this.behaviors) {
             behavior.renderHead(component, response);
         }

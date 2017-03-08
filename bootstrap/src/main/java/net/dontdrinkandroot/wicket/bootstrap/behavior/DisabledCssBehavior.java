@@ -17,9 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.Component;
+import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.markup.ComponentTag;
 
 /**
  * Adds {@link BootstrapCssClass#DISABLED} to the class attribute of components that are not enabled
@@ -27,16 +28,15 @@ import org.apache.wicket.Component;
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DisabledCssBehavior extends CssClassAppender
+public class DisabledCssBehavior extends Behavior
 {
-    public DisabledCssBehavior()
-    {
-        super(BootstrapCssClass.DISABLED);
-    }
-
     @Override
-    public boolean isEnabled(Component component)
+    public void onComponentTag(Component component, ComponentTag tag)
     {
-        return !component.isEnabledInHierarchy();
+        super.onComponentTag(component, tag);
+
+        if (!component.isEnabledInHierarchy()) {
+            tag.append("class", BootstrapCssClass.DISABLED.getClassString(), " ");
+        }
     }
 }
