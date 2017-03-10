@@ -15,8 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.model;
+package net.dontdrinkandroot.wicket.model.java.time.temporal;
 
+import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
 import java.time.format.DateTimeFormatter;
@@ -59,17 +60,17 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
             return "n/a";
         }
 
-        if (null == pattern) {
-            return getParentObject().toString();
+        if (null == this.pattern) {
+            return this.getParentObject().toString();
         }
 
         DateTimeFormatter dateTimeFormatter;
-        if (null == locale) {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
+        if (null == this.locale) {
+            dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern);
         } else {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, locale);
+            dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern, this.locale);
         }
 
-        return dateTimeFormatter.format(getParentObject());
+        return dateTimeFormatter.format(this.getParentObject());
     }
 }
