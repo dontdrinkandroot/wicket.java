@@ -20,10 +20,12 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class FormGroupActions<T> extends FormGroup<T>
 {
-
     private RepeatingView actionView;
 
     public FormGroupActions(String id)

@@ -27,10 +27,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
 public class FormGroupPage extends FormPage
 {
-
     protected FormStyleBehavior formStyleBehavior = new FormStyleBehavior().setHorizontal(ColumnSizeStack.FORM_DEFAULT);
 
     public FormGroupPage(PageParameters parameters)
@@ -54,7 +52,6 @@ public class FormGroupPage extends FormPage
 
         styleItemView.add(new AjaxLinkItem(styleItemView.newChildId(), Model.of("Default"))
         {
-
             @Override
             protected void onClick(AjaxRequestTarget target)
             {
@@ -102,7 +99,7 @@ public class FormGroupPage extends FormPage
             }
         });
 
-        Form<Void> form = new Form<Void>("form");
+        Form<Void> form = new Form<>("form");
         form.add(this.formStyleBehavior);
         this.add(form);
 

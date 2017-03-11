@@ -17,12 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import net.dontdrinkandroot.wicket.utils.BehaviorUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.markup.ComponentTag;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -30,25 +28,22 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 public class FormContainerSizeBehavior extends Behavior
 {
     @Override
-    public void bind(final Component component)
+    public void onConfigure(Component component)
     {
-        super.bind(component);
-        component.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
+        super.onConfigure(component);
 
-            @Override
-            public CssClass getObject()
-            {
-                FormStyleBehavior formStyleBehavior =
-                        BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
-                if (null != formStyleBehavior) {
-                    if (formStyleBehavior.isHorizontal()) {
-                        return formStyleBehavior.getContainerSize();
-                    }
-                }
+        FormStyleBehavior formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
+        component.setRenderBodyOnly(null == formStyleBehavior || formStyleBehavior.isInline());
+    }
 
-                return null;
-            }
-        }));
+    @Override
+    public void onComponentTag(Component component, ComponentTag tag)
+    {
+        super.onComponentTag(component, tag);
+
+        FormStyleBehavior formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
+        if (null != formStyleBehavior && formStyleBehavior.isHorizontal()) {
+            tag.append("class", formStyleBehavior.getContainerSize().getClassString(), " ");
+        }
     }
 }

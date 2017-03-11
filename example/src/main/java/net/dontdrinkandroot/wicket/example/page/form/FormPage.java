@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.example.page.form;
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.*;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
@@ -24,6 +25,7 @@ import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -34,10 +36,8 @@ import org.apache.wicket.util.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-
 public abstract class FormPage extends DecoratorPage<Void>
 {
-
     public FormPage(PageParameters parameters)
     {
         super(parameters);
@@ -51,7 +51,7 @@ public abstract class FormPage extends DecoratorPage<Void>
 
     protected void populateFormGroups(Form<Void> form, RepeatingView formGroupView)
     {
-        List<String> choices = Arrays.asList(new String[]{"Apple", "Banana", "Pear"});
+        List<String> choices = Arrays.asList("Apple", "Banana", "Pear");
 
         FormGroupStatic formGroupStatic = new FormGroupStatic(
                 formGroupView.newChildId(),
@@ -102,7 +102,7 @@ public abstract class FormPage extends DecoratorPage<Void>
         FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
                 formGroupView.newChildId(),
                 Model.of(FormGroupCheckBox.class.getSimpleName()),
-                new Model<Boolean>()
+                new Model<>()
         );
         formGroupView.add(formGroupCheckBox);
 
@@ -130,13 +130,11 @@ public abstract class FormPage extends DecoratorPage<Void>
 
         FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId())
         {
-
             @Override
             protected void populateActions(RepeatingView actionView)
             {
                 AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId())
                 {
-
                     @Override
                     protected void onError(AjaxRequestTarget target, Form<?> form)
                     {
@@ -147,6 +145,10 @@ public abstract class FormPage extends DecoratorPage<Void>
                 submitButton.setBody(Model.of("Submit"));
                 submitButton.setButtonStyle(ButtonStyle.PRIMARY);
                 actionView.add(submitButton);
+
+                Label cancelButton = new Label(actionView.newChildId(), "Cancel");
+                cancelButton.add(new ButtonBehavior());
+                actionView.add(cancelButton);
             }
         };
         formGroupView.add(formGroupActions);
