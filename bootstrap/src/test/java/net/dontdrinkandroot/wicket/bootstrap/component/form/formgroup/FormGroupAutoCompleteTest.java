@@ -29,7 +29,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
         Assert.assertEquals(
                 "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"form-group dropdown autocomplete\"><wicket:panel>\n" +
                         "\t\t<label wicket:id=\"label\" class=\"control-label\" for=\"formComponent2\">ExampleLabel</label>\n" +
-                        "\t\t<div wicket:id=\"container\">\n" +
+                        "\t\t\n" +
                         "\t\t\t<wicket:child><wicket:extend>\n" +
                         "\t\t<wicket:child><wicket:extend>\n" +
                         "\t\t<input type=\"text\" wicket:id=\"formComponent\" class=\"form-control dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" autocomplete=\"off\" value=\"\" name=\"id:container:formComponent\" id=\"formComponent2\"/>\n" +
@@ -45,7 +45,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
                         "\t</wicket:extend></wicket:child>\n" +
                         "\t\t<div id=\"helpBlock7\" style=\"display:none\"></div>\n" +
                         "\t</wicket:extend></wicket:child>\n" +
-                        "\t\t</div>\n" +
+                        "\t\t\n" +
                         "\t</wicket:panel></wicket:container>",
                 componentMarkup.toString()
         );

@@ -25,7 +25,7 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TooTipBehaviorTest extends AbstractWicketTest
+public class ToolTipBehaviorTest extends AbstractWicketTest
 {
     @Test
     public void testDefaultMarkup()

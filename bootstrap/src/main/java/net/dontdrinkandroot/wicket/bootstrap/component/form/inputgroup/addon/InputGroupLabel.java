@@ -24,10 +24,11 @@ import org.apache.wicket.model.IModel;
 
 import java.io.Serializable;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class InputGroupLabel extends Label
 {
-
     public InputGroupLabel(String id)
     {
         super(id);
@@ -49,5 +50,4 @@ public class InputGroupLabel extends Label
         super.onInitialize();
         this.add(new CssClassAppender(BootstrapCssClass.INPUT_GROUP_ADDON));
     }
-
 }

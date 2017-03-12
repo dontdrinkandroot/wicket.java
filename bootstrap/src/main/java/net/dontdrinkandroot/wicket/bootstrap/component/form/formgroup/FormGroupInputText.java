@@ -22,11 +22,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 
-
-public class FormGroupInputText
-        extends FormGroupInputGroup<String, String, TextField<String>, InputGroupText>
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class FormGroupInputText extends FormGroupInputGroup<String, String, TextField<String>, InputGroupText>
 {
-
     public FormGroupInputText(String id, IModel<String> labelModel, IModel<String> model)
     {
         super(id, labelModel, model);
@@ -37,7 +37,6 @@ public class FormGroupInputText
     {
         return new InputGroupText(id, this.getModel())
         {
-
             @Override
             protected Component createInputGroupAddonBefore(String id)
             {
