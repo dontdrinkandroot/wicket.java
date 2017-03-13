@@ -18,11 +18,15 @@
 package net.dontdrinkandroot.wicket.example.page.form;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.*;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupLabel;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.markup.html.basic.Label;
@@ -33,6 +37,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.time.Duration;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -98,6 +103,25 @@ public abstract class FormPage extends DecoratorPage<Void>
         );
         formGroupTextArea.setRequired(true);
         formGroupView.add(formGroupTextArea);
+
+        FormGroupLocalDate formGroupLocalDate = new FormGroupLocalDate(
+                formGroupView.newChildId(),
+                Model.of(FormGroupLocalDate.class.getSimpleName()),
+                Model.of(LocalDate.now())
+        )
+        {
+            @Override
+            protected Component createInputGroupAddonAfter(String id)
+            {
+                InputGroupLabel after = new InputGroupLabel(id);
+                after.add(new IconBehavior(FontAwesomeIconClass.CALENDAR_O.createIcon()));
+
+                return after;
+            }
+        };
+        formGroupLocalDate.getFormComponent().setMin(LocalDate.now().withMonth(1).withDayOfMonth(1));
+        formGroupLocalDate.getFormComponent().setMax(LocalDate.now().withMonth(12).withDayOfMonth(31));
+        formGroupView.add(formGroupLocalDate);
 
         FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
                 formGroupView.newChildId(),

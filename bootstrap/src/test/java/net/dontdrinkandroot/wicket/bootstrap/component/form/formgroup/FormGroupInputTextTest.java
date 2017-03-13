@@ -29,10 +29,8 @@ import org.junit.Test;
 
 import java.util.List;
 
-
 public class FormGroupInputTextTest extends AbstractWicketTest
 {
-
     @Test
     public void testDefault()
     {
@@ -120,5 +118,4 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         Assert.assertTrue(containerTester.getAttributeContains("class", "col-md-8"));
         Assert.assertTrue(containerTester.getAttributeContains("class", "col-lg-9"));
     }
-
 }
