@@ -130,6 +130,13 @@ public abstract class FormPage extends DecoratorPage<Void>
         );
         formGroupView.add(formGroupLocalTime);
 
+        FormGroupLocalDateTime formGroupLocalDateTime = new FormGroupLocalDateTime(
+                formGroupView.newChildId(),
+                Model.of(FormGroupLocalDateTime.class.getSimpleName()),
+                new Model<>()
+        );
+        formGroupView.add(formGroupLocalDateTime);
+
         FormGroupCheckBox formGroupCheckBox = new FormGroupCheckBox(
                 formGroupView.newChildId(),
                 Model.of(FormGroupCheckBox.class.getSimpleName()),
