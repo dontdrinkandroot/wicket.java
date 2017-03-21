@@ -17,43 +17,25 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
-import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.markup.ComponentTag;
 
 /**
+ * Behavior that manages the style of a form.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
+ * @see FormLabelSizeBehavior
+ * @see FormContainerSizeBehavior
+ * @see InlineFormScreenReaderOnlyLabelBehavior
  */
 public class FormStyleBehavior extends Behavior
 {
     private ColumnSize containerSize;
 
     private boolean inline = false;
-
-    @Override
-    public void bind(Component component)
-    {
-        super.bind(component);
-        component.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.FORM_HORIZONTAL)
-        {
-            @Override
-            protected boolean isActive()
-            {
-                return FormStyleBehavior.this.isHorizontal();
-            }
-        }));
-        component.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.FORM_INLINE)
-        {
-            @Override
-            protected boolean isActive()
-            {
-                return FormStyleBehavior.this.isInline();
-            }
-        }));
-    }
 
     public boolean isInline()
     {
@@ -97,5 +79,19 @@ public class FormStyleBehavior extends Behavior
     public ColumnSize getContainerSize()
     {
         return this.containerSize;
+    }
+
+    @Override
+    public void onComponentTag(Component component, ComponentTag tag)
+    {
+        super.onComponentTag(component, tag);
+
+        if (this.isHorizontal()) {
+            tag.append("class", BootstrapCssClass.FORM_HORIZONTAL.getClassString(), " ");
+        }
+
+        if (this.isInline()) {
+            tag.append("class", BootstrapCssClass.FORM_INLINE.getClassString(), " ");
+        }
     }
 }

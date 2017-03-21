@@ -57,9 +57,9 @@ public class IntegerRangeListModel extends AbstractReadOnlyModel<List<Integer>>
 
     private void updateList()
     {
-        this.list = new ArrayList<Integer>();
+        this.list = new ArrayList<>();
         for (int i = this.min; i <= this.max; i++) {
-            this.list.add(Integer.valueOf(i));
+            this.list.add(i);
         }
     }
 
