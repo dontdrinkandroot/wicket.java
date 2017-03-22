@@ -24,7 +24,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-public class SimpleAjaxFormPanel<T> extends SimpleAjaxForm<T>
+public class SimpleFormPanel<T> extends SimpleForm<T>
 {
     private PanelBehavior panelBehavior = new PanelBehavior();
 
@@ -32,13 +32,13 @@ public class SimpleAjaxFormPanel<T> extends SimpleAjaxForm<T>
 
     private IModel<String> titleModel;
 
-    public SimpleAjaxFormPanel(String id, IModel<String> titleModel)
+    public SimpleFormPanel(String id, IModel<String> titleModel)
     {
         super(id);
         this.titleModel = titleModel;
     }
 
-    public SimpleAjaxFormPanel(String id, IModel<String> titleModel, IModel<T> model)
+    public SimpleFormPanel(String id, IModel<String> titleModel, IModel<T> model)
     {
         super(id, model);
         this.titleModel = titleModel;
@@ -55,7 +55,7 @@ public class SimpleAjaxFormPanel<T> extends SimpleAjaxForm<T>
         this.add(title);
     }
 
-    public SimpleAjaxFormPanel<T> setHeadingLevel(Level headingLevel)
+    public SimpleFormPanel<T> setHeadingLevel(Level headingLevel)
     {
         this.headingLevel = headingLevel;
         return this;
