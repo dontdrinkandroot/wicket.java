@@ -33,10 +33,12 @@ import org.apache.wicket.model.util.ListModel;
 
 import java.util.List;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 {
-
     private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
@@ -57,35 +59,41 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 
         for (final T choice : choicesModel.getObject()) {
 
-            AjaxLink<Void> choiceLink = new AjaxLink<Void>(choicesView.newChildId())
-            {
-
-                @Override
-                public void onClick(AjaxRequestTarget target)
-                {
-
-                    ButtonGroupChoice.this.onSelectionChanged(choice, target);
-                }
-            };
-            choiceLink.setBody(this.getDisplayModel(choice));
-            choiceLink.add(this.buttonBehavior);
-            choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-            {
-
-                @Override
-                public BootstrapCssClass getObject()
-                {
-
-                    if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-                        return BootstrapCssClass.ACTIVE;
-                    }
-
-                    return null;
-                }
-            }));
-
+            String choiceId = choicesView.newChildId();
+            AjaxLink<Void> choiceLink = this.createChoiceButton(choiceId, choice);
             choicesView.add(choiceLink);
         }
+    }
+
+    /**
+     * Creates the Button for the the given choice.
+     */
+    protected AjaxLink<Void> createChoiceButton(String id, T choice)
+    {
+        AjaxLink<Void> choiceLink = new AjaxLink<Void>(id)
+        {
+            @Override
+            public void onClick(AjaxRequestTarget target)
+            {
+                ButtonGroupChoice.this.onSelectionChanged(choice, target);
+            }
+        };
+        choiceLink.setBody(this.getDisplayModel(choice));
+        choiceLink.add(this.buttonBehavior);
+        choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
+        {
+            @Override
+            public BootstrapCssClass getObject()
+            {
+                if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
+                    return BootstrapCssClass.ACTIVE;
+                }
+
+                return null;
+            }
+        }));
+
+        return choiceLink;
     }
 
     @Override
@@ -138,5 +146,4 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
     {
         return new Model<String>(choice.toString());
     }
-
 }
