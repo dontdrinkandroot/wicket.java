@@ -32,17 +32,17 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
                         "\t\t\n" +
                         "\t\t\t<wicket:child><wicket:extend>\n" +
                         "\t\t<wicket:child><wicket:extend>\n" +
-                        "\t\t<input type=\"text\" wicket:id=\"formComponent\" class=\"form-control dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" autocomplete=\"off\" value=\"\" name=\"id:container:formComponent\" id=\"formComponent2\"/>\n" +
-                        "\t\t<ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu\" wicket:id=\"dropDownMenu\" id=\"dropDownMenu3\">\n" +
-                        "\t\t\t<li wicket:id=\"suggestionItem\">\n" +
-                        "\t\t\t\t<a wicket:id=\"link\" id=\"link4\" href=\"javascript:;\">Alpha</a>\n" +
-                        "\t\t\t</li><li wicket:id=\"suggestionItem\">\n" +
-                        "\t\t\t\t<a wicket:id=\"link\" id=\"link5\" href=\"javascript:;\">Beta</a>\n" +
-                        "\t\t\t</li><li wicket:id=\"suggestionItem\">\n" +
-                        "\t\t\t\t<a wicket:id=\"link\" id=\"link6\" href=\"javascript:;\">Gamma</a>\n" +
-                        "\t\t\t</li>\n" +
-                        "\t\t</ul>\n" +
-                        "\t</wicket:extend></wicket:child>\n" +
+                        "    <input type=\"text\" wicket:id=\"formComponent\" class=\"form-control dropdown-toggle\" autocomplete=\"off\" value=\"\" name=\"id:container:formComponent\" id=\"formComponent2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"/>\n" +
+                        "    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu\" wicket:id=\"dropDownMenu\" id=\"dropDownMenu3\">\n" +
+                        "        <li wicket:id=\"suggestionItem\">\n" +
+                        "            <a wicket:id=\"link\" id=\"link4\" href=\"javascript:;\">Alpha</a>\n" +
+                        "        </li><li wicket:id=\"suggestionItem\">\n" +
+                        "            <a wicket:id=\"link\" id=\"link5\" href=\"javascript:;\">Beta</a>\n" +
+                        "        </li><li wicket:id=\"suggestionItem\">\n" +
+                        "            <a wicket:id=\"link\" id=\"link6\" href=\"javascript:;\">Gamma</a>\n" +
+                        "        </li>\n" +
+                        "    </ul>\n" +
+                        "</wicket:extend></wicket:child>\n" +
                         "\t\t<div id=\"helpBlock7\" style=\"display:none\"></div>\n" +
                         "\t</wicket:extend></wicket:child>\n" +
                         "\t\t\n" +

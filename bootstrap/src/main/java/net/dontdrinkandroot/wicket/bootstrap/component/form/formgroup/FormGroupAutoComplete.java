@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -28,8 +29,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.time.Duration;
 
 import java.util.List;
@@ -57,14 +58,16 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
         this.dropDownMenu.setOutputMarkupId(true);
         this.add(this.dropDownMenu);
 
-        this.suggestionView = new ListView<String>("suggestionItem", new AbstractReadOnlyModel<List<String>>()
+        IModel<List<String>> suggestionsModel = new LoadableDetachableModel<List<String>>()
         {
             @Override
-            public List<String> getObject()
+            protected List<String> load()
             {
-                return FormGroupAutoComplete.this.getChoices(FormGroupAutoComplete.this.getModelObject());
+                return FormGroupAutoComplete.this.getChoices(FormGroupAutoComplete.this.getFormComponent().getInput());
             }
-        })
+        };
+
+        this.suggestionView = new ListView<String>("suggestionItem", suggestionsModel)
         {
             @Override
             protected void populateItem(ListItem<String> item)
@@ -102,18 +105,26 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
         this.add(new CssClassAppender("autocomplete"));
+        this.formComponent.add(new DropDownToggleBehavior());
         this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input")
         {
             @Override
             protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
             {
                 super.updateAjaxAttributes(attributes);
-                attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250)));
+                attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250), true));
             }
 
             @Override
             protected void onUpdate(AjaxRequestTarget target)
             {
+                target.add(FormGroupAutoComplete.this.dropDownMenu);
+            }
+
+            @Override
+            protected void onError(AjaxRequestTarget target, RuntimeException e)
+            {
+                super.onError(target, e);
                 target.add(FormGroupAutoComplete.this.dropDownMenu);
             }
         });
@@ -122,7 +133,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
     @Override
     protected TextField<String> createFormComponent(String id)
     {
-        return new TextField<String>(id, this.getModel());
+        return new TextField<>(id, this.getModel());
     }
 
     protected abstract List<String> getChoices(String input);
