@@ -22,7 +22,7 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 
 /**
- * Sets the component to invisible if its model or the modelobject is null.
+ * Sets the component to invisible if its model or the modelobject is null or it is an empty string.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
@@ -34,8 +34,11 @@ public class EmptyModelInvisibleBehavior extends Behavior
         super.onConfigure(component);
 
         IModel<?> model = component.getDefaultModel();
-        if ((null == model) || (null == model.getObject())) {
-            component.setVisible(false);
-        }
+
+        component.setVisible(
+                null == model
+                        || null == model.getObject()
+                        || ((model.getObject() instanceof String && "".equals(((String) model.getObject()).trim())))
+        );
     }
 }
