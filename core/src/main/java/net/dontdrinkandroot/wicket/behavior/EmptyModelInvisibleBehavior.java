@@ -35,10 +35,11 @@ public class EmptyModelInvisibleBehavior extends Behavior
 
         IModel<?> model = component.getDefaultModel();
 
-        component.setVisible(
-                null == model
-                        || null == model.getObject()
-                        || ((model.getObject() instanceof String && "".equals(((String) model.getObject()).trim())))
-        );
+        boolean visible = null != model;
+        visible = visible && null != model.getObject();
+        visible =
+                visible && (!(model.getObject() instanceof String) || !("".equals(((String) model.getObject()).trim())));
+
+        component.setVisible(visible);
     }
 }
