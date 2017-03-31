@@ -27,10 +27,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
 public class DropDownPage extends ComponentPage
 {
-
     public DropDownPage(PageParameters parameters)
     {
         super(parameters);
@@ -43,7 +41,6 @@ public class DropDownPage extends ComponentPage
 
         DropDownMenu dropDownMenu = new DropDownMenu("dropDownMenu")
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {

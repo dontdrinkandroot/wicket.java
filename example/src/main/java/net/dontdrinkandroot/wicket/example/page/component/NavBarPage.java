@@ -126,7 +126,7 @@ public class NavBarPage extends ComponentPage
 
     protected void populateExampleNavbarLeftItems(RepeatingView itemView)
     {
-        itemView.add(new SimpleDropDownItem(itemView.newChildId(), Model.of("DropDown"))
+        itemView.add(new RepeatingDropDownItem(itemView.newChildId(), Model.of("DropDown"))
         {
 
             @Override

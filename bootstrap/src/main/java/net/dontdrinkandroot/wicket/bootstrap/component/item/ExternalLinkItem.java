@@ -18,39 +18,38 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.UrlUtils;
 
-public class ExternalLinkItem extends AbstractLinkItem
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class ExternalLinkItem extends AbstractLinkItem<String, ExternalLink>
 {
-    private final IModel<String> hrefModel;
-
-    public ExternalLinkItem(String id, IModel<String> hrefModel, IModel<String> labelModel)
+    public ExternalLinkItem(String id, IModel<String> labelModel, IModel<String> hrefModel)
     {
-        super(id, labelModel);
-        this.hrefModel = hrefModel;
+        super(id, labelModel, hrefModel);
     }
 
     @Override
-    protected Component createLink(String id)
+    protected ExternalLink createLink(String id)
     {
-        ExternalLink link = new ExternalLink(id, this.hrefModel);
+        ExternalLink link = new ExternalLink(id, this.getModel());
 
         link.add(new AttributeModifier("rel", new AbstractReadOnlyModel<String>()
         {
             @Override
             public String getObject()
             {
-                if (UrlUtils.isRelative(ExternalLinkItem.this.hrefModel.getObject())) {
+                if (UrlUtils.isRelative(ExternalLinkItem.this.getModelObject())) {
                     return null;
                 }
+
                 return "external";
             }
         }));
-        link.setBody(this.getModel());
         return link;
     }
 }

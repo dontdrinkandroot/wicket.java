@@ -22,8 +22,10 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-
-public class DividerItem extends WebMarkupContainer
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class DividerItem extends WebMarkupContainer implements Item
 {
     public DividerItem(String id)
     {

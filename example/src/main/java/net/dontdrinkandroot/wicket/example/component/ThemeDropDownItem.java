@@ -18,19 +18,17 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.item.AbstractLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.SimpleDropDownItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropDownItem;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.model.Theme;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
 
-public class ThemeDropDownItem extends SimpleDropDownItem
+public class ThemeDropDownItem extends RepeatingDropDownItem
 {
-
     public ThemeDropDownItem(String id)
     {
         super(id, new ConcatenatingStringModel(Model.of("Theme"), ": ", new AbstractReadOnlyModel<String>()
@@ -56,13 +54,11 @@ public class ThemeDropDownItem extends SimpleDropDownItem
     {
         AbstractLinkItem themeLinkItem = new AbstractLinkItem(id, Model.of(theme.getName()))
         {
-
             @Override
-            protected Component createLink(String id)
+            protected StatelessLink<Void> createLink(String id)
             {
                 StatelessLink<Void> themeLink = new StatelessLink<Void>(id)
                 {
-
                     @Override
                     public void onClick()
                     {
@@ -70,7 +66,6 @@ public class ThemeDropDownItem extends SimpleDropDownItem
                         this.setResponsePage(this.getPage());
                     }
                 };
-                themeLink.setBody(Model.of(this.getModel()));
 
                 return themeLink;
             }
@@ -78,5 +73,4 @@ public class ThemeDropDownItem extends SimpleDropDownItem
 
         return themeLinkItem;
     }
-
 }

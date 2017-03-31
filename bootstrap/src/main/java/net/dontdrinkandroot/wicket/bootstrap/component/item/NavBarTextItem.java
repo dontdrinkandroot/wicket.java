@@ -19,13 +19,13 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
-
-public class NavBarTextItem extends Label
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class NavBarTextItem extends LabelItem
 {
-
     public NavBarTextItem(String id, IModel<String> labelModel)
     {
         super(id, labelModel);

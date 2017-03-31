@@ -19,21 +19,20 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
-import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
-public abstract class DropDownItem extends AbstractLinkItem
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class DropDownItem<T> extends AbstractLabeledItem<T>
 {
-    protected DropDownMenu dropDownMenu;
+    private IconBehavior iconBehavior = new IconBehavior().setAppendIcon(BootstrapCssClass.CARET);
 
-    public DropDownItem(String id, String label)
-    {
-        super(id, label);
-    }
+    protected DropDownMenu dropDownMenu;
 
     public DropDownItem(String id, IModel<String> labelModel)
     {
@@ -47,24 +46,18 @@ public abstract class DropDownItem extends AbstractLinkItem
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 
-        this.dropDownMenu = createDropDownMenu("dropDownMenu");
+        Label dropDownToggle = new Label("dropDownToggle", this.getLabel());
+        dropDownToggle.add(new DropDownToggleBehavior());
+        dropDownToggle.add(this.iconBehavior);
+        this.add(dropDownToggle);
+
+        this.dropDownMenu = this.createDropDownMenu("dropDownMenu");
         this.add(this.dropDownMenu);
     }
 
-
-    @Override
-    protected Component createLink(String id)
+    public IconBehavior getIconBehavior()
     {
-        Label label = new Label(id, this.getModel());
-        label.add(new DropDownToggleBehavior());
-        this.setAppendIcon(this.getCaretClass());
-
-        return label;
-    }
-
-    protected CssClass getCaretClass()
-    {
-        return BootstrapCssClass.CARET;
+        return this.iconBehavior;
     }
 
     protected abstract DropDownMenu createDropDownMenu(String id);

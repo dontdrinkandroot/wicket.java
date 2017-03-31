@@ -17,16 +17,16 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-public class BookmarkablePageLinkItem extends AbstractLinkItem
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class BookmarkablePageLinkItem<T> extends AbstractLinkItem<T, BookmarkablePageLink<T>>
 {
-    private BookmarkablePageLink<?> link;
-
     private final Class<? extends Page> pageClass;
 
     private PageParameters parameters;
@@ -53,13 +53,13 @@ public class BookmarkablePageLinkItem extends AbstractLinkItem
     @Override
     protected boolean isActive()
     {
-        return this.getPage().getClass().isAssignableFrom(this.link.getPageClass());
+        return this.getPage().getClass().isAssignableFrom(this.getLink().getPageClass());
     }
 
     @Override
-    protected Component createLink(String id)
+    protected BookmarkablePageLink<T> createLink(String id)
     {
-        this.link = new BookmarkablePageLink<Void>(id, this.pageClass)
+        BookmarkablePageLink<T> link = new BookmarkablePageLink<T>(id, this.pageClass)
         {
             @Override
             public PageParameters getPageParameters()
@@ -72,9 +72,9 @@ public class BookmarkablePageLinkItem extends AbstractLinkItem
                 return parameters;
             }
         };
-        this.link.setBody(this.getModel());
+        link.setModel(this.getModel());
 
-        return this.link;
+        return link;
     }
 
     /**

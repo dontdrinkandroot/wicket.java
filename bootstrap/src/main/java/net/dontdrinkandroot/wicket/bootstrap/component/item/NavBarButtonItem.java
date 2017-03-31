@@ -23,10 +23,12 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class NavBarButtonItem<T> extends AbstractItem<T>
 {
-
     public NavBarButtonItem(String id)
     {
         super(id);
@@ -49,5 +51,4 @@ public abstract class NavBarButtonItem<T> extends AbstractItem<T>
     }
 
     protected abstract AbstractLink createLink(String id);
-
 }

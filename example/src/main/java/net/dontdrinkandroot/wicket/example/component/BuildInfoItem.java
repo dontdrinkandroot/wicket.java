@@ -13,11 +13,10 @@ public class BuildInfoItem extends ExternalLinkItem
     {
         super(
                 id,
-                Model.of(String.format(
+                Model.of(ExampleApplication.get().getBuildProperties().getProperty("version")), Model.of(String.format(
                         "https://github.com/dontdrinkandroot/wicket.java/commit/%s",
                         ExampleApplication.get().getBuildProperties().getProperty("revision")
-                )),
-                Model.of(ExampleApplication.get().getBuildProperties().getProperty("version"))
+                ))
         );
     }
 }

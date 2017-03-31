@@ -20,24 +20,31 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.css.CssClass;
-import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-public abstract class AbstractLinkItem extends AbstractItem<String>
+/**
+ * @param <T> Type of the model object.
+ * @param <L> Type of the {@link AbstractLink}.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class AbstractLinkItem<T, L extends AbstractLink> extends AbstractLabeledItem<T>
 {
     private IModel<CssClass> prependIconModel;
 
     private IModel<CssClass> appendIconModel;
 
+    private L link;
+
     public AbstractLinkItem(String id, IModel<String> labelModel)
     {
-        super(id, labelModel);
+        this(id, labelModel, null);
     }
 
-    public AbstractLinkItem(String id, String label)
+    public AbstractLinkItem(String id, IModel<String> labelModel, IModel<T> model)
     {
-        super(id, Model.of(label));
+        super(id, labelModel, model);
     }
 
     public AbstractLinkItem setPrependIcon(CssClass prependIcon)
@@ -77,9 +84,10 @@ public abstract class AbstractLinkItem extends AbstractItem<String>
     {
         super.onInitialize();
 
+        this.link = this.createLink("link");
+        this.link.setBody(this.getLabel());
         this.add(new DisabledCssBehavior());
-        Component link = this.createLink("link");
-        link.add(new IconBehavior()
+        this.link.add(new IconBehavior()
         {
             @Override
             public IModel<CssClass> getPrependIconModel()
@@ -93,8 +101,13 @@ public abstract class AbstractLinkItem extends AbstractItem<String>
                 return AbstractLinkItem.this.setAppendIconModel();
             }
         });
-        this.add(link);
+        this.add(this.link);
     }
 
-    protected abstract Component createLink(String id);
+    public L getLink()
+    {
+        return this.link;
+    }
+
+    protected abstract L createLink(String id);
 }

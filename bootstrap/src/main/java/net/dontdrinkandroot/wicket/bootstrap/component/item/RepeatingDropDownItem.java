@@ -20,18 +20,17 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
-public abstract class SimpleDropDownItem extends DropDownItem
+/**
+ * {@link DropDownItem} that is populated via a {@link RepeatingView}.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class RepeatingDropDownItem extends DropDownItem
 {
-    public SimpleDropDownItem(String id, IModel<String> labelModel)
+    public RepeatingDropDownItem(String id, IModel<String> labelModel)
     {
         super(id, labelModel);
-    }
-
-    public SimpleDropDownItem(String id, String label)
-    {
-        super(id, Model.of(label));
     }
 
     @Override
@@ -42,7 +41,7 @@ public abstract class SimpleDropDownItem extends DropDownItem
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                SimpleDropDownItem.this.populateItems(itemView);
+                RepeatingDropDownItem.this.populateItems(itemView);
             }
         };
     }
