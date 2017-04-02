@@ -36,7 +36,12 @@ public abstract class DropDownItem<T> extends AbstractLabeledItem<T>
 
     public DropDownItem(String id, IModel<String> labelModel)
     {
-        super(id, labelModel);
+        this(id, labelModel, null);
+    }
+
+    public DropDownItem(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
     }
 
     @Override

@@ -26,11 +26,16 @@ import org.apache.wicket.model.IModel;
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class RepeatingDropDownItem extends DropDownItem
+public abstract class RepeatingDropDownItem<T> extends DropDownItem<T>
 {
     public RepeatingDropDownItem(String id, IModel<String> labelModel)
     {
-        super(id, labelModel);
+        this(id, labelModel, null);
+    }
+
+    public RepeatingDropDownItem(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
     }
 
     @Override
