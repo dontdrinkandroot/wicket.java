@@ -17,32 +17,31 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class AjaxLinkItem<T> extends AbstractLinkItem<T, AjaxLink<T>>
+public abstract class LinkItem<T> extends AbstractLinkItem<T, Link<T>>
 {
-    public AjaxLinkItem(String id, IModel<String> labelModel)
+    public LinkItem(String id, IModel<String> labelModel)
     {
         super(id, labelModel);
     }
 
     @Override
-    protected AjaxLink<T> createLink(String id)
+    protected Link<T> createLink(String id)
     {
-        return new AjaxLink<T>(id, this.getModel())
+        return new Link<T>(id, this.getModel())
         {
             @Override
-            public void onClick(AjaxRequestTarget target)
+            public void onClick()
             {
-                AjaxLinkItem.this.onClick(target);
+                LinkItem.this.onClick();
             }
         };
     }
 
-    protected abstract void onClick(AjaxRequestTarget target);
+    protected abstract void onClick();
 }
