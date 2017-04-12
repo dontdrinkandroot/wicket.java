@@ -25,9 +25,9 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DividerItem extends WebMarkupContainer implements Item
+public class SeparatorItem extends WebMarkupContainer implements Item
 {
-    public DividerItem(String id)
+    public SeparatorItem(String id)
     {
         super(id);
 

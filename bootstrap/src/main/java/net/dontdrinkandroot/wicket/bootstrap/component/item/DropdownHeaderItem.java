@@ -24,9 +24,9 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class HeaderItem extends LabelItem
+public class DropdownHeaderItem extends LabelItem
 {
-    public HeaderItem(String id, IModel<String> labelModel)
+    public DropdownHeaderItem(String id, IModel<String> labelModel)
     {
         super(id, labelModel);
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN_HEADER));

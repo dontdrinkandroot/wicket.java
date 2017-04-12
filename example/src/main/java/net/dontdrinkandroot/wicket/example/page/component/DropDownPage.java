@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.DividerItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.HeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.SeparatorItem;
 import net.dontdrinkandroot.wicket.example.page.HomePage;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -59,8 +59,8 @@ public class DropDownPage extends ComponentPage
     protected void populateItems(RepeatingView itemView)
     {
         itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Action"), HomePage.class));
-        itemView.add(new DividerItem(itemView.newChildId()));
-        itemView.add(new HeaderItem(itemView.newChildId(), Model.of("A Header")));
+        itemView.add(new SeparatorItem(itemView.newChildId()));
+        itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
         itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Another Action"), HomePage.class));
     }
 }

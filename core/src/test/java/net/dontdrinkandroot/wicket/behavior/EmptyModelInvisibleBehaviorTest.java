@@ -36,7 +36,5 @@ public class EmptyModelInvisibleBehaviorTest extends AbstractWicketTest
                 "<wicket:container wicket:id=\"id\"></wicket:container>",
                 componentMarkup.toString()
         );
-
-
     }
 }
