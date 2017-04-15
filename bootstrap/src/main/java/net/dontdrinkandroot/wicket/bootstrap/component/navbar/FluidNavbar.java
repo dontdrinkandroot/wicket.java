@@ -15,28 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.css;
-
-import net.dontdrinkandroot.wicket.css.CssClass;
+package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
 /**
+ * Navbar that provides a fluid container.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum NavBarStyle implements CssClass
+public class FluidNavbar extends Navbar
 {
-    DEFAULT("navbar-default"),
-    INVERSE("navbar-inverse");
-
-    private String classString;
-
-    NavBarStyle(String classString)
+    public FluidNavbar(String id)
     {
-        this.classString = classString;
-    }
-
-    @Override
-    public String getClassString()
-    {
-        return this.classString;
+        super(id);
     }
 }

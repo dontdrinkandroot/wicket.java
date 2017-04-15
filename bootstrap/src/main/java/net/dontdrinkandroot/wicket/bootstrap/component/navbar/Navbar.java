@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -30,11 +30,11 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class NavBar extends GenericPanel<Void>
+public abstract class Navbar extends GenericPanel<Void>
 {
-    private IModel<NavBarStyle> styleModel = Model.of(NavBarStyle.DEFAULT);
+    private IModel<NavbarStyle> styleModel = Model.of(NavbarStyle.DEFAULT);
 
-    public NavBar(String id)
+    public Navbar(String id)
     {
         super(id);
     }
@@ -76,7 +76,7 @@ public abstract class NavBar extends GenericPanel<Void>
         return navbarForm;
     }
 
-    public NavBar setStyle(NavBarStyle style)
+    public Navbar setStyle(NavbarStyle style)
     {
         this.styleModel.setObject(style);
         return this;

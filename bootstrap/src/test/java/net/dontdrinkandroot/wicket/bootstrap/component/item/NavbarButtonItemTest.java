@@ -11,12 +11,12 @@ import org.junit.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class NavBarButtonItemTest extends AbstractWicketTest
+public class NavbarButtonItemTest extends AbstractWicketTest
 {
     @Test
     public void testMarkup()
     {
-        NavBarButtonItem component = new NavBarButtonItem("id")
+        NavbarButtonItem component = new NavbarButtonItem("id")
         {
             @Override
             protected AbstractLink createLink(String id)

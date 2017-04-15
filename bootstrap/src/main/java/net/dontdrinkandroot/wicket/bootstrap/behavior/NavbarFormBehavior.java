@@ -15,20 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.item;
+package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.Behavior;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class NavBarTextItem extends LabelItem
+public class NavbarFormBehavior extends Behavior
 {
-    public NavBarTextItem(String id, IModel<String> labelModel)
+    @Override
+    public void bind(Component component)
     {
-        super(id, labelModel);
-        this.add(new CssClassAppender(BootstrapCssClass.NAVBAR_TEXT));
+        super.bind(component);
+        component.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FORM));
     }
 }

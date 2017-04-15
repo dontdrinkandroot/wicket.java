@@ -19,10 +19,10 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.*;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.InnerNavBar;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.InnerNavbar;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavBarStyle;
-import net.dontdrinkandroot.wicket.example.component.NavBarForm;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
+import net.dontdrinkandroot.wicket.example.component.NavbarForm;
 import net.dontdrinkandroot.wicket.example.page.HomePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -32,11 +32,10 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
-public class NavBarPage extends ComponentPage
+public class NavbarPage extends ComponentPage
 {
 
-    public NavBarPage(PageParameters parameters)
+    public NavbarPage(PageParameters parameters)
     {
         super(parameters);
     }
@@ -52,9 +51,8 @@ public class NavBarPage extends ComponentPage
     {
         super.onInitialize();
 
-        InnerNavBar navBarDefault = new InnerNavBar("navBarDefault")
+        InnerNavbar navBarDefault = new InnerNavbar("navBarDefault")
         {
-
             @Override
             protected Component createBrand(String id)
             {
@@ -66,24 +64,24 @@ public class NavBarPage extends ComponentPage
             @Override
             protected Component createForm(String id)
             {
-                return NavBarPage.this.createExampleNavBarForm(id);
+                return NavbarPage.this.createExampleNavbarForm(id);
             }
 
             @Override
             protected void populateNavbarLeftItems(RepeatingView itemView)
             {
-                NavBarPage.this.populateExampleNavbarLeftItems(itemView);
+                NavbarPage.this.populateExampleNavbarLeftItems(itemView);
             }
 
             @Override
             protected void populateNavbarRightItems(RepeatingView itemView)
             {
-                NavBarPage.this.populateExampleNavbarRightItems(itemView);
+                NavbarPage.this.populateExampleNavbarRightItems(itemView);
             }
         };
         this.add(navBarDefault);
 
-        InnerNavBar navBarInverse = new InnerNavBar("navBarInverse")
+        InnerNavbar navBarInverse = new InnerNavbar("navBarInverse")
         {
 
             @Override
@@ -97,28 +95,28 @@ public class NavBarPage extends ComponentPage
             @Override
             protected Component createForm(String id)
             {
-                return NavBarPage.this.createExampleNavBarForm(id);
+                return NavbarPage.this.createExampleNavbarForm(id);
             }
 
             @Override
             protected void populateNavbarLeftItems(RepeatingView itemView)
             {
-                NavBarPage.this.populateExampleNavbarLeftItems(itemView);
+                NavbarPage.this.populateExampleNavbarLeftItems(itemView);
             }
 
             @Override
             protected void populateNavbarRightItems(RepeatingView itemView)
             {
-                NavBarPage.this.populateExampleNavbarRightItems(itemView);
+                NavbarPage.this.populateExampleNavbarRightItems(itemView);
             }
         };
-        navBarInverse.setStyle(NavBarStyle.INVERSE);
+        navBarInverse.setStyle(NavbarStyle.INVERSE);
         this.add(navBarInverse);
     }
 
-    protected Component createExampleNavBarForm(String id)
+    protected Component createExampleNavbarForm(String id)
     {
-        NavBarForm navBarForm = new NavBarForm(id);
+        NavbarForm navBarForm = new NavbarForm(id);
         navBarForm.add(new CssClassAppender(BootstrapCssClass.NAVBAR_LEFT));
 
         return navBarForm;
@@ -143,7 +141,7 @@ public class NavBarPage extends ComponentPage
                         ));
             }
         });
-        itemView.add(new NavBarButtonItem<Void>(itemView.newChildId())
+        itemView.add(new NavbarButtonItem<Void>(itemView.newChildId())
         {
 
             @Override
@@ -156,6 +154,6 @@ public class NavBarPage extends ComponentPage
 
     protected void populateExampleNavbarRightItems(RepeatingView itemView)
     {
-        itemView.add(new NavBarTextItem(itemView.newChildId(), Model.of("Text")));
+        itemView.add(new NavbarTextItem(itemView.newChildId(), Model.of("Text")));
     }
 }

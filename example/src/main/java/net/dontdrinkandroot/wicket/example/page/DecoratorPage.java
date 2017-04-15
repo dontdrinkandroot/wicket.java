@@ -73,7 +73,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         super.onInitialize();
         DebugBar debugBar = new DebugBar("debugBar")
         {
-
             @Override
             protected void onConfigure()
             {
@@ -87,9 +86,9 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     }
 
     @Override
-    protected Component createNavBar(String id)
+    protected Component createNavbar(String id)
     {
-        Component navBar = super.createNavBar(id);
+        Component navBar = super.createNavbar(id);
         navBar.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FIXED_TOP));
         return navBar;
     }
@@ -126,7 +125,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 itemView.add(
                         new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Buttons"), ButtonPage.class));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Nav Bars"), NavBarPage.class));
+                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Navbars"), NavbarPage.class));
                 itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Labels"), LabelPage.class));
                 itemView.add(
                         new BookmarkablePageLinkItem(

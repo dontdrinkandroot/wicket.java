@@ -9,12 +9,12 @@ import org.junit.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class NavBarTextItemTest extends AbstractWicketTest
+public class NavbarTextItemTest extends AbstractWicketTest
 {
     @Test
     public void testMarkup()
     {
-        NavBarTextItem component = new NavBarTextItem("id", Model.of("Label"));
+        NavbarTextItem component = new NavbarTextItem("id", Model.of("Label"));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"navbar-text\">Label</wicket:container>",

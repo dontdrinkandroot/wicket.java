@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.page;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ModalRequestBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavBar;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -65,7 +65,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 
         this.add(this.createModal(StandardBootstrapPage.MODAL_ID));
 
-        Component navBar = this.createNavBar("navBar");
+        Component navBar = this.createNavbar("navbar");
         this.add(navBar);
 
         this.pageHeading = new Label("pageHeading", this.pageHeadingModel);
@@ -123,9 +123,9 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         /* Overwrite in order to add primary actions */
     }
 
-    protected Component createNavBar(String id)
+    protected Component createNavbar(String id)
     {
-        NavBar navBar = new NavBar(id)
+        return new Navbar(id)
         {
             @Override
             protected Component createBrand(String id)
@@ -142,7 +142,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
             @Override
             protected Component createForm(String id)
             {
-                return StandardBootstrapPage.this.createNavBarForm(id);
+                return StandardBootstrapPage.this.createNavbarForm(id);
             }
 
             @Override
@@ -151,7 +151,6 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
                 StandardBootstrapPage.this.populateNavbarRightItems(navbarRightItemView);
             }
         };
-        return navBar;
     }
 
     protected Component createBrand(String id)
@@ -166,7 +165,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         /* Overwrite to populate navbar items on left side */
     }
 
-    protected Component createNavBarForm(String id)
+    protected Component createNavbarForm(String id)
     {
         WebMarkupContainer navBarForm = new WebMarkupContainer(id);
         navBarForm.setVisible(false);

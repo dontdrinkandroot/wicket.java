@@ -15,22 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.behavior;
-
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.Component;
-import org.apache.wicket.behavior.Behavior;
+package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
 /**
- * @author Philip Washington Sorst <philip@sorst.net>
+ * Navbar that can be used within a .container.
  */
-public class NavBarFormBehavior extends Behavior
+public class InnerNavbar extends Navbar
 {
-    @Override
-    public void bind(Component component)
+    public InnerNavbar(String id)
     {
-        super.bind(component);
-        component.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FORM));
+        super(id);
     }
 }

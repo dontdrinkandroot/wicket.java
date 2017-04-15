@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.example.component;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.NavBarFormBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.NavbarFormBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import org.apache.wicket.markup.html.form.Form;
@@ -25,11 +25,9 @@ import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
 import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
 import org.apache.wicket.model.Model;
 
-
-public class NavBarForm extends Form<Void>
+public class NavbarForm extends Form<Void>
 {
-
-    public NavBarForm(String id)
+    public NavbarForm(String id)
     {
         super(id);
     }
@@ -39,7 +37,7 @@ public class NavBarForm extends Form<Void>
     {
         super.onInitialize();
 
-        this.add(new NavBarFormBehavior());
+        this.add(new NavbarFormBehavior());
         FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
         searchGroup.setLabelScreenReaderOnly(true);
         this.add(searchGroup);
@@ -51,5 +49,4 @@ public class NavBarForm extends Form<Void>
     {
         return new PanelMarkupSourcingStrategy(false);
     }
-
 }
