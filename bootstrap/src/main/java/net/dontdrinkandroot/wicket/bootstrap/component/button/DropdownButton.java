@@ -19,13 +19,13 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
+import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -35,7 +35,7 @@ import org.apache.wicket.model.IModel;
  * @param <T> Type of the model object.
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class DropDownButton<T> extends GenericPanel<T> implements IButton
+public abstract class DropdownButton<T> extends GenericPanel<T> implements IButton
 {
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
@@ -45,21 +45,21 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
 
     private Label toggle;
 
-    private DropDownMenu menu;
+    private DropdownMenu menu;
 
-    public DropDownButton(String id)
+    public DropdownButton(String id)
     {
         super(id);
         this.createComponents();
     }
 
-    public DropDownButton(String id, IModel<T> model)
+    public DropdownButton(String id, IModel<T> model)
     {
         super(id, model);
         this.createComponents();
     }
 
-    public DropDownButton(String id, IModel<T> model, IModel<String> labelModel)
+    public DropdownButton(String id, IModel<T> model, IModel<String> labelModel)
     {
         super(id, model);
         this.labelModel = labelModel;
@@ -69,18 +69,18 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
     protected void createComponents()
     {
         this.toggle = new Label("toggle", this.labelModel);
-        this.toggle.add(new DropDownToggleBehavior());
-        this.menu = this.createDropDownMenu("menu");
+        this.toggle.add(new DropdownToggleBehavior());
+        this.menu = this.createDropdownMenu("menu");
     }
 
-    protected DropDownMenu createDropDownMenu(String id)
+    protected DropdownMenu createDropdownMenu(String id)
     {
-        return new DropDownMenu(id)
+        return new DropdownMenu(id)
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                DropDownButton.this.populateItems(itemView);
+                DropdownButton.this.populateItems(itemView);
             }
         };
     }
@@ -104,7 +104,7 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
     }
 
     @Override
-    public DropDownButton<T> setButtonSize(ButtonSize buttonSize)
+    public DropdownButton<T> setButtonSize(ButtonSize buttonSize)
     {
         this.buttonBehavior.setButtonSize(buttonSize);
         return this;
@@ -117,21 +117,21 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
     }
 
     @Override
-    public DropDownButton<T> setButtonStyle(ButtonStyle buttonStyle)
+    public DropdownButton<T> setButtonStyle(ButtonStyle buttonStyle)
     {
         this.buttonBehavior.setButtonStyle(buttonStyle);
         return this;
     }
 
     @Override
-    public DropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    public DropdownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
     {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public DropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    public DropdownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
     {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
@@ -142,12 +142,12 @@ public abstract class DropDownButton<T> extends GenericPanel<T> implements IButt
         return this.toggle;
     }
 
-    public DropDownMenu getMenu()
+    public DropdownMenu getMenu()
     {
         return this.menu;
     }
 
-    public DropDownButton<T> setDropDownAlignment(DropDownAlignment alignment)
+    public DropdownButton<T> setDropdownAlignment(DropdownAlignment alignment)
     {
         this.menu.setAlignment(alignment);
         return this;

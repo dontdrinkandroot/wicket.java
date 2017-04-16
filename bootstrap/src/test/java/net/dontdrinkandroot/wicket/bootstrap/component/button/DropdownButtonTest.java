@@ -11,12 +11,12 @@ import org.junit.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DropDownButtonTest extends AbstractWicketTest
+public class DropdownButtonTest extends AbstractWicketTest
 {
     @Test
     public void testDefault()
     {
-        DropDownButton<Void> component = new DropDownButton<Void>("id", null, Model.of("LabelText"))
+        DropdownButton<Void> component = new DropdownButton<Void>("id", null, Model.of("LabelText"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)

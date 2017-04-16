@@ -19,15 +19,14 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
-public enum DropDownAlignment implements CssClass
+public enum DropdownAlignment implements CssClass
 {
     LEFT("dropdown-menu-left"),
     RIGHT("dropdown-menu-right");
 
     private String classString;
 
-    private DropDownAlignment(String classString)
+    DropdownAlignment(String classString)
     {
         this.classString = classString;
     }

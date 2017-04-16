@@ -19,13 +19,13 @@ package net.dontdrinkandroot.wicket.example.page;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropDownItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.page.StandardBootstrapPage;
 import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
-import net.dontdrinkandroot.wicket.example.component.ThemeDropDownItem;
+import net.dontdrinkandroot.wicket.example.component.ThemeDropdownItem;
 import net.dontdrinkandroot.wicket.example.page.component.*;
 import net.dontdrinkandroot.wicket.example.page.form.*;
 import org.apache.wicket.AttributeModifier;
@@ -116,7 +116,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         navbarLeftItemView.add(
                 new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
-        navbarLeftItemView.add(new RepeatingDropDownItem(navbarLeftItemView.newChildId(), Model.of("Components"))
+        navbarLeftItemView.add(new RepeatingDropdownItem(navbarLeftItemView.newChildId(), Model.of("Components"))
         {
 
             @Override
@@ -146,7 +146,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                                 PaginationPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropDownPage.class));
+                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropdownPage.class));
                 itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Modals"), ModalPage.class));
             }
 
@@ -157,7 +157,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         });
 
-        navbarLeftItemView.add(new RepeatingDropDownItem(navbarLeftItemView.newChildId(), Model.of("Forms"))
+        navbarLeftItemView.add(new RepeatingDropdownItem(navbarLeftItemView.newChildId(), Model.of("Forms"))
         {
 
             @Override
@@ -201,7 +201,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     protected void populateNavbarRightItems(RepeatingView itemView)
     {
         super.populateNavbarRightItems(itemView);
-        itemView.add(new ThemeDropDownItem(itemView.newChildId()));
+        itemView.add(new ThemeDropdownItem(itemView.newChildId()));
         itemView.add(new BuildInfoItem(itemView.newChildId()));
     }
 

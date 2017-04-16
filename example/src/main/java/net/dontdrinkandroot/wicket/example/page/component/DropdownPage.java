@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.SeparatorItem;
@@ -27,9 +27,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-public class DropDownPage extends ComponentPage
+public class DropdownPage extends ComponentPage
 {
-    public DropDownPage(PageParameters parameters)
+    public DropdownPage(PageParameters parameters)
     {
         super(parameters);
     }
@@ -39,15 +39,15 @@ public class DropDownPage extends ComponentPage
     {
         super.onInitialize();
 
-        DropDownMenu dropDownMenu = new DropDownMenu("dropDownMenu")
+        DropdownMenu dropdownMenu = new DropdownMenu("dropdownMenu")
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                DropDownPage.this.populateItems(itemView);
+                DropdownPage.this.populateItems(itemView);
             }
         };
-        this.add(dropDownMenu);
+        this.add(dropdownMenu);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
                         "\t\t\t<wicket:child><wicket:extend>\n" +
                         "\t\t<wicket:child><wicket:extend>\n" +
                         "    <input type=\"text\" wicket:id=\"formComponent\" class=\"form-control dropdown-toggle\" autocomplete=\"off\" value=\"\" name=\"id:container:formComponent\" id=\"formComponent2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\"/>\n" +
-                        "    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu\" wicket:id=\"dropDownMenu\" id=\"dropDownMenu3\">\n" +
+                        "    <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu\" wicket:id=\"dropdownMenu\" id=\"dropdownMenu3\">\n" +
                         "        <li wicket:id=\"suggestionItem\">\n" +
                         "            <a wicket:id=\"link\" id=\"link4\" href=\"javascript:;\">Alpha</a>\n" +
                         "        </li><li wicket:id=\"suggestionItem\">\n" +

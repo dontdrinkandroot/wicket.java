@@ -18,9 +18,9 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
@@ -28,18 +28,18 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class DropDownItem<T> extends AbstractLabeledItem<T>
+public abstract class DropdownItem<T> extends AbstractLabeledItem<T>
 {
     private IconBehavior iconBehavior = new IconBehavior().setAppendIcon(BootstrapCssClass.CARET);
 
-    protected DropDownMenu dropDownMenu;
+    protected DropdownMenu dropdownMenu;
 
-    public DropDownItem(String id, IModel<String> labelModel)
+    public DropdownItem(String id, IModel<String> labelModel)
     {
         this(id, labelModel, null);
     }
 
-    public DropDownItem(String id, IModel<String> labelModel, IModel<T> model)
+    public DropdownItem(String id, IModel<String> labelModel, IModel<T> model)
     {
         super(id, labelModel, model);
     }
@@ -52,12 +52,12 @@ public abstract class DropDownItem<T> extends AbstractLabeledItem<T>
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 
         Label dropDownToggle = new Label("dropDownToggle", this.getLabel());
-        dropDownToggle.add(new DropDownToggleBehavior());
+        dropDownToggle.add(new DropdownToggleBehavior());
         dropDownToggle.add(this.iconBehavior);
         this.add(dropDownToggle);
 
-        this.dropDownMenu = this.createDropDownMenu("dropDownMenu");
-        this.add(this.dropDownMenu);
+        this.dropdownMenu = this.createDropdownMenu("dropdownMenu");
+        this.add(this.dropdownMenu);
     }
 
     public IconBehavior getIconBehavior()
@@ -65,5 +65,5 @@ public abstract class DropDownItem<T> extends AbstractLabeledItem<T>
         return this.iconBehavior;
     }
 
-    protected abstract DropDownMenu createDropDownMenu(String id);
+    protected abstract DropdownMenu createDropdownMenu(String id);
 }

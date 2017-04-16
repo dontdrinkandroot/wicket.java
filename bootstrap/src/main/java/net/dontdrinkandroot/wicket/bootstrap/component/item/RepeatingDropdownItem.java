@@ -17,36 +17,36 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
 /**
- * {@link DropDownItem} that is populated via a {@link RepeatingView}.
+ * {@link DropdownItem} that is populated via a {@link RepeatingView}.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class RepeatingDropDownItem<T> extends DropDownItem<T>
+public abstract class RepeatingDropdownItem<T> extends DropdownItem<T>
 {
-    public RepeatingDropDownItem(String id, IModel<String> labelModel)
+    public RepeatingDropdownItem(String id, IModel<String> labelModel)
     {
         this(id, labelModel, null);
     }
 
-    public RepeatingDropDownItem(String id, IModel<String> labelModel, IModel<T> model)
+    public RepeatingDropdownItem(String id, IModel<String> labelModel, IModel<T> model)
     {
         super(id, labelModel, model);
     }
 
     @Override
-    protected DropDownMenu createDropDownMenu(String id)
+    protected DropdownMenu createDropdownMenu(String id)
     {
-        return new DropDownMenu(id)
+        return new DropdownMenu(id)
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                RepeatingDropDownItem.this.populateItems(itemView);
+                RepeatingDropdownItem.this.populateItems(itemView);
             }
         };
     }

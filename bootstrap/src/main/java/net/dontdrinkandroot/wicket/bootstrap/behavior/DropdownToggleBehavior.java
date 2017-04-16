@@ -28,9 +28,9 @@ import org.apache.wicket.behavior.Behavior;
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DropDownToggleBehavior extends CompositeBehavior
+public class DropdownToggleBehavior extends CompositeBehavior
 {
-    public DropDownToggleBehavior(Behavior... behaviors)
+    public DropdownToggleBehavior(Behavior... behaviors)
     {
         super(
                 new CssClassAppender(BootstrapCssClass.DROPDOWN_TOGGLE),

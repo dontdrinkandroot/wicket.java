@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.dropdown;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.DropDownAlignment;
+import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -30,11 +30,11 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class DropDownMenu extends Panel
+public abstract class DropdownMenu extends Panel
 {
-    private IModel<DropDownAlignment> alignmentModel = Model.of();
+    private IModel<DropdownAlignment> alignmentModel = Model.of();
 
-    public DropDownMenu(String id)
+    public DropdownMenu(String id)
     {
         super(id);
     }
@@ -61,7 +61,7 @@ public abstract class DropDownMenu extends Panel
         super.onComponentTag(tag);
     }
 
-    public DropDownMenu setAlignment(DropDownAlignment alignment)
+    public DropdownMenu setAlignment(DropdownAlignment alignment)
     {
         this.alignmentModel.setObject(alignment);
         return this;

@@ -19,9 +19,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropDownMenu;
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
@@ -31,18 +31,18 @@ import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements IButton
+abstract public class SplitDropdownButton<T> extends GenericPanel<T> implements IButton
 {
     private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     private WebMarkupContainer toggle;
 
-    public SplitDropDownButton(String id)
+    public SplitDropdownButton(String id)
     {
         super(id);
     }
 
-    public SplitDropDownButton(String id, IModel<T> model)
+    public SplitDropdownButton(String id, IModel<T> model)
     {
         super(id, model);
     }
@@ -60,11 +60,11 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
 
         this.toggle = new WebMarkupContainer("toggle");
         this.toggle.add(this.buttonBehavior);
-        this.toggle.add(new DropDownToggleBehavior());
+        this.toggle.add(new DropdownToggleBehavior());
         this.toggle.add(new IconBehavior().setAppendIcon(this.getCaretClass()).setSeparator(null));
         this.add(this.toggle);
 
-        this.add(this.createDropDownMenu("dropdownMenu"));
+        this.add(this.createDropdownMenu("dropdownMenu"));
     }
 
     public WebMarkupContainer getToggle()
@@ -72,17 +72,17 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
         return this.toggle;
     }
 
-    protected Component createDropDownMenu(String id)
+    protected Component createDropdownMenu(String id)
     {
-        DropDownMenu dropDownMenu = new DropDownMenu(id)
+        DropdownMenu dropdownMenu = new DropdownMenu(id)
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                SplitDropDownButton.this.populateItems(itemView);
+                SplitDropdownButton.this.populateItems(itemView);
             }
         };
-        return dropDownMenu;
+        return dropdownMenu;
     }
 
     @Override
@@ -92,7 +92,7 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
     }
 
     @Override
-    public SplitDropDownButton<T> setButtonSize(ButtonSize buttonSize)
+    public SplitDropdownButton<T> setButtonSize(ButtonSize buttonSize)
     {
         this.buttonBehavior.setButtonSize(buttonSize);
         return this;
@@ -105,21 +105,21 @@ abstract public class SplitDropDownButton<T> extends GenericPanel<T> implements 
     }
 
     @Override
-    public SplitDropDownButton<T> setButtonStyle(ButtonStyle buttonStyle)
+    public SplitDropdownButton<T> setButtonStyle(ButtonStyle buttonStyle)
     {
         this.buttonBehavior.setButtonStyle(buttonStyle);
         return this;
     }
 
     @Override
-    public SplitDropDownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
+    public SplitDropdownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
     {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public SplitDropDownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
+    public SplitDropdownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
     {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;

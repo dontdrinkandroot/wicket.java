@@ -11,12 +11,12 @@ import org.junit.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SplitDropDownButtonTest extends AbstractWicketTest
+public class SplitDropdownButtonTest extends AbstractWicketTest
 {
     @Test
     public void testMarkup()
     {
-        SplitDropDownButton<String> component = new SplitDropDownButton<String>("id")
+        SplitDropdownButton<String> component = new SplitDropdownButton<String>("id")
         {
             @Override
             protected Component createAction(String id)

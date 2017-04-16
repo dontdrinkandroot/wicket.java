@@ -18,7 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropDownToggleBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -54,7 +54,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
     {
         super.createComponents();
 
-        this.dropDownMenu = new WebMarkupContainer("dropDownMenu");
+        this.dropDownMenu = new WebMarkupContainer("dropdownMenu");
         this.dropDownMenu.setOutputMarkupId(true);
         this.add(this.dropDownMenu);
 
@@ -105,7 +105,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
         this.add(new CssClassAppender("autocomplete"));
-        this.formComponent.add(new DropDownToggleBehavior());
+        this.formComponent.add(new DropdownToggleBehavior());
         this.formComponent.add(new AjaxFormComponentUpdatingBehavior("input")
         {
             @Override

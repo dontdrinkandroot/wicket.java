@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroupChoice;
-import net.dontdrinkandroot.wicket.bootstrap.component.button.DropDownButton;
-import net.dontdrinkandroot.wicket.bootstrap.component.button.SplitDropDownButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.DropdownButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.button.SplitDropdownButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
@@ -70,18 +70,18 @@ public class ButtonPage extends ComponentPage
             sizeView.add(button);
         }
 
-        DropDownButton<Void> dropDownButton = new DropDownButton<Void>("dropDownButton", null, Model.of("My Label"))
+        DropdownButton<Void> dropdownButton = new DropdownButton<Void>("dropdownButton", null, Model.of("My Label"))
         {
 
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                ButtonPage.this.populateDropDownItems(itemView);
+                ButtonPage.this.populateDropdownItems(itemView);
             }
         };
-        this.add(dropDownButton);
+        this.add(dropdownButton);
 
-        SplitDropDownButton<Void> splitDropDownButton = new SplitDropDownButton<Void>("splitDropDownButton")
+        SplitDropdownButton<Void> splitDropdownButton = new SplitDropdownButton<Void>("splitDropdownButton")
         {
 
             @Override
@@ -93,18 +93,18 @@ public class ButtonPage extends ComponentPage
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                ButtonPage.this.populateDropDownItems(itemView);
+                ButtonPage.this.populateDropdownItems(itemView);
             }
         };
-        this.add(splitDropDownButton);
+        this.add(splitDropdownButton);
 
-        List<String> choices = Arrays.asList(new String[]{"Red", "Green", "Blue"});
+        List<String> choices = Arrays.asList("Red", "Green", "Blue");
         ButtonGroupChoice<String> buttonGroupChoice =
                 new ButtonGroupChoice<String>("buttonGroupChoice", Model.of(choices.iterator().next()), choices);
         this.add(buttonGroupChoice);
     }
 
-    protected void populateDropDownItems(RepeatingView itemView)
+    protected void populateDropdownItems(RepeatingView itemView)
     {
         itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("This is a link"), ButtonPage.class));
     }

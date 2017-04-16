@@ -37,7 +37,7 @@ public class SmokeTest extends AbstractWicketTest
         this.testPage(GridPage.class);
         this.testPage(AlertPage.class);
         this.testPage(ButtonPage.class);
-        this.testPage(DropDownPage.class);
+        this.testPage(DropdownPage.class);
         this.testPage(LabelPage.class);
         this.testPage(ModalPage.class);
         this.testPage(NavbarPage.class);
