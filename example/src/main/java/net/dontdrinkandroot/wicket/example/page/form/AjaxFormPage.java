@@ -1,8 +1,8 @@
 package net.dontdrinkandroot.wicket.example.page.form;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SubmitLabelButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.RepeatingAjaxForm;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
-import net.dontdrinkandroot.wicket.extras.page.component.form.SimpleAjaxForm;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -31,7 +31,7 @@ public class AjaxFormPage extends FormPage
     protected void onInitialize()
     {
         super.onInitialize();
-        SimpleAjaxForm<Void> simpleAjaxForm = new SimpleAjaxForm<Void>("simpleAjaxForm")
+        RepeatingAjaxForm<Void> simpleAjaxForm = new RepeatingAjaxForm<Void>("simpleAjaxForm")
         {
             @Override
             protected void populateFormGroups(RepeatingView formGroupView)
@@ -55,8 +55,8 @@ public class AjaxFormPage extends FormPage
             protected void onSubmit(AjaxRequestTarget target)
             {
                 super.onSubmit(target);
-                submitCount++;
-                this.info(String.format("Submitted %d times", submitCount));
+                AjaxFormPage.this.submitCount++;
+                this.info(String.format("Submitted %d times", AjaxFormPage.this.submitCount));
                 target.add(this.getFeedbackPanel());
             }
         };

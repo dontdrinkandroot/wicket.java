@@ -15,16 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.extras.page.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.RepeatingAjaxForm;
 import net.dontdrinkandroot.wicket.component.basic.Heading;
 import net.dontdrinkandroot.wicket.component.basic.Heading.Level;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
-public class SimpleFormPanel<T> extends SimpleForm<T>
+public class RepeatingAjaxFormPanel<T> extends RepeatingAjaxForm<T>
 {
     private PanelBehavior panelBehavior = new PanelBehavior();
 
@@ -32,13 +33,13 @@ public class SimpleFormPanel<T> extends SimpleForm<T>
 
     private IModel<String> titleModel;
 
-    public SimpleFormPanel(String id, IModel<String> titleModel)
+    public RepeatingAjaxFormPanel(String id, IModel<String> titleModel)
     {
         super(id);
         this.titleModel = titleModel;
     }
 
-    public SimpleFormPanel(String id, IModel<String> titleModel, IModel<T> model)
+    public RepeatingAjaxFormPanel(String id, IModel<String> titleModel, IModel<T> model)
     {
         super(id, model);
         this.titleModel = titleModel;
@@ -55,7 +56,7 @@ public class SimpleFormPanel<T> extends SimpleForm<T>
         this.add(title);
     }
 
-    public SimpleFormPanel<T> setHeadingLevel(Level headingLevel)
+    public RepeatingAjaxFormPanel<T> setHeadingLevel(Level headingLevel)
     {
         this.headingLevel = headingLevel;
         return this;

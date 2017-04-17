@@ -15,22 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.extras.page.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.model.IModel;
 
-public class SimpleAjaxForm<T> extends SimpleForm<T>
+public class RepeatingAjaxForm<T> extends RepeatingForm<T>
 {
-    public SimpleAjaxForm(String id)
+    public RepeatingAjaxForm(String id)
     {
         super(id);
         this.createSubmitBehavior();
     }
 
-    public SimpleAjaxForm(String id, IModel<T> model)
+    public RepeatingAjaxForm(String id, IModel<T> model)
     {
         super(id, model);
         this.createSubmitBehavior();
@@ -51,21 +51,21 @@ public class SimpleAjaxForm<T> extends SimpleForm<T>
             protected void onError(AjaxRequestTarget target)
             {
                 super.onError(target);
-                SimpleAjaxForm.this.onError(target);
+                RepeatingAjaxForm.this.onError(target);
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target)
             {
                 super.onSubmit(target);
-                SimpleAjaxForm.this.onSubmit(target);
+                RepeatingAjaxForm.this.onSubmit(target);
             }
 
             @Override
             protected void onAfterSubmit(AjaxRequestTarget target)
             {
                 super.onAfterSubmit(target);
-                SimpleAjaxForm.this.onAfterSubmit(target);
+                RepeatingAjaxForm.this.onAfterSubmit(target);
             }
         });
     }

@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.extras.page.component.form;
+package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
@@ -35,18 +35,18 @@ import org.apache.wicket.model.IModel;
  * @param <T> Type of the Model object.
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SimpleForm<T> extends Form<T> implements IQueueRegion
+public class RepeatingForm<T> extends Form<T> implements IQueueRegion
 {
     private FormStyleBehavior formStyleBehavior = new FormStyleBehavior();
 
     private FeedbackPanel feedbackPanel;
 
-    public SimpleForm(String id)
+    public RepeatingForm(String id)
     {
         super(id);
     }
 
-    public SimpleForm(String id, IModel<T> model)
+    public RepeatingForm(String id, IModel<T> model)
     {
         super(id, model);
     }
@@ -76,7 +76,7 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
             @Override
             protected void populateActions(RepeatingView actionView)
             {
-                SimpleForm.this.populateActions(actionView);
+                RepeatingForm.this.populateActions(actionView);
             }
         };
     }
@@ -112,13 +112,13 @@ public class SimpleForm<T> extends Form<T> implements IQueueRegion
         return this.feedbackPanel;
     }
 
-    public SimpleForm<T> setHorizontal(ColumnSize containerSize)
+    public RepeatingForm<T> setHorizontal(ColumnSize containerSize)
     {
         this.formStyleBehavior.setHorizontal(containerSize);
         return this;
     }
 
-    public SimpleForm<T> setInline(boolean inline)
+    public RepeatingForm<T> setInline(boolean inline)
     {
         this.formStyleBehavior.setInline(inline);
         return this;
