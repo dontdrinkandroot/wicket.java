@@ -17,10 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.bootstrap.TestFormPanel;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack;
+import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;

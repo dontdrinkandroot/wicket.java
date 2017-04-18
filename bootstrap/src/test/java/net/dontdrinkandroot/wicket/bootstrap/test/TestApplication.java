@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap;
+package net.dontdrinkandroot.wicket.bootstrap.test;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;

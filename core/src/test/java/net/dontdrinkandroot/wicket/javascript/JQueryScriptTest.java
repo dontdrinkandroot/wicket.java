@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.javascript;
 
-import net.dontdrinkandroot.wicket.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.util.time.Duration;
 import org.junit.Assert;

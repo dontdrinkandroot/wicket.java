@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.behavior.ajax;
 
-import net.dontdrinkandroot.wicket.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.TestPage;
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.test.TestPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.junit.Assert;
 import org.junit.Test;

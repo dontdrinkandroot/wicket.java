@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.behavior;
 
-import net.dontdrinkandroot.wicket.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;

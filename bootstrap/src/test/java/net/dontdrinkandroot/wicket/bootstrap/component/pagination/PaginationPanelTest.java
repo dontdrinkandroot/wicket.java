@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
-import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.util.tester.TagTester;

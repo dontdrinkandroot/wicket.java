@@ -15,24 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap;
+package net.dontdrinkandroot.wicket.test;
 
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.Page;
+import org.apache.wicket.protocol.http.WebApplication;
 
-public class TestFormPanel extends Panel
+public class TestApplication extends WebApplication
 {
-    private Form<Void> form;
 
-    public TestFormPanel(String id)
+    @Override
+    public Class<? extends Page> getHomePage()
     {
-        super(id);
-        this.form = new Form<Void>("form");
-        this.add(this.form);
-    }
-
-    public Form<Void> getForm()
-    {
-        return this.form;
+        return TestPage.class;
     }
 }

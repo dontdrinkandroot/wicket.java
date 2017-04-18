@@ -15,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.page;
+package net.dontdrinkandroot.wicket.extras.page;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ModalRequestBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
+import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;

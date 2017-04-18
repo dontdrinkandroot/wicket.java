@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
-import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.css.SimpleCssClass;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;

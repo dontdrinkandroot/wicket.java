@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.component.basic;
 
-import net.dontdrinkandroot.wicket.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.TestPage;
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.test.TestPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;

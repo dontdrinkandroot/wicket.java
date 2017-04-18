@@ -15,10 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap;
+package net.dontdrinkandroot.wicket.test;
 
-import org.apache.wicket.Page;
+import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Before;
 
-public class TestHomePage extends Page
+public class AbstractWicketTest
 {
+    protected WicketTester tester;
+
+    @Before
+    public void setUp()
+    {
+        this.tester = new WicketTester(new TestApplication());
+    }
 }

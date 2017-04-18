@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.page;
+package net.dontdrinkandroot.wicket.extras.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.extras.test.AbstractWicketTest;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;

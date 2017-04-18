@@ -15,18 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket;
+package net.dontdrinkandroot.wicket.test;
 
-import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.repeater.RepeatingView;
 
-public class AbstractWicketTest
+public class TestPage extends WebPage
 {
-    protected WicketTester tester;
-
-    @Before
-    public void setUp()
+    @Override
+    protected void onInitialize()
     {
-        this.tester = new WicketTester(new TestApplication());
+        super.onInitialize();
+
+        RepeatingView componentView = new RepeatingView("component");
+        this.populateComponents(componentView);
+        this.add(componentView);
+    }
+
+    protected void populateComponents(RepeatingView componentView)
+    {
+        /* Hook */
     }
 }

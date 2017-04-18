@@ -15,17 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket;
+package net.dontdrinkandroot.wicket.extras.test;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 
 public class TestApplication extends WebApplication
 {
-
     @Override
     public Class<? extends Page> getHomePage()
     {
-        return TestPage.class;
+        return TestHomePage.class;
     }
 }

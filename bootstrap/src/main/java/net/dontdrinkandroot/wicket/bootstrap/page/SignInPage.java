@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.extras.page;
+package net.dontdrinkandroot.wicket.bootstrap.page;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel;
@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupC
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.authentication.IAuthenticationStrategy;

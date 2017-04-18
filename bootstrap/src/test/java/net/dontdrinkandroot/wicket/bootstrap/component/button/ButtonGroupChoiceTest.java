@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
-import net.dontdrinkandroot.wicket.bootstrap.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.junit.Assert;

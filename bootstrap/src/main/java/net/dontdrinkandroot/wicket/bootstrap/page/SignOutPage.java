@@ -1,10 +1,10 @@
-package net.dontdrinkandroot.wicket.extras.page;
+package net.dontdrinkandroot.wicket.bootstrap.page;
 
-import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -31,6 +31,8 @@ public class SignOutPage extends BootstrapPage<Void>
         this.pageTitleModel = this.createPageTitleModel();
 
         super.onInitialize();
+
+        this.add(new Label("message", this.createPageTitleModel()));
     }
 
     @Override
@@ -41,6 +43,6 @@ public class SignOutPage extends BootstrapPage<Void>
 
     protected IModel<String> createPageTitleModel()
     {
-        return Model.of("Signed Out");
+        return new ResourceModel("logout.success", Model.of("You have been signed out successfully"));
     }
 }
