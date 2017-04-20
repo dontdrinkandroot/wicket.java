@@ -29,9 +29,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class AbstractFileThumbnailResource extends AbstractResource
 {
-
     private static final long serialVersionUID = 1L;
 
     @Override
