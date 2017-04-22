@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.extras.test;
 
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.After;
 import org.junit.Before;
 
 public class AbstractWicketTest
@@ -28,5 +29,11 @@ public class AbstractWicketTest
     public void setUp()
     {
         this.tester = new WicketTester(new TestApplication());
+    }
+
+    @After
+    public void tearDown()
+    {
+        this.tester.destroy();
     }
 }

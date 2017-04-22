@@ -23,6 +23,7 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.apache.wicket.util.visit.Visits;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
@@ -37,6 +38,12 @@ public class AbstractWicketTest
     public void setUp()
     {
         this.tester = new WicketTester(new ExampleTestApplication());
+    }
+
+    @After
+    public void tearDown()
+    {
+        this.tester.destroy();
     }
 
     protected void assertStateless(MarkupContainer component)

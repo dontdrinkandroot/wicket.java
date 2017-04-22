@@ -26,6 +26,9 @@ import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 
 /**
+ * Ajax Validation state that colors the {@link FormGroupValidatable} according to the validation state and shows
+ * any error messages.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBehavior

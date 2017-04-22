@@ -17,7 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.test;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 
 public class AbstractWicketTest
@@ -28,5 +34,26 @@ public class AbstractWicketTest
     public void setUp()
     {
         this.tester = new WicketTester(new TestApplication());
+    }
+
+    @After
+    public void tearDown()
+    {
+        this.tester.destroy();
+    }
+
+    public void testIButton(IButton component)
+    {
+        component.setButtonSize(ButtonSize.LARGE);
+        Assert.assertEquals(ButtonSize.LARGE, component.getButtonSize());
+
+        component.setButtonStyle(ButtonStyle.DANGER);
+        Assert.assertEquals(ButtonStyle.DANGER, component.getButtonStyle());
+
+        component.setButtonSizeModel(Model.of(ButtonSize.SMALL));
+        Assert.assertEquals(ButtonSize.SMALL, component.getButtonSize());
+
+        component.setButtonStyleModel(Model.of(ButtonStyle.WARNING));
+        Assert.assertEquals(ButtonStyle.WARNING, component.getButtonStyle());
     }
 }
