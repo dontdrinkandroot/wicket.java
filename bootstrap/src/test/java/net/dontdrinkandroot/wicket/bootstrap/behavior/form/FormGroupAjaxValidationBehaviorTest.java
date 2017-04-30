@@ -10,6 +10,8 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
@@ -43,7 +45,17 @@ public class FormGroupAjaxValidationBehaviorTest extends AbstractWicketTest
         Assert.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
         Assert.assertTrue(formGroupTester.getAttributeContains("class", "has-error"));
 
+        List<TagTester> messagesTesters =
+                TagTester.createTagsByAttribute(componentMarkup.toString(), "wicket:id", "messages", false);
+        Assert.assertEquals(1, messagesTesters.size());
+
+        TagTester messageTester = messagesTesters.get(0);
+        Assert.assertTrue(messageTester.getAttributeContains("class", "error"));
+        Assert.assertEquals(
+                "The value of &#039;Label&#039; is not a valid email address.",
+                messageTester.getChild("container").getValue()
+        );
+
         //TODO: Test jQuery validations
-        //TODO: Test feedback messages
     }
 }
