@@ -26,6 +26,8 @@ import org.apache.wicket.model.IModel;
 import java.io.Serializable;
 
 /**
+ * A {@link Label} with {@link ButtonBehavior}.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class LabelButton extends Label implements IButton
