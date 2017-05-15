@@ -1,9 +1,18 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.FormTestPage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.util.string.ComponentRenderer;
+import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.util.tester.FormTester;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -35,5 +44,103 @@ public class RepeatingAjaxFormTest extends AbstractWicketTest
                         "\t</wicket:panel></wicket:form>",
                 componentMarkup.toString()
         );
+    }
+
+    @Test
+    public void testSubmit()
+    {
+        Set<String> callSet = new HashSet<>();
+        RepeatingAjaxForm component = new RepeatingAjaxForm(FormTestPage.COMPONENT_ID)
+        {
+            @Override
+            protected void populateFormGroups(RepeatingView formGroupView)
+            {
+                super.populateFormGroups(formGroupView);
+                FormGroupInputText formGroup =
+                        new FormGroupInputText(formGroupView.newChildId(), Model.of("Label"), new Model<>());
+                formGroup.setRequired(true);
+                formGroupView.add(formGroup);
+            }
+
+            @Override
+            protected void onSubmit(AjaxRequestTarget target)
+            {
+                super.onSubmit(target);
+                callSet.add("onSubmit");
+                if (null != target) {
+                    callSet.add("onSubmitAjax");
+                }
+            }
+
+            @Override
+            protected void onAfterSubmit(AjaxRequestTarget target)
+            {
+                super.onAfterSubmit(target);
+                callSet.add("onAfterSubmit");
+                if (null != target) {
+                    callSet.add("onAfterSubmitAjax");
+                }
+            }
+
+            @Override
+            protected void onError(AjaxRequestTarget target)
+            {
+                super.onError(target);
+                callSet.add("onError");
+                if (null != target) {
+                    callSet.add("onErrorAjax");
+                }
+            }
+        };
+        FormTestPage page = new FormTestPage(component);
+        this.tester.startPage(page);
+
+        /* Default submit with error */
+        FormTester formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID, false);
+        formTester.submit();
+
+        Assert.assertFalse(callSet.contains("onSubmit"));
+        Assert.assertFalse(callSet.contains("onSubmitAjax"));
+        Assert.assertFalse(callSet.contains("onAfterSubmit"));
+        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assert.assertTrue(callSet.contains("onError"));
+        Assert.assertFalse(callSet.contains("onErrorAjax"));
+
+        /* Ajax submit with error */
+        callSet.clear();
+        this.tester.executeAjaxEvent(component, "submit");
+
+        Assert.assertFalse(callSet.contains("onSubmit"));
+        Assert.assertFalse(callSet.contains("onSubmitAjax"));
+        Assert.assertFalse(callSet.contains("onAfterSubmit"));
+        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assert.assertTrue(callSet.contains("onError"));
+        Assert.assertTrue(callSet.contains("onErrorAjax"));
+
+        /* Populating textfield */
+        formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID, false);
+        formTester.setValue("formGroup:1:container:inputGroup:formComponent", "valid");
+
+         /* Default submit with success */
+        callSet.clear();
+        formTester.submit();
+
+        Assert.assertTrue(callSet.contains("onSubmit"));
+        Assert.assertFalse(callSet.contains("onSubmitAjax"));
+        Assert.assertTrue(callSet.contains("onAfterSubmit"));
+        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assert.assertFalse(callSet.contains("onError"));
+        Assert.assertFalse(callSet.contains("onErrorAjax"));
+
+        /* Ajax submit with success */
+        callSet.clear();
+        this.tester.executeAjaxEvent(component, "submit");
+
+        Assert.assertTrue(callSet.contains("onSubmit"));
+        Assert.assertTrue(callSet.contains("onSubmitAjax"));
+        Assert.assertTrue(callSet.contains("onAfterSubmit"));
+        Assert.assertTrue(callSet.contains("onAfterSubmitAjax"));
+        Assert.assertFalse(callSet.contains("onError"));
+        Assert.assertFalse(callSet.contains("onErrorAjax"));
     }
 }

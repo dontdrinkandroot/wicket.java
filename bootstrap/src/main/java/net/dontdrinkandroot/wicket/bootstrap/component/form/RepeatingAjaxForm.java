@@ -26,8 +26,7 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
 {
     public RepeatingAjaxForm(String id)
     {
-        super(id);
-        this.createSubmitBehavior();
+        this(id, null);
     }
 
     public RepeatingAjaxForm(String id, IModel<T> model)
@@ -70,11 +69,6 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
         });
     }
 
-    protected void onError(AjaxRequestTarget target)
-    {
-        target.add(this);
-    }
-
     @Override
     protected final void onError()
     {
@@ -92,11 +86,6 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
         }
     }
 
-    protected void onAfterSubmit(AjaxRequestTarget target)
-    {
-        /* Hook */
-    }
-
     /**
      * Hook for handling the submission with Ajax. Do not perform any setResponsePage Actions here, as they will lead
      * to a double subission. Use onAfterSubmit instead.
@@ -106,5 +95,17 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
     protected void onSubmit(AjaxRequestTarget target)
     {
         /* Hook */
+    }
+
+    protected void onAfterSubmit(AjaxRequestTarget target)
+    {
+        /* Hook */
+    }
+
+    protected void onError(AjaxRequestTarget target)
+    {
+        if (null != target) {
+            target.add(this);
+        }
     }
 }
