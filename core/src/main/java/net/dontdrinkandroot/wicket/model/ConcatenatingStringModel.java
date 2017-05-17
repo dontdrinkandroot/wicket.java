@@ -73,4 +73,13 @@ public class ConcatenatingStringModel extends AbstractChainedModel<String, Strin
 
         return concatenatedString.toString();
     }
+
+    @Override
+    public void detach()
+    {
+        super.detach();
+        if (null != this.suffixModel) {
+            this.suffixModel.detach();
+        }
+    }
 }

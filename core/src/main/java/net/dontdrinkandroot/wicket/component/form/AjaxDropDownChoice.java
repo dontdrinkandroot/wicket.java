@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class AjaxDropDownChoice<T> extends DropDownChoice<T> {
-
+public class AjaxDropDownChoice<T> extends DropDownChoice<T>
+{
     public AjaxDropDownChoice(String id)
     {
         super(id);
@@ -104,7 +104,6 @@ public class AjaxDropDownChoice<T> extends DropDownChoice<T> {
             @Override
             protected void onUpdate(final AjaxRequestTarget target)
             {
-
                 AjaxDropDownChoice.this.onSelectionChanged(target);
             }
         });
