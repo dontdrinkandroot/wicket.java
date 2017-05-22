@@ -67,6 +67,7 @@ public enum FontAwesomeIconClass implements CssClass
     ARROW_CIRCLE_O_UP("fa-arrow-circle-o-up", "Arrow Circle Outlined Up", "1.0"),
     ARROW_CIRCLE_RIGHT("fa-arrow-circle-right", "Arrow Circle Right", "2.0"),
     ARROW_CIRCLE_UP("fa-arrow-circle-up", "Arrow Circle Up", "2.0"),
+    ARROW("fa-arrow", "arrow", "1.0"),
     ARROW_DOWN("fa-arrow-down", "arrow-down", "1.0"),
     ARROW_LEFT("fa-arrow-left", "arrow-left", "1.0"),
     ARROW_RIGHT("fa-arrow-right", "arrow-right", "1.0"),

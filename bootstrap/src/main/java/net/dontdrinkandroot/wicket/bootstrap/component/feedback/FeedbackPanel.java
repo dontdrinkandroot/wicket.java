@@ -26,19 +26,20 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import java.io.Serializable;
 
-
-public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackPanel {
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackPanel
+{
 
     public FeedbackPanel(String id)
     {
-
         super(id);
     }
 
     @Override
     protected String getCSSClass(FeedbackMessage message)
     {
-
         int level = message.getLevel();
         CssClass cssClass = this.getClassFromLevel(level);
 
@@ -53,7 +54,6 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
 
     protected CssClass getClassFromLevel(int level)
     {
-
         switch (level) {
 
             case FeedbackMessage.WARNING:
@@ -77,7 +77,6 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
     @Override
     protected Component newMessageDisplayComponent(String id, FeedbackMessage message)
     {
-
         Serializable serializable = message.getMessage();
         Label label = new Label(id, serializable == null ? "" : serializable.toString());
         label.setEscapeModelStrings(this.getEscapeModelStrings());
@@ -85,5 +84,4 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
 
         return label;
     }
-
 }

@@ -30,7 +30,8 @@ import java.io.Serializable;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedbackPanel {
+public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedbackPanel
+{
 
     public FencedFeedbackPanel(String id)
     {
@@ -55,7 +56,6 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
     @Override
     protected String getCSSClass(FeedbackMessage message)
     {
-
         int level = message.getLevel();
         CssClass cssClass = this.getClassFromLevel(level);
 

@@ -19,9 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
-public class FontAwesomeIcon implements CssClass {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public class FontAwesomeIcon implements CssClass
+{
     private boolean fixedWidth = false;
 
     private boolean spinning = false;
@@ -36,21 +38,19 @@ public class FontAwesomeIcon implements CssClass {
 
     public FontAwesomeIcon(FontAwesomeIconClass iconClass)
     {
-
         this.iconClass = iconClass;
     }
 
     @Override
     public String getClassString()
     {
-
         StringBuilder builder = new StringBuilder("fa ");
         builder.append(this.iconClass.getClassString());
         if (this.shape != null) {
             builder.append("-");
             builder.append(this.shape);
         }
-        if (this.outline != null && this.outline.booleanValue()) {
+        if (this.outline != null && this.outline) {
             builder.append("-o");
         }
         if (this.direction != null) {
@@ -68,35 +68,30 @@ public class FontAwesomeIcon implements CssClass {
 
     public FontAwesomeIcon setFixedWidth(boolean fixedWidth)
     {
-
         this.fixedWidth = fixedWidth;
         return this;
     }
 
     public FontAwesomeIcon setSpinning(boolean spinning)
     {
-
         this.spinning = spinning;
         return this;
     }
 
     public FontAwesomeIcon setOutline(Boolean outline)
     {
-
         this.outline = outline;
         return this;
     }
 
     public FontAwesomeIcon setShape(String shape)
     {
-
         this.shape = shape;
         return this;
     }
 
     public FontAwesomeIcon setDirection(String direction)
     {
-
         this.direction = direction;
         return this;
     }

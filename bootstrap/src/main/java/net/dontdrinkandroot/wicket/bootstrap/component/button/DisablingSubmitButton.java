@@ -57,50 +57,7 @@ public class DisablingSubmitButton extends AjaxSubmitLink
     {
         super.updateAjaxAttributes(attributes);
 
-        attributes.getAjaxCallListeners().add(new AjaxCallListener()
-        {
-            @Override
-            public CharSequence getBeforeHandler(Component component)
-            {
-                return "console.log(attrs)";
-            }
-
-            @Override
-            public CharSequence getAfterHandler(Component component)
-            {
-                StringBuffer sb = new StringBuffer();
-                sb.append("$('#" + DisablingSubmitButton.this.getMarkupId() + "').button('loading');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " input').attr('disabled', 'disabled');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " textarea').attr('disabled', 'disabled');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " select').attr('disabled', 'disabled');");
-
-                return sb.toString();
-            }
-
-            @Override
-            public CharSequence getCompleteHandler(Component component)
-            {
-                StringBuffer sb = new StringBuffer();
-                sb.append("$('#" + DisablingSubmitButton.this.getMarkupId() + "').button('reset');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " input').removeAttr('disabled');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " textarea').removeAttr('disabled');");
-                sb.append("$('#"
-                        + DisablingSubmitButton.this.getForm().getMarkupId()
-                        + " select').removeAttr('disabled');");
-
-                return sb.toString();
-            }
-        });
+        attributes.getAjaxCallListeners().add(new DisablingAjaxCallListener());
     }
 
     public ButtonBehavior getButtonBehavior()
@@ -111,5 +68,36 @@ public class DisablingSubmitButton extends AjaxSubmitLink
     public IModel<String> getLoadingTextModel()
     {
         return this.loadingTextModel;
+    }
+
+    private class DisablingAjaxCallListener extends AjaxCallListener
+    {
+        @Override
+        public CharSequence getAfterHandler(Component component)
+        {
+            String formMarkupId = DisablingSubmitButton.this.getForm().getMarkupId();
+
+            StringBuilder builder = new StringBuilder();
+            builder.append(String.format("$('#%s').button('loading');", DisablingSubmitButton.this.getMarkupId()));
+            builder.append(String.format("$('#%s input').attr('disabled', 'disabled');", formMarkupId));
+            builder.append(String.format("$('#%s textarea').attr('disabled', 'disabled');", formMarkupId));
+            builder.append(String.format("$('#%s select').attr('disabled', 'disabled');", formMarkupId));
+
+            return builder.toString();
+        }
+
+        @Override
+        public CharSequence getCompleteHandler(Component component)
+        {
+            String formMarkupId = DisablingSubmitButton.this.getForm().getMarkupId();
+
+            StringBuilder builder = new StringBuilder();
+            builder.append(String.format("$('#%s').button('reset');", DisablingSubmitButton.this.getMarkupId()));
+            builder.append(String.format("$('#%s input').removeAttr('disabled', 'disabled');", formMarkupId));
+            builder.append(String.format("$('#%s textarea').removeAttr('disabled', 'disabled');", formMarkupId));
+            builder.append(String.format("$('#%s select').removeAttr('disabled', 'disabled');", formMarkupId));
+
+            return builder.toString();
+        }
     }
 }
