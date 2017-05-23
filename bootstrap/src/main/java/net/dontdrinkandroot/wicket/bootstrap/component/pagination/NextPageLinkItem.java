@@ -27,7 +27,6 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
 public abstract class NextPageLinkItem extends AbstractPageLinkItem
 {
 
@@ -77,7 +76,4 @@ public abstract class NextPageLinkItem extends AbstractPageLinkItem
             }
         };
     }
-
-    ;
-
 }

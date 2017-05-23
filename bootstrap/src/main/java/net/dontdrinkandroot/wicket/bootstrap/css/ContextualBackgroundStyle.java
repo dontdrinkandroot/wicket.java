@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ContextualBackgroundStyle implements CssClass
 {
-
     PRIMARY("bg-primary"),
     SUCCESS("bg-success"),
     INFO("bg-info"),
@@ -31,7 +32,7 @@ public enum ContextualBackgroundStyle implements CssClass
 
     private String classString;
 
-    private ContextualBackgroundStyle(String classString)
+    ContextualBackgroundStyle(String classString)
     {
         this.classString = classString;
     }

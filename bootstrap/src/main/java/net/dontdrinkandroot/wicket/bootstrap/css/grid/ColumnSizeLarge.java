@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ColumnSizeLarge implements ColumnSize
 {
-
     COLUMNS_1,
     COLUMNS_2,
     COLUMNS_3,
@@ -32,10 +34,6 @@ public enum ColumnSizeLarge implements ColumnSize
     COLUMNS_10,
     COLUMNS_11,
     COLUMNS_12;
-
-    private ColumnSizeLarge()
-    {
-    }
 
     @Override
     public String getClassString()

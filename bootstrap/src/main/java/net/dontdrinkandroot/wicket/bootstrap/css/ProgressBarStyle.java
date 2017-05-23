@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ProgressBarStyle implements CssClass
 {
-
     DEFAULT(""),
     SUCCESS("progress-bar-success"),
     INFO("progress-bar-info"),
@@ -31,16 +32,14 @@ public enum ProgressBarStyle implements CssClass
 
     private String classString;
 
-    private ProgressBarStyle(String classString)
+    ProgressBarStyle(String classString)
     {
-
         this.classString = classString;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.classString;
     }
 }

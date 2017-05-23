@@ -19,9 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
-public enum PanelStyle implements CssClass {
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public enum PanelStyle implements CssClass
+{
     DEFAULT("panel-default"),
     PRIMARY("panel-primary"),
     SUCCESS("panel-success"),
@@ -31,17 +33,14 @@ public enum PanelStyle implements CssClass {
 
     private String classString;
 
-    private PanelStyle(String classString)
+    PanelStyle(String classString)
     {
-
         this.classString = classString;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.classString;
     }
-
 }

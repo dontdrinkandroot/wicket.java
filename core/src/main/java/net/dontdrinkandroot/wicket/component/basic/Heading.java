@@ -36,7 +36,7 @@ public class Heading extends Label
         H3,
         H4,
         H5,
-        H6;
+        H6
     }
 
     private final Level level;

@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.behavior.aria;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum Aria
 {
-
     ACTIVEDESCENDANT("aria-activedescendant", false),
     ATOMIC("aria-atomic", false),
     AUTOCOMPLETE("aria-autocomplete", false),
@@ -60,22 +62,19 @@ public enum Aria
 
     private boolean withState;
 
-    private Aria(String attribute, boolean withState)
+    Aria(String attribute, boolean withState)
     {
-
         this.attribute = attribute;
         this.withState = withState;
     }
 
     public String getAttribute()
     {
-
         return this.attribute;
     }
 
     public boolean isWithState()
     {
-
         return this.withState;
     }
 

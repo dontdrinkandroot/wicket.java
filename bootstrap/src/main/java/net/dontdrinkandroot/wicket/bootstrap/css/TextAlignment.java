@@ -19,10 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum TextAlignment implements CssClass
 {
-
     LEFT("text-left"),
     CENTER("text-center"),
     RIGHT("text-right"),
@@ -31,7 +32,7 @@ public enum TextAlignment implements CssClass
 
     private String classString;
 
-    private TextAlignment(String classString)
+    TextAlignment(String classString)
     {
         this.classString = classString;
     }

@@ -7,7 +7,7 @@ import java.time.LocalTime;
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class LocalTimeConverter extends AbstractTemporalAccessorConverter
+public class LocalTimeConverter extends AbstractTemporalAccessorConverter<LocalTime>
 {
     public LocalTimeConverter()
     {

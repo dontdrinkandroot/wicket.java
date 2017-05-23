@@ -74,7 +74,7 @@ abstract public class SplitDropdownButton<T> extends GenericPanel<T> implements 
 
     protected Component createDropdownMenu(String id)
     {
-        DropdownMenu dropdownMenu = new DropdownMenu(id)
+        return new DropdownMenu(id)
         {
             @Override
             protected void populateItems(RepeatingView itemView)
@@ -82,7 +82,6 @@ abstract public class SplitDropdownButton<T> extends GenericPanel<T> implements 
                 SplitDropdownButton.this.populateItems(itemView);
             }
         };
-        return dropdownMenu;
     }
 
     @Override

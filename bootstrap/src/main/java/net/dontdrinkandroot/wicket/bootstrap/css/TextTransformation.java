@@ -19,17 +19,18 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum TextTransformation implements CssClass
 {
-
     LOWERCASE("text-lowercase"),
     UPPERCASE("text-uppercase"),
     CAPITALIZE("text-capitalize");
 
     private String classString;
 
-    private TextTransformation(String classString)
+    TextTransformation(String classString)
     {
         this.classString = classString;
     }

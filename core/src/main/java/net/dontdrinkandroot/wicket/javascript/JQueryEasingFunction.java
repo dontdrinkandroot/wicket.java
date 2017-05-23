@@ -10,13 +10,13 @@ public enum JQueryEasingFunction implements EasingFunction
 
     private final String name;
 
-    private JQueryEasingFunction(String name)
+    JQueryEasingFunction(String name)
     {
         this.name = name;
     }
 
     public String getName()
     {
-        return name;
+        return this.name;
     }
 }

@@ -19,7 +19,9 @@ package net.dontdrinkandroot.wicket.bootstrap.css;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum FormGroupSize implements CssClass
 {
     SMALL("form-group-sm"),
@@ -27,17 +29,14 @@ public enum FormGroupSize implements CssClass
 
     private String classString;
 
-    private FormGroupSize(String classString)
+    FormGroupSize(String classString)
     {
-
         this.classString = classString;
     }
 
     @Override
     public String getClassString()
     {
-
         return this.classString;
     }
-
 }

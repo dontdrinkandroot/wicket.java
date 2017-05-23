@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ColumnOffsetSmall implements ColumnOffset
 {
-
     COLUMNS_1,
     COLUMNS_2,
     COLUMNS_3,
@@ -31,10 +33,6 @@ public enum ColumnOffsetSmall implements ColumnOffset
     COLUMNS_9,
     COLUMNS_10,
     COLUMNS_11;
-
-    private ColumnOffsetSmall()
-    {
-    }
 
     @Override
     public String getClassString()
