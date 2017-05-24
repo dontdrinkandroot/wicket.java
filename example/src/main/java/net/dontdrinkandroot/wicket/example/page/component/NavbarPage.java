@@ -34,7 +34,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class NavbarPage extends ComponentPage
 {
-
     public NavbarPage(PageParameters parameters)
     {
         super(parameters);
@@ -43,7 +42,7 @@ public class NavbarPage extends ComponentPage
     @Override
     protected IModel<String> createPageHeadingModel()
     {
-        return Model.of("Nav Bars");
+        return Model.of("Navbars");
     }
 
     @Override

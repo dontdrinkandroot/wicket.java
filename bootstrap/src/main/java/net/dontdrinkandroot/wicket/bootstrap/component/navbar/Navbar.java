@@ -20,10 +20,12 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -49,15 +51,30 @@ public abstract class Navbar extends GenericPanel<Void>
 
         this.add(this.createBrand("brand"));
 
+        WebMarkupContainer navbarCollapse = new WebMarkupContainer("navbarCollapse");
+        navbarCollapse.setOutputMarkupId(true);
+        this.add(navbarCollapse);
+
         RepeatingView navBarLeftItemView = new RepeatingView("leftItem");
         this.populateNavbarLeftItems(navBarLeftItemView);
-        this.add(navBarLeftItemView);
+        navbarCollapse.add(navBarLeftItemView);
 
-        this.add(this.createForm("form"));
+        navbarCollapse.add(this.createForm("form"));
 
         RepeatingView navbarRightItemView = new RepeatingView("rightItem");
         this.populateNavbarRightItems(navbarRightItemView);
-        this.add(navbarRightItemView);
+        navbarCollapse.add(navbarRightItemView);
+
+        WebMarkupContainer navbarToggle = new WebMarkupContainer("navbarToggle");
+        navbarToggle.add(new AttributeModifier("data-target", new AbstractReadOnlyModel<String>()
+        {
+            @Override
+            public String getObject()
+            {
+                return String.format("#%s", navbarCollapse.getMarkupId());
+            }
+        }));
+        this.add(navbarToggle);
     }
 
     protected Component createBrand(String id)
