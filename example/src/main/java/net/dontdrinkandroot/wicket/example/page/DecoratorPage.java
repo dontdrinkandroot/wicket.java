@@ -17,10 +17,12 @@
  */
 package net.dontdrinkandroot.wicket.example.page;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarNav;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
 import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
@@ -88,37 +90,65 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     @Override
     protected Component createNavbar(String id)
     {
-        Component navBar = super.createNavbar(id);
-        navBar.add(new CssClassAppender(BootstrapCssClass.NAVBAR_FIXED_TOP));
-        return navBar;
+        Navbar navbar = new Navbar(id)
+        {
+            @Override
+            protected Component createBrand(String id)
+            {
+                BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<>(id, HomePage.class);
+                brandLink.setBody(Model.of("wicket.example"));
+
+                return brandLink;
+            }
+
+            @Override
+            protected void populateCollapseItems(RepeatingView collapseItemView)
+            {
+                super.populateCollapseItems(collapseItemView);
+
+                NavbarNav leftItems = new NavbarNav(collapseItemView.newChildId())
+                {
+                    @Override
+                    protected void populateItems(RepeatingView itemView)
+                    {
+                        super.populateItems(itemView);
+                        DecoratorPage.this.populateNavbarLeftItems(itemView);
+                    }
+                };
+                collapseItemView.add(leftItems);
+
+                NavbarNav rightItems = new NavbarNav(collapseItemView.newChildId())
+                {
+                    @Override
+                    protected void populateItems(RepeatingView itemView)
+                    {
+                        super.populateItems(itemView);
+                        itemView.add(new ThemeDropdownItem(itemView.newChildId()));
+                        itemView.add(new BuildInfoItem(itemView.newChildId()));
+                    }
+                };
+                rightItems.setAlignment(NavbarAlignment.RIGHT);
+                collapseItemView.add(rightItems);
+            }
+        };
+        navbar.setPosition(NavbarPosition.FIXED_TOP);
+        return navbar;
     }
 
-    @Override
-    protected Component createBrand(String id)
+    protected void populateNavbarLeftItems(RepeatingView leftItemView)
     {
-        BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<>(id, HomePage.class);
-        brandLink.setBody(Model.of("wicket.example"));
-
-        return brandLink;
-    }
-
-    @Override
-    protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
-    {
-        super.populateNavbarLeftItems(navbarLeftItemView);
-        navbarLeftItemView.add(
+        leftItemView.add(
                 new BookmarkablePageLinkItem(
-                        navbarLeftItemView.newChildId(),
+                        leftItemView.newChildId(),
                         Model.of("Getting Started"),
                         GettingStartedPage.class
                 ));
-        navbarLeftItemView.add(
-                new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("CSS"), CssPage.class));
-        navbarLeftItemView.add(
-                new BookmarkablePageLinkItem(navbarLeftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
-        navbarLeftItemView.add(new RepeatingDropdownItem(navbarLeftItemView.newChildId(), Model.of("Components"))
+        leftItemView.add(
+                new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("CSS"), CssPage.class));
+        leftItemView.add(
+                new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
+        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Components"))
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {
@@ -157,7 +187,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         });
 
-        navbarLeftItemView.add(new RepeatingDropdownItem(navbarLeftItemView.newChildId(), Model.of("Forms"))
+        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Forms"))
         {
 
             @Override
@@ -195,14 +225,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 return this.getPage() instanceof FormPage;
             }
         });
-    }
-
-    @Override
-    protected void populateNavbarRightItems(RepeatingView itemView)
-    {
-        super.populateNavbarRightItems(itemView);
-        itemView.add(new ThemeDropdownItem(itemView.newChildId()));
-        itemView.add(new BuildInfoItem(itemView.newChildId()));
     }
 
     @Override

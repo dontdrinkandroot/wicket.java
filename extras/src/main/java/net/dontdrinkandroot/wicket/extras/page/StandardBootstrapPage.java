@@ -126,57 +126,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 
     protected Component createNavbar(String id)
     {
-        return new Navbar(id)
-        {
-            @Override
-            protected Component createBrand(String id)
-            {
-                return StandardBootstrapPage.this.createBrand(id);
-            }
-
-            @Override
-            protected void populateNavbarLeftItems(RepeatingView navbarLeftItemView)
-            {
-                StandardBootstrapPage.this.populateNavbarLeftItems(navbarLeftItemView);
-            }
-
-            @Override
-            protected Component createForm(String id)
-            {
-                return StandardBootstrapPage.this.createNavbarForm(id);
-            }
-
-            @Override
-            protected void populateNavbarRightItems(RepeatingView navbarRightItemView)
-            {
-                StandardBootstrapPage.this.populateNavbarRightItems(navbarRightItemView);
-            }
-        };
-    }
-
-    protected Component createBrand(String id)
-    {
-        WebMarkupContainer brandLink = new WebMarkupContainer(id);
-        brandLink.setVisible(false);
-        return brandLink;
-    }
-
-    protected void populateNavbarLeftItems(RepeatingView itemView)
-    {
-        /* Overwrite to populate navbar items on left side */
-    }
-
-    protected Component createNavbarForm(String id)
-    {
-        WebMarkupContainer navBarForm = new WebMarkupContainer(id);
-        navBarForm.setVisible(false);
-
-        return navBarForm;
-    }
-
-    protected void populateNavbarRightItems(RepeatingView itemView)
-    {
-        /* Overwrite to populate navbar items on right side */
+        return new Navbar(id);
     }
 
     protected Component createFooter(String id)

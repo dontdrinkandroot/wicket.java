@@ -15,15 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
+package net.dontdrinkandroot.wicket.bootstrap.css;
+
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 /**
- * Navbar that can be used within a .container.
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class InnerNavbar extends Navbar
+public enum ContainerStyle implements CssClass
 {
-    public InnerNavbar(String id)
+    DEFAULT("container"),
+    FLUID("container-fluid");
+
+    private String classString;
+
+    ContainerStyle(String classString)
     {
-        super(id);
+        this.classString = classString;
+    }
+
+    @Override
+    public String getClassString()
+    {
+        return this.classString;
     }
 }

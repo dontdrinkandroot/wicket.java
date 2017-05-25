@@ -24,21 +24,21 @@ import org.apache.wicket.model.IModel;
 
 import java.util.List;
 
-
-public abstract class UnstyledOrderedList<T> extends OrderedList<T> {
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
+public abstract class UnstyledOrderedList<T> extends OrderedList<T>
+{
     public UnstyledOrderedList(String id, IModel<List<T>> model)
     {
-
         super(id, model);
     }
 
     @Override
     protected void onInitialize()
     {
-
         super.onInitialize();
         this.add(new CssClassAppender(BootstrapCssClass.LIST_UNSTYLED));
     }
-
 }

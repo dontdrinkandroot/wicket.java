@@ -17,15 +17,19 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.*;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.InnerNavbar;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.SeparatorItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarNav;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarText;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
 import net.dontdrinkandroot.wicket.example.component.NavbarForm;
 import net.dontdrinkandroot.wicket.example.page.HomePage;
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -50,109 +54,84 @@ public class NavbarPage extends ComponentPage
     {
         super.onInitialize();
 
-        InnerNavbar navBarDefault = new InnerNavbar("navBarDefault")
+        Navbar navbarDefault = this.createExampleNavbar("navbarDefault");
+        this.add(navbarDefault);
+
+        Navbar navbarInverse = this.createExampleNavbar("navbarInverse");
+        navbarInverse.setStyle(NavbarStyle.INVERSE);
+        this.add(navbarInverse);
+    }
+
+    protected Navbar createExampleNavbar(String id)
+    {
+        Navbar navbar = new Navbar(id)
         {
             @Override
             protected Component createBrand(String id)
             {
-                BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<Void>(id, HomePage.class);
+                BookmarkablePageLink brandLink = new BookmarkablePageLink(id, HomePage.class);
                 brandLink.setBody(Model.of("Brand"));
                 return brandLink;
             }
 
             @Override
-            protected Component createForm(String id)
+            protected void populateCollapseItems(RepeatingView collapseItemView)
             {
-                return NavbarPage.this.createExampleNavbarForm(id);
-            }
+                super.populateCollapseItems(collapseItemView);
 
-            @Override
-            protected void populateNavbarLeftItems(RepeatingView itemView)
-            {
-                NavbarPage.this.populateExampleNavbarLeftItems(itemView);
-            }
-
-            @Override
-            protected void populateNavbarRightItems(RepeatingView itemView)
-            {
-                NavbarPage.this.populateExampleNavbarRightItems(itemView);
-            }
-        };
-        this.add(navBarDefault);
-
-        InnerNavbar navBarInverse = new InnerNavbar("navBarInverse")
-        {
-
-            @Override
-            protected Component createBrand(String id)
-            {
-                BookmarkablePageLink<Void> brandLink = new BookmarkablePageLink<Void>(id, HomePage.class);
-                brandLink.setBody(Model.of("Brand"));
-                return brandLink;
-            }
-
-            @Override
-            protected Component createForm(String id)
-            {
-                return NavbarPage.this.createExampleNavbarForm(id);
-            }
-
-            @Override
-            protected void populateNavbarLeftItems(RepeatingView itemView)
-            {
-                NavbarPage.this.populateExampleNavbarLeftItems(itemView);
-            }
-
-            @Override
-            protected void populateNavbarRightItems(RepeatingView itemView)
-            {
-                NavbarPage.this.populateExampleNavbarRightItems(itemView);
-            }
-        };
-        navBarInverse.setStyle(NavbarStyle.INVERSE);
-        this.add(navBarInverse);
-    }
-
-    protected Component createExampleNavbarForm(String id)
-    {
-        NavbarForm navBarForm = new NavbarForm(id);
-        navBarForm.add(new CssClassAppender(BootstrapCssClass.NAVBAR_LEFT));
-
-        return navBarForm;
-    }
-
-    protected void populateExampleNavbarLeftItems(RepeatingView itemView)
-    {
-        itemView.add(new RepeatingDropdownItem(itemView.newChildId(), Model.of("Dropdown"))
-        {
-
-            @Override
-            protected void populateItems(RepeatingView itemView)
-            {
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Action"), HomePage.class));
-                itemView.add(new SeparatorItem(itemView.newChildId()));
-                itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
-                itemView.add(
-                        new BookmarkablePageLinkItem(
+                collapseItemView.add(new NavbarNav(collapseItemView.newChildId())
+                {
+                    @Override
+                    protected void populateItems(RepeatingView itemView)
+                    {
+                        super.populateItems(itemView);
+                        itemView.add(new RepeatingDropdownItem(itemView.newChildId(), Model.of("Dropdown"))
+                        {
+                            @Override
+                            protected void populateItems(RepeatingView itemView)
+                            {
+                                itemView.add(new BookmarkablePageLinkItem(
+                                        itemView.newChildId(),
+                                        Model.of("Action"),
+                                        HomePage.class
+                                ));
+                                itemView.add(new SeparatorItem(itemView.newChildId()));
+                                itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
+                                itemView.add(
+                                        new BookmarkablePageLinkItem(
+                                                itemView.newChildId(),
+                                                Model.of("Another Action"),
+                                                HomePage.class
+                                        ));
+                            }
+                        });
+                        itemView.add(new BookmarkablePageLinkItem(
                                 itemView.newChildId(),
-                                Model.of("Another Action"),
-                                HomePage.class
+                                Model.of("Link"),
+                                NavbarPage.class
                         ));
-            }
-        });
-        itemView.add(new NavbarButtonItem<Void>(itemView.newChildId())
-        {
+                    }
+                });
 
-            @Override
-            protected AbstractLink createLink(String id)
-            {
-                return new BookmarkablePageLink<Void>(id, HomePage.class).setBody(Model.of("Button"));
-            }
-        });
-    }
+                NavbarForm form = new NavbarForm(collapseItemView.newChildId());
+                collapseItemView.add(form);
 
-    protected void populateExampleNavbarRightItems(RepeatingView itemView)
-    {
-        itemView.add(new NavbarTextItem(itemView.newChildId(), Model.of("Text")));
+                NavbarText text = new NavbarText(collapseItemView.newChildId(), Model.of("Text"));
+                collapseItemView.add(text);
+
+                NavbarButton button = new NavbarButton(collapseItemView.newChildId())
+                {
+                    @Override
+                    public void onClick()
+                    {
+                        /* Noop */
+                    }
+                };
+                button.setAlignment(NavbarAlignment.RIGHT);
+                button.setBody(Model.of("Button"));
+                collapseItemView.add(button);
+            }
+        };
+        return navbar;
     }
 }

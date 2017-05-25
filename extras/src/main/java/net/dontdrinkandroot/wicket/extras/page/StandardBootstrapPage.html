@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:wicket>
 <body>
-	<wicket:extend>
-		<div id="wrapper">
-			<div wicket:id="modal"></div>
-			<nav wicket:id="navbar"></nav>
-			
-			<div class="container">
-				<header class="page-header" wicket:id="pageHeader">
-					<div class="pull-right">
-						<div class="btn-toolbar">
-							<button wicket:id="primaryAction"></button>
-						</div>
-					</div>
-					<h1 wicket:id="pageHeading"></h1>
-				</header>
-	
-				<main>
-					<div wicket:id="feedback"></div>			
-					<wicket:child />
-				</main>
-			</div>
-			<footer wicket:id="footer"></footer>
-		</div>
-	</wicket:extend>
+<wicket:extend>
+    <div id="wrapper">
+        <div wicket:id="modal"></div>
+        <nav wicket:id="navbar"></nav>
+
+        <div class="container">
+            <header class="page-header" wicket:id="pageHeader">
+                <div class="pull-right">
+                    <div class="btn-toolbar">
+                        <button wicket:id="primaryAction"></button>
+                    </div>
+                </div>
+                <h1 wicket:id="pageHeading"></h1>
+            </header>
+
+            <main>
+                <div wicket:id="feedback"></div>
+                <wicket:child/>
+            </main>
+        </div>
+        <footer wicket:id="footer"></footer>
+    </div>
+</wicket:extend>
 </body>
 </html>

@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.example;
 
 import net.dontdrinkandroot.wicket.example.page.HomePage;
+import net.dontdrinkandroot.wicket.example.page.component.NavbarPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -60,6 +61,8 @@ public class ExampleApplication extends WebApplication
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        this.mountPage("components/navbar", NavbarPage.class);
     }
 
     public Properties getBuildProperties()

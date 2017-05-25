@@ -33,8 +33,13 @@ public enum BootstrapCssClass implements CssClass
     BTN_TOOLBAR("btn-toolbar"),
     CHECKBOX("checkbox"),
     CLOSE("close"),
+
+    @Deprecated
     CONTAINER("container"),
+
+    @Deprecated
     CONTAINER_FLUID("container-fluid"),
+
     CONTROLS("controls"),
     DROPDOWN_SUBMENU("dropdown-submenu"),
     DROPUP("dropup"),
@@ -62,7 +67,10 @@ public enum BootstrapCssClass implements CssClass
     NAV_TABS("nav-tabs"),
     NAVBAR_CONTAINER("navbar-container"),
     NAVBAR_INNER("navbar-inner"),
+
+    @Deprecated
     NAVBAR_FIXED_BOTTOM("navbar-fixed-bottom"),
+
     NAVBAR_SEARCH("navbar-search"),
     NEXT("next"),
     PAGE_HEADER("page-header"),
@@ -105,6 +113,7 @@ public enum BootstrapCssClass implements CssClass
     BTN_BLOCK("btn-block"),
     BTN_GROUP("btn-group"),
     CARET("caret"),
+    COLLAPSED("collapsed"),
     CONTROL_LABEL("control-label"),
     DISABLED("disabled"),
     DIVIDER("divider"),
@@ -129,11 +138,20 @@ public enum BootstrapCssClass implements CssClass
     NAVBAR("navbar"),
     NAVBAR_BTN("navbar-btn"),
     NAVBAR_FORM("navbar-form"),
+
+    @Deprecated
     NAVBAR_LEFT("navbar-left"),
+
+    @Deprecated
     NAVBAR_FIXED_TOP("navbar-fixed-top"),
+
     NAV_JUSTIFIED("nav-justified"),
+    NAVBAR_NAV("navbar-nav"),
+
+    @Deprecated
     NAVBAR_RIGHT("navbar-right"),
     NAVBAR_TEXT("navbar-text"),
+    NAVBAR_TOGGLE("navbar-toggle"),
     PAGINATION("pagination"),
     PANEL("panel"),
     PANEL_BODY("panel-body"),

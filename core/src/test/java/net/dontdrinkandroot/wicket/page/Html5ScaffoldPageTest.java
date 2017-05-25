@@ -12,7 +12,6 @@ public class Html5ScaffoldPageTest extends AbstractWicketTest
     public void testInstantiation()
     {
         this.tester.startPage(Html5ScaffoldPage.class);
-        System.out.println(this.tester.getLastResponseAsString());
         this.tester.assertRenderedPage(Html5ScaffoldPage.class);
     }
 }
