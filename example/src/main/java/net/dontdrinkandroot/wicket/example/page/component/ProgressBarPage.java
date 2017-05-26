@@ -30,10 +30,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import java.util.Iterator;
 
-
 public class ProgressBarPage extends ComponentPage
 {
-
     public ProgressBarPage(PageParameters parameters)
     {
         super(parameters);
@@ -59,13 +57,12 @@ public class ProgressBarPage extends ComponentPage
 
         AjaxLink<Void> updateButton = new AjaxLink<Void>("updateButton")
         {
-
             @Override
             public void onClick(AjaxRequestTarget target)
             {
                 valueModel.setObject((int) Math.round(Math.random() * 100));
                 Iterator<Component> childIterator = progressBarView.iterator();
-                for (; childIterator.hasNext(); ) {
+                while (childIterator.hasNext()) {
                     Component child = childIterator.next();
                     ((ProgressBar) child).update(target);
                 }

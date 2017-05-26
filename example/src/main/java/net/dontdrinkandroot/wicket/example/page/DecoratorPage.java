@@ -23,6 +23,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarNav;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem;
 import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
@@ -46,8 +47,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 {
-    private static String FONT_AWESOME_VERSION = "4.6.3";
-
     public DecoratorPage()
     {
         super();
@@ -232,15 +231,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     {
         response.render(this.getBootstrapJavaScriptHeaderItem());
         response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
-        response.render(
-                new CssUrlReferenceHeaderItem(
-                        String.format(
-                                "https://maxcdn.bootstrapcdn.com/font-awesome/%s/css/font-awesome.min.css",
-                                FONT_AWESOME_VERSION
-                        ),
-                        null,
-                        null
-                ));
+        response.render(new FontAwesomeCssHeaderItem());
         response.render(new CssContentHeaderItem("body{padding-top: 50px;}", "bodyPadding", null));
         response.render(
                 new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
