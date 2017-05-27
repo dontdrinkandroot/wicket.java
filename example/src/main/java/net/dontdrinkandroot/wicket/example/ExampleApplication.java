@@ -17,8 +17,15 @@
  */
 package net.dontdrinkandroot.wicket.example;
 
+import net.dontdrinkandroot.wicket.example.page.CssPage;
+import net.dontdrinkandroot.wicket.example.page.GettingStartedPage;
+import net.dontdrinkandroot.wicket.example.page.GridPage;
 import net.dontdrinkandroot.wicket.example.page.HomePage;
-import net.dontdrinkandroot.wicket.example.page.component.NavbarPage;
+import net.dontdrinkandroot.wicket.example.page.component.*;
+import net.dontdrinkandroot.wicket.example.page.form.AjaxFormPage;
+import net.dontdrinkandroot.wicket.example.page.form.FormGroupPage;
+import net.dontdrinkandroot.wicket.example.page.form.InputGroupPage;
+import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -62,7 +69,21 @@ public class ExampleApplication extends WebApplication
             e.printStackTrace();
         }
 
-        this.mountPage("components/navbar", NavbarPage.class);
+        this.mountPage("css", CssPage.class);
+        this.mountPage("grid", GridPage.class);
+        this.mountPage("gettingstarted", GettingStartedPage.class);
+        this.mountPage("forms/formgroups", FormGroupPage.class);
+        this.mountPage("forms/validations", ValidationPage.class);
+        this.mountPage("forms/ajax", AjaxFormPage.class);
+        this.mountPage("forms/inputgroups", InputGroupPage.class);
+        this.mountPage("components/navbars", NavbarPage.class);
+        this.mountPage("components/alerts", AlertPage.class);
+        this.mountPage("components/buttons", ButtonPage.class);
+        this.mountPage("components/dropdowns", DropdownPage.class);
+        this.mountPage("components/labels", LabelPage.class);
+        this.mountPage("components/modals", ModalPage.class);
+        this.mountPage("components/pagination", PaginationPage.class);
+        this.mountPage("components/progressbars", ProgressBarPage.class);
     }
 
     public Properties getBuildProperties()

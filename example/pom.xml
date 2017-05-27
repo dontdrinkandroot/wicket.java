@@ -13,7 +13,7 @@
 	<properties>
 		<version.org.eclipse.jetty.jetty-maven-plugin>9.3.10.v20160621</version.org.eclipse.jetty.jetty-maven-plugin>
 		<version.org.codehaus.mojo.buildnumber-maven-plugin>1.4</version.org.codehaus.mojo.buildnumber-maven-plugin>
-		<version.org.slf4j>1.7.21</version.org.slf4j>
+		<version.org.apache.logging.log4j>2.8.2</version.org.apache.logging.log4j>
 	</properties>
 
 	<build>
@@ -57,9 +57,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${version.org.slf4j}</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${version.org.apache.logging.log4j}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${version.org.apache.logging.log4j}</version>
 		</dependency>
 
 		<dependency>
