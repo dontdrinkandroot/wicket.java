@@ -15,32 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.grid;
+package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.RepeatingView;
+import net.dontdrinkandroot.wicket.css.CssClass;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class Row extends Panel
+public enum NavStyle implements CssClass
 {
-    public Row(String id)
+    NAV_PILLS("nav-pills"),
+    NAV_TABS("nav-tabs");
+
+    private String classString;
+
+    NavStyle(String classString)
     {
-        super(id);
+        this.classString = classString;
     }
 
     @Override
-    protected void onInitialize()
+    public String getClassString()
     {
-        super.onInitialize();
-        this.add(new CssClassAppender(BootstrapCssClass.ROW));
-        RepeatingView columnView = new RepeatingView("column");
-        this.populateColumns(columnView);
-        this.add(columnView);
+        return this.classString;
     }
-
-    protected abstract void populateColumns(RepeatingView columnView);
 }

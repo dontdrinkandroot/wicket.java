@@ -12,11 +12,11 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class NavbarNav extends Panel
+public class RepeatingNavbarNav extends Panel
 {
     private IModel<NavbarAlignment> alignmentModel = Model.of(NavbarAlignment.LEFT);
 
-    public NavbarNav(String id)
+    public RepeatingNavbarNav(String id)
     {
         super(id);
     }
@@ -47,7 +47,7 @@ public class NavbarNav extends Panel
         /* Hook */
     }
 
-    public NavbarNav setAlignment(NavbarAlignment alignment)
+    public RepeatingNavbarNav setAlignment(NavbarAlignment alignment)
     {
         this.alignmentModel.setObject(alignment);
         return this;

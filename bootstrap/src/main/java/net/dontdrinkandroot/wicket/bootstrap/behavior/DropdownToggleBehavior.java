@@ -19,6 +19,8 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CompositeBehavior;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.behavior.aria.Aria;
+import net.dontdrinkandroot.wicket.behavior.aria.AriaModifier;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.behavior.Behavior;
@@ -35,8 +37,8 @@ public class DropdownToggleBehavior extends CompositeBehavior
         super(
                 new CssClassAppender(BootstrapCssClass.DROPDOWN_TOGGLE),
                 new AttributeModifier("data-toggle", "dropdown"),
-                new AttributeModifier("aria-haspopup", "true"),
-                new AttributeModifier("aria-expanded", "false")
+                new AriaModifier(Aria.HASPOPUP, "true"),
+                new AriaModifier(Aria.EXPANDED, "false")
         );
     }
 }

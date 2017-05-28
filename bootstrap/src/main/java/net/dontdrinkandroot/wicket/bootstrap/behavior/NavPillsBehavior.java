@@ -17,10 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
+import net.dontdrinkandroot.wicket.behavior.CompositeBehavior;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.NavStyle;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
-import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -28,22 +29,23 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class NavPillsBehavior extends Behavior
+public class NavPillsBehavior extends CompositeBehavior
 {
     private IModel<Boolean> justifiedModel = Model.of(Boolean.FALSE);
 
     private IModel<Boolean> stackedModel = Model.of(Boolean.FALSE);
 
-    @Override
-    public void bind(Component component)
+    public NavPillsBehavior(Behavior... behaviors)
     {
-        super.bind(component);
-
-        component.add(new CssClassAppender(BootstrapCssClass.NAV));
-        component.add(new CssClassAppender(BootstrapCssClass.NAV_PILLS));
-        component.add(
-                new CssClassAppender(new CssClassToggleModel(this.justifiedModel, BootstrapCssClass.NAV_JUSTIFIED)));
-        component.add(new CssClassAppender(new CssClassToggleModel(this.stackedModel, BootstrapCssClass.NAV_STACKED)));
+        super(new CssClassAppender(BootstrapCssClass.NAV), new CssClassAppender(NavStyle.NAV_PILLS));
+        this.addBehavior(new CssClassAppender(new CssClassToggleModel(
+                this.justifiedModel,
+                BootstrapCssClass.NAV_JUSTIFIED
+        )));
+        this.addBehavior(new CssClassAppender(new CssClassToggleModel(
+                this.stackedModel,
+                BootstrapCssClass.NAV_STACKED
+        )));
     }
 
     public void setJustified(boolean justified)

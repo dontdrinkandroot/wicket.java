@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
@@ -35,7 +36,7 @@ public class ToolTipBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" title=\"TestText\" class=\"has-tooltip\"></wicket:container>",
+                "<wicket:container wicket:id=\"id\" title=\"TestText\" data-toggle=\"tooltip\" data-placement=\"top\" data-delay=\"0\"></wicket:container>",
                 componentMarkup.toString()
         );
     }
@@ -49,23 +50,24 @@ public class ToolTipBehaviorTest extends AbstractWicketTest
 
         TagTester tagTester;
         String componentMarkup;
+        IModel<ToolTipBehavior.Position> positionModel = new Model<>();
 
-        behavior.setPosition(ToolTipBehavior.Position.TOP);
+        positionModel.setObject(ToolTipBehavior.Position.TOP);
         componentMarkup = ComponentRenderer.renderComponent(container).toString();
         tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         tagTester.getAttributeIs("data-placement", "top");
 
-        behavior.setPosition(ToolTipBehavior.Position.RIGHT);
+        positionModel.setObject(ToolTipBehavior.Position.RIGHT);
         componentMarkup = ComponentRenderer.renderComponent(container).toString();
         tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         tagTester.getAttributeIs("data-placement", "right");
 
-        behavior.setPosition(ToolTipBehavior.Position.BOTTOM);
+        positionModel.setObject(ToolTipBehavior.Position.BOTTOM);
         componentMarkup = ComponentRenderer.renderComponent(container).toString();
         tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         tagTester.getAttributeIs("data-placement", "bottom");
 
-        behavior.setPosition(ToolTipBehavior.Position.LEFT);
+        positionModel.setObject(ToolTipBehavior.Position.LEFT);
         componentMarkup = ComponentRenderer.renderComponent(container).toString();
         tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         tagTester.getAttributeIs("data-placement", "left");

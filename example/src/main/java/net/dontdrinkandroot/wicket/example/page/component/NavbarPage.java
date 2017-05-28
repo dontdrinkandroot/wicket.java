@@ -23,8 +23,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownIte
 import net.dontdrinkandroot.wicket.bootstrap.component.item.SeparatorItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarButton;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarNav;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarText;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
 import net.dontdrinkandroot.wicket.example.component.NavbarForm;
@@ -79,7 +79,7 @@ public class NavbarPage extends ComponentPage
             {
                 super.populateCollapseItems(collapseItemView);
 
-                collapseItemView.add(new NavbarNav(collapseItemView.newChildId())
+                collapseItemView.add(new RepeatingNavbarNav(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)

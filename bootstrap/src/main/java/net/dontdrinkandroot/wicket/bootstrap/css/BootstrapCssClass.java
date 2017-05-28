@@ -62,9 +62,14 @@ public enum BootstrapCssClass implements CssClass
     NAV_COLLAPSE("nav-collapse"),
     NAV_HEADER("nav-header"),
     NAV_LIST("nav-list"),
+
+    @Deprecated
     NAV_PILLS("nav-pills"),
     NAV_STACKED("nav-stacked"),
+
+    @Deprecated
     NAV_TABS("nav-tabs"),
+
     NAVBAR_CONTAINER("navbar-container"),
     NAVBAR_INNER("navbar-inner"),
 

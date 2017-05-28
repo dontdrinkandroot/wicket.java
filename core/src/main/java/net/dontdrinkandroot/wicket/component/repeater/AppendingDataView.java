@@ -29,8 +29,8 @@ import java.util.Iterator;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class AppendingDataView<T> extends DataView<T> {
-
+public abstract class AppendingDataView<T> extends DataView<T>
+{
     private final String itemTagName;
 
     protected AppendingDataView(String id, IDataProvider<T> dataProvider, String itemTagName, long itemsPerPage)

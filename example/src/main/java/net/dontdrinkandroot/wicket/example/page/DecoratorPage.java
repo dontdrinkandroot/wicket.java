@@ -20,7 +20,7 @@ package net.dontdrinkandroot.wicket.example.page;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarNav;
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem;
@@ -105,7 +105,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             {
                 super.populateCollapseItems(collapseItemView);
 
-                NavbarNav leftItems = new NavbarNav(collapseItemView.newChildId())
+                RepeatingNavbarNav leftItems = new RepeatingNavbarNav(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)
@@ -116,7 +116,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 };
                 collapseItemView.add(leftItems);
 
-                NavbarNav rightItems = new NavbarNav(collapseItemView.newChildId())
+                RepeatingNavbarNav rightItems = new RepeatingNavbarNav(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)

@@ -17,36 +17,30 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
+import net.dontdrinkandroot.wicket.behavior.CompositeBehavior;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
-import org.apache.wicket.Component;
-import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class PanelBehavior extends Behavior
+public class PanelBehavior extends CompositeBehavior
 {
     private IModel<PanelStyle> styleModel = Model.of(PanelStyle.DEFAULT);
 
     public PanelBehavior()
     {
+        this(Model.of(PanelStyle.DEFAULT));
     }
 
     public PanelBehavior(IModel<PanelStyle> styleModel)
     {
+        super(new CssClassAppender(BootstrapCssClass.PANEL));
         this.styleModel = styleModel;
-    }
-
-    @Override
-    public void bind(Component component)
-    {
-        super.bind(component);
-        component.add(new CssClassAppender(BootstrapCssClass.PANEL));
-        component.add(new CssClassAppender(this.styleModel));
+        this.addBehavior(new CssClassAppender(this.styleModel));
     }
 
     public void setStyle(PanelStyle style)

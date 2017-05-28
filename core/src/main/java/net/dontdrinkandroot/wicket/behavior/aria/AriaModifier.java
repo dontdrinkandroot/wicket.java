@@ -15,32 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.bootstrap.component.grid;
+package net.dontdrinkandroot.wicket.behavior.aria;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.model.IModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class Row extends Panel
+public class AriaModifier extends AttributeModifier
 {
-    public Row(String id)
+    public AriaModifier(Aria attribute)
     {
-        super(id);
+        super(attribute.getAttribute(), AttributeModifier.VALUELESS_ATTRIBUTE_ADD);
     }
 
-    @Override
-    protected void onInitialize()
+    public AriaModifier(Aria attribute, String value)
     {
-        super.onInitialize();
-        this.add(new CssClassAppender(BootstrapCssClass.ROW));
-        RepeatingView columnView = new RepeatingView("column");
-        this.populateColumns(columnView);
-        this.add(columnView);
+        super(attribute.getAttribute(), value);
     }
 
-    protected abstract void populateColumns(RepeatingView columnView);
+    public AriaModifier(Aria attribute, IModel<String> value)
+    {
+        super(attribute.getAttribute(), value);
+    }
 }
