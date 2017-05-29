@@ -37,9 +37,11 @@ import org.apache.wicket.request.resource.UrlResourceReference;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ExampleApplication extends WebApplication
 {
-
     private Properties buildProperties;
 
     @Override
@@ -77,6 +79,7 @@ public class ExampleApplication extends WebApplication
         this.mountPage("forms/ajax", AjaxFormPage.class);
         this.mountPage("forms/inputgroups", InputGroupPage.class);
         this.mountPage("components/navbars", NavbarPage.class);
+        this.mountPage("components/navs", NavPage.class);
         this.mountPage("components/alerts", AlertPage.class);
         this.mountPage("components/buttons", ButtonPage.class);
         this.mountPage("components/dropdowns", DropdownPage.class);
