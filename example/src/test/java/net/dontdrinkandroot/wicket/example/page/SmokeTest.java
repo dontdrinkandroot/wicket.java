@@ -26,13 +26,16 @@ import net.dontdrinkandroot.wicket.example.page.form.ValidationPage;
 import org.apache.wicket.Page;
 import org.junit.Test;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class SmokeTest extends AbstractWicketTest
 {
     @Test
     public void testPages()
     {
         this.testPage(HomePage.class);
+        this.testPage(GettingStartedPage.class);
         this.testPage(CssPage.class);
         this.testPage(GridPage.class);
         this.testPage(AlertPage.class);
@@ -40,6 +43,7 @@ public class SmokeTest extends AbstractWicketTest
         this.testPage(DropdownPage.class);
         this.testPage(LabelPage.class);
         this.testPage(ModalPage.class);
+        this.testPage(NavPage.class);
         this.testPage(NavbarPage.class);
         this.testPage(ValidationPage.class);
         this.testPage(InputGroupPage.class);

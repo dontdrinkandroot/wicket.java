@@ -28,10 +28,8 @@ import org.apache.wicket.model.Model;
 
 import java.util.Arrays;
 
-
 public class ColumnPanel extends GenericPanel<ColumnSize>
 {
-
     private ColumnSize[] values;
 
     public ColumnPanel(String id, ColumnSize[] values)
@@ -75,5 +73,4 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
         };
         this.add(row);
     }
-
 }

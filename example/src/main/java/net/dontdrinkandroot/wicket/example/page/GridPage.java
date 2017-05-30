@@ -23,10 +23,11 @@ import net.dontdrinkandroot.wicket.example.component.OffsetPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class GridPage extends DecoratorPage<Void>
 {
-
     @Override
     protected IModel<String> createPageHeadingModel()
     {
