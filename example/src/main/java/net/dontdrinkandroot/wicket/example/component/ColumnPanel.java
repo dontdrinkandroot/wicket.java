@@ -18,24 +18,26 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.behavior.StyleAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.grid.Column;
+import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow;
+import net.dontdrinkandroot.wicket.bootstrap.css.ContextualBackgroundStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
-
-import java.util.Arrays;
 
 public class ColumnPanel extends GenericPanel<ColumnSize>
 {
     private ColumnSize[] values;
 
-    public ColumnPanel(String id, ColumnSize[] values)
+    public ColumnPanel(String id, ColumnSize[] columnSizes)
     {
         super(id);
-        this.values = values;
+        this.values = columnSizes;
     }
 
     @Override
@@ -43,34 +45,50 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
     {
         super.onInitialize();
 
-        ListView<ColumnSize> row = new ListView<ColumnSize>("row", Arrays.asList(this.values))
-        {
+        RepeatingView rowView = new RepeatingView("row");
+        this.add(rowView);
 
-            @Override
-            protected void populateItem(ListItem<ColumnSize> item)
+        for (ColumnSize columnSize : this.values) {
+            RepeatingRow row = new RepeatingRow(rowView.newChildId())
             {
-                ColumnSize columnSize = item.getModelObject();
-                WebMarkupContainer left = new WebMarkupContainer("left");
-                this.add(left);
-                Label leftLabel = new Label("label", Model.of(columnSize.getClassString()));
-                left.add(leftLabel);
-                left.add(new CssClassAppender(columnSize));
-                item.add(left);
+                @Override
+                protected void populateColumns(RepeatingView columnView)
+                {
+                    ColumnSize inverseColumnSize = columnSize.getInverseColumnSize();
+                    Column left = new Column(columnView.newChildId())
+                    {
+                        @Override
+                        protected Component createContent(String id)
+                        {
+                            Label label = new Label(id, Model.of(columnSize.getClassString()));
+                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            return label;
+                        }
+                    };
+                    left.setSize(columnSize);
+                    left.add(new CssClassAppender(TextAlignment.CENTER));
+                    columnView.add(left);
 
-                ColumnSize inverseColumnSize = columnSize.getInverseColumnSize();
-                WebMarkupContainer right = new WebMarkupContainer("right");
-                this.add(right);
-                Label rightLabel = new Label(
-                        "label",
-                        Model.of(null == inverseColumnSize ? null : inverseColumnSize.getClassString())
-                );
-                right.add(rightLabel);
-                if (null != inverseColumnSize) {
-                    right.add(new CssClassAppender(inverseColumnSize));
+                    Column right = new Column(columnView.newChildId())
+                    {
+                        @Override
+                        protected Component createContent(String id)
+                        {
+                            Label label = new Label(
+                                    id,
+                                    Model.of(null == inverseColumnSize ? null : inverseColumnSize.getClassString())
+                            );
+                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            return label;
+                        }
+                    };
+                    right.setSize(inverseColumnSize);
+                    right.add(new CssClassAppender(TextAlignment.CENTER));
+                    columnView.add(right);
                 }
-                item.add(right);
-            }
-        };
-        this.add(row);
+            };
+            row.add(new StyleAppender("margin-bottom: 5px"));
+            rowView.add(row);
+        }
     }
 }

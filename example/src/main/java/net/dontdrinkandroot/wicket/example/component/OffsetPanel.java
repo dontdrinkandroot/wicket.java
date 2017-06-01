@@ -18,26 +18,27 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.behavior.StyleAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.grid.Column;
+import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow;
+import net.dontdrinkandroot.wicket.bootstrap.css.ContextualBackgroundStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffset;
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.Model;
-
-import java.util.Arrays;
-
+import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 
 public class OffsetPanel extends GenericPanel<Void>
 {
+    private ColumnOffset[] columnOffsets;
 
-    private ColumnOffset[] values;
-
-    public OffsetPanel(String id, ColumnOffset[] values)
+    public OffsetPanel(String id, ColumnOffset[] columnOffsets)
     {
         super(id);
-        this.values = values;
+        this.columnOffsets = columnOffsets;
     }
 
     @Override
@@ -45,28 +46,41 @@ public class OffsetPanel extends GenericPanel<Void>
     {
         super.onInitialize();
 
-        ListView<ColumnOffset> row = new ListView<ColumnOffset>("row", Arrays.asList(this.values))
-        {
+        RepeatingView rowView = new RepeatingView("row");
+        this.add(rowView);
 
-            @Override
-            protected void populateItem(ListItem<ColumnOffset> item)
+        for (ColumnOffset columnOffset : this.columnOffsets) {
+            ColumnSize inverseColumnSize = columnOffset.getInverseColumnSize();
+            RepeatingRow row = new RepeatingRow(rowView.newChildId())
             {
-                ColumnOffset columnOffset = item.getModelObject();
-
-                WebMarkupContainer container = new WebMarkupContainer("container");
-                container.add(new CssClassAppender(columnOffset));
-                container.add(new CssClassAppender(columnOffset.getInverseColumnSize()));
-                item.add(container);
-
-                Label offsetLabel = new Label("offsetLabel", Model.of(columnOffset.getClassString()));
-                container.add(offsetLabel);
-
-                Label columnLabel =
-                        new Label("columnLabel", Model.of(columnOffset.getInverseColumnSize().getClassString()));
-                container.add(columnLabel);
-            }
-        };
-        this.add(row);
+                @Override
+                protected void populateColumns(RepeatingView columnView)
+                {
+                    Column column = new Column(columnView.newChildId())
+                    {
+                        @Override
+                        protected Component createContent(String id)
+                        {
+                            Label label = new Label(id, new AbstractReadOnlyModel<String>()
+                            {
+                                @Override
+                                public String getObject()
+                                {
+                                    return columnOffset.getClassString() + " " + inverseColumnSize.getClassString();
+                                }
+                            });
+                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            return label;
+                        }
+                    };
+                    column.setOffset(columnOffset);
+                    column.setSize(inverseColumnSize);
+                    column.add(new CssClassAppender(TextAlignment.CENTER));
+                    columnView.add(column);
+                }
+            };
+            row.add(new StyleAppender("margin-bottom: 5px"));
+            rowView.add(row);
+        }
     }
-
 }

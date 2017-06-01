@@ -23,7 +23,7 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 public class ColumnSizeStack implements ColumnSize
 {
     /**
-     * Reasonable defaults for a full screen horziontal form.
+     * Reasonable defaults for a full screen horizontal form.
      */
     public static final ColumnSize FORM_DEFAULT =
             new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_7, ColumnSizeMedium.COLUMNS_8, ColumnSizeLarge.COLUMNS_9);

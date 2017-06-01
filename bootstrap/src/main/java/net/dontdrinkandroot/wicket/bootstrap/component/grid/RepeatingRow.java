@@ -25,9 +25,9 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class Row extends Panel
+public abstract class RepeatingRow extends Panel
 {
-    public Row(String id)
+    public RepeatingRow(String id)
     {
         super(id);
     }
@@ -36,6 +36,7 @@ public abstract class Row extends Panel
     protected void onInitialize()
     {
         super.onInitialize();
+
         this.add(new CssClassAppender(BootstrapCssClass.ROW));
         RepeatingView columnView = new RepeatingView("column");
         this.populateColumns(columnView);

@@ -17,9 +17,11 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public enum ColumnSizeExtraSmall implements ColumnSize
 {
-
     COLUMNS_1,
     COLUMNS_2,
     COLUMNS_3,

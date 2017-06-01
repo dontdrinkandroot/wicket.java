@@ -1,10 +1,12 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.grid;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffset;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
-import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeSmall;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.GenericPanel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -13,28 +15,42 @@ import org.apache.wicket.model.Model;
  */
 public abstract class Column<T> extends GenericPanel<T>
 {
-    private IModel<ColumnSize> sizeModel;
+    private IModel<ColumnSize> sizeModel = new Model<>();
 
-    public Column(String id, IModel<ColumnSize> sizeModel)
+    private IModel<ColumnOffset> offsetModel = new Model<>();
+
+    public Column(String id)
     {
         super(id);
-        this.sizeModel = sizeModel;
     }
 
-    public Column(String id, IModel<ColumnSize> sizeModel, IModel<T> model)
+    public Column(String id, IModel<T> model)
     {
         super(id, model);
+    }
+
+    public Column<T> setSizeModel(IModel<ColumnSize> sizeModel)
+    {
         this.sizeModel = sizeModel;
+        return this;
     }
 
-    public Column(String id, ColumnSizeSmall size, IModel<T> model)
+    public Column<T> setSize(ColumnSize size)
     {
-        this(id, Model.of(size), model);
+        this.sizeModel.setObject(size);
+        return this;
     }
 
-    public Column(String id, ColumnSizeSmall size)
+    public Column<T> setOffsetModel(IModel<ColumnOffset> offsetModel)
     {
-        this(id, Model.of(size));
+        this.offsetModel = offsetModel;
+        return this;
+    }
+
+    public Column<T> setOffset(ColumnOffset offset)
+    {
+        this.offsetModel.setObject(offset);
+        return this;
     }
 
     @Override
@@ -42,8 +58,31 @@ public abstract class Column<T> extends GenericPanel<T>
     {
         super.onInitialize();
 
-        this.add(new CssClassAppender(this.sizeModel));
+        this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        {
+            @Override
+            public CssClass getObject()
+            {
+                return Column.this.sizeModel.getObject();
+            }
+        }));
+        this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        {
+            @Override
+            public CssClass getObject()
+            {
+                return Column.this.offsetModel.getObject();
+            }
+        }));
         this.add(this.createContent("content"));
+    }
+
+    @Override
+    public void detachModels()
+    {
+        super.detachModels();
+        this.sizeModel.detach();
+        this.offsetModel.detach();
     }
 
     protected abstract Component createContent(String id);
