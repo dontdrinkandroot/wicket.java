@@ -51,6 +51,7 @@ public class SmokeTest extends AbstractWicketTest
         this.testPage(FormGroupPage.class);
         this.testPage(PaginationPage.class);
         this.testPage(AjaxFormPage.class);
+        this.testPage(PanelPage.class);
     }
 
     protected <T extends Page> void testPage(Class<T> pageClass)
