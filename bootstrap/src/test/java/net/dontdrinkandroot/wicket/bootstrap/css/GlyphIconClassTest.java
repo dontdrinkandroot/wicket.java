@@ -23,18 +23,16 @@ import org.junit.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class FontAwesomeIconClassTest
+public class GlyphIconClassTest
 {
     @Test
     public void testGetClassString()
     {
-        for (FontAwesomeIconClass fontAwesomeIconClass : FontAwesomeIconClass.values()) {
-            if (!(fontAwesomeIconClass.equals(FontAwesomeIconClass.FIVEHUNDRED_PX))) {
-                Assert.assertEquals(
-                        "fa-" + fontAwesomeIconClass.name().toLowerCase().replace("_", "-"),
-                        fontAwesomeIconClass.getClassString()
-                );
-            }
+        for (GlyphIconClass fontAwesomeIconClass : GlyphIconClass.values()) {
+            Assert.assertEquals(
+                    "glyphicon glyphicon-" + fontAwesomeIconClass.name().toLowerCase().replace("_", "-"),
+                    fontAwesomeIconClass.getClassString()
+            );
         }
     }
 }
