@@ -42,6 +42,11 @@ public class ColumnSizeStack implements ColumnSize
 
     private ColumnSizeLarge columnSizeLarge;
 
+    public ColumnSizeStack()
+    {
+        /* Default constructor */
+    }
+
     public ColumnSizeStack(
             ColumnSizeExtraSmall columnSizeExtraSmall,
             ColumnSizeSmall columnSizeSmall,
@@ -108,5 +113,29 @@ public class ColumnSizeStack implements ColumnSize
                 this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnSize();
 
         return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
+    }
+
+    public ColumnSizeStack setColumnSizeExtraSmall(ColumnSizeExtraSmall columnSizeExtraSmall)
+    {
+        this.columnSizeExtraSmall = columnSizeExtraSmall;
+        return this;
+    }
+
+    public ColumnSizeStack setColumnSizeSmall(ColumnSizeSmall columnSizeSmall)
+    {
+        this.columnSizeSmall = columnSizeSmall;
+        return this;
+    }
+
+    public ColumnSizeStack setColumnSizeMedium(ColumnSizeMedium columnSizeMedium)
+    {
+        this.columnSizeMedium = columnSizeMedium;
+        return this;
+    }
+
+    public ColumnSizeStack setColumnSizeLarge(ColumnSizeLarge columnSizeLarge)
+    {
+        this.columnSizeLarge = columnSizeLarge;
+        return this;
     }
 }
