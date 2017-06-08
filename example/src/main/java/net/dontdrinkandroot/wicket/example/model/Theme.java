@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class Theme implements Serializable
 {
     private String name;
@@ -73,6 +76,7 @@ public class Theme implements Serializable
                 "Sandstone",
                 "Simplex",
                 "Slate",
+                "Solar",
                 "Spacelab",
                 "Superhero",
                 "United",
