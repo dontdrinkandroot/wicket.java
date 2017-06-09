@@ -28,6 +28,7 @@ import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropdownItem;
+import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem;
 import net.dontdrinkandroot.wicket.example.page.component.*;
 import net.dontdrinkandroot.wicket.example.page.form.*;
 import net.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage;
@@ -240,5 +241,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(
                 new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
         response.render(new OnDomReadyHeaderItem(" $(\"a[rel='external']\").attr('target', '_blank');"));
+        response.render(new HighlightJsInitHeaderItem());
     }
 }
