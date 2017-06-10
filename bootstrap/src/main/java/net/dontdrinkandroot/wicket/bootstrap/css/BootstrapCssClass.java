@@ -42,7 +42,6 @@ public enum BootstrapCssClass implements CssClass
 
     CONTROLS("controls"),
     DROPDOWN_SUBMENU("dropdown-submenu"),
-    DROPUP("dropup"),
     ERROR("error"),
     FORM_SEARCH("form-search"),
     FORM_VERTICAL("form-vertical"),
@@ -126,6 +125,7 @@ public enum BootstrapCssClass implements CssClass
     DROPDOWN_HEADER("dropdown-header"),
     DROPDOWN_MENU("dropdown-menu"),
     DROPDOWN_TOGGLE("dropdown-toggle"),
+    DROPUP("dropup"),
     FADE("fade"),
     FORM_GROUP("form-group"),
     FORM_HORIZONTAL("form-horizontal"),

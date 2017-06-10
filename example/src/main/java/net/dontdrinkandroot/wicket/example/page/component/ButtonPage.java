@@ -17,11 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroupChoice;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropdownButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SplitDropdownButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.Component;
@@ -34,10 +36,11 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public class ButtonPage extends ComponentPage
 {
-
     public ButtonPage(PageParameters parameters)
     {
         super(parameters);
@@ -72,7 +75,6 @@ public class ButtonPage extends ComponentPage
 
         DropdownButton<Void> dropdownButton = new DropdownButton<Void>("dropdownButton", null, Model.of("My Label"))
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {
@@ -81,9 +83,19 @@ public class ButtonPage extends ComponentPage
         };
         this.add(dropdownButton);
 
+        DropdownButton<Void> dropupButton = new DropdownButton<Void>("dropupButton", null, Model.of("DropUp"))
+        {
+            @Override
+            protected void populateItems(RepeatingView itemView)
+            {
+                ButtonPage.this.populateDropdownItems(itemView);
+            }
+        };
+        dropupButton.add(new CssClassAppender(BootstrapCssClass.DROPUP));
+        this.add(dropupButton);
+
         SplitDropdownButton<Void> splitDropdownButton = new SplitDropdownButton<Void>("splitDropdownButton")
         {
-
             @Override
             protected Component createAction(String id)
             {
@@ -100,7 +112,7 @@ public class ButtonPage extends ComponentPage
 
         List<String> choices = Arrays.asList("Red", "Green", "Blue");
         ButtonGroupChoice<String> buttonGroupChoice =
-                new ButtonGroupChoice<String>("buttonGroupChoice", Model.of(choices.iterator().next()), choices);
+                new ButtonGroupChoice<>("buttonGroupChoice", Model.of(choices.iterator().next()), choices);
         this.add(buttonGroupChoice);
     }
 
