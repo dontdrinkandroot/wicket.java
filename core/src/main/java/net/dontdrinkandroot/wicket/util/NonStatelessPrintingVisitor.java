@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.utils;
+package net.dontdrinkandroot.wicket.util;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.util.visit.IVisit;

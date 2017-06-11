@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.css.CssClass;
-import net.dontdrinkandroot.wicket.utils.BehaviorUtils;
+import net.dontdrinkandroot.wicket.util.BehaviorUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.AbstractReadOnlyModel;
