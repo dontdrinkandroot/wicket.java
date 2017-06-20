@@ -23,10 +23,11 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
+/**
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class ComponentPage extends DecoratorPage<Void>
 {
-
     public ComponentPage(PageParameters parameters)
     {
         super(parameters);

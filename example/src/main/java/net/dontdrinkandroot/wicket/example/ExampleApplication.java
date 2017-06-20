@@ -88,6 +88,7 @@ public class ExampleApplication extends WebApplication
         this.mountPage("components/modals", ModalPage.class);
         this.mountPage("components/pagination", PaginationPage.class);
         this.mountPage("components/progressbars", ProgressBarPage.class);
+        this.mountPage("components/breadcrumbs", BreadcrumbPage.class);
     }
 
     public Properties getBuildProperties()
