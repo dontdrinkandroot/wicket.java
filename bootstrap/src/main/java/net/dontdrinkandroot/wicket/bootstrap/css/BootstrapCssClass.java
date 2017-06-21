@@ -29,24 +29,13 @@ public enum BootstrapCssClass implements CssClass
     ADD_ON("add-on"),
     BADGE("badge"),
     BRAND("brand"),
-    BREADCRUMB("breadcrumb"),
-    BTN_TOOLBAR("btn-toolbar"),
     CHECKBOX("checkbox"),
     CLOSE("close"),
-
-    @Deprecated
-    CONTAINER("container"),
-
-    @Deprecated
-    CONTAINER_FLUID("container-fluid"),
-
     CONTROLS("controls"),
-    DROPDOWN_SUBMENU("dropdown-submenu"),
     ERROR("error"),
     FORM_SEARCH("form-search"),
     FORM_VERTICAL("form-vertical"),
     HELP_INLINE("help-inline"),
-    HELP_BLOCK("help-block"),
     HERO_UNIT("hero-unit"),
     HIDE("hide"),
     ICON_WHITE("icon-white"),
@@ -61,20 +50,9 @@ public enum BootstrapCssClass implements CssClass
     NAV_COLLAPSE("nav-collapse"),
     NAV_HEADER("nav-header"),
     NAV_LIST("nav-list"),
-
-    @Deprecated
-    NAV_PILLS("nav-pills"),
     NAV_STACKED("nav-stacked"),
-
-    @Deprecated
-    NAV_TABS("nav-tabs"),
-
     NAVBAR_CONTAINER("navbar-container"),
     NAVBAR_INNER("navbar-inner"),
-
-    @Deprecated
-    NAVBAR_FIXED_BOTTOM("navbar-fixed-bottom"),
-
     NAVBAR_SEARCH("navbar-search"),
     NEXT("next"),
     PAGE_HEADER("page-header"),
@@ -89,9 +67,6 @@ public enum BootstrapCssClass implements CssClass
     TAB_PANE("tab-pane"),
     TABABBLE("tababble"),
     TABLE("table"),
-    TABLE_BORDERED("table-bordered"),
-    TABLE_CONDENSED("table-condensed"),
-    TABLE_STRIPED("table-striped"),
     TABS_BELOW("tabs-below"),
     TABS_LEFT("tabs-left"),
     TABS_RIGHT("tabs-right"),
@@ -99,12 +74,10 @@ public enum BootstrapCssClass implements CssClass
     UNSTYLED("unstyled"),
     WARNING("warning"),
     WELL("well"),
-    CLEARFIX("clearfix"),
     HAS_FEEDBACK("has-feedback"),
     INPUT_GROUP_ADDON("input-group-addon"),
     INPUT_GROUP_BTN("input-group-btn"),
     MODAL_BODY("modal-body"),
-    MODAL_FOOTER("modal-footer"),
     IMG_RESPONSIVE("img-responsive"),
     IMG_THUMBNAIL("img-thumbnail"),
 
@@ -113,10 +86,13 @@ public enum BootstrapCssClass implements CssClass
     ACTIVE("active"),
     ALERT("alert"),
     BLOCKQUOTE_REVERSE("blockquote-reverse"),
+    BREADCRUMB("breadcrumb"),
     BTN("btn"),
     BTN_BLOCK("btn-block"),
     BTN_GROUP("btn-group"),
+    BTN_TOOLBAR("btn-toolbar"),
     CARET("caret"),
+    CLEARFIX("clearfix"),
     COLLAPSED("collapsed"),
     CONTROL_LABEL("control-label"),
     DISABLED("disabled"),
@@ -130,6 +106,7 @@ public enum BootstrapCssClass implements CssClass
     FORM_GROUP("form-group"),
     FORM_HORIZONTAL("form-horizontal"),
     FORM_INLINE("form-inline"),
+    HELP_BLOCK("help-block"),
     INITIALISM("initialism"),
     INPUT_GROUP("input-group"),
     LABEL("label"),
@@ -139,22 +116,13 @@ public enum BootstrapCssClass implements CssClass
     LIST_UNSTYLED("list-unstyled"),
     LEAD("lead"),
     MODAL("modal"),
+    MODAL_FOOTER("modal-footer"),
     MODAL_TITLE("modal-title"),
     NAVBAR("navbar"),
     NAVBAR_BTN("navbar-btn"),
     NAVBAR_FORM("navbar-form"),
-
-    @Deprecated
-    NAVBAR_LEFT("navbar-left"),
-
-    @Deprecated
-    NAVBAR_FIXED_TOP("navbar-fixed-top"),
-
     NAV_JUSTIFIED("nav-justified"),
     NAVBAR_NAV("navbar-nav"),
-
-    @Deprecated
-    NAVBAR_RIGHT("navbar-right"),
     NAVBAR_TEXT("navbar-text"),
     NAVBAR_TOGGLE("navbar-toggle"),
     PAGINATION("pagination"),
