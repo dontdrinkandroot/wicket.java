@@ -24,9 +24,9 @@ import net.dontdrinkandroot.wicket.css.CssClass;
  */
 public enum TableStyle implements CssClass
 {
-    TABLE_BORDERED("table-bordered"),
-    TABLE_CONDENSED("table-condensed"),
-    TABLE_STRIPED("table-striped");
+    BORDERED("table-bordered"),
+    CONDENSED("table-condensed"),
+    STRIPED("table-striped");
 
     private String classString;
 
