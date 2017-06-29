@@ -27,14 +27,14 @@ import org.apache.wicket.model.IModel;
  * @param <T> Type of the model object.
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class ButtonGroup<T> extends GenericPanel<T>
+public abstract class RepeatingButtonGroup<T> extends GenericPanel<T>
 {
-    public ButtonGroup(String id)
+    public RepeatingButtonGroup(String id)
     {
         super(id);
     }
 
-    public ButtonGroup(String id, IModel<T> model)
+    public RepeatingButtonGroup(String id, IModel<T> model)
     {
         super(id, model);
     }
