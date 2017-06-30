@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.behavior;
 
-import net.dontdrinkandroot.wicket.css.SimpleCssClass;
+import net.dontdrinkandroot.wicket.css.StringCssClass;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -18,7 +18,7 @@ public class CompositeBehaviorTest extends AbstractWicketTest
         WebMarkupContainer component = new WebMarkupContainer("id");
 
         CompositeBehavior behavior = new CompositeBehavior();
-        behavior.addBehavior(new CssClassAppender(new SimpleCssClass("cssclass")));
+        behavior.addBehavior(new CssClassAppender(new StringCssClass("cssclass")));
         behavior.addBehavior(new TitleModifier("Title"));
 
         component.add(behavior);

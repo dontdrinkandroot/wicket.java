@@ -20,13 +20,15 @@ package net.dontdrinkandroot.wicket.css;
 import java.io.Serializable;
 
 /**
+ * A {@link CssClass} that is represented by a String.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SimpleCssClass implements CssClass, Serializable
+public class StringCssClass implements CssClass, Serializable
 {
     private String classString;
 
-    public SimpleCssClass(String classString)
+    public StringCssClass(String classString)
     {
         this.classString = classString;
     }

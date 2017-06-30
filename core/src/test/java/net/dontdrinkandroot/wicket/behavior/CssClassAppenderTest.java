@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.behavior;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
-import net.dontdrinkandroot.wicket.css.SimpleCssClass;
+import net.dontdrinkandroot.wicket.css.StringCssClass;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -32,7 +32,7 @@ public class CssClassAppenderTest extends AbstractWicketTest
     public void testCssClassConstructor()
     {
         WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new CssClassAppender(new SimpleCssClass("testone")));
+        container.add(new CssClassAppender(new StringCssClass("testone")));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
         Assert.assertEquals(
@@ -44,7 +44,7 @@ public class CssClassAppenderTest extends AbstractWicketTest
     @Test
     public void testModelConstructor()
     {
-        IModel<CssClass> classModel = Model.of(new SimpleCssClass("testone"));
+        IModel<CssClass> classModel = Model.of(new StringCssClass("testone"));
         WebMarkupContainer container = new WebMarkupContainer("id");
         container.add(new CssClassAppender(classModel));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
@@ -54,7 +54,7 @@ public class CssClassAppenderTest extends AbstractWicketTest
                 componentMarkup.toString()
         );
 
-        classModel.setObject(new SimpleCssClass("testtwo"));
+        classModel.setObject(new StringCssClass("testtwo"));
 
         componentMarkup = ComponentRenderer.renderComponent(container);
 

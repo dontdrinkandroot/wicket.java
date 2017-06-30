@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.model;
 
-import net.dontdrinkandroot.wicket.css.SimpleCssClass;
+import net.dontdrinkandroot.wicket.css.StringCssClass;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ public class CssClassToggleModelTest
     {
         IModel<Boolean> activeModel = Model.of(Boolean.FALSE);
 
-        SimpleCssClass activeClass = new SimpleCssClass("active");
+        StringCssClass activeClass = new StringCssClass("active");
 
         CssClassToggleModel model = new CssClassToggleModel(activeModel, activeClass);
         Assert.assertNull(model.getObject());
@@ -30,8 +30,8 @@ public class CssClassToggleModelTest
     {
         IModel<Boolean> activeModel = Model.of(Boolean.FALSE);
 
-        SimpleCssClass activeClass = new SimpleCssClass("active");
-        SimpleCssClass inactiveClass = new SimpleCssClass("inactive");
+        StringCssClass activeClass = new StringCssClass("active");
+        StringCssClass inactiveClass = new StringCssClass("inactive");
 
         CssClassToggleModel model = new CssClassToggleModel(activeModel, activeClass, inactiveClass);
         Assert.assertEquals(inactiveClass, model.getObject());
@@ -45,8 +45,8 @@ public class CssClassToggleModelTest
     {
         IModel<Boolean> activeModel = Model.of(Boolean.FALSE);
 
-        SimpleCssClass activeClass = new SimpleCssClass("active");
-        SimpleCssClass inactiveClass = new SimpleCssClass("inactive");
+        StringCssClass activeClass = new StringCssClass("active");
+        StringCssClass inactiveClass = new StringCssClass("inactive");
 
         CssClassToggleModel model = new CssClassToggleModel(activeClass)
         {
@@ -65,7 +65,7 @@ public class CssClassToggleModelTest
     @Test
     public void testWithoutModel()
     {
-        SimpleCssClass activeClass = new SimpleCssClass("active");
+        StringCssClass activeClass = new StringCssClass("active");
         CssClassToggleModel model = new CssClassToggleModel(activeClass);
         Assert.assertEquals(activeClass, model.getObject());
     }
