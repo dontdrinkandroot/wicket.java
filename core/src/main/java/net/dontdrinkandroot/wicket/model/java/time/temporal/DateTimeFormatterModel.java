@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.model.java.time.temporal;
 import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.model.IModel;
 
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
@@ -34,6 +35,8 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
     private String pattern;
 
     private Locale locale;
+
+    private ZoneId zoneId;
 
     public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent)
     {
@@ -53,6 +56,19 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
         this.locale = locale;
     }
 
+    public DateTimeFormatterModel(
+            IModel<? extends TemporalAccessor> parent,
+            String pattern,
+            Locale locale,
+            ZoneId zoneId
+    )
+    {
+        super(parent);
+        this.pattern = pattern;
+        this.locale = locale;
+        this.zoneId = zoneId;
+    }
+
     @Override
     public String getObject()
     {
@@ -64,11 +80,14 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
             return this.getParentObject().toString();
         }
 
-        DateTimeFormatter dateTimeFormatter;
-        if (null == this.locale) {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern);
-        } else {
-            dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern, this.locale);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern);
+
+        if (null != this.locale) {
+            dateTimeFormatter = dateTimeFormatter.withLocale(this.locale);
+        }
+
+        if (null != this.zoneId) {
+            dateTimeFormatter = dateTimeFormatter.withZone(this.zoneId);
         }
 
         return dateTimeFormatter.format(this.getParentObject());
