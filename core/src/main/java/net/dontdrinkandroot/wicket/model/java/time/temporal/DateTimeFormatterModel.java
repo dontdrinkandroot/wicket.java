@@ -18,7 +18,11 @@
 package net.dontdrinkandroot.wicket.model.java.time.temporal;
 
 import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
+import org.apache.wicket.Component;
+import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IComponentAssignedModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.IWrapModel;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -28,13 +32,9 @@ import java.util.Locale;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccessor, String>
+public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccessor, String> implements IComponentAssignedModel<String>
 {
-    // TODO: Maybe refactor this into an IComponentAssignedModel in order to use the locale of the attached component.
-
     private String pattern;
-
-    private Locale locale;
 
     private ZoneId zoneId;
 
@@ -46,34 +46,32 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
     public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent, String pattern)
     {
         super(parent);
-        this.pattern = pattern;
-    }
 
-    public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent, String pattern, Locale locale)
-    {
-        super(parent);
         this.pattern = pattern;
-        this.locale = locale;
     }
 
     public DateTimeFormatterModel(
             IModel<? extends TemporalAccessor> parent,
             String pattern,
-            Locale locale,
             ZoneId zoneId
     )
     {
         super(parent);
+
         this.pattern = pattern;
-        this.locale = locale;
         this.zoneId = zoneId;
     }
 
     @Override
     public String getObject()
     {
+        return this.getObject(null);
+    }
+
+    private String getObject(Locale locale)
+    {
         if ((null == this.getParent()) || (null == this.getParentObject())) {
-            return "n/a";
+            return null;
         }
 
         if (null == this.pattern) {
@@ -82,8 +80,8 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(this.pattern);
 
-        if (null != this.locale) {
-            dateTimeFormatter = dateTimeFormatter.withLocale(this.locale);
+        if (null != locale) {
+            dateTimeFormatter = dateTimeFormatter.withLocale(locale);
         }
 
         if (null != this.zoneId) {
@@ -91,5 +89,40 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
         }
 
         return dateTimeFormatter.format(this.getParentObject());
+    }
+
+    @Override
+    public IWrapModel<String> wrapOnAssignment(Component component)
+    {
+        return new AssignmentWrapper(component);
+    }
+
+    private class AssignmentWrapper extends AbstractReadOnlyModel<String> implements IWrapModel<String>
+    {
+        private Component component;
+
+        public AssignmentWrapper(Component component)
+        {
+            this.component = component;
+        }
+
+        @Override
+        public String getObject()
+        {
+            return DateTimeFormatterModel.this.getObject(this.component.getLocale());
+        }
+
+        @Override
+        public IModel<?> getWrappedModel()
+        {
+            return DateTimeFormatterModel.this;
+        }
+
+        @Override
+        public void detach()
+        {
+            super.detach();
+            DateTimeFormatterModel.this.detach();
+        }
     }
 }
