@@ -67,7 +67,7 @@ public class Heading extends Label
     @Override
     protected void onComponentTag(ComponentTag tag)
     {
-        tag.setName(this.level.name().toLowerCase());
+        tag.setName(this.getLevel().name().toLowerCase());
         super.onComponentTag(tag);
     }
 }
