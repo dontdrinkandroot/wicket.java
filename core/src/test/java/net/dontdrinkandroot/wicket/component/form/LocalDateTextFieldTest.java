@@ -19,7 +19,7 @@ public class LocalDateTextFieldTest extends AbstractWicketTest
     public void testBasicAttributes()
     {
         LocalDateTextField component =
-                new LocalDateTextField(InputTestPage.COMPONENT_ID, Model.of(LocalDate.of(2017, 2, 3)));
+                new LocalDateTextField("id", Model.of(LocalDate.of(2017, 2, 3)));
         component.setOutputMarkupId(true);
         component.setMin(LocalDate.of(2017, 1, 1));
         component.setMax(LocalDate.of(2018, 12, 31));

@@ -99,7 +99,7 @@ public class AjaxDropDownChoice<T> extends DropDownChoice<T>
         super.onInitialize();
 
         this.setOutputMarkupId(true);
-        this.add(new AjaxFormComponentUpdatingBehavior("onchange")
+        this.add(new AjaxFormComponentUpdatingBehavior("change")
         {
             @Override
             protected void onUpdate(final AjaxRequestTarget target)
