@@ -26,6 +26,8 @@ public class Navbar extends Panel
 
     private IModel<ContainerStyle> containerStyleModel = Model.of(ContainerStyle.DEFAULT);
 
+    private WebMarkupContainer navbarCollapse;
+
     public Navbar(String id)
     {
         super(id);
@@ -57,9 +59,9 @@ public class Navbar extends Panel
 
         container.add(this.createBrand("navbarBrand"));
 
-        WebMarkupContainer navbarCollapse = new WebMarkupContainer("navbarCollapse");
-        navbarCollapse.setOutputMarkupId(true);
-        container.add(navbarCollapse);
+        this.navbarCollapse = new WebMarkupContainer("navbarCollapse");
+        this.navbarCollapse.setOutputMarkupId(true);
+        container.add(this.navbarCollapse);
 
         Component navbarToggle = this.createNavbarToggle("navbarToggle");
         navbarToggle.add(new AttributeModifier("data-target", new AbstractReadOnlyModel<String>()
@@ -67,14 +69,14 @@ public class Navbar extends Panel
             @Override
             public String getObject()
             {
-                return String.format("#%s", navbarCollapse.getMarkupId());
+                return String.format("#%s", Navbar.this.getNavbarCollapseId());
             }
         }));
         container.add(navbarToggle);
 
         RepeatingView collapseItemView = new RepeatingView("navbarCollapseItem");
         this.populateCollapseItems(collapseItemView);
-        navbarCollapse.add(collapseItemView);
+        this.navbarCollapse.add(collapseItemView);
     }
 
     protected Component createNavbarToggle(String id)
@@ -111,5 +113,10 @@ public class Navbar extends Panel
     {
         this.containerStyleModel.setObject(containerStyle);
         return this;
+    }
+
+    public String getNavbarCollapseId()
+    {
+        return this.navbarCollapse.getMarkupId();
     }
 }
