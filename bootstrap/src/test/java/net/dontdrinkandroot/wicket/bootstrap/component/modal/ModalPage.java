@@ -42,7 +42,7 @@ public class ModalPage extends WebPage
                 this.send(
                         this.getPage(),
                         Broadcast.EXACT,
-                        new CreateAndOpenModalRequest<Void>(target, SimpleModal.class)
+                        new CreateAndOpenModalRequest<>(target, SimpleModal.class)
                 );
             }
         };

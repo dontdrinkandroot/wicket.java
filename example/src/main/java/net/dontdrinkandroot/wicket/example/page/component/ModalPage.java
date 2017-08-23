@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxButton;
 import net.dontdrinkandroot.wicket.bootstrap.event.CreateAndOpenModalRequest;
+import net.dontdrinkandroot.wicket.example.component.SimpleAjaxFormModal;
 import net.dontdrinkandroot.wicket.example.component.SimpleFormModal;
 import net.dontdrinkandroot.wicket.example.component.SimpleModal;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -50,7 +51,7 @@ public class ModalPage extends ComponentPage
             @Override
             public void onClick(AjaxRequestTarget target)
             {
-                this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<Void>(target, SimpleModal.class));
+                this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<>(target, SimpleModal.class));
             }
         }.setBody(Model.of("Standard Modal")));
 
@@ -59,8 +60,17 @@ public class ModalPage extends ComponentPage
             @Override
             public void onClick(AjaxRequestTarget target)
             {
-                this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<Void>(target, SimpleFormModal.class));
+                this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<>(target, SimpleFormModal.class));
             }
         }.setBody(Model.of("Form Modal")));
+
+        this.add(new AjaxButton<Void>("openAjaxFormModalButton")
+        {
+            @Override
+            public void onClick(AjaxRequestTarget target)
+            {
+                this.send(this, Broadcast.BUBBLE, new CreateAndOpenModalRequest<>(target, SimpleAjaxFormModal.class));
+            }
+        }.setBody(Model.of("Ajax Form Modal")));
     }
 }

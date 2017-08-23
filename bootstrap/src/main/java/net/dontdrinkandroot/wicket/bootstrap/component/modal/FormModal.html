@@ -8,15 +8,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 wicket:id="heading">[heading]</h3>
             </div>
-            <div class="modal-body">
-                <div wicket:id="feedback"></div>
-                <form wicket:id="form">
+            <form wicket:id="form">
+                <div class="modal-body">
+                    <div wicket:id="feedback"></div>
                     <div wicket:id="formGroup"></div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button wicket:id="formAction"></button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button wicket:id="formAction"></button>
+                </div>
+            </form>
         </div>
     </div>
 </wicket:panel>

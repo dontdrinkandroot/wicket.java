@@ -48,12 +48,12 @@ public abstract class FormModal<T> extends Modal<T>
     {
         super.onInitialize();
 
-        this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
-        this.feedbackPanel.setOutputMarkupId(true);
-        this.add(this.feedbackPanel);
-
         this.form = this.createForm("form");
         this.add(this.form);
+
+        this.feedbackPanel = new FencedFeedbackPanel("feedback", this);
+        this.feedbackPanel.setOutputMarkupId(true);
+        this.form.add(this.feedbackPanel);
 
         RepeatingView formGroupView = new RepeatingView("formGroup");
         this.populateFormGroups(formGroupView);
@@ -61,12 +61,25 @@ public abstract class FormModal<T> extends Modal<T>
 
         RepeatingView formActionView = new RepeatingView("formAction");
         this.populateFormActions(formActionView);
-        this.add(formActionView);
+        this.form.add(formActionView);
     }
 
     protected Form<T> createForm(String id)
     {
-        return new Form<T>(id, this.getModel());
+        return new Form<T>(id, this.getModel())
+        {
+            @Override
+            protected void onError()
+            {
+                FormModal.this.onError();
+            }
+
+            @Override
+            protected void onSubmit()
+            {
+                FormModal.this.onSubmit();
+            }
+        };
     }
 
     @Override
@@ -81,39 +94,39 @@ public abstract class FormModal<T> extends Modal<T>
         return null;
     }
 
-    public Form<T> getForm()
+    protected Form<T> getForm()
     {
         return this.form;
     }
 
-    public FencedFeedbackPanel getFeedbackPanel()
+    protected FencedFeedbackPanel getFeedbackPanel()
     {
         return this.feedbackPanel;
     }
 
-    @Override
-    public CharSequence getHideScript()
-    {
-        return String.format("$('#%s').modal('hide');", this.getMarkupId());
-    }
-
-    @Override
-    public CharSequence getShowScript()
-    {
-        return String.format("$('#%s').modal({'show': true, 'backdrop':'static'});", this.getMarkupId());
-    }
-
-    @Override
-    public CharSequence getToggleScript()
-    {
-        return String.format("$('#%s').modal('toggle');", this.getMarkupId());
-    }
-
     protected void populateFormActions(RepeatingView formActionView)
     {
+        /* Hook */
     }
 
     protected void populateFormGroups(RepeatingView formGroupView)
     {
+        /* Hook */
+    }
+
+    /**
+     * @see Form#onError()
+     */
+    protected void onError()
+    {
+        /* Hook */
+    }
+
+    /**
+     * @see Form#onSubmit()
+     */
+    protected void onSubmit()
+    {
+        /* Hook */
     }
 }

@@ -33,8 +33,9 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.resource.UrlResourceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -42,6 +43,8 @@ import java.util.Properties;
  */
 public class ExampleApplication extends WebApplication
 {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private Properties buildProperties;
 
     @Override
@@ -67,8 +70,8 @@ public class ExampleApplication extends WebApplication
         try {
             this.buildProperties = new Properties();
             this.buildProperties.load(this.getClass().getClassLoader().getResourceAsStream("build.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            this.logger.warn("Could not load build properties: {}", e.getMessage());
         }
 
         this.mountPage("css", CssPage.class);
