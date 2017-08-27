@@ -22,6 +22,9 @@ import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.ComponentTag;
 
 /**
+ * Changes the component tag name. Note that as this is a behavior this is done after the
+ * {@link Component#onComponentTag(ComponentTag)} execution.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class TagNameModifier extends Behavior

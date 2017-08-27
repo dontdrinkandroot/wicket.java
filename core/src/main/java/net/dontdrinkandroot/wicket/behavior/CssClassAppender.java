@@ -24,7 +24,7 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.IModel;
 
 /**
- * Appends a <tt>class</tt> attribute to an element.
+ * Appends a <tt>class</tt> attribute to an element. Can be a String, A {@link CssClass} or a model of a {@link CssClass}.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */

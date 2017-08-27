@@ -20,6 +20,8 @@ package net.dontdrinkandroot.wicket.behavior;
 import org.apache.wicket.behavior.AttributeAppender;
 
 /**
+ * Renders a JavaScript String as the "onclick" attribute of an element.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class OnClickScriptBehavior extends AttributeAppender

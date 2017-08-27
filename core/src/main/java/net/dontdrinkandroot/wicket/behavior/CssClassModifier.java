@@ -24,7 +24,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.model.IModel;
 
 /**
- * Replaces the <tt>class</tt> attribute of an element.
+ * Replaces the <tt>class</tt> attribute of an element. Can be a String, A {@link CssClass} or a model of a {@link CssClass}.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */

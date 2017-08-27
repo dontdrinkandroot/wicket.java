@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
+ * A Behavior that bundles multiple behaviors. Can be useful for adding/removing/disabling a behavior at once.
+ *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class CompositeBehavior extends Behavior
@@ -26,9 +28,6 @@ public class CompositeBehavior extends Behavior
         this.behaviors = behaviors;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void afterRender(final Component component)
     {
@@ -37,9 +36,6 @@ public class CompositeBehavior extends Behavior
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void beforeRender(final Component component)
     {
@@ -48,9 +44,6 @@ public class CompositeBehavior extends Behavior
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void bind(final Component component)
     {
@@ -59,9 +52,6 @@ public class CompositeBehavior extends Behavior
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void detach(final Component component)
     {
@@ -70,16 +60,6 @@ public class CompositeBehavior extends Behavior
         }
     }
 
-    public void exception(final Component component, final RuntimeException exception)
-    {
-        for (final Behavior behavior : this.behaviors) {
-            behavior.onException(component, exception);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean getStatelessHint(final Component component)
     {
@@ -102,9 +82,6 @@ public class CompositeBehavior extends Behavior
         return enabled;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isTemporary(final Component component)
     {
@@ -115,9 +92,6 @@ public class CompositeBehavior extends Behavior
         return back;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onComponentTag(final Component component, final ComponentTag tag)
     {
@@ -126,9 +100,6 @@ public class CompositeBehavior extends Behavior
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void renderHead(final Component component, final IHeaderResponse response)
     {
@@ -136,6 +107,13 @@ public class CompositeBehavior extends Behavior
 
         for (final Behavior behavior : this.behaviors) {
             behavior.renderHead(component, response);
+        }
+    }
+
+    public void exception(final Component component, final RuntimeException exception)
+    {
+        for (final Behavior behavior : this.behaviors) {
+            behavior.onException(component, exception);
         }
     }
 
