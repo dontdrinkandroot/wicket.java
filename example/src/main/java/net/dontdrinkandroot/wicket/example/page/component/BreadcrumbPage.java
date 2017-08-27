@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.breadcrumb.RepeatingBreadcrumb;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
-import net.dontdrinkandroot.wicket.example.ExampleApplication;
+import net.dontdrinkandroot.wicket.example.ExampleWebApplication;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -35,7 +35,7 @@ public class BreadcrumbPage extends ComponentPage
             protected void populateItems(RepeatingView itemView)
             {
                 itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
-                        ExampleApplication.get().getHomePage()
+                        ExampleWebApplication.get().getHomePage()
                 ));
                 itemView.add(new BookmarkablePageLinkItem(
                         itemView.newChildId(),

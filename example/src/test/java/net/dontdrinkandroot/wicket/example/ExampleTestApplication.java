@@ -17,9 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.example;
 
-public class ExampleTestApplication extends ExampleApplication
+public class ExampleTestApplication extends ExampleWebApplication
 {
-
     @Override
     protected void init()
     {

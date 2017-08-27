@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.item.ExternalLinkItem;
-import net.dontdrinkandroot.wicket.example.ExampleApplication;
+import net.dontdrinkandroot.wicket.example.ExampleWebApplication;
 import org.apache.wicket.model.Model;
 
 /**
@@ -13,9 +13,10 @@ public class BuildInfoItem extends ExternalLinkItem
     {
         super(
                 id,
-                Model.of(ExampleApplication.get().getBuildProperties().getProperty("version")), Model.of(String.format(
+                Model.of(ExampleWebApplication.get().getBuildProperties().getProperty("version")),
+                Model.of(String.format(
                         "https://github.com/dontdrinkandroot/wicket.java/commit/%s",
-                        ExampleApplication.get().getBuildProperties().getProperty("revision")
+                        ExampleWebApplication.get().getBuildProperties().getProperty("revision")
                 ))
         );
     }

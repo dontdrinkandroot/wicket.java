@@ -20,24 +20,34 @@ package net.dontdrinkandroot.wicket.example;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.util.tester.WicketTester;
-import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
 import org.apache.wicket.util.visit.Visits;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class AbstractWicketTest
+@RunWith(SpringRunner.class)
+@ActiveProfiles("test")
+@SpringBootTest
+public abstract class AbstractWicketTest
 {
+    @Autowired
+    protected ExampleWebApplication wicketApplication;
+
     protected WicketTester tester;
 
     @Before
     public void setUp()
     {
-        this.tester = new WicketTester(new ExampleTestApplication());
+        this.tester = new WicketTester(this.wicketApplication);
     }
 
     @After
@@ -48,22 +58,17 @@ public class AbstractWicketTest
 
     protected void assertStateless(MarkupContainer component)
     {
-        Visits.visitChildren(component, new IVisitor<Component, Void>()
-        {
-            @Override
-            public void component(Component component, IVisit<Void> visit)
-            {
-                if (!component.isStateless()) {
-                    Assert.assertTrue(
-                            String.format(
-                                    "Component '%s' is not stateless. Type: %s, Path: %s",
-                                    component.getMarkupId(),
-                                    component.getClass().getCanonicalName(),
-                                    component.getPath()
-                            ),
-                            component.isStateless()
-                    );
-                }
+        Visits.visitChildren(component, (IVisitor<Component, Void>) (component1, visit) -> {
+            if (!component1.isStateless()) {
+                Assert.assertTrue(
+                        String.format(
+                                "Component '%s' is not stateless. Type: %s, Path: %s",
+                                component1.getMarkupId(),
+                                component1.getClass().getCanonicalName(),
+                                component1.getPath()
+                        ),
+                        component1.isStateless()
+                );
             }
         });
     }

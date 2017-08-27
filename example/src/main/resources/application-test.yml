@@ -1,0 +1,5 @@
+wicket:
+  core:
+    settings:
+      markup:
+        strip-wicket-tags: false

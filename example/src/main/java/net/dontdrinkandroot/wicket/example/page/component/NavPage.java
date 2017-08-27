@@ -23,7 +23,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.LinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavPills;
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavTabs;
-import net.dontdrinkandroot.wicket.example.ExampleApplication;
+import net.dontdrinkandroot.wicket.example.ExampleWebApplication;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -125,7 +125,7 @@ public class NavPage extends ComponentPage
                 itemView.add(new BookmarkablePageLinkItem(
                         itemView.newChildId(),
                         Model.of("A Link"),
-                        ExampleApplication.get().getHomePage()
+                        ExampleWebApplication.get().getHomePage()
                 ));
             }
         });

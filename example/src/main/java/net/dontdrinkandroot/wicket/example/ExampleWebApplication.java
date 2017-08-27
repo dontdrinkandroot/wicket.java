@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.example;
 
+import com.giffing.wicket.spring.boot.starter.app.WicketBootStandardWebApplication;
 import net.dontdrinkandroot.wicket.example.page.CssPage;
 import net.dontdrinkandroot.wicket.example.page.GettingStartedPage;
 import net.dontdrinkandroot.wicket.example.page.GridPage;
@@ -35,13 +36,15 @@ import org.apache.wicket.request.Url;
 import org.apache.wicket.request.resource.UrlResourceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class ExampleApplication extends WebApplication
+@Component
+public class ExampleWebApplication extends WicketBootStandardWebApplication
 {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -53,9 +56,9 @@ public class ExampleApplication extends WebApplication
         return HomePage.class;
     }
 
-    public static ExampleApplication get()
+    public static ExampleWebApplication get()
     {
-        return (ExampleApplication) WebApplication.get();
+        return (ExampleWebApplication) WebApplication.get();
     }
 
     @Override
@@ -63,7 +66,6 @@ public class ExampleApplication extends WebApplication
     {
         super.init();
 
-        this.getMarkupSettings().setStripWicketTags(true);
         this.getJavaScriptLibrarySettings()
                 .setJQueryReference(new UrlResourceReference(Url.parse("https://code.jquery.com/jquery-2.2.4.min.js")));
 

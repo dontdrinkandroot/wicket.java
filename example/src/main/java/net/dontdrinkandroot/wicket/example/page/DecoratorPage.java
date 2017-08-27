@@ -24,7 +24,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem;
-import net.dontdrinkandroot.wicket.example.ExampleApplication;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
 import net.dontdrinkandroot.wicket.example.component.ThemeDropdownItem;
@@ -32,10 +31,7 @@ import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem;
 import net.dontdrinkandroot.wicket.example.page.component.*;
 import net.dontdrinkandroot.wicket.example.page.form.*;
 import net.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.RuntimeConfigurationType;
-import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.head.CssContentHeaderItem;
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -67,24 +63,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     protected IModel<String> createPageTitlePrefixModel()
     {
         return Model.of("wicket.example");
-    }
-
-    @Override
-    protected void onInitialize()
-    {
-        super.onInitialize();
-        DebugBar debugBar = new DebugBar("debugBar")
-        {
-            @Override
-            protected void onConfigure()
-            {
-                super.onConfigure();
-                this.setVisible(
-                        RuntimeConfigurationType.DEVELOPMENT.equals(ExampleApplication.get().getConfigurationType()));
-            }
-        };
-        debugBar.add(new AttributeModifier("style", "z-index: 1030; top: 50px; position: fixed;"));
-        this.add(debugBar);
     }
 
     @Override

@@ -1,0 +1,9 @@
+wicket:
+  core:
+    settings:
+      markup:
+        strip-wicket-tags: true
+server:
+  error:
+    whitelabel:
+      enabled: false

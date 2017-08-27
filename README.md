@@ -8,7 +8,8 @@ Wicket extensions and Twitter Bootstrap bindings
 About
 -----
 
-Useful [Apache Wicket](https://wicket.apache.org/) core extensions and easy to use [Twitter Bootstrap](https://getbootstrap.com) bindings.
+Useful [Apache Wicket](https://wicket.apache.org/) core extensions and easy to
+use [Twitter Bootstrap](https://getbootstrap.com) bindings.
 
 * Wicket Version: 7.*
 * Bootstrap Version: 3.3.*
@@ -22,7 +23,8 @@ http://semver.org/.
 Maven
 -----
 
-This project is not yet available via Maven Central. In the meantime you can include the sonatype open source repository:
+This project is not yet available via Maven Central. In the meantime you can
+include the sonatype open source repository:
 
 ```xml
 <repository>
@@ -51,7 +53,7 @@ git clone https://github.com/dontdrinkandroot/wicket.java
 cd wicket.java
 mvn clean install
 cd example
-mvn jetty:run
+mvn spring-boot:run
 ```
 
 Now you can point your browser to http://localhost:8080
