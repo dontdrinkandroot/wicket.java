@@ -25,8 +25,8 @@ import org.apache.wicket.util.time.Duration;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
-
+public class SelfUpdatingGenericPanel<T> extends GenericPanel<T>
+{
     private static final long serialVersionUID = 1L;
 
     public SelfUpdatingGenericPanel(final String id, Duration updateInterval)
@@ -44,5 +44,4 @@ public class SelfUpdatingGenericPanel<T> extends GenericPanel<T> {
 
         this.add(new AjaxSelfUpdatingTimerBehavior(updateInterval));
     }
-
 }

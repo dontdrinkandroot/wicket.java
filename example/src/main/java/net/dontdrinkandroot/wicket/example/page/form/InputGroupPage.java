@@ -43,7 +43,6 @@ public class InputGroupPage extends FormPage
 
         InputGroupText labels = new InputGroupText("labels", Model.of(""))
         {
-
             @Override
             protected Component createInputGroupAddonBefore(String id)
             {
@@ -60,13 +59,11 @@ public class InputGroupPage extends FormPage
 
         InputGroupText buttons = new InputGroupText("buttons", Model.of(""))
         {
-
             @Override
             protected Component createInputGroupAddonBefore(String id)
             {
                 return new InputGroupButton<Void>(id)
                 {
-
                     @Override
                     protected Component createLink(String id)
                     {
@@ -80,7 +77,6 @@ public class InputGroupPage extends FormPage
             {
                 return new InputGroupButton<Void>(id)
                 {
-
                     @Override
                     protected Component createLink(String id)
                     {

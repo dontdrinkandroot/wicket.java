@@ -27,10 +27,12 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
 
-
+/**
+ * @param <T> Type of the model object.
+ * @author Philip Washington Sorst <philip@sorst.net>
+ */
 public abstract class InputGroupButton<T> extends GenericPanel<T> implements IButton
 {
-
     private ButtonBehavior buttonBehavior = new ButtonBehavior();
 
     public InputGroupButton(String id)
