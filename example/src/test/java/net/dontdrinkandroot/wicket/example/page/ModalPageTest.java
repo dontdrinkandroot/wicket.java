@@ -38,4 +38,18 @@ public class ModalPageTest extends AbstractWicketTest
                 TagTester.createTagByAttribute(this.tester.getLastResponseAsString(), "wicket:id", "modal");
         Assert.assertTrue(modalTester.getAttributeContains("class", "modal"));
     }
+
+    @Test
+    public void testOpenAjaxFormModal()
+    {
+        this.tester.startPage(ModalPage.class);
+        this.tester.assertRenderedPage(ModalPage.class);
+
+        String response = this.tester.getLastResponseAsString();
+        this.tester.clickLink("openAjaxFormModalButton", true);
+
+        TagTester modalTester =
+                TagTester.createTagByAttribute(this.tester.getLastResponseAsString(), "wicket:id", "modal");
+        Assert.assertTrue(modalTester.getAttributeContains("class", "modal"));
+    }
 }

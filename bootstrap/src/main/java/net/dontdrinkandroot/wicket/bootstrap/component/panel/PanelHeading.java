@@ -32,8 +32,8 @@ public class PanelHeading extends GenericPanel<String>
     {
         super(id, model);
 
-        Heading heading = new Heading("heading", model, level);
-        heading.add(new CssClassAppender(BootstrapCssClass.PANEL_TITLE));
-        this.add(heading);
+        Heading title = new Heading("title", model, level);
+        title.add(new CssClassAppender(BootstrapCssClass.PANEL_TITLE));
+        this.add(title);
     }
 }

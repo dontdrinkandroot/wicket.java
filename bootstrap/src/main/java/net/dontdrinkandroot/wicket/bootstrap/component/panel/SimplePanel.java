@@ -23,6 +23,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
 /**
+ * A {@link Panel} with a standard heading. The body can be rendered via wicket:extend.
+ *
  * @param <T> Type of the Model Object.
  * @author Philip Washington Sorst <philip@sorst.net>
  */

@@ -24,6 +24,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 
 /**
+ * A {@link Panel} that has no default components. You need to overwrite the corresponding create methods.
+ *
  * @param <T> Type of the Model Object.
  * @author Philip Washington Sorst <philip@sorst.net>
  */
