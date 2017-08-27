@@ -1,9 +1,15 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.modal;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.bootstrap.test.ComponentTestPage;
+import net.dontdrinkandroot.wicket.bootstrap.test.FormTestPage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.util.string.ComponentRenderer;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
@@ -34,5 +40,61 @@ public class AjaxFormModalTest extends AbstractWicketTest
 
         tester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "heading");
         Assert.assertEquals("Modal Heading", tester.getValue());
+    }
+
+    @Test
+    public void testSubmit()
+    {
+        IModel<String> testStringModel = new Model<>();
+        AjaxFormModal<String> component = new AjaxFormModal<String>(FormTestPage.COMPONENT_ID, testStringModel)
+        {
+            @Override
+            protected IModel<String> createHeadingModel()
+            {
+                return Model.of("Heading");
+            }
+
+            @Override
+            protected void populateFormGroups(RepeatingView formGroupView)
+            {
+                super.populateFormGroups(formGroupView);
+                FormGroupInputText formGroup =
+                        new FormGroupInputText(formGroupView.newChildId(), Model.of("Label"), testStringModel);
+                formGroup.setRequired(true);
+                formGroupView.add(formGroup);
+            }
+
+            @Override
+            protected void onError(AjaxRequestTarget target)
+            {
+                super.onError(target);
+                testStringModel.setObject("error");
+            }
+        };
+        ComponentTestPage page = new ComponentTestPage(component);
+        this.tester.startPage(page);
+
+        /* Default submit with error */
+        FormTester formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID + ":form", false);
+        formTester.submit();
+
+        /* Ajax submit with error */
+        this.tester.executeAjaxEvent(component.getForm(), "submit");
+
+        Assert.assertEquals("error", testStringModel.getObject());
+
+         /* Default submit with success */
+        formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID + ":form", false);
+        formTester.setValue("formGroup:1:container:inputGroup:formComponent", "default");
+        formTester.submit();
+
+        Assert.assertEquals("default", testStringModel.getObject());
+
+        /* Ajax submit with success */
+        formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID + ":form", false);
+        formTester.setValue("formGroup:1:container:inputGroup:formComponent", "ajax");
+        this.tester.executeAjaxEvent(component.getForm(), "submit");
+
+        Assert.assertEquals("ajax", testStringModel.getObject());
     }
 }
