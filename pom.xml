@@ -40,8 +40,8 @@
     </prerequisites>
 
     <scm>
-        <url>git@github.com:dontdrinkandroot/wicket.java.git</url>
-        <connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
+        <url>https://github.com/dontdrinkandroot/wicket.java</url>
+        <connection>scm:git:https://github.com/dontdrinkandroot/wicket.java.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/dontdrinkandroot/wicket.java.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
@@ -63,18 +63,21 @@
     </distributionManagement>
 
     <properties>
+        <!-- Build properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.maven-compiler-plugin>3.5.1</version.maven-compiler-plugin>
-        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
-        <version.maven-javadoc-plugin>2.10.4</version.maven-javadoc-plugin>
-        <version.maven-gpg-plugin>1.6</version.maven-gpg-plugin>
-        <version.org.jacoco.jacoco-maven-plugin>0.7.7.201606060606</version.org.jacoco.jacoco-maven-plugin>
-        <version.org.eluder.coveralls.coveralls-maven-plugin>4.2.0</version.org.eluder.coveralls.coveralls-maven-plugin>
-        <version.com.mycila.license-maven-plugin-parent>3.0</version.com.mycila.license-maven-plugin-parent>
-        <version.org.apache.wicket>[7.0,7.99]</version.org.apache.wicket>
-        <version.org.slf4j>[1.1,1.99]</version.org.slf4j>
-        <version.junit>[4.0,4.99]</version.junit>
-        <version.javax.servlet-api>3.1.0</version.javax.servlet-api>
+        <wicket.version>[7.0,7.99]</wicket.version>
+        <!-- Dependencies -->
+        <org.slf4j.version>[1.1,1.99]</org.slf4j.version>
+        <junit.version>[4.0,4.99]</junit.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <!-- Plugins -->
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <org.jacoco.jacoco-maven-plugin.version>0.7.7.201606060606</org.jacoco.jacoco-maven-plugin.version>
+        <org.eluder.coveralls.coveralls-maven-plugin.version>4.2.0</org.eluder.coveralls.coveralls-maven-plugin.version>
+        <com.mycila.license-maven-plugin-parent.version>3.0</com.mycila.license-maven-plugin-parent.version>
     </properties>
 
     <profiles>
@@ -85,7 +88,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${version.maven-source-plugin}</version>
+                        <version>${maven-source-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -98,7 +101,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${version.maven-javadoc-plugin}</version>
+                        <version>${maven-javadoc-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -111,7 +114,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${version.maven-gpg-plugin}</version>
+                        <version>${maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -135,7 +138,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.maven-compiler-plugin}</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -145,19 +148,19 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${version.org.jacoco.jacoco-maven-plugin}</version>
+                <version>${org.jacoco.jacoco-maven-plugin.version}</version>
             </plugin>
 
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${version.org.eluder.coveralls.coveralls-maven-plugin}</version>
+                <version>${org.eluder.coveralls.coveralls-maven-plugin.version}</version>
             </plugin>
 
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>${version.com.mycila.license-maven-plugin-parent}</version>
+                <version>${com.mycila.license-maven-plugin-parent.version}</version>
                 <configuration>
                     <header>LICENSE</header>
                     <mapping>
@@ -176,10 +179,12 @@
 
         <!-- Make sure HTML files are also copied from main/java -->
         <resources>
+
             <resource>
                 <filtering>false</filtering>
                 <directory>src/main/resources</directory>
             </resource>
+
             <resource>
                 <filtering>false</filtering>
                 <directory>src/main/java</directory>
@@ -190,12 +195,15 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </resource>
+
         </resources>
         <testResources>
+
             <testResource>
                 <filtering>false</filtering>
                 <directory>src/test/resources</directory>
             </testResource>
+
             <testResource>
                 <filtering>false</filtering>
                 <directory>src/test/java</directory>
@@ -206,29 +214,35 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </testResource>
+
         </testResources>
 
     </build>
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>${version.javax.servlet-api}</version>
+                <version>${javax.servlet-api.version}</version>
+                <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>${version.org.slf4j}</version>
+                <version>${org.slf4j.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${version.junit}</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
