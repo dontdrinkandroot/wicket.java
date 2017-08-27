@@ -3,6 +3,8 @@ wicket:
     settings:
       markup:
         strip-wicket-tags: true
+    csrf:
+      enabled: false
 server:
   error:
     whitelabel:
