@@ -17,9 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.feedback;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
@@ -32,7 +29,6 @@ import java.io.Serializable;
  */
 public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedbackPanel
 {
-
     public FencedFeedbackPanel(String id)
     {
         super(id);
@@ -56,16 +52,7 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
     @Override
     protected String getCSSClass(FeedbackMessage message)
     {
-        int level = message.getLevel();
-        CssClass cssClass = this.getClassFromLevel(level);
-
-        String cssString = BootstrapCssClass.ALERT.getClassString();
-
-        if (cssClass != null) {
-            cssString += " " + cssClass.getClassString();
-        }
-
-        return cssString;
+        return FeedbackPanel.messageToBootstrapAlertCss(message).getClassString();
     }
 
     @Override
@@ -77,27 +64,5 @@ public class FencedFeedbackPanel extends org.apache.wicket.feedback.FencedFeedba
         label.setOutputMarkupId(false);
 
         return label;
-    }
-
-    protected CssClass getClassFromLevel(int level)
-    {
-        switch (level) {
-
-            case FeedbackMessage.WARNING:
-            case FeedbackMessage.DEBUG:
-                return AlertStyle.WARNING;
-
-            case FeedbackMessage.SUCCESS:
-                return AlertStyle.SUCCESS;
-
-            case FeedbackMessage.INFO:
-                return AlertStyle.INFO;
-
-            case FeedbackMessage.ERROR:
-            case FeedbackMessage.FATAL:
-                return AlertStyle.DANGER;
-        }
-
-        return null;
     }
 }

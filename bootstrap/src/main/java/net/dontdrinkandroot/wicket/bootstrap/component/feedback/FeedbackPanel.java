@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.feedback;
 
 import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.css.CompositeCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
@@ -31,7 +32,6 @@ import java.io.Serializable;
  */
 public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackPanel
 {
-
     public FeedbackPanel(String id)
     {
         super(id);
@@ -40,19 +40,29 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
     @Override
     protected String getCSSClass(FeedbackMessage message)
     {
-        int level = message.getLevel();
-        CssClass cssClass = this.getClassFromLevel(level);
-
-        String cssString = BootstrapCssClass.ALERT.getClassString();
-
-        if (cssClass != null) {
-            cssString += " " + cssClass.getClassString();
-        }
-
-        return cssString;
+        return messageToBootstrapAlertCss(message).getClassString();
     }
 
-    protected CssClass getClassFromLevel(int level)
+    @Override
+    protected Component newMessageDisplayComponent(String id, FeedbackMessage message)
+    {
+        Serializable serializable = message.getMessage();
+        Label label = new Label(id, serializable == null ? "" : serializable.toString());
+        label.setEscapeModelStrings(this.getEscapeModelStrings());
+        label.setOutputMarkupId(false);
+
+        return label;
+    }
+
+    public static CssClass messageToBootstrapAlertCss(FeedbackMessage message)
+    {
+        return new CompositeCssClass(
+                BootstrapCssClass.ALERT,
+                levelToBootstrapAlertStyle(message.getLevel())
+        );
+    }
+
+    public static CssClass levelToBootstrapAlertStyle(int level)
     {
         switch (level) {
 
@@ -72,16 +82,5 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
         }
 
         return null;
-    }
-
-    @Override
-    protected Component newMessageDisplayComponent(String id, FeedbackMessage message)
-    {
-        Serializable serializable = message.getMessage();
-        Label label = new Label(id, serializable == null ? "" : serializable.toString());
-        label.setEscapeModelStrings(this.getEscapeModelStrings());
-        label.setOutputMarkupId(false);
-
-        return label;
     }
 }
