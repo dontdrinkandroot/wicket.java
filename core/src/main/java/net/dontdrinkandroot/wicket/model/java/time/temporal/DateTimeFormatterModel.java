@@ -38,6 +38,8 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
 
     private ZoneId zoneId;
 
+    private Locale locale;
+
     public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent)
     {
         super(parent);
@@ -50,11 +52,7 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
         this.pattern = pattern;
     }
 
-    public DateTimeFormatterModel(
-            IModel<? extends TemporalAccessor> parent,
-            String pattern,
-            ZoneId zoneId
-    )
+    public DateTimeFormatterModel(IModel<? extends TemporalAccessor> parent, String pattern, ZoneId zoneId)
     {
         super(parent);
 
@@ -65,7 +63,7 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
     @Override
     public String getObject()
     {
-        return this.getObject(null);
+        return this.getObject(this.locale);
     }
 
     private String getObject(Locale locale)
@@ -95,6 +93,12 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
     public IWrapModel<String> wrapOnAssignment(Component component)
     {
         return new AssignmentWrapper(component);
+    }
+
+    public DateTimeFormatterModel setLocale(Locale locale)
+    {
+        this.locale = locale;
+        return this;
     }
 
     private class AssignmentWrapper extends AbstractReadOnlyModel<String> implements IWrapModel<String>
