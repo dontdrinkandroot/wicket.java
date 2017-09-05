@@ -59,6 +59,23 @@ public abstract class AjaxFormModal<T> extends FormModal<T>
         return form;
     }
 
+    @Override
+    protected final void onError()
+    {
+        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+            this.onError(null);
+        }
+    }
+
+    @Override
+    protected final void onSubmit()
+    {
+        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+            this.onSubmit(null);
+            this.onAfterSubmit(null);
+        }
+    }
+
     /**
      * Hook for handling the submission with Ajax. Do not perform any setResponsePage Actions here, as they will lead
      * to a double subission. Use onAfterSubmit instead.
