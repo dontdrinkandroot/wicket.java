@@ -7,6 +7,7 @@
     <inceptionYear>2012</inceptionYear>
     <description>Parent project for net.dontdrinkandroot.wicket modules</description>
     <name>wicket</name>
+    <url>https://dontdrinkandroot.net/github/wicket.java</url>
 
     <modules>
         <module>core</module>
