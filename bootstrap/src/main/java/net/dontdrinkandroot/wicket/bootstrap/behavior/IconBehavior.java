@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2016 Philip Washington Sorst <philip@sorst.net>
+ * Copyright (C) 2012-2017 Philip Washington Sorst <philip@sorst.net>
  * and individual contributors as indicated
  * by the @authors tag.
  *
@@ -89,7 +89,7 @@ public class IconBehavior extends AbstractTransformerBehavior
     }
 
     @Override
-    public CharSequence transform(Component component, CharSequence output) throws Exception
+    public CharSequence transform(Component component, CharSequence output)
     {
         boolean hasPrependIcon =
                 (this.getPrependIconModel() != null) && (this.getPrependIconModel().getObject() != null);
