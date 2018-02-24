@@ -99,20 +99,19 @@ public class ValidationPage extends FormPage
             {
                 AjaxSubmitButton submitButton = new AjaxSubmitButton(actionView.newChildId())
                 {
-
                     @Override
-                    protected void onSubmit(AjaxRequestTarget target, Form<?> form)
+                    protected void onSubmit(AjaxRequestTarget target)
                     {
                         this.success("Your form is valid");
                         target.add(ValidationPage.this.getFeedbackPanel());
-                        target.add(form);
+                        target.add(this.getForm());
                     }
 
                     @Override
-                    protected void onError(AjaxRequestTarget target, Form<?> form)
+                    protected void onError(AjaxRequestTarget target)
                     {
-                        super.onError(target, form);
-                        target.add(form);
+                        super.onError(target);
+                        target.add(this.getForm());
                     }
                 };
                 submitButton.setBody(Model.of("Submit"));
@@ -122,5 +121,4 @@ public class ValidationPage extends FormPage
         };
         formGroupView.add(formGroupActions);
     }
-
 }

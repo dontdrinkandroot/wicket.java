@@ -103,9 +103,9 @@ public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
     }
 
     @Override
-    protected void onError(AjaxRequestTarget target, Form<?> form)
+    protected void onError(AjaxRequestTarget target)
     {
-        super.onError(target, form);
-        target.add(form);
+        super.onError(target);
+        target.add(this.getForm());
     }
 }
