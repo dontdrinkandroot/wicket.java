@@ -106,13 +106,6 @@ public class ValidationPage extends FormPage
                         target.add(ValidationPage.this.getFeedbackPanel());
                         target.add(this.getForm());
                     }
-
-                    @Override
-                    protected void onError(AjaxRequestTarget target)
-                    {
-                        super.onError(target);
-                        target.add(this.getForm());
-                    }
                 };
                 submitButton.setBody(Model.of("Submit"));
                 submitButton.setButtonStyle(ButtonStyle.PRIMARY);

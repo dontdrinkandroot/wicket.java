@@ -32,12 +32,15 @@ import java.util.List;
  */
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 {
-    public static String BOOTSTRAP_VERSION = "3.3.7";
+    public static String BOOTSTRAP_VERSION = "4.0.0";
 
     public BootstrapJsHeaderItem(boolean defer)
     {
         super(
-                String.format("https://maxcdn.bootstrapcdn.com/bootstrap/%s/js/bootstrap.min.js", BOOTSTRAP_VERSION),
+                String.format(
+                        "https://maxcdn.bootstrapcdn.com/bootstrap/%s/js/bootstrap.bundle.min.js",
+                        BOOTSTRAP_VERSION
+                ),
                 "bootstrap.js",
                 defer,
                 null,
