@@ -21,7 +21,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.behavior.StyleAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.grid.Column;
 import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow;
-import net.dontdrinkandroot.wicket.bootstrap.css.ContextualBackgroundStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor;
 import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
 import org.apache.wicket.Component;
@@ -61,7 +61,7 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
                         protected Component createContent(String id)
                         {
                             Label label = new Label(id, Model.of(columnSize.getClassString()));
-                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            label.add(new CssClassAppender(BackgroundColor.INFO));
                             return label;
                         }
                     };
@@ -78,7 +78,7 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
                                     id,
                                     Model.of(null == inverseColumnSize ? null : inverseColumnSize.getClassString())
                             );
-                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            label.add(new CssClassAppender(BackgroundColor.INFO));
                             return label;
                         }
                     };

@@ -22,17 +22,17 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum ContextualBackgroundStyle implements CssClass
+public enum NavbarExpand implements CssClass
 {
-    PRIMARY("bg-primary"),
-    SUCCESS("bg-success"),
-    INFO("bg-info"),
-    WARNING("bg-warning"),
-    DANGER("bg-danger");
+    DEFAULT("navbar-expand"),
+    SM("navbar-expand-sm"),
+    MD("navbar-expand-md"),
+    LG("navbar-expand-lg"),
+    XL("navbar-expand-xl");
 
     private String classString;
 
-    ContextualBackgroundStyle(String classString)
+    NavbarExpand(String classString)
     {
         this.classString = classString;
     }

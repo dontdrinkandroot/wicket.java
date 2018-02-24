@@ -58,7 +58,7 @@ public class NavbarPage extends ComponentPage
         this.add(navbarDefault);
 
         Navbar navbarInverse = this.createExampleNavbar("navbarInverse");
-        navbarInverse.setStyle(NavbarStyle.INVERSE);
+        navbarInverse.setStyle(NavbarStyle.DARK);
         this.add(navbarInverse);
     }
 

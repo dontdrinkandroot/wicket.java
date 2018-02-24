@@ -51,14 +51,14 @@ public class NavbarTest extends AbstractWicketTest
     {
         Navbar component = new Navbar("id");
         component.setPosition(NavbarPosition.FIXED_TOP);
-        component.setStyle(NavbarStyle.INVERSE);
+        component.setStyle(NavbarStyle.DARK);
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester tagTester;
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(tagTester.getAttributeContains("class", "navbar"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-inverse"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-dark"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-fixed-top"));
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "container");

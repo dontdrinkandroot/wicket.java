@@ -17,10 +17,12 @@
  */
 package net.dontdrinkandroot.wicket.example.page;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav;
+import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem;
@@ -110,6 +112,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         };
         navbar.setPosition(NavbarPosition.FIXED_TOP);
+        navbar.add(new CssClassAppender(BackgroundColor.LIGHT));
         return navbar;
     }
 

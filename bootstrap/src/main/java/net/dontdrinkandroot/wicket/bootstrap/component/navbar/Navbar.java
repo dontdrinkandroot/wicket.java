@@ -18,11 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ContainerStyle;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
-import net.dontdrinkandroot.wicket.css.CssClass;
+import net.dontdrinkandroot.wicket.bootstrap.css.*;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -37,9 +33,11 @@ import org.apache.wicket.model.Model;
  */
 public class Navbar extends Panel
 {
-    private IModel<NavbarPosition> positionModel = Model.of(NavbarPosition.INLINE);
+    private IModel<NavbarPosition> positionModel = Model.of();
 
-    private IModel<NavbarStyle> styleModel = Model.of(NavbarStyle.DEFAULT);
+    private IModel<NavbarStyle> styleModel = Model.of(NavbarStyle.LIGHT);
+
+    private IModel<NavbarExpand> expandModel = Model.of(NavbarExpand.LG);
 
     private IModel<ContainerStyle> containerStyleModel = Model.of(ContainerStyle.DEFAULT);
 
@@ -58,20 +56,10 @@ public class Navbar extends Panel
         this.add(new CssClassAppender(BootstrapCssClass.NAVBAR));
         this.add(new CssClassAppender(this.styleModel));
         this.add(new CssClassAppender(this.positionModel));
+        this.add(new CssClassAppender(this.expandModel));
 
         WebMarkupContainer container = new WebMarkupContainer("container");
-        container.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-            @Override
-            public CssClass getObject()
-            {
-                if (NavbarPosition.INLINE.equals(Navbar.this.positionModel.getObject())) {
-                    return ContainerStyle.FLUID;
-                }
-
-                return Navbar.this.containerStyleModel.getObject();
-            }
-        }));
+        container.add(new CssClassAppender(this.containerStyleModel.getObject()));
         this.add(container);
 
         container.add(this.createBrand("navbarBrand"));
@@ -80,7 +68,7 @@ public class Navbar extends Panel
         this.navbarCollapse.setOutputMarkupId(true);
         container.add(this.navbarCollapse);
 
-        Component navbarToggle = this.createNavbarToggle("navbarToggle");
+        Component navbarToggle = this.createNavbarToggler("navbarToggler");
         navbarToggle.add(new AttributeModifier("data-target", new AbstractReadOnlyModel<String>()
         {
             @Override
@@ -96,9 +84,9 @@ public class Navbar extends Panel
         this.navbarCollapse.add(collapseItemView);
     }
 
-    protected Component createNavbarToggle(String id)
+    protected Component createNavbarToggler(String id)
     {
-        return new NavbarToggle(id);
+        return new NavbarToggler(id);
     }
 
     protected Component createBrand(String id)
@@ -129,6 +117,12 @@ public class Navbar extends Panel
     public Navbar setContainerStyle(ContainerStyle containerStyle)
     {
         this.containerStyleModel.setObject(containerStyle);
+        return this;
+    }
+
+    public Navbar setExpand(NavbarExpand expand)
+    {
+        this.expandModel.setObject(expand);
         return this;
     }
 

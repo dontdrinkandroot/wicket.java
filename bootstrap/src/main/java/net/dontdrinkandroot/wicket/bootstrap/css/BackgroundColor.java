@@ -22,15 +22,21 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum NavbarPosition implements CssClass
+public enum BackgroundColor implements CssClass
 {
-    FIXED_TOP("fixed-top"),
-    FIXED_BOTTOM("fixed-bottom"),
-    STATIC_TOP("sticky-top");
+    PRIMARY("bg-primary"),
+    SECONDARY("bg-secondary"),
+    SUCCESS("bg-success"),
+    DANGER("bg-danger"),
+    WARNING("bg-warning"),
+    INFO("bg-info"),
+    LIGHT("bg-light"),
+    DARK("bg-dark"),
+    WHITE("bg-white");
 
     private String classString;
 
-    NavbarPosition(String classString)
+    BackgroundColor(String classString)
     {
         this.classString = classString;
     }

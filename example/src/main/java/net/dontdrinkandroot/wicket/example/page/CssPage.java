@@ -80,7 +80,7 @@ public class CssPage extends DecoratorPage<Void>
 
         RepeatingView contextualBackgroundView = new RepeatingView("contextualBackground");
         this.add(contextualBackgroundView);
-        for (ContextualBackgroundStyle textStyle : ContextualBackgroundStyle.values()) {
+        for (BackgroundColor textStyle : BackgroundColor.values()) {
             Label label = new Label(contextualBackgroundView.newChildId(), Model.of(textStyle.name().toLowerCase()));
             label.add(new CssClassAppender(textStyle));
             contextualBackgroundView.add(label);

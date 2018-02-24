@@ -24,8 +24,8 @@ import net.dontdrinkandroot.wicket.css.CssClass;
  */
 public enum NavbarStyle implements CssClass
 {
-    DEFAULT("navbar-default"),
-    INVERSE("navbar-inverse");
+    LIGHT("navbar-light"),
+    DARK("navbar-dark");
 
     private String classString;
 

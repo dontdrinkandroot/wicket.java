@@ -21,7 +21,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.behavior.StyleAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.grid.Column;
 import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow;
-import net.dontdrinkandroot.wicket.bootstrap.css.ContextualBackgroundStyle;
+import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor;
 import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffset;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
@@ -69,7 +69,7 @@ public class OffsetPanel extends GenericPanel<Void>
                                     return columnOffset.getClassString() + " " + inverseColumnSize.getClassString();
                                 }
                             });
-                            label.add(new CssClassAppender(ContextualBackgroundStyle.INFO));
+                            label.add(new CssClassAppender(BackgroundColor.INFO));
                             return label;
                         }
                     };
