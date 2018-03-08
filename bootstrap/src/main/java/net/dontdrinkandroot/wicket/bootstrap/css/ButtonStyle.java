@@ -24,12 +24,14 @@ import net.dontdrinkandroot.wicket.css.CssClass;
  */
 public enum ButtonStyle implements CssClass
 {
-    DEFAULT("btn-default"),
     PRIMARY("btn-primary"),
+    SECONDARY("btn-secondary"),
     SUCCESS("btn-success"),
-    INFO("btn-info"),
-    WARNING("btn-warning"),
     DANGER("btn-danger"),
+    WARNING("btn-warning"),
+    INFO("btn-info"),
+    LIGHT("btn-light"),
+    DARK("btn-dark"),
     LINK("btn-link");
 
     private String classString;

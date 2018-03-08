@@ -44,7 +44,7 @@ public class ButtonBehavior extends CompositeBehavior implements IButton
 
     public ButtonBehavior()
     {
-        this(Model.of(ButtonStyle.DEFAULT), new Model<>());
+        this(Model.of(ButtonStyle.SECONDARY), new Model<>());
     }
 
     public ButtonBehavior(ButtonStyle buttonStyle)
@@ -54,7 +54,7 @@ public class ButtonBehavior extends CompositeBehavior implements IButton
 
     public ButtonBehavior(ButtonSize buttonSize)
     {
-        this(Model.of(ButtonStyle.DEFAULT), Model.of(buttonSize));
+        this(Model.of(ButtonStyle.SECONDARY), Model.of(buttonSize));
     }
 
     public ButtonBehavior(ButtonStyle buttonStyle, ButtonSize buttonSize)

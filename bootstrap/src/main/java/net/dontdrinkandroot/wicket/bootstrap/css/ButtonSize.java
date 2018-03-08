@@ -24,7 +24,6 @@ import net.dontdrinkandroot.wicket.css.CssClass;
  */
 public enum ButtonSize implements CssClass
 {
-    EXTRA_SMALL("btn-xs"),
     SMALL("btn-sm"),
     LARGE("btn-lg");
 

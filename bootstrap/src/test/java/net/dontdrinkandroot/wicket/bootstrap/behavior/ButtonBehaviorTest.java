@@ -44,9 +44,6 @@ public class ButtonBehaviorTest extends AbstractWicketTest
 
         buttonBehavior.setButtonSize(ButtonSize.SMALL);
         Assert.assertEquals(ButtonSize.SMALL, buttonBehavior.getButtonSize());
-
-        buttonBehavior.setButtonSizeModel(Model.of(ButtonSize.EXTRA_SMALL));
-        Assert.assertEquals(ButtonSize.EXTRA_SMALL, buttonBehavior.getButtonSize());
     }
 
     @Test
