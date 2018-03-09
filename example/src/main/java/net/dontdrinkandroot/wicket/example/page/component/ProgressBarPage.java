@@ -17,8 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.progress.ProgressBar;
+import net.dontdrinkandroot.wicket.bootstrap.css.Spacing;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
@@ -46,6 +48,11 @@ public class ProgressBarPage extends ComponentPage
         final IModel<Integer> valueModel = new Model<>(33);
 
         ProgressBar defaultBar = new ProgressBar("defaultBar", valueModel);
+        defaultBar.add(new CssClassAppender(new Spacing(
+                Spacing.Property.MARGIN,
+                Spacing.Side.BOTTOM,
+                Spacing.Size.HALF
+        )));
         this.add(defaultBar);
 
         AjaxLink<Void> updateButton = new AjaxLink<Void>("updateButton")
