@@ -17,14 +17,12 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 
-import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarStyle;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
-
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -53,24 +51,23 @@ public class ProgressBarTest extends AbstractWicketTest
     @Test
     public void testStripedActiveMarkup()
     {
-        ProgressBar component = new ProgressBar("id", Model.of(33), ProgressBarStyle.INFO);
-        Assert.assertEquals(ProgressBarStyle.INFO, component.getBarStyle());
+        ProgressBar component = new ProgressBar("id", Model.of(33));
 
         Assert.assertFalse(component.isStriped());
         component.setStriped(true);
         Assert.assertTrue(component.isStriped());
 
-        Assert.assertFalse(component.isActive());
-        component.setActive(true);
-        Assert.assertTrue(component.isActive());
+        Assert.assertFalse(component.isAnimated());
+        component.setAnimated(true);
+        Assert.assertTrue(component.isAnimated());
 
-        Assert.assertTrue(component.isActive());
+        Assert.assertTrue(component.isAnimated());
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         Assert.assertTrue(componentTester.getAttributeContains("class", "progress"));
         Assert.assertTrue(componentTester.getAttributeContains("class", "active"));
-        Assert.assertTrue(componentTester.getAttributeContains("class", "progress-striped"));
+        Assert.assertTrue(componentTester.getAttributeContains("class", "progress-bar-striped"));
 
         TagTester barTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "bar");
         Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar"));

@@ -19,12 +19,11 @@ package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarStyle;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -35,11 +34,9 @@ public class ProgressBar extends GenericPanel<Integer>
 {
     private WebMarkupContainer bar;
 
-    private boolean active = false;
+    private boolean animated = false;
 
     private boolean striped = false;
-
-    private IModel<ProgressBarStyle> styleModel;
 
     public ProgressBar(String id)
     {
@@ -51,27 +48,18 @@ public class ProgressBar extends GenericPanel<Integer>
         super(id, model);
     }
 
-    public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style)
+    public ProgressBar(String id, IModel<Integer> model, boolean striped)
     {
         super(id, model);
 
-        this.styleModel = Model.of(style);
-    }
-
-    public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped)
-    {
-        super(id, model);
-
-        this.styleModel = Model.of(style);
         this.striped = striped;
     }
 
-    public ProgressBar(String id, IModel<Integer> model, ProgressBarStyle style, boolean striped, boolean active)
+    public ProgressBar(String id, IModel<Integer> model, boolean striped, boolean animated)
     {
         super(id, model);
 
-        this.styleModel = Model.of(style);
-        this.active = active;
+        this.animated = animated;
         this.striped = striped;
     }
 
@@ -82,73 +70,46 @@ public class ProgressBar extends GenericPanel<Integer>
 
         this.add(new CssClassAppender(BootstrapCssClass.PROGRESS));
 
-        /* Active */
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ProgressBar.this.isActive()) {
-                    return BootstrapCssClass.ACTIVE;
-                }
-
-                return null;
-            }
-        }));
-
-        /* Striped */
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ProgressBar.this.isStriped()) {
-                    return BootstrapCssClass.PROGRESS_STRIPED;
-                }
-
-                return null;
-            }
-        }));
-
         this.bar = new WebMarkupContainer("bar");
 
         this.bar.add(new AttributeModifier("aria-valuenow", this.getModel()));
 
-        this.bar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                return String.format("width: %d%%;", ProgressBar.this.getModelObject());
+        this.bar.add(new AttributeModifier(
+                "style",
+                (IModel<String>) () -> String.format("width: %d%%;", ProgressBar.this.getModelObject())
+        ));
+
+        /* Animated */
+        this.bar.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (ProgressBar.this.isAnimated()) {
+                return BootstrapCssClass.PROGRESS_BAR_ANIMATED;
             }
+
+            return null;
         }));
 
-        /* Style */
-        this.bar.add(new CssClassAppender(this.styleModel));
+        /* Striped */
+        this.bar.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (ProgressBar.this.isStriped()) {
+                return BootstrapCssClass.PROGRESS_BAR_STRIPED;
+            }
+
+            return null;
+        }));
 
         this.bar.setOutputMarkupId(true);
         this.add(this.bar);
     }
 
-    public void setBarStyle(ProgressBarStyle barStyle)
+    public ProgressBar setAnimated(boolean animated)
     {
-        this.styleModel.setObject(barStyle);
-    }
-
-    public ProgressBarStyle getBarStyle()
-    {
-        return this.styleModel.getObject();
-    }
-
-    public ProgressBar setActive(boolean active)
-    {
-        this.active = active;
+        this.animated = animated;
         return this;
     }
 
-    public boolean isActive()
+    public boolean isAnimated()
     {
-        return this.active;
+        return this.animated;
     }
 
     public ProgressBar setStriped(boolean striped)

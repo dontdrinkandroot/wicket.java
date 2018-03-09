@@ -19,16 +19,11 @@ package net.dontdrinkandroot.wicket.example.page.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.progress.ProgressBar;
-import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarStyle;
-import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-
-import java.util.Iterator;
 
 public class ProgressBarPage extends ComponentPage
 {
@@ -48,12 +43,10 @@ public class ProgressBarPage extends ComponentPage
     {
         super.onInitialize();
 
-        final IModel<Integer> valueModel = new Model<Integer>(33);
-        final RepeatingView progressBarView = new RepeatingView("progressBarStyle");
-        this.add(progressBarView);
-        for (ProgressBarStyle style : ProgressBarStyle.values()) {
-            progressBarView.add(new ProgressBar(progressBarView.newChildId(), valueModel, style));
-        }
+        final IModel<Integer> valueModel = new Model<>(33);
+
+        ProgressBar defaultBar = new ProgressBar("defaultBar", valueModel);
+        this.add(defaultBar);
 
         AjaxLink<Void> updateButton = new AjaxLink<Void>("updateButton")
         {
@@ -61,21 +54,17 @@ public class ProgressBarPage extends ComponentPage
             public void onClick(AjaxRequestTarget target)
             {
                 valueModel.setObject((int) Math.round(Math.random() * 100));
-                Iterator<Component> childIterator = progressBarView.iterator();
-                while (childIterator.hasNext()) {
-                    Component child = childIterator.next();
-                    ((ProgressBar) child).update(target);
-                }
+                defaultBar.update(target);
             }
         };
         updateButton.setBody(Model.of("update"));
         updateButton.add(new ButtonBehavior());
         this.add(updateButton);
 
-        ProgressBar stripedBar = new ProgressBar("stripedBar", valueModel, ProgressBarStyle.DEFAULT, true, false);
+        ProgressBar stripedBar = new ProgressBar("stripedBar", valueModel, true, false);
         this.add(stripedBar);
 
-        ProgressBar activeBar = new ProgressBar("activeBar", valueModel, ProgressBarStyle.DEFAULT, true, true);
-        this.add(activeBar);
+        ProgressBar animatedBar = new ProgressBar("animatedBar", valueModel, true, true);
+        this.add(animatedBar);
     }
 }

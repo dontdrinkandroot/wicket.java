@@ -24,10 +24,14 @@ import net.dontdrinkandroot.wicket.css.CssClass;
  */
 public enum AlertStyle implements CssClass
 {
+    PRIMARY("alert-primary"),
+    SECONDARY("alert-secondary"),
     SUCCESS("alert-success"),
-    INFO("alert-info"),
+    DANGER("alert-danger"),
     WARNING("alert-warning"),
-    DANGER("alert-danger");
+    INFO("alert-info"),
+    LIGHT("alert-light"),
+    DARK("alert-dark");
 
     private String classString;
 
