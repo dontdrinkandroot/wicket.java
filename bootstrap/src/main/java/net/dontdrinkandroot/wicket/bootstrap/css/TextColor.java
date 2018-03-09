@@ -22,18 +22,22 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum ContextualTextStyle implements CssClass
+public enum TextColor implements CssClass
 {
-    MUTED("text-muted"),
     PRIMARY("text-primary"),
+    SECONDARY("text-secondary"),
     SUCCESS("text-success"),
-    INFO("text-info"),
+    DANGER("text-danger"),
     WARNING("text-warning"),
-    DANGER("text-danger");
+    INFO("text-info"),
+    LIGHT("text-light"),
+    DARK("text-dark"),
+    MUTED("text-muted"),
+    WHITE("text-white");
 
     private String classString;
 
-    ContextualTextStyle(String classString)
+    TextColor(String classString)
     {
         this.classString = classString;
     }

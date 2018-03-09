@@ -72,7 +72,7 @@ public class CssPage extends DecoratorPage<Void>
 
         RepeatingView contextualColorView = new RepeatingView("contextualColor");
         this.add(contextualColorView);
-        for (ContextualTextStyle textStyle : ContextualTextStyle.values()) {
+        for (TextColor textStyle : TextColor.values()) {
             Label label = new Label(contextualColorView.newChildId(), Model.of(textStyle.name().toLowerCase()));
             label.add(new CssClassAppender(textStyle));
             contextualColorView.add(label);
