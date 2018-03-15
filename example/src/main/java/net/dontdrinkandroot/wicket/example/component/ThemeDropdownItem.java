@@ -24,22 +24,21 @@ import net.dontdrinkandroot.wicket.example.model.Theme;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 public class ThemeDropdownItem extends RepeatingDropdownItem
 {
     public ThemeDropdownItem(String id)
     {
-        super(id, new ConcatenatingStringModel(Model.of("Theme"), ": ", new AbstractReadOnlyModel<String>()
-        {
-
-            @Override
-            public String getObject()
-            {
-                return ExampleWebSession.get().getCurrentTheme().getName();
-            }
-        }));
+        super(
+                id,
+                new ConcatenatingStringModel(
+                        Model.of("Theme"),
+                        ": ",
+                        (IModel<String>) () -> ExampleWebSession.get().getCurrentTheme().getName()
+                )
+        );
     }
 
     @Override

@@ -103,6 +103,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                     protected void populateItems(RepeatingView itemView)
                     {
                         super.populateItems(itemView);
+
                         itemView.add(new ThemeDropdownItem(itemView.newChildId()));
                         itemView.add(new BuildInfoItem(itemView.newChildId()));
                     }
@@ -167,7 +168,11 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                                 PaginationPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Dropdowns"), DropdownPage.class));
+                        new BookmarkablePageLinkItem(
+                                itemView.newChildId(),
+                                Model.of("Dropdowns"),
+                                DropdownPage.class
+                        ));
                 itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Modals"), ModalPage.class));
             }
 
@@ -180,7 +185,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
 
         leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Forms"))
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {
@@ -225,8 +229,11 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
         response.render(new FontAwesomeCssHeaderItem());
         response.render(new CssContentHeaderItem("body{padding-top: 56px;}", "bodyPadding", null));
-        response.render(
-                new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
+        response.render(new CssContentHeaderItem(
+                ".has-error .help-block .info{color: #737373;}",
+                "infoHelpText",
+                null
+        ));
         response.render(new OnDomReadyHeaderItem(" $(\"a[rel='external']\").attr('target', '_blank');"));
         response.render(new HighlightJsInitHeaderItem());
     }
