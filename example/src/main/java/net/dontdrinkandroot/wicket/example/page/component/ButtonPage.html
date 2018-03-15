@@ -12,9 +12,9 @@
         Enumeration</p>
 
     <h3>Available Styles</h3>
-    <p class="btn-toolbar">
-        <span wicket:id="buttonStyle"></span>
-    </p>
+    <div>
+        <button type="button" wicket:id="buttonStyle" class="m-1"></button>
+    </div>
 
     <h3>Example Code</h3>
     <pre><code>link.add(new ButtonBehavior(ButtonStyle.PRIMARY));
@@ -26,9 +26,9 @@ link.add(new ButtonBehavior().setButtonStyle(ButtonStyle.PRIMARY));</code></pre>
         Enumeration</p>
 
     <h3>Available Sizes</h3>
-    <p class="btn-toolbar">
-        <span wicket:id="buttonSize"></span>
-    </p>
+    <div>
+        <button type="button" wicket:id="buttonSize" class="m-1"></button>
+    </div>
 
     <h3>Example Code</h3>
     <pre><code>link.add(new ButtonBehavior(ButtonSize.LARGE));
@@ -42,6 +42,7 @@ link.add(new ButtonBehavior().setButtonSize(ButtonSize.LARGE));</code></pre>
     <h2>Button Groups</h2>
     <h3>Button Group Choice</h3>
     <div wicket:id="buttonGroupChoice"></div>
+
 </wicket:extend>
 </body>
 </html>
