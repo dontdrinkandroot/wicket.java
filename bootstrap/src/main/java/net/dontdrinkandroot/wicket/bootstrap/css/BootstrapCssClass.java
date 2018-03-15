@@ -126,6 +126,8 @@ public enum BootstrapCssClass implements CssClass
     NAVBAR_TEXT("navbar-text"),
     NAVBAR_TOGGLER("navbar-toggler"),
     NAVBAR_TOGGLER_ICON("navbar-toggler-icon"),
+    PAGE_ITEM("page-item"),
+    PAGE_LINK("page-link"),
     PAGINATION("pagination"),
     PANEL("panel"),
     PANEL_BODY("panel-body"),

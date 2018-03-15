@@ -17,6 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -43,7 +45,7 @@ public class BookmarkablePaginationPanel extends PaginationPanel
     @Override
     protected AbstractLink createLink(String id, final IModel<Long> paginablePageModel)
     {
-        return new BookmarkablePageLink<Long>(id, Page.class)
+        BookmarkablePageLink<Long> link = new BookmarkablePageLink<Long>(id, Page.class)
         {
             @Override
             public PageParameters getPageParameters()
@@ -62,5 +64,8 @@ public class BookmarkablePaginationPanel extends PaginationPanel
                 return this.urlFor(this.getPage().getClass(), parameters);
             }
         };
+        link.add(new CssClassAppender(BootstrapCssClass.PAGE_LINK));
+
+        return link;
     }
 }

@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:wicket>
 <body>
-	<wicket:extend>
-		<h2>Default Pagination</h2>
-		<div wicket:id="pagination"></div>
-		
-		<h2>Ajax Pagination</h2>
-		<div wicket:id="ajaxPagination"></div>
-		
-		<hr />
-		
-		Current Page: <span wicket:id="currentPage"></span>
-	</wicket:extend>
+<wicket:extend>
+
+    <section class="mb-3">
+        <h2>Default Pagination</h2>
+        <div wicket:id="pagination"></div>
+    </section>
+
+    <section class="mb-3">
+        <h2>Ajax Pagination</h2>
+        <div wicket:id="ajaxPagination"></div>
+    </section>
+
+    <hr/>
+
+    Current Page: <span wicket:id="currentPage"></span>
+
+</wicket:extend>
 </body>
 </html>

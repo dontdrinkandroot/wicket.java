@@ -17,7 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -43,6 +45,7 @@ public abstract class AbstractPageLinkItem extends Panel
         this.add(this.link);
 
         this.add(new DisabledCssBehavior());
+        this.add(new CssClassAppender(BootstrapCssClass.PAGE_ITEM));
     }
 
     public IPageable getPageable()

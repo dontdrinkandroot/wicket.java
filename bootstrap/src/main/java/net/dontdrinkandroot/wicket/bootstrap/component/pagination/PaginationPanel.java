@@ -186,7 +186,7 @@ public class PaginationPanel extends Panel
 
     protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
     {
-        return new Link<Long>(id, paginablePageModel)
+        Link<Long> link = new Link<Long>(id, paginablePageModel)
         {
             @Override
             public void onClick()
@@ -194,5 +194,8 @@ public class PaginationPanel extends Panel
                 PaginationPanel.this.pageable.setCurrentPage(this.getModelObject());
             }
         };
+        link.add(new CssClassAppender(BootstrapCssClass.PAGE_LINK));
+
+        return link;
     }
 }

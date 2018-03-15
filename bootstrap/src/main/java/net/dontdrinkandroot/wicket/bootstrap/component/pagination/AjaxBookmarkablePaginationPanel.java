@@ -17,6 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import net.dontdrinkandroot.wicket.markup.html.link.AjaxBookmarkablePageLink;
 import org.apache.wicket.Page;
@@ -46,7 +48,7 @@ public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
     @Override
     protected AbstractLink createLink(String id, final IModel<Long> paginablePageModel)
     {
-        return new AjaxBookmarkablePageLink<Long>(id, Page.class)
+        AjaxBookmarkablePageLink<Long> link = new AjaxBookmarkablePageLink<Long>(id, Page.class)
         {
             @Override
             public void onClick(AjaxRequestTarget target)
@@ -72,5 +74,8 @@ public class AjaxBookmarkablePaginationPanel extends AjaxPaginationPanel
                 return this.urlFor(this.getPage().getClass(), parameters);
             }
         };
+        link.add(new CssClassAppender(BootstrapCssClass.PAGE_LINK));
+
+        return link;
     }
 }

@@ -27,10 +27,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
 public class PaginationPage extends ComponentPage
 {
-
     public PaginationPage(PageParameters parameters)
     {
         super(parameters);
@@ -82,7 +80,6 @@ public class PaginationPage extends ComponentPage
 
         AjaxPaginationPanel ajaxPagination = new AjaxPaginationPanel("ajaxPagination", pageable)
         {
-
             @Override
             protected void onPageChanged(AjaxRequestTarget target)
             {

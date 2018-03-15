@@ -17,6 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PaginationSize;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -45,7 +47,7 @@ public class AjaxPaginationPanel extends PaginationPanel
     @Override
     protected AbstractLink createLink(String id, IModel<Long> paginablePageModel)
     {
-        return new AjaxLink<Long>(id, paginablePageModel)
+        AjaxLink<Long> link = new AjaxLink<Long>(id, paginablePageModel)
         {
             @Override
             public void onClick(AjaxRequestTarget target)
@@ -54,6 +56,9 @@ public class AjaxPaginationPanel extends PaginationPanel
                 AjaxPaginationPanel.this.onPageChanged(target);
             }
         };
+        link.add(new CssClassAppender(BootstrapCssClass.PAGE_LINK));
+
+        return link;
     }
 
     protected void onPageChanged(AjaxRequestTarget target)
