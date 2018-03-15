@@ -17,9 +17,13 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
+import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -102,6 +106,32 @@ public abstract class AbstractLinkItem<T, L extends AbstractLink> extends Abstra
             }
         });
         this.add(this.link);
+
+        /* Link is also active if item is active */
+        this.link.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
+        {
+            @Override
+            protected boolean isActive()
+            {
+                return AbstractLinkItem.this.isActive();
+            }
+        }));
+
+        this.link.add(new CssClassAppender((IModel<CssClass>) () -> {
+
+            MarkupContainer parent = AbstractLinkItem.this.getParent();
+
+            if (parent instanceof ItemContainer) {
+                return ((ItemContainer) parent).getLinkClass();
+            }
+
+            parent = parent.getParent();
+            if (parent instanceof ItemContainer) {
+                return ((ItemContainer) parent).getLinkClass();
+            }
+
+            return null;
+        }));
     }
 
     public L getLink()

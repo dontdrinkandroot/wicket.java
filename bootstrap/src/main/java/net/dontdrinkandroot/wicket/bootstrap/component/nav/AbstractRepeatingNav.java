@@ -17,6 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -24,7 +28,7 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class AbstractRepeatingNav<T> extends GenericPanel<T>
+public class AbstractRepeatingNav<T> extends GenericPanel<T> implements ItemContainer
 {
     public AbstractRepeatingNav(String id)
     {
@@ -37,9 +41,23 @@ public class AbstractRepeatingNav<T> extends GenericPanel<T>
     }
 
     @Override
+    public CssClass getItemClass()
+    {
+        return BootstrapCssClass.NAV_ITEM;
+    }
+
+    @Override
+    public CssClass getLinkClass()
+    {
+        return BootstrapCssClass.NAV_LINK;
+    }
+
+    @Override
     protected void onInitialize()
     {
         super.onInitialize();
+
+        this.add(new CssClassAppender(BootstrapCssClass.NAV));
 
         RepeatingView itemView = new RepeatingView("item");
         this.populateItems(itemView);

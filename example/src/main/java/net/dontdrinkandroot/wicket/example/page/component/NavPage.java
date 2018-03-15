@@ -117,7 +117,7 @@ public class NavPage extends ComponentPage
                 return true;
             }
         });
-        itemView.add(new RepeatingDropdownItem(itemView.newChildId(), Model.of("Dropdown"))
+        itemView.add(new RepeatingDropdownItem<Void>(itemView.newChildId(), Model.of("Dropdown"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)

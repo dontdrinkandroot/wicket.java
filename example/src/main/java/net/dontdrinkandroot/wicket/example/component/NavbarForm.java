@@ -18,12 +18,12 @@
 package net.dontdrinkandroot.wicket.example.component;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.RepeatingForm;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
-import org.apache.wicket.markup.html.panel.IMarkupSourcingStrategy;
-import org.apache.wicket.markup.html.panel.PanelMarkupSourcingStrategy;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 
-public class NavbarForm extends net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarForm<Void>
+public class NavbarForm extends RepeatingForm<Void>
 {
     public NavbarForm(String id)
     {
@@ -35,15 +35,23 @@ public class NavbarForm extends net.dontdrinkandroot.wicket.bootstrap.component.
     {
         super.onInitialize();
 
-        FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
-        searchGroup.setLabelScreenReaderOnly(true);
-        this.add(searchGroup);
-        this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));
+        this.setInline(true);
     }
 
     @Override
-    protected IMarkupSourcingStrategy newMarkupSourcingStrategy()
+    protected void populateFormGroups(RepeatingView formGroupView)
     {
-        return new PanelMarkupSourcingStrategy(false);
+        super.populateFormGroups(formGroupView);
+
+        FormGroupInputText searchGroup =
+                new FormGroupInputText(formGroupView.newChildId(), Model.of("Search"), new Model<String>());
+        searchGroup.setLabelScreenReaderOnly(true);
+        formGroupView.add(searchGroup);
+    }
+
+    @Override
+    protected void populateActions(RepeatingView buttonView)
+    {
+        buttonView.add(new AjaxSubmitButton(buttonView.newChildId()).setBody(Model.of("Search")));
     }
 }

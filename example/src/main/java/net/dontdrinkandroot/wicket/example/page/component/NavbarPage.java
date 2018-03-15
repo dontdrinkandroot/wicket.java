@@ -17,14 +17,16 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem;
-import net.dontdrinkandroot.wicket.bootstrap.component.item.SeparatorItem;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarText;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav;
+import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
 import net.dontdrinkandroot.wicket.example.component.NavbarForm;
@@ -54,12 +56,14 @@ public class NavbarPage extends ComponentPage
     {
         super.onInitialize();
 
-        Navbar navbarDefault = this.createExampleNavbar("navbarDefault");
-        this.add(navbarDefault);
+        Navbar navbarLight = this.createExampleNavbar("navbarLight");
+        navbarLight.add(new CssClassAppender(BackgroundColor.LIGHT));
+        this.add(navbarLight);
 
-        Navbar navbarInverse = this.createExampleNavbar("navbarInverse");
-        navbarInverse.setStyle(NavbarStyle.DARK);
-        this.add(navbarInverse);
+        Navbar navbarDark = this.createExampleNavbar("navbarDark");
+        navbarDark.setStyle(NavbarStyle.DARK);
+        navbarDark.add(new CssClassAppender(BackgroundColor.DARK));
+        this.add(navbarDark);
     }
 
     protected Navbar createExampleNavbar(String id)
@@ -79,13 +83,13 @@ public class NavbarPage extends ComponentPage
             {
                 super.populateCollapseItems(collapseItemView);
 
-                collapseItemView.add(new RepeatingNavbarNav(collapseItemView.newChildId())
+                collapseItemView.add(new RepeatingNavbarNav<Void>(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)
                     {
                         super.populateItems(itemView);
-                        itemView.add(new RepeatingDropdownItem(itemView.newChildId(), Model.of("Dropdown"))
+                        itemView.add(new RepeatingDropdownItem<Void>(itemView.newChildId(), Model.of("Dropdown"))
                         {
                             @Override
                             protected void populateItems(RepeatingView itemView)
@@ -95,7 +99,7 @@ public class NavbarPage extends ComponentPage
                                         Model.of("Action"),
                                         HomePage.class
                                 ));
-                                itemView.add(new SeparatorItem(itemView.newChildId()));
+                                itemView.add(new DropdownDividerItem(itemView.newChildId()));
                                 itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
                                 itemView.add(
                                         new BookmarkablePageLinkItem(
@@ -119,7 +123,7 @@ public class NavbarPage extends ComponentPage
                 NavbarText text = new NavbarText(collapseItemView.newChildId(), Model.of("Text"));
                 collapseItemView.add(text);
 
-                NavbarButton button = new NavbarButton(collapseItemView.newChildId())
+                NavbarButton button = new NavbarButton<Void>(collapseItemView.newChildId())
                 {
                     @Override
                     public void onClick()

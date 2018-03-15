@@ -24,7 +24,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -69,14 +68,10 @@ public class Navbar extends Panel
         container.add(this.navbarCollapse);
 
         Component navbarToggle = this.createNavbarToggler("navbarToggler");
-        navbarToggle.add(new AttributeModifier("data-target", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                return String.format("#%s", Navbar.this.getNavbarCollapseId());
-            }
-        }));
+        navbarToggle.add(new AttributeModifier(
+                "data-target",
+                (IModel<String>) () -> String.format("#%s", Navbar.this.getNavbarCollapseId())
+        ));
         container.add(navbarToggle);
 
         RepeatingView collapseItemView = new RepeatingView("navbarCollapseItem");

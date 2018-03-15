@@ -17,21 +17,24 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import org.apache.wicket.core.util.string.ComponentRenderer;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class SeparatorItem extends WebMarkupContainer implements Item
+public class DropdownDividerItemTest extends AbstractWicketTest
 {
-    public SeparatorItem(String id)
+    @Test
+    public void testMarkup()
     {
-        super(id);
-
-        this.add(new CssClassAppender(BootstrapCssClass.DIVIDER));
-        this.add(new AttributeModifier("role", "separator"));
+        DropdownDividerItem component = new DropdownDividerItem("id");
+        CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
+        Assert.assertEquals(
+                "<wicket:container wicket:id=\"id\" class=\"divider\" role=\"separator\"></wicket:container>",
+                componentMarkup.toString()
+        );
     }
 }

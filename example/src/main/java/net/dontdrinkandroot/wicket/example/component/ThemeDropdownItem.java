@@ -27,7 +27,7 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-public class ThemeDropdownItem extends RepeatingDropdownItem
+public class ThemeDropdownItem extends RepeatingDropdownItem<Void>
 {
     public ThemeDropdownItem(String id)
     {
@@ -51,7 +51,7 @@ public class ThemeDropdownItem extends RepeatingDropdownItem
 
     protected AbstractLinkItem createThemeLinkItem(String id, Theme theme)
     {
-        AbstractLinkItem themeLinkItem = new AbstractLinkItem(id, Model.of(theme.getName()))
+        AbstractLinkItem themeLinkItem = new AbstractLinkItem<Void, StatelessLink<Void>>(id, Model.of(theme.getName()))
         {
             @Override
             protected StatelessLink<Void> createLink(String id)

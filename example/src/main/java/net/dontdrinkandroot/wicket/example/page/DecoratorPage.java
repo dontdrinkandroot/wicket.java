@@ -23,8 +23,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownIte
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav;
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor;
-import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition;
+import net.dontdrinkandroot.wicket.bootstrap.css.Spacing;
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem;
 import net.dontdrinkandroot.wicket.example.ExampleWebSession;
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem;
@@ -86,7 +86,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             {
                 super.populateCollapseItems(collapseItemView);
 
-                RepeatingNavbarNav leftItems = new RepeatingNavbarNav(collapseItemView.newChildId())
+                RepeatingNavbarNav leftItems = new RepeatingNavbarNav<Void>(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)
@@ -95,9 +95,14 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                         DecoratorPage.this.populateNavbarLeftItems(itemView);
                     }
                 };
+                leftItems.add(new CssClassAppender(new Spacing(
+                        Spacing.Property.MARGIN,
+                        Spacing.Side.RIGHT,
+                        Spacing.Size.AUTO
+                )));
                 collapseItemView.add(leftItems);
 
-                RepeatingNavbarNav rightItems = new RepeatingNavbarNav(collapseItemView.newChildId())
+                RepeatingNavbarNav rightItems = new RepeatingNavbarNav<Void>(collapseItemView.newChildId())
                 {
                     @Override
                     protected void populateItems(RepeatingView itemView)
@@ -108,7 +113,6 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                         itemView.add(new BuildInfoItem(itemView.newChildId()));
                     }
                 };
-                rightItems.setAlignment(NavbarAlignment.RIGHT);
                 collapseItemView.add(rightItems);
             }
         };
@@ -129,7 +133,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         leftItemView.add(
                 new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
-        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Components"))
+        leftItemView.add(new RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Components"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)
@@ -183,7 +187,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         });
 
-        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Forms"))
+        leftItemView.add(new RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Forms"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)

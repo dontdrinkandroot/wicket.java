@@ -18,10 +18,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.dropdown;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -30,7 +31,7 @@ import org.apache.wicket.model.Model;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class DropdownMenu extends Panel
+public abstract class DropdownMenu extends Panel implements ItemContainer
 {
     private IModel<DropdownAlignment> alignmentModel = Model.of();
 
@@ -55,10 +56,9 @@ public abstract class DropdownMenu extends Panel
     }
 
     @Override
-    protected void onComponentTag(ComponentTag tag)
+    public CssClass getLinkClass()
     {
-        tag.setName("ul");
-        super.onComponentTag(tag);
+        return BootstrapCssClass.DROPDOWN_ITEM;
     }
 
     public DropdownMenu setAlignment(DropdownAlignment alignment)

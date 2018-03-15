@@ -19,19 +19,16 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class DropdownItem<T> extends AbstractLabeledItem<T>
+public abstract class DropdownItem<T> extends AbstractLinkItem<T, AbstractLink>
 {
-    private IconBehavior iconBehavior = new IconBehavior().setAppendIcon(BootstrapCssClass.CARET);
-
     protected DropdownMenu dropdownMenu;
 
     public DropdownItem(String id, IModel<String> labelModel)
@@ -51,18 +48,18 @@ public abstract class DropdownItem<T> extends AbstractLabeledItem<T>
 
         this.add(new CssClassAppender(BootstrapCssClass.DROPDOWN));
 
-        Label dropDownToggle = new Label("dropDownToggle", this.getLabel());
-        dropDownToggle.add(new DropdownToggleBehavior());
-        dropDownToggle.add(this.iconBehavior);
-        this.add(dropDownToggle);
-
         this.dropdownMenu = this.createDropdownMenu("dropdownMenu");
         this.add(this.dropdownMenu);
     }
 
-    public IconBehavior getIconBehavior()
+    @Override
+    protected AbstractLink createLink(String id)
     {
-        return this.iconBehavior;
+        AbstractLink link = new AbstractLink(id)
+        {
+        };
+        link.add(new DropdownToggleBehavior());
+        return link;
     }
 
     protected abstract DropdownMenu createDropdownMenu(String id);

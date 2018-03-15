@@ -18,14 +18,16 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.breadcrumb;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.component.basic.RepeatingList;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.model.IModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class RepeatingBreadcrumb<T> extends RepeatingList<T>
+public abstract class RepeatingBreadcrumb<T> extends RepeatingList<T> implements ItemContainer
 {
     public RepeatingBreadcrumb(String id)
     {
@@ -42,5 +44,11 @@ public abstract class RepeatingBreadcrumb<T> extends RepeatingList<T>
     {
         super.onInitialize();
         this.add(new CssClassAppender(BootstrapCssClass.BREADCRUMB));
+    }
+
+    @Override
+    public CssClass getItemClass()
+    {
+        return BootstrapCssClass.BREADCRUMB_ITEM;
     }
 }

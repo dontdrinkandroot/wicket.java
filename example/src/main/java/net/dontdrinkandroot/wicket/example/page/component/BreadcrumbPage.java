@@ -17,10 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.breadcrumb.RepeatingBreadcrumb;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.example.ExampleWebApplication;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -53,20 +51,15 @@ public class BreadcrumbPage extends ComponentPage
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                BookmarkablePageLinkItem examplesItem =
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
-                                ExampleWebApplication.get().getHomePage()
-                        );
-                examplesItem.add(new CssClassAppender(BootstrapCssClass.BREADCRUMB_ITEM));
-                itemView.add(examplesItem);
+                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
+                        ExampleWebApplication.get().getHomePage()
+                ));
 
-                BookmarkablePageLinkItem breadcrumbsItem = new BookmarkablePageLinkItem(
+                itemView.add(new BookmarkablePageLinkItem(
                         itemView.newChildId(),
                         Model.of("Breadcrumbs"),
                         BreadcrumbPage.class
-                );
-                breadcrumbsItem.add(new CssClassAppender(BootstrapCssClass.BREADCRUMB_ITEM));
-                itemView.add(breadcrumbsItem);
+                ));
             }
         };
         this.add(breadcrumb);
