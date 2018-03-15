@@ -87,6 +87,7 @@ public enum BootstrapCssClass implements CssClass
     ALERT("alert"),
     BLOCKQUOTE_REVERSE("blockquote-reverse"),
     BREADCRUMB("breadcrumb"),
+    BREADCRUMB_ITEM("breadcrumb-item"),
     BTN("btn"),
     BTN_BLOCK("btn-block"),
     BTN_GROUP("btn-group"),

@@ -25,14 +25,14 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public abstract class RepeatingBreadcrumb extends RepeatingList
+public abstract class RepeatingBreadcrumb<T> extends RepeatingList<T>
 {
     public RepeatingBreadcrumb(String id)
     {
         super(id);
     }
 
-    public RepeatingBreadcrumb(String id, IModel model)
+    public RepeatingBreadcrumb(String id, IModel<T> model)
     {
         super(id, model);
     }

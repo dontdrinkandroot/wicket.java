@@ -17,8 +17,10 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.breadcrumb.RepeatingBreadcrumb;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem;
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.example.ExampleWebApplication;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -46,19 +48,25 @@ public class BreadcrumbPage extends ComponentPage
     {
         super.onInitialize();
 
-        RepeatingBreadcrumb breadcrumb = new RepeatingBreadcrumb("breadcrumb")
+        RepeatingBreadcrumb<Void> breadcrumb = new RepeatingBreadcrumb<Void>("breadcrumb")
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
-                        ExampleWebApplication.get().getHomePage()
-                ));
-                itemView.add(new BookmarkablePageLinkItem(
+                BookmarkablePageLinkItem examplesItem =
+                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
+                                ExampleWebApplication.get().getHomePage()
+                        );
+                examplesItem.add(new CssClassAppender(BootstrapCssClass.BREADCRUMB_ITEM));
+                itemView.add(examplesItem);
+
+                BookmarkablePageLinkItem breadcrumbsItem = new BookmarkablePageLinkItem(
                         itemView.newChildId(),
                         Model.of("Breadcrumbs"),
                         BreadcrumbPage.class
-                ));
+                );
+                breadcrumbsItem.add(new CssClassAppender(BootstrapCssClass.BREADCRUMB_ITEM));
+                itemView.add(breadcrumbsItem);
             }
         };
         this.add(breadcrumb);
