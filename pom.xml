@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.dontdrinkandroot</groupId>
     <artifactId>wicket.parent</artifactId>
-    <version>0.5.3-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2012</inceptionYear>
     <description>Parent project for net.dontdrinkandroot.wicket modules</description>
@@ -64,15 +64,18 @@
     </distributionManagement>
 
     <properties>
+
         <!-- Build properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--<wicket.version>[7.0,7.99]</wicket.version>-->
         <wicket.version>8.0.0-M9</wicket.version>
-        <!-- Dependencies -->
+
+        <!-- Dependency Versions-->
         <org.slf4j.version>[1.1,1.99]</org.slf4j.version>
         <junit.version>[4.0,4.99]</junit.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-        <!-- Plugins -->
+
+        <!-- Plugin Versions -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
@@ -82,6 +85,7 @@
         <org.jacoco.jacoco-maven-plugin.version>0.7.7.201606060606</org.jacoco.jacoco-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.2.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <com.mycila.license-maven-plugin-parent.version>3.0</com.mycila.license-maven-plugin-parent.version>
+
     </properties>
 
     <build>
