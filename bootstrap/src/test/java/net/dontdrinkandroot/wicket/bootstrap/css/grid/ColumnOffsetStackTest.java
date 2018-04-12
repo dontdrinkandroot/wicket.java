@@ -35,7 +35,7 @@ public class ColumnOffsetStackTest
                 ColumnOffsetLarge.COLUMNS_5
         );
         ColumnSize inverseStack = stack.getInverseColumnSize();
-        Assert.assertEquals("col-xs-10 col-sm-9 col-md-8 col-lg-7", inverseStack.getClassString());
+        Assert.assertEquals("col-10 col-sm-9 col-md-8 col-lg-7", inverseStack.getClassString());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class ColumnOffsetStackTest
         );
         ColumnOffset inverseStack = stack.getInverseColumnOffset();
         Assert.assertEquals(
-                "col-xs-offset-10 col-xs-offset-9 col-xs-offset-8 col-xs-offset-7",
+                "offset-10 offset-sm-9 offset-md-8 offset-lg-7",
                 inverseStack.getClassString()
         );
     }

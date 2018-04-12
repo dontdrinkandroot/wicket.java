@@ -39,7 +39,7 @@ public class ButtonGroupChoiceTest extends AbstractWicketTest
                 new ButtonGroupChoice<String>("id", Model.of("Beta"), choices);
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals("<wicket:container wicket:id=\"id\" id=\"id1\" class=\"btn-group\"><wicket:panel>\n" +
-                "\t\t<a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-default\" id=\"id12\">Alpha</a><a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-default active\" id=\"id23\">Beta</a><a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-default\" id=\"id34\">Gamma</a>\n" +
+                "\t\t<a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-secondary\" id=\"id12\">Alpha</a><a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-secondary active\" id=\"id23\">Beta</a><a href=\"javascript:;\" wicket:id=\"choice\" class=\"btn btn btn-secondary\" id=\"id34\">Gamma</a>\n" +
                 "\t</wicket:panel></wicket:container>", componentMarkup.toString());
     }
 }

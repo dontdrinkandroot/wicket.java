@@ -31,7 +31,7 @@ public class LinkItemTest extends AbstractWicketTest
     @Test
     public void testMarkup()
     {
-        LinkItem component = new LinkItem("id", Model.of("Label"))
+        LinkItem<Void> component = new LinkItem<Void>("id", Model.of("Label"))
         {
             @Override
             protected void onClick()
@@ -41,7 +41,7 @@ public class LinkItemTest extends AbstractWicketTest
         };
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals("<wicket:container wicket:id=\"id\"><wicket:panel>\n" +
-                "    <a href=\"./wicket/page?0-0.ILinkListener-id-link\" wicket:id=\"link\">Label</a>\n" +
+                "    <a href=\"./wicket/page?0-0.-id-link\" wicket:id=\"link\">Label</a>\n" +
                 "    <wicket:child/>\n" +
                 "</wicket:panel></wicket:container>", componentMarkup.toString());
     }

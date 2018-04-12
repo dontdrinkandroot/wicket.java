@@ -42,7 +42,7 @@ public class SubmitButtonTest extends AbstractWicketTest
 
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" onclick class=\"btn btn-default\">Label</wicket:container>",
+                "<wicket:container wicket:id=\"id\" onclick class=\"btn btn-secondary\">Label</wicket:container>",
                 componentMarkup
         );
     }

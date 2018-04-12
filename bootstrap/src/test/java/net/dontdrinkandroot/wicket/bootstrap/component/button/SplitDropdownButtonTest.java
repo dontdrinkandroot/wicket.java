@@ -50,8 +50,8 @@ public class SplitDropdownButtonTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"btn-group\"><wicket:panel>\n" +
-                        "\t\t<button wicket:id=\"button\" type=\"button\" class=\"btn btn-default\">ActionLabel</button>\n" +
-                        "\t\t<button wicket:id=\"toggle\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+                        "\t\t<button wicket:id=\"button\" type=\"button\" class=\"btn btn-secondary\">ActionLabel</button>\n" +
+                        "\t\t<button wicket:id=\"toggle\" type=\"button\" class=\"btn btn-secondary dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
                         "\t\t\t<span class=\"sr-only\">Toggle Dropdown</span>\n" +
                         "\t\t<span class=\"caret\"></span></button>\n" +
                         "\t\t<ul wicket:id=\"dropdownMenu\" class=\"dropdown-menu\" role=\"menu\"><wicket:panel>\n" +

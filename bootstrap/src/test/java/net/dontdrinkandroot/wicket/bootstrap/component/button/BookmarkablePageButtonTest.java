@@ -41,7 +41,8 @@ public class BookmarkablePageButtonTest extends AbstractWicketTest
     @Test
     public void testMarkup()
     {
-        BookmarkablePageButton component = new BookmarkablePageButton("id", TestApplication.get().getHomePage())
+        BookmarkablePageButton<Void> component =
+                new BookmarkablePageButton<Void>("id", TestApplication.get().getHomePage())
         {
             @Override
             protected void onComponentTag(ComponentTag tag)
@@ -54,7 +55,7 @@ public class BookmarkablePageButtonTest extends AbstractWicketTest
 
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
         Assert.assertEquals(
-                "<wicket:a wicket:id=\"id\" href=\"./\" class=\"btn btn-default\">Label</wicket:a>",
+                "<wicket:a wicket:id=\"id\" href=\"./\" class=\"btn btn-secondary\">Label</wicket:a>",
                 componentMarkup
         );
     }

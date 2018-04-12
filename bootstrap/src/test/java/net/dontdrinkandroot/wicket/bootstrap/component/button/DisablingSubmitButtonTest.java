@@ -33,7 +33,7 @@ public class DisablingSubmitButtonTest extends AbstractWicketTest
         DisablingSubmitButton component = new DisablingSubmitButton("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" id=\"id1\" data-loading-text=\"Submitting...\" class=\"btn btn-default\"></wicket:container>",
+                "<wicket:container wicket:id=\"id\" id=\"id1\" data-loading-text=\"Submitting...\" class=\"btn btn-secondary\"></wicket:container>",
                 componentMarkup.toString()
         );
     }

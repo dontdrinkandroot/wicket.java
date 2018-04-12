@@ -49,7 +49,7 @@ public class DropdownButtonTest extends AbstractWicketTest
         TagTester toggleTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "toggle");
         Assert.assertEquals(
-                "<button wicket:id=\"toggle\" type=\"button\" class=\"dropdown-toggle btn btn-default\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">LabelText&nbsp;&nbsp;<span class=\"caret\"></span></button>",
+                "<button wicket:id=\"toggle\" type=\"button\" class=\"dropdown-toggle btn btn-secondary\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">LabelText&nbsp;&nbsp;<span class=\"caret\"></span></button>",
                 toggleTester.getMarkup()
         );
         TagTester menuTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "menu");

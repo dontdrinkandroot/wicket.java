@@ -31,7 +31,7 @@ public class ButtonTest extends AbstractWicketTest
     @Test
     public void testIButton()
     {
-        Button component = new Button("id")
+        Button<Void> component = new Button<Void>("id")
         {
             @Override
             public void onClick()
@@ -46,7 +46,7 @@ public class ButtonTest extends AbstractWicketTest
     @Test
     public void testMarkup()
     {
-        Button component = new Button("id")
+        Button<Void> component = new Button<Void>("id")
         {
 
             @Override
@@ -59,7 +59,7 @@ public class ButtonTest extends AbstractWicketTest
 
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" onclick=\"var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href=&#039;./wicket/page?0-0.ILinkListener-id&#039;; } ;return false\" class=\"btn btn-default\">Label</wicket:container>",
+                "<wicket:container wicket:id=\"id\" onclick=\"var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href=&#039;./wicket/page?0-0.-id&#039;; } ;return false\" class=\"btn btn-secondary\">Label</wicket:container>",
                 componentMarkup
         );
     }

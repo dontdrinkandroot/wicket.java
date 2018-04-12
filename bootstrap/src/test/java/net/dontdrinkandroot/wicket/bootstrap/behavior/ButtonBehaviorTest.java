@@ -55,7 +55,7 @@ public class ButtonBehaviorTest extends AbstractWicketTest
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(tagTester.getAttributeContains("class", "btn"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-default"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
         Assert.assertFalse(tagTester.getAttributeContains("class", "disabled"));
     }
 
@@ -69,7 +69,7 @@ public class ButtonBehaviorTest extends AbstractWicketTest
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(tagTester.getAttributeContains("class", "btn"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-default"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "disabled"));
     }
 }

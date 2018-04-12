@@ -32,7 +32,7 @@ public class AjaxButtonTest extends AbstractWicketTest
     @Test
     public void testIButton()
     {
-        AjaxButton component = new AjaxButton("id")
+        AjaxButton<Void> component = new AjaxButton<Void>("id")
         {
             @Override
             public void onClick(AjaxRequestTarget target)
@@ -47,7 +47,7 @@ public class AjaxButtonTest extends AbstractWicketTest
     @Test
     public void testMarkup()
     {
-        AjaxButton component = new AjaxButton("id")
+        AjaxButton<Void> component = new AjaxButton<Void>("id")
         {
             @Override
             public void onClick(AjaxRequestTarget target)
@@ -59,7 +59,7 @@ public class AjaxButtonTest extends AbstractWicketTest
 
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"btn btn-default\">Label</wicket:container>",
+                "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"btn btn-secondary\">Label</wicket:container>",
                 componentMarkup
         );
     }

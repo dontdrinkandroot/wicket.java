@@ -34,7 +34,7 @@ public class BadgeBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(comopnent);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "label"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "label-default"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "badge"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "badge-secondary"));
     }
 }

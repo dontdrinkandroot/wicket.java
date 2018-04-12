@@ -22,7 +22,6 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.NavStyle;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
-import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -33,7 +32,7 @@ public class NavTabsBehavior extends CompositeBehavior
 {
     private IModel<Boolean> justifiedModel = Model.of(Boolean.FALSE);
 
-    public NavTabsBehavior(Behavior... behaviors)
+    public NavTabsBehavior()
     {
         super(new CssClassAppender(BootstrapCssClass.NAV), new CssClassAppender(NavStyle.NAV_TABS));
         this.addBehavior(new CssClassAppender(new CssClassToggleModel(

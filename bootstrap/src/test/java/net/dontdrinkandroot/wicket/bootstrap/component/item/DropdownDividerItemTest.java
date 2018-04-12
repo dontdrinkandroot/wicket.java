@@ -33,7 +33,7 @@ public class DropdownDividerItemTest extends AbstractWicketTest
         DropdownDividerItem component = new DropdownDividerItem("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assert.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"divider\" role=\"separator\"></wicket:container>",
+                "<wicket:container wicket:id=\"id\" class=\"dropdown-divider\" role=\"separator\"></wicket:container>",
                 componentMarkup.toString()
         );
     }

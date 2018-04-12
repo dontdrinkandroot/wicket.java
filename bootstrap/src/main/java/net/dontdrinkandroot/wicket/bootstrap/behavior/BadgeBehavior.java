@@ -31,7 +31,7 @@ public class BadgeBehavior extends CompositeBehavior
 {
     public BadgeBehavior()
     {
-        this(Model.of(BadgeStyle.PRIMARY));
+        this(Model.of(BadgeStyle.SECONDARY));
     }
 
     public BadgeBehavior(BadgeStyle badgeStyle)
