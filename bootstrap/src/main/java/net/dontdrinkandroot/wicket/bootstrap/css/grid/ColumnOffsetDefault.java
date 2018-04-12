@@ -20,7 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum ColumnSizeExtraSmall implements ColumnSize
+public enum ColumnOffsetDefault implements ColumnOffset
 {
     COLUMNS_1,
     COLUMNS_2,
@@ -32,35 +32,23 @@ public enum ColumnSizeExtraSmall implements ColumnSize
     COLUMNS_8,
     COLUMNS_9,
     COLUMNS_10,
-    COLUMNS_11,
-    COLUMNS_12;
+    COLUMNS_11;
 
     @Override
     public String getClassString()
     {
-        return String.format("col-%s-%d", this.getPrefix(), this.ordinal() + 1);
+        return String.format("offset-%d", this.ordinal() + 1);
     }
 
     @Override
-    public ColumnOffsetExtraSmall getInverseColumnOffset()
+    public ColumnSizeDefault getInverseColumnSize()
     {
-        if (this.ordinal() >= 11) {
-            return null;
-        }
-        return ColumnOffsetExtraSmall.values()[10 - this.ordinal()];
+        return ColumnSizeDefault.values()[10 - this.ordinal()];
     }
 
     @Override
-    public ColumnSizeExtraSmall getInverseColumnSize()
+    public ColumnOffsetDefault getInverseColumnOffset()
     {
-        if (this.ordinal() >= 11) {
-            return null;
-        }
-        return ColumnSizeExtraSmall.values()[10 - this.ordinal()];
-    }
-
-    protected String getPrefix()
-    {
-        return "xs";
+        return ColumnOffsetDefault.values()[10 - this.ordinal()];
     }
 }

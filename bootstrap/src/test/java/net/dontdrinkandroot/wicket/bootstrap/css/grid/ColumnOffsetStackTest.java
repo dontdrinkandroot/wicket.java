@@ -29,7 +29,7 @@ public class ColumnOffsetStackTest
     public void testGetInverseColumnSize()
     {
         ColumnOffsetStack stack = new ColumnOffsetStack(
-                ColumnOffsetExtraSmall.COLUMNS_2,
+                ColumnOffsetDefault.COLUMNS_2,
                 ColumnOffsetSmall.COLUMNS_3,
                 ColumnOffsetMedium.COLUMNS_4,
                 ColumnOffsetLarge.COLUMNS_5
@@ -42,7 +42,7 @@ public class ColumnOffsetStackTest
     public void getGetInverseColumnOffset()
     {
         ColumnOffsetStack stack = new ColumnOffsetStack(
-                ColumnOffsetExtraSmall.COLUMNS_2,
+                ColumnOffsetDefault.COLUMNS_2,
                 ColumnOffsetSmall.COLUMNS_3,
                 ColumnOffsetMedium.COLUMNS_4,
                 ColumnOffsetLarge.COLUMNS_5

@@ -56,7 +56,7 @@ public class OffsetPanel extends GenericPanel<Void>
                 @Override
                 protected void populateColumns(RepeatingView columnView)
                 {
-                    Column column = new Column(columnView.newChildId())
+                    Column<Void> column = new Column<Void>(columnView.newChildId())
                     {
                         @Override
                         protected Component createContent(String id)

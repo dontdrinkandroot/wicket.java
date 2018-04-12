@@ -34,7 +34,7 @@ public class ColumnSizeStack implements ColumnSize
     public static final ColumnSize TWO_COLUMNS =
             new ColumnSizeStack(null, ColumnSizeSmall.COLUMNS_6, ColumnSizeMedium.COLUMNS_6, ColumnSizeLarge.COLUMNS_6);
 
-    private ColumnSizeExtraSmall columnSizeExtraSmall;
+    private ColumnSizeDefault columnSizeDefault;
 
     private ColumnSizeSmall columnSizeSmall;
 
@@ -48,14 +48,14 @@ public class ColumnSizeStack implements ColumnSize
     }
 
     public ColumnSizeStack(
-            ColumnSizeExtraSmall columnSizeExtraSmall,
+            ColumnSizeDefault columnSizeDefault,
             ColumnSizeSmall columnSizeSmall,
             ColumnSizeMedium columnSizeMedium,
             ColumnSizeLarge columnSizeLarge
     )
     {
         super();
-        this.columnSizeExtraSmall = columnSizeExtraSmall;
+        this.columnSizeDefault = columnSizeDefault;
         this.columnSizeSmall = columnSizeSmall;
         this.columnSizeMedium = columnSizeMedium;
         this.columnSizeLarge = columnSizeLarge;
@@ -65,8 +65,8 @@ public class ColumnSizeStack implements ColumnSize
     public String getClassString()
     {
         StringBuffer classBuffer = new StringBuffer();
-        if (null != this.columnSizeExtraSmall) {
-            classBuffer.append(this.columnSizeExtraSmall.getClassString());
+        if (null != this.columnSizeDefault) {
+            classBuffer.append(this.columnSizeDefault.getClassString());
             classBuffer.append(" ");
         }
         if (null != this.columnSizeSmall) {
@@ -88,8 +88,8 @@ public class ColumnSizeStack implements ColumnSize
     @Override
     public ColumnOffset getInverseColumnOffset()
     {
-        ColumnOffsetExtraSmall columnOffsetExtraSmall =
-                this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnOffset();
+        ColumnOffsetDefault columnOffsetDefault =
+                this.columnSizeDefault == null ? null : this.columnSizeDefault.getInverseColumnOffset();
         ColumnOffsetSmall columnOffsetSmall =
                 this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnOffset();
         ColumnOffsetMedium columnOffsetMedium =
@@ -97,14 +97,14 @@ public class ColumnSizeStack implements ColumnSize
         ColumnOffsetLarge columnOffsetLarge =
                 this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnOffset();
 
-        return new ColumnOffsetStack(columnOffsetExtraSmall, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
+        return new ColumnOffsetStack(columnOffsetDefault, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
     }
 
     @Override
     public ColumnSize getInverseColumnSize()
     {
-        ColumnSizeExtraSmall columnSizeExtraSmall =
-                this.columnSizeExtraSmall == null ? null : this.columnSizeExtraSmall.getInverseColumnSize();
+        ColumnSizeDefault columnSizeDefault =
+                this.columnSizeDefault == null ? null : this.columnSizeDefault.getInverseColumnSize();
         ColumnSizeSmall columnSizeSmall =
                 this.columnSizeSmall == null ? null : this.columnSizeSmall.getInverseColumnSize();
         ColumnSizeMedium columnSizeMedium =
@@ -112,12 +112,12 @@ public class ColumnSizeStack implements ColumnSize
         ColumnSizeLarge columnSizeLarge =
                 this.columnSizeLarge == null ? null : this.columnSizeLarge.getInverseColumnSize();
 
-        return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
+        return new ColumnSizeStack(columnSizeDefault, columnSizeSmall, columnSizeMedium, columnSizeLarge);
     }
 
-    public ColumnSizeStack setColumnSizeExtraSmall(ColumnSizeExtraSmall columnSizeExtraSmall)
+    public ColumnSizeStack setColumnSizeDefault(ColumnSizeDefault columnSizeDefault)
     {
-        this.columnSizeExtraSmall = columnSizeExtraSmall;
+        this.columnSizeDefault = columnSizeDefault;
         return this;
     }
 

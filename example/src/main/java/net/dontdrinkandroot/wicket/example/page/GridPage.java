@@ -39,7 +39,7 @@ public class GridPage extends DecoratorPage<Void>
     {
         super.onInitialize();
 
-        ColumnPanel xsColumns = new ColumnPanel("xsColumns", ColumnSizeExtraSmall.values());
+        ColumnPanel xsColumns = new ColumnPanel("xsColumns", ColumnSizeDefault.values());
         this.add(xsColumns);
 
         ColumnPanel smColumns = new ColumnPanel("smColumns", ColumnSizeSmall.values());
@@ -51,7 +51,7 @@ public class GridPage extends DecoratorPage<Void>
         ColumnPanel lgColumns = new ColumnPanel("lgColumns", ColumnSizeLarge.values());
         this.add(lgColumns);
 
-        OffsetPanel xsOffsets = new OffsetPanel("xsOffsets", ColumnOffsetExtraSmall.values());
+        OffsetPanel xsOffsets = new OffsetPanel("xsOffsets", ColumnOffsetDefault.values());
         this.add(xsOffsets);
 
         OffsetPanel smOffsets = new OffsetPanel("smOffsets", ColumnOffsetSmall.values());

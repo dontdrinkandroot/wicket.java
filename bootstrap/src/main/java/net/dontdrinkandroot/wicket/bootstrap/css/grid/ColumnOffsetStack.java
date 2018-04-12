@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
 public class ColumnOffsetStack implements ColumnOffset
 {
-    private ColumnOffsetExtraSmall columnOffsetExtraSmall;
+    private ColumnOffsetDefault columnOffsetDefault;
 
     private ColumnOffsetSmall columnOffsetSmall;
 
@@ -28,14 +28,14 @@ public class ColumnOffsetStack implements ColumnOffset
     private ColumnOffsetLarge columnOffsetLarge;
 
     public ColumnOffsetStack(
-            ColumnOffsetExtraSmall columnOffsetExtraSmall,
+            ColumnOffsetDefault columnOffsetDefault,
             ColumnOffsetSmall columnOffsetSmall,
             ColumnOffsetMedium columnOffsetMedium,
             ColumnOffsetLarge columnOffsetLarge
     )
     {
         super();
-        this.columnOffsetExtraSmall = columnOffsetExtraSmall;
+        this.columnOffsetDefault = columnOffsetDefault;
         this.columnOffsetSmall = columnOffsetSmall;
         this.columnOffsetMedium = columnOffsetMedium;
         this.columnOffsetLarge = columnOffsetLarge;
@@ -45,8 +45,8 @@ public class ColumnOffsetStack implements ColumnOffset
     public String getClassString()
     {
         StringBuffer classBuffer = new StringBuffer();
-        if (null != this.columnOffsetExtraSmall) {
-            classBuffer.append(this.columnOffsetExtraSmall.getClassString());
+        if (null != this.columnOffsetDefault) {
+            classBuffer.append(this.columnOffsetDefault.getClassString());
             classBuffer.append(" ");
         }
         if (null != this.columnOffsetSmall) {
@@ -68,8 +68,8 @@ public class ColumnOffsetStack implements ColumnOffset
     @Override
     public ColumnSize getInverseColumnSize()
     {
-        ColumnSizeExtraSmall columnSizeExtraSmall =
-                this.columnOffsetExtraSmall == null ? null : this.columnOffsetExtraSmall.getInverseColumnSize();
+        ColumnSizeDefault columnSizeDefault =
+                this.columnOffsetDefault == null ? null : this.columnOffsetDefault.getInverseColumnSize();
         ColumnSizeSmall columnSizeSmall =
                 this.columnOffsetSmall == null ? null : this.columnOffsetSmall.getInverseColumnSize();
         ColumnSizeMedium columnSizeMedium =
@@ -77,14 +77,14 @@ public class ColumnOffsetStack implements ColumnOffset
         ColumnSizeLarge columnSizeLarge =
                 this.columnOffsetLarge == null ? null : this.columnOffsetLarge.getInverseColumnSize();
 
-        return new ColumnSizeStack(columnSizeExtraSmall, columnSizeSmall, columnSizeMedium, columnSizeLarge);
+        return new ColumnSizeStack(columnSizeDefault, columnSizeSmall, columnSizeMedium, columnSizeLarge);
     }
 
     @Override
     public ColumnOffset getInverseColumnOffset()
     {
-        ColumnOffsetExtraSmall columnOffsetExtraSmall =
-                this.columnOffsetExtraSmall == null ? null : this.columnOffsetExtraSmall.getInverseColumnOffset();
+        ColumnOffsetDefault columnOffsetDefault =
+                this.columnOffsetDefault == null ? null : this.columnOffsetDefault.getInverseColumnOffset();
         ColumnOffsetSmall columnOffsetSmall =
                 this.columnOffsetSmall == null ? null : this.columnOffsetSmall.getInverseColumnOffset();
         ColumnOffsetMedium columnOffsetMedium =
@@ -92,6 +92,6 @@ public class ColumnOffsetStack implements ColumnOffset
         ColumnOffsetLarge columnOffsetLarge =
                 this.columnOffsetLarge == null ? null : this.columnOffsetLarge.getInverseColumnOffset();
 
-        return new ColumnOffsetStack(columnOffsetExtraSmall, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
+        return new ColumnOffsetStack(columnOffsetDefault, columnOffsetSmall, columnOffsetMedium, columnOffsetLarge);
     }
 }

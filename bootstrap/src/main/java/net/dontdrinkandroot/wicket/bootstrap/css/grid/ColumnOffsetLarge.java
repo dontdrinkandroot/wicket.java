@@ -37,7 +37,7 @@ public enum ColumnOffsetLarge implements ColumnOffset
     @Override
     public String getClassString()
     {
-        return String.format("col-%s-offset-%d", this.getPrefix(), this.ordinal() + 1);
+        return String.format("offset-%s-%d", this.getPrefix(), this.ordinal() + 1);
     }
 
     @Override
@@ -54,6 +54,6 @@ public enum ColumnOffsetLarge implements ColumnOffset
 
     protected String getPrefix()
     {
-        return "xs";
+        return "lg";
     }
 }

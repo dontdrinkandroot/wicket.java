@@ -48,7 +48,7 @@ public class RowColumnTest extends AbstractWicketTest
                         .setColumnSizeLarge(ColumnSizeLarge.COLUMNS_3);
                 for (int i = 0; i < 4; i++) {
                     int columnIdx = i;
-                    Column column = new Column(columnView.newChildId())
+                    Column<Void> column = new Column<Void>(columnView.newChildId())
                     {
                         @Override
                         protected Component createContent(String id)
