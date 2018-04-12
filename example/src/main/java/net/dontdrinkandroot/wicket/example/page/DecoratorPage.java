@@ -152,7 +152,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                                 Model.of("Breadcrumbs"),
                                 BreadcrumbPage.class
                         ));
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Labels"), LabelPage.class));
+                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Badges"), BadgePage.class));
                 itemView.add(
                         new BookmarkablePageLinkItem(
                                 itemView.newChildId(),

@@ -17,19 +17,18 @@
  */
 package net.dontdrinkandroot.wicket.example.page.component;
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.LabelBehavior;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.BadgeBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.css.BadgeStyle;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-
-public class LabelPage extends ComponentPage
+public class BadgePage extends ComponentPage
 {
 
-    public LabelPage(PageParameters parameters)
+    public BadgePage(PageParameters parameters)
     {
         super(parameters);
     }
@@ -37,7 +36,7 @@ public class LabelPage extends ComponentPage
     @Override
     protected IModel<String> createPageHeadingModel()
     {
-        return Model.of("Labels");
+        return Model.of("Badges");
     }
 
     @Override
@@ -45,12 +44,12 @@ public class LabelPage extends ComponentPage
     {
         super.onInitialize();
 
-        RepeatingView labelView = new RepeatingView("label");
-        this.add(labelView);
-        for (LabelStyle style : LabelStyle.values()) {
-            Label label = new Label(labelView.newChildId(), Model.of(style.name().toLowerCase()));
-            label.add(new LabelBehavior(Model.of(style)));
-            labelView.add(label);
+        RepeatingView badgeView = new RepeatingView("badge");
+        this.add(badgeView);
+        for (BadgeStyle style : BadgeStyle.values()) {
+            Label label = new Label(badgeView.newChildId(), Model.of(style.name().toLowerCase()));
+            label.add(new BadgeBehavior(Model.of(style)));
+            badgeView.add(label);
         }
     }
 }

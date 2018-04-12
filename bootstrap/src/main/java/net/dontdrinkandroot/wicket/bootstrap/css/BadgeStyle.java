@@ -22,18 +22,20 @@ import net.dontdrinkandroot.wicket.css.CssClass;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public enum LabelStyle implements CssClass
+public enum BadgeStyle implements CssClass
 {
-    DEFAULT("label-default"),
-    PRIMARY("label-primary"),
-    SUCCESS("label-success"),
-    INFO("label-info"),
-    WARNING("label-warning"),
-    DANGER("label-danger");
+    PRIMARY("badge-primary"),
+    SECONDARY("badge-secondary"),
+    SUCCESS("badge-success"),
+    DANGER("badge-danger"),
+    WARNING("badge-warning"),
+    INFO("badge-info"),
+    LIGHT("badge-light"),
+    DARK("badge-dark");
 
     private String classString;
 
-    LabelStyle(String classString)
+    BadgeStyle(String classString)
     {
         this.classString = classString;
     }

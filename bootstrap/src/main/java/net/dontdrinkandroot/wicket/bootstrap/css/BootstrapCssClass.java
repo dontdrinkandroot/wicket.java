@@ -27,7 +27,6 @@ public enum BootstrapCssClass implements CssClass
     /* Unchecked Classes */
 
     ADD_ON("add-on"),
-    BADGE("badge"),
     BRAND("brand"),
     CHECKBOX("checkbox"),
     CLOSE("close"),
@@ -85,6 +84,7 @@ public enum BootstrapCssClass implements CssClass
 
     ACTIVE("active"),
     ALERT("alert"),
+    BADGE("badge"),
     BLOCKQUOTE_REVERSE("blockquote-reverse"),
     BREADCRUMB("breadcrumb"),
     BREADCRUMB_ITEM("breadcrumb-item"),
@@ -111,7 +111,6 @@ public enum BootstrapCssClass implements CssClass
     HELP_BLOCK("help-block"),
     INITIALISM("initialism"),
     INPUT_GROUP("input-group"),
-    LABEL("label"),
     LIST_GROUP("list-group"),
     LIST_GROUP_ITEM("list-group-item"),
     LIST_INLINE("list-inline"),

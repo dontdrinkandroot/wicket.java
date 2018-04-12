@@ -89,7 +89,7 @@ public class ExampleWebApplication extends WicketBootStandardWebApplication
         this.mountPage("components/alerts", AlertPage.class);
         this.mountPage("components/buttons", ButtonPage.class);
         this.mountPage("components/dropdowns", DropdownPage.class);
-        this.mountPage("components/labels", LabelPage.class);
+        this.mountPage("components/labels", BadgePage.class);
         this.mountPage("components/modals", ModalPage.class);
         this.mountPage("components/pagination", PaginationPage.class);
         this.mountPage("components/progressbars", ProgressBarPage.class);

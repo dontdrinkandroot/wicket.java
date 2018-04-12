@@ -19,28 +19,28 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.behavior.CompositeBehavior;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
+import net.dontdrinkandroot.wicket.bootstrap.css.BadgeStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.bootstrap.css.LabelStyle;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class LabelBehavior extends CompositeBehavior
+public class BadgeBehavior extends CompositeBehavior
 {
-    public LabelBehavior()
+    public BadgeBehavior()
     {
-        this(Model.of(LabelStyle.DEFAULT));
+        this(Model.of(BadgeStyle.PRIMARY));
     }
 
-    public LabelBehavior(LabelStyle labelStyle)
+    public BadgeBehavior(BadgeStyle badgeStyle)
     {
-        this(Model.of(labelStyle));
+        this(Model.of(badgeStyle));
     }
 
-    public LabelBehavior(IModel<LabelStyle> labelStyleModel)
+    public BadgeBehavior(IModel<BadgeStyle> badgeStyleModel)
     {
-        super(new CssClassAppender(BootstrapCssClass.LABEL), new CssClassAppender(labelStyleModel));
+        super(new CssClassAppender(BootstrapCssClass.BADGE), new CssClassAppender(badgeStyleModel));
     }
 }

@@ -24,13 +24,13 @@ import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LabelBehaviorTest extends AbstractWicketTest
+public class BadgeBehaviorTest extends AbstractWicketTest
 {
     @Test
     public void testDefault()
     {
         WebMarkupContainer comopnent = new WebMarkupContainer("id");
-        comopnent.add(new LabelBehavior());
+        comopnent.add(new BadgeBehavior());
         CharSequence componentMarkup = ComponentRenderer.renderComponent(comopnent);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
