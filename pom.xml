@@ -76,14 +76,14 @@
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 
         <!-- Plugin Versions -->
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <org.jacoco.jacoco-maven-plugin.version>0.7.7.201606060606</org.jacoco.jacoco-maven-plugin.version>
-        <org.eluder.coveralls.coveralls-maven-plugin.version>4.2.0</org.eluder.coveralls.coveralls-maven-plugin.version>
+        <org.jacoco.jacoco-maven-plugin.version>0.8.1</org.jacoco.jacoco-maven-plugin.version>
+        <org.eluder.coveralls.coveralls-maven-plugin.version>4.3.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <com.mycila.license-maven-plugin-parent.version>3.0</com.mycila.license-maven-plugin-parent.version>
 
     </properties>
