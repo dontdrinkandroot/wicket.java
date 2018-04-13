@@ -30,7 +30,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class PaginationPage extends ComponentPage
 {
-
     public PaginationPage(PageParameters parameters)
     {
         super(parameters);
