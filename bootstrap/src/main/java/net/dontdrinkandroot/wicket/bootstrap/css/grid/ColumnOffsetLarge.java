@@ -54,6 +54,6 @@ public enum ColumnOffsetLarge implements ColumnOffset
 
     protected String getPrefix()
     {
-        return "xs";
+        return "lg";
     }
 }

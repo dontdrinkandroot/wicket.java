@@ -54,6 +54,6 @@ public enum ColumnOffsetSmall implements ColumnOffset
 
     protected String getPrefix()
     {
-        return "xs";
+        return "sm";
     }
 }

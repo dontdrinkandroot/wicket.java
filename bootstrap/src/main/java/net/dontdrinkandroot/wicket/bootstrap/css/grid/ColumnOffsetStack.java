@@ -44,25 +44,25 @@ public class ColumnOffsetStack implements ColumnOffset
     @Override
     public String getClassString()
     {
-        StringBuffer classBuffer = new StringBuffer();
+        StringBuilder classBuilder = new StringBuilder();
         if (null != this.columnOffsetExtraSmall) {
-            classBuffer.append(this.columnOffsetExtraSmall.getClassString());
-            classBuffer.append(" ");
+            classBuilder.append(this.columnOffsetExtraSmall.getClassString());
+            classBuilder.append(" ");
         }
         if (null != this.columnOffsetSmall) {
-            classBuffer.append(this.columnOffsetSmall.getClassString());
-            classBuffer.append(" ");
+            classBuilder.append(this.columnOffsetSmall.getClassString());
+            classBuilder.append(" ");
         }
         if (null != this.columnOffsetMedium) {
-            classBuffer.append(this.columnOffsetMedium.getClassString());
-            classBuffer.append(" ");
+            classBuilder.append(this.columnOffsetMedium.getClassString());
+            classBuilder.append(" ");
         }
         if (null != this.columnOffsetLarge) {
-            classBuffer.append(this.columnOffsetLarge.getClassString());
-            classBuffer.append(" ");
+            classBuilder.append(this.columnOffsetLarge.getClassString());
+            classBuilder.append(" ");
         }
 
-        return classBuffer.toString().trim();
+        return classBuilder.toString().trim();
     }
 
     @Override

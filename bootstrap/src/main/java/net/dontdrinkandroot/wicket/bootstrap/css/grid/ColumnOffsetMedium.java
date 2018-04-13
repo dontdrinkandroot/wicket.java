@@ -54,6 +54,6 @@ public enum ColumnOffsetMedium implements ColumnOffset
 
     protected String getPrefix()
     {
-        return "xs";
+        return "md";
     }
 }

@@ -49,7 +49,7 @@ public class ColumnOffsetStackTest
         );
         ColumnOffset inverseStack = stack.getInverseColumnOffset();
         Assert.assertEquals(
-                "col-xs-offset-10 col-xs-offset-9 col-xs-offset-8 col-xs-offset-7",
+                "col-xs-offset-10 col-sm-offset-9 col-md-offset-8 col-lg-offset-7",
                 inverseStack.getClassString()
         );
     }
