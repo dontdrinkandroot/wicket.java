@@ -17,7 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.css.CssClass;
@@ -56,8 +55,6 @@ public class AbstractRepeatingNav<T> extends GenericPanel<T> implements ItemCont
     protected void onInitialize()
     {
         super.onInitialize();
-
-        this.add(new CssClassAppender(BootstrapCssClass.NAV));
 
         RepeatingView itemView = new RepeatingView("item");
         this.populateItems(itemView);

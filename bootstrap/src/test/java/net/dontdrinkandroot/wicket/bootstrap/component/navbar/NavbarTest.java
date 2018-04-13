@@ -40,10 +40,11 @@ public class NavbarTest extends AbstractWicketTest
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(tagTester.getAttributeContains("class", "navbar"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-default"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-light"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "container");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "container-fluid"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "container"));
     }
 
     @Test
@@ -59,7 +60,8 @@ public class NavbarTest extends AbstractWicketTest
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
         Assert.assertTrue(tagTester.getAttributeContains("class", "navbar"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-dark"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-fixed-top"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "fixed-top"));
+        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "container");
         Assert.assertTrue(tagTester.getAttributeContains("class", "container"));
