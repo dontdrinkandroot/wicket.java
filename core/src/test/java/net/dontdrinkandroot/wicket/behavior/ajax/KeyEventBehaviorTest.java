@@ -29,9 +29,8 @@ import org.junit.Test;
 public class KeyEventBehaviorTest extends AbstractWicketTest
 {
     @Test
-    public void testBla()
+    public void testKeyup()
     {
-
         TestPage page = new TestPage()
         {
             @Override

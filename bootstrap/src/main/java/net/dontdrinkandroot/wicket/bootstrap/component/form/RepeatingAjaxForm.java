@@ -22,6 +22,8 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.model.IModel;
 
+import java.util.Optional;
+
 public class RepeatingAjaxForm<T> extends RepeatingForm<T>
 {
     public RepeatingAjaxForm(String id)
@@ -72,7 +74,8 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
     @Override
     protected final void onError()
     {
-        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+        Optional<AjaxRequestTarget> target = this.getRequestCycle().find(AjaxRequestTarget.class);
+        if (!target.isPresent()) {
             this.onError(null);
         }
     }
@@ -80,7 +83,8 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
     @Override
     protected final void onSubmit()
     {
-        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+        Optional<AjaxRequestTarget> target = this.getRequestCycle().find(AjaxRequestTarget.class);
+        if (!target.isPresent()) {
             this.onSubmit(null);
             this.onAfterSubmit(null);
         }
@@ -88,7 +92,7 @@ public class RepeatingAjaxForm<T> extends RepeatingForm<T>
 
     /**
      * Hook for handling the submission with Ajax. Do not perform any setResponsePage Actions here, as they will lead
-     * to a double subission. Use onAfterSubmit instead.
+     * to a double submission. Use onAfterSubmit instead.
      *
      * @param target The current AjaxRequestTarget or null if non was
      */

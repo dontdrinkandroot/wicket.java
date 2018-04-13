@@ -49,7 +49,7 @@ public class ProgressBarTest extends AbstractWicketTest
     }
 
     @Test
-    public void testStripedActiveMarkup()
+    public void testStripedAnimatedMarkup()
     {
         ProgressBar component = new ProgressBar("id", Model.of(33));
 
@@ -64,14 +64,15 @@ public class ProgressBarTest extends AbstractWicketTest
         Assert.assertTrue(component.isAnimated());
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
+        System.out.println(componentMarkup);
+
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
         Assert.assertTrue(componentTester.getAttributeContains("class", "progress"));
-        Assert.assertTrue(componentTester.getAttributeContains("class", "active"));
-        Assert.assertTrue(componentTester.getAttributeContains("class", "progress-bar-striped"));
 
         TagTester barTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "bar");
         Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar"));
-        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar-info"));
+        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar-animated"));
+        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar-striped"));
         Assert.assertEquals("progressbar", barTester.getAttribute("role"));
         Assert.assertEquals("0", barTester.getAttribute("aria-valuemin"));
         Assert.assertEquals("100", barTester.getAttribute("aria-valuemax"));
