@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.dontdrinkandroot</groupId>
     <artifactId>wicket.parent</artifactId>
-    <version>0.5.3-SNAPSHOT</version>
+    <version>0.5.3</version>
     <packaging>pom</packaging>
     <inceptionYear>2012</inceptionYear>
     <description>Parent project for net.dontdrinkandroot.wicket modules</description>
@@ -44,7 +44,7 @@
         <url>git@github.com:dontdrinkandroot/wicket.java.git</url>
         <connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/dontdrinkandroot/wicket.java.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v0.5.3</tag>
     </scm>
 
     <issueManagement>
