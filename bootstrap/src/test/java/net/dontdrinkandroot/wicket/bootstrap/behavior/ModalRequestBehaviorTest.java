@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.ModalPage;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,18 +32,18 @@ public class ModalRequestBehaviorTest extends AbstractWicketTest
     public void testOpenModalRequest()
     {
         ModalPage modalPage = this.tester.startPage(new ModalPage());
-        String pageResponse = this.tester.getLastResponseAsString();
 
         this.tester.clickLink("openModalLink", true);
 
+        String responseAsString = this.tester.getLastResponseAsString();
+
         TagTester tagTester;
 
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(modalPage);
-        tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "modal");
+        tagTester = TagTester.createTagByAttribute(responseAsString, "wicket:id", "modal");
         Assert.assertTrue(tagTester.getAttributeContains("class", "modal"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "fade"));
 
-        tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "heading");
+        tagTester = TagTester.createTagByAttribute(responseAsString, "wicket:id", "heading");
         Assert.assertEquals("Modal Heading", tagTester.getValue());
     }
 
@@ -52,18 +51,18 @@ public class ModalRequestBehaviorTest extends AbstractWicketTest
     public void testCreateAndOpenModalRequest()
     {
         ModalPage modalPage = this.tester.startPage(new ModalPage());
-        String pageResponse = this.tester.getLastResponseAsString();
 
         this.tester.clickLink("createAndOpenModalLink", true);
 
+        String responseAsString = this.tester.getLastResponseAsString();
+
         TagTester tagTester;
 
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(modalPage);
-        tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "modal");
+        tagTester = TagTester.createTagByAttribute(responseAsString, "wicket:id", "modal");
         Assert.assertTrue(tagTester.getAttributeContains("class", "modal"));
         Assert.assertTrue(tagTester.getAttributeContains("class", "fade"));
 
-        tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "heading");
+        tagTester = TagTester.createTagByAttribute(responseAsString, "wicket:id", "heading");
         Assert.assertEquals("Modal Heading", tagTester.getValue());
     }
 }

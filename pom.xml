@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.dontdrinkandroot</groupId>
     <artifactId>wicket.parent</artifactId>
-    <version>0.5.4-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <inceptionYear>2012</inceptionYear>
     <description>Parent project for net.dontdrinkandroot.wicket modules</description>
@@ -66,7 +66,7 @@
     <properties>
         <!-- Build properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wicket.version>[7.0,7.99]</wicket.version>
+        <wicket.version>[8.0,8.99]</wicket.version>
         <!-- Dependencies -->
         <org.slf4j.version>[1.1,1.99]</org.slf4j.version>
         <junit.version>[4.0,4.99]</junit.version>

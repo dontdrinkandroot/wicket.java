@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.component.basic;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.test.TestPage;
 import org.apache.wicket.Component;
-import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -60,9 +59,10 @@ public class OrderedListTest extends AbstractWicketTest
             }
         };
 
-        CharSequence pageMarkup = ComponentRenderer.renderComponent(page);
+        this.tester.startPage(page);
+        String pageMarkup = this.tester.getLastResponseAsString();
 
-        TagTester componentTester = TagTester.createTagByAttribute(pageMarkup.toString(), "wicket:id", "component");
+        TagTester componentTester = TagTester.createTagByAttribute(pageMarkup, "wicket:id", "component");
         String componentMarkup = componentTester.getMarkup();
         Assert.assertEquals("<ol wicket:id=\"component\"><wicket:panel>\n" +
                 "\t\t<li wicket:id=\"item\">Alpha</li><li wicket:id=\"item\">Beta</li><li wicket:id=\"item\">Gamma</li>\n" +

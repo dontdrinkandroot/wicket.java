@@ -101,18 +101,11 @@ public class ValidationPage extends FormPage
                 {
 
                     @Override
-                    protected void onSubmit(AjaxRequestTarget target, Form<?> form)
+                    protected void onSubmit(AjaxRequestTarget target)
                     {
                         this.success("Your form is valid");
                         target.add(ValidationPage.this.getFeedbackPanel());
-                        target.add(form);
-                    }
-
-                    @Override
-                    protected void onError(AjaxRequestTarget target, Form<?> form)
-                    {
-                        super.onError(target, form);
-                        target.add(form);
+                        target.add(this.getForm());
                     }
                 };
                 submitButton.setBody(Model.of("Submit"));

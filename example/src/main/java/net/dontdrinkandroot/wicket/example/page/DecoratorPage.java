@@ -125,7 +125,7 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
                 new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         leftItemView.add(
                 new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
-        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Components"))
+        leftItemView.add(new RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Components"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)
@@ -175,9 +175,8 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             }
         });
 
-        leftItemView.add(new RepeatingDropdownItem(leftItemView.newChildId(), Model.of("Forms"))
+        leftItemView.add(new RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Forms"))
         {
-
             @Override
             protected void populateItems(RepeatingView itemView)
             {
@@ -222,8 +221,11 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
         response.render(new FontAwesomeCssHeaderItem());
         response.render(new CssContentHeaderItem("body{padding-top: 50px;}", "bodyPadding", null));
-        response.render(
-                new CssContentHeaderItem(".has-error .help-block .info{color: #737373;}", "infoHelpText", null));
+        response.render(new CssContentHeaderItem(
+                ".has-error .help-block .info{color: #737373;}",
+                "infoHelpText",
+                null
+        ));
         response.render(new OnDomReadyHeaderItem(" $(\"a[rel='external']\").attr('target', '_blank');"));
         response.render(new HighlightJsInitHeaderItem());
     }

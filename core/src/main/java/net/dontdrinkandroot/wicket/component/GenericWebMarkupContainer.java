@@ -24,9 +24,9 @@ import org.apache.wicket.model.IModel;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class GenericWebMarkupContainer<T> extends WebMarkupContainer  implements IGenericComponent<T> {
-
-    private static final long serialVersionUID = 1L;
+public class GenericWebMarkupContainer<T> extends WebMarkupContainer implements IGenericComponent<T, GenericWebMarkupContainer<T>>
+{
+    private static final long serialVersionUID = 2L;
 
     public GenericWebMarkupContainer(String id)
     {
@@ -36,27 +36,5 @@ public class GenericWebMarkupContainer<T> extends WebMarkupContainer  implements
     public GenericWebMarkupContainer(String id, IModel<T> model)
     {
         super(id, model);
-    }
-
-    @SuppressWarnings("unchecked")
-    public IModel<T> getModel()
-    {
-        return (IModel<T>) this.getDefaultModel();
-    }
-
-    public void setModel(IModel<T> model)
-    {
-        this.setDefaultModel(model);
-    }
-
-    @SuppressWarnings("unchecked")
-    public T getModelObject()
-    {
-        return (T) this.getDefaultModelObject();
-    }
-
-    public void setModelObject(T object)
-    {
-        this.setDefaultModelObject(object);
     }
 }

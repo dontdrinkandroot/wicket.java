@@ -24,22 +24,20 @@ import net.dontdrinkandroot.wicket.example.model.Theme;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
 import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
 
-public class ThemeDropdownItem extends RepeatingDropdownItem
+public class ThemeDropdownItem extends RepeatingDropdownItem<Void>
 {
     public ThemeDropdownItem(String id)
     {
-        super(id, new ConcatenatingStringModel(Model.of("Theme"), ": ", new AbstractReadOnlyModel<String>()
-        {
-
-            @Override
-            public String getObject()
-            {
-                return ExampleWebSession.get().getCurrentTheme().getName();
-            }
-        }));
+        super(
+                id,
+                new ConcatenatingStringModel(
+                        Model.of("Theme"),
+                        ": ",
+                        () -> ExampleWebSession.get().getCurrentTheme().getName()
+                )
+        );
     }
 
     @Override
@@ -52,24 +50,25 @@ public class ThemeDropdownItem extends RepeatingDropdownItem
 
     protected AbstractLinkItem createThemeLinkItem(String id, Theme theme)
     {
-        AbstractLinkItem themeLinkItem = new AbstractLinkItem(id, Model.of(theme.getName()))
-        {
-            @Override
-            protected StatelessLink<Void> createLink(String id)
-            {
-                StatelessLink<Void> themeLink = new StatelessLink<Void>(id)
+        AbstractLinkItem<Void, StatelessLink> themeLinkItem =
+                new AbstractLinkItem<Void, StatelessLink>(id, theme::getName)
                 {
                     @Override
-                    public void onClick()
+                    protected StatelessLink<Void> createLink(String id)
                     {
-                        ExampleWebSession.get().setCurrentTheme(theme);
-                        this.setResponsePage(this.getPage());
+                        StatelessLink<Void> themeLink = new StatelessLink<Void>(id)
+                        {
+                            @Override
+                            public void onClick()
+                            {
+                                ExampleWebSession.get().setCurrentTheme(theme);
+                                this.setResponsePage(this.getPage());
+                            }
+                        };
+
+                        return themeLink;
                     }
                 };
-
-                return themeLink;
-            }
-        };
 
         return themeLinkItem;
     }

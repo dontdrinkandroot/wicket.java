@@ -34,7 +34,7 @@ public class RepeatingFormTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         Assert.assertEquals(
-                "<wicket:form wicket:id=\"id\" id=\"id1\" method=\"post\" action=\"./wicket/page?0-0.IFormSubmitListener-id\"><wicket:panel>\n" +
+                "<wicket:form wicket:id=\"id\" id=\"id1\" method=\"post\" action=\"./wicket/page?0-0.-id\"><wicket:panel>\n" +
                         "\t\t<div wicket:id=\"feedback\" id=\"feedback2\"><wicket:panel>\n" +
                         "\t\t\n" +
                         "\t</wicket:panel></div>\n" +
