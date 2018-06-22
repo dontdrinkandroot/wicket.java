@@ -11,7 +11,7 @@
 
     <properties>
         <!-- Dependencies -->
-        <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
+        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
         <wicket-spring-boot-starter.version>2.1.1</wicket-spring-boot-starter.version>
         <!-- Plugins -->
         <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
