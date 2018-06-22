@@ -20,11 +20,11 @@ package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ProgressBarStyle;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -83,45 +83,31 @@ public class ProgressBar extends GenericPanel<Integer>
         this.add(new CssClassAppender(BootstrapCssClass.PROGRESS));
 
         /* Active */
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ProgressBar.this.isActive()) {
-                    return BootstrapCssClass.ACTIVE;
-                }
-
-                return null;
+        this.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (ProgressBar.this.isActive()) {
+                return BootstrapCssClass.ACTIVE;
             }
+
+            return null;
         }));
 
         /* Striped */
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ProgressBar.this.isStriped()) {
-                    return BootstrapCssClass.PROGRESS_STRIPED;
-                }
-
-                return null;
+        this.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (ProgressBar.this.isStriped()) {
+                return BootstrapCssClass.PROGRESS_STRIPED;
             }
+
+            return null;
         }));
 
         this.bar = new WebMarkupContainer("bar");
 
         this.bar.add(new AttributeModifier("aria-valuenow", this.getModel()));
 
-        this.bar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                return String.format("width: %d%%;", ProgressBar.this.getModelObject());
-            }
-        }));
+        this.bar.add(new AttributeModifier(
+                "style",
+                (IModel<Object>) () -> String.format("width: %d%%;", ProgressBar.this.getModelObject())
+        ));
 
         /* Style */
         this.bar.add(new CssClassAppender(this.styleModel));

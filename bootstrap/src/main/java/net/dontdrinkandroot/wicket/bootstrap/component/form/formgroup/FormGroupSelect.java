@@ -75,7 +75,7 @@ public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownCho
     @Override
     protected DropDownChoice<T> createFormComponent(String id)
     {
-        return new DropDownChoice<T>(id, this.getModel(), (List<T>) null);
+        return new DropDownChoice<>(id, this.getModel(), (List<T>) null);
     }
 
     public void setNullValid(boolean nullValid)

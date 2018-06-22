@@ -56,7 +56,7 @@ public abstract class ThumbnailsList<T> extends GenericPanel<List<T>> {
         this.itemView.removeAll();
 
         for (int idx = 0; idx < this.getModelObject().size(); idx++) {
-            IModel<T> listItemModel = new ListItemModel<T>(this.getModel(), idx);
+            IModel<T> listItemModel = new ListItemModel<>(this.getModel(), idx);
             Component item = this.createItem(this.itemView.newChildId(), listItemModel);
             item.add(new CssClassAppender(this.spanClass));
             this.itemView.add(item);

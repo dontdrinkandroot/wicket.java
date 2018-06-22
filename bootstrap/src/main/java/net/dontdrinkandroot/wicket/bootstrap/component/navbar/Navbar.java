@@ -28,7 +28,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -60,17 +59,12 @@ public class Navbar extends Panel
         this.add(new CssClassAppender(this.positionModel));
 
         WebMarkupContainer container = new WebMarkupContainer("container");
-        container.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-            @Override
-            public CssClass getObject()
-            {
-                if (NavbarPosition.INLINE.equals(Navbar.this.positionModel.getObject())) {
-                    return ContainerStyle.FLUID;
-                }
-
-                return Navbar.this.containerStyleModel.getObject();
+        container.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (NavbarPosition.INLINE.equals(Navbar.this.positionModel.getObject())) {
+                return ContainerStyle.FLUID;
             }
+
+            return Navbar.this.containerStyleModel.getObject();
         }));
         this.add(container);
 
@@ -81,14 +75,10 @@ public class Navbar extends Panel
         container.add(this.navbarCollapse);
 
         Component navbarToggle = this.createNavbarToggle("navbarToggle");
-        navbarToggle.add(new AttributeModifier("data-target", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                return String.format("#%s", Navbar.this.getNavbarCollapseId());
-            }
-        }));
+        navbarToggle.add(new AttributeModifier(
+                "data-target",
+                (IModel<Object>) () -> String.format("#%s", Navbar.this.getNavbarCollapseId())
+        ));
         container.add(navbarToggle);
 
         RepeatingView collapseItemView = new RepeatingView("navbarCollapseItem");

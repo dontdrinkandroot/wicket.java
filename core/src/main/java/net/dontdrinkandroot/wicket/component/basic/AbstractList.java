@@ -60,7 +60,7 @@ public abstract class AbstractList<T> extends GenericPanel<List<T>>
 
                 if ((model != null) && (model.getObject() != null)) {
                     for (int idx = 0; idx < model.getObject().size(); idx++) {
-                        IModel<T> itemModel = new ListItemModel<T>(model, idx);
+                        IModel<T> itemModel = new ListItemModel<>(model, idx);
                         Component listComponent = AbstractList.this.createListComponent(this.newChildId(), itemModel);
                         AbstractList.this.processListComponent(listComponent);
                         this.add(listComponent);

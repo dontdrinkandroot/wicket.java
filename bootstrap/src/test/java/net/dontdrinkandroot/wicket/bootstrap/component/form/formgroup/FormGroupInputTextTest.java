@@ -67,7 +67,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", Model.of("Label"), new Model<String>());
+                new FormGroupInputText("formGroup", Model.of("Label"), new Model<>());
         formGroupInputText.setRequired(true);
         formGroupInputText.getFormComponent().validate();
         formPanel.getForm().add(formGroupInputText);

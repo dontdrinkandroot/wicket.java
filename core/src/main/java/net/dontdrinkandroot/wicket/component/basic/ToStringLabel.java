@@ -33,7 +33,7 @@ public class ToStringLabel extends WebComponent
 {
     public <T extends Serializable> ToStringLabel(final String id, T label)
     {
-        this(id, new Model<T>(label));
+        this(id, new Model<>(label));
     }
 
     public <T extends Serializable> ToStringLabel(final String id, IModel<T> model)

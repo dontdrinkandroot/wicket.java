@@ -42,7 +42,7 @@ public class DateTimeFormatterModelTest extends WicketTestCase
         model = new DateTimeFormatterModel(new Model<>());
         Assert.assertNull(model.getObject());
 
-        model = new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 1, 1, 12, 00)), "yyyy-MM-dd HH:mm:ss");
+        model = new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 1, 1, 12, 0)), "yyyy-MM-dd HH:mm:ss");
         Assert.assertEquals("2017-01-01 12:00:00", model.getObject());
 
         model = new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC)));
@@ -60,7 +60,7 @@ public class DateTimeFormatterModelTest extends WicketTestCase
     public void testWrapped()
     {
         DateTimeFormatterModel model =
-                new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 3, 1, 12, 00)), "d. MMM yyyy HH:mm");
+                new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 3, 1, 12, 0)), "d. MMM yyyy HH:mm");
         Label component = new Label("id", model)
         {
             @Override

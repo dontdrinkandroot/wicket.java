@@ -38,7 +38,7 @@ public abstract class FirstPageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<String> createLabel()
     {
-        return new Model<String>("");
+        return new Model<>("");
     }
 
     @Override

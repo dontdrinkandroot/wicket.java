@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 
 import java.util.List;
@@ -46,16 +45,11 @@ public class FormGroupInputFile extends FormGroupFormComponent<List<FileUpload>,
     protected FileUploadField createFormComponent(String id)
     {
         FileUploadField fileUploadField = new FileUploadField(id, this.getModel());
-        fileUploadField.add(new AttributeAppender("multiple", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                if (FormGroupInputFile.this.multiple) {
-                    return "multiple";
-                }
-                return null;
+        fileUploadField.add(new AttributeAppender("multiple", (IModel<Object>) () -> {
+            if (FormGroupInputFile.this.multiple) {
+                return "multiple";
             }
+            return null;
         }));
 
         return fileUploadField;

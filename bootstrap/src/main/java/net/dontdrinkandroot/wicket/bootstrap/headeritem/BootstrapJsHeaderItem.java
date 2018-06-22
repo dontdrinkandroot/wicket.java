@@ -52,7 +52,7 @@ public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
         if (Application.exists()) {
             backingLibraryReference = Application.get().getJavaScriptLibrarySettings().getJQueryReference();
         } else {
-            backingLibraryReference = JQueryResourceReference.get();
+            backingLibraryReference = JQueryResourceReference.getV3();
         }
 
         return Collections.singletonList(JavaScriptHeaderItem.forReference(backingLibraryReference));

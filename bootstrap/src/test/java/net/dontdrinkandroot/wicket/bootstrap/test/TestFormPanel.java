@@ -27,7 +27,7 @@ public class TestFormPanel extends Panel
     public TestFormPanel(String id)
     {
         super(id);
-        this.form = new Form<Void>("form");
+        this.form = new Form<>("form");
         this.add(this.form);
     }
 

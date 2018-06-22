@@ -28,8 +28,6 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import java.util.Iterator;
-
 public class ProgressBarPage extends ComponentPage
 {
     public ProgressBarPage(PageParameters parameters)
@@ -48,7 +46,7 @@ public class ProgressBarPage extends ComponentPage
     {
         super.onInitialize();
 
-        final IModel<Integer> valueModel = new Model<Integer>(33);
+        final IModel<Integer> valueModel = new Model<>(33);
         final RepeatingView progressBarView = new RepeatingView("progressBarStyle");
         this.add(progressBarView);
         for (ProgressBarStyle style : ProgressBarStyle.values()) {
@@ -61,9 +59,7 @@ public class ProgressBarPage extends ComponentPage
             public void onClick(AjaxRequestTarget target)
             {
                 valueModel.setObject((int) Math.round(Math.random() * 100));
-                Iterator<Component> childIterator = progressBarView.iterator();
-                while (childIterator.hasNext()) {
-                    Component child = childIterator.next();
+                for (Component child : progressBarView) {
                     ((ProgressBar) child).update(target);
                 }
             }

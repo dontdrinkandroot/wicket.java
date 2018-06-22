@@ -35,6 +35,6 @@ public class TitleModifier extends AttributeModifier
 
     public TitleModifier(String titleString)
     {
-        super("title", new Model<String>(titleString));
+        super("title", new Model<>(titleString));
     }
 }

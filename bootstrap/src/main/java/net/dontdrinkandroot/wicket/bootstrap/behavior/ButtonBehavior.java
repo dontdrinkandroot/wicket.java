@@ -29,7 +29,6 @@ import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.form.AbstractSubmitLink;
 import org.apache.wicket.markup.html.link.AbstractLink;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -74,7 +73,7 @@ public class ButtonBehavior extends CompositeBehavior implements IButton
         this.buttonStyleModel = buttonStyleModel;
         this.buttonSizeModel = buttonSizeModel;
 
-        this.addBehavior(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        this.addBehavior(new CssClassAppender(new IModel<CssClass>()
         {
             @Override
             public CssClass getObject()
@@ -89,7 +88,7 @@ public class ButtonBehavior extends CompositeBehavior implements IButton
             }
         }));
 
-        this.addBehavior(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
+        this.addBehavior(new CssClassAppender(new IModel<CssClass>()
         {
             @Override
             public CssClass getObject()

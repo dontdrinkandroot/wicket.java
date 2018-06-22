@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.model;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Philip W. Sorst <philip@sorst.net>
  */
-public class IntegerRangeListModel extends AbstractReadOnlyModel<List<Integer>>
+public class IntegerRangeListModel implements IModel<List<Integer>>
 {
     private List<Integer> list;
 

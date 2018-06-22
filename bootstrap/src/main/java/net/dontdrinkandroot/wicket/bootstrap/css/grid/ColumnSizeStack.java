@@ -64,25 +64,25 @@ public class ColumnSizeStack implements ColumnSize
     @Override
     public String getClassString()
     {
-        StringBuffer classBuffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         if (null != this.columnSizeExtraSmall) {
-            classBuffer.append(this.columnSizeExtraSmall.getClassString());
-            classBuffer.append(" ");
+            builder.append(this.columnSizeExtraSmall.getClassString());
+            builder.append(" ");
         }
         if (null != this.columnSizeSmall) {
-            classBuffer.append(this.columnSizeSmall.getClassString());
-            classBuffer.append(" ");
+            builder.append(this.columnSizeSmall.getClassString());
+            builder.append(" ");
         }
         if (null != this.columnSizeMedium) {
-            classBuffer.append(this.columnSizeMedium.getClassString());
-            classBuffer.append(" ");
+            builder.append(this.columnSizeMedium.getClassString());
+            builder.append(" ");
         }
         if (null != this.columnSizeLarge) {
-            classBuffer.append(this.columnSizeLarge.getClassString());
-            classBuffer.append(" ");
+            builder.append(this.columnSizeLarge.getClassString());
+            builder.append(" ");
         }
 
-        return classBuffer.toString().trim();
+        return builder.toString().trim();
     }
 
     @Override

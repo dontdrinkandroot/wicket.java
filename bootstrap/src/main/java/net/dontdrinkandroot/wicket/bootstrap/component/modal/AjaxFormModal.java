@@ -41,7 +41,7 @@ public abstract class AjaxFormModal<T> extends FormModal<T>
     @Override
     protected Form<T> createForm(String id)
     {
-        Form<T> form = new Form<T>(id);
+        Form<T> form = new Form<>(id);
         form.add(new AjaxFormSubmitBehavior(form, "submit")
         {
             @Override

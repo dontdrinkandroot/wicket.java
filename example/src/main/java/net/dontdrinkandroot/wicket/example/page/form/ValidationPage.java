@@ -51,7 +51,7 @@ public class ValidationPage extends FormPage
     protected void onInitialize()
     {
         super.onInitialize();
-        Form<Void> form = new Form<Void>("form");
+        Form<Void> form = new Form<>("form");
         this.add(form);
 
         RepeatingView stateFormGroupView = new RepeatingView("stateFormGroup");
@@ -76,7 +76,7 @@ public class ValidationPage extends FormPage
         FormGroupInputEmail validationFormGroup = new FormGroupInputEmail(
                 formGroupView.newChildId(),
                 Model.of("Validation (email)"),
-                new Model<String>("")
+                new Model<>("")
         );
         validationFormGroup.setRequired(true);
         validationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
@@ -85,7 +85,7 @@ public class ValidationPage extends FormPage
         FormGroupInputEmail ajaxValidationFormGroup = new FormGroupInputEmail(
                 formGroupView.newChildId(),
                 Model.of("Ajax Validation (email)"),
-                new Model<String>("Type to see what's happening")
+                new Model<>("Type to see what's happening")
         );
         ajaxValidationFormGroup.setRequired(true);
         ajaxValidationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));

@@ -85,7 +85,7 @@ public class NavbarPage extends ComponentPage
                     protected void populateItems(RepeatingView itemView)
                     {
                         super.populateItems(itemView);
-                        itemView.add(new RepeatingDropdownItem(itemView.newChildId(), Model.of("Dropdown"))
+                        itemView.add(new RepeatingDropdownItem<Void>(itemView.newChildId(), Model.of("Dropdown"))
                         {
                             @Override
                             protected void populateItems(RepeatingView itemView)
@@ -119,7 +119,7 @@ public class NavbarPage extends ComponentPage
                 NavbarText text = new NavbarText(collapseItemView.newChildId(), Model.of("Text"));
                 collapseItemView.add(text);
 
-                NavbarButton button = new NavbarButton(collapseItemView.newChildId())
+                NavbarButton<Void> button = new NavbarButton<Void>(collapseItemView.newChildId())
                 {
                     @Override
                     public void onClick()

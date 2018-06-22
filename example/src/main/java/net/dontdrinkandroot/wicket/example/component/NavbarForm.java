@@ -35,7 +35,7 @@ public class NavbarForm extends net.dontdrinkandroot.wicket.bootstrap.component.
     {
         super.onInitialize();
 
-        FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<String>());
+        FormGroupInputText searchGroup = new FormGroupInputText("searchGroup", Model.of("Search"), new Model<>());
         searchGroup.setLabelScreenReaderOnly(true);
         this.add(searchGroup);
         this.add(new AjaxSubmitButton("submit").setBody(Model.of("Search")));

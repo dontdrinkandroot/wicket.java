@@ -23,7 +23,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize;
 import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.GenericPanel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -75,22 +74,8 @@ public abstract class Column<T> extends GenericPanel<T>
     {
         super.onInitialize();
 
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-            @Override
-            public CssClass getObject()
-            {
-                return Column.this.sizeModel.getObject();
-            }
-        }));
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-            @Override
-            public CssClass getObject()
-            {
-                return Column.this.offsetModel.getObject();
-            }
-        }));
+        this.add(new CssClassAppender((IModel<CssClass>) () -> Column.this.sizeModel.getObject()));
+        this.add(new CssClassAppender((IModel<CssClass>) () -> Column.this.offsetModel.getObject()));
         this.add(this.createContent("content"));
     }
 

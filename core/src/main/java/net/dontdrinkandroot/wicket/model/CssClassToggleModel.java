@@ -18,14 +18,13 @@
 package net.dontdrinkandroot.wicket.model;
 
 import net.dontdrinkandroot.wicket.css.CssClass;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class CssClassToggleModel extends AbstractReadOnlyModel<CssClass>
+public class CssClassToggleModel implements IModel<CssClass>
 {
     private IModel<Boolean> toggleModel;
 
@@ -64,13 +63,12 @@ public class CssClassToggleModel extends AbstractReadOnlyModel<CssClass>
 
     protected boolean isActive()
     {
-        return this.toggleModel.getObject().booleanValue();
+        return this.toggleModel.getObject();
     }
 
     @Override
     public void detach()
     {
-        super.detach();
         if (null != this.toggleModel) {
             this.toggleModel.detach();
         }

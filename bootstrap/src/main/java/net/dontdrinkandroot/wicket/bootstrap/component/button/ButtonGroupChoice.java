@@ -22,11 +22,11 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
@@ -43,7 +43,7 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 
     public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
     {
-        this(id, model, new ListModel<T>(choices));
+        this(id, model, new ListModel<>(choices));
     }
 
     public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
@@ -80,17 +80,12 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
         };
         choiceLink.setBody(this.getDisplayModel(choice));
         choiceLink.add(this.buttonBehavior);
-        choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-                    return BootstrapCssClass.ACTIVE;
-                }
-
-                return null;
+        choiceLink.add(new CssClassAppender((IModel<CssClass>) () -> {
+            if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
+                return BootstrapCssClass.ACTIVE;
             }
+
+            return null;
         }));
 
         return choiceLink;
@@ -144,6 +139,6 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 
     protected IModel<String> getDisplayModel(T choice)
     {
-        return new Model<String>(choice.toString());
+        return new Model<>(choice.toString());
     }
 }

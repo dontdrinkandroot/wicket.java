@@ -42,18 +42,16 @@ public abstract class KeyEventBehavior extends AjaxEventBehavior
     {
         super.updateAjaxAttributes(attributes);
 
-        StringBuffer keyEvtBuffer = new StringBuffer();
-        keyEvtBuffer.append("return {");
-        keyEvtBuffer.append("'keyEvent.altKey': attrs.event.altKey,");
-        keyEvtBuffer.append("'keyEvent.charCode': attrs.event.charCode,");
-        keyEvtBuffer.append("'keyEvent.ctrlKey': attrs.event.ctrlKey,");
-        keyEvtBuffer.append("'keyEvent.keyCode': attrs.event.keyCode,");
-        keyEvtBuffer.append("'keyEvent.metaKey': attrs.event.metaKey,");
-        keyEvtBuffer.append("'keyEvent.shiftKey': attrs.event.shiftKey,");
-        keyEvtBuffer.append("'keyEvent.which': attrs.event.which");
-        keyEvtBuffer.append("}");
-
-        attributes.getDynamicExtraParameters().add(keyEvtBuffer.toString());
+        String keyEventBuilder = "return {" +
+                "'keyEvent.altKey': attrs.event.altKey," +
+                "'keyEvent.charCode': attrs.event.charCode," +
+                "'keyEvent.ctrlKey': attrs.event.ctrlKey," +
+                "'keyEvent.keyCode': attrs.event.keyCode," +
+                "'keyEvent.metaKey': attrs.event.metaKey," +
+                "'keyEvent.shiftKey': attrs.event.shiftKey," +
+                "'keyEvent.which': attrs.event.which" +
+                "}";
+        attributes.getDynamicExtraParameters().add(keyEventBuilder);
     }
 
     @Override

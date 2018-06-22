@@ -95,7 +95,7 @@ public abstract class FormPage extends DecoratorPage<Void>
         );
         formGroupView.add(formGroupUrlTextField);
 
-        FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<String>(
+        FormGroupTextArea<String> formGroupTextArea = new FormGroupTextArea<>(
                 formGroupView.newChildId(),
                 Model.of(FormGroupTextArea.class.getSimpleName()),
                 Model.of("")
@@ -143,7 +143,7 @@ public abstract class FormPage extends DecoratorPage<Void>
         );
         formGroupView.add(formGroupCheckBox);
 
-        FormGroupRadioChoice<String> formGroupRadioChoice = new FormGroupRadioChoice<String>(
+        FormGroupRadioChoice<String> formGroupRadioChoice = new FormGroupRadioChoice<>(
                 formGroupView.newChildId(),
                 Model.of(FormGroupRadioChoice.class.getSimpleName()),
                 Model.of(""),
@@ -151,7 +151,7 @@ public abstract class FormPage extends DecoratorPage<Void>
         );
         formGroupView.add(formGroupRadioChoice);
 
-        FormGroupSelect<String> formGroupSelect = new FormGroupSelect<String>(
+        FormGroupSelect<String> formGroupSelect = new FormGroupSelect<>(
                 formGroupView.newChildId(),
                 Model.of(FormGroupSelect.class.getSimpleName()),
                 Model.of(""),

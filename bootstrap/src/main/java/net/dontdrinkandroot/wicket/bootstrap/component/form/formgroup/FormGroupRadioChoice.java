@@ -49,7 +49,7 @@ public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioC
     @Override
     protected RadioChoice<T> createFormComponent(String id)
     {
-        RadioChoice<T> radioChoice = new RadioChoice<T>(id, this.getModel(), (List<T>) null);
+        RadioChoice<T> radioChoice = new RadioChoice<>(id, this.getModel(), (List<T>) null);
         radioChoice.setPrefix("<div class=\"radio\">");
         radioChoice.setSuffix("</div>");
         radioChoice.setLabelPosition(LabelPosition.WRAP_AFTER);

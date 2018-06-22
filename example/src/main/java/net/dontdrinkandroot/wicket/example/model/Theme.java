@@ -53,7 +53,7 @@ public class Theme implements Serializable
 
     public static List<Theme> getAvailableThemes()
     {
-        List<Theme> availableThemes = new ArrayList<Theme>();
+        List<Theme> availableThemes = new ArrayList<>();
         availableThemes.add(
                 new Theme(
                         "Vanilla",

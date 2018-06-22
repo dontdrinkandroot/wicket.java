@@ -55,7 +55,7 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
                 protected void populateColumns(RepeatingView columnView)
                 {
                     ColumnSize inverseColumnSize = columnSize.getInverseColumnSize();
-                    Column left = new Column(columnView.newChildId())
+                    Column<Void> left = new Column<Void>(columnView.newChildId())
                     {
                         @Override
                         protected Component createContent(String id)
@@ -69,7 +69,7 @@ public class ColumnPanel extends GenericPanel<ColumnSize>
                     left.add(new CssClassAppender(TextAlignment.CENTER));
                     columnView.add(left);
 
-                    Column right = new Column(columnView.newChildId())
+                    Column<Void> right = new Column<Void>(columnView.newChildId())
                     {
                         @Override
                         protected Component createContent(String id)

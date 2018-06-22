@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.UrlUtils;
 
@@ -38,17 +37,12 @@ public class ExternalLinkItem extends AbstractLinkItem<String, ExternalLink>
     {
         ExternalLink link = new ExternalLink(id, this.getModel());
 
-        link.add(new AttributeModifier("rel", new AbstractReadOnlyModel<String>()
-        {
-            @Override
-            public String getObject()
-            {
-                if (UrlUtils.isRelative(ExternalLinkItem.this.getModelObject())) {
-                    return null;
-                }
-
-                return "external";
+        link.add(new AttributeModifier("rel", (IModel<Object>) () -> {
+            if (UrlUtils.isRelative(ExternalLinkItem.this.getModelObject())) {
+                return null;
             }
+
+            return "external";
         }));
         return link;
     }

@@ -32,7 +32,7 @@ public class SimplePanelTest extends AbstractWicketTest
     @Test
     public void testDefaultMarkup()
     {
-        SimplePanel<String> component = new SimplePanel<String>("id", Model.of("Nothing"), Model.of("title"));
+        SimplePanel<String> component = new SimplePanel<>("id", Model.of("Nothing"), Model.of("title"));
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");

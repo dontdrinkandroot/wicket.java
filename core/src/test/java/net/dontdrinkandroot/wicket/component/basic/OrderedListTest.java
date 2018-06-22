@@ -46,7 +46,7 @@ public class OrderedListTest extends AbstractWicketTest
                 OrderedList<String> component =
                         new OrderedList<String>(
                                 componentView.newChildId(),
-                                new ListModel<String>(Arrays.asList("Alpha", "Beta", "Gamma"))
+                                new ListModel<>(Arrays.asList("Alpha", "Beta", "Gamma"))
                         )
                         {
                             @Override

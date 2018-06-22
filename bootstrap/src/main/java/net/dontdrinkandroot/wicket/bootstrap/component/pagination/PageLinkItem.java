@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -55,15 +54,7 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<String> createLabel()
     {
-        return new AbstractReadOnlyModel<String>()
-        {
-
-            @Override
-            public String getObject()
-            {
-                return Long.toString(PageLinkItem.this.page + 1);
-            }
-        };
+        return (IModel<String>) () -> Long.toString(PageLinkItem.this.page + 1);
     }
 
     @Override
@@ -80,14 +71,6 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<Long> getPaginablePageModel()
     {
-        return new AbstractReadOnlyModel<Long>()
-        {
-
-            @Override
-            public Long getObject()
-            {
-                return PageLinkItem.this.page;
-            }
-        };
+        return (IModel<Long>) () -> PageLinkItem.this.page;
     }
 }

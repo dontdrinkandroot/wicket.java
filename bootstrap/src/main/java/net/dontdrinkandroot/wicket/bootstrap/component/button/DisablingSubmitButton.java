@@ -30,7 +30,7 @@ public class DisablingSubmitButton extends AjaxSubmitLink
 {
     protected ButtonBehavior buttonBehavior = new ButtonBehavior();
 
-    private IModel<String> loadingTextModel = new Model<String>("Submitting...");
+    private IModel<String> loadingTextModel = new Model<>("Submitting...");
 
     public DisablingSubmitButton(String id)
     {
@@ -77,13 +77,10 @@ public class DisablingSubmitButton extends AjaxSubmitLink
         {
             String formMarkupId = DisablingSubmitButton.this.getForm().getMarkupId();
 
-            StringBuilder builder = new StringBuilder();
-            builder.append(String.format("$('#%s').button('loading');", DisablingSubmitButton.this.getMarkupId()));
-            builder.append(String.format("$('#%s input').attr('disabled', 'disabled');", formMarkupId));
-            builder.append(String.format("$('#%s textarea').attr('disabled', 'disabled');", formMarkupId));
-            builder.append(String.format("$('#%s select').attr('disabled', 'disabled');", formMarkupId));
-
-            return builder.toString();
+            return String.format("$('#%s').button('loading');", DisablingSubmitButton.this.getMarkupId()) +
+                    String.format("$('#%s input').attr('disabled', 'disabled');", formMarkupId) +
+                    String.format("$('#%s textarea').attr('disabled', 'disabled');", formMarkupId) +
+                    String.format("$('#%s select').attr('disabled', 'disabled');", formMarkupId);
         }
 
         @Override
@@ -91,13 +88,10 @@ public class DisablingSubmitButton extends AjaxSubmitLink
         {
             String formMarkupId = DisablingSubmitButton.this.getForm().getMarkupId();
 
-            StringBuilder builder = new StringBuilder();
-            builder.append(String.format("$('#%s').button('reset');", DisablingSubmitButton.this.getMarkupId()));
-            builder.append(String.format("$('#%s input').removeAttr('disabled', 'disabled');", formMarkupId));
-            builder.append(String.format("$('#%s textarea').removeAttr('disabled', 'disabled');", formMarkupId));
-            builder.append(String.format("$('#%s select').removeAttr('disabled', 'disabled');", formMarkupId));
-
-            return builder.toString();
+            return String.format("$('#%s').button('reset');", DisablingSubmitButton.this.getMarkupId()) +
+                    String.format("$('#%s input').removeAttr('disabled', 'disabled');", formMarkupId) +
+                    String.format("$('#%s textarea').removeAttr('disabled', 'disabled');", formMarkupId) +
+                    String.format("$('#%s select').removeAttr('disabled', 'disabled');", formMarkupId);
         }
     }
 }

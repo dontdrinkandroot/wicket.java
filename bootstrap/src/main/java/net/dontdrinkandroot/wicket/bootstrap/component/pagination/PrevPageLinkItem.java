@@ -23,7 +23,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -40,7 +39,7 @@ public abstract class PrevPageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<String> createLabel()
     {
-        return new Model<String>("");
+        return new Model<>("");
     }
 
     @Override
@@ -67,14 +66,6 @@ public abstract class PrevPageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<Long> getPaginablePageModel()
     {
-        return new AbstractReadOnlyModel<Long>()
-        {
-
-            @Override
-            public Long getObject()
-            {
-                return PrevPageLinkItem.this.getPageable().getCurrentPage() - 1;
-            }
-        };
+        return (IModel<Long>) () -> PrevPageLinkItem.this.getPageable().getCurrentPage() - 1;
     }
 }

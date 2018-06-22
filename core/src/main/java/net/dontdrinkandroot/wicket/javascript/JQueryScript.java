@@ -577,19 +577,19 @@ public class JQueryScript implements CharSequence
 
     public JQueryScript siblings(final String selector)
     {
-        this.scriptBuffer.append(".siblings(" + this.nullSafeEscapedString(selector) + ")");
+        this.scriptBuffer.append(".siblings(").append(this.nullSafeEscapedString(selector)).append(")");
         return this;
     }
 
     public JQueryScript removeClass(final String string)
     {
-        this.scriptBuffer.append(".removeClass('" + string + "')");
+        this.scriptBuffer.append(".removeClass('").append(string).append("')");
         return this;
     }
 
     public JQueryScript addClass(final String string)
     {
-        this.scriptBuffer.append(".addClass('" + string + "')");
+        this.scriptBuffer.append(".addClass('").append(string).append("')");
         return this;
     }
 

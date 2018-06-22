@@ -33,7 +33,7 @@ public class CssClassClassStringModel extends AbstractChainedModel<CssClass, Str
 
     public CssClassClassStringModel(CssClass cssClass)
     {
-        super(new Model<CssClass>(cssClass));
+        super(new Model<>(cssClass));
     }
 
     @Override
