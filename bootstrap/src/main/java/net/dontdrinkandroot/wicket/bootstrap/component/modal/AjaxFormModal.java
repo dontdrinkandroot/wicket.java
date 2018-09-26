@@ -79,7 +79,7 @@ public abstract class AjaxFormModal<T> extends FormModal<T>
     @Override
     protected final void onError()
     {
-        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+        if (!this.getRequestCycle().find(AjaxRequestTarget.class).isPresent()) {
             this.onError(null);
         }
     }
@@ -87,7 +87,7 @@ public abstract class AjaxFormModal<T> extends FormModal<T>
     @Override
     protected final void onSubmit()
     {
-        if (null == this.getRequestCycle().find(AjaxRequestTarget.class)) {
+        if (!this.getRequestCycle().find(AjaxRequestTarget.class).isPresent()) {
             this.onSubmit(null);
             this.onAfterSubmit(null);
         }

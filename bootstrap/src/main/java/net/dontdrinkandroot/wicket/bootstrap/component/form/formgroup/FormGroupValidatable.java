@@ -69,6 +69,8 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
             @Override
             protected void onConfigure()
             {
+                super.onConfigure();
+
                 /* Always renotify of help text if set so it gets rendered every time */
                 IModel<String> helpTextModel = FormGroupValidatable.this.helpTextModel;
                 if ((null != helpTextModel) && (null != helpTextModel.getObject())) {

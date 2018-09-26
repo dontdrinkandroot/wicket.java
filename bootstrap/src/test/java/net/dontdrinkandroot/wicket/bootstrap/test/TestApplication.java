@@ -18,7 +18,13 @@
 package net.dontdrinkandroot.wicket.bootstrap.test;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.protocol.http.WebSession;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
+
+import java.util.Locale;
 
 public class TestApplication extends WebApplication
 {
@@ -26,5 +32,18 @@ public class TestApplication extends WebApplication
     public Class<? extends Page> getHomePage()
     {
         return TestHomePage.class;
+    }
+
+    @Override
+    public Session newSession(Request request, Response response)
+    {
+        return new WebSession(request)
+        {
+            @Override
+            public Locale getLocale()
+            {
+                return Locale.ENGLISH;
+            }
+        };
     }
 }

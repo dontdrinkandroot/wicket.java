@@ -90,9 +90,10 @@ public class FormGroup<T> extends GenericPanel<T>
     protected Component createLabel(String id)
     {
         Label label = new Label(id, this.labelModel);
-        label.add(new CssClassAppender(
-                new CssClassToggleModel(this.labelScreenReaderOnlyModel, BootstrapCssClass.SR_ONLY)
-        ));
+        label.add(new CssClassAppender(new CssClassToggleModel(
+                this.labelScreenReaderOnlyModel,
+                BootstrapCssClass.SR_ONLY
+        )));
         label.add(new CssClassAppender(BootstrapCssClass.CONTROL_LABEL));
         return label;
     }

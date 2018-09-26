@@ -13,7 +13,7 @@
 
         <!-- Dependency Versions -->
         <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
-        <wicket-spring-boot-starter.version>2.1.0</wicket-spring-boot-starter.version>
+        <wicket-spring-boot-starter.version>2.1.2</wicket-spring-boot-starter.version>
 
         <!-- Plugin Versions -->
         <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>

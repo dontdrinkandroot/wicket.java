@@ -67,7 +67,6 @@
 
         <!-- Build properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<wicket.version>[7.0,7.99]</wicket.version>-->
         <wicket.version>[8.0,8.99]</wicket.version>
 
         <!-- Dependency Versions-->
