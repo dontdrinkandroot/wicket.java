@@ -22,7 +22,6 @@ import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.feedback.FeedbackMessage;
@@ -82,7 +81,7 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
         };
         this.helpBlock.setOutputMarkupId(true);
 
-        this.add(new CssClassAppender((IModel<CssClass>) FormGroupValidatable.this::getValidationState));
+        this.add(new CssClassAppender(FormGroupValidatable.this::getValidationState));
     }
 
     @Override

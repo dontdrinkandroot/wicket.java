@@ -70,7 +70,7 @@ public class Navbar extends Panel
         Component navbarToggle = this.createNavbarToggler("navbarToggler");
         navbarToggle.add(new AttributeModifier(
                 "data-target",
-                (IModel<String>) () -> String.format("#%s", Navbar.this.getNavbarCollapseId())
+                () -> String.format("#%s", Navbar.this.getNavbarCollapseId())
         ));
         container.add(navbarToggle);
 

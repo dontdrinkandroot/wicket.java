@@ -22,7 +22,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.pagination.PaginationPane
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -41,7 +40,6 @@ public class PaginationPage extends ComponentPage
 
         IPageable pageable = new IPageable()
         {
-
             private long currentPage;
 
             @Override
@@ -63,15 +61,7 @@ public class PaginationPage extends ComponentPage
             }
         };
 
-        Label currentPageLabel = new Label("currentPage", new AbstractReadOnlyModel<String>()
-        {
-
-            @Override
-            public String getObject()
-            {
-                return Long.toString(pageable.getCurrentPage());
-            }
-        });
+        Label currentPageLabel = new Label("currentPage", () -> Long.toString(pageable.getCurrentPage()));
         currentPageLabel.setOutputMarkupId(true);
         this.add(currentPageLabel);
 

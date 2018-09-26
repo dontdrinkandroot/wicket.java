@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -58,7 +57,7 @@ public class AbstractItem<T> extends GenericPanel<T>
             }
         }));
 
-        this.add(new CssClassAppender((IModel<CssClass>) () -> {
+        this.add(new CssClassAppender(() -> {
 
             MarkupContainer parent = AbstractItem.this.getParent();
 

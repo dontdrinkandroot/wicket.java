@@ -23,13 +23,11 @@ import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 public abstract class NextPageLinkItem extends AbstractPageLinkItem
 {
-
     public NextPageLinkItem(String id, IPageable pageable)
     {
         super(id, pageable);
@@ -66,14 +64,6 @@ public abstract class NextPageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<Long> getPaginablePageModel()
     {
-        return new AbstractReadOnlyModel<Long>()
-        {
-
-            @Override
-            public Long getObject()
-            {
-                return NextPageLinkItem.this.getPageable().getCurrentPage() + 1;
-            }
-        };
+        return () -> NextPageLinkItem.this.getPageable().getCurrentPage() + 1;
     }
 }

@@ -122,7 +122,7 @@ public class NavPage extends ComponentPage
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                itemView.add(new BookmarkablePageLinkItem(
+                itemView.add(new BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         Model.of("A Link"),
                         ExampleWebApplication.get().getHomePage()

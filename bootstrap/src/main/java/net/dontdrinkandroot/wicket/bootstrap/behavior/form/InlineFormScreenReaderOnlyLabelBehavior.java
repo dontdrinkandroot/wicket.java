@@ -19,11 +19,9 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import net.dontdrinkandroot.wicket.util.BehaviorUtils;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -35,22 +33,15 @@ public class InlineFormScreenReaderOnlyLabelBehavior extends Behavior
     {
         super.bind(component);
 
-        component.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-
-            @Override
-            public CssClass getObject()
-            {
-                FormStyleBehavior formStyleBehavior =
-                        BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
-                if (null != formStyleBehavior) {
-                    if (formStyleBehavior.isInline()) {
-                        return BootstrapCssClass.SR_ONLY;
-                    }
+        component.add(new CssClassAppender(() -> {
+            FormStyleBehavior formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
+            if (null != formStyleBehavior) {
+                if (formStyleBehavior.isInline()) {
+                    return BootstrapCssClass.SR_ONLY;
                 }
-
-                return null;
             }
+
+            return null;
         }));
     }
 }

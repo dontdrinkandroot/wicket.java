@@ -26,7 +26,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
@@ -80,17 +79,12 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
         };
         choiceLink.setBody(this.getDisplayModel(choice));
         choiceLink.add(this.buttonBehavior);
-        choiceLink.add(new CssClassAppender(new AbstractReadOnlyModel<BootstrapCssClass>()
-        {
-            @Override
-            public BootstrapCssClass getObject()
-            {
-                if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-                    return BootstrapCssClass.ACTIVE;
-                }
-
-                return null;
+        choiceLink.add(new CssClassAppender(() -> {
+            if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
+                return BootstrapCssClass.ACTIVE;
             }
+
+            return null;
         }));
 
         return choiceLink;

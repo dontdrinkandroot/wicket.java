@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.progress;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.css.CssClass;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -76,11 +75,11 @@ public class ProgressBar extends GenericPanel<Integer>
 
         this.bar.add(new AttributeModifier(
                 "style",
-                (IModel<String>) () -> String.format("width: %d%%;", ProgressBar.this.getModelObject())
+                () -> String.format("width: %d%%;", ProgressBar.this.getModelObject())
         ));
 
         /* Animated */
-        this.bar.add(new CssClassAppender((IModel<CssClass>) () -> {
+        this.bar.add(new CssClassAppender(() -> {
             if (ProgressBar.this.isAnimated()) {
                 return BootstrapCssClass.PROGRESS_BAR_ANIMATED;
             }
@@ -89,7 +88,7 @@ public class ProgressBar extends GenericPanel<Integer>
         }));
 
         /* Striped */
-        this.bar.add(new CssClassAppender((IModel<CssClass>) () -> {
+        this.bar.add(new CssClassAppender(() -> {
             if (ProgressBar.this.isStriped()) {
                 return BootstrapCssClass.PROGRESS_BAR_STRIPED;
             }

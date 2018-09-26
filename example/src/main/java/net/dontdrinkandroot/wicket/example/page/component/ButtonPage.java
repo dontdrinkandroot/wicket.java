@@ -118,6 +118,10 @@ public class ButtonPage extends ComponentPage
 
     protected void populateDropdownItems(RepeatingView itemView)
     {
-        itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("This is a link"), ButtonPage.class));
+        itemView.add(new BookmarkablePageLinkItem<Void>(
+                itemView.newChildId(),
+                Model.of("This is a link"),
+                ButtonPage.class
+        ));
     }
 }

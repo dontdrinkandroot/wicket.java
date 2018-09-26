@@ -50,7 +50,7 @@ public class FormGroupPage extends FormPage
         RepeatingView styleItemView = new RepeatingView("styleItem");
         this.add(styleItemView);
 
-        styleItemView.add(new AjaxLinkItem(styleItemView.newChildId(), Model.of("Default"))
+        styleItemView.add(new AjaxLinkItem<Void>(styleItemView.newChildId(), Model.of("Default"))
         {
             @Override
             protected void onClick(AjaxRequestTarget target)
@@ -66,9 +66,8 @@ public class FormGroupPage extends FormPage
                         && !FormGroupPage.this.formStyleBehavior.isHorizontal();
             }
         });
-        styleItemView.add(new AjaxLinkItem(styleItemView.newChildId(), Model.of("Horizontal"))
+        styleItemView.add(new AjaxLinkItem<Void>(styleItemView.newChildId(), Model.of("Horizontal"))
         {
-
             @Override
             protected void onClick(AjaxRequestTarget target)
             {
@@ -82,9 +81,8 @@ public class FormGroupPage extends FormPage
                 return FormGroupPage.this.formStyleBehavior.isHorizontal();
             }
         });
-        styleItemView.add(new AjaxLinkItem(styleItemView.newChildId(), Model.of("Inline"))
+        styleItemView.add(new AjaxLinkItem<Void>(styleItemView.newChildId(), Model.of("Inline"))
         {
-
             @Override
             protected void onClick(AjaxRequestTarget target)
             {

@@ -54,12 +54,12 @@ public class PanelPage extends ComponentPage
 
         for (PanelStyle panelStyle : PanelStyle.values()) {
             SimplePanel panel =
-                    new SimplePanel(panelStyleView.newChildId(), Model.of(panelStyle.name()), Heading.Level.H3);
+                    new SimplePanel<Void>(panelStyleView.newChildId(), Model.of(panelStyle.name()), Heading.Level.H3);
             panel.setPanelStyle(panelStyle);
             panelStyleView.add(panel);
         }
 
-        PlainPanel panelFooter = new PlainPanel("panelFooter")
+        PlainPanel panelFooter = new PlainPanel<Void>("panelFooter")
         {
             @Override
             protected Component createBody(String id)

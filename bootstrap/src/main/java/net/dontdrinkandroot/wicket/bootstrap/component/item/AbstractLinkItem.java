@@ -117,7 +117,7 @@ public abstract class AbstractLinkItem<T, L extends AbstractLink> extends Abstra
             }
         }));
 
-        this.link.add(new CssClassAppender((IModel<CssClass>) () -> {
+        this.link.add(new CssClassAppender(() -> {
 
             MarkupContainer parent = AbstractLinkItem.this.getParent();
 

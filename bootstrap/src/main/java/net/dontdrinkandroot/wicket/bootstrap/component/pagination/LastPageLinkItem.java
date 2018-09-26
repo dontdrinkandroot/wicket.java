@@ -22,7 +22,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIcon;
 import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -65,14 +64,6 @@ public abstract class LastPageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<Long> getPaginablePageModel()
     {
-        return new AbstractReadOnlyModel<Long>()
-        {
-
-            @Override
-            public Long getObject()
-            {
-                return LastPageLinkItem.this.getPageable().getPageCount() - 1;
-            }
-        };
+        return () -> LastPageLinkItem.this.getPageable().getPageCount() - 1;
     }
 }

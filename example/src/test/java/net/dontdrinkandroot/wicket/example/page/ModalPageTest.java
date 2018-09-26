@@ -37,7 +37,6 @@ public class ModalPageTest extends AbstractWicketTest
         this.tester.clickLink("openStandardModalButton", true);
 
         String response = this.tester.getLastResponseAsString();
-        System.out.println(response);
 
         TagTester modalTester =
                 TagTester.createTagByAttribute(this.tester.getLastResponseAsString(), "wicket:id", "modal");

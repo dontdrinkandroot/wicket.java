@@ -73,7 +73,7 @@ public class NavbarPage extends ComponentPage
             @Override
             protected Component createBrand(String id)
             {
-                BookmarkablePageLink brandLink = new BookmarkablePageLink(id, HomePage.class);
+                BookmarkablePageLink brandLink = new BookmarkablePageLink<Void>(id, HomePage.class);
                 brandLink.setBody(Model.of("Brand"));
                 return brandLink;
             }
@@ -94,7 +94,7 @@ public class NavbarPage extends ComponentPage
                             @Override
                             protected void populateItems(RepeatingView itemView)
                             {
-                                itemView.add(new BookmarkablePageLinkItem(
+                                itemView.add(new BookmarkablePageLinkItem<Void>(
                                         itemView.newChildId(),
                                         Model.of("Action"),
                                         HomePage.class
@@ -102,14 +102,14 @@ public class NavbarPage extends ComponentPage
                                 itemView.add(new DropdownDividerItem(itemView.newChildId()));
                                 itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
                                 itemView.add(
-                                        new BookmarkablePageLinkItem(
+                                        new BookmarkablePageLinkItem<Void>(
                                                 itemView.newChildId(),
                                                 Model.of("Another Action"),
                                                 HomePage.class
                                         ));
                             }
                         });
-                        itemView.add(new BookmarkablePageLinkItem(
+                        itemView.add(new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Link"),
                                 NavbarPage.class

@@ -58,10 +58,10 @@ public class DropdownPage extends ComponentPage
 
     protected void populateItems(RepeatingView itemView)
     {
-        itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Action"), HomePage.class));
+        itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), Model.of("Action"), HomePage.class));
         itemView.add(new DropdownDividerItem(itemView.newChildId()));
         itemView.add(new DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")));
-        itemView.add(new BookmarkablePageLinkItem(
+        itemView.add(new BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
                 Model.of("Another Action"),
                 DropdownPage.class

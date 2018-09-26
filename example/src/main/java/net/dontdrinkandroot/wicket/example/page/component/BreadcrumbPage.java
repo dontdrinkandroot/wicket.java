@@ -51,11 +51,11 @@ public class BreadcrumbPage extends ComponentPage
             @Override
             protected void populateItems(RepeatingView itemView)
             {
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Examples"),
+                itemView.add(new BookmarkablePageLinkItem<Void>(itemView.newChildId(), Model.of("Examples"),
                         ExampleWebApplication.get().getHomePage()
                 ));
 
-                itemView.add(new BookmarkablePageLinkItem(
+                itemView.add(new BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         Model.of("Breadcrumbs"),
                         BreadcrumbPage.class

@@ -53,7 +53,7 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<String> createLabel()
     {
-        return (IModel<String>) () -> Long.toString(PageLinkItem.this.page + 1);
+        return () -> Long.toString(PageLinkItem.this.page + 1);
     }
 
     @Override
@@ -70,6 +70,6 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
     @Override
     protected IModel<Long> getPaginablePageModel()
     {
-        return (IModel<Long>) () -> PageLinkItem.this.page;
+        return () -> PageLinkItem.this.page;
     }
 }

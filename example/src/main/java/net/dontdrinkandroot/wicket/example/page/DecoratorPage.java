@@ -124,60 +124,76 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
     protected void populateNavbarLeftItems(RepeatingView leftItemView)
     {
         leftItemView.add(
-                new BookmarkablePageLinkItem(
+                new BookmarkablePageLinkItem<Void>(
                         leftItemView.newChildId(),
                         Model.of("Getting Started"),
                         GettingStartedPage.class
                 ));
         leftItemView.add(
-                new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("CSS"), CssPage.class));
+                new BookmarkablePageLinkItem<Void>(leftItemView.newChildId(), Model.of("CSS"), CssPage.class));
         leftItemView.add(
-                new BookmarkablePageLinkItem(leftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
+                new BookmarkablePageLinkItem<Void>(leftItemView.newChildId(), Model.of("The Grid"), GridPage.class));
         leftItemView.add(new RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Components"))
         {
             @Override
             protected void populateItems(RepeatingView itemView)
             {
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Buttons"), ButtonPage.class));
+                        new BookmarkablePageLinkItem<Void>(
+                                itemView.newChildId(),
+                                Model.of("Buttons"),
+                                ButtonPage.class
+                        ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Panels"), PanelPage.class));
+                        new BookmarkablePageLinkItem<Void>(itemView.newChildId(), Model.of("Panels"), PanelPage.class));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Navs"), NavPage.class));
+                        new BookmarkablePageLinkItem<Void>(itemView.newChildId(), Model.of("Navs"), NavPage.class));
                 itemView.add(
-                        new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Navbars"), NavbarPage.class));
+                        new BookmarkablePageLinkItem<Void>(
+                                itemView.newChildId(),
+                                Model.of("Navbars"),
+                                NavbarPage.class
+                        ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Breadcrumbs"),
                                 BreadcrumbPage.class
                         ));
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Badges"), BadgePage.class));
+                itemView.add(new BookmarkablePageLinkItem<Void>(
+                        itemView.newChildId(),
+                        Model.of("Badges"),
+                        BadgePage.class
+                ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Alerts and Feedback"),
                                 AlertPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Progress Bars"),
                                 ProgressBarPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Pagination"),
                                 PaginationPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Dropdowns"),
                                 DropdownPage.class
                         ));
-                itemView.add(new BookmarkablePageLinkItem(itemView.newChildId(), Model.of("Modals"), ModalPage.class));
+                itemView.add(new BookmarkablePageLinkItem<Void>(
+                        itemView.newChildId(),
+                        Model.of("Modals"),
+                        ModalPage.class
+                ));
             }
 
             @Override
@@ -193,25 +209,25 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
             protected void populateItems(RepeatingView itemView)
             {
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Form Groups and Form Styles"),
                                 FormGroupPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Input Groups"),
                                 InputGroupPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Validations"),
                                 ValidationPage.class
                         ));
                 itemView.add(
-                        new BookmarkablePageLinkItem(
+                        new BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
                                 Model.of("Ajax Forms"),
                                 AjaxFormPage.class
