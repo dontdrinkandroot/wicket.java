@@ -29,7 +29,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 
 public class OffsetPanel extends GenericPanel<Void>
 {
@@ -61,14 +61,10 @@ public class OffsetPanel extends GenericPanel<Void>
                         @Override
                         protected Component createContent(String id)
                         {
-                            Label label = new Label(id, new AbstractReadOnlyModel<String>()
-                            {
-                                @Override
-                                public String getObject()
-                                {
-                                    return columnOffset.getClassString() + " " + inverseColumnSize.getClassString();
-                                }
-                            });
+                            Label label = new Label(
+                                    id,
+                                    (IModel<String>) () -> columnOffset.getClassString() + " " + inverseColumnSize.getClassString()
+                            );
                             label.add(new CssClassAppender(BackgroundColor.INFO));
                             return label;
                         }

@@ -27,7 +27,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.FormComponent;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
 import org.apache.wicket.validation.IValidator;
@@ -83,14 +82,7 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
         };
         this.helpBlock.setOutputMarkupId(true);
 
-        this.add(new CssClassAppender(new AbstractReadOnlyModel<CssClass>()
-        {
-            @Override
-            public CssClass getObject()
-            {
-                return FormGroupValidatable.this.getValidationState();
-            }
-        }));
+        this.add(new CssClassAppender((IModel<CssClass>) FormGroupValidatable.this::getValidationState));
     }
 
     @Override

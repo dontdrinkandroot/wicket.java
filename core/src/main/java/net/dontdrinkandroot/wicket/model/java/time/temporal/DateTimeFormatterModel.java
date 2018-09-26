@@ -19,7 +19,6 @@ package net.dontdrinkandroot.wicket.model.java.time.temporal;
 
 import net.dontdrinkandroot.wicket.model.AbstractChainedModel;
 import org.apache.wicket.Component;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IComponentAssignedModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.IWrapModel;
@@ -101,7 +100,7 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
         return this;
     }
 
-    private class AssignmentWrapper extends AbstractReadOnlyModel<String> implements IWrapModel<String>
+    private class AssignmentWrapper implements IWrapModel<String>
     {
         private Component component;
 
@@ -125,7 +124,6 @@ public class DateTimeFormatterModel extends AbstractChainedModel<TemporalAccesso
         @Override
         public void detach()
         {
-            super.detach();
             DateTimeFormatterModel.this.detach();
         }
     }
