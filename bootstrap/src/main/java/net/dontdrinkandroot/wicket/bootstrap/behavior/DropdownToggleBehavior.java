@@ -23,7 +23,6 @@ import net.dontdrinkandroot.wicket.behavior.aria.Aria;
 import net.dontdrinkandroot.wicket.behavior.aria.AriaModifier;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.behavior.Behavior;
 
 /**
  * Adds the required attributes for a DropDown Toggle.
@@ -32,7 +31,7 @@ import org.apache.wicket.behavior.Behavior;
  */
 public class DropdownToggleBehavior extends CompositeBehavior
 {
-    public DropdownToggleBehavior(Behavior... behaviors)
+    public DropdownToggleBehavior()
     {
         super(
                 new CssClassAppender(BootstrapCssClass.DROPDOWN_TOGGLE),
