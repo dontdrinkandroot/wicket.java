@@ -30,6 +30,11 @@ public abstract class LinkItem<T> extends AbstractLinkItem<T, Link<T>>
         super(id, labelModel);
     }
 
+    public LinkItem(String id, IModel<String> labelModel, IModel<T> model)
+    {
+        super(id, labelModel, model);
+    }
+
     @Override
     protected Link<T> createLink(String id)
     {
