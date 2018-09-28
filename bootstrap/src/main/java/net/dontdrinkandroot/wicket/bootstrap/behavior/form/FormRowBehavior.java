@@ -26,7 +26,7 @@ import org.apache.wicket.behavior.Behavior;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class FormLabelSizeBehavior extends Behavior
+public class FormRowBehavior extends Behavior
 {
     @Override
     public void bind(final Component component)
@@ -37,18 +37,7 @@ public class FormLabelSizeBehavior extends Behavior
             FormStyleBehavior formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
             if (null != formStyleBehavior) {
                 if (formStyleBehavior.isHorizontal()) {
-                    return formStyleBehavior.getLabelSize();
-                }
-            }
-
-            return null;
-        }));
-
-        component.add(new CssClassAppender(() -> {
-            FormStyleBehavior formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior.class);
-            if (null != formStyleBehavior) {
-                if (formStyleBehavior.isHorizontal()) {
-                    return BootstrapCssClass.COL_FORM_LABEL;
+                    return BootstrapCssClass.ROW;
                 }
             }
 

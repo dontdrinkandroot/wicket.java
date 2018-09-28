@@ -58,7 +58,6 @@ public enum BootstrapCssClass implements CssClass
     PAGER("pager"),
     PREVIOUS("previous"),
     RADIO("radio"),
-    ROW("row"),
     ROW_FLUID("row-fluid"),
     SEARCH_QUERY("search-query"),
     SUCCESS("success"),
@@ -93,6 +92,7 @@ public enum BootstrapCssClass implements CssClass
     BTN_GROUP("btn-group"),
     BTN_TOOLBAR("btn-toolbar"),
     CARET("caret"),
+    COL_FORM_LABEL("col-form-label"),
     CLEARFIX("clearfix"),
     COLLAPSED("collapsed"),
     CONTROL_LABEL("control-label"),
@@ -142,6 +142,7 @@ public enum BootstrapCssClass implements CssClass
     PROGRESS_BAR_ANIMATED("progress-bar-animated"),
     PROGRESS_BAR_STRIPED("progress-bar-striped"),
     PULL_LEFT("pull-left"),
+    ROW("row"),
     SR_ONLY("sr-only"),
     THUMBNAIL("thumbnail"),
     THUMBNAILS("thumbnails");

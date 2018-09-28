@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormRowBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.Component;
@@ -83,6 +84,7 @@ public class FormGroup<T> extends GenericPanel<T>
 
     protected void addBehaviors()
     {
+        this.add(new FormRowBehavior());
         this.label.add(new FormLabelSizeBehavior());
         this.container.add(new FormContainerSizeBehavior());
     }
