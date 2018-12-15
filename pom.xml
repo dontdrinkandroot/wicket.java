@@ -66,10 +66,10 @@
     <properties>
         <!-- Build properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wicket.version>[8.0,8.99]</wicket.version>
+        <wicket.version>[8.0,9.0)</wicket.version>
         <!-- Dependencies -->
-        <org.slf4j.version>[1.1,1.99]</org.slf4j.version>
-        <junit.version>[4.0,4.99]</junit.version>
+        <org.slf4j.version>[1.1,2.0)</org.slf4j.version>
+        <junit.version>[4.0,5.0)</junit.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <!-- Plugins -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
