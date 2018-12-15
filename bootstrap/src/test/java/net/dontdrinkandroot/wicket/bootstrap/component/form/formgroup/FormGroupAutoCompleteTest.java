@@ -60,7 +60,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
                         "        </li>\n" +
                         "    </ul>\n" +
                         "</wicket:extend></wicket:child>\n" +
-                        "\t\t<div id=\"helpBlock7\" style=\"display:none\"></div>\n" +
+                        "\t\t<div id=\"helpBlock7\" style=\"display:none\" data-wicket-placeholder=\"\"></div>\n" +
                         "\t</wicket:extend></wicket:child>\n" +
                         "\t\t\n" +
                         "\t</wicket:panel></wicket:container>",
