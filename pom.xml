@@ -36,10 +36,6 @@
         </license>
     </licenses>
 
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
-
     <scm>
         <url>git@github.com:dontdrinkandroot/wicket.java.git</url>
         <connection>scm:git:git@github.com/dontdrinkandroot/wicket.java.git</connection>
@@ -95,6 +91,30 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.5,)</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
