@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.AsteriskBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel;
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
@@ -42,6 +43,8 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
     protected FencedFeedbackPanel helpBlock;
 
     protected IModel<String> helpTextModel;
+
+    protected RequiredIndicationStrategy requiredIndicationStrategy = RequiredIndicationStrategy.ASTERISK;
 
     public FormGroupValidatable(String id, IModel<String> labelModel, IModel<T> model)
     {
@@ -97,6 +100,9 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
     {
         Component label = super.createLabel(id);
         label.add(new ForComponentIdBehavior(this.getFormComponent()));
+        label.add(new AsteriskBehavior((IModel<Boolean>) () ->
+                RequiredIndicationStrategy.ASTERISK == this.requiredIndicationStrategy
+                        && this.getFormComponent().isRequired()));
 
         return label;
     }
@@ -147,7 +153,11 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
             return ValidationState.SUCCESS;
         }
 
-        if (this.getFormComponent().isRequired() && null == this.getModelObject()) {
+        if (
+                RequiredIndicationStrategy.VALIDATION_STATE.equals(this.requiredIndicationStrategy)
+                        && this.getFormComponent().isRequired()
+                        && null == this.getModelObject()
+        ) {
             return ValidationState.WARNING;
         }
 
@@ -162,6 +172,11 @@ public abstract class FormGroupValidatable<T, M, F extends FormComponent<M>> ext
     public void setHelpText(IModel<String> helpTextModel)
     {
         this.helpTextModel = helpTextModel;
+    }
+
+    public void setRequiredIndicationStrategy(RequiredIndicationStrategy requiredIndicationStrategy)
+    {
+        this.requiredIndicationStrategy = requiredIndicationStrategy;
     }
 
     public abstract F getFormComponent();
