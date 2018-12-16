@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.dontdrinkandroot</groupId>
     <artifactId>wicket.parent</artifactId>
@@ -35,10 +36,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
 
     <scm>
         <url>git@github.com:dontdrinkandroot/wicket.java.git</url>
@@ -84,6 +81,7 @@
         <org.jacoco.jacoco-maven-plugin.version>0.8.1</org.jacoco.jacoco-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.3.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <com.mycila.license-maven-plugin-parent.version>3.0</com.mycila.license-maven-plugin-parent.version>
+        <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
 
     </properties>
 
@@ -101,6 +99,30 @@
                     <!--<compilerArgument>-Xlint:deprecation</compilerArgument>-->
                     <!--<compilerArgument>-Xlint:unchecked</compilerArgument>-->
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.5,)</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
