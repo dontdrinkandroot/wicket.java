@@ -67,10 +67,10 @@ public class InputGroupAddonTest extends AbstractWicketTest
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(formGroupInputText);
         TagTester inputGroupAddonBefore =
-                TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupAddonBefore");
+                TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupPrepend");
         Assert.assertEquals("input-group-addon", inputGroupAddonBefore.getAttribute("class"));
         TagTester inputGroupAddonAfter =
-                TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupAddonAfter");
+                TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupAppend");
         Assert.assertEquals("input-group-btn", inputGroupAddonAfter.getAttribute("class"));
     }
 }
