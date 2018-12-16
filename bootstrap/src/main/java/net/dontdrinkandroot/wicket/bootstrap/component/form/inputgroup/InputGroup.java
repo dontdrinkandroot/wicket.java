@@ -33,13 +33,13 @@ import org.apache.wicket.model.IModel;
  */
 public abstract class InputGroup<T, M, F extends FormComponent<M>> extends GenericPanel<T>
 {
-    public static final String INPUT_GROUP_ADDON_BEFORE_ID = "inputGroupAddonBefore";
+    public static final String INPUT_GROUP_PREPEND_ID = "inputGroupPrepend";
 
-    public static final String INPUT_GROUP_ADDON_AFTER_ID = "inputGroupAddonAfter";
+    public static final String INPUT_GROUP_APPEND_ID = "inputGroupAppend";
 
-    private Component inputGroupAddonBefore;
+    private Component inputGroupPrepend;
 
-    private Component inputGroupAddonAfter;
+    private Component inputGroupAppend;
 
     private F formComponent;
 
@@ -64,11 +64,11 @@ public abstract class InputGroup<T, M, F extends FormComponent<M>> extends Gener
 
         this.add(this.formComponent);
 
-        this.inputGroupAddonBefore = this.createInputGroupAddonBefore(InputGroup.INPUT_GROUP_ADDON_BEFORE_ID);
-        this.add(this.inputGroupAddonBefore);
+        this.inputGroupPrepend = this.createInputGroupPrepend(InputGroup.INPUT_GROUP_PREPEND_ID);
+        this.add(this.inputGroupPrepend);
 
-        this.inputGroupAddonAfter = this.createInputGroupAddonAfter(InputGroup.INPUT_GROUP_ADDON_AFTER_ID);
-        this.add(this.inputGroupAddonAfter);
+        this.inputGroupAppend = this.createInputGroupAppend(InputGroup.INPUT_GROUP_APPEND_ID);
+        this.add(this.inputGroupAppend);
     }
 
     @Override
@@ -76,7 +76,7 @@ public abstract class InputGroup<T, M, F extends FormComponent<M>> extends Gener
     {
         super.onConfigure();
 
-        boolean hasAddon = this.inputGroupAddonBefore.isVisible() || this.inputGroupAddonAfter.isVisible();
+        boolean hasAddon = this.inputGroupPrepend.isVisible() || this.inputGroupAppend.isVisible();
         this.setRenderBodyOnly(!hasAddon);
     }
 
@@ -91,12 +91,12 @@ public abstract class InputGroup<T, M, F extends FormComponent<M>> extends Gener
         return this.formComponent;
     }
 
-    protected Component createInputGroupAddonBefore(String id)
+    protected Component createInputGroupPrepend(String id)
     {
         return new WebMarkupContainer(id).setVisible(false);
     }
 
-    protected Component createInputGroupAddonAfter(String id)
+    protected Component createInputGroupAppend(String id)
     {
         return new WebMarkupContainer(id).setVisible(false);
     }

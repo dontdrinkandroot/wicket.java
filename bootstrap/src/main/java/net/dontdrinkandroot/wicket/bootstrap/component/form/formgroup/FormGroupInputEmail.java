@@ -22,11 +22,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.model.IModel;
 
-
-public class FormGroupInputEmail
-        extends FormGroupInputGroup<String, String, EmailTextField, InputGroupEmail>
+public class FormGroupInputEmail extends FormGroupInputGroup<String, String, EmailTextField, InputGroupEmail>
 {
-
     public FormGroupInputEmail(String id, IModel<String> labelModel, IModel<String> model)
     {
         super(id, labelModel, model);
@@ -37,17 +34,16 @@ public class FormGroupInputEmail
     {
         return new InputGroupEmail(id, this.getModel())
         {
-
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupInputEmail.this.createInputGroupAddonBefore(id);
+                return FormGroupInputEmail.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupInputEmail.this.createInputGroupAddonAfter(id);
+                return FormGroupInputEmail.this.createInputGroupAppend(id);
             }
         };
     }

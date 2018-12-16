@@ -23,11 +23,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.model.IModel;
 
-
-public class FormGroupInputPassword
-        extends FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>
+public class FormGroupInputPassword extends FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>
 {
-
     public FormGroupInputPassword(String id, IModel<String> labelModel, IModel<String> model)
     {
         super(id, labelModel, model);
@@ -40,17 +37,16 @@ public class FormGroupInputPassword
         {
 
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupInputPassword.this.createInputGroupAddonBefore(id);
+                return FormGroupInputPassword.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupInputPassword.this.createInputGroupAddonAfter(id);
+                return FormGroupInputPassword.this.createInputGroupAppend(id);
             }
         };
     }
-
 }

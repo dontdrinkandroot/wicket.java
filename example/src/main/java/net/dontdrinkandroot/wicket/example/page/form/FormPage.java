@@ -110,7 +110,7 @@ public abstract class FormPage extends DecoratorPage<Void>
         )
         {
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
                 InputGroupLabel after = new InputGroupLabel(id);
                 after.add(new IconBehavior(FontAwesomeIconClass.CALENDAR_O.createIcon()));

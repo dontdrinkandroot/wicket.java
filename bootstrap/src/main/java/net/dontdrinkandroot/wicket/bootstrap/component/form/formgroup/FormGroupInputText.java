@@ -38,15 +38,15 @@ public class FormGroupInputText extends FormGroupInputGroup<String, String, Text
         return new InputGroupText(id, this.getModel())
         {
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupInputText.this.createInputGroupAddonBefore(id);
+                return FormGroupInputText.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupInputText.this.createInputGroupAddonAfter(id);
+                return FormGroupInputText.this.createInputGroupAppend(id);
             }
         };
     }

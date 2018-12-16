@@ -25,7 +25,6 @@ import org.apache.wicket.model.IModel;
 
 public class FormGroupInputUrl extends FormGroupInputGroup<String, String, UrlTextField, InputGroupUrl>
 {
-
     public FormGroupInputUrl(String id, IModel<String> labelModel, IModel<String> model)
     {
         super(id, labelModel, model);
@@ -38,15 +37,15 @@ public class FormGroupInputUrl extends FormGroupInputGroup<String, String, UrlTe
         {
 
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupInputUrl.this.createInputGroupAddonBefore(id);
+                return FormGroupInputUrl.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupInputUrl.this.createInputGroupAddonAfter(id);
+                return FormGroupInputUrl.this.createInputGroupAppend(id);
             }
         };
     }

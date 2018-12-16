@@ -41,15 +41,15 @@ public class FormGroupLocalTime extends FormGroupInputGroup<LocalTime, LocalTime
         return new InputGroupLocalTime(id, this.getModel())
         {
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupLocalTime.this.createInputGroupAddonBefore(id);
+                return FormGroupLocalTime.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupLocalTime.this.createInputGroupAddonAfter(id);
+                return FormGroupLocalTime.this.createInputGroupAppend(id);
             }
         };
     }

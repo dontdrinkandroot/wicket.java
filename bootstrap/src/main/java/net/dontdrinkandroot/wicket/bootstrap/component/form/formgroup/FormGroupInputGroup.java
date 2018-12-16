@@ -57,12 +57,12 @@ public abstract class FormGroupInputGroup<T, M, F extends FormComponent<M>, I ex
         return this.inputGroup.getFormComponent();
     }
 
-    protected Component createInputGroupAddonBefore(String id)
+    protected Component createInputGroupPrepend(String id)
     {
         return new WebMarkupContainer(id).setVisible(false);
     }
 
-    protected Component createInputGroupAddonAfter(String id)
+    protected Component createInputGroupAppend(String id)
     {
         return new WebMarkupContainer(id).setVisible(false);
     }

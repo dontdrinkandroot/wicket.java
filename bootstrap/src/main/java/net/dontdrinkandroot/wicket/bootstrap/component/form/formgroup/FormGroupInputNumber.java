@@ -26,8 +26,7 @@ import org.apache.wicket.model.IModel;
  * @param <N> Type of the Number.
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class FormGroupInputNumber<N extends Number & Comparable<N>>
-        extends FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumber<N>>
+public class FormGroupInputNumber<N extends Number & Comparable<N>> extends FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumber<N>>
 {
     public FormGroupInputNumber(String id, IModel<String> labelModel, IModel<N> model)
     {
@@ -40,15 +39,15 @@ public class FormGroupInputNumber<N extends Number & Comparable<N>>
         return new InputGroupNumber<N>(id, this.getModel())
         {
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupInputNumber.this.createInputGroupAddonBefore(id);
+                return FormGroupInputNumber.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupInputNumber.this.createInputGroupAddonAfter(id);
+                return FormGroupInputNumber.this.createInputGroupAppend(id);
             }
         };
     }

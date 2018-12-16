@@ -41,15 +41,15 @@ public class FormGroupLocalDate extends FormGroupInputGroup<LocalDate, LocalDate
         return new InputGroupLocalDate(id, this.getModel())
         {
             @Override
-            protected Component createInputGroupAddonBefore(String id)
+            protected Component createInputGroupPrepend(String id)
             {
-                return FormGroupLocalDate.this.createInputGroupAddonBefore(id);
+                return FormGroupLocalDate.this.createInputGroupPrepend(id);
             }
 
             @Override
-            protected Component createInputGroupAddonAfter(String id)
+            protected Component createInputGroupAppend(String id)
             {
-                return FormGroupLocalDate.this.createInputGroupAddonAfter(id);
+                return FormGroupLocalDate.this.createInputGroupAppend(id);
             }
         };
     }

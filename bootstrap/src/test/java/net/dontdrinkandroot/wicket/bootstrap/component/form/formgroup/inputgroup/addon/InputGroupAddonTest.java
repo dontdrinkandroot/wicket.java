@@ -45,13 +45,13 @@ public class InputGroupAddonTest extends AbstractWicketTest
                 new FormGroupInputText("formGroup", Model.of("Label"), Model.of("Value"))
                 {
                     @Override
-                    protected Component createInputGroupAddonBefore(String id)
+                    protected Component createInputGroupPrepend(String id)
                     {
                         return new InputGroupLabel(id, Model.of("Label"));
                     }
 
                     @Override
-                    protected Component createInputGroupAddonAfter(String id)
+                    protected Component createInputGroupAppend(String id)
                     {
                         return new InputGroupButton(id)
                         {
