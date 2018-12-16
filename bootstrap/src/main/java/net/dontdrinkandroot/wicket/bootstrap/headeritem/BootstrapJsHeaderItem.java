@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
 {
-    public static String BOOTSTRAP_VERSION = "4.0.0";
+    public static String BOOTSTRAP_VERSION = "4.1.3";
 
     public BootstrapJsHeaderItem(boolean defer)
     {
