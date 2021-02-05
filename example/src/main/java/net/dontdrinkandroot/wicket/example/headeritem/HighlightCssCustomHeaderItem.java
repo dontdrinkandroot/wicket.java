@@ -30,7 +30,7 @@ public class HighlightCssCustomHeaderItem extends CssContentHeaderItem
 {
     public HighlightCssCustomHeaderItem()
     {
-        super(".hljs {background: transparent; padding: 0;}", "highlight-custom", null);
+        super(".hljs {background: transparent; padding: 0;}", "highlight-custom");
     }
 
     @Override

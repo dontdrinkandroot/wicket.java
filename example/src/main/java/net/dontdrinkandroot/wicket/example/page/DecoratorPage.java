@@ -248,11 +248,10 @@ public abstract class DecoratorPage<T> extends StandardBootstrapPage<T>
         response.render(this.getBootstrapJavaScriptHeaderItem());
         response.render(new CssUrlReferenceHeaderItem(ExampleWebSession.get().getCurrentTheme().getUrl(), null, null));
         response.render(new FontAwesomeCssHeaderItem());
-        response.render(new CssContentHeaderItem("body{padding-top: 56px;}", "bodyPadding", null));
+        response.render(new CssContentHeaderItem("body{padding-top: 56px;}", "bodyPadding"));
         response.render(new CssContentHeaderItem(
                 ".has-error .help-block .info{color: #737373;}",
-                "infoHelpText",
-                null
+                "infoHelpText"
         ));
         response.render(new OnDomReadyHeaderItem(" $(\"a[rel='external']\").attr('target', '_blank');"));
         response.render(new HighlightJsInitHeaderItem());

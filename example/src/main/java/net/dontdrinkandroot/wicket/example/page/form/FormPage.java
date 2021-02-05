@@ -34,8 +34,8 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.time.Duration;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +70,7 @@ public abstract class FormPage extends DecoratorPage<Void>
                 Model.of("")
         );
         formGroupTextField.getFormComponent().setRequired(true);
-        formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+        formGroupTextField.addAjaxValidation("input", new ThrottlingSettings(Duration.ofMillis(250)));
         formGroupTextField.setHelpText(Model.of("A help text"));
         formGroupView.add(formGroupTextField);
 

@@ -2,7 +2,7 @@
     <parent>
         <groupId>net.dontdrinkandroot</groupId>
         <artifactId>wicket.parent</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
+        <version>0.8.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 
         <!-- Dependency Versions -->
         <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-        <wicket-spring-boot-starter.version>[2.1.2,2.999]</wicket-spring-boot-starter.version>
+        <wicket-spring-boot-starter.version>[3.0.4,3.999]</wicket-spring-boot-starter.version>
 
         <!-- Plugin Versions -->
         <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>

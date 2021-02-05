@@ -29,7 +29,8 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.time.Duration;
+
+import java.time.Duration;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -79,7 +80,7 @@ public class ValidationPage extends FormPage
                 new Model<String>("")
         );
         validationFormGroup.setRequired(true);
-        validationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+        validationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.ofMillis(250)));
         formGroupView.add(validationFormGroup);
 
         FormGroupInputEmail ajaxValidationFormGroup = new FormGroupInputEmail(
@@ -88,7 +89,7 @@ public class ValidationPage extends FormPage
                 new Model<String>("Type to see what's happening")
         );
         ajaxValidationFormGroup.setRequired(true);
-        ajaxValidationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.milliseconds(250)));
+        ajaxValidationFormGroup.addAjaxValidation("input", new ThrottlingSettings(Duration.ofMillis(250)));
         formGroupView.add(ajaxValidationFormGroup);
 
         FormGroupActions<Void> formGroupActions = new FormGroupActions<Void>(formGroupView.newChildId())

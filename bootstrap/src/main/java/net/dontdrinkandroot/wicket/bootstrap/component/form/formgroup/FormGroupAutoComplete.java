@@ -31,8 +31,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.util.time.Duration;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -112,7 +112,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
             protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
             {
                 super.updateAjaxAttributes(attributes);
-                attributes.setThrottlingSettings(new ThrottlingSettings(Duration.milliseconds(250), true));
+                attributes.setThrottlingSettings(new ThrottlingSettings(Duration.ofMillis(250), true));
             }
 
             @Override

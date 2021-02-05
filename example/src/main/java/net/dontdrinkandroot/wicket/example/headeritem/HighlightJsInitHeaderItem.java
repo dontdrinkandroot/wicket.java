@@ -30,7 +30,7 @@ public class HighlightJsInitHeaderItem extends JavaScriptContentHeaderItem
 {
     public HighlightJsInitHeaderItem()
     {
-        super("hljs.initHighlightingOnLoad();", "highlight-init", null);
+        super("hljs.initHighlightingOnLoad();", "highlight-init");
     }
 
     @Override

@@ -41,10 +41,7 @@ public class BootstrapJsHeaderItem extends JavaScriptUrlReferenceHeaderItem
                         "https://maxcdn.bootstrapcdn.com/bootstrap/%s/js/bootstrap.bundle.min.js",
                         BOOTSTRAP_VERSION
                 ),
-                "bootstrap.js",
-                defer,
-                null,
-                null
+                "bootstrap.js"
         );
     }
 
