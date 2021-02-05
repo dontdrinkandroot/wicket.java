@@ -15,26 +15,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.AttributeModifier
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 /**
  * Sets the <tt>title</tt> attribute of an element.
  *
- * @author Philip Washington Sorst <philip@sorst.net>
+ * @author Philip Washington Sorst <philip></philip>@sorst.net>
  */
-public class TitleModifier extends AttributeModifier
+class TitleModifier : AttributeModifier
 {
-    public TitleModifier(IModel<?> replaceModel)
-    {
-        super("title", replaceModel);
-    }
-
-    public TitleModifier(String titleString)
-    {
-        super("title", new Model<String>(titleString));
-    }
+    constructor(replaceModel: IModel<*>?) : super("title", replaceModel)
+    constructor(titleString: String) : super("title", Model<String>(titleString))
 }

@@ -15,35 +15,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import net.dontdrinkandroot.wicket.css.StringCssClass;
-import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
-import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import net.dontdrinkandroot.wicket.css.StringCssClass
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest
+import org.apache.wicket.core.util.string.ComponentRenderer
+import org.apache.wicket.markup.html.WebMarkupContainer
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 /**
- * @author Philip Washington Sorst <philip@sorst.net>
+ * @author Philip Washington Sorst <philip></philip>@sorst.net>
  */
-public class CompositeBehaviorTest extends AbstractWicketTest
+class CompositeBehaviorTest : AbstractWicketTest()
 {
     @Test
-    public void testMarkup()
+    fun testMarkup()
     {
-        WebMarkupContainer component = new WebMarkupContainer("id");
-
-        CompositeBehavior behavior = new CompositeBehavior();
-        behavior.addBehavior(new CssClassAppender(new StringCssClass("cssclass")));
-        behavior.addBehavior(new TitleModifier("Title"));
-
-        component.add(behavior);
-
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
+        val component = WebMarkupContainer("id")
+        val behavior = CompositeBehavior()
+        behavior.addBehavior(CssClassAppender(StringCssClass("cssclass")))
+        behavior.addBehavior(TitleModifier("Title"))
+        component.add(behavior)
+        val componentMarkup = ComponentRenderer.renderComponent(component)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"cssclass\" title=\"Title\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            "<wicket:container wicket:id=\"id\" class=\"cssclass\" title=\"Title\"></wicket:container>",
+            componentMarkup.toString()
+        )
     }
 }

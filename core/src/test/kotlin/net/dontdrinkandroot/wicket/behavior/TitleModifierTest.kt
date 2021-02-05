@@ -15,54 +15,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
-import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest
+import org.apache.wicket.core.util.string.ComponentRenderer
+import org.apache.wicket.markup.html.WebMarkupContainer
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 /**
- * @author Philip Washington Sorst <philip@sorst.net>
+ * @author Philip Washington Sorst <philip></philip>@sorst.net>
  */
-public class TitleModifierTest extends AbstractWicketTest
+class TitleModifierTest : AbstractWicketTest()
 {
     @Test
-    public void testStringConstructor()
+    fun testStringConstructor()
     {
-        WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new TitleModifier("testone"));
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
-
+        val container = WebMarkupContainer("id")
+        container.add(TitleModifier("testone"))
+        val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
+            componentMarkup.toString()
+        )
     }
 
     @Test
-    public void testModelConstructor()
+    fun testModelConstructor()
     {
-        IModel<String> classModel = Model.of("testone");
-        WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new TitleModifier(classModel));
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
-
+        val classModel: IModel<String> = Model.of("testone")
+        val container = WebMarkupContainer("id")
+        container.add(TitleModifier(classModel))
+        var componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
-                componentMarkup.toString()
-        );
-
-        classModel.setObject("testtwo");
-
-        componentMarkup = ComponentRenderer.renderComponent(container);
-
+            "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
+            componentMarkup.toString()
+        )
+        classModel.setObject("testtwo")
+        componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" title=\"testtwo\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            "<wicket:container wicket:id=\"id\" title=\"testtwo\"></wicket:container>",
+            componentMarkup.toString()
+        )
     }
 }
