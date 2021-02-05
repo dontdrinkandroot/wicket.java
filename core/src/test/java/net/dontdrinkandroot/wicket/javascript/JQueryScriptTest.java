@@ -19,10 +19,10 @@ package net.dontdrinkandroot.wicket.javascript;
 
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.util.time.Duration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.Properties;
 
 
@@ -67,7 +67,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testShowCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.show(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.show(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).show(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -97,7 +97,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testHideCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.hide(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.hide(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).hide(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -116,7 +116,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testToggleCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.toggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.toggle(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).toggle(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -135,7 +135,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testFadeInCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.fadeIn(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.fadeIn(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).fadeIn(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -154,7 +154,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testFadeOutCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.fadeOut(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.fadeOut(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).fadeOut(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -173,7 +173,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testFadeToggleCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.fadeToggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
+        jQueryScript.fadeToggle(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "console.log('test');");
         Assertions.assertEquals(
                 "jQuery(this).fadeToggle(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
@@ -207,7 +207,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testSlideDownCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.slideDown(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
+        jQueryScript.slideDown(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "alert('test');");
         Assertions.assertEquals(
                 "jQuery(this).slideDown(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()
@@ -226,7 +226,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testSlideUpCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.slideUp(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
+        jQueryScript.slideUp(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "alert('test');");
         Assertions.assertEquals(
                 "jQuery(this).slideUp(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()
@@ -245,7 +245,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     public void testSlideToggleCustom()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        jQueryScript.slideToggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
+        jQueryScript.slideToggle(Duration.ofMillis(200), JQueryEasingFunction.LINEAR, "alert('test');");
         Assertions.assertEquals(
                 "jQuery(this).slideToggle(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()

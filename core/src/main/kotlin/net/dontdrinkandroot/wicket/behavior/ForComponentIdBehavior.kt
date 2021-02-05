@@ -15,19 +15,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.Component
+import org.apache.wicket.behavior.Behavior
+import org.apache.wicket.markup.ComponentTag
 
 /**
- * Renders a JavaScript String as the "onclick" attribute of an element.
+ * Adds a "for" attribute that will reference the id of the given targetComponent. Useful for Form Component Labels.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class OnClickScriptBehavior extends AttributeAppender
+class ForComponentIdBehavior(private val targetComponent: Component) : Behavior()
 {
-    public OnClickScriptBehavior(CharSequence script)
+    override fun onComponentTag(component: Component, tag: ComponentTag)
     {
-        super("onclick", script.toString(), " ");
+        super.onComponentTag(component, tag)
+        tag.put("for", targetComponent.markupId)
     }
 }

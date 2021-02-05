@@ -15,31 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import org.apache.wicket.Component;
-import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.ComponentTag;
+import net.dontdrinkandroot.wicket.model.StringModel
+import org.apache.wicket.behavior.AttributeAppender
+import org.apache.wicket.model.IModel
 
 /**
- * Changes the component tag name. Note that as this is a behavior this is done after the
- * {@link Component#onComponentTag(ComponentTag)} execution.
+ * Appends the given style to the style attribute of an element.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class TagNameModifier extends Behavior
+open class StyleAppender : AttributeAppender
 {
-    private String tagName;
+    constructor(style: String?) : super("style", StringModel(style), ";")
 
-    public TagNameModifier(String tagName)
-    {
-        this.tagName = tagName;
-    }
-
-    @Override
-    public void onComponentTag(Component component, ComponentTag tag)
-    {
-        tag.setName(this.tagName);
-        super.onComponentTag(component, tag);
-    }
+    constructor(styleModel: IModel<*>?) : super("style", styleModel, ";")
 }

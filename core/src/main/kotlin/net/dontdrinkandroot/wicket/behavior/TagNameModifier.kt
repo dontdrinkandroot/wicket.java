@@ -15,29 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import org.apache.wicket.Component;
-import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.ComponentTag;
-
+import org.apache.wicket.Component
+import org.apache.wicket.behavior.Behavior
+import org.apache.wicket.markup.ComponentTag
 
 /**
- * Adds a "for" attribute that will reference the id of the given targetComponent. Useful for Form Component Labels.
+ * Changes the component tag name. Note that as this is a behavior this is done after the
+ * [Component.onComponentTag] execution.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class ForComponentIdBehavior extends Behavior
+class TagNameModifier(private val tagName: String) : Behavior()
 {
-    private Component targetComponent;
-
-    public ForComponentIdBehavior(Component targetComponent)
+    override fun onComponentTag(component: Component, tag: ComponentTag)
     {
-        this.targetComponent = targetComponent;
-    }
-
-    @Override
-    public void onComponentTag(Component component, ComponentTag tag)
-    {
-        super.onComponentTag(component, tag);
-        tag.put("for", this.targetComponent.getMarkupId());
+        tag.name = tagName
+        super.onComponentTag(component, tag)
     }
 }

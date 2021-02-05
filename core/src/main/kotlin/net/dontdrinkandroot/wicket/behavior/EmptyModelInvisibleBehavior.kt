@@ -15,26 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import net.dontdrinkandroot.wicket.model.StringModel;
-import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.Component
+import org.apache.wicket.behavior.Behavior
 
 /**
- * Appends the given style to the style attribute of an element.
+ * Sets the component to invisible if its model or the modelobject is null or it is an empty string.
+ *
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class StyleAppender extends AttributeAppender
+class EmptyModelInvisibleBehavior : Behavior()
 {
-    private static final long serialVersionUID = 793104976029930067L;
-
-    public StyleAppender(final String style)
+    override fun onConfigure(component: Component)
     {
-        super("style", new StringModel(style), ";");
-    }
-
-    public StyleAppender(IModel<?> styleModel)
-    {
-        super("style", styleModel, ";");
+        super.onConfigure(component)
+        val model = component.defaultModel
+        var visible = null != model
+        visible = visible && null != model!!.getObject()
+        visible = visible && (model!!.getObject() !is String || "" != (model.getObject() as String).trim { it <= ' ' })
+        component.isVisible = visible
     }
 }

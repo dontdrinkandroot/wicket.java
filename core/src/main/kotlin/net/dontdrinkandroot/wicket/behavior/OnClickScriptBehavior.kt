@@ -15,17 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
+
+import org.apache.wicket.behavior.AttributeAppender
 
 /**
- * Adds the <tt>display: none</tt> style attribute to an element, making the element invisible.
+ * Renders a JavaScript String as the "onclick" attribute of an element.
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class DisplayNoneAppender extends StyleAppender
-{
-    public DisplayNoneAppender()
-    {
-        super("display: none");
-    }
-}
+class OnClickScriptBehavior(script: CharSequence) : AttributeAppender("onclick", script.toString(), " ")

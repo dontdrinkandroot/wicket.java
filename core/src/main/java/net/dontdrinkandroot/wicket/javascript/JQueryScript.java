@@ -18,8 +18,8 @@
 package net.dontdrinkandroot.wicket.javascript;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.util.time.Duration;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Properties;
@@ -31,7 +31,7 @@ import java.util.Properties;
  */
 public class JQueryScript implements CharSequence
 {
-    public static Duration DEFAULT_ANIMATION_DURATION = Duration.milliseconds(400);
+    public static Duration DEFAULT_ANIMATION_DURATION = Duration.ofMillis(400);
 
     public static EasingFunction DEFAULT_EASING_FUNCTION = JQueryEasingFunction.SWING;
 
@@ -311,7 +311,7 @@ public class JQueryScript implements CharSequence
         this.scriptBuffer
                 .append(String.format(
                         JQueryScript.TEMPLATE_HIDE,
-                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseDurationWithDefault(duration, Duration.ZERO),
                         this.parseEasingFunctionWithDefault(easingFunction),
                         this.parseScriptWithDefault(callbackScript)
                 ));
@@ -354,7 +354,7 @@ public class JQueryScript implements CharSequence
         this.scriptBuffer
                 .append(String.format(
                         JQueryScript.TEMPLATE_SHOW,
-                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseDurationWithDefault(duration, Duration.ZERO),
                         this.parseEasingFunctionWithDefault(easingFunction),
                         this.parseScriptWithDefault(callbackScript)
                 ));
@@ -499,7 +499,7 @@ public class JQueryScript implements CharSequence
         this.scriptBuffer.append(
                 String.format(
                         JQueryScript.TEMPLATE_TOGGLE,
-                        this.parseDurationWithDefault(duration, Duration.NONE),
+                        this.parseDurationWithDefault(duration, Duration.ZERO),
                         this.parseEasingFunctionWithDefault(easingFunction),
                         this.parseScriptWithDefault(callbackScript)
                 ));
@@ -515,10 +515,10 @@ public class JQueryScript implements CharSequence
     private long parseDurationWithDefault(Duration duration, Duration defaultValue)
     {
         if (null != duration) {
-            return duration.getMilliseconds();
+            return duration.toMillis();
         }
 
-        return defaultValue.getMilliseconds();
+        return defaultValue.toMillis();
     }
 
     private String parseEasingFunctionWithDefault(final EasingFunction easingFunction)

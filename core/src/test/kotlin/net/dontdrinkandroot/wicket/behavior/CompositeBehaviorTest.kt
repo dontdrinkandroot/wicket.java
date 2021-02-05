@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 /**
- * @author Philip Washington Sorst <philip></philip>@sorst.net>
+ * @author Philip Washington Sorst <philip@sorst.net>
  */
 class CompositeBehaviorTest : AbstractWicketTest()
 {

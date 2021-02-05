@@ -15,31 +15,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.component
 
-import org.apache.wicket.Component;
-import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.ajax.AjaxSelfUpdatingTimerBehavior
+import org.apache.wicket.markup.html.panel.GenericPanel
+import org.apache.wicket.model.IModel
+import java.time.Duration
 
 /**
- * Sets the component to invisible if its model or the modelobject is null or it is an empty string.
- *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class EmptyModelInvisibleBehavior extends Behavior
+class SelfUpdatingGenericPanel<T> : GenericPanel<T>
 {
-    @Override
-    public void onConfigure(Component component)
+    constructor(id: String?, updateInterval: Duration?) : super(id)
     {
-        super.onConfigure(component);
+        this.outputMarkupId = true
+        this.add(AjaxSelfUpdatingTimerBehavior(updateInterval))
+    }
 
-        IModel<?> model = component.getDefaultModel();
-
-        boolean visible = null != model;
-        visible = visible && null != model.getObject();
-        visible =
-                visible && (!(model.getObject() instanceof String) || !("".equals(((String) model.getObject()).trim())));
-
-        component.setVisible(visible);
+    constructor(id: String?, model: IModel<T>?, updateInterval: Duration?) : super(id, model)
+    {
+        this.outputMarkupId = true
+        this.add(AjaxSelfUpdatingTimerBehavior(updateInterval))
     }
 }

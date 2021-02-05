@@ -17,17 +17,20 @@
  */
 package net.dontdrinkandroot.wicket.behavior
 
+import net.dontdrinkandroot.wicket.css.CssClass
+import net.dontdrinkandroot.wicket.model.CssClassClassStringModel
+import net.dontdrinkandroot.wicket.model.StringModel
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 
 /**
- * Sets the <tt>title</tt> attribute of an element.
+ * Replaces the <tt>class</tt> attribute of an element. Can be a String, A [CssClass] or a model of a [CssClass].
  *
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-class TitleModifier : AttributeModifier
+class CssClassModifier : AttributeModifier
 {
-    constructor(replaceModel: IModel<*>?) : super("title", replaceModel)
-    constructor(titleString: String) : super("title", Model<String>(titleString))
+    constructor(classToAdd: String?) : super("class", StringModel(classToAdd))
+    constructor(cssClass: CssClass) : super("class", StringModel(cssClass.classString))
+    constructor(cssClassModel: IModel<out CssClass?>?) : super("class", CssClassClassStringModel(cssClassModel))
 }

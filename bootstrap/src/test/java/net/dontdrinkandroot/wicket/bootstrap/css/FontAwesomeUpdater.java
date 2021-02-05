@@ -34,7 +34,7 @@ import java.util.Map;
  */
 public class FontAwesomeUpdater
 {
-    public static void main(String args[]) throws IOException
+    public static void main(String[] args) throws IOException
     {
         FontAwesomeUpdater updater = new FontAwesomeUpdater();
         updater.run();

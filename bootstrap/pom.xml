@@ -11,6 +11,11 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>net.dontdrinkandroot</groupId>
             <artifactId>wicket.core</artifactId>
             <version>${project.version}</version>
