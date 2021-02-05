@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.css.StringCssClass;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -41,7 +41,7 @@ public class CompositeBehaviorTest extends AbstractWicketTest
         component.add(behavior);
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"cssclass\" title=\"Title\"></wicket:container>",
                 componentMarkup.toString()
         );

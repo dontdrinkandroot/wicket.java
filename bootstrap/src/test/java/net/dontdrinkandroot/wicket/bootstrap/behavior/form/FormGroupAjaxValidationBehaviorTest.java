@@ -24,8 +24,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -59,16 +59,16 @@ public class FormGroupAjaxValidationBehaviorTest extends AbstractWicketTest
 
         TagTester formGroupTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup");
-        Assert.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
-        Assert.assertTrue(formGroupTester.getAttributeContains("class", "has-error"));
+        Assertions.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
+        Assertions.assertTrue(formGroupTester.getAttributeContains("class", "has-error"));
 
         List<TagTester> messagesTesters =
                 TagTester.createTagsByAttribute(componentMarkup.toString(), "wicket:id", "messages", false);
-        Assert.assertEquals(1, messagesTesters.size());
+        Assertions.assertEquals(1, messagesTesters.size());
 
         TagTester messageTester = messagesTesters.get(0);
-        Assert.assertTrue(messageTester.getAttributeContains("class", "error"));
-        Assert.assertEquals(
+        Assertions.assertTrue(messageTester.getAttributeContains("class", "error"));
+        Assertions.assertEquals(
                 "The value of &#039;Label&#039; is not a valid email address.",
                 messageTester.getChild("container").getValue()
         );

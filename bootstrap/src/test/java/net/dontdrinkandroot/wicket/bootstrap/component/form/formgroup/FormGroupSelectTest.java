@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -47,15 +47,15 @@ public class FormGroupSelectTest extends AbstractWicketTest
 
         TagTester formGroupTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup");
-        Assert.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
+        Assertions.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
 
         TagTester labelTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "label");
-        Assert.assertTrue(labelTester.getAttributeContains("class", "control-label"));
+        Assertions.assertTrue(labelTester.getAttributeContains("class", "control-label"));
 
         TagTester formComponentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent");
-        Assert.assertTrue(formComponentTester.getAttributeContains("class", "form-control"));
-        Assert.assertEquals(
+        Assertions.assertTrue(formComponentTester.getAttributeContains("class", "form-control"));
+        Assertions.assertEquals(
                 "<select class=\"form-control\" wicket:id=\"formComponent\" name=\"formGroup:container:formComponent\" id=\"formComponent3\">\n" +
                         "<option selected=\"selected\" value=\"0\">alpha</option>\n" +
                         "<option value=\"1\">beta</option>\n" +
@@ -66,6 +66,6 @@ public class FormGroupSelectTest extends AbstractWicketTest
 
         TagTester helpBlockTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "helpBlock");
-        Assert.assertNull(helpBlockTester);
+        Assertions.assertNull(helpBlockTester);
     }
 }

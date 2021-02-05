@@ -25,8 +25,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +42,7 @@ public class RepeatingAjaxFormTest extends AbstractWicketTest
         RepeatingAjaxForm component = new RepeatingAjaxForm("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:form wicket:id=\"id\" id=\"id1\" method=\"post\" action=\"./wicket/page?0-0.-id\"><wicket:panel>\n" +
                         "\t\t<div wicket:id=\"feedback\" id=\"feedback2\"><wicket:panel>\n" +
                         "\t\t\n" +
@@ -116,23 +116,23 @@ public class RepeatingAjaxFormTest extends AbstractWicketTest
         FormTester formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID, false);
         formTester.submit();
 
-        Assert.assertFalse(callSet.contains("onSubmit"));
-        Assert.assertFalse(callSet.contains("onSubmitAjax"));
-        Assert.assertFalse(callSet.contains("onAfterSubmit"));
-        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
-        Assert.assertTrue(callSet.contains("onError"));
-        Assert.assertFalse(callSet.contains("onErrorAjax"));
+        Assertions.assertFalse(callSet.contains("onSubmit"));
+        Assertions.assertFalse(callSet.contains("onSubmitAjax"));
+        Assertions.assertFalse(callSet.contains("onAfterSubmit"));
+        Assertions.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assertions.assertTrue(callSet.contains("onError"));
+        Assertions.assertFalse(callSet.contains("onErrorAjax"));
 
         /* Ajax submit with error */
         callSet.clear();
         this.tester.executeAjaxEvent(component, "submit");
 
-        Assert.assertFalse(callSet.contains("onSubmit"));
-        Assert.assertFalse(callSet.contains("onSubmitAjax"));
-        Assert.assertFalse(callSet.contains("onAfterSubmit"));
-        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
-        Assert.assertTrue(callSet.contains("onError"));
-        Assert.assertTrue(callSet.contains("onErrorAjax"));
+        Assertions.assertFalse(callSet.contains("onSubmit"));
+        Assertions.assertFalse(callSet.contains("onSubmitAjax"));
+        Assertions.assertFalse(callSet.contains("onAfterSubmit"));
+        Assertions.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assertions.assertTrue(callSet.contains("onError"));
+        Assertions.assertTrue(callSet.contains("onErrorAjax"));
 
         /* Populating textfield */
         formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID, false);
@@ -142,22 +142,22 @@ public class RepeatingAjaxFormTest extends AbstractWicketTest
         callSet.clear();
         formTester.submit();
 
-        Assert.assertTrue(callSet.contains("onSubmit"));
-        Assert.assertFalse(callSet.contains("onSubmitAjax"));
-        Assert.assertTrue(callSet.contains("onAfterSubmit"));
-        Assert.assertFalse(callSet.contains("onAfterSubmitAjax"));
-        Assert.assertFalse(callSet.contains("onError"));
-        Assert.assertFalse(callSet.contains("onErrorAjax"));
+        Assertions.assertTrue(callSet.contains("onSubmit"));
+        Assertions.assertFalse(callSet.contains("onSubmitAjax"));
+        Assertions.assertTrue(callSet.contains("onAfterSubmit"));
+        Assertions.assertFalse(callSet.contains("onAfterSubmitAjax"));
+        Assertions.assertFalse(callSet.contains("onError"));
+        Assertions.assertFalse(callSet.contains("onErrorAjax"));
 
         /* Ajax submit with success */
         callSet.clear();
         this.tester.executeAjaxEvent(component, "submit");
 
-        Assert.assertTrue(callSet.contains("onSubmit"));
-        Assert.assertTrue(callSet.contains("onSubmitAjax"));
-        Assert.assertTrue(callSet.contains("onAfterSubmit"));
-        Assert.assertTrue(callSet.contains("onAfterSubmitAjax"));
-        Assert.assertFalse(callSet.contains("onError"));
-        Assert.assertFalse(callSet.contains("onErrorAjax"));
+        Assertions.assertTrue(callSet.contains("onSubmit"));
+        Assertions.assertTrue(callSet.contains("onSubmitAjax"));
+        Assertions.assertTrue(callSet.contains("onAfterSubmit"));
+        Assertions.assertTrue(callSet.contains("onAfterSubmitAjax"));
+        Assertions.assertFalse(callSet.contains("onError"));
+        Assertions.assertFalse(callSet.contains("onErrorAjax"));
     }
 }

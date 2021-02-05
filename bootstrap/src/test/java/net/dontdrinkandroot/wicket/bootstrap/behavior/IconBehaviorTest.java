@@ -24,8 +24,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class IconBehaviorTest extends AbstractWicketTest
 {
@@ -37,8 +37,8 @@ public class IconBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester componentTagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertNotNull(componentTagTester);
-        Assert.assertEquals("", componentTagTester.getValue());
+        Assertions.assertNotNull(componentTagTester);
+        Assertions.assertEquals("", componentTagTester.getValue());
     }
 
     @Test
@@ -49,8 +49,8 @@ public class IconBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester componentTagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertNotNull(componentTagTester);
-        Assert.assertEquals("<span class=\"prependIconClass\"></span>", componentTagTester.getValue());
+        Assertions.assertNotNull(componentTagTester);
+        Assertions.assertEquals("<span class=\"prependIconClass\"></span>", componentTagTester.getValue());
     }
 
     @Test
@@ -60,19 +60,22 @@ public class IconBehaviorTest extends AbstractWicketTest
         IconBehavior iconBehavior = new IconBehavior().setPrependIcon(new StringCssClass("prependIconClass"));
         component.add(iconBehavior);
 
-        Assert.assertEquals("prependIconClass", iconBehavior.getPrependIcon().getClassString());
-        Assert.assertNull(iconBehavior.getAppendIcon());
+        Assertions.assertEquals("prependIconClass", iconBehavior.getPrependIcon().getClassString());
+        Assertions.assertNull(iconBehavior.getAppendIcon());
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester componentTagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertNotNull(componentTagTester);
-        Assert.assertEquals("<span class=\"prependIconClass\"></span>&nbsp;&nbsp;body", componentTagTester.getValue());
+        Assertions.assertNotNull(componentTagTester);
+        Assertions.assertEquals(
+                "<span class=\"prependIconClass\"></span>&nbsp;&nbsp;body",
+                componentTagTester.getValue()
+        );
 
         iconBehavior.setPrependIcon(new StringCssClass("prependIconClass2"));
 
-        Assert.assertEquals("prependIconClass2", iconBehavior.getPrependIcon().getClassString());
-        Assert.assertNull(iconBehavior.getAppendIcon());
+        Assertions.assertEquals("prependIconClass2", iconBehavior.getPrependIcon().getClassString());
+        Assertions.assertNull(iconBehavior.getAppendIcon());
     }
 
     @Test
@@ -82,18 +85,21 @@ public class IconBehaviorTest extends AbstractWicketTest
         IconBehavior iconBehavior = new IconBehavior().setAppendIcon(new StringCssClass("appendIconClass"));
         component.add(iconBehavior);
 
-        Assert.assertEquals("appendIconClass", iconBehavior.getAppendIcon().getClassString());
-        Assert.assertNull(iconBehavior.getPrependIcon());
+        Assertions.assertEquals("appendIconClass", iconBehavior.getAppendIcon().getClassString());
+        Assertions.assertNull(iconBehavior.getPrependIcon());
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester componentTagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertNotNull(componentTagTester);
-        Assert.assertEquals("body&nbsp;&nbsp;<span class=\"appendIconClass\"></span>", componentTagTester.getValue());
+        Assertions.assertNotNull(componentTagTester);
+        Assertions.assertEquals(
+                "body&nbsp;&nbsp;<span class=\"appendIconClass\"></span>",
+                componentTagTester.getValue()
+        );
 
         iconBehavior.setAppendIcon(new StringCssClass("appendIconClass2"));
 
-        Assert.assertEquals("appendIconClass2", iconBehavior.getAppendIcon().getClassString());
-        Assert.assertNull(iconBehavior.getPrependIcon());
+        Assertions.assertEquals("appendIconClass2", iconBehavior.getAppendIcon().getClassString());
+        Assertions.assertNull(iconBehavior.getPrependIcon());
     }
 }

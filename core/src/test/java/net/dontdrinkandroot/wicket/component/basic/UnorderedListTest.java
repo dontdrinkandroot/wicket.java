@@ -25,8 +25,8 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -63,7 +63,7 @@ public class UnorderedListTest extends AbstractWicketTest
         CharSequence pageMarkup = this.tester.getLastResponseAsString();
         TagTester componentTester = TagTester.createTagByAttribute(pageMarkup.toString(), "wicket:id", "component");
         String componentMarkup = componentTester.getMarkup();
-        Assert.assertEquals("<ul wicket:id=\"component\"><wicket:panel>\n" +
+        Assertions.assertEquals("<ul wicket:id=\"component\"><wicket:panel>\n" +
                 "\t\t<li wicket:id=\"item\">Alpha</li><li wicket:id=\"item\">Beta</li><li wicket:id=\"item\">Gamma</li>\n" +
                 "\t</wicket:panel></ul>", componentMarkup);
     }

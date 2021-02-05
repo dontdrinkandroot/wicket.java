@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -34,7 +34,7 @@ public class NavTabsTest extends AbstractWicketTest
         RepeatingNavTabs component = new RepeatingNavTabs("id");
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
-        Assert.assertEquals("nav nav-tabs", tagTester.getAttribute("class"));
+        Assertions.assertEquals("nav nav-tabs", tagTester.getAttribute("class"));
     }
 
     @Test
@@ -44,6 +44,6 @@ public class NavTabsTest extends AbstractWicketTest
         component.setJustified(true);
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
-        Assert.assertEquals("nav nav-tabs nav-justified", tagTester.getAttribute("class"));
+        Assertions.assertEquals("nav nav-tabs nav-justified", tagTester.getAttribute("class"));
     }
 }

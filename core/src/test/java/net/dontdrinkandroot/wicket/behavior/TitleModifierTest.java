@@ -22,8 +22,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -37,7 +37,7 @@ public class TitleModifierTest extends AbstractWicketTest
         container.add(new TitleModifier("testone"));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
                 componentMarkup.toString()
         );
@@ -51,7 +51,7 @@ public class TitleModifierTest extends AbstractWicketTest
         container.add(new TitleModifier(classModel));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
                 componentMarkup.toString()
         );
@@ -60,7 +60,7 @@ public class TitleModifierTest extends AbstractWicketTest
 
         componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" title=\"testtwo\"></wicket:container>",
                 componentMarkup.toString()
         );

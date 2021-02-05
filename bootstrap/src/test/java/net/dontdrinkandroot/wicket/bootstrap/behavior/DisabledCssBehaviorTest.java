@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -37,7 +37,7 @@ public class DisabledCssBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertFalse(tagTester.getAttributeContains("class", "disabled"));
+        Assertions.assertFalse(tagTester.getAttributeContains("class", "disabled"));
     }
 
     @Test
@@ -49,6 +49,6 @@ public class DisabledCssBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "disabled"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "disabled"));
     }
 }

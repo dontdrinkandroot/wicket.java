@@ -19,7 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.test;
 
 import net.dontdrinkandroot.wicket.bootstrap.page.SignInPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>

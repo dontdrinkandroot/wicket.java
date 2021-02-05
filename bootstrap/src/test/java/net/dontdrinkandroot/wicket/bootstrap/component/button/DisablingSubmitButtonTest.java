@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -32,7 +32,7 @@ public class DisablingSubmitButtonTest extends AbstractWicketTest
     {
         DisablingSubmitButton component = new DisablingSubmitButton("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" id=\"id1\" data-loading-text=\"Submitting...\" class=\"btn btn-secondary\"></wicket:container>",
                 componentMarkup.toString()
         );

@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.behavior.ajax;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.test.TestPage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -42,13 +42,13 @@ public class KeyEventBehaviorTest extends AbstractWicketTest
                     @Override
                     protected void onEvent(AjaxRequestTarget target, KeyEventResponse keyPressResponse)
                     {
-                        Assert.assertEquals(-1, keyPressResponse.getCharCode());
-                        Assert.assertEquals(-1, keyPressResponse.getKeyCode());
-                        Assert.assertEquals(-1, keyPressResponse.getWhich());
-                        Assert.assertFalse(keyPressResponse.isAltKey());
-                        Assert.assertFalse(keyPressResponse.isCtrlKey());
-                        Assert.assertFalse(keyPressResponse.isMetaKey());
-                        Assert.assertFalse(keyPressResponse.isShiftKey());
+                        Assertions.assertEquals(-1, keyPressResponse.getCharCode());
+                        Assertions.assertEquals(-1, keyPressResponse.getKeyCode());
+                        Assertions.assertEquals(-1, keyPressResponse.getWhich());
+                        Assertions.assertFalse(keyPressResponse.isAltKey());
+                        Assertions.assertFalse(keyPressResponse.isCtrlKey());
+                        Assertions.assertFalse(keyPressResponse.isMetaKey());
+                        Assertions.assertFalse(keyPressResponse.isShiftKey());
                     }
                 });
             }

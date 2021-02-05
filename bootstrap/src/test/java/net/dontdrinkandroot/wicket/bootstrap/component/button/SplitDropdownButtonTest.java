@@ -22,8 +22,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -48,7 +48,7 @@ public class SplitDropdownButtonTest extends AbstractWicketTest
             }
         };
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"btn-group\"><wicket:panel>\n" +
                         "\t\t<button wicket:id=\"button\" type=\"button\" class=\"btn btn-secondary\">ActionLabel</button>\n" +
                         "\t\t<button wicket:id=\"toggle\" type=\"button\" class=\"btn btn-secondary dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +

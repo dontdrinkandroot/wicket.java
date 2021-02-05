@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.model;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -34,28 +34,28 @@ public class ConcatenatingStringModelTest
         ConcatenatingStringModel concatenatingStringModel;
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>(), (String) null);
-        Assert.assertEquals("", concatenatingStringModel.getObject());
+        Assertions.assertEquals("", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), (String) null);
-        Assert.assertEquals("Parent", concatenatingStringModel.getObject());
+        Assertions.assertEquals("Parent", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), (IModel<String>) null);
-        Assert.assertEquals("Parent", concatenatingStringModel.getObject());
+        Assertions.assertEquals("Parent", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), "Child");
-        Assert.assertEquals("ParentChild", concatenatingStringModel.getObject());
+        Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), Model.of("Child"));
-        Assert.assertEquals("ParentChild", concatenatingStringModel.getObject());
+        Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), "Child");
-        Assert.assertEquals("ParentChild", concatenatingStringModel.getObject());
+        Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), Model.of("Child"));
-        Assert.assertEquals("ParentChild", concatenatingStringModel.getObject());
+        Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject());
 
         concatenatingStringModel = new ConcatenatingStringModel(new Model<>("Parent"), "-", Model.of("Child"));
-        Assert.assertEquals("Parent-Child", concatenatingStringModel.getObject());
+        Assertions.assertEquals("Parent-Child", concatenatingStringModel.getObject());
     }
 
     @Test
@@ -78,9 +78,9 @@ public class ConcatenatingStringModelTest
             }
         };
         ConcatenatingStringModel concatenatingStringModel = new ConcatenatingStringModel(parentModel, childModel);
-        Assert.assertEquals("ParentChild", concatenatingStringModel.getObject());
+        Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject());
         concatenatingStringModel.detach();
-        Assert.assertFalse(parentModel.isAttached());
-        Assert.assertFalse(childModel.isAttached());
+        Assertions.assertFalse(parentModel.isAttached());
+        Assertions.assertFalse(childModel.isAttached());
     }
 }

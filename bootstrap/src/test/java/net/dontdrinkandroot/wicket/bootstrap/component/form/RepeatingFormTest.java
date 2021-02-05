@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -33,7 +33,7 @@ public class RepeatingFormTest extends AbstractWicketTest
         RepeatingForm component = new RepeatingForm("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:form wicket:id=\"id\" id=\"id1\" method=\"post\" action=\"./wicket/page?0-0.-id\"><wicket:panel>\n" +
                         "\t\t<div wicket:id=\"feedback\" id=\"feedback2\"><wicket:panel>\n" +
                         "\t\t\n" +

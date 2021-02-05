@@ -20,9 +20,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ import java.util.List;
 public class FormGroupAutoCompleteTest extends AbstractWicketTest
 {
     @Test
-    @Ignore("Strange component markup error, move to tag tester")
+    @Disabled("Strange component markup error, move to tag tester")
     public void testMarkup()
     {
         FormGroupAutoComplete component = new FormGroupAutoComplete("id", Model.of("ExampleLabel"), new Model<>())
@@ -45,7 +45,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
             }
         };
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"form-group dropdown autocomplete\"><wicket:panel>\n" +
                         "\t\t<label wicket:id=\"label\" class=\"control-label\" for=\"formComponent2\">ExampleLabel</label>\n" +
                         "\t\t\n" +

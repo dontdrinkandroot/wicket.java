@@ -24,8 +24,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -39,7 +39,7 @@ public class CssClassModifierTest extends AbstractWicketTest
         container.add(new CssClassModifier("testone"));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
                 componentMarkup.toString()
         );
@@ -52,7 +52,7 @@ public class CssClassModifierTest extends AbstractWicketTest
         container.add(new CssClassModifier(new StringCssClass("testone")));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
                 componentMarkup.toString()
         );
@@ -66,7 +66,7 @@ public class CssClassModifierTest extends AbstractWicketTest
         container.add(new CssClassModifier(classModel));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
                 componentMarkup.toString()
         );
@@ -75,7 +75,7 @@ public class CssClassModifierTest extends AbstractWicketTest
 
         componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"testtwo\"></wicket:container>",
                 componentMarkup.toString()
         );

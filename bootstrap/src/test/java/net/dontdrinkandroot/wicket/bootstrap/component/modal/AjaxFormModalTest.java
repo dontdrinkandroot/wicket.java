@@ -28,8 +28,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -52,11 +52,11 @@ public class AjaxFormModalTest extends AbstractWicketTest
         TagTester tester;
 
         tester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "modalId");
-        Assert.assertTrue(tester.getAttributeContains("class", "modal"));
-        Assert.assertTrue(tester.getAttributeContains("class", "fade"));
+        Assertions.assertTrue(tester.getAttributeContains("class", "modal"));
+        Assertions.assertTrue(tester.getAttributeContains("class", "fade"));
 
         tester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "heading");
-        Assert.assertEquals("Modal Heading", tester.getValue());
+        Assertions.assertEquals("Modal Heading", tester.getValue());
     }
 
     @Test
@@ -98,20 +98,20 @@ public class AjaxFormModalTest extends AbstractWicketTest
         /* Ajax submit with error */
         this.tester.executeAjaxEvent(component.getForm(), "submit");
 
-        Assert.assertEquals("error", testStringModel.getObject());
+        Assertions.assertEquals("error", testStringModel.getObject());
 
         /* Default submit with success */
         formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID + ":form", false);
         formTester.setValue("formGroup:1:container:inputGroup:formComponent", "default");
         formTester.submit();
 
-        Assert.assertEquals("default", testStringModel.getObject());
+        Assertions.assertEquals("default", testStringModel.getObject());
 
         /* Ajax submit with success */
         formTester = this.tester.newFormTester(FormTestPage.COMPONENT_ID + ":form", false);
         formTester.setValue("formGroup:1:container:inputGroup:formComponent", "ajax");
         this.tester.executeAjaxEvent(component.getForm(), "submit");
 
-        Assert.assertEquals("ajax", testStringModel.getObject());
+        Assertions.assertEquals("ajax", testStringModel.getObject());
     }
 }

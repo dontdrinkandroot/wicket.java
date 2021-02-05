@@ -22,21 +22,21 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 
 public class AbstractWicketTest
 {
     protected WicketTester tester;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.tester = new WicketTester(new TestApplication());
     }
 
-    @After
+    @AfterEach
     public void tearDown()
     {
         this.tester.destroy();
@@ -45,15 +45,15 @@ public class AbstractWicketTest
     public void testIButton(IButton component)
     {
         component.setButtonSize(ButtonSize.LARGE);
-        Assert.assertEquals(ButtonSize.LARGE, component.getButtonSize());
+        Assertions.assertEquals(ButtonSize.LARGE, component.getButtonSize());
 
         component.setButtonStyle(ButtonStyle.DANGER);
-        Assert.assertEquals(ButtonStyle.DANGER, component.getButtonStyle());
+        Assertions.assertEquals(ButtonStyle.DANGER, component.getButtonStyle());
 
         component.setButtonSizeModel(Model.of(ButtonSize.SMALL));
-        Assert.assertEquals(ButtonSize.SMALL, component.getButtonSize());
+        Assertions.assertEquals(ButtonSize.SMALL, component.getButtonSize());
 
         component.setButtonStyleModel(Model.of(ButtonStyle.WARNING));
-        Assert.assertEquals(ButtonStyle.WARNING, component.getButtonStyle());
+        Assertions.assertEquals(ButtonStyle.WARNING, component.getButtonStyle());
     }
 }

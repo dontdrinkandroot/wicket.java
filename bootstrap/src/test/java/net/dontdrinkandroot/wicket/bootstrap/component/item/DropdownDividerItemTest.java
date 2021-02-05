@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -32,7 +32,7 @@ public class DropdownDividerItemTest extends AbstractWicketTest
     {
         DropdownDividerItem component = new DropdownDividerItem("id");
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" class=\"dropdown-divider\" role=\"separator\"></wicket:container>",
                 componentMarkup.toString()
         );

@@ -23,8 +23,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ToolTipBehaviorTest extends AbstractWicketTest
 {
@@ -35,7 +35,7 @@ public class ToolTipBehaviorTest extends AbstractWicketTest
         container.add(new ToolTipBehavior(Model.of("TestText")));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" title=\"TestText\" data-toggle=\"tooltip\" data-placement=\"top\" data-delay=\"0\"></wicket:container>",
                 componentMarkup.toString()
         );

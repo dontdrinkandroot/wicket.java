@@ -18,7 +18,7 @@
 package net.dontdrinkandroot.wicket.page;
 
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>

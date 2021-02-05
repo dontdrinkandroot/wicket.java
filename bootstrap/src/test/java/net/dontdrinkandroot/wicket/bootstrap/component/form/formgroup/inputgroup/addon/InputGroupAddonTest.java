@@ -28,8 +28,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -68,9 +68,9 @@ public class InputGroupAddonTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(formGroupInputText);
         TagTester inputGroupAddonBefore =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupPrepend");
-        Assert.assertEquals("input-group-addon", inputGroupAddonBefore.getAttribute("class"));
+        Assertions.assertEquals("input-group-addon", inputGroupAddonBefore.getAttribute("class"));
         TagTester inputGroupAddonAfter =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupAppend");
-        Assert.assertEquals("input-group-btn", inputGroupAddonAfter.getAttribute("class"));
+        Assertions.assertEquals("input-group-btn", inputGroupAddonAfter.getAttribute("class"));
     }
 }

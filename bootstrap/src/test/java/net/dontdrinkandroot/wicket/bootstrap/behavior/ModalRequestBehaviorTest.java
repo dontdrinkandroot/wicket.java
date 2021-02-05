@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior;
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.ModalPage;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -36,11 +36,11 @@ public class ModalRequestBehaviorTest extends AbstractWicketTest
 
         String pageResponse = this.tester.getLastResponseAsString();
         TagTester tagTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "modal");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "modal"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "fade"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "modal"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "fade"));
 
         tagTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "heading");
-        Assert.assertEquals("Modal Heading", tagTester.getValue());
+        Assertions.assertEquals("Modal Heading", tagTester.getValue());
     }
 
     @Test
@@ -51,10 +51,10 @@ public class ModalRequestBehaviorTest extends AbstractWicketTest
 
         String pageResponse = this.tester.getLastResponseAsString();
         TagTester tagTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "modal");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "modal"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "fade"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "modal"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "fade"));
 
         tagTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "heading");
-        Assert.assertEquals("Modal Heading", tagTester.getValue());
+        Assertions.assertEquals("Modal Heading", tagTester.getValue());
     }
 }

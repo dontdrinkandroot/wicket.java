@@ -27,8 +27,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -65,9 +65,9 @@ public class RowColumnTest extends AbstractWicketTest
         row.detachModels();
 
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
-        Assert.assertEquals("row", tagTester.getAttribute("class"));
+        Assertions.assertEquals("row", tagTester.getAttribute("class"));
 
         tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "column");
-        Assert.assertEquals("col-md-6 col-lg-3", tagTester.getAttribute("class"));
+        Assertions.assertEquals("col-md-6 col-lg-3", tagTester.getAttribute("class"));
     }
 }

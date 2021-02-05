@@ -21,8 +21,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -40,20 +40,20 @@ public class DateTimeFormatterModelTest extends WicketTestCase
         DateTimeFormatterModel model;
 
         model = new DateTimeFormatterModel(new Model<>());
-        Assert.assertNull(model.getObject());
+        Assertions.assertNull(model.getObject());
 
         model = new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 1, 1, 12, 00)), "yyyy-MM-dd HH:mm:ss");
-        Assert.assertEquals("2017-01-01 12:00:00", model.getObject());
+        Assertions.assertEquals("2017-01-01 12:00:00", model.getObject());
 
         model = new DateTimeFormatterModel(Model.of(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC)));
-        Assert.assertEquals("2017-01-01T12:00:00Z", model.getObject());
+        Assertions.assertEquals("2017-01-01T12:00:00Z", model.getObject());
 
         model = new DateTimeFormatterModel(
                 Model.of(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC)),
                 "yyyy-MM-dd HH:mm:ss",
                 ZoneId.of("Europe/Berlin")
         );
-        Assert.assertEquals("2017-01-01 13:00:00", model.getObject());
+        Assertions.assertEquals("2017-01-01 13:00:00", model.getObject());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class DateTimeFormatterModelTest extends WicketTestCase
         };
 
         String markup = ComponentRenderer.renderComponent(component).toString();
-        Assert.assertEquals("<wicket:container wicket:id=\"id\">1. Mär 2017 12:00</wicket:container>", markup);
+        Assertions.assertEquals("<wicket:container wicket:id=\"id\">1. März 2017 12:00</wicket:container>", markup);
 
         component.detach();
     }

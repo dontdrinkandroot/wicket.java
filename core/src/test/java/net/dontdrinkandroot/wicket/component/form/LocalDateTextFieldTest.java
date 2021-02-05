@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.test.InputTestPage;
 import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
@@ -46,10 +46,10 @@ public class LocalDateTextFieldTest extends AbstractWicketTest
         this.tester.startPage(page);
 
         TagTester tagTester = this.tester.getTagById(component.getMarkupId());
-        Assert.assertNotNull(tagTester);
-        Assert.assertEquals("2017-02-03", tagTester.getAttribute("value"));
-        Assert.assertEquals("2017-01-01", tagTester.getAttribute("min"));
-        Assert.assertEquals("2018-12-31", tagTester.getAttribute("max"));
-        Assert.assertEquals("required", tagTester.getAttribute("required"));
+        Assertions.assertNotNull(tagTester);
+        Assertions.assertEquals("2017-02-03", tagTester.getAttribute("value"));
+        Assertions.assertEquals("2017-01-01", tagTester.getAttribute("min"));
+        Assertions.assertEquals("2018-12-31", tagTester.getAttribute("max"));
+        Assertions.assertEquals("required", tagTester.getAttribute("required"));
     }
 }

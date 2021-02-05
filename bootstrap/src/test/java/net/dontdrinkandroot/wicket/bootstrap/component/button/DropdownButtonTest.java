@@ -22,8 +22,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -44,16 +44,16 @@ public class DropdownButtonTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         TagTester componentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(componentTester.getAttributeContains("class", "btn-group"));
+        Assertions.assertTrue(componentTester.getAttributeContains("class", "btn-group"));
 
         TagTester toggleTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "toggle");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<button wicket:id=\"toggle\" type=\"button\" class=\"dropdown-toggle btn btn-secondary\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">LabelText&nbsp;&nbsp;<span class=\"caret\"></span></button>",
                 toggleTester.getMarkup()
         );
         TagTester menuTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "menu");
-        Assert.assertEquals("<ul wicket:id=\"menu\" class=\"dropdown-menu\" role=\"menu\"><wicket:panel>\n" +
+        Assertions.assertEquals("<ul wicket:id=\"menu\" class=\"dropdown-menu\" role=\"menu\"><wicket:panel>\n" +
                 "    \n" +
                 "</wicket:panel></ul>", menuTester.getMarkup());
     }

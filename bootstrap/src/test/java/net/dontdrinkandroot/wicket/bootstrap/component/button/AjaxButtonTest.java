@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -58,7 +58,7 @@ public class AjaxButtonTest extends AbstractWicketTest
         component.setBody(Model.of("Label"));
 
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"btn btn-secondary\">Label</wicket:container>",
                 componentMarkup
         );

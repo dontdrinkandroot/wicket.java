@@ -18,8 +18,8 @@
 package net.dontdrinkandroot.wicket.converter;
 
 import org.apache.wicket.util.convert.ConversionException;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -33,8 +33,8 @@ public class LocalDateTimeConverterTest
     public void testConvertToString()
     {
         LocalDateTimeConverter converter = new LocalDateTimeConverter();
-        Assert.assertNull(converter.convertToString(null, Locale.ENGLISH));
-        Assert.assertEquals(
+        Assertions.assertNull(converter.convertToString(null, Locale.ENGLISH));
+        Assertions.assertEquals(
                 "2017-03-05T13:37",
                 converter.convertToString(LocalDateTime.of(2017, 3, 5, 13, 37), Locale.ENGLISH)
         );
@@ -44,14 +44,14 @@ public class LocalDateTimeConverterTest
     public void testConvertToObject()
     {
         LocalDateTimeConverter converter = new LocalDateTimeConverter();
-        Assert.assertNull(converter.convertToObject(null, Locale.ENGLISH));
-        Assert.assertEquals(
+        Assertions.assertNull(converter.convertToObject(null, Locale.ENGLISH));
+        Assertions.assertEquals(
                 LocalDateTime.of(2017, 3, 5, 13, 37),
                 converter.convertToObject("2017-03-05T13:37", Locale.ENGLISH)
         );
         try {
             converter.convertToObject("asdf", Locale.ENGLISH);
-            Assert.fail("ConversionException expected");
+            Assertions.fail("ConversionException expected");
         } catch (ConversionException e) {
             /* Expected */
         }

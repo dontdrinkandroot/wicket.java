@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -36,16 +36,16 @@ public class ProgressBarTest extends AbstractWicketTest
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
-        Assert.assertTrue(componentTester.getAttributeContains("class", "progress"));
+        Assertions.assertTrue(componentTester.getAttributeContains("class", "progress"));
 
         TagTester barTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "bar");
-        Assert.assertEquals("progress-bar", barTester.getAttribute("class"));
-        Assert.assertEquals("progressbar", barTester.getAttribute("role"));
-        Assert.assertEquals("0", barTester.getAttribute("aria-valuemin"));
-        Assert.assertEquals("100", barTester.getAttribute("aria-valuemax"));
-        Assert.assertEquals("33", barTester.getAttribute("aria-valuenow"));
-        Assert.assertEquals("width: 33%;", barTester.getAttribute("style"));
-        Assert.assertTrue(barTester.hasAttribute("id"));
+        Assertions.assertEquals("progress-bar", barTester.getAttribute("class"));
+        Assertions.assertEquals("progressbar", barTester.getAttribute("role"));
+        Assertions.assertEquals("0", barTester.getAttribute("aria-valuemin"));
+        Assertions.assertEquals("100", barTester.getAttribute("aria-valuemax"));
+        Assertions.assertEquals("33", barTester.getAttribute("aria-valuenow"));
+        Assertions.assertEquals("width: 33%;", barTester.getAttribute("style"));
+        Assertions.assertTrue(barTester.hasAttribute("id"));
     }
 
     @Test
@@ -53,29 +53,29 @@ public class ProgressBarTest extends AbstractWicketTest
     {
         ProgressBar component = new ProgressBar("id", Model.of(33));
 
-        Assert.assertFalse(component.isStriped());
+        Assertions.assertFalse(component.isStriped());
         component.setStriped(true);
-        Assert.assertTrue(component.isStriped());
+        Assertions.assertTrue(component.isStriped());
 
-        Assert.assertFalse(component.isAnimated());
+        Assertions.assertFalse(component.isAnimated());
         component.setAnimated(true);
-        Assert.assertTrue(component.isAnimated());
+        Assertions.assertTrue(component.isAnimated());
 
-        Assert.assertTrue(component.isAnimated());
+        Assertions.assertTrue(component.isAnimated());
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
-        Assert.assertTrue(componentTester.getAttributeContains("class", "progress"));
+        Assertions.assertTrue(componentTester.getAttributeContains("class", "progress"));
 
         TagTester barTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "bar");
-        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar"));
-        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar-animated"));
-        Assert.assertTrue(barTester.getAttributeContains("class", "progress-bar-striped"));
-        Assert.assertEquals("progressbar", barTester.getAttribute("role"));
-        Assert.assertEquals("0", barTester.getAttribute("aria-valuemin"));
-        Assert.assertEquals("100", barTester.getAttribute("aria-valuemax"));
-        Assert.assertEquals("33", barTester.getAttribute("aria-valuenow"));
-        Assert.assertEquals("width: 33%;", barTester.getAttribute("style"));
-        Assert.assertTrue(barTester.hasAttribute("id"));
+        Assertions.assertTrue(barTester.getAttributeContains("class", "progress-bar"));
+        Assertions.assertTrue(barTester.getAttributeContains("class", "progress-bar-animated"));
+        Assertions.assertTrue(barTester.getAttributeContains("class", "progress-bar-striped"));
+        Assertions.assertEquals("progressbar", barTester.getAttribute("role"));
+        Assertions.assertEquals("0", barTester.getAttribute("aria-valuemin"));
+        Assertions.assertEquals("100", barTester.getAttribute("aria-valuemax"));
+        Assertions.assertEquals("33", barTester.getAttribute("aria-valuenow"));
+        Assertions.assertEquals("width: 33%;", barTester.getAttribute("style"));
+        Assertions.assertTrue(barTester.hasAttribute("id"));
     }
 }

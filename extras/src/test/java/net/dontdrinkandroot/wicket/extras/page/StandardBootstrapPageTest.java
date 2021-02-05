@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.extras.test.AbstractWicketTest;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class StandardBootstrapPageTest extends AbstractWicketTest
 {
@@ -46,9 +46,9 @@ public class StandardBootstrapPageTest extends AbstractWicketTest
         String pageResponse = this.tester.getLastResponseAsString();
 
         TagTester titleTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "pageTitle");
-        Assert.assertEquals("Page Title Prefix - Page Heading", titleTester.getValue());
+        Assertions.assertEquals("Page Title Prefix - Page Heading", titleTester.getValue());
 
         TagTester headingTester = TagTester.createTagByAttribute(pageResponse, "wicket:id", "pageHeading");
-        Assert.assertEquals("Page Heading", headingTester.getValue());
+        Assertions.assertEquals("Page Heading", headingTester.getValue());
     }
 }

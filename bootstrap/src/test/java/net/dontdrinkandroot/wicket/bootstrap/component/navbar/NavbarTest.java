@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -39,12 +39,12 @@ public class NavbarTest extends AbstractWicketTest
         TagTester tagTester;
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-light"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar-light"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "container");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "container"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "container"));
     }
 
     @Test
@@ -58,12 +58,12 @@ public class NavbarTest extends AbstractWicketTest
         TagTester tagTester;
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-dark"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "fixed-top"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar-dark"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "fixed-top"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "navbar-expand-lg"));
 
         tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "container");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "container"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "container"));
     }
 }

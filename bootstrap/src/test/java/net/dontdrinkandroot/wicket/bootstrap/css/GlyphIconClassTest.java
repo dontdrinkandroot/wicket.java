@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -29,7 +29,7 @@ public class GlyphIconClassTest
     public void testGetClassString()
     {
         for (GlyphIconClass fontAwesomeIconClass : GlyphIconClass.values()) {
-            Assert.assertEquals(
+            Assertions.assertEquals(
                     "glyphicon glyphicon-" + fontAwesomeIconClass.name().toLowerCase().replace("_", "-"),
                     fontAwesomeIconClass.getClassString()
             );

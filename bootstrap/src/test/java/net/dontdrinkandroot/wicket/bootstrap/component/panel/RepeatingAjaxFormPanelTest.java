@@ -24,8 +24,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -55,7 +55,7 @@ public class RepeatingAjaxFormPanelTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         TagTester formTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(formTester.getAttributeContains("class", "panel"));
-        Assert.assertTrue(formTester.getAttributeContains("class", "panel-default"));
+        Assertions.assertTrue(formTester.getAttributeContains("class", "panel"));
+        Assertions.assertTrue(formTester.getAttributeContains("class", "panel-default"));
     }
 }

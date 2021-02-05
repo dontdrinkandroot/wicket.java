@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.behavior;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -35,7 +35,7 @@ public class DisplayNoneAppenderTest extends AbstractWicketTest
         container.add(new DisplayNoneAppender());
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" style=\"display: none\"></wicket:container>",
                 componentMarkup.toString()
         );

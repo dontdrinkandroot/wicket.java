@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css.grid;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -35,7 +35,7 @@ public class ColumnOffsetStackTest
                 ColumnOffsetLarge.COLUMNS_5
         );
         ColumnSize inverseStack = stack.getInverseColumnSize();
-        Assert.assertEquals("col-10 col-sm-9 col-md-8 col-lg-7", inverseStack.getClassString());
+        Assertions.assertEquals("col-10 col-sm-9 col-md-8 col-lg-7", inverseStack.getClassString());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ColumnOffsetStackTest
                 ColumnOffsetLarge.COLUMNS_5
         );
         ColumnOffset inverseStack = stack.getInverseColumnOffset();
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "offset-10 offset-sm-9 offset-md-8 offset-lg-7",
                 inverseStack.getClassString()
         );

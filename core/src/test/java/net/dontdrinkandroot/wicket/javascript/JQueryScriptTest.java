@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.javascript;
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.util.time.Duration;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
@@ -34,17 +34,17 @@ public class JQueryScriptTest extends AbstractWicketTest
         WebMarkupContainer container = new WebMarkupContainer("test");
         container.setMarkupId("test");
         JQueryScript jQueryScript = new JQueryScript(container);
-        Assert.assertEquals("jQuery('#test')", jQueryScript.toString());
-        Assert.assertTrue(container.getOutputMarkupId());
+        Assertions.assertEquals("jQuery('#test')", jQueryScript.toString());
+        Assertions.assertTrue(container.getOutputMarkupId());
     }
 
     @Test
     public void testCharSequenceImplementstion()
     {
         JQueryScript jQueryScript = new JQueryScript();
-        Assert.assertEquals('Q', jQueryScript.charAt(1));
-        Assert.assertEquals(12, jQueryScript.length());
-        Assert.assertEquals("Qu", jQueryScript.subSequence(1, 3));
+        Assertions.assertEquals('Q', jQueryScript.charAt(1));
+        Assertions.assertEquals(12, jQueryScript.length());
+        Assertions.assertEquals("Qu", jQueryScript.subSequence(1, 3));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.show();
-        Assert.assertEquals("jQuery(this).show()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).show()", jQueryScript.toString());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.show(null, null, null);
-        Assert.assertEquals("jQuery(this).show(0, 'swing', function() {})", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).show(0, 'swing', function() {})", jQueryScript.toString());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.show(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).show(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -79,7 +79,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.show(null, JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).show(0, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -90,7 +90,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.hide();
-        Assert.assertEquals("jQuery(this).hide()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).hide()", jQueryScript.toString());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.hide(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).hide(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -109,7 +109,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.toggle();
-        Assert.assertEquals("jQuery(this).toggle()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).toggle()", jQueryScript.toString());
     }
 
     @Test
@@ -117,7 +117,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.toggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).toggle(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -128,7 +128,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeIn();
-        Assert.assertEquals("jQuery(this).fadeIn()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).fadeIn()", jQueryScript.toString());
     }
 
     @Test
@@ -136,7 +136,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeIn(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).fadeIn(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -147,7 +147,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeOut();
-        Assert.assertEquals("jQuery(this).fadeOut()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).fadeOut()", jQueryScript.toString());
     }
 
     @Test
@@ -155,7 +155,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeOut(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).fadeOut(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -166,7 +166,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeToggle();
-        Assert.assertEquals("jQuery(this).fadeToggle()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).fadeToggle()", jQueryScript.toString());
     }
 
     @Test
@@ -174,7 +174,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.fadeToggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "console.log('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).fadeToggle(200, 'linear', function() {console.log('test');})",
                 jQueryScript.toString()
         );
@@ -189,8 +189,8 @@ public class JQueryScriptTest extends AbstractWicketTest
         properties.setProperty("height", "100px");
         properties.setProperty("width", "50px");
         jQueryScript.animate(properties);
-        Assert.assertEquals(
-                "jQuery(this).animate({'height': '100px', 'width': '50px'}, 400, 'swing', function() {})",
+        Assertions.assertEquals(
+                "jQuery(this).animate({'width': '50px', 'height': '100px'}, 400, 'swing', function() {})",
                 jQueryScript.toString()
         );
     }
@@ -200,7 +200,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideDown();
-        Assert.assertEquals("jQuery(this).slideDown()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).slideDown()", jQueryScript.toString());
     }
 
     @Test
@@ -208,7 +208,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideDown(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).slideDown(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()
         );
@@ -219,7 +219,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideUp();
-        Assert.assertEquals("jQuery(this).slideUp()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).slideUp()", jQueryScript.toString());
     }
 
     @Test
@@ -227,7 +227,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideUp(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).slideUp(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()
         );
@@ -238,7 +238,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideToggle();
-        Assert.assertEquals("jQuery(this).slideToggle()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).slideToggle()", jQueryScript.toString());
     }
 
     @Test
@@ -246,7 +246,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.slideToggle(Duration.milliseconds(200), JQueryEasingFunction.LINEAR, "alert('test');");
-        Assert.assertEquals(
+        Assertions.assertEquals(
                 "jQuery(this).slideToggle(200, 'linear', function() {alert('test');})",
                 jQueryScript.toString()
         );
@@ -257,7 +257,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.children(".test");
-        Assert.assertEquals("jQuery(this).children('.test')", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).children('.test')", jQueryScript.toString());
     }
 
     @Test
@@ -265,7 +265,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.siblings(".test");
-        Assert.assertEquals("jQuery(this).siblings('.test')", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).siblings('.test')", jQueryScript.toString());
     }
 
     @Test
@@ -273,7 +273,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.siblings(null);
-        Assert.assertEquals("jQuery(this).siblings()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).siblings()", jQueryScript.toString());
     }
 
     @Test
@@ -281,7 +281,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.addClass(".test");
-        Assert.assertEquals("jQuery(this).addClass('.test')", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).addClass('.test')", jQueryScript.toString());
     }
 
     @Test
@@ -289,7 +289,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.removeClass(".test");
-        Assert.assertEquals("jQuery(this).removeClass('.test')", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).removeClass('.test')", jQueryScript.toString());
     }
 
     @Test
@@ -297,7 +297,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.click(null);
-        Assert.assertEquals("jQuery(this).click(function(event) {})", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).click(function(event) {})", jQueryScript.toString());
     }
 
     @Test
@@ -305,7 +305,7 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.click("alert('test');");
-        Assert.assertEquals("jQuery(this).click(function(event) {alert('test');})", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).click(function(event) {alert('test');})", jQueryScript.toString());
     }
 
     @Test
@@ -313,6 +313,6 @@ public class JQueryScriptTest extends AbstractWicketTest
     {
         JQueryScript jQueryScript = new JQueryScript();
         jQueryScript.append(".test()");
-        Assert.assertEquals("jQuery(this).test()", jQueryScript.toString());
+        Assertions.assertEquals("jQuery(this).test()", jQueryScript.toString());
     }
 }

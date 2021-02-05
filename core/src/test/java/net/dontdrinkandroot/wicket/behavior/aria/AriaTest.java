@@ -17,20 +17,19 @@
  */
 package net.dontdrinkandroot.wicket.behavior.aria;
 
-import org.junit.Assert;
-import org.junit.Test;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AriaTest
 {
-
     @Test
     public void testNaming()
     {
         Aria[] ariaValues = Aria.values();
-        Assert.assertEquals(35, ariaValues.length);
+        Assertions.assertEquals(35, ariaValues.length);
         for (Aria aria : ariaValues) {
-            Assert.assertEquals("aria-" + aria.name().toLowerCase(), aria.getAttribute());
+            Assertions.assertEquals("aria-" + aria.name().toLowerCase(), aria.getAttribute());
         }
     }
 }

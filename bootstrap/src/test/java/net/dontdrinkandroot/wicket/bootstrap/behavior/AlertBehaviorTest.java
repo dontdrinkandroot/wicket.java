@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AlertBehaviorTest extends AbstractWicketTest
 {
@@ -35,7 +35,7 @@ public class AlertBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "alert"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "alert-info"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "alert"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "alert-info"));
     }
 }

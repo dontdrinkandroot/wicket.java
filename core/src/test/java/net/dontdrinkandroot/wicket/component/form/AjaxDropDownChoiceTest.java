@@ -23,8 +23,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -39,7 +39,7 @@ public class AjaxDropDownChoiceTest extends WicketTestCase
         IModel<String> model = new Model<>();
         IModel<Boolean> selectionChangedCalled = Model.of(Boolean.FALSE);
         AjaxDropDownChoice<String> dropDownChoice =
-                new AjaxDropDownChoice<String>("id", model, Arrays.asList("Red", "Green", "Blue"))
+                new AjaxDropDownChoice<>("id", model, Arrays.asList("Red", "Green", "Blue"))
                 {
                     @Override
                     protected void onSelectionChanged(AjaxRequestTarget target)
@@ -61,7 +61,7 @@ public class AjaxDropDownChoiceTest extends WicketTestCase
         FormTester formTester = this.tester.newFormTester("form");
         formTester.select("id", 1);
         this.tester.executeAjaxEvent(dropDownChoice, "change");
-        Assert.assertTrue(selectionChangedCalled.getObject());
-        Assert.assertEquals("Green", model.getObject());
+        Assertions.assertTrue(selectionChangedCalled.getObject());
+        Assertions.assertEquals("Green", model.getObject());
     }
 }

@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
@@ -51,11 +51,11 @@ public class FormGroupLocalDateTimeTest extends AbstractWicketTest
 
         TagTester formComponentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent");
-        Assert.assertEquals("form-control", formComponentTester.getAttribute("class"));
-        Assert.assertEquals("datetime-local", formComponentTester.getAttribute("type"));
-        Assert.assertEquals("2017-01-02T03:04", formComponentTester.getAttribute("value"));
-        Assert.assertEquals("2016-06-04T23:46", formComponentTester.getAttribute("min"));
-        Assert.assertEquals("2018-09-06T12:53", formComponentTester.getAttribute("max"));
-        Assert.assertEquals("Label", formComponentTester.getAttribute("placeholder"));
+        Assertions.assertEquals("form-control", formComponentTester.getAttribute("class"));
+        Assertions.assertEquals("datetime-local", formComponentTester.getAttribute("type"));
+        Assertions.assertEquals("2017-01-02T03:04", formComponentTester.getAttribute("value"));
+        Assertions.assertEquals("2016-06-04T23:46", formComponentTester.getAttribute("min"));
+        Assertions.assertEquals("2018-09-06T12:53", formComponentTester.getAttribute("max"));
+        Assertions.assertEquals("Label", formComponentTester.getAttribute("placeholder"));
     }
 }

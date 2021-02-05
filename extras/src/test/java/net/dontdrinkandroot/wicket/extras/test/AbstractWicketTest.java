@@ -18,20 +18,20 @@
 package net.dontdrinkandroot.wicket.extras.test;
 
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class AbstractWicketTest
 {
     protected WicketTester tester;
 
-    @Before
+    @BeforeEach
     public void setUp()
     {
         this.tester = new WicketTester(new TestApplication());
     }
 
-    @After
+    @AfterEach
     public void tearDown()
     {
         this.tester.destroy();

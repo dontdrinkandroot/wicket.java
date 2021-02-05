@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.css;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -29,6 +29,6 @@ public class StringCssClassTest
     public void testGetClassString()
     {
         CssClass cssClass = new StringCssClass("test");
-        Assert.assertEquals("test", cssClass.getClassString());
+        Assertions.assertEquals("test", cssClass.getClassString());
     }
 }

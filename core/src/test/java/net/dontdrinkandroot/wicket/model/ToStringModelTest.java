@@ -19,8 +19,8 @@ package net.dontdrinkandroot.wicket.model;
 
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
@@ -37,9 +37,9 @@ public class ToStringModelTest
 
         try {
             model.setObject("Test");
-            Assert.fail("Runtimeexception expected");
+            Assertions.fail("Runtimeexception expected");
         } catch (UnsupportedOperationException e) {
-            Assert.assertEquals(
+            Assertions.assertEquals(
                     "Model class net.dontdrinkandroot.wicket.model.ToStringModel does not support setObject(Object)",
                     e.getMessage()
             );

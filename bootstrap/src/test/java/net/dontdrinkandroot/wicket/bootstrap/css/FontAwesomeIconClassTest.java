@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -30,7 +30,7 @@ public class FontAwesomeIconClassTest
     {
         for (FontAwesomeIconClass fontAwesomeIconClass : FontAwesomeIconClass.values()) {
             if (!(fontAwesomeIconClass.equals(FontAwesomeIconClass.FIVEHUNDRED_PX))) {
-                Assert.assertEquals(
+                Assertions.assertEquals(
                         "fa-" + fontAwesomeIconClass.name().toLowerCase().replace("_", "-"),
                         fontAwesomeIconClass.getClassString()
                 );

@@ -22,8 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FormGroupCheckBoxTest extends AbstractWicketTest
 {
@@ -40,14 +40,14 @@ public class FormGroupCheckBoxTest extends AbstractWicketTest
 
         TagTester formGroupTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup");
-        Assert.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
+        Assertions.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
 
         TagTester labelTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "label");
-        Assert.assertEquals("Label", labelTester.getValue());
+        Assertions.assertEquals("Label", labelTester.getValue());
 
         TagTester formComponentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent");
-        Assert.assertEquals("checkbox", formComponentTester.getAttribute("type"));
-        Assert.assertEquals("checked", formComponentTester.getAttribute("checked"));
+        Assertions.assertEquals("checkbox", formComponentTester.getAttribute("type"));
+        Assertions.assertEquals("checked", formComponentTester.getAttribute("checked"));
     }
 }

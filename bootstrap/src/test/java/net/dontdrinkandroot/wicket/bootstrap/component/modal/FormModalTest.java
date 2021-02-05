@@ -22,8 +22,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -46,10 +46,10 @@ public class FormModalTest extends AbstractWicketTest
         TagTester tester;
 
         tester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "modalId");
-        Assert.assertTrue(tester.getAttributeContains("class", "modal"));
-        Assert.assertTrue(tester.getAttributeContains("class", "fade"));
+        Assertions.assertTrue(tester.getAttributeContains("class", "modal"));
+        Assertions.assertTrue(tester.getAttributeContains("class", "fade"));
 
         tester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "heading");
-        Assert.assertEquals("Modal Heading", tester.getValue());
+        Assertions.assertEquals("Modal Heading", tester.getValue());
     }
 }

@@ -21,8 +21,8 @@ import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class PaginationPanelTest extends AbstractWicketTest
         {
             private long page = 0;
 
-            private long pageCount = 20;
+            private final long pageCount = 20;
 
             @Override
             public void setCurrentPage(long page)
@@ -62,19 +62,19 @@ public class PaginationPanelTest extends AbstractWicketTest
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
-        Assert.assertTrue(componentTester.getAttributeContains("class", "pagination"));
+        Assertions.assertTrue(componentTester.getAttributeContains("class", "pagination"));
 
         TagTester firstItemTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "firstItem");
-        Assert.assertTrue(firstItemTester.getAttributeContains("class", "disabled"));
+        Assertions.assertTrue(firstItemTester.getAttributeContains("class", "disabled"));
 
         TagTester prevItemTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "prevItem");
-        Assert.assertTrue(prevItemTester.getAttributeContains("class", "disabled"));
+        Assertions.assertTrue(prevItemTester.getAttributeContains("class", "disabled"));
 
         List<TagTester> pageTesters = TagTester.createTagsByAttribute(componentMarkup, "wicket:id", "pageItem", false);
-        Assert.assertEquals(component.getViewSize(), pageTesters.size());
+        Assertions.assertEquals(component.getViewSize(), pageTesters.size());
 
         TagTester currentPageTester = pageTesters.get(0);
-        Assert.assertTrue(currentPageTester.getAttributeContains("class", "active"));
+        Assertions.assertTrue(currentPageTester.getAttributeContains("class", "active"));
 
         TagTester nextItemTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "nextItem");
 

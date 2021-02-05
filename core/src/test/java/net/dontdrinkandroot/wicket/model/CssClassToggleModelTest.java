@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.model;
 import net.dontdrinkandroot.wicket.css.StringCssClass;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -36,10 +36,10 @@ public class CssClassToggleModelTest
         StringCssClass activeClass = new StringCssClass("active");
 
         CssClassToggleModel model = new CssClassToggleModel(activeModel, activeClass);
-        Assert.assertNull(model.getObject());
+        Assertions.assertNull(model.getObject());
 
         activeModel.setObject(Boolean.TRUE);
-        Assert.assertEquals(activeClass, model.getObject());
+        Assertions.assertEquals(activeClass, model.getObject());
     }
 
     @Test
@@ -51,10 +51,10 @@ public class CssClassToggleModelTest
         StringCssClass inactiveClass = new StringCssClass("inactive");
 
         CssClassToggleModel model = new CssClassToggleModel(activeModel, activeClass, inactiveClass);
-        Assert.assertEquals(inactiveClass, model.getObject());
+        Assertions.assertEquals(inactiveClass, model.getObject());
 
         activeModel.setObject(Boolean.TRUE);
-        Assert.assertEquals(activeClass, model.getObject());
+        Assertions.assertEquals(activeClass, model.getObject());
     }
 
     @Test
@@ -73,10 +73,10 @@ public class CssClassToggleModelTest
                 return activeModel.getObject();
             }
         };
-        Assert.assertNull(model.getObject());
+        Assertions.assertNull(model.getObject());
 
         activeModel.setObject(Boolean.TRUE);
-        Assert.assertEquals(activeClass, model.getObject());
+        Assertions.assertEquals(activeClass, model.getObject());
     }
 
     @Test
@@ -84,6 +84,6 @@ public class CssClassToggleModelTest
     {
         StringCssClass activeClass = new StringCssClass("active");
         CssClassToggleModel model = new CssClassToggleModel(activeClass);
-        Assert.assertEquals(activeClass, model.getObject());
+        Assertions.assertEquals(activeClass, model.getObject());
     }
 }

@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.model;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -31,12 +31,12 @@ public class IntegerRangeListModelTest
     public void testRanges()
     {
         IntegerRangeListModel model = new IntegerRangeListModel(1, 3);
-        Assert.assertTrue(Arrays.asList(1, 2, 3).equals(model.getObject()));
+        Assertions.assertEquals(model.getObject(), Arrays.asList(1, 2, 3));
         model.setMin(2);
-        Assert.assertTrue(Arrays.asList(2, 3).equals(model.getObject()));
+        Assertions.assertEquals(model.getObject(), Arrays.asList(2, 3));
         model.setMax(4);
-        Assert.assertTrue(Arrays.asList(2, 3, 4).equals(model.getObject()));
-        Assert.assertEquals(2, model.getMin());
-        Assert.assertEquals(4, model.getMax());
+        Assertions.assertEquals(model.getObject(), Arrays.asList(2, 3, 4));
+        Assertions.assertEquals(2, model.getMin());
+        Assertions.assertEquals(4, model.getMax());
     }
 }

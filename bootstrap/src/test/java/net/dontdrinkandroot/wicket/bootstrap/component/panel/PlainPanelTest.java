@@ -20,8 +20,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -35,6 +35,6 @@ public class PlainPanelTest extends AbstractWicketTest
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");
-        Assert.assertTrue(componentTester.getAttributeIs("class", "panel panel-default"));
+        Assertions.assertTrue(componentTester.getAttributeIs("class", "panel panel-default"));
     }
 }

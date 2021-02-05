@@ -24,8 +24,8 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ButtonBehaviorTest extends AbstractWicketTest
 {
@@ -33,17 +33,17 @@ public class ButtonBehaviorTest extends AbstractWicketTest
     public void testGettersSetters()
     {
         ButtonBehavior buttonBehavior = new ButtonBehavior(ButtonStyle.PRIMARY, ButtonSize.LARGE);
-        Assert.assertEquals(ButtonStyle.PRIMARY, buttonBehavior.getButtonStyle());
-        Assert.assertEquals(ButtonSize.LARGE, buttonBehavior.getButtonSize());
+        Assertions.assertEquals(ButtonStyle.PRIMARY, buttonBehavior.getButtonStyle());
+        Assertions.assertEquals(ButtonSize.LARGE, buttonBehavior.getButtonSize());
 
         buttonBehavior.setButtonStyle(ButtonStyle.DANGER);
-        Assert.assertEquals(ButtonStyle.DANGER, buttonBehavior.getButtonStyle());
+        Assertions.assertEquals(ButtonStyle.DANGER, buttonBehavior.getButtonStyle());
 
         buttonBehavior.setButtonStyleModel(Model.of(ButtonStyle.INFO));
-        Assert.assertEquals(ButtonStyle.INFO, buttonBehavior.getButtonStyle());
+        Assertions.assertEquals(ButtonStyle.INFO, buttonBehavior.getButtonStyle());
 
         buttonBehavior.setButtonSize(ButtonSize.SMALL);
-        Assert.assertEquals(ButtonSize.SMALL, buttonBehavior.getButtonSize());
+        Assertions.assertEquals(ButtonSize.SMALL, buttonBehavior.getButtonSize());
     }
 
     @Test
@@ -54,9 +54,9 @@ public class ButtonBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(buttonContainer);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
-        Assert.assertFalse(tagTester.getAttributeContains("class", "disabled"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "btn"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
+        Assertions.assertFalse(tagTester.getAttributeContains("class", "disabled"));
     }
 
     @Test
@@ -68,8 +68,8 @@ public class ButtonBehaviorTest extends AbstractWicketTest
         CharSequence componentMarkup = ComponentRenderer.renderComponent(buttonContainer);
 
         TagTester tagTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id");
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
-        Assert.assertTrue(tagTester.getAttributeContains("class", "disabled"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "btn"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "btn-secondary"));
+        Assertions.assertTrue(tagTester.getAttributeContains("class", "disabled"));
     }
 }
