@@ -12,7 +12,7 @@
     <properties>
 
         <!-- Dependency Versions -->
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <spring-boot.version>2.4.2</spring-boot.version>
         <wicket-spring-boot-starter.version>[3.0.4,3.999]</wicket-spring-boot-starter.version>
 
         <!-- Plugin Versions -->
