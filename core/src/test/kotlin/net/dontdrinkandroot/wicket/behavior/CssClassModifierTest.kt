@@ -1,83 +1,54 @@
-/*
- * Copyright (C) 2012-2017 Philip Washington Sorst <philip@sorst.net>
- * and individual contributors as indicated
- * by the @authors tag.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package net.dontdrinkandroot.wicket.behavior;
+package net.dontdrinkandroot.wicket.behavior
 
-import net.dontdrinkandroot.wicket.css.CssClass;
-import net.dontdrinkandroot.wicket.css.StringCssClass;
-import net.dontdrinkandroot.wicket.test.AbstractWicketTest;
-import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import net.dontdrinkandroot.wicket.css.CssClass
+import net.dontdrinkandroot.wicket.css.StringCssClass
+import net.dontdrinkandroot.wicket.test.AbstractWicketTest
+import org.apache.wicket.core.util.string.ComponentRenderer
+import org.apache.wicket.markup.html.WebMarkupContainer
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
-/**
- * @author Philip Washington Sorst <philip@sorst.net>
- */
-public class CssClassModifierTest extends AbstractWicketTest
-{
+class CssClassModifierTest : AbstractWicketTest() {
+
     @Test
-    public void testStringConstructor()
-    {
-        WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new CssClassModifier("testone"));
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
-
+    fun testStringConstructor() {
+        val container = WebMarkupContainer("id")
+        container.add(CssClassModifier("testone"))
+        val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
+            componentMarkup.toString()
+        )
     }
 
     @Test
-    public void testCssClassConstructor()
-    {
-        WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new CssClassModifier(new StringCssClass("testone")));
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
-
+    fun testCssClassConstructor() {
+        val container = WebMarkupContainer("id")
+        container.add(CssClassModifier(StringCssClass("testone")))
+        val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
+            componentMarkup.toString()
+        )
     }
 
     @Test
-    public void testModelConstructor()
-    {
-        IModel<CssClass> classModel = Model.of(new StringCssClass("testone"));
-        WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new CssClassModifier(classModel));
-        CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
-
+    fun testModelConstructor() {
+        val classModel: IModel<CssClass?> = Model.of(StringCssClass("testone"))
+        val container = WebMarkupContainer("id")
+        container.add(CssClassModifier(classModel))
+        var componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
-                componentMarkup.toString()
-        );
-
-        classModel.setObject(new StringCssClass("testtwo"));
-
-        componentMarkup = ComponentRenderer.renderComponent(container);
-
+            """<wicket:container wicket:id="id" class="testone"></wicket:container>""",
+            componentMarkup.toString()
+        )
+        classModel.setObject(StringCssClass("testtwo"))
+        componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-                "<wicket:container wicket:id=\"id\" class=\"testtwo\"></wicket:container>",
-                componentMarkup.toString()
-        );
+            """<wicket:container wicket:id="id" class="testtwo"></wicket:container>""",
+            componentMarkup.toString()
+        )
     }
 }
