@@ -18,7 +18,7 @@ class CompositeBehaviorTest : AbstractWicketTest() {
         component.add(behavior)
         val componentMarkup = ComponentRenderer.renderComponent(component)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" class=\"cssclass\" title=\"Title\"></wicket:container>",
+            """<wicket:container wicket:id="id" class="cssclass" title="Title"></wicket:container>""",
             componentMarkup.toString()
         )
     }

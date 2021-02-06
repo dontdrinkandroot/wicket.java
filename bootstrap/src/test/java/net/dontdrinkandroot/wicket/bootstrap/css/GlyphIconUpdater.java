@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.css;
 
-import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem;
+import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItemKt;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class GlyphIconUpdater
     {
         URL lessUrl = new URL(String.format(
                 "https://raw.githubusercontent.com/twbs/bootstrap/v%s/less/glyphicons.less",
-                BootstrapJsHeaderItem.BOOTSTRAP_VERSION
+                BootstrapJsHeaderItemKt.BOOTSTRAP_VERSION
         ));
 
         //        Pattern pattern = Pattern.compile("\\.glyphicon-([^\\s]*)");

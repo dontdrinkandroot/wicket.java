@@ -1,20 +1,3 @@
-/*
- * Copyright (C) 2012-2017 Philip Washington Sorst <philip@sorst.net>
- * and individual contributors as indicated
- * by the @authors tag.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package net.dontdrinkandroot.wicket.example.page
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
@@ -26,9 +9,9 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.FontAwesomeCssHeaderItem
-import net.dontdrinkandroot.wicket.example.ExampleWebSession.Companion.get
 import net.dontdrinkandroot.wicket.example.component.BuildInfoItem
 import net.dontdrinkandroot.wicket.example.component.ThemeDropdownItem
+import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
@@ -44,44 +27,33 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
-/**
- * @author Philip Washington Sorst <philip@sorst.net>
- */
-abstract class DecoratorPage<T> : StandardBootstrapPage<T>
-{
+abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
+
     constructor() : super()
 
     constructor(parameters: PageParameters?) : super(parameters)
 
     constructor(model: IModel<T>?) : super(model)
 
-    override fun createPageTitlePrefixModel(): IModel<String>
-    {
-        return Model.of("wicket.example")
-    }
+    override fun createPageTitlePrefixModel(): IModel<String> = Model.of("wicket.example")
 
-    override fun createNavbar(id: String): Component
-    {
-        val navbar: Navbar = object : Navbar(id)
-        {
-            override fun createBrand(id: String): Component
-            {
+    override fun createNavbar(id: String): Component {
+        val navbar: Navbar = object : Navbar(id) {
+            override fun createBrand(id: String): Component {
                 val brandLink: BookmarkablePageLink<Void> = BookmarkablePageLink(id, HomePage::class.java)
                 brandLink.body = Model.of("wicket.example")
                 return brandLink
             }
 
-            override fun populateCollapseItems(collapseItemView: RepeatingView)
-            {
+            override fun populateCollapseItems(collapseItemView: RepeatingView) {
                 super.populateCollapseItems(collapseItemView)
-                val leftItems: RepeatingNavbarNav<*> = object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId())
-                {
-                    override fun populateItems(itemView: RepeatingView)
-                    {
-                        super.populateItems(itemView)
-                        populateNavbarLeftItems(itemView)
+                val leftItems: RepeatingNavbarNav<*> =
+                    object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
+                        override fun populateItems(itemView: RepeatingView) {
+                            super.populateItems(itemView)
+                            populateNavbarLeftItems(itemView)
+                        }
                     }
-                }
                 leftItems.add(
                     CssClassAppender(
                         Spacing(
@@ -93,10 +65,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T>
                 )
                 collapseItemView.add(leftItems)
                 val rightItems: RepeatingNavbarNav<*> =
-                    object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId())
-                    {
-                        override fun populateItems(itemView: RepeatingView)
-                        {
+                    object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
+                        override fun populateItems(itemView: RepeatingView) {
                             super.populateItems(itemView)
                             itemView.add(ThemeDropdownItem(itemView.newChildId()))
                             itemView.add(BuildInfoItem(itemView.newChildId()))
@@ -110,8 +80,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T>
         return navbar
     }
 
-    protected fun populateNavbarLeftItems(leftItemView: RepeatingView)
-    {
+    protected fun populateNavbarLeftItems(leftItemView: RepeatingView) {
         leftItemView.add(
             BookmarkablePageLinkItem<Void, GettingStartedPage>(
                 leftItemView.newChildId(),
@@ -129,10 +98,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T>
                 GridPage::class.java
             )
         )
-        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Components"))
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Components")) {
+            override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void, ButtonPage>(
                         itemView.newChildId(),
@@ -214,10 +181,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T>
 
             override fun isActive() = this.page is ComponentPage
         })
-        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Forms"))
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Forms")) {
+            override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void, FormGroupPage>(
                         itemView.newChildId(),
@@ -252,10 +217,9 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T>
         })
     }
 
-    override fun renderHead(response: IHeaderResponse)
-    {
+    override fun renderHead(response: IHeaderResponse) {
         response.render(this.bootstrapJavaScriptHeaderItem)
-        response.render(CssUrlReferenceHeaderItem(get().currentTheme!!.url, null, null))
+        response.render(CssUrlReferenceHeaderItem(getCurrentSession().currentTheme!!.url, null, null))
         response.render(FontAwesomeCssHeaderItem())
         response.render(CssContentHeaderItem("body{padding-top: 56px;}", "bodyPadding"))
         response.render(
