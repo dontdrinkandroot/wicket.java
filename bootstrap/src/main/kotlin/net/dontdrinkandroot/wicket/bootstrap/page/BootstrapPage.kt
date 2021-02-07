@@ -10,6 +10,12 @@ import org.apache.wicket.request.mapper.parameter.PageParameters
 
 abstract class BootstrapPage<T> : Html5ScaffoldPage<T> {
 
+    protected open val bootstrapJavaScriptHeaderItem: HeaderItem
+        get() = BootstrapJsHeaderItem()
+
+    protected open val bootstrapCssHeaderItem: HeaderItem
+        get() = BootstrapCssHeaderItem()
+
     constructor() : super()
     constructor(parameters: PageParameters?) : super(parameters)
     constructor(model: IModel<T>?) : super(model)
@@ -19,10 +25,4 @@ abstract class BootstrapPage<T> : Html5ScaffoldPage<T> {
         response.render(bootstrapJavaScriptHeaderItem)
         response.render(bootstrapCssHeaderItem)
     }
-
-    protected val bootstrapJavaScriptHeaderItem: HeaderItem
-        protected get() = BootstrapJsHeaderItem()
-
-    protected val bootstrapCssHeaderItem: HeaderItem
-        protected get() = BootstrapCssHeaderItem()
 }
