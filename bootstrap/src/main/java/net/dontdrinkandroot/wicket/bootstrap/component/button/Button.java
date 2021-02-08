@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 
@@ -74,14 +75,12 @@ public abstract class Button<T> extends Link<T> implements IButton
         return this;
     }
 
-    public Button<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-    {
+    public Button<T> setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
-    public Button<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-    {
+    public Button<T> setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

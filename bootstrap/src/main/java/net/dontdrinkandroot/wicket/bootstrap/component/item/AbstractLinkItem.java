@@ -111,8 +111,7 @@ public abstract class AbstractLinkItem<T, L extends AbstractLink> extends Abstra
         this.link.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
         {
             @Override
-            protected boolean isActive()
-            {
+            protected boolean getActive() {
                 return AbstractLinkItem.this.isActive();
             }
         }));

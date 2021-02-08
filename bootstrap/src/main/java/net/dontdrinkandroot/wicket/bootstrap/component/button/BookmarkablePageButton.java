@@ -20,9 +20,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
@@ -77,14 +77,12 @@ public class BookmarkablePageButton<T> extends BookmarkablePageLink<T> implement
         return this;
     }
 
-    public BookmarkablePageButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-    {
+    public BookmarkablePageButton<T> setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
-    public BookmarkablePageButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-    {
+    public BookmarkablePageButton<T> setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

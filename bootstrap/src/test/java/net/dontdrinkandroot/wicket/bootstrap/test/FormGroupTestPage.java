@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.test;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroup;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroup;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 

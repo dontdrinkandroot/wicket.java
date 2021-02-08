@@ -17,6 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroupValidatable;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.model.IModel;
 
@@ -32,22 +34,17 @@ public abstract class FormGroupFormComponent<T, M, F extends FormComponent<M>> e
 
     protected Class<T> type = null;
 
-    public FormGroupFormComponent(String id, IModel<String> labelModel)
-    {
+    public FormGroupFormComponent(String id, KModel<String> labelModel) {
         this(id, labelModel, null, null);
     }
 
-    public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model)
-    {
+    public FormGroupFormComponent(String id, KModel<String> labelModel, IModel<T> model) {
         this(id, labelModel, model, null);
     }
 
-    public FormGroupFormComponent(String id, IModel<String> labelModel, IModel<T> model, Class<T> type)
-    {
-        super(id, labelModel, model);
+    public FormGroupFormComponent(String id, KModel<String> labelModel, IModel<T> model, Class<T> type) {
+        super(id, labelModel, model, type);
         this.setOutputMarkupId(true);
-
-        this.type = type;
 
         /* Initialize form component early, so it is available before onInitialize takes place */
         this.formComponent = this.createFormComponent("formComponent");

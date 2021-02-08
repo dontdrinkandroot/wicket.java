@@ -19,9 +19,9 @@ package net.dontdrinkandroot.wicket.bootstrap.component.pagination;
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
+import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
@@ -30,46 +30,36 @@ public abstract class PageLinkItem extends AbstractPageLinkItem
 {
     private final long page;
 
-    public PageLinkItem(String id, IPageable pageable, long page)
-    {
+    public PageLinkItem(String id, IPageable pageable, long page) {
         super(id, pageable);
 
         this.page = page;
 
-        this.add(new CssClassAppender(new Model<BootstrapCssClass>(BootstrapCssClass.ACTIVE)
+        this.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
         {
             @Override
-            public BootstrapCssClass getObject()
-            {
-                if (PageLinkItem.this.isCurrentPage()) {
-                    return super.getObject();
-                }
-
-                return null;
+            protected boolean getActive() {
+                return PageLinkItem.this.isCurrentPage();
             }
         }));
     }
 
     @Override
-    protected IModel<String> createLabel()
-    {
+    protected IModel<String> createLabel() {
         return () -> Long.toString(PageLinkItem.this.page + 1);
     }
 
     @Override
-    protected void setPaginablePage()
-    {
+    protected void setPaginablePage() {
         this.getPageable().setCurrentPage(Math.max(0, Math.min(this.page, this.getPageable().getPageCount() - 1)));
     }
 
-    protected boolean isCurrentPage()
-    {
+    protected boolean isCurrentPage() {
         return this.page == this.getPageable().getCurrentPage();
     }
 
     @Override
-    protected IModel<Long> getPaginablePageModel()
-    {
+    protected IModel<Long> getPaginablePageModel() {
         return () -> PageLinkItem.this.page;
     }
 }

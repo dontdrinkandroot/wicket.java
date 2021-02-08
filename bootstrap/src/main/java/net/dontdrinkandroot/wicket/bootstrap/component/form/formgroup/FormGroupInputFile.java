@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
@@ -31,13 +32,11 @@ public class FormGroupInputFile extends FormGroupFormComponent<List<FileUpload>,
 {
     private boolean multiple = false;
 
-    public FormGroupInputFile(String id, IModel<String> labelModel)
-    {
+    public FormGroupInputFile(String id, KModel<String> labelModel) {
         super(id, labelModel);
     }
 
-    public FormGroupInputFile(String id, IModel<String> labelModel, IModel<List<FileUpload>> model)
-    {
+    public FormGroupInputFile(String id, KModel<String> labelModel, IModel<List<FileUpload>> model) {
         super(id, labelModel, model);
     }
 

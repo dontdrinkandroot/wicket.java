@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.form.AbstractChoice.LabelPosition;
 import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.model.IModel;
@@ -31,7 +32,7 @@ public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioC
 {
     public FormGroupRadioChoice(
             String id,
-            IModel<String> labelModel,
+            KModel<String> labelModel,
             IModel<T> model,
             IModel<? extends List<? extends T>> choices
     )
@@ -40,8 +41,7 @@ public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioC
         this.getFormComponent().setChoices(choices);
     }
 
-    public FormGroupRadioChoice(String id, IModel<String> labelModel, IModel<T> model, List<? extends T> choices)
-    {
+    public FormGroupRadioChoice(String id, KModel<String> labelModel, IModel<T> model, List<? extends T> choices) {
         super(id, labelModel, model);
         this.getFormComponent().setChoices(choices);
     }

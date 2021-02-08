@@ -21,11 +21,11 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
 /**
  * @param <T> Type of the Model Object.
@@ -41,7 +41,7 @@ public abstract class Panel<T> extends GenericPanel<T>
 
     public static final String AFTER_BODY_ID = "afterBody";
 
-    private PanelBehavior panelBehavior = new PanelBehavior(this.createStyleModel());
+    private final PanelBehavior panelBehavior = new PanelBehavior(this.createStyleModel());
 
     protected Component heading;
 
@@ -112,8 +112,7 @@ public abstract class Panel<T> extends GenericPanel<T>
         return footerContainer;
     }
 
-    protected IModel<PanelStyle> createStyleModel()
-    {
-        return Model.of(PanelStyle.DEFAULT);
+    protected KModel<PanelStyle> createStyleModel() {
+        return () -> PanelStyle.DEFAULT;
     }
 }

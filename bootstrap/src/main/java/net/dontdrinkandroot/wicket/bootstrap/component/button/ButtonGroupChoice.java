@@ -22,6 +22,8 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.model.CssClassToggleModel;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -38,15 +40,13 @@ import java.util.List;
  */
 public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
 {
-    private ButtonBehavior buttonBehavior = new ButtonBehavior();
+    private final ButtonBehavior buttonBehavior = new ButtonBehavior();
 
-    public ButtonGroupChoice(String id, IModel<T> model, List<T> choices)
-    {
+    public ButtonGroupChoice(String id, IModel<T> model, List<T> choices) {
         this(id, model, new ListModel<T>(choices));
     }
 
-    public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel)
-    {
+    public ButtonGroupChoice(String id, IModel<T> model, IModel<List<T>> choicesModel) {
         super(id, model);
 
         this.setOutputMarkupId(true);
@@ -67,77 +67,67 @@ public class ButtonGroupChoice<T> extends GenericPanel<T> implements IButton
     /**
      * Creates the Button for the the given choice.
      */
-    protected AjaxLink<Void> createChoiceButton(String id, T choice)
-    {
+    protected AjaxLink<Void> createChoiceButton(String id, T choice) {
         AjaxLink<Void> choiceLink = new AjaxLink<Void>(id)
         {
             @Override
-            public void onClick(AjaxRequestTarget target)
-            {
+            public void onClick(AjaxRequestTarget target) {
                 ButtonGroupChoice.this.onSelectionChanged(choice, target);
             }
         };
         choiceLink.setBody(this.getDisplayModel(choice));
         choiceLink.add(this.buttonBehavior);
-        choiceLink.add(new CssClassAppender(() -> {
-            if (ButtonGroupChoice.this.getModelObject().equals(choice)) {
-                return BootstrapCssClass.ACTIVE;
+        choiceLink.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
+        {
+            @Override
+            protected boolean getActive() {
+                return ButtonGroupChoice.this.getModelObject().equals(choice);
             }
-
-            return null;
         }));
 
         return choiceLink;
     }
 
     @Override
-    public ButtonSize getButtonSize()
-    {
+    public ButtonSize getButtonSize() {
         return this.buttonBehavior.getButtonSize();
     }
 
     @Override
-    public ButtonGroupChoice<T> setButtonSize(ButtonSize buttonSize)
-    {
+    public ButtonGroupChoice<T> setButtonSize(ButtonSize buttonSize) {
         this.buttonBehavior.setButtonSize(buttonSize);
         return this;
     }
 
     @Override
-    public ButtonStyle getButtonStyle()
-    {
+    public ButtonStyle getButtonStyle() {
         return this.buttonBehavior.getButtonStyle();
     }
 
     @Override
-    public ButtonGroupChoice<T> setButtonStyle(ButtonStyle buttonStyle)
-    {
+    public ButtonGroupChoice<T> setButtonStyle(ButtonStyle buttonStyle) {
         this.buttonBehavior.setButtonStyle(buttonStyle);
         return this;
     }
 
     @Override
-    public ButtonGroupChoice<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-    {
+    public ButtonGroupChoice<T> setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public ButtonGroupChoice<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-    {
+    public ButtonGroupChoice<T> setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }
 
-    protected void onSelectionChanged(T choice, AjaxRequestTarget target)
-    {
+    protected void onSelectionChanged(T choice, AjaxRequestTarget target) {
         this.setModelObject(choice);
         target.add(ButtonGroupChoice.this);
     }
 
-    protected IModel<String> getDisplayModel(T choice)
-    {
+    protected IModel<String> getDisplayModel(T choice) {
         return new Model<String>(choice.toString());
     }
 }

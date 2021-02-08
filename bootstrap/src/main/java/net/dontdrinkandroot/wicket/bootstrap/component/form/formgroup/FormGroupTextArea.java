@@ -17,6 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.HTML5Attributes;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -30,8 +31,7 @@ public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<
 {
     private int rows = 5;
 
-    public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model)
-    {
+    public FormGroupTextArea(String id, KModel<String> labelModel, IModel<T> model) {
         super(id, labelModel, model);
     }
 

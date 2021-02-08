@@ -17,7 +17,7 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 
-import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupValidatable;
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroupValidatable;
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState;
 import net.dontdrinkandroot.wicket.javascript.JQueryScript;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -35,7 +35,7 @@ public class FormGroupAjaxValidationBehavior extends AjaxFormComponentUpdatingBe
 {
     private ThrottlingSettings throttlingSettings;
 
-    private FormGroupValidatable<?, ?, ?> formGroup;
+    private final FormGroupValidatable<?, ?, ?> formGroup;
 
     public FormGroupAjaxValidationBehavior(String event, FormGroupValidatable<?, ?, ?> formGroup)
     {

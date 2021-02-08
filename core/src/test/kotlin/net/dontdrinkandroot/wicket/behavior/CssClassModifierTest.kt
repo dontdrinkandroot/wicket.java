@@ -2,11 +2,11 @@ package net.dontdrinkandroot.wicket.behavior
 
 import net.dontdrinkandroot.wicket.css.CssClass
 import net.dontdrinkandroot.wicket.css.StringCssClass
+import net.dontdrinkandroot.wicket.model.KModel
+import net.dontdrinkandroot.wicket.model.kModel
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest
 import org.apache.wicket.core.util.string.ComponentRenderer
 import org.apache.wicket.markup.html.WebMarkupContainer
-import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -36,7 +36,7 @@ class CssClassModifierTest : AbstractWicketTest() {
 
     @Test
     fun testModelConstructor() {
-        val classModel: IModel<CssClass?> = Model.of(StringCssClass("testone"))
+        val classModel: KModel<CssClass> = StringCssClass("testone").kModel()
         val container = WebMarkupContainer("id")
         container.add(CssClassModifier(classModel))
         var componentMarkup = ComponentRenderer.renderComponent(container)

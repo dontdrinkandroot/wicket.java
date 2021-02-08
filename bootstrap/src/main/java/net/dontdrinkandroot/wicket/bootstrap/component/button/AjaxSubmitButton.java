@@ -20,18 +20,18 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
 {
-    protected ButtonBehavior buttonBehavior = new ButtonBehavior(Model.of(ButtonStyle.PRIMARY));
+    protected ButtonBehavior buttonBehavior = new ButtonBehavior(ButtonStyle.PRIMARY);
 
     public AjaxSubmitButton(String id)
     {
@@ -89,15 +89,13 @@ public class AjaxSubmitButton extends AjaxSubmitLink implements IButton
     }
 
     @Override
-    public AjaxSubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-    {
+    public AjaxSubmitButton setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public AjaxSubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-    {
+    public AjaxSubmitButton setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

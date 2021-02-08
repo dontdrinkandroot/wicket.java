@@ -1,56 +1,20 @@
 package net.dontdrinkandroot.wicket.model
 
-import org.apache.wicket.model.IModel
+interface ChainedModel<P, T> : KModel<T>
 
-interface ChainedModel<P, T> : IModel<T?> {
+abstract class AbstractChainedModel<P, T>(protected val parent: KModel<out P>) : ChainedModel<P, T> {
 
-    fun getParentModel(): IModel<P?>
+    override fun getValue(): T = this.getValue(parent.getValue())
 
-    fun getParentModelObject(): P? = getParentModel().`object`
-}
-
-interface ChainedReadonlyModel<P, T> : IModel<T?> {
-
-    fun getParentModel(): IModel<out P?>
-
-    fun getParentModelObject(): P? = getParentModel().`object`
-}
-
-abstract class AbstractChainedModel<P, T>(private val parentModel: IModel<P?>) : ChainedModel<P, T> {
-
-    override fun getParentModel(): IModel<P?> {
-        return this.parentModel
-    }
+    abstract fun getValue(parentValue: P): T
 
     override fun detach() {
-        this.getParentModel().detach()
+        this.parent.detach()
     }
 }
 
-fun <P, T> IModel<P?>.chain(getChain: (P?) -> T?, setChain: (P?, T?) -> Unit): IModel<T?> =
+fun <P, T> KModel<P>.chain(getChain: (P) -> T, setChain: (P, T) -> Unit = { _: P, _: T -> }): KModel<T> =
     object : AbstractChainedModel<P, T>(this) {
-        override fun getObject(): T? = getChain(getParentModel().`object`)
-        override fun setObject(value: T?) {
-            setChain(getParentModelObject(), value)
-        }
+        override fun getValue(parentValue: P): T = getChain(parentValue)
+        override fun setValue(value: T) = setChain(this.parent.getValue(), value)
     }
-
-abstract class AbstractChainedReadonlyModel<P, T>(private val parentModel: IModel<out P?>) :
-    ChainedReadonlyModel<P, T> {
-
-    override fun getParentModel(): IModel<out P?> {
-        return this.parentModel
-    }
-
-    override fun detach() {
-        this.getParentModel().detach()
-    }
-
-    final override fun setObject(`object`: T?) {
-        super.setObject(`object`)
-    }
-}
-
-fun <P, T> IModel<P?>.chain(chain: (P?) -> T?): IModel<T?> = object : AbstractChainedReadonlyModel<P, T>(this) {
-    override fun getObject(): T? = chain(getParentModel().`object`)
-}

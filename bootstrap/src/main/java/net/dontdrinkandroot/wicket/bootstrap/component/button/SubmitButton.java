@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.model.IModel;
 
@@ -75,15 +76,13 @@ public class SubmitButton extends SubmitLink implements IButton
     }
 
     @Override
-    public SubmitButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel)
-    {
+    public SubmitButton setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public SubmitButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel)
-    {
+    public SubmitButton setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

@@ -17,7 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroupValidatable;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -33,11 +35,10 @@ import org.apache.wicket.model.IModel;
 public abstract class FormGroupInputGroup<T, M, F extends FormComponent<M>, I extends InputGroup<T, M, F>>
         extends FormGroupValidatable<T, M, F>
 {
-    private InputGroup<T, M, F> inputGroup;
+    private final InputGroup<T, M, F> inputGroup;
 
-    public FormGroupInputGroup(String id, IModel<String> labelModel, IModel<T> model)
-    {
-        super(id, labelModel, model);
+    public FormGroupInputGroup(String id, KModel<String> labelModel, IModel<T> model) {
+        super(id, labelModel, model, null);
 
         this.inputGroup = this.createInputGroup("inputGroup");
         this.getFormComponent().setLabel(this.labelModel);

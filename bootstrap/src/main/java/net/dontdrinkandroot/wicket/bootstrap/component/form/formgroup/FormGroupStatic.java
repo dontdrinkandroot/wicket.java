@@ -17,6 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
+import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroup;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
@@ -26,8 +28,7 @@ public class FormGroupStatic extends FormGroup<String>
 
     private Label content;
 
-    public FormGroupStatic(String id, IModel<String> labelModel, IModel<String> contentModel)
-    {
+    public FormGroupStatic(String id, KModel<String> labelModel, IModel<String> contentModel) {
         super(id, labelModel, contentModel);
     }
 

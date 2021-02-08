@@ -51,8 +51,7 @@ public class AbstractItem<T> extends GenericPanel<T>
         this.add(new CssClassAppender(new CssClassToggleModel(BootstrapCssClass.ACTIVE)
         {
             @Override
-            protected boolean isActive()
-            {
+            protected boolean getActive() {
                 return AbstractItem.this.isActive();
             }
         }));

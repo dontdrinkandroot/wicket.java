@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupLocalDateTime;
 import net.dontdrinkandroot.wicket.component.form.LocalDateTimeTextField;
+import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
@@ -30,8 +31,7 @@ import java.time.LocalDateTime;
  */
 public class FormGroupLocalDateTime extends FormGroupInputGroup<LocalDateTime, LocalDateTime, LocalDateTimeTextField, InputGroupLocalDateTime>
 {
-    public FormGroupLocalDateTime(String id, IModel<String> labelModel, IModel<LocalDateTime> model)
-    {
+    public FormGroupLocalDateTime(String id, KModel<String> labelModel, IModel<LocalDateTime> model) {
         super(id, labelModel, model);
     }
 
