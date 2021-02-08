@@ -23,9 +23,6 @@ import org.apache.wicket.model.IModel;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 
-/**
- * @author Philip Washington Sorst <philip@sorst.net>
- */
 public class BasicFileAttributesLastModifiedTimeModel extends AbstractChainedReadonlyModel<BasicFileAttributes, FileTime>
 {
     public BasicFileAttributesLastModifiedTimeModel(IModel<? extends BasicFileAttributes> parent)
@@ -36,6 +33,6 @@ public class BasicFileAttributesLastModifiedTimeModel extends AbstractChainedRea
     @Override
     public FileTime getObject()
     {
-        return this.getParentObject().lastModifiedTime();
+        return this.getParentModelObject().lastModifiedTime();
     }
 }
