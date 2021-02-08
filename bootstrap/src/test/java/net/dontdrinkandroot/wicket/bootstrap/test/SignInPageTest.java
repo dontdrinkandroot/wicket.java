@@ -32,8 +32,7 @@ public class SignInPageTest extends AbstractWicketTest
         this.tester.startPage(new SignInPage(new PageParameters())
         {
             @Override
-            protected boolean isSignedIn()
-            {
+            protected boolean getSignedIn() {
                 return false;
             }
 
