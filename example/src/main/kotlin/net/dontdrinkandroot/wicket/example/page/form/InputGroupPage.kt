@@ -20,24 +20,21 @@ package net.dontdrinkandroot.wicket.example.page.form
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupText
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupLabel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-class InputGroupPage(parameters: PageParameters?) : FormPage(parameters)
-{
-    override fun onInitialize()
-    {
+class InputGroupPage(parameters: PageParameters) : FormPage(parameters) {
+
+    override fun onInitialize() {
         super.onInitialize()
-        val labels: InputGroupText = object : InputGroupText("labels", Model.of(""))
-        {
-            override fun createInputGroupPrepend(id: String): Component
-            {
+        val labels: InputGroupText = object : InputGroupText("labels", Model.of("")) {
+            override fun createInputGroupPrepend(id: String): Component {
                 return InputGroupLabel(id, Model.of("Before"))
             }
 
@@ -74,8 +71,5 @@ class InputGroupPage(parameters: PageParameters?) : FormPage(parameters)
         this.add(buttons)
     }
 
-    override fun createPageHeadingModel(): IModel<String>
-    {
-        return Model.of("Input Groups")
-    }
+    override fun createPageHeadingModel() = "Input Groups".model()
 }

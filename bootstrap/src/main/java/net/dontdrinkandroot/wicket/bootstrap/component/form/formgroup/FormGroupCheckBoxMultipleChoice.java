@@ -17,7 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.form.AbstractChoice;
 import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
@@ -34,7 +33,7 @@ public class FormGroupCheckBoxMultipleChoice<T> extends FormGroupFormComponent<C
     @SuppressWarnings("unchecked")
     public FormGroupCheckBoxMultipleChoice(
             String id,
-            KModel<String> labelModel,
+            IModel<String> labelModel,
             IModel<? extends Collection<T>> model
     ) {
         super(id, labelModel, (IModel<Collection<T>>) model);
@@ -42,7 +41,7 @@ public class FormGroupCheckBoxMultipleChoice<T> extends FormGroupFormComponent<C
 
     public FormGroupCheckBoxMultipleChoice(
             String id,
-            KModel<String> labelModel, IModel<? extends Collection<T>> model,
+            IModel<String> labelModel, IModel<? extends Collection<T>> model,
             List<T> choices,
             IChoiceRenderer<T> choiceRenderer
     )

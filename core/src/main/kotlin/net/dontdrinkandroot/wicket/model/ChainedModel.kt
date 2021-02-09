@@ -1,20 +1,20 @@
 package net.dontdrinkandroot.wicket.model
 
-interface ChainedModel<P, T> : KModel<T>
+import org.apache.wicket.model.IModel
 
-abstract class AbstractChainedModel<P, T>(protected val parent: KModel<out P>) : ChainedModel<P, T> {
+abstract class AbstractChainedModel<P, T>(protected val parent: IModel<out P?>) : IModel<T> {
 
-    override fun getValue(): T = this.getValue(parent.getValue())
+    final override fun getObject(): T? = this.getValue(parent.getObject())
 
-    abstract fun getValue(parentValue: P): T
+    abstract fun getValue(parentValue: P?): T?
 
     override fun detach() {
         this.parent.detach()
     }
 }
 
-fun <P, T> KModel<P>.chain(getChain: (P) -> T, setChain: (P, T) -> Unit = { _: P, _: T -> }): KModel<T> =
+fun <P, T> IModel<P>.chain(getChain: (P?) -> T, setChain: (P?, T?) -> Unit = { _: P?, _: T? -> }): IModel<T> =
     object : AbstractChainedModel<P, T>(this) {
-        override fun getValue(parentValue: P): T = getChain(parentValue)
-        override fun setValue(value: T) = setChain(this.parent.getValue(), value)
+        override fun getValue(parentValue: P?): T = getChain(parentValue)
+        override fun setObject(value: T?) = setChain(this.parent.getObject(), value)
     }

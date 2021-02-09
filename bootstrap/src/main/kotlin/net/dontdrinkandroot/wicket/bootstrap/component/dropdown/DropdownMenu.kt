@@ -5,16 +5,15 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
 import net.dontdrinkandroot.wicket.css.CssClass
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.markup.html.panel.Panel
 import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
 abstract class DropdownMenu(id: String) : Panel(id), ItemContainer {
 
-    private val alignmentModel: KModel<DropdownAlignment?> = null.kModel()
+    private val alignmentModel: IModel<DropdownAlignment?> = Model(null)
 
     override fun onInitialize() {
         super.onInitialize()

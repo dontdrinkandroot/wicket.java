@@ -5,7 +5,7 @@ import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState
-import net.dontdrinkandroot.wicket.model.KModel
+import net.dontdrinkandroot.wicket.css.CssClass
 import org.apache.wicket.Component
 import org.apache.wicket.ajax.attributes.ThrottlingSettings
 import org.apache.wicket.feedback.FeedbackMessage
@@ -21,7 +21,7 @@ import java.time.Duration
  */
 abstract class FormGroupValidatable<T, M, F : FormComponent<M>> constructor(
     id: String,
-    labelModel: KModel<String?>,
+    labelModel: IModel<String?>,
     model: IModel<T>?,
     type: Class<T>? = null
 ) : FormGroup<T>(id, labelModel, model) {
@@ -51,7 +51,7 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>> constructor(
             }
         }
         helpBlock.outputMarkupId = true
-        this.add(CssClassAppender { validationState })
+        this.add(CssClassAppender(IModel<CssClass> { validationState }))
     }
 
     override fun addComponents() {

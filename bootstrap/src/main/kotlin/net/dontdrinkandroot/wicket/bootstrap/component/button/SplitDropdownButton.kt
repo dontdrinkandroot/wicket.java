@@ -8,11 +8,11 @@ import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.KModel
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.IModel
 
 abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
 
@@ -23,7 +23,7 @@ abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
 
     constructor(id: String) : super(id)
 
-    constructor(id: String, model: KModel<T>) : super(id, model)
+    constructor(id: String, model: IModel<T>) : super(id, model)
 
     override fun onInitialize() {
         super.onInitialize()
@@ -65,12 +65,12 @@ abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
         return this
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: KModel<ButtonSize?>): SplitDropdownButton<T> {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): SplitDropdownButton<T> {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }
 
-    override fun setButtonStyleModel(buttonStyleModel: KModel<ButtonStyle>): SplitDropdownButton<T> {
+    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): SplitDropdownButton<T> {
         buttonBehavior.setButtonStyleModel(buttonStyleModel)
         return this
     }

@@ -17,8 +17,8 @@
  */
 package net.dontdrinkandroot.wicket.component.basic;
 
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class HeadingTest extends WicketTestCase
         markup = ComponentRenderer.renderComponent(heading).toString();
         Assertions.assertEquals("<wicket:h2 wicket:id=\"id\">Heading2</wicket:h2>", markup);
 
-        heading = new Heading("id", new SimpleKModel<>("Heading3"), Heading.Level.H3);
+        heading = new Heading("id", new Model<>("Heading3"), Heading.Level.H3);
         markup = ComponentRenderer.renderComponent(heading).toString();
         Assertions.assertEquals("<wicket:h3 wicket:id=\"id\">Heading3</wicket:h3>", markup);
     }

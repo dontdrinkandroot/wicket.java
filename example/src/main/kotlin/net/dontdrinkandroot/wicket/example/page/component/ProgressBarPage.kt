@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.progress.ProgressBar
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.model.IModel
@@ -13,9 +14,7 @@ import kotlin.math.roundToInt
 
 class ProgressBarPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Progress Bars")
-    }
+    override fun createPageHeadingModel() = "Progress Bars".model()
 
     override fun onInitialize() {
         super.onInitialize()

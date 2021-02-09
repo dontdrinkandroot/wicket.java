@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.ThrottlingSettings;
@@ -45,7 +44,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
 
     private ListView<String> suggestionView;
 
-    public FormGroupAutoComplete(String id, KModel<String> labelModel, IModel<String> model) {
+    public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model) {
         super(id, labelModel, model);
     }
 

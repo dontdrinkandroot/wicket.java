@@ -14,18 +14,16 @@ import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle
 import net.dontdrinkandroot.wicket.example.component.NavbarForm
 import net.dontdrinkandroot.wicket.example.page.HomePage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Navbars")
-    }
+    override fun createPageHeadingModel() = "Navbars".model()
 
     override fun onInitialize() {
         super.onInitialize()
@@ -85,12 +83,12 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
                 collapseItemView.add(form)
                 val text = NavbarText(collapseItemView.newChildId(), Model.of("Text"))
                 collapseItemView.add(text)
-                val button: NavbarButton<*> = object : NavbarButton<Void?>(collapseItemView.newChildId()) {
+                val button: NavbarButton<*> = object :
+                    NavbarButton<Void>(collapseItemView.newChildId(), alignmentModel = NavbarAlignment.RIGHT.model()) {
                     override fun onClick() {
                         /* Noop */
                     }
                 }
-                button.setAlignment(NavbarAlignment.RIGHT)
                 button.body = Model.of("Button")
                 collapseItemView.add(button)
             }

@@ -17,7 +17,6 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
@@ -26,22 +25,21 @@ import java.util.List;
 
 /**
  * @param <T> Type of the {@link DropDownChoice}.
- * @author Philip Washington Sorst <philip@sorst.net>
  */
 public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownChoice<T>>
 {
-    protected FormGroupSelect(String id, KModel<String> labelModel, IModel<T> model) {
+    protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model) {
         super(id, labelModel, model);
     }
 
-    public FormGroupSelect(String id, KModel<String> labelModel, IModel<T> model, List<T> choices) {
+    public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, List<T> choices) {
         super(id, labelModel, model);
         this.getFormComponent().setChoices(choices);
     }
 
     public FormGroupSelect(
             String id,
-            KModel<String> labelModel,
+            IModel<String> labelModel,
             IModel<T> model,
             List<T> choices,
             IChoiceRenderer<T> choiceRenderer
@@ -52,14 +50,14 @@ public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownCho
         this.getFormComponent().setChoiceRenderer(choiceRenderer);
     }
 
-    public FormGroupSelect(String id, KModel<String> labelModel, IModel<T> model, IModel<List<T>> choices) {
+    public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, IModel<List<T>> choices) {
         super(id, labelModel, model);
         this.getFormComponent().setChoices(choices);
     }
 
     public FormGroupSelect(
             String id,
-            KModel<String> labelModel,
+            IModel<String> labelModel,
             IModel<T> model,
             IModel<List<T>> choices,
             IChoiceRenderer<T> choiceRenderer

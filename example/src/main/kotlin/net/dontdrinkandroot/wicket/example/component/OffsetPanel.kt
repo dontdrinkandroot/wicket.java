@@ -24,6 +24,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnOffset
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -33,24 +34,22 @@ import org.apache.wicket.model.IModel
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-class OffsetPanel(id: String, private val columnOffsets: Array<out ColumnOffset>) : GenericPanel<Void?>(id)
-{
-    override fun onInitialize()
-    {
+class OffsetPanel(id: String, private val columnOffsets: Array<out ColumnOffset>) : GenericPanel<Void?>(id) {
+
+    override fun onInitialize() {
         super.onInitialize()
         val rowView = RepeatingView("row")
         this.add(rowView)
-        for (columnOffset in columnOffsets)
-        {
+        for (columnOffset in columnOffsets) {
             val inverseColumnSize = columnOffset.inverseColumnSize
-            val row: RepeatingRow = object : RepeatingRow(rowView.newChildId())
-            {
-                override fun populateColumns(columnView: RepeatingView)
-                {
-                    val column: Column<Void> = object : Column<Void>(columnView.newChildId())
-                    {
-                        override fun createContent(id: String): Component
-                        {
+            val row: RepeatingRow = object : RepeatingRow(rowView.newChildId()) {
+                override fun populateColumns(columnView: RepeatingView) {
+                    val column: Column<Void> = object : Column<Void>(
+                        columnView.newChildId(),
+                        sizeModel = inverseColumnSize.model(),
+                        offsetModel = columnOffset.model()
+                    ) {
+                        override fun createContent(id: String): Component {
                             val label = Label(
                                 id,
                                 IModel { columnOffset.classString + " " + inverseColumnSize.classString } as IModel<String>
@@ -59,8 +58,6 @@ class OffsetPanel(id: String, private val columnOffsets: Array<out ColumnOffset>
                             return label
                         }
                     }
-                    column.setOffset(columnOffset)
-                    column.setSize(inverseColumnSize)
                     column.add(CssClassAppender(TextAlignment.CENTER))
                     columnView.add(column)
                 }

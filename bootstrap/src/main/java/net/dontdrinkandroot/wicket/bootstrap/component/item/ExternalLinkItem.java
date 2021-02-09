@@ -29,7 +29,7 @@ public class ExternalLinkItem extends AbstractLinkItem<String, ExternalLink>
 {
     public ExternalLinkItem(String id, IModel<String> labelModel, IModel<String> hrefModel)
     {
-        super(id, labelModel, hrefModel);
+        super(id, hrefModel, labelModel);
     }
 
     @Override

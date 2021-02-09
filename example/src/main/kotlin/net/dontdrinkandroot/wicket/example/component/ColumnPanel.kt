@@ -24,6 +24,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.grid.RepeatingRow
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.TextAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -47,31 +48,27 @@ class ColumnPanel(id: String, private val values: Array<out ColumnSize>) : Gener
                 override fun populateColumns(columnView: RepeatingView)
                 {
                     val inverseColumnSize = columnSize.inverseColumnSize
-                    val left: Column<Void> = object : Column<Void>(columnView.newChildId())
-                    {
-                        override fun createContent(id: String): Component
-                        {
-                            val label = Label(id, Model.of(columnSize.classString))
-                            label.add(CssClassAppender(BackgroundColor.INFO))
-                            return label
+                    val left: Column<Void> =
+                        object : Column<Void>(columnView.newChildId(), sizeModel = columnSize.model()) {
+                            override fun createContent(id: String): Component {
+                                val label = Label(id, Model.of(columnSize.classString))
+                                label.add(CssClassAppender(BackgroundColor.INFO))
+                                return label
+                            }
                         }
-                    }
-                    left.setSize(columnSize)
                     left.add(CssClassAppender(TextAlignment.CENTER))
                     columnView.add(left)
-                    val right: Column<Void> = object : Column<Void>(columnView.newChildId())
-                    {
-                        override fun createContent(id: String): Component
-                        {
-                            val label = Label(
-                                id,
-                                Model.of(inverseColumnSize?.classString)
-                            )
-                            label.add(CssClassAppender(BackgroundColor.INFO))
-                            return label
-                        }
+                    val right: Column<Void> =
+                        object : Column<Void>(columnView.newChildId(), sizeModel = inverseColumnSize.model()) {
+                            override fun createContent(id: String): Component {
+                                val label = Label(
+                                    id,
+                                    Model.of(inverseColumnSize?.classString)
+                                )
+                                label.add(CssClassAppender(BackgroundColor.INFO))
+                                return label
+                            }
                     }
-                    right.setSize(inverseColumnSize)
                     right.add(CssClassAppender(TextAlignment.CENTER))
                     columnView.add(right)
                 }

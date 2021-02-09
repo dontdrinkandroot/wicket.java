@@ -20,18 +20,12 @@ package net.dontdrinkandroot.wicket.example.page
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.*
 import net.dontdrinkandroot.wicket.example.component.ColumnPanel
 import net.dontdrinkandroot.wicket.example.component.OffsetPanel
-import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
+import net.dontdrinkandroot.wicket.model.model
 
-/**
- * @author Philip Washington Sorst <philip@sorst.net>
- */
 class GridPage : DecoratorPage<Void?>()
 {
-    override fun createPageHeadingModel(): IModel<String>
-    {
-        return Model.of("The Grid")
-    }
+
+    override fun createPageHeadingModel() = "The Grid".model()
 
     override fun onInitialize()
     {

@@ -2,13 +2,11 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
-import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
-abstract class ComponentPage(parameters: PageParameters) : DecoratorPage<Void?>(parameters) {
+abstract class ComponentPage(parameters: PageParameters) : DecoratorPage<Void>(parameters) {
 
-    override fun createPageTitlePrefixModel(): IModel<String> {
-        return ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", Model.of("Components"))
-    }
+    override fun createPageTitlePrefixModel() =
+        ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", "Components".model())
 }

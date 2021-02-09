@@ -6,33 +6,33 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormRowBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 open class FormGroup<T> : GenericPanel<T> {
 
-    protected lateinit var labelModel: KModel<String?>
+    protected lateinit var labelModel: IModel<String?>
 
-    private val labelScreenReaderOnlyModel = false.kModel()
+    private val labelScreenReaderOnlyModel = false.model()
 
     protected lateinit var label: Component
 
     protected lateinit var container: WebMarkupContainer
 
     constructor(id: String?) : super(id) {
-        this.labelModel = null.kModel()
+        this.labelModel = Model(null)
     }
 
-    constructor(id: String?, labelModel: KModel<String?>) : super(id) {
+    constructor(id: String?, labelModel: IModel<String?>) : super(id) {
         this.labelModel = labelModel
     }
 
-    constructor(id: String?, labelModel: KModel<String?>, model: IModel<T>?) : super(id, model) {
+    constructor(id: String?, labelModel: IModel<String?>, model: IModel<T>?) : super(id, model) {
         this.labelModel = labelModel
     }
 

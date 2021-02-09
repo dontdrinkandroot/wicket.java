@@ -3,16 +3,14 @@ package net.dontdrinkandroot.wicket.example.page.component
 import net.dontdrinkandroot.wicket.bootstrap.component.breadcrumb.RepeatingBreadcrumb
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.example.page.HomePage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class BreadcrumbPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Breadcrumbs")
-    }
+    override fun createPageHeadingModel() = "Breadcrumbs".model()
 
     override fun onInitialize() {
         super.onInitialize()

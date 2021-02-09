@@ -22,11 +22,11 @@ import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeLarge;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeMedium;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -50,8 +50,8 @@ public class RowColumnTest extends AbstractWicketTest
                     Column<Void> column = new Column<Void>(
                             columnView.newChildId(),
                             null,
-                            new SimpleKModel<>(columnSize),
-                            new SimpleKModel<>(null)
+                            new Model<>(columnSize),
+                            new Model<>(null)
                     )
                     {
                         @Override

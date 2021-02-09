@@ -21,7 +21,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupI
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.ComponentTestPage;
 import net.dontdrinkandroot.wicket.bootstrap.test.FormTestPage;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -79,7 +78,7 @@ public class AjaxFormModalTest extends AbstractWicketTest
                 FormGroupInputText formGroup =
                         new FormGroupInputText(
                                 formGroupView.newChildId(),
-                                new SimpleKModel<>("Label"),
+                                new Model<>("Label"),
                                 testStringModel
                         );
                 formGroup.setRequired(true);

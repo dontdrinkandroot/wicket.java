@@ -7,82 +7,65 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownIte
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavPills
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavTabs
 import net.dontdrinkandroot.wicket.example.page.HomePage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Navs")
-    }
+    override fun createPageHeadingModel() = "Navs".model()
 
     override fun onInitialize() {
         super.onInitialize()
-        val tabsDefault: RepeatingNavTabs<*> = object : RepeatingNavTabs<Void?>("tabsDefault")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+
+        val tabsDefault = object : RepeatingNavTabs<Void>("tabsDefault") {
+            override fun populateItems(itemView: RepeatingView) {
                 this@NavPage.populateItems(itemView)
             }
         }
         this.add(tabsDefault)
-        val tabsJustified: RepeatingNavTabs<*> = object : RepeatingNavTabs<Void?>("tabsJustified")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+
+        val tabsJustified = object : RepeatingNavTabs<Void>("tabsJustified", justified = true) {
+            override fun populateItems(itemView: RepeatingView) {
                 this@NavPage.populateItems(itemView)
             }
         }
-        tabsJustified.setJustified(true)
         this.add(tabsJustified)
-        val pillsDefault: RepeatingNavPills<*> = object : RepeatingNavPills<Void?>("pillsDefault")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+
+        val pillsDefault = object : RepeatingNavPills<Void>("pillsDefault", stacked = false) {
+            override fun populateItems(itemView: RepeatingView) {
                 this@NavPage.populateItems(itemView)
             }
         }
         this.add(pillsDefault)
-        val pillsStacked: RepeatingNavPills<*> = object : RepeatingNavPills<Void?>("pillsStacked")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+
+        val pillsStacked = object : RepeatingNavPills<Void>("pillsStacked", stacked = true) {
+            override fun populateItems(itemView: RepeatingView) {
                 this@NavPage.populateItems(itemView)
             }
         }
-        pillsStacked.setStacked(true)
         this.add(pillsStacked)
-        val pillsJustified: RepeatingNavPills<*> = object : RepeatingNavPills<Void?>("pillsJustified")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+
+        val pillsJustified = object : RepeatingNavPills<Void>("pillsJustified", justified = true) {
+            override fun populateItems(itemView: RepeatingView) {
                 this@NavPage.populateItems(itemView)
             }
         }
-        pillsJustified.setJustified(true)
         this.add(pillsJustified)
     }
 
-    protected fun populateItems(itemView: RepeatingView)
-    {
-        itemView.add(object : LinkItem<Void?>(itemView.newChildId(), Model.of("Active"))
-        {
-            override fun onClick()
-            {
+    protected fun populateItems(itemView: RepeatingView) {
+        itemView.add(object : LinkItem<Void>(itemView.newChildId(), Model.of("Active")) {
+            override fun onClick() {
                 /* Noop */
             }
 
-            override fun isActive(): Boolean
-            {
-                return true
-            }
+            override val active: Boolean
+                get() = true
         })
-        itemView.add(object : RepeatingDropdownItem<Void?>(itemView.newChildId(), Model.of("Dropdown"))
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+        itemView.add(object : RepeatingDropdownItem<Void?>(itemView.newChildId(), Model.of("Dropdown")) {
+            override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void, HomePage>(
                         itemView.newChildId(),
@@ -92,10 +75,8 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
                 )
             }
         })
-        val disabledItem: LinkItem<Void> = object : LinkItem<Void>(itemView.newChildId(), Model.of("Disabled"))
-        {
-            override fun onClick()
-            {
+        val disabledItem: LinkItem<Void> = object : LinkItem<Void>(itemView.newChildId(), Model.of("Disabled")) {
+            override fun onClick() {
                 /* Noop */
             }
         }

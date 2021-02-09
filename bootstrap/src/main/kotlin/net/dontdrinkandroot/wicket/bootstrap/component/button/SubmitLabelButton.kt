@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.KModel
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.model.IModel
@@ -40,12 +39,12 @@ class SubmitLabelButton : Label, IButton {
         return buttonBehavior.getButtonStyle()
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: KModel<ButtonSize?>): SubmitLabelButton {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): SubmitLabelButton {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }
 
-    override fun setButtonStyleModel(buttonStyleModel: KModel<ButtonStyle>): SubmitLabelButton {
+    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): SubmitLabelButton {
         buttonBehavior.setButtonStyleModel(buttonStyleModel)
         return this
     }

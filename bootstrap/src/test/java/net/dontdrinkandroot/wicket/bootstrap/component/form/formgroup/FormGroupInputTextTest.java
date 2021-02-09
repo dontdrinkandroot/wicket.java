@@ -21,7 +21,6 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
@@ -38,7 +37,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", new SimpleKModel<>("Label"), Model.of("Value"));
+                new FormGroupInputText("formGroup", new Model<>("Label"), Model.of("Value"));
         formPanel.getForm().add(formGroupInputText);
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(formPanel);
@@ -68,7 +67,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", new SimpleKModel<>("Label"), new Model<String>());
+                new FormGroupInputText("formGroup", new Model<>("Label"), new Model<String>());
         formGroupInputText.setRequired(true);
         formGroupInputText.getFormComponent().validate();
         formPanel.getForm().add(formGroupInputText);
@@ -103,7 +102,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         formPanel.getForm().add(new FormStyleBehavior().setHorizontal(ColumnSizeStack.FORM_DEFAULT));
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", new SimpleKModel<>("Label"), Model.of("Value"));
+                new FormGroupInputText("formGroup", new Model<>("Label"), Model.of("Value"));
         formPanel.getForm().add(formGroupInputText);
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(formPanel);

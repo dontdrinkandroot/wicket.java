@@ -2,9 +2,9 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.AlertBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
@@ -16,7 +16,7 @@ class AlertPage(parameters: PageParameters) : ComponentPage(parameters) {
         this.add(alertView)
         for (style in AlertStyle.values()) {
             val label = Label(alertView.newChildId(), Model.of(style.name.toLowerCase()))
-            label.add(AlertBehavior(Model.of(style)))
+            label.add(AlertBehavior(style))
             alertView.add(label)
         }
     }
@@ -32,8 +32,5 @@ class AlertPage(parameters: PageParameters) : ComponentPage(parameters) {
         fatal("Fatal Message")
     }
 
-    override fun createPageHeadingModel(): IModel<String>
-    {
-        return Model.of("Alerts and Feedback")
-    }
+    override fun createPageHeadingModel() = "Alerts and Feedback".model()
 }

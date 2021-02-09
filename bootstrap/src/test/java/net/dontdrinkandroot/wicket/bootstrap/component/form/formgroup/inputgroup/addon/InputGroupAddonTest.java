@@ -23,7 +23,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.Inp
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestHomePage;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -43,7 +42,7 @@ public class InputGroupAddonTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", new SimpleKModel<>("Label"), Model.of("Value"))
+                new FormGroupInputText("formGroup", new Model<>("Label"), Model.of("Value"))
                 {
                     @Override
                     protected Component createInputGroupPrepend(String id) {

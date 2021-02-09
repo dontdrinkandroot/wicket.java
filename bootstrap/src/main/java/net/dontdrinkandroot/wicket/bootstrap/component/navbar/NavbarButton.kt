@@ -4,14 +4,13 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.component.button.Button
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.model.IModel
 
 abstract class NavbarButton<T>(
     id: String,
-    model: IModel<T>?,
-    alignmentModel: KModel<NavbarAlignment> = NavbarAlignment.LEFT.kModel()
+    model: IModel<T>? = null,
+    alignmentModel: IModel<NavbarAlignment> = NavbarAlignment.LEFT.model()
 ) : Button<T>(id, model) {
 
     init {

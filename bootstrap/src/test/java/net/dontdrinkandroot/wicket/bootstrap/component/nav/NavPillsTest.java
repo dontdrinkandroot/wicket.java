@@ -18,8 +18,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class NavPillsTest extends AbstractWicketTest
     @Test
     public void testStackedMarkup()
     {
-        RepeatingNavPills component = new RepeatingNavPills("id", new SimpleKModel(false), new SimpleKModel<>(true));
+        RepeatingNavPills component = new RepeatingNavPills("id", new Model(false), new Model<>(true));
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
         Assertions.assertEquals("nav nav-pills nav-stacked", tagTester.getAttribute("class"));
@@ -50,7 +50,7 @@ public class NavPillsTest extends AbstractWicketTest
     @Test
     public void testJustifiedMarkup()
     {
-        RepeatingNavPills component = new RepeatingNavPills("id", new SimpleKModel(true), new SimpleKModel<>(false));
+        RepeatingNavPills component = new RepeatingNavPills("id", new Model(true), new Model<>(false));
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
         Assertions.assertEquals("nav nav-pills nav-justified", tagTester.getAttribute("class"));

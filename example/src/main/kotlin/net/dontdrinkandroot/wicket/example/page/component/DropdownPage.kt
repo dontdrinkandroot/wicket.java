@@ -6,8 +6,8 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
 import net.dontdrinkandroot.wicket.example.page.HomePage
 import net.dontdrinkandroot.wicket.example.page.component.DropdownPage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
@@ -23,10 +23,7 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
         this.add(dropdownMenu)
     }
 
-    override fun createPageHeadingModel(): IModel<String>
-    {
-        return Model.of("Dropdowns")
-    }
+    override fun createPageHeadingModel() = "Dropdowns".model()
 
     protected fun populateItems(itemView: RepeatingView)
     {

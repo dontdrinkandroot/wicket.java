@@ -1,9 +1,9 @@
 package net.dontdrinkandroot.wicket.model.java.time.temporal
 
-import net.dontdrinkandroot.wicket.model.kModel
 import net.dontdrinkandroot.wicket.model.time.temporal.DateTimeFormatterModel
 import org.apache.wicket.core.util.string.ComponentRenderer
 import org.apache.wicket.markup.html.basic.Label
+import org.apache.wicket.model.Model
 import org.apache.wicket.util.tester.WicketTestCase
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -19,12 +19,12 @@ class DateTimeFormatterModelTest : WicketTestCase() {
         var model: DateTimeFormatterModel
 //        model = DateTimeFormatterModel(null.kModel())
 //        Assertions.assertNull(model.getObject())
-        model = DateTimeFormatterModel(LocalDateTime.of(2017, 1, 1, 12, 0).kModel(), "yyyy-MM-dd HH:mm:ss")
+        model = DateTimeFormatterModel(Model(LocalDateTime.of(2017, 1, 1, 12, 0)), "yyyy-MM-dd HH:mm:ss")
         Assertions.assertEquals("2017-01-01 12:00:00", model.getObject())
-        model = DateTimeFormatterModel(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC).kModel())
+        model = DateTimeFormatterModel(Model(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC)))
         Assertions.assertEquals("2017-01-01T12:00:00Z", model.getObject())
         model = DateTimeFormatterModel(
-            LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC).kModel(),
+            Model(LocalDateTime.of(2017, 1, 1, 12, 0).toInstant(ZoneOffset.UTC)),
             "yyyy-MM-dd HH:mm:ss",
             ZoneId.of("Europe/Berlin")
         )
@@ -33,7 +33,7 @@ class DateTimeFormatterModelTest : WicketTestCase() {
 
     @Test
     fun testWrapped() {
-        val model = DateTimeFormatterModel(LocalDateTime.of(2017, 3, 1, 12, 0).kModel(), "d. MMM yyyy HH:mm")
+        val model = DateTimeFormatterModel(Model(LocalDateTime.of(2017, 3, 1, 12, 0)), "d. MMM yyyy HH:mm")
         val component: Label = object : Label("id", model) {
             override fun getLocale(): Locale {
                 return Locale.GERMANY

@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.FormGroup;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 
@@ -35,11 +34,11 @@ public class FormGroupActions<T> extends FormGroup<T>
         super(id);
     }
 
-    public FormGroupActions(String id, KModel<String> labelModel) {
+    public FormGroupActions(String id, IModel<String> labelModel) {
         super(id, labelModel);
     }
 
-    public FormGroupActions(String id, KModel<String> labelModel, IModel<T> model) {
+    public FormGroupActions(String id, IModel<String> labelModel, IModel<T> model) {
         super(id, labelModel, model);
     }
 

@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.panel;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SubmitLabelButton;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
@@ -36,14 +35,14 @@ public class RepeatingAjaxFormPanelTest extends AbstractWicketTest
     @Test
     public void testMarkup() {
         RepeatingAjaxFormPanel<Void> component =
-                new RepeatingAjaxFormPanel<>("id", null, new SimpleKModel<>("title"))
+                new RepeatingAjaxFormPanel<>("id", null, new Model<>("title"))
                 {
                     @Override
                     protected void populateFormGroups(RepeatingView formGroupView) {
                         super.populateFormGroups(formGroupView);
                         formGroupView.add(new FormGroupInputText(
                                 formGroupView.newChildId(),
-                                new SimpleKModel<>("Text"),
+                                new Model<>("Text"),
                                 new Model<>()
                         ));
                     }

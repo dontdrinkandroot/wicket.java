@@ -2,11 +2,10 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.component.pagination.AjaxPaginationPanel
 import net.dontdrinkandroot.wicket.bootstrap.component.pagination.PaginationPanel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.navigation.paging.IPageable
-import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class PaginationPage(parameters: PageParameters) : ComponentPage(parameters) {
@@ -37,8 +36,5 @@ class PaginationPage(parameters: PageParameters) : ComponentPage(parameters) {
         this.add(ajaxPagination)
     }
 
-    override fun createPageHeadingModel(): IModel<String>
-    {
-        return Model.of("Pagination")
-    }
+    override fun createPageHeadingModel() = "Pagination".model()
 }

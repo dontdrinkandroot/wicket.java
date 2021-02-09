@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 
@@ -84,13 +83,13 @@ public class LabelButton extends Label implements IButton
     }
 
     @Override
-    public LabelButton setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
+    public LabelButton setButtonSizeModel(IModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public LabelButton setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
+    public LabelButton setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

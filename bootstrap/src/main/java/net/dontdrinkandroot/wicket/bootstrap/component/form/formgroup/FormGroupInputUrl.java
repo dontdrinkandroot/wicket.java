@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupUrl;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.UrlTextField;
 import org.apache.wicket.model.IModel;
@@ -26,7 +25,7 @@ import org.apache.wicket.model.IModel;
 
 public class FormGroupInputUrl extends FormGroupInputGroup<String, String, UrlTextField, InputGroupUrl>
 {
-    public FormGroupInputUrl(String id, KModel<String> labelModel, IModel<String> model) {
+    public FormGroupInputUrl(String id, IModel<String> labelModel, IModel<String> model) {
         super(id, labelModel, model);
     }
 

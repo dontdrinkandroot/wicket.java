@@ -2,8 +2,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior
 
 import net.dontdrinkandroot.wicket.behavior.CompositeBehavior
 import net.dontdrinkandroot.wicket.model.EnumLowerCaseNameModel
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
 import org.apache.wicket.markup.head.IHeaderResponse
@@ -13,7 +12,7 @@ import org.apache.wicket.model.Model
 
 class ToolTipBehavior @JvmOverloads constructor(
     textModel: IModel<String>,
-    private val positionModel: KModel<Position> = Position.TOP.kModel(),
+    private val positionModel: IModel<Position> = Position.TOP.model(),
     delayModel: IModel<Int> = Model.of(0)
 ) : CompositeBehavior(
     AttributeModifier("title", textModel),

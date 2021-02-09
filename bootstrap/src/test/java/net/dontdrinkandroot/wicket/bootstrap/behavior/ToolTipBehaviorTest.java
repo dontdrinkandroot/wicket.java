@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.behavior;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
@@ -33,7 +32,7 @@ public class ToolTipBehaviorTest extends AbstractWicketTest
     public void testDefaultMarkup()
     {
         WebMarkupContainer container = new WebMarkupContainer("id");
-        container.add(new ToolTipBehavior(new SimpleKModel<>("TestText")));
+        container.add(new ToolTipBehavior(new Model<>("TestText")));
         CharSequence componentMarkup = ComponentRenderer.renderComponent(container);
 
         Assertions.assertEquals(

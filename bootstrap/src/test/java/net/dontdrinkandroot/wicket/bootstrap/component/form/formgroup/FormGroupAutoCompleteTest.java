@@ -18,7 +18,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
-import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +37,7 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
     public void testMarkup()
     {
         FormGroupAutoComplete component =
-                new FormGroupAutoComplete("id", new SimpleKModel<>("ExampleLabel"), new Model<>())
+                new FormGroupAutoComplete("id", new Model<>("ExampleLabel"), new Model<>())
                 {
                     @Override
                     protected List<String> getChoices(String input) {

@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior;
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -36,7 +35,7 @@ public class FormGroupCheckBox extends FormGroupFormComponent<Boolean, Boolean, 
 
     private WebMarkupContainer labelWrapper;
 
-    public FormGroupCheckBox(String id, KModel<String> labelModel, IModel<Boolean> model) {
+    public FormGroupCheckBox(String id, IModel<String> labelModel, IModel<Boolean> model) {
         super(id, labelModel, model);
     }
 

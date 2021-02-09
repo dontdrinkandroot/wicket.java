@@ -18,14 +18,13 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupEmail;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.model.IModel;
 
 public class FormGroupInputEmail extends FormGroupInputGroup<String, String, EmailTextField, InputGroupEmail>
 {
-    public FormGroupInputEmail(String id, KModel<String> labelModel, IModel<String> model) {
+    public FormGroupInputEmail(String id, IModel<String> labelModel, IModel<String> model) {
         super(id, labelModel, model);
     }
 

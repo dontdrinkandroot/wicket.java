@@ -6,18 +6,14 @@ import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.model.Theme
 import net.dontdrinkandroot.wicket.example.model.availableThemes
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.link.StatelessLink
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
 class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void?>(
     id,
-    ConcatenatingStringModel(
-        Model.of("Theme"),
-        ": ",
-        IModel { getCurrentSession().currentTheme!!.name } as IModel<String>
-    )
+    ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name })
 ) {
 
     override fun populateItems(itemView: RepeatingView) {
@@ -27,9 +23,9 @@ class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void?>(
     }
 
     protected fun createThemeLinkItem(id: String, theme: Theme): AbstractLinkItem<*, *> {
-        return object : AbstractLinkItem<Void?, StatelessLink<Void?>?>(id, Model.of(theme.name)) {
-            override fun createLink(id: String): StatelessLink<Void?> {
-                return object : StatelessLink<Void?>(id) {
+        return object : AbstractLinkItem<Void, StatelessLink<Void>>(id, labelModel = Model.of(theme.name)) {
+            override fun createLink(id: String): StatelessLink<Void> {
+                return object : StatelessLink<Void>(id) {
                     override fun onClick() {
                         getCurrentSession().currentTheme = theme
                         setResponsePage(page)

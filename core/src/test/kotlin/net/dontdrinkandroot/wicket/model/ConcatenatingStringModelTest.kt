@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.model
 
 import org.apache.wicket.model.LoadableDetachableModel
+import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -13,25 +14,25 @@ class ConcatenatingStringModelTest {
 //        concatenatingStringModel = ConcatenatingStringModel(null.kModel(), null as String)
 //        Assertions.assertEquals("", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), null as String?)
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), null)
         Assertions.assertEquals("Parent", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), null.kModel())
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), Model(null))
         Assertions.assertEquals("Parent", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), "Child")
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child")
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), "Child".kModel())
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child".model())
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), "Child")
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child")
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), "Child".kModel())
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child".model())
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".kModel(), "-", "Child".kModel())
+        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "-", "Child".model())
         Assertions.assertEquals("Parent-Child", concatenatingStringModel.getObject())
     }
 
@@ -47,7 +48,7 @@ class ConcatenatingStringModelTest {
                 return "Child"
             }
         }
-        val concatenatingStringModel = ConcatenatingStringModel(parentModel.toKModel(), childModel.toKModel())
+        val concatenatingStringModel = ConcatenatingStringModel(parentModel, childModel)
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
         concatenatingStringModel.detach()
         Assertions.assertFalse(parentModel.isAttached)

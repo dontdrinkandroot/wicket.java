@@ -16,6 +16,7 @@ import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
 import net.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.head.CssContentHeaderItem
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem
@@ -31,13 +32,13 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     constructor() : super()
 
-    constructor(parameters: PageParameters?) : super(parameters)
+    constructor(parameters: PageParameters) : super(parameters)
 
     constructor(model: IModel<T>?) : super(model)
 
-    override fun createPageTitlePrefixModel(): IModel<String> = Model.of("wicket.example")
+    override fun createPageTitlePrefixModel() = "wicket.example".model()
 
-    override fun createNavbar(id: String): Component {
+    override fun createNavbar(id: String): Navbar {
         val navbar: Navbar = object : Navbar(id) {
             override fun createBrand(id: String): Component {
                 val brandLink: BookmarkablePageLink<Void> = BookmarkablePageLink(id, HomePage::class.java)
@@ -98,7 +99,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 GridPage::class.java
             )
         )
-        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Components")) {
+        leftItemView.add(object : RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Components")) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void, ButtonPage>(
@@ -179,7 +180,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 )
             }
 
-            override fun isActive() = this.page is ComponentPage
+            override val active: Boolean
+                get() = this.page is ComponentPage
         })
         leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Forms")) {
             override fun populateItems(itemView: RepeatingView) {
@@ -213,7 +215,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 )
             }
 
-            override fun isActive() = this.page is FormPage
+            override val active: Boolean
+                get() = this.page is FormPage
         })
     }
 

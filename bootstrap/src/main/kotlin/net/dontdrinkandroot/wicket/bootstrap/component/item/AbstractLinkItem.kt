@@ -16,9 +16,9 @@ import org.apache.wicket.model.Model
  */
 abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
     id: String,
-    labelModel: IModel<String?>,
-    model: IModel<T>? = null
-) : AbstractLabeledItem<T>(id, labelModel, model) {
+    model: IModel<T>? = null,
+    labelModel: IModel<String>
+) : AbstractLabeledItem<T>(id, model, labelModel) {
 
     var prependIconModel: IModel<CssClass>? = null
         private set
@@ -67,7 +67,7 @@ abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
 
         /* Link is also active if item is active */
         link.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.ACTIVE, { active })))
-        link.add(CssClassAppender {
+        link.add(CssClassAppender(IModel<CssClass> {
             var parent = parent
             if (parent is ItemContainer) {
                 (parent as ItemContainer).linkClass
@@ -77,12 +77,12 @@ abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
                 (parent as ItemContainer).linkClass
             }
             null
-        })
+        }))
     }
 
     fun getLink(): L {
         return link
     }
 
-    protected abstract fun createLink(id: String?): L
+    protected abstract fun createLink(id: String): L
 }

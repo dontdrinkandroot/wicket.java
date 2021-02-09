@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
-import net.dontdrinkandroot.wicket.model.KModel
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -64,12 +63,12 @@ class ButtonGroupChoice<T>(id: String, model: IModel<T>?, choicesModel: IModel<L
         return this
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: KModel<ButtonSize?>): ButtonGroupChoice<T> {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): ButtonGroupChoice<T> {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }
 
-    override fun setButtonStyleModel(buttonStyleModel: KModel<ButtonStyle>): ButtonGroupChoice<T> {
+    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): ButtonGroupChoice<T> {
         buttonBehavior.setButtonStyleModel(buttonStyleModel)
         return this
     }

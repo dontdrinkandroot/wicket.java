@@ -4,7 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle
-import net.dontdrinkandroot.wicket.model.KModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -13,9 +13,13 @@ import org.apache.wicket.model.IModel
 /**
  * @param <T> Type of the Model Object.
  */
-abstract class Panel<T> @JvmOverloads constructor(id: String, model: IModel<T>? = null) : GenericPanel<T>(id, model) {
+abstract class Panel<T> @JvmOverloads constructor(
+    id: String,
+    model: IModel<T>? = null,
+    styleModel: IModel<PanelStyle> = PanelStyle.DEFAULT.model()
+) : GenericPanel<T>(id, model) {
 
-    private val panelBehavior = PanelBehavior(createStyleModel())
+    private val panelBehavior = PanelBehavior(styleModel)
 
     protected lateinit var heading: Component
 
@@ -36,14 +40,6 @@ abstract class Panel<T> @JvmOverloads constructor(id: String, model: IModel<T>? 
         this.add(footer)
     }
 
-    fun setPanelStyle(style: PanelStyle?): Panel<T> {
-        panelBehavior.setStyle(style!!)
-        return this
-    }
-
-    val panelStyle: PanelStyle
-        get() = panelBehavior.getStyle()
-
     protected open fun createHeading(id: String): Component {
         val headingContainer = WebMarkupContainer(id)
         headingContainer.isVisible = false
@@ -56,15 +52,13 @@ abstract class Panel<T> @JvmOverloads constructor(id: String, model: IModel<T>? 
         return afterBodyContainer
     }
 
-    protected fun createFooter(id: String): Component {
+    protected open fun createFooter(id: String): Component {
         val footerContainer = WebMarkupContainer(id)
         footerContainer.isVisible = false
         return footerContainer
     }
 
-    protected fun createStyleModel(): KModel<PanelStyle> {
-        return KModel { PanelStyle.DEFAULT }
-    }
+    protected fun createStyleModel(): IModel<PanelStyle> = PanelStyle.DEFAULT.model()
 
     companion object {
 

@@ -26,7 +26,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -125,13 +124,13 @@ public abstract class DropdownButton<T> extends GenericPanel<T> implements IButt
     }
 
     @Override
-    public DropdownButton<T> setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
+    public DropdownButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public DropdownButton<T> setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
+    public DropdownButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }

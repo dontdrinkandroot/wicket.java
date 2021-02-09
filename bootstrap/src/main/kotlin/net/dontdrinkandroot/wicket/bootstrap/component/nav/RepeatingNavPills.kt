@@ -1,16 +1,18 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.nav
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.NavPillsBehavior
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.model.IModel
 
-class RepeatingNavPills<T> @JvmOverloads constructor(
+open class RepeatingNavPills<T> @JvmOverloads constructor(
     id: String,
     model: IModel<T>? = null,
-    justifiedModel: KModel<Boolean> = false.kModel(),
-    stackedModel: KModel<Boolean> = false.kModel()
+    justifiedModel: IModel<Boolean> = false.model(),
+    stackedModel: IModel<Boolean> = false.model()
 ) : AbstractRepeatingNav<T>(id, model) {
+
+    constructor(id: String, model: IModel<T>? = null, justified: Boolean = false, stacked: Boolean = false) :
+            this(id, model, justified.model(), stacked.model())
 
     init {
         this.add(NavPillsBehavior(justifiedModel, stackedModel))

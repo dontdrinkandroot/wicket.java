@@ -1,34 +1,34 @@
 package net.dontdrinkandroot.wicket.model
 
+import org.apache.wicket.model.IModel
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
-class MutablePropertyModel<P, T>(parentModel: KModel<P>, private val property: KMutableProperty1<P, T>) :
+class MutablePropertyModel<P, T>(parentModel: IModel<P>, private val property: KMutableProperty1<P, T>) :
     AbstractChainedModel<P, T>(parentModel) {
 
-    override fun getValue(parentValue: P): T = property.get(parentValue)
+    override fun getValue(parentValue: P?): T? = parentValue?.let { property.get(it) }
 
-    override fun setValue(value: T) {
-        val parentModelObject = this.parent.getValue() ?: throw RuntimeException("Parent Model Object was null")
+    override fun setObject(value: T) {
+        val parentModelObject = this.parent.getObject() ?: throw RuntimeException("Parent Model Object was null")
         /* This will lead to an exception if value is null and property is not nullable */
         @Suppress("UNCHECKED_CAST")
         property.set(parentModelObject, value)
     }
 }
 
-fun <T, P> KModel<T>.writableProperty(property: KMutableProperty1<T, P>): KModel<P> =
+fun <T, P> IModel<T>.writableProperty(property: KMutableProperty1<T, P>): IModel<P> =
     MutablePropertyModel(this, property)
 
-class PropertyModel<P, T>(parentModel: KModel<P>, private val property: KProperty1<P, T>) :
+class PropertyModel<P, T>(parentModel: IModel<P>, private val property: KProperty1<P, T>) :
     AbstractChainedModel<P, T>(parentModel) {
 
-    override fun getValue(parentValue: P): T = property.get(parentValue)
+    override fun getValue(parentValue: P?): T? = parentValue?.let { property.get(it) }
 }
 
-fun <T, P> KModel<T>.property(property: KProperty1<T, P>) = PropertyModel(this, property)
+fun <T, P> IModel<T>.property(property: KProperty1<T, P>) = PropertyModel(this, property)
 
-fun <P, T> KModel<P>.function(function: KFunction1<P, T>): KModel<T> = object : AbstractChainedModel<P, T>(this) {
-    override fun getValue(parentValue: P): T = function.invoke(parentValue)
-
+fun <P, T> IModel<P>.function(function: KFunction1<P, T>): IModel<T> = object : AbstractChainedModel<P, T>(this) {
+    override fun getValue(parentValue: P?): T? = parentValue?.let { function.invoke(it) }
 }

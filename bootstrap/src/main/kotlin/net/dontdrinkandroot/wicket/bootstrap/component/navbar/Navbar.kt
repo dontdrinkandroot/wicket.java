@@ -2,20 +2,21 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.css.*
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.panel.Panel
 import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 open class Navbar(id: String?) : Panel(id) {
 
-    private val positionModel: KModel<NavbarPosition?> = null.kModel()
-    private val styleModel: KModel<NavbarStyle> = NavbarStyle.LIGHT.kModel()
-    private val expandModel: KModel<NavbarExpand> = NavbarExpand.LG.kModel()
-    private val containerStyleModel: KModel<ContainerStyle> = ContainerStyle.DEFAULT.kModel()
+    private val positionModel: IModel<NavbarPosition?> = Model(null)
+    private val styleModel: IModel<NavbarStyle> = NavbarStyle.LIGHT.model()
+    private val expandModel: IModel<NavbarExpand> = NavbarExpand.LG.model()
+    private val containerStyleModel: IModel<ContainerStyle> = ContainerStyle.DEFAULT.model()
     private var navbarCollapse: WebMarkupContainer? = null
 
     override fun onInitialize() {

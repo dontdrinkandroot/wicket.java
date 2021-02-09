@@ -2,17 +2,15 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.BadgeBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BadgeStyle
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class BadgePage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Badges")
-    }
+    override fun createPageHeadingModel() = "Badges".model()
 
     override fun onInitialize() {
         super.onInitialize()
@@ -21,7 +19,7 @@ class BadgePage(parameters: PageParameters) : ComponentPage(parameters) {
         for (style in BadgeStyle.values())
         {
             val label = Label(badgeView.newChildId(), Model.of(style.name.toLowerCase()))
-            label.add(BadgeBehavior(Model.of(style)))
+            label.add(BadgeBehavior(style))
             badgeView.add(label)
         }
     }

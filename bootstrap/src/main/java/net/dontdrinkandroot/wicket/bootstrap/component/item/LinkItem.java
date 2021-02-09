@@ -32,7 +32,7 @@ public abstract class LinkItem<T> extends AbstractLinkItem<T, Link<T>>
 
     public LinkItem(String id, IModel<String> labelModel, IModel<T> model)
     {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
     }
 
     @Override

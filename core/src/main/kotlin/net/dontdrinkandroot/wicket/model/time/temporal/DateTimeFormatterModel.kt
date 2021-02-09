@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.model.time.temporal
 
 import net.dontdrinkandroot.wicket.model.AbstractChainedModel
-import net.dontdrinkandroot.wicket.model.KModel
 import org.apache.wicket.Component
 import org.apache.wicket.model.IComponentAssignedModel
 import org.apache.wicket.model.IModel
@@ -17,20 +16,20 @@ class DateTimeFormatterModel : AbstractChainedModel<TemporalAccessor, String>, I
     private var zoneId: ZoneId? = null
     private var locale: Locale? = null
 
-    constructor(parent: KModel<TemporalAccessor>) : super(parent)
+    constructor(parent: IModel<out TemporalAccessor>) : super(parent)
 
-    constructor(parent: KModel<TemporalAccessor>, pattern: String) : super(parent) {
+    constructor(parent: IModel<out TemporalAccessor>, pattern: String) : super(parent) {
         this.pattern = pattern
     }
 
-    constructor(parent: KModel<TemporalAccessor>, pattern: String, zoneId: ZoneId) : super(parent) {
+    constructor(parent: IModel<out TemporalAccessor>, pattern: String, zoneId: ZoneId) : super(parent) {
         this.pattern = pattern
         this.zoneId = zoneId
     }
 
-    override fun getValue(parentValue: TemporalAccessor): String = getValue(parentValue, locale)
+    override fun getValue(parentValue: TemporalAccessor?): String? = parentValue?.let { getValue(it, locale) }
 
-    private fun getValue(parentValue: TemporalAccessor, locale: Locale?): String {
+    private fun getValue(parentValue: TemporalAccessor?, locale: Locale?): String {
         if (null == pattern) {
             return parentValue.toString()
         }
@@ -56,7 +55,10 @@ class DateTimeFormatterModel : AbstractChainedModel<TemporalAccessor, String>, I
     private inner class AssignmentWrapper(private val component: Component) : IWrapModel<String?> {
 
         override fun getObject(): String {
-            return this@DateTimeFormatterModel.getValue(this@DateTimeFormatterModel.parent.getValue(), component.locale)
+            return this@DateTimeFormatterModel.getValue(
+                this@DateTimeFormatterModel.parent.getObject(),
+                component.locale
+            )
         }
 
         override fun getWrappedModel(): IModel<*> {

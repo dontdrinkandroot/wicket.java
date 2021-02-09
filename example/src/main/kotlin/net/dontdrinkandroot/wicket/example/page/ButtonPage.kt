@@ -10,19 +10,17 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.example.page.component.ComponentPage
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 import java.util.*
 
 class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel(): IModel<String> {
-        return Model.of("Buttons")
-    }
+    override fun createPageHeadingModel() = "Buttons".model()
 
     override fun onInitialize() {
         super.onInitialize()
@@ -31,7 +29,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
         for (style in ButtonStyle.values())
         {
             val button = Label(styleView.newChildId(), Model.of(style.name))
-            button.add(ButtonBehavior(Model.of(style)))
+            button.add(ButtonBehavior(style))
             styleView.add(button)
         }
         val sizeView = RepeatingView("buttonSize")

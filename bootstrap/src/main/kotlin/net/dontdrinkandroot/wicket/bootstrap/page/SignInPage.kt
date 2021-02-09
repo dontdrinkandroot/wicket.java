@@ -6,8 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupC
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.toKModel
 import org.apache.wicket.Component
 import org.apache.wicket.RestartResponseException
 import org.apache.wicket.markup.html.WebMarkupContainer
@@ -101,24 +99,24 @@ abstract class SignInPage(parameters: PageParameters) : BootstrapPage<Void>(para
     protected val isRememberMeEnabled: Boolean
         get() = true
 
-    protected open fun createUsernameLabelModel(): KModel<String> {
-        return ResourceModel("login.username", Model.of("Username")).toKModel()
+    protected open fun createUsernameLabelModel(): IModel<String> {
+        return ResourceModel("login.username", Model.of("Username"))
     }
 
-    protected fun createPasswordLabelModel(): KModel<String> {
-        return ResourceModel("login.password", Model.of("Password")).toKModel()
+    protected fun createPasswordLabelModel(): IModel<String> {
+        return ResourceModel("login.password", Model.of("Password"))
     }
 
-    protected fun createRememberMeLabelModel(): KModel<String> {
-        return ResourceModel("login.rememberMe", Model.of("Remember me")).toKModel()
+    protected fun createRememberMeLabelModel(): IModel<String> {
+        return ResourceModel("login.rememberMe", Model.of("Remember me"))
     }
 
-    protected fun createResetLabelModel(): KModel<String> {
-        return ResourceModel("login.reset", Model.of("Reset")).toKModel()
+    protected fun createResetLabelModel(): IModel<String> {
+        return ResourceModel("login.reset", Model.of("Reset"))
     }
 
-    protected fun createSubmitLabelModel(): KModel<String> {
-        return ResourceModel("login.submit", Model.of("Submit")).toKModel()
+    protected fun createSubmitLabelModel(): IModel<String> {
+        return ResourceModel("login.submit", Model.of("Submit"))
     }
 
     protected fun onSignInRemembered() {

@@ -6,36 +6,37 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.KModel
-import net.dontdrinkandroot.wicket.model.kModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.form.AbstractSubmitLink
 import org.apache.wicket.markup.html.link.AbstractLink
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 class ButtonBehavior constructor(
-    private var buttonStyleModel: KModel<ButtonStyle> = ButtonStyle.SECONDARY.kModel(),
-    private var buttonSizeModel: KModel<ButtonSize?> = null.kModel()
+    private var buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    private var buttonSizeModel: IModel<ButtonSize?> = Model(null)
 ) : CompositeBehavior(CssClassAppender(BootstrapCssClass.BTN), DisabledCssBehavior()), IButton {
 
-    constructor(buttonStyle: ButtonStyle) : this(buttonStyleModel = buttonStyle.kModel())
+    constructor(buttonStyle: ButtonStyle) : this(buttonStyleModel = buttonStyle.model())
 
-    constructor(buttonSize: ButtonSize) : this(buttonSizeModel = buttonSize.kModel())
+    constructor(buttonSize: ButtonSize) : this(buttonSizeModel = buttonSize.model())
 
-    constructor(buttonStyle: ButtonStyle, buttonSize: ButtonSize) : this(buttonStyle.kModel(), buttonSize.kModel())
+    constructor(buttonStyle: ButtonStyle, buttonSize: ButtonSize) : this(buttonStyle.model(), buttonSize.model())
 
-    override fun getButtonSize() = buttonSizeModel.getValue()
+    override fun getButtonSize() = buttonSizeModel.getObject()
 
     override fun setButtonSize(buttonSize: ButtonSize?): ButtonBehavior {
-        buttonSizeModel.setValue(buttonSize)
+        buttonSizeModel.setObject(buttonSize)
         return this
     }
 
-    override fun getButtonStyle(): ButtonStyle = buttonStyleModel.getValue()
+    override fun getButtonStyle(): ButtonStyle = buttonStyleModel.getObject()
 
     override fun setButtonStyle(buttonStyle: ButtonStyle): ButtonBehavior {
-        buttonStyleModel.setValue(buttonStyle)
+        buttonStyleModel.setObject(buttonStyle)
         return this
     }
 
@@ -63,12 +64,12 @@ class ButtonBehavior constructor(
         }
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: KModel<ButtonSize?>): ButtonBehavior {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): ButtonBehavior {
         this.buttonSizeModel = buttonSizeModel
         return this
     }
 
-    override fun setButtonStyleModel(buttonStyleModel: KModel<ButtonStyle>): ButtonBehavior {
+    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): ButtonBehavior {
         this.buttonStyleModel = buttonStyleModel
         return this
     }

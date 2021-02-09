@@ -23,7 +23,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import net.dontdrinkandroot.wicket.model.KModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.GenericPanel;
 import org.apache.wicket.model.IModel;
@@ -84,13 +83,13 @@ public abstract class InputGroupButton<T> extends GenericPanel<T> implements IBu
     }
 
     @Override
-    public InputGroupButton<T> setButtonSizeModel(KModel<ButtonSize> buttonSizeModel) {
+    public InputGroupButton<T> setButtonSizeModel(IModel<ButtonSize> buttonSizeModel) {
         this.buttonBehavior.setButtonSizeModel(buttonSizeModel);
         return this;
     }
 
     @Override
-    public InputGroupButton<T> setButtonStyleModel(KModel<ButtonStyle> buttonStyleModel) {
+    public InputGroupButton<T> setButtonStyleModel(IModel<ButtonStyle> buttonStyleModel) {
         this.buttonBehavior.setButtonStyleModel(buttonStyleModel);
         return this;
     }
