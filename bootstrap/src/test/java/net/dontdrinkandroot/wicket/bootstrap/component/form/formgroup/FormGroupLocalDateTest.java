@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
@@ -41,7 +42,7 @@ public class FormGroupLocalDateTest extends AbstractWicketTest
         LocalDate minDate = LocalDate.of(2015, 1, 2);
         LocalDate maxDate = LocalDate.of(2017, 5, 6);
         FormGroupLocalDate formGroupLocalDate =
-                new FormGroupLocalDate("formGroup", Model.of("Label"), Model.of(testDate));
+                new FormGroupLocalDate("formGroup", new SimpleKModel<>("Label"), Model.of(testDate));
         formGroupLocalDate.getFormComponent().setMin(minDate);
         formGroupLocalDate.getFormComponent().setMax(maxDate);
         formPanel.getForm().add(formGroupLocalDate);

@@ -23,6 +23,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.Inp
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestHomePage;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -42,23 +43,20 @@ public class InputGroupAddonTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupInputText formGroupInputText =
-                new FormGroupInputText("formGroup", Model.of("Label"), Model.of("Value"))
+                new FormGroupInputText("formGroup", new SimpleKModel<>("Label"), Model.of("Value"))
                 {
                     @Override
-                    protected Component createInputGroupPrepend(String id)
-                    {
+                    protected Component createInputGroupPrepend(String id) {
                         return new InputGroupLabel(id, Model.of("Label"));
                     }
 
                     @Override
-                    protected Component createInputGroupAppend(String id)
-                    {
-                        return new InputGroupButton(id)
+                    protected Component createInputGroupAppend(String id) {
+                        return new InputGroupButton<Void>(id)
                         {
                             @Override
-                            protected Component createLink(String id)
-                            {
-                                return new BookmarkablePageLink(id, TestHomePage.class);
+                            protected Component createLink(String id) {
+                                return new BookmarkablePageLink<Void>(id, TestHomePage.class);
                             }
                         };
                     }

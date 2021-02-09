@@ -22,13 +22,14 @@ import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPa
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar;
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage;
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel;
+import net.dontdrinkandroot.wicket.model.KModel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.Strings;
 
@@ -40,7 +41,7 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
 
     private Label pageHeading;
 
-    private IModel<String> pageHeadingModel;
+    private KModel<String> pageHeadingModel;
 
     public StandardBootstrapPage()
     {
@@ -144,9 +145,8 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         return this.pageHeading;
     }
 
-    protected IModel<String> createPageTitlePrefixModel()
-    {
-        return new Model<>();
+    protected KModel<String> createPageTitlePrefixModel() {
+        return new SimpleKModel<>(null);
     }
 
     protected IModel<String> createPageTitleModel()
@@ -154,5 +154,5 @@ public abstract class StandardBootstrapPage<T> extends BootstrapPage<T>
         return new ConcatenatingStringModel(this.createPageTitlePrefixModel(), " - ", this.pageHeadingModel);
     }
 
-    protected abstract IModel<String> createPageHeadingModel();
+    protected abstract KModel<String> createPageHeadingModel();
 }

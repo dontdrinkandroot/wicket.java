@@ -10,7 +10,7 @@ class CssClassToggleModelTest {
     fun testByModelActive() {
         val activeModel = false.kModel()
         val activeClass = StringCssClass("active")
-        val model = CssClassToggleModel(activeModel, activeClass)
+        val model = CssClassToggleModel(activeClass, activeModel)
         Assertions.assertNull(model.getObject())
         activeModel.setObject(java.lang.Boolean.TRUE)
         Assertions.assertEquals(activeClass, model.getObject())
@@ -21,7 +21,7 @@ class CssClassToggleModelTest {
         val activeModel = false.kModel()
         val activeClass = StringCssClass("active")
         val inactiveClass = StringCssClass("inactive")
-        val model = CssClassToggleModel(activeModel, activeClass, inactiveClass)
+        val model = CssClassToggleModel(activeClass, activeModel, inactiveClass)
         Assertions.assertEquals(inactiveClass, model.getObject())
         activeModel.setObject(java.lang.Boolean.TRUE)
         Assertions.assertEquals(activeClass, model.getObject())

@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
@@ -33,7 +34,7 @@ public class FormGroupCheckBoxTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupCheckBox formGroup =
-                new FormGroupCheckBox("formGroup", Model.of("Label"), Model.of(true));
+                new FormGroupCheckBox("formGroup", new SimpleKModel<>("Label"), Model.of(true));
         formPanel.getForm().add(formGroup);
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(formPanel);

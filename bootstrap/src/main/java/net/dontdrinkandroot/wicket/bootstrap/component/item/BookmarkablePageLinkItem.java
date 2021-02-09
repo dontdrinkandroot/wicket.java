@@ -51,8 +51,7 @@ public class BookmarkablePageLinkItem<T> extends AbstractLinkItem<T, Bookmarkabl
     }
 
     @Override
-    protected boolean isActive()
-    {
+    protected boolean getActive() {
         return this.getPage().getClass().isAssignableFrom(this.getLink().getPageClass());
     }
 

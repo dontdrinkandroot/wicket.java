@@ -20,6 +20,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior.form;
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.FormGroupTestPage;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.FormTester;
@@ -42,7 +43,7 @@ public class FormGroupAjaxValidationBehaviorTest extends AbstractWicketTest
             @Override
             protected FormGroupInputEmail createFormGroup(String id)
             {
-                FormGroupInputEmail formGroup = new FormGroupInputEmail(id, Model.of("Label"), new Model<>());
+                FormGroupInputEmail formGroup = new FormGroupInputEmail(id, new SimpleKModel<>("Label"), new Model<>());
                 formGroup.addAjaxValidation("blur");
 
                 return formGroup;

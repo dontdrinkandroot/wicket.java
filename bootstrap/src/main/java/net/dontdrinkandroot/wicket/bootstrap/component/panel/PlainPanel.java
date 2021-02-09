@@ -33,11 +33,6 @@ public class PlainPanel<T> extends Panel<T>
 {
     protected Component body;
 
-    public PlainPanel(String id)
-    {
-        super(id);
-    }
-
     public PlainPanel(String id, IModel<T> model)
     {
         super(id, model);

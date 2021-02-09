@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
@@ -38,7 +39,7 @@ public class FormGroupLocalTimeTest extends AbstractWicketTest
         TestFormPanel formPanel = new TestFormPanel("id");
 
         FormGroupLocalTime formGroupLocalTime =
-                new FormGroupLocalTime("formGroup", Model.of("Label"), Model.of(LocalTime.of(13, 37)));
+                new FormGroupLocalTime("formGroup", new SimpleKModel<>("Label"), Model.of(LocalTime.of(13, 37)));
         formGroupLocalTime.getFormComponent().setMinModel(Model.of(LocalTime.of(9, 13, 14)));
         formGroupLocalTime.getFormComponent().setMax(LocalTime.of(17, 12));
         formPanel.getForm().add(formGroupLocalTime);

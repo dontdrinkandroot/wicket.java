@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.junit.jupiter.api.Assertions;
@@ -36,14 +37,14 @@ public class FormGroupAutoCompleteTest extends AbstractWicketTest
     @Disabled("Strange component markup error, move to tag tester")
     public void testMarkup()
     {
-        FormGroupAutoComplete component = new FormGroupAutoComplete("id", Model.of("ExampleLabel"), new Model<>())
-        {
-            @Override
-            protected List<String> getChoices(String input)
-            {
-                return Arrays.asList("Alpha", "Beta", "Gamma");
-            }
-        };
+        FormGroupAutoComplete component =
+                new FormGroupAutoComplete("id", new SimpleKModel<>("ExampleLabel"), new Model<>())
+                {
+                    @Override
+                    protected List<String> getChoices(String input) {
+                        return Arrays.asList("Alpha", "Beta", "Gamma");
+                    }
+                };
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         Assertions.assertEquals(
                 "<wicket:container wicket:id=\"id\" id=\"id1\" class=\"form-group dropdown autocomplete\"><wicket:panel>\n" +

@@ -18,6 +18,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.jupiter.api.Assertions;
@@ -40,8 +41,7 @@ public class NavTabsTest extends AbstractWicketTest
     @Test
     public void testJustifiedMarkup()
     {
-        RepeatingNavTabs component = new RepeatingNavTabs("id");
-        component.setJustified(true);
+        RepeatingNavTabs component = new RepeatingNavTabs("id", null, new SimpleKModel<>(true));
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
         Assertions.assertEquals("nav nav-tabs nav-justified", tagTester.getAttribute("class"));

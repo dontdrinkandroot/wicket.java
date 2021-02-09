@@ -19,6 +19,7 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup;
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
@@ -37,7 +38,7 @@ public class FormGroupSelectTest extends AbstractWicketTest
         FormGroupSelect<String> formGroupSelect =
                 new FormGroupSelect<>(
                         "formGroup",
-                        Model.of("Label"),
+                        new SimpleKModel<>("Label"),
                         Model.of("alpha"),
                         Arrays.asList("alpha", "beta", "gamma")
                 );

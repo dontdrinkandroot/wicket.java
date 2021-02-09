@@ -9,9 +9,13 @@ interface IButton {
 
     fun getButtonSize(): ButtonSize?
     fun setButtonSize(buttonSize: ButtonSize?): IClusterable
+
+    @Deprecated("Model will usually be bound already")
     fun setButtonSizeModel(buttonSizeModel: KModel<ButtonSize?>): IClusterable
 
     fun getButtonStyle(): ButtonStyle
     fun setButtonStyle(buttonStyle: ButtonStyle): IClusterable
+
+    @Deprecated("Model will usually be bound already")
     fun setButtonStyleModel(buttonStyleModel: KModel<ButtonStyle>): IClusterable
 }

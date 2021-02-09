@@ -20,7 +20,6 @@ package net.dontdrinkandroot.wicket.bootstrap.test;
 import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize;
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -49,11 +48,5 @@ public class AbstractWicketTest
 
         component.setButtonStyle(ButtonStyle.DANGER);
         Assertions.assertEquals(ButtonStyle.DANGER, component.getButtonStyle());
-
-        component.setButtonSizeModel(Model.of(ButtonSize.SMALL));
-        Assertions.assertEquals(ButtonSize.SMALL, component.getButtonSize());
-
-        component.setButtonStyleModel(Model.of(ButtonStyle.WARNING));
-        Assertions.assertEquals(ButtonStyle.WARNING, component.getButtonStyle());
     }
 }

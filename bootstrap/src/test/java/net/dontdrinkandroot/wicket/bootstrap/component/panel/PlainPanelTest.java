@@ -31,7 +31,7 @@ public class PlainPanelTest extends AbstractWicketTest
     @Test
     public void testDefaultMarkup()
     {
-        PlainPanel component = new PlainPanel("id");
+        PlainPanel component = new PlainPanel("id", null);
         String componentMarkup = ComponentRenderer.renderComponent(component).toString();
 
         TagTester componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id");

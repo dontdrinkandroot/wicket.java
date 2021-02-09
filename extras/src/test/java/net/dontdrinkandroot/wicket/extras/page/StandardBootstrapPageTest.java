@@ -18,8 +18,8 @@
 package net.dontdrinkandroot.wicket.extras.page;
 
 import net.dontdrinkandroot.wicket.extras.test.AbstractWicketTest;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
+import net.dontdrinkandroot.wicket.model.KModel;
+import net.dontdrinkandroot.wicket.model.SimpleKModel;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,15 +32,13 @@ public class StandardBootstrapPageTest extends AbstractWicketTest
         this.tester.startPage(new StandardBootstrapPage<Void>()
         {
             @Override
-            protected IModel<String> createPageHeadingModel()
-            {
-                return Model.of("Page Heading");
+            protected KModel<String> createPageHeadingModel() {
+                return new SimpleKModel<>("Page Heading");
             }
 
             @Override
-            protected IModel<String> createPageTitlePrefixModel()
-            {
-                return Model.of("Page Title Prefix");
+            protected KModel<String> createPageTitlePrefixModel() {
+                return new SimpleKModel<>("Page Title Prefix");
             }
         });
         String pageResponse = this.tester.getLastResponseAsString();

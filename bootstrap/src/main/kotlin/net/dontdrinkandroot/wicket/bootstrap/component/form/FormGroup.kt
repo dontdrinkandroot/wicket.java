@@ -63,7 +63,7 @@ open class FormGroup<T> : GenericPanel<T> {
 
     protected open fun createLabel(id: String): Component {
         val label = Label(id, labelModel)
-        label.add(CssClassAppender(CssClassToggleModel(labelScreenReaderOnlyModel, BootstrapCssClass.SR_ONLY)))
+        label.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.SR_ONLY, labelScreenReaderOnlyModel)))
         label.add(CssClassAppender(BootstrapCssClass.CONTROL_LABEL))
         return label
     }
