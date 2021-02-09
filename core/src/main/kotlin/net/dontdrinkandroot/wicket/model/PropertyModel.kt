@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.model
 
+import kotlin.reflect.KFunction1
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
@@ -26,3 +27,8 @@ class PropertyModel<P, T>(parentModel: KModel<P>, private val property: KPropert
 }
 
 fun <T, P> KModel<T>.property(property: KProperty1<T, P>) = PropertyModel(this, property)
+
+fun <P, T> KModel<P>.function(function: KFunction1<P, T>): KModel<T> = object : AbstractChainedModel<P, T>(this) {
+    override fun getValue(parentValue: P): T = function.invoke(parentValue)
+
+}

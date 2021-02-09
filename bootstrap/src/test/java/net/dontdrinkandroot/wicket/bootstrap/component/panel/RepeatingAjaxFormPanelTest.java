@@ -34,27 +34,26 @@ import org.junit.jupiter.api.Test;
 public class RepeatingAjaxFormPanelTest extends AbstractWicketTest
 {
     @Test
-    public void testMarkup()
-    {
-        RepeatingAjaxFormPanel<Void> component = new RepeatingAjaxFormPanel<>("id", Model.of("title"), null)
-        {
-            @Override
-            protected void populateFormGroups(RepeatingView formGroupView) {
-                super.populateFormGroups(formGroupView);
-                formGroupView.add(new FormGroupInputText(
-                        formGroupView.newChildId(),
-                        new SimpleKModel<>("Text"),
-                        new Model<>()
-                ));
-            }
+    public void testMarkup() {
+        RepeatingAjaxFormPanel<Void> component =
+                new RepeatingAjaxFormPanel<>("id", null, new SimpleKModel<>("title"))
+                {
+                    @Override
+                    protected void populateFormGroups(RepeatingView formGroupView) {
+                        super.populateFormGroups(formGroupView);
+                        formGroupView.add(new FormGroupInputText(
+                                formGroupView.newChildId(),
+                                new SimpleKModel<>("Text"),
+                                new Model<>()
+                        ));
+                    }
 
-            @Override
-            protected void populateActions(RepeatingView buttonView)
-            {
-                super.populateActions(buttonView);
-                buttonView.add(new SubmitLabelButton(buttonView.newChildId(), Model.of("Submit")));
-            }
-        };
+                    @Override
+                    protected void populateActions(RepeatingView buttonView) {
+                        super.populateActions(buttonView);
+                        buttonView.add(new SubmitLabelButton(buttonView.newChildId(), Model.of("Submit")));
+                    }
+                };
 
         CharSequence componentMarkup = ComponentRenderer.renderComponent(component);
         TagTester formTester =

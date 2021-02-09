@@ -3,11 +3,12 @@ package net.dontdrinkandroot.wicket.bootstrap.component.panel
 import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.form.RepeatingForm
 import net.dontdrinkandroot.wicket.component.basic.Heading
+import net.dontdrinkandroot.wicket.model.KModel
 import org.apache.wicket.Component
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 
-open class RepeatingFormPanel<T>(id: String, private var titleModel: IModel<String>, model: IModel<T>?) :
+open class RepeatingFormPanel<T>(id: String, private var titleModel: KModel<String>, model: IModel<T>?) :
     RepeatingForm<T>(id, model) {
 
     private val panelBehavior = PanelBehavior()
