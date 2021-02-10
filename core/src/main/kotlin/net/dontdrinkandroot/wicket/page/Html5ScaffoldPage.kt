@@ -1,4 +1,4 @@
-package page
+package net.dontdrinkandroot.wicket.page
 
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.GenericWebPage

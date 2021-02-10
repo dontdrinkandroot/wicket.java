@@ -25,7 +25,7 @@ class ProgressBarPage(parameters: PageParameters) : ComponentPage(parameters) {
                 Spacing(
                     Spacing.Property.MARGIN,
                     Spacing.Side.BOTTOM,
-                    Spacing.Size.HALF
+                    breakpoint = Spacing.Size.HALF
                 )
             )
         )

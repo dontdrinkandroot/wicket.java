@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.page
 
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest
 import org.junit.jupiter.api.Test
-import page.Html5ScaffoldPage
 
 class Html5ScaffoldPageTest : AbstractWicketTest() {
 

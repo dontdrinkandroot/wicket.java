@@ -2,11 +2,11 @@ package net.dontdrinkandroot.wicket.bootstrap.page
 
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapCssHeaderItem
 import net.dontdrinkandroot.wicket.bootstrap.headeritem.BootstrapJsHeaderItem
+import net.dontdrinkandroot.wicket.page.Html5ScaffoldPage
 import org.apache.wicket.markup.head.HeaderItem
 import org.apache.wicket.markup.head.IHeaderResponse
 import org.apache.wicket.model.IModel
 import org.apache.wicket.request.mapper.parameter.PageParameters
-import page.Html5ScaffoldPage
 
 abstract class BootstrapPage<T> : Html5ScaffoldPage<T> {
 
