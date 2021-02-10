@@ -36,12 +36,12 @@ public class FormGroupRadioChoice<T> extends FormGroupFormComponent<T, T, RadioC
             IModel<? extends List<? extends T>> choices
     )
     {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
     }
 
     public FormGroupRadioChoice(String id, IModel<String> labelModel, IModel<T> model, List<? extends T> choices) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
     }
 

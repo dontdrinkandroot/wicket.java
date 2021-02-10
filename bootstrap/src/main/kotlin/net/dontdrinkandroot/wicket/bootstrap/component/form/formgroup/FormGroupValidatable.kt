@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.form
+package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior
@@ -19,12 +19,11 @@ import java.time.Duration
  * @param <M> Type of the FormComponent Model Object.
  * @param <F> Type of the Form Component.
  */
-abstract class FormGroupValidatable<T, M, F : FormComponent<M>> constructor(
+abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
     id: String,
-    labelModel: IModel<String?>,
-    model: IModel<T>?,
-    type: Class<T>? = null
-) : FormGroup<T>(id, labelModel, model) {
+    model: IModel<T>,
+    labelModel: IModel<String>,
+) : FormGroup<T>(id, model, labelModel) {
 
     lateinit var helpBlock: FencedFeedbackPanel
         protected set
@@ -82,22 +81,14 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>> constructor(
     }
 
     val validationState: ValidationState?
-        get() {
-            if (!formComponent.isValid) {
-                return ValidationState.ERROR
-            }
-            if (helpBlock.anyMessage(FeedbackMessage.FATAL) || helpBlock.anyMessage(FeedbackMessage.ERROR)) {
-                return ValidationState.ERROR
-            }
-            if (helpBlock.anyMessage(FeedbackMessage.WARNING)) {
-                return ValidationState.WARNING
-            }
-            if (helpBlock.anyMessage(FeedbackMessage.SUCCESS)) {
-                return ValidationState.SUCCESS
-            }
-            return if (formComponent.isRequired && null == this.modelObject) {
-                ValidationState.WARNING
-            } else null
+        get() = when {
+            !formComponent.isValid -> ValidationState.ERROR
+            helpBlock.anyMessage(FeedbackMessage.FATAL) || helpBlock.anyMessage(FeedbackMessage.ERROR) ->
+                ValidationState.ERROR
+            helpBlock.anyMessage(FeedbackMessage.WARNING) -> ValidationState.WARNING
+            helpBlock.anyMessage(FeedbackMessage.SUCCESS) -> ValidationState.SUCCESS
+            (formComponent.isRequired && null == this.modelObject) -> ValidationState.WARNING
+            else -> null
         }
 
     fun addValidator(validator: IValidator<M>?) {

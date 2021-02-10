@@ -15,6 +15,7 @@ import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
+import org.apache.wicket.model.util.ListModel
 import org.apache.wicket.request.mapper.parameter.PageParameters
 import java.time.Duration
 import java.time.LocalDate
@@ -119,7 +120,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void?>(param
         formGroupView.add(formGroupSelect)
         val formGroupInputFile = FormGroupInputFile(
             formGroupView.newChildId(),
-            FormGroupInputFile::class.java.simpleName.model()
+            FormGroupInputFile::class.java.simpleName.model(),
+            ListModel()
         )
         formGroupView.add(formGroupInputFile)
         val formGroupActions: FormGroupActions<Void> = object : FormGroupActions<Void>(formGroupView.newChildId())

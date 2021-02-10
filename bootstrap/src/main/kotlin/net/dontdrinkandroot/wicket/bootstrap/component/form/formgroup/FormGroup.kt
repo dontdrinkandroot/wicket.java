@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.form
+package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormContainerSizeBehavior
@@ -12,29 +12,15 @@ import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 
-open class FormGroup<T> : GenericPanel<T> {
-
-    protected lateinit var labelModel: IModel<String?>
+open class FormGroup<T>(id: String, model: IModel<T>, protected var labelModel: IModel<String>) :
+    GenericPanel<T>(id, model) {
 
     private val labelScreenReaderOnlyModel = false.model()
 
     protected lateinit var label: Component
 
     protected lateinit var container: WebMarkupContainer
-
-    constructor(id: String?) : super(id) {
-        this.labelModel = Model(null)
-    }
-
-    constructor(id: String?, labelModel: IModel<String?>) : super(id) {
-        this.labelModel = labelModel
-    }
-
-    constructor(id: String?, labelModel: IModel<String?>, model: IModel<T>?) : super(id, model) {
-        this.labelModel = labelModel
-    }
 
     override fun onInitialize() {
         super.onInitialize()

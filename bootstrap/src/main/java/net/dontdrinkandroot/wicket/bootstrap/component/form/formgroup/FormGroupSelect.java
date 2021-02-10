@@ -29,11 +29,11 @@ import java.util.List;
 public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownChoice<T>>
 {
     protected FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
     }
 
     public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, List<T> choices) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
     }
 
@@ -45,13 +45,13 @@ public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownCho
             IChoiceRenderer<T> choiceRenderer
     )
     {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
         this.getFormComponent().setChoiceRenderer(choiceRenderer);
     }
 
     public FormGroupSelect(String id, IModel<String> labelModel, IModel<T> model, IModel<List<T>> choices) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
     }
 
@@ -63,7 +63,7 @@ public class FormGroupSelect<T> extends FormGroupFormComponent<T, T, DropDownCho
             IChoiceRenderer<T> choiceRenderer
     )
     {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
         this.getFormComponent().setChoices(choices);
         this.getFormComponent().setChoiceRenderer(choiceRenderer);
     }

@@ -8,4 +8,7 @@ import org.apache.wicket.model.IModel
 class ToStringModel(parent: IModel<out Any>) : AbstractChainedModel<Any, String>(parent) {
 
     override fun getValue(parentValue: Any?) = parentValue.toString()
+
+    override fun setObject(value: String) =
+        throw UnsupportedOperationException("Model class does not support setObject(Object)")
 }

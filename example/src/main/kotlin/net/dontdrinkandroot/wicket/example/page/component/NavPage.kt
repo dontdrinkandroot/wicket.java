@@ -56,7 +56,7 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
     }
 
     protected fun populateItems(itemView: RepeatingView) {
-        itemView.add(object : LinkItem<Void>(itemView.newChildId(), Model.of("Active")) {
+        itemView.add(object : LinkItem<Void>(itemView.newChildId(), labelModel = "Active".model()) {
             override fun onClick() {
                 /* Noop */
             }
@@ -75,11 +75,12 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
                 )
             }
         })
-        val disabledItem: LinkItem<Void> = object : LinkItem<Void>(itemView.newChildId(), Model.of("Disabled")) {
-            override fun onClick() {
-                /* Noop */
+        val disabledItem: LinkItem<Void> =
+            object : LinkItem<Void>(itemView.newChildId(), labelModel = "Disabled".model()) {
+                override fun onClick() {
+                    /* Noop */
+                }
             }
-        }
         disabledItem.add(DisabledCssBehavior())
         disabledItem.isEnabled = false
         itemView.add(disabledItem)

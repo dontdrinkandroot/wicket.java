@@ -31,7 +31,7 @@ public class FormGroupTextArea<T> extends FormGroupFormComponent<T, T, TextArea<
     private int rows = 5;
 
     public FormGroupTextArea(String id, IModel<String> labelModel, IModel<T> model) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
     }
 
     @Override

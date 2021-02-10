@@ -16,7 +16,7 @@ class ToStringModelTest {
             Assertions.fail<Any>("Runtimeexception expected")
         } catch (e: UnsupportedOperationException) {
             Assertions.assertEquals(
-                "Model class net.dontdrinkandroot.wicket.model.ToStringModel does not support setObject(Object)",
+                "Model class does not support setObject(Object)",
                 e.message
             )
         }

@@ -45,7 +45,7 @@ public abstract class FormGroupAutoComplete extends FormGroupFormComponent<Strin
     private ListView<String> suggestionView;
 
     public FormGroupAutoComplete(String id, IModel<String> labelModel, IModel<String> model) {
-        super(id, labelModel, model);
+        super(id, model, labelModel);
     }
 
     @Override

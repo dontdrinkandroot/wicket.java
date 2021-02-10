@@ -36,7 +36,7 @@ public class FormGroupCheckBoxMultipleChoice<T> extends FormGroupFormComponent<C
             IModel<String> labelModel,
             IModel<? extends Collection<T>> model
     ) {
-        super(id, labelModel, (IModel<Collection<T>>) model);
+        super(id, (IModel<Collection<T>>) model, labelModel);
     }
 
     public FormGroupCheckBoxMultipleChoice(

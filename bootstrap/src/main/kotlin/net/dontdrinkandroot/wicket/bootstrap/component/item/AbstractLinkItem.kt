@@ -17,36 +17,21 @@ import org.apache.wicket.model.Model
 abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
     id: String,
     model: IModel<T>? = null,
-    labelModel: IModel<String>
+    labelModel: IModel<String>,
+    val prependIconModel: IModel<CssClass> = Model(null),
+    val appendIconModel: IModel<CssClass> = Model(null)
 ) : AbstractLabeledItem<T>(id, model, labelModel) {
-
-    var prependIconModel: IModel<CssClass>? = null
-        private set
-
-    private var appendIconModel: IModel<CssClass>? = null
 
     private lateinit var link: L
 
     fun setPrependIcon(prependIcon: CssClass?): AbstractLinkItem<*, *> {
-        if (prependIcon == null) {
-            prependIconModel = null
-        } else {
-            prependIconModel = Model.of(prependIcon)
-        }
+        prependIconModel.setObject(prependIcon)
         return this
     }
 
     fun setAppendIcon(appendIcon: CssClass?): AbstractLinkItem<*, *> {
-        if (appendIcon == null) {
-            appendIconModel = null
-        } else {
-            appendIconModel = Model.of(appendIcon)
-        }
+        appendIconModel.setObject(appendIcon)
         return this
-    }
-
-    fun setAppendIconModel(): IModel<CssClass>? {
-        return appendIconModel
     }
 
     override fun onInitialize() {
@@ -54,15 +39,7 @@ abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
         link = createLink("link")
         link.body = this.label
         this.add(DisabledCssBehavior())
-        link.add(object : IconBehavior() {
-            public override fun getPrependIconModel(): IModel<CssClass> {
-                return this@AbstractLinkItem.prependIconModel!!
-            }
-
-            public override fun getAppendIconModel(): IModel<CssClass> {
-                return setAppendIconModel()!!
-            }
-        })
+        link.add(IconBehavior(prependIconModel, appendIconModel))
         this.add(link)
 
         /* Link is also active if item is active */
