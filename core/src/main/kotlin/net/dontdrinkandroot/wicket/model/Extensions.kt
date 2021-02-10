@@ -7,6 +7,9 @@ import java.io.Serializable
 
 fun <T : Serializable?> T.model(): IModel<T> = Model(this)
 
+@Suppress("UNCHECKED_CAST")
+fun <T> IModel<T>.nullable(): IModel<T?> = this as IModel<T?>
+
 fun <T> (() -> T).ldm(): LoadableDetachableModel<T?> = LoadableDetachableModel.of(this)
 
 fun String.concat(model: IModel<String>): IModel<String> =
