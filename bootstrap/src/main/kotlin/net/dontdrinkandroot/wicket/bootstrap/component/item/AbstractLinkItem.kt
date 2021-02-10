@@ -22,20 +22,12 @@ abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
     val appendIconModel: IModel<CssClass> = Model(null)
 ) : AbstractLabeledItem<T>(id, model, labelModel) {
 
-    private lateinit var link: L
-
-    fun setPrependIcon(prependIcon: CssClass?): AbstractLinkItem<*, *> {
-        prependIconModel.setObject(prependIcon)
-        return this
-    }
-
-    fun setAppendIcon(appendIcon: CssClass?): AbstractLinkItem<*, *> {
-        appendIconModel.setObject(appendIcon)
-        return this
-    }
+    lateinit var link: L
+        protected set
 
     override fun onInitialize() {
         super.onInitialize()
+
         link = createLink("link")
         link.body = this.label
         this.add(DisabledCssBehavior())
@@ -44,21 +36,15 @@ abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
 
         /* Link is also active if item is active */
         link.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.ACTIVE, { active })))
-        link.add(CssClassAppender(IModel<CssClass> {
-            var parent = parent
-            if (parent is ItemContainer) {
-                (parent as ItemContainer).linkClass
-            }
-            parent = parent.parent
-            if (parent is ItemContainer) {
-                (parent as ItemContainer).linkClass
-            }
-            null
-        }))
-    }
 
-    fun getLink(): L {
-        return link
+        /* If direct parent or parent of parent is item append the link class */
+        link.add(CssClassAppender {
+            var parent = parent
+            if (parent is ItemContainer) return@CssClassAppender (parent as ItemContainer).linkClass
+            parent = parent.parent
+            if (parent is ItemContainer) return@CssClassAppender (parent as ItemContainer).linkClass
+            return@CssClassAppender null
+        })
     }
 
     protected abstract fun createLink(id: String): L

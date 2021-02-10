@@ -55,15 +55,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                             populateNavbarLeftItems(itemView)
                         }
                     }
-                leftItems.add(
-                    CssClassAppender(
-                        Spacing(
-                            Spacing.Property.MARGIN,
-                            Spacing.Side.END,
-                            breakpoint = Spacing.Size.AUTO
-                        )
-                    )
-                )
+                leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
                 collapseItemView.add(leftItems)
                 val rightItems: RepeatingNavbarNav<*> =
                     object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
@@ -85,96 +77,96 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
         leftItemView.add(
             BookmarkablePageLinkItem<Void, GettingStartedPage>(
                 leftItemView.newChildId(),
-                Model.of("Getting Started"),
+                "Getting Started".model(),
                 GettingStartedPage::class.java
             )
         )
         leftItemView.add(
-            BookmarkablePageLinkItem<Void, CssPage>(leftItemView.newChildId(), Model.of("CSS"), CssPage::class.java)
+            BookmarkablePageLinkItem<Void, CssPage>(leftItemView.newChildId(), "CSS".model(), CssPage::class.java)
         )
         leftItemView.add(
             BookmarkablePageLinkItem<Void, GridPage>(
                 leftItemView.newChildId(),
-                Model.of("The Grid"),
+                "The Grid".model(),
                 GridPage::class.java
             )
         )
-        leftItemView.add(object : RepeatingDropdownItem<Void>(leftItemView.newChildId(), Model.of("Components")) {
+        leftItemView.add(object : RepeatingDropdownItem<Void>(leftItemView.newChildId(), "Components".model()) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void, ButtonPage>(
                         itemView.newChildId(),
-                        Model.of("Buttons"),
+                        "Buttons".model(),
                         ButtonPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, PanelPage>(
                         itemView.newChildId(),
-                        Model.of("Panels"),
+                        "Panels".model(),
                         PanelPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, NavPage>(
                         itemView.newChildId(),
-                        Model.of("Navs"),
+                        "Navs".model(),
                         NavPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, NavbarPage>(
                         itemView.newChildId(),
-                        Model.of("Navbars"),
+                        "Navbars".model(),
                         NavbarPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, BreadcrumbPage>(
                         itemView.newChildId(),
-                        Model.of("Breadcrumbs"),
+                        "Breadcrumbs".model(),
                         BreadcrumbPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, BadgePage>(
                         itemView.newChildId(),
-                        Model.of("Badges"),
+                        "Badges".model(),
                         BadgePage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, AlertPage>(
                         itemView.newChildId(),
-                        Model.of("Alerts and Feedback"),
+                        "Alerts and Feedback".model(),
                         AlertPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, ProgressBarPage>(
                         itemView.newChildId(),
-                        Model.of("Progress Bars"),
+                        "Progress Bars".model(),
                         ProgressBarPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, PaginationPage>(
                         itemView.newChildId(),
-                        Model.of("Pagination"),
+                        "Pagination".model(),
                         PaginationPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, DropdownPage>(
                         itemView.newChildId(),
-                        Model.of("Dropdowns"),
+                        "Dropdowns".model(),
                         DropdownPage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void, ModalPage>(
                         itemView.newChildId(),
-                        Model.of("Modals"),
+                        "Modals".model(),
                         ModalPage::class.java
                     )
                 )

@@ -20,15 +20,7 @@ class ProgressBarPage(parameters: PageParameters) : ComponentPage(parameters) {
         super.onInitialize()
         val valueModel: IModel<Int> = Model(33)
         val defaultBar = ProgressBar("defaultBar", valueModel)
-        defaultBar.add(
-            CssClassAppender(
-                Spacing(
-                    Spacing.Property.MARGIN,
-                    Spacing.Side.BOTTOM,
-                    breakpoint = Spacing.Size.HALF
-                )
-            )
-        )
+        defaultBar.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.HALF, Spacing.Side.BOTTOM)))
         this.add(defaultBar)
         val updateButton: AjaxLink<Void> = object : AjaxLink<Void>("updateButton")
         {

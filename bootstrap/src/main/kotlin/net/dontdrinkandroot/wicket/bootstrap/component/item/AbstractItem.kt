@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.item
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
-import net.dontdrinkandroot.wicket.css.CssClass
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
@@ -18,17 +17,13 @@ open class AbstractItem<T>(id: String, model: IModel<T>? = null) : GenericPanel<
     override fun onInitialize() {
         super.onInitialize()
         this.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.ACTIVE, { this@AbstractItem.active })))
-        this.add(CssClassAppender(IModel<CssClass> {
+        this.add(CssClassAppender {
             var parent = parent
-            if (parent is ItemContainer) {
-                (parent as ItemContainer).itemClass
-            }
+            if (parent is ItemContainer) return@CssClassAppender (parent as ItemContainer).itemClass
             parent = parent.parent
-            if (parent is ItemContainer) {
-                (parent as ItemContainer).itemClass
-            }
-            null
-        }))
+            if (parent is ItemContainer) return@CssClassAppender (parent as ItemContainer).itemClass
+            return@CssClassAppender null
+        })
     }
 
     protected open val active: Boolean
