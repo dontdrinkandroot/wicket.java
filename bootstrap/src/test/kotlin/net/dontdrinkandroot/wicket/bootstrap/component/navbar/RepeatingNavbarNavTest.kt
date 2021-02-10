@@ -17,10 +17,10 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
         val component = object : RepeatingNavbarNav<Void>("id") {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
-                    BookmarkablePageLinkItem<Void, SignInPage>(
+                    BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
-                        "Item".model(),
-                        SignInPage::class.java
+                        labelModel = "Item".model(),
+                        pageClass = SignInPage::class.java
                     )
                 )
             }

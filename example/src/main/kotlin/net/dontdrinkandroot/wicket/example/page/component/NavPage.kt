@@ -87,10 +87,10 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
         itemView.add(object : RepeatingDropdownItem<Void?>(itemView.newChildId(), Model.of("Dropdown")) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
-                    BookmarkablePageLinkItem<Void, HomePage>(
+                    BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
-                        Model.of("A Link"),
-                        HomePage::class.java
+                        labelModel = "A Link".model(),
+                        pageClass = HomePage::class.java
                     )
                 )
             }

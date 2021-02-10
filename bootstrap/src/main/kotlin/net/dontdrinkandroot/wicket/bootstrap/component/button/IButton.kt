@@ -5,13 +5,15 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import org.apache.wicket.model.IModel
 import org.apache.wicket.util.io.IClusterable
 
+// TODO: Remove
+@Deprecated("Use constructor models instead")
 interface IButton {
 
     fun getButtonSize(): ButtonSize?
     fun setButtonSize(buttonSize: ButtonSize?): IClusterable
 
     @Deprecated("Model will usually be bound already")
-    fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): IClusterable
+    fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): IClusterable
 
     fun getButtonStyle(): ButtonStyle
     fun setButtonStyle(buttonStyle: ButtonStyle): IClusterable

@@ -28,19 +28,19 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
     protected fun populateItems(itemView: RepeatingView)
     {
         itemView.add(
-            BookmarkablePageLinkItem<Void, HomePage>(
+            BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                Model.of("Action"),
-                HomePage::class.java
+                labelModel = "Action".model(),
+                pageClass = HomePage::class.java
             )
         )
         itemView.add(DropdownDividerItem(itemView.newChildId()))
         itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
         itemView.add(
-            BookmarkablePageLinkItem<Void, DropdownPage>(
+            BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                Model.of("Another Action"),
-                DropdownPage::class.java
+                labelModel = "Another Action".model(),
+                pageClass = DropdownPage::class.java
             )
         )
     }

@@ -5,7 +5,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.example.page.HomePage
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class BreadcrumbPage(parameters: PageParameters) : ComponentPage(parameters) {
@@ -14,21 +13,20 @@ class BreadcrumbPage(parameters: PageParameters) : ComponentPage(parameters) {
 
     override fun onInitialize() {
         super.onInitialize()
-        val breadcrumb: RepeatingBreadcrumb<Void> = object : RepeatingBreadcrumb<Void>("breadcrumb")
-        {
-            override fun populateItems(itemView: RepeatingView)
-            {
+        val breadcrumb: RepeatingBreadcrumb<Void> = object : RepeatingBreadcrumb<Void>("breadcrumb") {
+            override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
-                    BookmarkablePageLinkItem<Void, HomePage>(
-                        itemView.newChildId(), Model.of("Examples"),
-                        HomePage::class.java
+                    BookmarkablePageLinkItem<Void>(
+                        itemView.newChildId(),
+                        labelModel = "Examples".model(),
+                        pageClass = HomePage::class.java
                     )
                 )
                 itemView.add(
-                    BookmarkablePageLinkItem<Void, BreadcrumbPage>(
+                    BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
-                        Model.of("Breadcrumbs"),
-                        BreadcrumbPage::class.java
+                        labelModel = "Breadcrumbs".model(),
+                        pageClass = BreadcrumbPage::class.java
                     )
                 )
             }

@@ -17,7 +17,7 @@ import org.apache.wicket.model.Model
 
 class ButtonBehavior constructor(
     private var buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
-    private var buttonSizeModel: IModel<ButtonSize?> = Model(null)
+    private var buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : CompositeBehavior(CssClassAppender(BootstrapCssClass.BTN), DisabledCssBehavior()), IButton {
 
     constructor(buttonStyle: ButtonStyle) : this(buttonStyleModel = buttonStyle.model())
@@ -64,7 +64,7 @@ class ButtonBehavior constructor(
         }
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): ButtonBehavior {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): ButtonBehavior {
         this.buttonSizeModel = buttonSizeModel
         return this
     }

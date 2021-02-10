@@ -39,7 +39,7 @@ class SubmitLabelButton : Label, IButton {
         return buttonBehavior.getButtonStyle()
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): SubmitLabelButton {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): SubmitLabelButton {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }

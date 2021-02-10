@@ -80,10 +80,10 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
     protected fun populateDropdownItems(itemView: RepeatingView)
     {
         itemView.add(
-            BookmarkablePageLinkItem<Void, ButtonPage>(
+            BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                Model.of("This is a link"),
-                ButtonPage::class.java
+                labelModel = "This is a link".model(),
+                pageClass = ButtonPage::class.java
             )
         )
     }

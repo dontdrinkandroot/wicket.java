@@ -53,28 +53,28 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
                             RepeatingDropdownItem<Void?>(itemView.newChildId(), Model.of("Dropdown")) {
                             override fun populateItems(itemView: RepeatingView) {
                                 itemView.add(
-                                    BookmarkablePageLinkItem<Void, HomePage>(
+                                    BookmarkablePageLinkItem<Void>(
                                         itemView.newChildId(),
-                                        Model.of("Action"),
-                                        HomePage::class.java
+                                        labelModel = Model.of("Action"),
+                                        pageClass = HomePage::class.java
                                     )
                                 )
                                 itemView.add(DropdownDividerItem(itemView.newChildId()))
                                 itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
                                 itemView.add(
-                                    BookmarkablePageLinkItem<Void, HomePage>(
+                                    BookmarkablePageLinkItem<Void>(
                                         itemView.newChildId(),
-                                        Model.of("Another Action"),
-                                        HomePage::class.java
+                                        labelModel = Model.of("Another Action"),
+                                        pageClass = HomePage::class.java
                                     )
                                 )
                             }
                         })
                         itemView.add(
-                            BookmarkablePageLinkItem<Void, NavbarPage>(
+                            BookmarkablePageLinkItem<Void>(
                                 itemView.newChildId(),
-                                Model.of("Link"),
-                                NavbarPage::class.java
+                                labelModel = Model.of("Link"),
+                                pageClass = NavbarPage::class.java
                             )
                         )
                     }

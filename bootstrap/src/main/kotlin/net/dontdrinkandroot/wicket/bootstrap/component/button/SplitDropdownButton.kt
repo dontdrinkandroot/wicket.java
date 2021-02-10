@@ -65,7 +65,7 @@ abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
         return this
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): SplitDropdownButton<T> {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): SplitDropdownButton<T> {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }

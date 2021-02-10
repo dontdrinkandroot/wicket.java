@@ -63,7 +63,7 @@ class ButtonGroupChoice<T>(id: String, model: IModel<T>?, choicesModel: IModel<L
         return this
     }
 
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize?>): ButtonGroupChoice<T> {
+    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): ButtonGroupChoice<T> {
         buttonBehavior.setButtonSizeModel(buttonSizeModel)
         return this
     }
