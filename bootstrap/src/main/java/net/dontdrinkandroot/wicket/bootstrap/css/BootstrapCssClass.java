@@ -124,7 +124,6 @@ public enum BootstrapCssClass implements CssClass
     NAVBAR("navbar"),
     NAVBAR_BTN("navbar-btn"),
     NAVBAR_FORM("navbar-form"),
-    NAV_JUSTIFIED("nav-justified"),
     NAVBAR_NAV("navbar-nav"),
     NAVBAR_TEXT("navbar-text"),
     NAVBAR_TOGGLER("navbar-toggler"),
@@ -147,7 +146,7 @@ public enum BootstrapCssClass implements CssClass
     THUMBNAIL("thumbnail"),
     THUMBNAILS("thumbnails");
 
-    private String classString;
+    private final String classString;
 
     BootstrapCssClass(String classString)
     {

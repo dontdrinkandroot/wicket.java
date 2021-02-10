@@ -17,9 +17,9 @@
  */
 package net.dontdrinkandroot.wicket.bootstrap.component.nav;
 
+import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment;
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest;
 import org.apache.wicket.core.util.string.ComponentRenderer;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class NavTabsTest extends AbstractWicketTest
     @Test
     public void testJustifiedMarkup()
     {
-        RepeatingNavTabs component = new RepeatingNavTabs("id", null, new Model<>(true));
+        RepeatingNavTabs component = new RepeatingNavTabs("id", null, NavItemAlignment.JUSTIFIED);
         String markup = ComponentRenderer.renderComponent(component).toString();
         TagTester tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id");
         Assertions.assertEquals("nav nav-tabs nav-justified", tagTester.getAttribute("class"));

@@ -21,7 +21,7 @@ import java.time.Duration
 import java.time.LocalDate
 import java.util.*
 
-abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void?>(parameters) {
+abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parameters) {
 
     override fun createPageTitlePrefixModel() =
         ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", "Forms".model())
@@ -72,10 +72,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void?>(param
             formGroupView.newChildId(),
             FormGroupLocalDate::class.java.simpleName.model(),
             Model.of(LocalDate.now())
-        )
-        {
-            override fun createInputGroupAppend(id: String): Component
-            {
+        ) {
+            override fun createInputGroupAppend(id: String): Component {
                 val after = InputGroupLabel(id)
                 after.add(IconBehavior(FontAwesomeIconClass.CALENDAR_O.createIcon()))
                 return after
@@ -124,10 +122,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void?>(param
             ListModel()
         )
         formGroupView.add(formGroupInputFile)
-        val formGroupActions: FormGroupActions<Void> = object : FormGroupActions<Void>(formGroupView.newChildId())
-        {
-            override fun populateActions(actionView: RepeatingView)
-            {
+        val formGroupActions: FormGroupActions<Void> = object : FormGroupActions<Void>(formGroupView.newChildId()) {
+            override fun populateActions(actionView: RepeatingView) {
                 val submitButton = AjaxSubmitButton(actionView.newChildId())
                 submitButton.body = Model.of("Submit")
                 actionView.add(submitButton)
