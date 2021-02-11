@@ -150,8 +150,6 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         }
         formGroupView.add(formGroupActions)
 
-        formGroupView.forEach {
-            it.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.FULL, Spacing.Side.BOTTOM)))
-        }
+        formGroupView.forEach { it.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL)) }
     }
 }

@@ -47,4 +47,10 @@ class Spacing(
         THRICE("5"),
         AUTO("auto");
     }
+
+    companion object {
+
+        val MARGIN_BOTTOM_HALF = Spacing(Spacing.Property.MARGIN, Spacing.Size.HALF, Spacing.Side.BOTTOM)
+        val MARGIN_BOTTOM_FULL = Spacing(Spacing.Property.MARGIN, Spacing.Size.FULL, Spacing.Side.BOTTOM)
+    }
 }
