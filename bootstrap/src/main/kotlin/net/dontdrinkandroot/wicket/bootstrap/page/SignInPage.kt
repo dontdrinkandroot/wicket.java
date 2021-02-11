@@ -1,11 +1,14 @@
 package net.dontdrinkandroot.wicket.bootstrap.page
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FeedbackPanel
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupCheckBox
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputPassword
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
+import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
+import net.dontdrinkandroot.wicket.bootstrap.css.Spacing.*
 import org.apache.wicket.Component
 import org.apache.wicket.RestartResponseException
 import org.apache.wicket.markup.html.WebMarkupContainer
@@ -52,22 +55,31 @@ abstract class SignInPage(parameters: PageParameters) : BootstrapPage<Void>(para
             }
         }
         this.add(form)
+
         form.add(FeedbackPanel("feedback"))
+
         form.add(Label("heading", pageTitleModel))
+
         val formGroupUsername = FormGroupInputText("username", createUsernameLabelModel(), usernameModel)
         formGroupUsername.setRequired(true)
+        formGroupUsername.add(CssClassAppender(Spacing(Property.MARGIN, Size.HALF, Side.BOTTOM)))
         form.add(formGroupUsername)
+
         val formGroupPassword = FormGroupInputPassword("password", createPasswordLabelModel(), passwordModel)
         formGroupPassword.setRequired(true)
+        formGroupPassword.add(CssClassAppender(Spacing(Property.MARGIN, Size.HALF, Side.BOTTOM)))
         form.add(formGroupPassword)
+
         val formGroupRememberMe = FormGroupCheckBox("rememberMe", createRememberMeLabelModel(), rememberMeModel)
         formGroupRememberMe.isVisible = isRememberMeEnabled
         form.add(formGroupRememberMe)
+
         val submitLabel = Label("submit", createSubmitLabelModel())
         submitLabel.add(ButtonBehavior(ButtonStyle.PRIMARY))
         form.add(submitLabel)
-        form.add(Label("reset", createResetLabelModel()).add(ButtonBehavior()))
+
         this.add(createBeforePanel("beforePanel"))
+
         this.add(createAfterPanel("afterPanel"))
     }
 
@@ -88,36 +100,25 @@ abstract class SignInPage(parameters: PageParameters) : BootstrapPage<Void>(para
         }
     }
 
-    override fun createPageTitle(id: String): Component {
-        return Label(id, pageTitleModel)
-    }
+    override fun createPageTitle(id: String): Component = Label(id, pageTitleModel)
 
-    protected fun createPageTitleModel(): IModel<String> {
-        return ResourceModel("login.title", Model.of("Login"))
-    }
+    protected fun createPageTitleModel(): IModel<String> = ResourceModel("login.title", Model.of("Login"))
 
     protected val isRememberMeEnabled: Boolean
         get() = true
 
-    protected open fun createUsernameLabelModel(): IModel<String> {
-        return ResourceModel("login.username", Model.of("Username"))
-    }
+    protected open fun createUsernameLabelModel(): IModel<String> =
+        ResourceModel("login.username", Model.of("Username"))
 
-    protected fun createPasswordLabelModel(): IModel<String> {
-        return ResourceModel("login.password", Model.of("Password"))
-    }
+    protected fun createPasswordLabelModel(): IModel<String> = ResourceModel("login.password", Model.of("Password"))
 
     protected fun createRememberMeLabelModel(): IModel<String> {
         return ResourceModel("login.rememberMe", Model.of("Remember me"))
     }
 
-    protected fun createResetLabelModel(): IModel<String> {
-        return ResourceModel("login.reset", Model.of("Reset"))
-    }
+    protected fun createResetLabelModel(): IModel<String> = ResourceModel("login.reset", Model.of("Reset"))
 
-    protected fun createSubmitLabelModel(): IModel<String> {
-        return ResourceModel("login.submit", Model.of("Submit"))
-    }
+    protected fun createSubmitLabelModel(): IModel<String> = ResourceModel("login.submit", Model.of("Submit"))
 
     protected fun onSignInRemembered() {
         continueToOriginalDestination()

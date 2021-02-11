@@ -13,4 +13,6 @@ class BootstrapCssHeaderItem : CssUrlReferenceHeaderItem(
         integrity = "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
         crossOrigin = CrossOrigin.ANONYMOUS
     }
+
+    override fun getDependencies() = mutableListOf(BootstrapJsHeaderItem())
 }

@@ -217,7 +217,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
     }
 
     override fun renderHead(response: IHeaderResponse) {
-        response.render(this.bootstrapJavaScriptHeaderItem)
+        response.render(this.bootstrapHeaderItem)
         response.render(CssUrlReferenceHeaderItem(getCurrentSession().currentTheme!!.url, null, null))
         response.render(FontAwesomeCssHeaderItem())
         response.render(CssContentHeaderItem("body{padding-top: 56px;}", "bodyPadding"))
