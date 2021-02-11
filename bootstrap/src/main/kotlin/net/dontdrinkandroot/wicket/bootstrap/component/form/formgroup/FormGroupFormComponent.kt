@@ -34,5 +34,4 @@ abstract class FormGroupFormComponent<T, M, F : FormComponent<M>> @JvmOverloads 
     }
 
     protected abstract fun createFormComponent(id: String): F
-
 }

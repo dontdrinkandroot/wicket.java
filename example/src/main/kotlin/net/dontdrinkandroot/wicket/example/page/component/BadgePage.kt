@@ -14,11 +14,12 @@ class BadgePage(parameters: PageParameters) : ComponentPage(parameters) {
 
     override fun onInitialize() {
         super.onInitialize()
+
         val badgeView = RepeatingView("badge")
         this.add(badgeView)
-        for (style in BadgeStyle.values())
-        {
-            val label = Label(badgeView.newChildId(), Model.of(style.name.toLowerCase()))
+
+        for (style in BadgeStyle.values()) {
+            val label = Label(badgeView.newChildId(), Model.of(style.name))
             label.add(BadgeBehavior(style))
             badgeView.add(label)
         }

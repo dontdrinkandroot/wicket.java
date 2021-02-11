@@ -11,8 +11,7 @@ open class FormGroupActions<T>(
     id: String,
     model: IModel<T> = IModel<T> { null },
     labelModel: IModel<String> = Model(null)
-) :
-    FormGroup<T>(id, model, labelModel) {
+) : FormGroup<T>(id, model, labelModel) {
 
     private lateinit var actionView: RepeatingView
 
