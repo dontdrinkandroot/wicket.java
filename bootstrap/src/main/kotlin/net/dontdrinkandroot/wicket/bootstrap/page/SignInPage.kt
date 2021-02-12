@@ -62,12 +62,12 @@ abstract class SignInPage(parameters: PageParameters) : BootstrapPage<Void>(para
 
         val formGroupUsername = FormGroupInputText("username", createUsernameLabelModel(), usernameModel)
         formGroupUsername.setRequired(true)
-        formGroupUsername.add(CssClassAppender(Spacing(Property.MARGIN, Size.HALF, Side.BOTTOM)))
+        formGroupUsername.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         form.add(formGroupUsername)
 
         val formGroupPassword = FormGroupInputPassword("password", createPasswordLabelModel(), passwordModel)
         formGroupPassword.setRequired(true)
-        formGroupPassword.add(CssClassAppender(Spacing(Property.MARGIN, Size.HALF, Side.BOTTOM)))
+        formGroupPassword.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         form.add(formGroupPassword)
 
         val formGroupRememberMe = FormGroupCheckBox("rememberMe", createRememberMeLabelModel(), rememberMeModel)

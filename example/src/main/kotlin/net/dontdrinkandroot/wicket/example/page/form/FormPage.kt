@@ -6,7 +6,7 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.*
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupLabel
-import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesomeIconClass
+import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesome4IconClass
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
@@ -84,7 +84,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         ) {
             override fun createInputGroupAppend(id: String): Component {
                 val after = InputGroupLabel(id)
-                after.add(IconBehavior(FontAwesomeIconClass.CALENDAR_O.createIcon()))
+                after.add(IconBehavior(FontAwesome4IconClass.CALENDAR_O.createIcon()))
                 return after
             }
         }

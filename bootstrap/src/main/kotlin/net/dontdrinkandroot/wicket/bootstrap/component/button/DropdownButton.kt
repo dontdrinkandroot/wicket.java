@@ -9,6 +9,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
+import net.dontdrinkandroot.wicket.css.CssClass
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
@@ -23,12 +24,14 @@ abstract class DropdownButton<T>(
     model: IModel<T>? = null,
     private var labelModel: IModel<String>?,
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
-    buttonSizeModel: IModel<ButtonSize> = Model(null)
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+    prependIconModel: IModel<CssClass> = Model(null),
+    appendIconModel: IModel<CssClass> = Model(null),
 ) : GenericPanel<T>(id, model) {
 
     protected var buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
 
-    var iconBehavior = IconBehavior(null, BootstrapCssClass.CARET)
+    var iconBehavior = IconBehavior(prependIconModel, appendIconModel)
         protected set
 
     lateinit var toggle: Label
@@ -57,7 +60,6 @@ abstract class DropdownButton<T>(
 
     override fun onInitialize() {
         super.onInitialize()
-        this.add(CssClassAppender(BootstrapCssClass.BTN_GROUP))
         toggle.add(buttonBehavior)
         toggle.add(iconBehavior)
         this.add(toggle)

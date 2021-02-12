@@ -8,6 +8,11 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
+fun main(args: Array<String>) {
+    val updater = FontAwesomeUpdater()
+    updater.run()
+}
+
 class FontAwesomeUpdater {
 
     @Throws(IOException::class)
@@ -43,16 +48,6 @@ class FontAwesomeUpdater {
                     icon.version
                 )
             )
-        }
-    }
-
-    companion object {
-
-        @Throws(IOException::class)
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val updater = FontAwesomeUpdater()
-            updater.run()
         }
     }
 }

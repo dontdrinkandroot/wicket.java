@@ -13,17 +13,19 @@ import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
-abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
+abstract class SplitDropdownButton<T>(
+    id: String,
+    model: IModel<T>? = null,
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+) : GenericPanel<T>(id, model) {
 
-    private val buttonBehavior = ButtonBehavior()
+    private val buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
 
     lateinit var toggle: WebMarkupContainer
         private set
-
-    constructor(id: String) : super(id)
-
-    constructor(id: String, model: IModel<T>) : super(id, model)
 
     override fun onInitialize() {
         super.onInitialize()
@@ -34,49 +36,17 @@ abstract class SplitDropdownButton<T> : GenericPanel<T>, IButton {
         toggle = WebMarkupContainer("toggle")
         toggle.add(buttonBehavior)
         toggle.add(DropdownToggleBehavior())
-        toggle.add(IconBehavior().setAppendIcon(caretClass).setSeparator(null))
         this.add(toggle)
         this.add(createDropdownMenu("dropdownMenu"))
     }
 
-    protected fun createDropdownMenu(id: String?): Component {
-        return object : DropdownMenu(id!!) {
+    protected fun createDropdownMenu(id: String): Component {
+        return object : DropdownMenu(id) {
             override fun populateItems(itemView: RepeatingView) {
                 this@SplitDropdownButton.populateItems(itemView)
             }
         }
     }
-
-    override fun getButtonSize(): ButtonSize? {
-        return buttonBehavior.getButtonSize()
-    }
-
-    override fun setButtonSize(buttonSize: ButtonSize?): SplitDropdownButton<T> {
-        buttonBehavior.setButtonSize(buttonSize)
-        return this
-    }
-
-    override fun getButtonStyle(): ButtonStyle {
-        return buttonBehavior.getButtonStyle()
-    }
-
-    override fun setButtonStyle(buttonStyle: ButtonStyle): SplitDropdownButton<T> {
-        buttonBehavior.setButtonStyle(buttonStyle)
-        return this
-    }
-
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): SplitDropdownButton<T> {
-        buttonBehavior.setButtonSizeModel(buttonSizeModel)
-        return this
-    }
-
-    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): SplitDropdownButton<T> {
-        buttonBehavior.setButtonStyleModel(buttonStyleModel)
-        return this
-    }
-
-    protected val caretClass: BootstrapCssClass
-        protected get() = BootstrapCssClass.CARET
 
     protected abstract fun createAction(id: String): Component
 

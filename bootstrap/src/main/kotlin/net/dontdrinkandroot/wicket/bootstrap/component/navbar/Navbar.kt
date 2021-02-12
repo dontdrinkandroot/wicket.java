@@ -42,7 +42,7 @@ open class Navbar(id: String?) : Panel(id) {
 
     protected open fun createNavbarToggler(id: String): Component = NavbarToggler(id)
 
-    protected open fun createBrand(id: String): Component? {
+    protected open fun createBrand(id: String): Component {
         val brandLink = WebMarkupContainer(id)
         brandLink.isVisible = false
         return brandLink

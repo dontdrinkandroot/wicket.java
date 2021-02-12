@@ -23,13 +23,13 @@ import org.junit.jupiter.api.Test;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class FontAwesomeIconClassTest
+public class FontAwesome4IconClassTest
 {
     @Test
     public void testGetClassString()
     {
-        for (FontAwesomeIconClass fontAwesomeIconClass : FontAwesomeIconClass.values()) {
-            if (!(fontAwesomeIconClass.equals(FontAwesomeIconClass.FIVEHUNDRED_PX))) {
+        for (FontAwesome4IconClass fontAwesomeIconClass : FontAwesome4IconClass.values()) {
+            if (!(fontAwesomeIconClass.equals(FontAwesome4IconClass.FIVEHUNDRED_PX))) {
                 Assertions.assertEquals(
                         "fa-" + fontAwesomeIconClass.name().toLowerCase().replace("_", "-"),
                         fontAwesomeIconClass.getClassString()

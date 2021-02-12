@@ -50,7 +50,7 @@ open class FormGroup<T>(id: String, model: IModel<T>, protected var labelModel: 
     protected open fun createLabel(id: String): Component {
         val label = Label(id, labelModel)
         label.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.SR_ONLY, labelScreenReaderOnlyModel)))
-        label.add(CssClassAppender(BootstrapCssClass.CONTROL_LABEL))
+        label.add(CssClassAppender(BootstrapCssClass.FORM_LABEL))
         return label
     }
 
