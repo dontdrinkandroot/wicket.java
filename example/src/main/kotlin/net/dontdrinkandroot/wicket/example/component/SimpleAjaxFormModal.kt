@@ -51,7 +51,7 @@ class SimpleAjaxFormModal(id: String) : AjaxFormModal<Void?>(id)
             Model.of("")
         )
         formGroupInputText.setRequired(true)
-        formGroupInputText.addDefaultAjaxInputValidation()
+        formGroupInputText.addAjaxValidation()
         formGroupView.add(formGroupInputText)
     }
 

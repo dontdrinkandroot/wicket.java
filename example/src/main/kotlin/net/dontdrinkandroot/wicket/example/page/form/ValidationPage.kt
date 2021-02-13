@@ -8,12 +8,10 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupI
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
-import org.apache.wicket.ajax.attributes.ThrottlingSettings
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
-import java.time.Duration
 
 class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
 
@@ -53,7 +51,7 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
             Model("")
         )
         validationFormGroup.setRequired(true)
-        validationFormGroup.addAjaxValidation("input", ThrottlingSettings(Duration.ofMillis(250)))
+        validationFormGroup.addAjaxValidation("input")
         validationFormGroup.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         formGroupView.add(validationFormGroup)
 
@@ -63,7 +61,7 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
             Model("Type to see what's happening")
         )
         ajaxValidationFormGroup.setRequired(true)
-        ajaxValidationFormGroup.addAjaxValidation("input", ThrottlingSettings(Duration.ofMillis(250)))
+        ajaxValidationFormGroup.addAjaxValidation("input")
         ajaxValidationFormGroup.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         formGroupView.add(ajaxValidationFormGroup)
 

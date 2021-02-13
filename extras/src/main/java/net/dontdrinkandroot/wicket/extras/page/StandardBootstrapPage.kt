@@ -67,7 +67,7 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         return modalContainer
     }
 
-    protected fun createFeedbackPanel(id: String?): FeedbackPanel {
+    protected fun createFeedbackPanel(id: String): FeedbackPanel {
         return FencedFeedbackPanel(id)
     }
 

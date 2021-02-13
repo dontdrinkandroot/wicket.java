@@ -74,7 +74,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         Assertions.assertEquals(1, messagesTesters.size());
 
         TagTester messageTester = messagesTesters.get(0);
-        Assertions.assertTrue(messageTester.getAttributeContains("class", "error"));
+        Assertions.assertTrue(messageTester.getAttributeContains("class", "invalid-feedback"));
         Assertions.assertEquals("&#039;Label&#039; is required.", messageTester.getChild("container").getValue());
     }
 

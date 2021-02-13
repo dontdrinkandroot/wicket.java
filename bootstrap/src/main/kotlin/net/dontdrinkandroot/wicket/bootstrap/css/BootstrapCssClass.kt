@@ -88,8 +88,10 @@ enum class BootstrapCssClass(override val classString: String) : CssClass {
     FORM_HORIZONTAL("form-horizontal"),
     FORM_INLINE("form-inline"),
     FORM_TEXT("form-text"),
+    HAS_VALIDATION("has-validation"),
     INITIALISM("initialism"),
     INPUT_GROUP("input-group"),
+    INVALID_FEEDBACK("invalid-feedback"),
     LIST_GROUP("list-group"),
     LIST_GROUP_ITEM("list-group-item"),
     LIST_INLINE("list-inline"),
@@ -123,5 +125,6 @@ enum class BootstrapCssClass(override val classString: String) : CssClass {
     ROW("row"),
     SR_ONLY("sr-only"),
     THUMBNAIL("thumbnail"),
-    THUMBNAILS("thumbnails");
+    THUMBNAILS("thumbnails"),
+    VALID_FEEDBACK("valid-feedback");
 }

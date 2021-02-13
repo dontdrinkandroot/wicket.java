@@ -1,0 +1,79 @@
+package net.dontdrinkandroot.wicket.bootstrap.component.modal
+
+import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
+import org.apache.wicket.Component
+import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.IModel
+
+/**
+ * @param <T> Type of the model object
+ */
+abstract class FormModal<T> : Modal<T> {
+
+    lateinit var form: Form<T>
+        private set
+
+    protected lateinit var feedbackPanel: FencedFeedbackPanel
+        private set
+
+    constructor(id: String?) : super(id)
+    constructor(id: String?, model: IModel<T>?) : super(id, model)
+
+    override fun onInitialize() {
+        super.onInitialize()
+        form = createForm("form")
+        this.add(form)
+        feedbackPanel = FencedFeedbackPanel("feedback", this)
+        feedbackPanel.outputMarkupId = true
+        form.add(feedbackPanel)
+        val formGroupView = RepeatingView("formGroup")
+        populateFormGroups(formGroupView)
+        form.add(formGroupView)
+        val formActionView = RepeatingView("formAction")
+        populateFormActions(formActionView)
+        form.add(formActionView)
+    }
+
+    protected open fun createForm(id: String): Form<T> {
+        return object : Form<T>(id, this.model) {
+            override fun onError() {
+                this@FormModal.onError()
+            }
+
+            override fun onSubmit() {
+                this@FormModal.onSubmit()
+            }
+        }
+    }
+
+    override fun addFooter() {
+        /* Noop */
+    }
+
+    override fun createFooter(id: String): Component? {
+        return null
+    }
+
+    protected open fun populateFormActions(formActionView: RepeatingView) {
+        /* Hook */
+    }
+
+    protected open fun populateFormGroups(formGroupView: RepeatingView) {
+        /* Hook */
+    }
+
+    /**
+     * @see Form.onError
+     */
+    protected open fun onError() {
+        /* Hook */
+    }
+
+    /**
+     * @see Form.onSubmit
+     */
+    protected open fun onSubmit() {
+        /* Hook */
+    }
+}

@@ -1,6 +1,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroup
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.form.FormComponent
@@ -25,6 +27,7 @@ abstract class FormGroupInputGroup<T, M, F : FormComponent<M>, I : InputGroup<T,
 
     init {
         inputGroup = createInputGroup("inputGroup")
+        inputGroup.add(CssClassAppender(BootstrapCssClass.HAS_VALIDATION))
         formComponent.label = this.labelModel
     }
 
