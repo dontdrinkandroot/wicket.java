@@ -4,13 +4,14 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState
-import net.dontdrinkandroot.wicket.css.CssClass
 import org.apache.wicket.Component
 import org.apache.wicket.ajax.attributes.ThrottlingSettings
 import org.apache.wicket.feedback.FeedbackMessage
 import org.apache.wicket.markup.html.form.FormComponent
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 import org.apache.wicket.validation.IValidator
 import java.time.Duration
 
@@ -23,12 +24,11 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
     id: String,
     model: IModel<T>,
     labelModel: IModel<String>,
+    val helpTextModel: IModel<String> = Model(null)
 ) : FormGroup<T>(id, model, labelModel) {
 
     lateinit var helpBlock: FencedFeedbackPanel
         protected set
-
-    protected var helpTextModel: IModel<String?>? = null
 
     override fun createComponents() {
         super.createComponents()
@@ -42,15 +42,16 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
 
                 /* Always renotify of help text if set so it gets rendered every time */
                 val helpTextModel = helpTextModel
-                if (helpTextModel?.getObject() != null) {
+                if (helpTextModel.getObject() != null) {
                     this.info(helpTextModel.getObject())
                 }
                 this.outputMarkupPlaceholderTag = !this.anyMessage()
                 this.isVisible = this.anyMessage()
             }
         }
+        helpBlock.add(CssClassAppender(BootstrapCssClass.FORM_TEXT))
         helpBlock.outputMarkupId = true
-        this.add(CssClassAppender(IModel<CssClass> { validationState }))
+        formComponent.add(CssClassAppender { validationState })
     }
 
     override fun addComponents() {
@@ -76,27 +77,26 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
     }
 
     @JvmOverloads
-    fun addAjaxValidation(eventName: String?, throttlingSettings: ThrottlingSettings? = null) {
+    fun addAjaxValidation(eventName: String, throttlingSettings: ThrottlingSettings? = null) {
         formComponent.add(FormGroupAjaxValidationBehavior(eventName, this, throttlingSettings))
     }
 
     val validationState: ValidationState?
         get() = when {
-            !formComponent.isValid -> ValidationState.ERROR
-            helpBlock.anyMessage(FeedbackMessage.FATAL) || helpBlock.anyMessage(FeedbackMessage.ERROR) ->
-                ValidationState.ERROR
-            helpBlock.anyMessage(FeedbackMessage.WARNING) -> ValidationState.WARNING
-            helpBlock.anyMessage(FeedbackMessage.SUCCESS) -> ValidationState.SUCCESS
-            (formComponent.isRequired && null == this.modelObject) -> ValidationState.WARNING
+            !formComponent.isValid -> ValidationState.INVALID
+//            formComponent. formComponent.isValid -> ValidationState.VALID
+            helpBlock.anyMessage(FeedbackMessage.FATAL) -> ValidationState.INVALID
+            helpBlock.anyMessage(FeedbackMessage.ERROR) -> ValidationState.INVALID
+            helpBlock.anyMessage(FeedbackMessage.SUCCESS) -> ValidationState.VALID
             else -> null
         }
 
-    fun addValidator(validator: IValidator<M>?) {
+    fun addValidator(validator: IValidator<M>) {
         formComponent.add(validator)
     }
 
-    fun setHelpText(helpTextModel: IModel<String?>?) {
-        this.helpTextModel = helpTextModel
+    fun setHelpText(helpText: String?) {
+        this.helpTextModel.setObject(helpText)
     }
 
     abstract val formComponent: F

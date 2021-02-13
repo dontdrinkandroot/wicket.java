@@ -45,7 +45,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         )
         formGroupTextField.formComponent.isRequired = true
         formGroupTextField.addAjaxValidation("input", ThrottlingSettings(Duration.ofMillis(250)))
-        formGroupTextField.setHelpText(Model.of("A help text"))
+        formGroupTextField.setHelpText("A help text")
         formGroupView.add(formGroupTextField)
 
         val formGroupPasswordTextField = FormGroupInputPassword(

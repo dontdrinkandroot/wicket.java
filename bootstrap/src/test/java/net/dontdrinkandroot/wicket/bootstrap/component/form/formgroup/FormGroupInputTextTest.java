@@ -59,11 +59,11 @@ public class FormGroupInputTextTest extends AbstractWicketTest
 
         TagTester formGroupTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup");
-        Assertions.assertTrue(formGroupTester.getAttributeContains("class", "has-error"));
 
         TagTester formComponentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent");
         Assertions.assertTrue(formComponentTester.getAttributeContains("required", "required"));
+        Assertions.assertTrue(formComponentTester.getAttributeContains("class", "is-invalid"));
 
         TagTester helpBlockTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "helpBlock");

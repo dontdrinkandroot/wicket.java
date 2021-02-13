@@ -1,9 +1,11 @@
 package net.dontdrinkandroot.wicket.example.page.form
 
+import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
+import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.attributes.ThrottlingSettings
@@ -19,20 +21,30 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
 
     override fun onInitialize() {
         super.onInitialize()
+
         val form = Form<Void>("form")
         this.add(form)
+
         val stateFormGroupView = RepeatingView("stateFormGroup")
         this.add(stateFormGroupView)
-        var formGroupInputText: FormGroupInputText
-        formGroupInputText = FormGroupInputText(stateFormGroupView.newChildId(), "Success".model(), Model.of(""))
-        formGroupInputText.formComponent.success("Success message")
-        stateFormGroupView.add(formGroupInputText)
-        formGroupInputText = FormGroupInputText(stateFormGroupView.newChildId(), "Warning".model(), Model.of(""))
-        formGroupInputText.formComponent.warn("Warn message")
-        stateFormGroupView.add(formGroupInputText)
-        formGroupInputText = FormGroupInputText(stateFormGroupView.newChildId(), "Error".model(), Model.of(""))
-        formGroupInputText.formComponent.error("Error message")
-        stateFormGroupView.add(formGroupInputText)
+
+        val formGroupInputTextSuccess =
+            FormGroupInputText(stateFormGroupView.newChildId(), "Success".model(), Model.of(""))
+        formGroupInputTextSuccess.formComponent.success("Success message")
+        formGroupInputTextSuccess.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
+        stateFormGroupView.add(formGroupInputTextSuccess)
+
+        val formGroupInputTextWarn =
+            FormGroupInputText(stateFormGroupView.newChildId(), "Warning".model(), Model.of(""))
+        formGroupInputTextWarn.formComponent.warn("Warn message")
+        formGroupInputTextWarn.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
+        stateFormGroupView.add(formGroupInputTextWarn)
+
+        val formGroupInputTextError = FormGroupInputText(stateFormGroupView.newChildId(), "Error".model(), Model.of(""))
+        formGroupInputTextError.formComponent.error("Error message")
+        formGroupInputTextError.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
+        stateFormGroupView.add(formGroupInputTextError)
+
         val formGroupView = RepeatingView("formGroup")
         form.add(formGroupView)
         val validationFormGroup = FormGroupInputEmail(
@@ -42,7 +54,9 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         )
         validationFormGroup.setRequired(true)
         validationFormGroup.addAjaxValidation("input", ThrottlingSettings(Duration.ofMillis(250)))
+        validationFormGroup.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         formGroupView.add(validationFormGroup)
+
         val ajaxValidationFormGroup = FormGroupInputEmail(
             formGroupView.newChildId(),
             "Ajax Validation (email)".model(),
@@ -50,7 +64,9 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         )
         ajaxValidationFormGroup.setRequired(true)
         ajaxValidationFormGroup.addAjaxValidation("input", ThrottlingSettings(Duration.ofMillis(250)))
+        ajaxValidationFormGroup.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         formGroupView.add(ajaxValidationFormGroup)
+
         val formGroupActions: FormGroupActions<Void> = object : FormGroupActions<Void>(formGroupView.newChildId()) {
             override fun populateActions(actionView: RepeatingView) {
                 val submitButton: AjaxSubmitButton = object : AjaxSubmitButton(actionView.newChildId()) {

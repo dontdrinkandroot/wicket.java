@@ -87,7 +87,7 @@ enum class BootstrapCssClass(override val classString: String) : CssClass {
     FORM_GROUP("form-group"),
     FORM_HORIZONTAL("form-horizontal"),
     FORM_INLINE("form-inline"),
-    HELP_BLOCK("help-block"),
+    FORM_TEXT("form-text"),
     INITIALISM("initialism"),
     INPUT_GROUP("input-group"),
     LIST_GROUP("list-group"),
