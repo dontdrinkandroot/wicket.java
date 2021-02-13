@@ -42,6 +42,7 @@ abstract class DropdownButton<T>(
 
     init {
         createComponents()
+        add(CssClassAppender(BootstrapCssClass.DROPDOWN))
     }
 
     protected fun createComponents() {

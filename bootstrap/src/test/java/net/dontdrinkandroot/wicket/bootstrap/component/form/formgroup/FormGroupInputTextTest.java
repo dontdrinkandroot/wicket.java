@@ -30,7 +30,7 @@ public class FormGroupInputTextTest extends AbstractWicketTest
         Assertions.assertTrue(formGroupTester.getAttributeContains("class", "form-group"));
 
         TagTester labelTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "label");
-        Assertions.assertTrue(labelTester.getAttributeContains("class", "control-label"));
+        Assertions.assertTrue(labelTester.getAttributeContains("class", "form-label"));
 
         TagTester formComponentTester =
                 TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent");

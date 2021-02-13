@@ -17,10 +17,10 @@ class DropdownButtonTest : AbstractWicketTest() {
         }
         val componentMarkup = ComponentRenderer.renderComponent(component)
         val componentTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id")
-        Assertions.assertTrue(componentTester.getAttributeContains("class", "btn-group"))
+        Assertions.assertTrue(componentTester.getAttributeContains("class", "dropdown"))
         val toggleTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "toggle")
         Assertions.assertEquals(
-            """<button wicket:id="toggle" type="button" class="dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">LabelText&nbsp;&nbsp;<span class="caret"></span></button>""",
+            """<button wicket:id="toggle" type="button" class="dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">LabelText</button>""",
             toggleTester.markup
         )
         val menuTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "menu")

@@ -25,7 +25,7 @@ class SplitDropdownButtonTest : AbstractWicketTest() {
 		<button wicket:id="button" type="button" class="btn btn-secondary">ActionLabel</button>
 		<button wicket:id="toggle" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="sr-only">Toggle Dropdown</span>
-		<span class="caret"></span></button>
+		</button>
 		<ul wicket:id="dropdownMenu" class="dropdown-menu" role="menu"><wicket:panel>
     
 </wicket:panel></ul>

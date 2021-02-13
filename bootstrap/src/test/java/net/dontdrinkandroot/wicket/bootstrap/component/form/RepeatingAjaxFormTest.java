@@ -49,7 +49,7 @@ public class RepeatingAjaxFormTest extends AbstractWicketTest
                         "\t</wicket:panel></div>\n" +
                         "\t\t\n" +
                         "\t\t<div wicket:id=\"actions\" id=\"actions3\" class=\"form-group\"><wicket:panel>\n" +
-                        "\t\t<label wicket:id=\"label\" class=\"control-label\"></label>\n" +
+                        "\t\t<label wicket:id=\"label\" class=\"form-label\"></label>\n" +
                         "\t\t<div wicket:id=\"container\">\n" +
                         "\t\t\t<wicket:child><wicket:extend>\n" +
                         "    <div class=\"btn-toolbar\">\n" +

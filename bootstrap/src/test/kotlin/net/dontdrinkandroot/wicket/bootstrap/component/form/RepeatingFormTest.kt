@@ -18,7 +18,7 @@ class RepeatingFormTest : AbstractWicketTest() {
 	</wicket:panel></div>
 		
 		<div wicket:id="actions" id="actions3" class="form-group"><wicket:panel>
-		<label wicket:id="label" class="control-label"></label>
+		<label wicket:id="label" class="form-label"></label>
 		<div wicket:id="container">
 			<wicket:child><wicket:extend>
     <div class="btn-toolbar">
