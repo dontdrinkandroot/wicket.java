@@ -17,24 +17,21 @@ class ModalPage(parameters: PageParameters) : ComponentPage(parameters) {
 
     override fun onInitialize() {
         super.onInitialize()
-        this.add(object : AjaxButton<Void?>("openStandardModalButton")
-        {
-            override fun onClick(target: AjaxRequestTarget)
-            {
+
+        this.add(object : AjaxButton<Void>("openStandardModalButton") {
+            override fun onClick(target: AjaxRequestTarget) {
                 this.send(this, Broadcast.BUBBLE, CreateAndOpenModalRequest(target, SimpleModal::class.java))
             }
         }.setBody(Model.of("Standard Modal")))
-        this.add(object : AjaxButton<Void?>("openFormModalButton")
-        {
-            override fun onClick(target: AjaxRequestTarget)
-            {
+
+        this.add(object : AjaxButton<Void>("openFormModalButton") {
+            override fun onClick(target: AjaxRequestTarget) {
                 this.send(this, Broadcast.BUBBLE, CreateAndOpenModalRequest(target, SimpleFormModal::class.java))
             }
         }.setBody(Model.of("Form Modal")))
-        this.add(object : AjaxButton<Void?>("openAjaxFormModalButton")
-        {
-            override fun onClick(target: AjaxRequestTarget)
-            {
+
+        this.add(object : AjaxButton<Void>("openAjaxFormModalButton") {
+            override fun onClick(target: AjaxRequestTarget) {
                 this.send(this, Broadcast.BUBBLE, CreateAndOpenModalRequest(target, SimpleAjaxFormModal::class.java))
             }
         }.setBody(Model.of("Ajax Form Modal")))

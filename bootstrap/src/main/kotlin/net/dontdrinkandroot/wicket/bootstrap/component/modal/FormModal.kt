@@ -1,7 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.modal
 
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
-import org.apache.wicket.Component
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
@@ -9,7 +8,7 @@ import org.apache.wicket.model.IModel
 /**
  * @param <T> Type of the model object
  */
-abstract class FormModal<T> : Modal<T> {
+abstract class FormModal<T>(id: String, model: IModel<T>? = null) : Modal<T>(id, model) {
 
     lateinit var form: Form<T>
         private set
@@ -17,19 +16,20 @@ abstract class FormModal<T> : Modal<T> {
     protected lateinit var feedbackPanel: FencedFeedbackPanel
         private set
 
-    constructor(id: String?) : super(id)
-    constructor(id: String?, model: IModel<T>?) : super(id, model)
-
     override fun onInitialize() {
         super.onInitialize()
+
         form = createForm("form")
         this.add(form)
+
         feedbackPanel = FencedFeedbackPanel("feedback", this)
         feedbackPanel.outputMarkupId = true
         form.add(feedbackPanel)
+
         val formGroupView = RepeatingView("formGroup")
         populateFormGroups(formGroupView)
         form.add(formGroupView)
+
         val formActionView = RepeatingView("formAction")
         populateFormActions(formActionView)
         form.add(formActionView)
@@ -49,10 +49,6 @@ abstract class FormModal<T> : Modal<T> {
 
     override fun addFooter() {
         /* Noop */
-    }
-
-    override fun createFooter(id: String): Component? {
-        return null
     }
 
     protected open fun populateFormActions(formActionView: RepeatingView) {

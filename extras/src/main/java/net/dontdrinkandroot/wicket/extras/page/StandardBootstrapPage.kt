@@ -17,10 +17,10 @@ import org.apache.wicket.util.string.Strings
 
 abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
 
-    var feedbackPanel: FeedbackPanel? = null
+    lateinit var feedbackPanel: FeedbackPanel
         private set
 
-    var pageHeading: Label? = null
+    lateinit var pageHeading: Label
         private set
 
     private lateinit var pageHeadingModel: IModel<String>
@@ -50,9 +50,11 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         this.add(pageHeader)
         pageHeader.add(pageHeading)
         pageHeader.add(primaryActionView)
+
         feedbackPanel = createFeedbackPanel("feedback")
-        feedbackPanel!!.outputMarkupId = true
+        feedbackPanel.outputMarkupId = true
         this.add(feedbackPanel)
+
         this.add(createFooter("footer"))
         this.add(ModalRequestBehavior(MODAL_ID))
     }
