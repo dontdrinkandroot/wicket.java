@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.extras.page
 
+import ` net`.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
 import net.dontdrinkandroot.wicket.extras.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.util.tester.TagTester

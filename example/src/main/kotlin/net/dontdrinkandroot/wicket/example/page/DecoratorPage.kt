@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.example.page
 
+import ` net`.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
@@ -15,7 +16,6 @@ import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
-import net.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.head.CssContentHeaderItem

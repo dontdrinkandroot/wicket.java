@@ -17,7 +17,7 @@ class FormContainerSizeBehavior : Behavior() {
         super.onComponentTag(component, tag)
         val formStyleBehavior = BehaviorUtils.findClosestBehavior(component, FormStyleBehavior::class.java)
         if (null != formStyleBehavior && formStyleBehavior.isHorizontal) {
-            tag.append("class", formStyleBehavior.containerSize.classString, " ")
+            tag.append("class", formStyleBehavior.containerSize!!.classString, " ")
         }
     }
 }
