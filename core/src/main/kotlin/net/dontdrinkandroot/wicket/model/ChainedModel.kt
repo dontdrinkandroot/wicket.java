@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.model
 
+import org.apache.wicket.injection.Injector
 import org.apache.wicket.model.IModel
 
 abstract class AbstractChainedModel<P, T>(protected val parent: IModel<out P?>) : IModel<T> {
@@ -10,6 +11,14 @@ abstract class AbstractChainedModel<P, T>(protected val parent: IModel<out P?>) 
 
     override fun detach() {
         this.parent.detach()
+    }
+}
+
+abstract class AbstractChainedInjectedModel<P, T>(parent: IModel<out P?>) :
+    AbstractChainedModel<P, T>(parent) {
+
+    init {
+        Injector.get().inject(this)
     }
 }
 

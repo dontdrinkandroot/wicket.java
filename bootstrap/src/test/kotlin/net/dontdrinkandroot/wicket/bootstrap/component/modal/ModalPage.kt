@@ -28,7 +28,7 @@ class ModalPage : WebPage() {
                 this.send(
                     this.page,
                     Broadcast.EXACT,
-                    CreateAndOpenModalRequest(target, SimpleModal::class.java)
+                    CreateAndOpenModalRequest(target, SimpleModal::class)
                 )
             }
         }

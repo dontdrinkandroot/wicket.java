@@ -26,9 +26,8 @@ abstract class DropdownMenu(id: String) : Panel(id), ItemContainer {
         this.add(itemView)
     }
 
-    override fun getLinkClass(): CssClass {
-        return BootstrapCssClass.DROPDOWN_ITEM
-    }
+    override val linkClass: CssClass?
+        get() = BootstrapCssClass.DROPDOWN_ITEM
 
     fun setAlignment(alignment: DropdownAlignment): DropdownMenu {
         alignmentModel.setObject(alignment)

@@ -8,21 +8,18 @@ import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.util.string.Strings
 
-abstract class AbstractList<T> : GenericPanel<List<T>> {
+abstract class AbstractList<T>(id: String, model: IModel<List<T>>? = null) : GenericPanel<List<T>>(id, model) {
 
     private var itemView: RepeatingView? = null
-
-    constructor(id: String, model: IModel<List<T>>? = null) : super(id, model)
 
     override fun onInitialize() {
         super.onInitialize()
         itemView = object : RepeatingView("item") {
             override fun onPopulate() {
                 this.removeAll()
-                val model: IModel<List<T>>? = model
                 if (model != null && model.getObject() != null) {
                     for (idx in model.getObject()!!.indices) {
-                        val itemModel: IModel<T?> = ListItemModel(model, idx)
+                        val itemModel: IModel<T> = ListItemModel(model, idx)
                         val listComponent = createListComponent(newChildId(), itemModel)
                         processListComponent(listComponent)
                         this.add(listComponent)
@@ -59,5 +56,5 @@ abstract class AbstractList<T> : GenericPanel<List<T>> {
         /* Override to apply styles to list component */
     }
 
-    protected abstract fun createListComponent(id: String, model: IModel<T?>?): Component
+    protected abstract fun createListComponent(id: String, model: IModel<T>): Component
 }

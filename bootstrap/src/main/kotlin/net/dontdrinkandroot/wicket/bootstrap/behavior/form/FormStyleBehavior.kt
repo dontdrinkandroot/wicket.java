@@ -44,7 +44,7 @@ class FormStyleBehavior : Behavior() {
         containerSize = null
     }
 
-    val labelSize: ColumnSize
+    val labelSize: ColumnSize?
         get() = containerSize!!.inverseColumnSize
 
     override fun onComponentTag(component: Component, tag: ComponentTag) {

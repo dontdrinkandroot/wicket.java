@@ -33,11 +33,11 @@ class AjaxFormPage(parameters: PageParameters) : FormPage(parameters) {
                 buttonView.add(SubmitLabelButton(buttonView.newChildId(), Model.of("Submit")))
             }
 
-            override fun onSubmit(target: AjaxRequestTarget) {
+            override fun onSubmit(target: AjaxRequestTarget?) {
                 super.onSubmit(target)
                 submitCount++
                 this.info(String.format("Submitted %d times", submitCount))
-                target.add(this.feedbackPanel)
+                target?.add(this.feedbackPanel)
             }
         }
         this.add(simpleAjaxForm)

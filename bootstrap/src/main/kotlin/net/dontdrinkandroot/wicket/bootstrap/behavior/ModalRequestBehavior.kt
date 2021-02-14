@@ -9,8 +9,7 @@ import org.apache.wicket.MarkupContainer
 import org.apache.wicket.WicketRuntimeException
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.event.IEvent
-import org.apache.wicket.model.IModel
-import java.lang.reflect.InvocationTargetException
+import kotlin.reflect.full.primaryConstructor
 
 /**
  * Handles [net.dontdrinkandroot.wicket.bootstrap.event.ModalRequest] Events.
@@ -40,7 +39,7 @@ class ModalRequestBehavior(private val targetId: String) : Behavior() {
         if (modalRequest is OpenModalRequest) {
             return this.createModal(modalRequest)
         }
-        if (modalRequest is CreateAndOpenModalRequest<*>) {
+        if (modalRequest is CreateAndOpenModalRequest<*, *>) {
             return this.createModal(modalRequest)
         }
         throw WicketRuntimeException(
@@ -59,29 +58,17 @@ class ModalRequestBehavior(private val targetId: String) : Behavior() {
         return modal
     }
 
-    private fun createModal(openModalRequest: CreateAndOpenModalRequest<*>): Modal<*> {
+    private fun createModal(openModalRequest: CreateAndOpenModalRequest<*, *>): Modal<*> {
         val modalClass = openModalRequest.modalClass
         val model = openModalRequest.model
-        return try {
-            if (null == model) {
-                modalClass.getConstructor(String::class.java).newInstance(targetId)
-            } else {
-                modalClass.getConstructor(String::class.java, IModel::class.java).newInstance(
-                    targetId,
-                    model
-                )
+        try {
+            val primaryConstructor = modalClass.primaryConstructor
+            return when (primaryConstructor!!.parameters.size) {
+                1 -> primaryConstructor.call(targetId)
+                2 -> primaryConstructor.call(targetId, model)
+                else -> throw Exception("No idea how to construct modal")
             }
-        } catch (e: InstantiationException) {
-            throw WicketRuntimeException(e)
-        } catch (e: IllegalAccessException) {
-            throw WicketRuntimeException(e)
-        } catch (e: IllegalArgumentException) {
-            throw WicketRuntimeException(e)
-        } catch (e: InvocationTargetException) {
-            throw WicketRuntimeException(e)
-        } catch (e: NoSuchMethodException) {
-            throw WicketRuntimeException(e)
-        } catch (e: SecurityException) {
+        } catch (e: Exception) {
             throw WicketRuntimeException(e)
         }
     }
