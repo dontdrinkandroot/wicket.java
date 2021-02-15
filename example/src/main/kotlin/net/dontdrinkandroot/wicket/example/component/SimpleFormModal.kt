@@ -4,7 +4,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.FormModal
-import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
@@ -33,9 +32,7 @@ class SimpleFormModal(id: String) : FormModal<Void>(id) {
         )
     }
 
-    override fun populateFormActions(formActionView: RepeatingView)
-    {
-        formActionView.add(object : AjaxSubmitButton(formActionView.newChildId(), form, Model.of("Submit"))
-        {}.setButtonStyle(ButtonStyle.PRIMARY))
+    override fun populateFormActions(formActionView: RepeatingView) {
+        formActionView.add(object : AjaxSubmitButton(formActionView.newChildId(), form, Model.of("Submit")) {})
     }
 }

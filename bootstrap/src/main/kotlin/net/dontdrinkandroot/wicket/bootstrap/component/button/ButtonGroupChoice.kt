@@ -6,6 +6,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
+import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -17,12 +18,35 @@ import org.apache.wicket.model.util.ListModel
 /**
  * @param <T> Type of the model object.
  */
-class ButtonGroupChoice<T>(id: String, model: IModel<T>?, choicesModel: IModel<List<T>>) : GenericPanel<T>(id, model),
-    IButton {
+class ButtonGroupChoice<T>(
+    id: String,
+    model: IModel<T>?,
+    choicesModel: IModel<List<T>>,
+    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonSizeModel: IModel<ButtonSize> = Model(null)
+) : GenericPanel<T>(id, model) {
 
-    private val buttonBehavior = ButtonBehavior()
+    private val buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
 
-    constructor(id: String, model: IModel<T>?, choices: List<T>?) : this(id, model, ListModel<T>(choices))
+    constructor(
+        id: String, model: IModel<T>?,
+        choices: List<T>?,
+        buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+        buttonSizeModel: IModel<ButtonSize> = Model(null)
+    ) : this(id, model, ListModel<T>(choices), buttonStyleModel, buttonSizeModel)
+
+    init {
+        this.outputMarkupId = true
+        this.add(CssClassAppender(BootstrapCssClass.BTN_GROUP))
+        val choicesView = RepeatingView("choice")
+        choicesView.outputMarkupId = true
+        this.add(choicesView)
+        for (choice in choicesModel.getObject()) {
+            val choiceId = choicesView.newChildId()
+            val choiceLink = createChoiceButton(choiceId, choice)
+            choicesView.add(choiceLink)
+        }
+    }
 
     /**
      * Creates the Button for the the given choice.
@@ -45,34 +69,6 @@ class ButtonGroupChoice<T>(id: String, model: IModel<T>?, choicesModel: IModel<L
         return choiceLink
     }
 
-    override fun getButtonSize(): ButtonSize? {
-        return buttonBehavior.getButtonSize()
-    }
-
-    override fun setButtonSize(buttonSize: ButtonSize?): ButtonGroupChoice<T> {
-        buttonBehavior.setButtonSize(buttonSize)
-        return this
-    }
-
-    override fun getButtonStyle(): ButtonStyle {
-        return buttonBehavior.getButtonStyle()
-    }
-
-    override fun setButtonStyle(buttonStyle: ButtonStyle): ButtonGroupChoice<T> {
-        buttonBehavior.setButtonStyle(buttonStyle)
-        return this
-    }
-
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): ButtonGroupChoice<T> {
-        buttonBehavior.setButtonSizeModel(buttonSizeModel)
-        return this
-    }
-
-    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): ButtonGroupChoice<T> {
-        buttonBehavior.setButtonStyleModel(buttonStyleModel)
-        return this
-    }
-
     protected fun onSelectionChanged(choice: T, target: AjaxRequestTarget) {
         this.modelObject = choice
         target.add(this@ButtonGroupChoice)
@@ -80,18 +76,5 @@ class ButtonGroupChoice<T>(id: String, model: IModel<T>?, choicesModel: IModel<L
 
     protected fun getDisplayModel(choice: T): IModel<String> {
         return Model(choice.toString())
-    }
-
-    init {
-        this.outputMarkupId = true
-        this.add(CssClassAppender(BootstrapCssClass.BTN_GROUP))
-        val choicesView = RepeatingView("choice")
-        choicesView.outputMarkupId = true
-        this.add(choicesView)
-        for (choice in choicesModel.getObject()) {
-            val choiceId = choicesView.newChildId()
-            val choiceLink = createChoiceButton(choiceId, choice)
-            choicesView.add(choiceLink)
-        }
     }
 }

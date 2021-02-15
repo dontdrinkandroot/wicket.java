@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior
 
 import net.dontdrinkandroot.wicket.behavior.CompositeBehavior
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.component.button.IButton
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
@@ -16,9 +15,9 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
 class ButtonBehavior constructor(
-    private var buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
-    private var buttonSizeModel: IModel<ButtonSize> = Model(null)
-) : CompositeBehavior(CssClassAppender(BootstrapCssClass.BTN), DisabledCssBehavior()), IButton {
+    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonSizeModel: IModel<ButtonSize> = Model(null)
+) : CompositeBehavior(CssClassAppender(BootstrapCssClass.BTN), DisabledCssBehavior()) {
 
     constructor(buttonStyle: ButtonStyle) : this(buttonStyleModel = buttonStyle.model())
 
@@ -26,18 +25,9 @@ class ButtonBehavior constructor(
 
     constructor(buttonStyle: ButtonStyle, buttonSize: ButtonSize) : this(buttonStyle.model(), buttonSize.model())
 
-    override fun getButtonSize() = buttonSizeModel.getObject()
-
-    override fun setButtonSize(buttonSize: ButtonSize?): ButtonBehavior {
-        buttonSizeModel.setObject(buttonSize)
-        return this
-    }
-
-    override fun getButtonStyle(): ButtonStyle = buttonStyleModel.getObject()
-
-    override fun setButtonStyle(buttonStyle: ButtonStyle): ButtonBehavior {
-        buttonStyleModel.setObject(buttonStyle)
-        return this
+    init {
+        addBehavior(CssClassAppender(buttonStyleModel))
+        addBehavior(CssClassAppender(buttonSizeModel))
     }
 
     override fun onComponentTag(component: Component, tag: ComponentTag) {
@@ -62,20 +52,5 @@ class ButtonBehavior constructor(
                 tag.put("value", component.getDefaultModelObjectAsString(bodyModel.getObject()))
             }
         }
-    }
-
-    override fun setButtonSizeModel(buttonSizeModel: IModel<ButtonSize>): ButtonBehavior {
-        this.buttonSizeModel = buttonSizeModel
-        return this
-    }
-
-    override fun setButtonStyleModel(buttonStyleModel: IModel<ButtonStyle>): ButtonBehavior {
-        this.buttonStyleModel = buttonStyleModel
-        return this
-    }
-
-    init {
-        addBehavior(CssClassAppender(buttonStyleModel))
-        addBehavior(CssClassAppender(buttonSizeModel))
     }
 }

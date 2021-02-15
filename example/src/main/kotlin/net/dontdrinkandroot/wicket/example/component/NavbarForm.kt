@@ -23,6 +23,6 @@ class NavbarForm(id: String) : RepeatingForm<Void>(id) {
 
     override fun populateActions(buttonView: RepeatingView)
     {
-        buttonView.add(AjaxSubmitButton(buttonView.newChildId()).setBody(Model.of("Search")))
+        buttonView.add(AjaxSubmitButton(buttonView.newChildId(), labelModel = Model.of("Search")))
     }
 }

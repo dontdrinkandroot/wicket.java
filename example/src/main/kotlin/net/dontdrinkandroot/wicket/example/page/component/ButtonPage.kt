@@ -38,7 +38,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
 
         for (size in ButtonSize.values()) {
             val button = Label(sizeView.newChildId(), Model.of(size.name))
-            button.add(ButtonBehavior().setButtonSize(size))
+            button.add(ButtonBehavior(size))
             sizeView.add(button)
         }
 

@@ -4,25 +4,22 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.model.model
-import org.apache.wicket.markup.ComponentTag
-import org.apache.wicket.markup.html.basic.Label
+import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.SubmitLink
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-class SubmitLabelButton(
+class SubmitButton(
     id: String,
     model: IModel<*>? = null,
+    form: Form<*>? = null,
+    labelModel: IModel<String>?,
     buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.PRIMARY.model(),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
-) : Label(id, model) {
+) : SubmitLink(id, model, form) {
 
     init {
         add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
-    }
-
-    override fun onComponentTag(tag: ComponentTag) {
-        tag.name = "button"
-        tag.put("type", "submit")
-        super.onComponentTag(tag)
+        body = labelModel
     }
 }
