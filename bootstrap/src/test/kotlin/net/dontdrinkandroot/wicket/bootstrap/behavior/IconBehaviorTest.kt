@@ -1,6 +1,5 @@
 package net.dontdrinkandroot.wicket.bootstrap.behavior
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.css.StringCssClass
 import org.apache.wicket.core.util.string.ComponentRenderer

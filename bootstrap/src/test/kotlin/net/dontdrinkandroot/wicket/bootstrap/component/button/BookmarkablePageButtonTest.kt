@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
-import net.dontdrinkandroot.wicket.bootstrap.test.TestApplication
+import net.dontdrinkandroot.wicket.bootstrap.test.getTestApplication
 import org.apache.wicket.Page
 import org.apache.wicket.core.util.string.ComponentRenderer
 import org.apache.wicket.markup.ComponentTag
@@ -14,7 +14,7 @@ class BookmarkablePageButtonTest : AbstractWicketTest() {
     @Test
     fun testMarkup() {
         val component: BookmarkablePageButton<Any, *> =
-            object : BookmarkablePageButton<Any, Page>("id", TestApplication.get().homePage) {
+            object : BookmarkablePageButton<Any, Page>("id", getTestApplication().homePage) {
                 override fun onComponentTag(tag: ComponentTag) {
                     tag.name = "a"
                     super.onComponentTag(tag)
