@@ -44,8 +44,8 @@ class AjaxFormModalTest : AbstractWicketTest() {
                     super.populateFormGroups(formGroupView)
                     val formGroup = FormGroupInputText(
                         formGroupView.newChildId(),
-                        Model("Label"),
-                        testStringModel
+                        testStringModel,
+                        Model("Label")
                     )
                     formGroup.setRequired(true)
                     formGroupView.add(formGroup)

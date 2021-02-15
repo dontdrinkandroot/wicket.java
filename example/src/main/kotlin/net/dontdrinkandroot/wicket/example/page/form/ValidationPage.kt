@@ -27,18 +27,18 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         this.add(stateFormGroupView)
 
         val formGroupInputTextSuccess =
-            FormGroupInputText(stateFormGroupView.newChildId(), "Success".model(), Model.of(""))
+            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Success".model())
         formGroupInputTextSuccess.formComponent.success("Success message")
         formGroupInputTextSuccess.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextSuccess)
 
         val formGroupInputTextWarn =
-            FormGroupInputText(stateFormGroupView.newChildId(), "Warning".model(), Model.of(""))
+            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Warning".model())
         formGroupInputTextWarn.formComponent.warn("Warn message")
         formGroupInputTextWarn.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextWarn)
 
-        val formGroupInputTextError = FormGroupInputText(stateFormGroupView.newChildId(), "Error".model(), Model.of(""))
+        val formGroupInputTextError = FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Error".model())
         formGroupInputTextError.formComponent.error("Error message")
         formGroupInputTextError.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextError)
@@ -47,8 +47,8 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         form.add(formGroupView)
         val validationFormGroup = FormGroupInputEmail(
             formGroupView.newChildId(),
-            "Validation (email)".model(),
-            Model("")
+            Model(""),
+            "Validation (email)".model()
         )
         validationFormGroup.setRequired(true)
         validationFormGroup.addAjaxValidation("input")
@@ -57,8 +57,8 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
 
         val ajaxValidationFormGroup = FormGroupInputEmail(
             formGroupView.newChildId(),
-            "Ajax Validation (email)".model(),
-            Model("Type to see what's happening")
+            Model("Type to see what's happening"),
+            "Ajax Validation (email)".model()
         )
         ajaxValidationFormGroup.setRequired(true)
         ajaxValidationFormGroup.addAjaxValidation("input")

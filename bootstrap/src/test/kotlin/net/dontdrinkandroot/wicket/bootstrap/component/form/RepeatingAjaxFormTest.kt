@@ -44,7 +44,7 @@ class RepeatingAjaxFormTest : AbstractWicketTest() {
         val component: RepeatingAjaxForm<Void> = object : RepeatingAjaxForm<Void>(FormTestPage.COMPONENT_ID) {
             override fun populateFormGroups(formGroupView: RepeatingView) {
                 super.populateFormGroups(formGroupView)
-                val formGroup = FormGroupInputText(formGroupView.newChildId(), Model("Label"), Model())
+                val formGroup = FormGroupInputText(formGroupView.newChildId(), Model(), Model("Label"))
                 formGroup.setRequired(true)
                 formGroupView.add(formGroup)
             }

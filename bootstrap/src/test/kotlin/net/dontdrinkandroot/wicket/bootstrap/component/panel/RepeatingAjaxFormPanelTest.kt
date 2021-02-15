@@ -21,8 +21,8 @@ class RepeatingAjaxFormPanelTest : AbstractWicketTest() {
                     formGroupView.add(
                         FormGroupInputText(
                             formGroupView.newChildId(),
-                            Model("Text"),
-                            Model()
+                            Model(),
+                            Model("Text")
                         )
                     )
                 }

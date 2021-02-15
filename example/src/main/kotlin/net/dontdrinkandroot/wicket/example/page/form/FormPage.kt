@@ -31,15 +31,15 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupStatic = FormGroupStatic(
             formGroupView.newChildId(),
-            FormGroupStatic::class.java.simpleName.model(),
-            Model.of("A static label")
+            Model.of("A static label"),
+            FormGroupStatic::class.java.simpleName.model()
         )
         formGroupView.add(formGroupStatic)
 
         val formGroupTextField = FormGroupInputText(
             formGroupView.newChildId(),
-            FormGroupInputText::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupInputText::class.java.simpleName.model()
         )
         formGroupTextField.formComponent.isRequired = true
         formGroupTextField.addAjaxValidation("input")
@@ -48,22 +48,22 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupPasswordTextField = FormGroupInputPassword(
             formGroupView.newChildId(),
-            FormGroupInputPassword::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupInputPassword::class.java.simpleName.model()
         )
         formGroupView.add(formGroupPasswordTextField)
 
         val formGroupEmailTextField = FormGroupInputEmail(
             formGroupView.newChildId(),
-            FormGroupInputEmail::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupInputEmail::class.java.simpleName.model()
         )
         formGroupView.add(formGroupEmailTextField)
 
         val formGroupUrlTextField = FormGroupInputUrl(
             formGroupView.newChildId(),
-            FormGroupInputUrl::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupInputUrl::class.java.simpleName.model()
         )
         formGroupView.add(formGroupUrlTextField)
 
@@ -77,8 +77,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupLocalDate: FormGroupLocalDate = object : FormGroupLocalDate(
             formGroupView.newChildId(),
-            FormGroupLocalDate::class.java.simpleName.model(),
-            Model.of(LocalDate.now())
+            Model.of(LocalDate.now()),
+            FormGroupLocalDate::class.java.simpleName.model()
         ) {
             override fun createInputGroupAppend(id: String): Component {
                 val after = InputGroupLabel(id)
@@ -92,15 +92,15 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupLocalTime = FormGroupLocalTime(
             formGroupView.newChildId(),
-            FormGroupLocalTime::class.java.simpleName.model(),
-            Model()
+            Model(),
+            FormGroupLocalTime::class.java.simpleName.model()
         )
         formGroupView.add(formGroupLocalTime)
 
         val formGroupLocalDateTime = FormGroupLocalDateTime(
             formGroupView.newChildId(),
-            FormGroupLocalDateTime::class.java.simpleName.model(),
-            Model()
+            Model(),
+            FormGroupLocalDateTime::class.java.simpleName.model()
         )
         formGroupView.add(formGroupLocalDateTime)
 
@@ -113,17 +113,17 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupRadioChoice = FormGroupRadioChoice(
             formGroupView.newChildId(),
-            FormGroupRadioChoice::class.java.simpleName.model(),
             Model.of(""),
-            choices
+            FormGroupRadioChoice::class.java.simpleName.model(),
+            ListModel(choices)
         )
         formGroupView.add(formGroupRadioChoice)
 
         val formGroupSelect = FormGroupSelect(
             formGroupView.newChildId(),
-            FormGroupSelect::class.java.simpleName.model(),
             Model.of(""),
-            choices
+            FormGroupSelect::class.java.simpleName.model(),
+            ListModel(choices)
         )
         formGroupSelect.setRequired(false)
         formGroupSelect.setNullValid(true)
@@ -131,8 +131,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupInputFile = FormGroupInputFile(
             formGroupView.newChildId(),
-            FormGroupInputFile::class.java.simpleName.model(),
-            ListModel()
+            ListModel(),
+            FormGroupInputFile::class.java.simpleName.model()
         )
         formGroupView.add(formGroupInputFile)
 

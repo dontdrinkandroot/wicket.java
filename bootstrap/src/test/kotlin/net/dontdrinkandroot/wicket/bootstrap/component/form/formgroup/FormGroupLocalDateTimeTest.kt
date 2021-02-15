@@ -16,8 +16,8 @@ class FormGroupLocalDateTimeTest : AbstractWicketTest() {
         val formPanel = TestFormPanel("id")
         val formGroupLocalDate = FormGroupLocalDateTime(
             "formGroup",
-            Model("Label"),
-            Model.of(LocalDateTime.of(2017, 1, 2, 3, 4))
+            Model.of(LocalDateTime.of(2017, 1, 2, 3, 4)),
+            Model("Label")
         )
         formGroupLocalDate.formComponent.setMin(LocalDateTime.of(2016, 6, 4, 23, 46))
         formGroupLocalDate.formComponent.setMax(LocalDateTime.of(2018, 9, 6, 12, 53))

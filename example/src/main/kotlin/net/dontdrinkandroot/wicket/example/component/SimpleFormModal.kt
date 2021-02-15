@@ -19,15 +19,15 @@ class SimpleFormModal(id: String) : FormModal<Void>(id) {
         formGroupView.add(
             FormGroupStatic(
                 formGroupView.newChildId(),
-                FormGroupStatic::class.java.simpleName.model(),
-                Model.of("A static label")
+                Model.of("A static label"),
+                FormGroupStatic::class.java.simpleName.model()
             )
         )
         formGroupView.add(
             FormGroupInputText(
                 formGroupView.newChildId(),
-                FormGroupInputText::class.java.simpleName.model(),
-                Model.of("")
+                Model.of(""),
+                FormGroupInputText::class.java.simpleName.model()
             )
         )
     }

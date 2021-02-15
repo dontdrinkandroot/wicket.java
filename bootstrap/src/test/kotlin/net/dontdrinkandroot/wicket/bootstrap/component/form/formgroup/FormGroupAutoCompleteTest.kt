@@ -13,8 +13,8 @@ class FormGroupAutoCompleteTest : AbstractWicketTest() {
     @Test
     @Disabled("Strange component markup error, move to tag tester")
     fun testMarkup() {
-        val component: FormGroupAutoComplete = object : FormGroupAutoComplete("id", Model("ExampleLabel"), Model()) {
-            override fun getChoices(input: String): List<String> {
+        val component: FormGroupAutoComplete = object : FormGroupAutoComplete("id", Model(), Model("ExampleLabel")) {
+            override fun getChoices(input: String?): List<String> {
                 return Arrays.asList("Alpha", "Beta", "Gamma")
             }
         }

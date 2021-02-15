@@ -17,7 +17,7 @@ class FormGroupLocalDateTest : AbstractWicketTest() {
         val testDate = LocalDate.of(2016, 3, 4)
         val minDate = LocalDate.of(2015, 1, 2)
         val maxDate = LocalDate.of(2017, 5, 6)
-        val formGroupLocalDate = FormGroupLocalDate("formGroup", Model("Label"), Model.of(testDate))
+        val formGroupLocalDate = FormGroupLocalDate("formGroup", Model.of(testDate), Model("Label"))
         formGroupLocalDate.formComponent.setMin(minDate)
         formGroupLocalDate.formComponent.setMax(maxDate)
         formPanel.form.add(formGroupLocalDate)

@@ -15,7 +15,7 @@ class FormGroupInputTextTest : AbstractWicketTest() {
     @Test
     fun testDefault() {
         val formPanel = TestFormPanel("id")
-        val formGroupInputText = FormGroupInputText("formGroup", Model("Label"), Model.of("Value"))
+        val formGroupInputText = FormGroupInputText("formGroup", Model.of("Value"), Model("Label"))
         formPanel.form.add(formGroupInputText)
         val componentMarkup = ComponentRenderer.renderComponent(formPanel)
         val formGroupTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup")
@@ -35,7 +35,7 @@ class FormGroupInputTextTest : AbstractWicketTest() {
     @Test
     fun testValidationError() {
         val formPanel = TestFormPanel("id")
-        val formGroupInputText = FormGroupInputText("formGroup", Model("Label"), Model())
+        val formGroupInputText = FormGroupInputText("formGroup", Model(), Model("Label"))
         formGroupInputText.setRequired(true)
         formGroupInputText.formComponent.validate()
         formPanel.form.add(formGroupInputText)
@@ -59,7 +59,7 @@ class FormGroupInputTextTest : AbstractWicketTest() {
     fun testHorizontalStyle() {
         val formPanel = TestFormPanel("id")
         formPanel.form.add(FormStyleBehavior().setHorizontal(ColumnSizeStack.FORM_DEFAULT))
-        val formGroupInputText = FormGroupInputText("formGroup", Model("Label"), Model.of("Value"))
+        val formGroupInputText = FormGroupInputText("formGroup", Model.of("Value"), Model("Label"))
         formPanel.form.add(formGroupInputText)
         val componentMarkup = ComponentRenderer.renderComponent(formPanel)
         val labelTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "label")

@@ -17,14 +17,14 @@ class SimpleAjaxFormModal(id: String) : AjaxFormModal<Void>(id) {
         formGroupView.add(
             FormGroupStatic(
                 formGroupView.newChildId(),
-                FormGroupStatic::class.java.simpleName.model(),
-                Model.of("A static label")
+                Model.of("A static label"),
+                FormGroupStatic::class.java.simpleName.model()
             )
         )
         val formGroupInputText = FormGroupInputText(
             formGroupView.newChildId(),
-            FormGroupInputText::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupInputText::class.java.simpleName.model()
         )
         formGroupInputText.setRequired(true)
         formGroupInputText.addAjaxValidation()

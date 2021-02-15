@@ -15,7 +15,7 @@ class FormGroupAjaxValidationBehaviorTest : AbstractWicketTest() {
     fun testError() {
         val page: FormGroupTestPage<FormGroupInputEmail> = object : FormGroupTestPage<FormGroupInputEmail>() {
             override fun createFormGroup(id: String): FormGroupInputEmail {
-                val formGroup = FormGroupInputEmail(id, Model("Label"), Model())
+                val formGroup = FormGroupInputEmail(id, Model(), Model("Label"))
                 formGroup.addAjaxValidation("blur")
                 return formGroup
             }

@@ -16,7 +16,7 @@ class NavbarForm(id: String) : RepeatingForm<Void>(id) {
 
     override fun populateFormGroups(formGroupView: RepeatingView) {
         super.populateFormGroups(formGroupView)
-        val searchGroup = FormGroupInputText(formGroupView.newChildId(), "Search".model(), Model())
+        val searchGroup = FormGroupInputText(formGroupView.newChildId(), Model(), "Search".model())
         searchGroup.setLabelScreenReaderOnly(true)
         formGroupView.add(searchGroup)
     }

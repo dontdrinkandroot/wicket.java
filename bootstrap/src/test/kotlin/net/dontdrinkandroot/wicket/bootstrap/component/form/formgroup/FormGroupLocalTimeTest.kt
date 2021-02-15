@@ -14,7 +14,7 @@ class FormGroupLocalTimeTest : AbstractWicketTest() {
     @Test
     fun testFullMarkup() {
         val formPanel = TestFormPanel("id")
-        val formGroupLocalTime = FormGroupLocalTime("formGroup", Model("Label"), Model.of(LocalTime.of(13, 37)))
+        val formGroupLocalTime = FormGroupLocalTime("formGroup", Model.of(LocalTime.of(13, 37)), Model("Label"))
         formGroupLocalTime.formComponent.setMin(LocalTime.of(9, 13, 14))
         formGroupLocalTime.formComponent.setMax(LocalTime.of(17, 12))
         formPanel.form.add(formGroupLocalTime)

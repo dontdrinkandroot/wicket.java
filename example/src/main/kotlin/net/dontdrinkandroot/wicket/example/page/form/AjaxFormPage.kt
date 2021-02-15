@@ -22,8 +22,8 @@ class AjaxFormPage(parameters: PageParameters) : FormPage(parameters) {
                 formGroupView.add(
                     FormGroupInputText(
                         formGroupView.newChildId(),
-                        "TextField".model(),
-                        Model()
+                        Model(),
+                        "TextField".model()
                     )
                 )
             }
