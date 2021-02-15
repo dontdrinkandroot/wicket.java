@@ -13,14 +13,3 @@ interface KModel<T> : IModel<T> {
 }
 
 class BasicKModel<T>(override var value: T) : KModel<T>
-
-fun <T> print(model: KModel<T>) {
-    println(model.value)
-}
-
-fun main(args: Array<String>) {
-    val nullableModel: KModel<String?> = BasicKModel(null)
-    val nonNullableModel: KModel<String> = BasicKModel("value")
-    print(nullableModel)
-    print(nonNullableModel)
-}
