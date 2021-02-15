@@ -1,15 +1,13 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.pagination
 
-import net.dontdrinkandroot.wicket.bootstrap.component.pagination.AbstractPageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
-import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesome4Icon
 import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesome4IconClass
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.markup.html.navigation.paging.IPageable
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-abstract class LastPageLinkItem(id: String?, pageable: IPageable?) : AbstractPageLinkItem(id, pageable) {
+abstract class LastPageLinkItem(id: String, pageable: IPageable) : AbstractPageLinkItem(id, pageable) {
 
     override fun createLabel(): IModel<String> = Model("")
 
@@ -24,5 +22,6 @@ abstract class LastPageLinkItem(id: String?, pageable: IPageable?) : AbstractPag
         pageable.currentPage = pageable.pageCount - 1
     }
 
-    override fun getPaginablePageModel(): IModel<Long> = IModel { pageable.pageCount - 1 }
+    override val paginablePageModel: IModel<Long>
+        get() = IModel { pageable.pageCount - 1 }
 }

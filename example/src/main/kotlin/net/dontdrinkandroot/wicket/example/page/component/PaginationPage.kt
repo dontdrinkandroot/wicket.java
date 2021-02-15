@@ -28,9 +28,9 @@ class PaginationPage(parameters: PageParameters) : ComponentPage(parameters) {
         val pagination = PaginationPanel("pagination", pageable)
         this.add(pagination)
         val ajaxPagination: AjaxPaginationPanel = object : AjaxPaginationPanel("ajaxPagination", pageable) {
-            override fun onPageChanged(target: AjaxRequestTarget) {
+            override fun onPageChanged(target: AjaxRequestTarget?) {
                 super.onPageChanged(target)
-                target.add(currentPageLabel)
+                target?.add(currentPageLabel)
             }
         }
         this.add(ajaxPagination)

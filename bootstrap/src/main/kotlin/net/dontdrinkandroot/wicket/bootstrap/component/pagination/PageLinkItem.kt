@@ -22,9 +22,8 @@ abstract class PageLinkItem(id: String, pageable: IPageable, private val page: L
     }
 
     protected val isCurrentPage: Boolean
-        protected get() = page == pageable.currentPage
+        get() = page == pageable.currentPage
 
-    override fun getPaginablePageModel(): IModel<Long> {
-        return IModel { page }
-    }
+    override val paginablePageModel: IModel<Long>
+        get() = IModel { page }
 }
