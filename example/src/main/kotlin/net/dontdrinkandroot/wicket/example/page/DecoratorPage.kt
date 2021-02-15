@@ -95,7 +95,10 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 pageClass = GridPage::class.java
             )
         )
-        leftItemView.add(object : RepeatingDropdownItem<Void>(leftItemView.newChildId(), "Components".model()) {
+        leftItemView.add(object : RepeatingDropdownItem<Void>(
+            leftItemView.newChildId(),
+            labelModel = "Components".model()
+        ) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
@@ -179,7 +182,10 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
             override val active: Boolean
                 get() = this.page is ComponentPage
         })
-        leftItemView.add(object : RepeatingDropdownItem<Void?>(leftItemView.newChildId(), Model.of("Forms")) {
+        leftItemView.add(object : RepeatingDropdownItem<Void?>(
+            leftItemView.newChildId(),
+            labelModel = Model.of("Forms")
+        ) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(

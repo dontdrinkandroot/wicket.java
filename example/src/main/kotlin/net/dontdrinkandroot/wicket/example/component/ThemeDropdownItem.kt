@@ -13,7 +13,7 @@ import org.apache.wicket.model.Model
 
 class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void?>(
     id,
-    ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name })
+    labelModel = ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name })
 ) {
 
     override fun populateItems(itemView: RepeatingView) {

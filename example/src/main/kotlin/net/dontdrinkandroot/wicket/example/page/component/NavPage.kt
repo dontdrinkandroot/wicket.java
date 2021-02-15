@@ -84,7 +84,7 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
             override val active: Boolean
                 get() = true
         })
-        itemView.add(object : RepeatingDropdownItem<Void?>(itemView.newChildId(), Model.of("Dropdown")) {
+        itemView.add(object : RepeatingDropdownItem<Void?>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
             override fun populateItems(itemView: RepeatingView) {
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
