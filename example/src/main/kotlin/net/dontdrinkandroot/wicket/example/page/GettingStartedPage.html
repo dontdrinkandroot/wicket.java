@@ -2,24 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body>
 <wicket:extend>
-    <section>
+    <section class="mb-3">
         <h2>Installation - Maven</h2>
-        The project is not available at <a href="https://search.maven.org/" rel="external">Maven Central</a> yet.
+        <p>The project is not available at <a href="https://search.maven.org/" rel="external">Maven Central</a> yet.</p>
 
-        <h3>Manual</h3>
+        <div class="mb-2">
+            <h3>Manual</h3>
 
-        <p>You can clone it from GitHub and install it to your local repository:</p>
+            <p>You can clone it from GitHub and install it to your local repository:</p>
 
-        <pre><code class="bash">git clone https://github.com/dontdrinkandroot/wicket.java
+            <pre><code class="bash">git clone https://github.com/dontdrinkandroot/wicket.java
 cd wicket.java
 mvn clean install</code></pre>
+        </div>
 
-        <h3>Sonatype</h3>
+        <div class="mb-2">
+            <h3>Sonatype</h3>
 
-        <p>The snapshots are currently deployed to the <a href="https://oss.sonatype.org/" rel="external">Sontatype Open
-            Source Software repository</a>. If you want to receive the latest version, simply include it in your
-            projects pom.xml:</p>
-        <pre><code>&lt;repositories&gt;
+            <p>The snapshots are currently deployed to the <a href="https://oss.sonatype.org/" rel="external">Sontatype
+                Open
+                Source Software repository</a>. If you want to receive the latest version, simply include it in your
+                projects pom.xml:</p>
+            <pre><code>&lt;repositories&gt;
     ...
     &lt;repository&gt;
         &lt;id&gt;oss-sonatype&lt;/id&gt;
@@ -34,9 +38,12 @@ mvn clean install</code></pre>
     &lt;/repository&gt;
     ...
 &lt;repositories&gt;</code></pre>
-        <h3>pom.xml</h3>
-        <p>Now add the library to the dependencies of your projects pom.xml:</p>
-        <pre><code>&lt;dependencies&gt;
+        </div>
+
+        <div class="mb-2">
+            <h3>pom.xml</h3>
+            <p>Now add the library to the dependencies of your projects pom.xml:</p>
+            <pre><code>&lt;dependencies&gt;
     ...
     &lt;dependency&gt;
         &lt;groupId&gt;net.dontdrinkandroot&lt;/groupId&gt;
@@ -45,8 +52,10 @@ mvn clean install</code></pre>
     &lt;/dependency&gt;
     ...
 &lt;/dependencies&gt;</code></pre>
+        </div>
     </section>
-    <section>
+
+    <section class="mb-3">
         <h2>Wicket setup</h2>
         <p>Some Bootstrap CSS selectors will not work if there are Wicket tags in between, eg. <code>&lt;wicket:container&gt;</code>.
             You will have to turn strip wicket tags on to get proper results. This is the default in production mode.

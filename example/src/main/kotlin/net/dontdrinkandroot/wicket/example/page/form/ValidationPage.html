@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body>
-	<wicket:extend>
-	
-		<h2>Validation states</h2>
-		<p class="alert alert-info">Validation states are automatically
-			determined based on the highest FeedbackMessage Level that the
-			FormGroup has. Usually this will only be relevant for
-			ValidationErrors and therefore display an Error state, but you can
-			also add a warn or error FeedbackMessage to the
-			FormGroup/FormComponent.</p>
-		<div wicket:id="stateFormGroup"></div>
-		
-		<h2>Validator Validation</h2>
-		<form wicket:id="form">
-			<div wicket:id="formGroup"></div>
-		</form>
-	</wicket:extend>
+<wicket:extend>
+
+    <section class="mb-3">
+        <h2>Validation states</h2>
+        <p class="alert alert-info">Validation states are automatically
+            determined based on the highest FeedbackMessage Level that the
+            FormGroup has. Usually this will only be relevant for
+            ValidationErrors and therefore display an Error state, but you can
+            also add a warn or error FeedbackMessage to the
+            FormGroup/FormComponent.</p>
+        <div wicket:id="stateFormGroup"></div>
+    </section>
+
+    <section class="mb-3">
+        <h2>Validator Validation</h2>
+        <form wicket:id="form">
+            <div wicket:id="formGroup"></div>
+        </form>
+    </section>
+</wicket:extend>
 </body>
 </html>
