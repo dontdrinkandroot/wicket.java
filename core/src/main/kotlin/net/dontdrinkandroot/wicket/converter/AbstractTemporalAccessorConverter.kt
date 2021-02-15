@@ -14,8 +14,7 @@ import java.util.*
 open class AbstractTemporalAccessorConverter<T : TemporalAccessor>(
     pattern: String,
     private val query: TemporalQuery<T>
-) :
-    IConverter<T> {
+) : IConverter<T> {
 
     private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern(pattern)
 

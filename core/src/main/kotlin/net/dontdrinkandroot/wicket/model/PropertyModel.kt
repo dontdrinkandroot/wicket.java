@@ -21,13 +21,13 @@ class MutablePropertyModel<P, T>(parentModel: IModel<P>, private val property: K
 fun <P, T> IModel<T>.writableProperty(property: KMutableProperty1<T, P>): IModel<P> =
     MutablePropertyModel(this, property)
 
-class PropertyModel<P, T>(parentModel: IModel<P>, private val property: KProperty1<P, T>) :
+class PropertyModel<P, T>(parentModel: IModel<P>, private val property: KProperty1<P, T?>) :
     AbstractChainedModel<P, T>(parentModel) {
 
     override fun getValue(parentValue: P?): T? = parentValue?.let { property.get(it) }
 }
 
-fun <P, T> IModel<T>.property(property: KProperty1<T, P>) = PropertyModel(this, property)
+fun <P, T> IModel<T>.property(property: KProperty1<T, P?>): IModel<P> = PropertyModel(this, property)
 
 fun <P, T> IModel<P>.function(function: KFunction1<P, T>): IModel<T> = object : AbstractChainedModel<P, T>(this) {
     override fun getValue(parentValue: P?): T? = parentValue?.let { function.invoke(it) }

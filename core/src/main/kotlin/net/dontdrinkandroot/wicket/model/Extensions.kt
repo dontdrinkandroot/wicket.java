@@ -5,12 +5,18 @@ import org.apache.wicket.model.LoadableDetachableModel
 import org.apache.wicket.model.Model
 import java.io.Serializable
 
-fun <T : Serializable?> T.model(): IModel<T> = Model(this)
+fun <T : Serializable> T.model(): IModel<T> = Model(this)
+
+var <T> IModel<T>.value: T?
+    get() = `object`
+    set(value) {
+        `object` = value
+    }
 
 @Suppress("UNCHECKED_CAST")
 fun <T> IModel<T>.nullable(): IModel<T?> = this as IModel<T?>
 
-fun <T> (() -> T).ldm(): LoadableDetachableModel<T?> = LoadableDetachableModel.of(this)
+fun <T> (() -> T).ldm(): LoadableDetachableModel<T> = LoadableDetachableModel.of(this)
 
 fun String.concat(model: IModel<String>): IModel<String> =
     object : AbstractChainedModel<String, String>(model) {

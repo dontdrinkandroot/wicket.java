@@ -8,7 +8,7 @@ import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.model.IModel
 
 class PanelBehavior constructor(private val styleModel: IModel<PanelStyle> = PanelStyle.DEFAULT.model()) :
-    CompositeBehavior(CssClassAppender(BootstrapCssClass.PANEL)) {
+    CompositeBehavior(CssClassAppender(BootstrapCssClass.CARD)) {
 
     init {
         addBehavior(CssClassAppender(this.styleModel))
