@@ -6,7 +6,7 @@ import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-open class RepeatingNavTabs<T> @JvmOverloads constructor(
+open class RepeatingNavTabs<T> constructor(
     id: String,
     model: IModel<T>? = null,
     itemAlignmentModel: IModel<NavItemAlignment> = Model(null)
