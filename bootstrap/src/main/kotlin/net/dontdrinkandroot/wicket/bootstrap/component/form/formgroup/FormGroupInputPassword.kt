@@ -11,11 +11,11 @@ class FormGroupInputPassword(id: String, model: IModel<String>, labelModel: IMod
 
     override fun createInputGroup(id: String): InputGroup<String, String, PasswordTextField> {
         return object : InputGroupPassword(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupInputPassword.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupInputPassword.createInputGroupAppend(id)
             }
         }

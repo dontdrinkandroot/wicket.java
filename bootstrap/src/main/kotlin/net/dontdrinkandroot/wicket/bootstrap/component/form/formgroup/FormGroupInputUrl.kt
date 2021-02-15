@@ -10,11 +10,11 @@ class FormGroupInputUrl(id: String, model: IModel<String>, labelModel: IModel<St
 
     override fun createInputGroup(id: String): InputGroupUrl {
         return object : InputGroupUrl(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupInputUrl.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupInputUrl.createInputGroupAppend(id)
             }
         }

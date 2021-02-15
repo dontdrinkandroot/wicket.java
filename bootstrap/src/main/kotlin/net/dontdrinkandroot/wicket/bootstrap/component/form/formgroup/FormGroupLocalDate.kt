@@ -12,11 +12,11 @@ open class FormGroupLocalDate(id: String, model: IModel<LocalDate>, labelModel: 
 
     override fun createInputGroup(id: String): InputGroup<LocalDate, LocalDate, LocalDateTextField> {
         return object : InputGroupLocalDate(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupLocalDate.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupLocalDate.createInputGroupAppend(id)
             }
         }

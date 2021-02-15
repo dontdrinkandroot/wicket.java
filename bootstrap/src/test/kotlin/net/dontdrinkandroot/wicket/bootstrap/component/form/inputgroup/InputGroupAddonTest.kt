@@ -1,14 +1,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup
 
+import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupButton
-import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.addon.InputGroupLabel
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel
-import net.dontdrinkandroot.wicket.bootstrap.test.TestHomePage
 import org.apache.wicket.Component
 import org.apache.wicket.core.util.string.ComponentRenderer
-import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.Model
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
@@ -21,25 +18,19 @@ class InputGroupAddonTest : AbstractWicketTest() {
         val formPanel = TestFormPanel("id")
         val formGroupInputText: FormGroupInputText =
             object : FormGroupInputText("formGroup", Model.of("Value"), Model("Label")) {
-                override fun createInputGroupPrepend(id: String): Component {
-                    return InputGroupLabel(id, Model.of("Label"))
-                }
+                override fun createInputGroupPrepend(id: String): Component =
+                    InputGroupTextLabel(id, Model.of("Label"))
 
-                override fun createInputGroupAppend(id: String): Component {
-                    return object : InputGroupButton<Void>(id) {
-                        override fun createLink(id: String): Component {
-                            return BookmarkablePageLink<Any, TestHomePage>(id, TestHomePage::class.java)
-                        }
-                    }
-                }
+                override fun createInputGroupAppend(id: String): Component =
+                    ButtonLink<Void>(id, bodyModel = Model("Button"), onClickHandler = {})
             }
         formPanel.form.add(formGroupInputText)
         val componentMarkup = ComponentRenderer.renderComponent(formGroupInputText)
         val inputGroupAddonBefore =
             TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupPrepend")
-        Assertions.assertEquals("input-group-addon", inputGroupAddonBefore.getAttribute("class"))
+        Assertions.assertEquals("input-group-text", inputGroupAddonBefore.getAttribute("class"))
         val inputGroupAddonAfter =
             TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "inputGroupAppend")
-        Assertions.assertEquals("input-group-btn", inputGroupAddonAfter.getAttribute("class"))
+        Assertions.assertEquals("btn btn-secondary", inputGroupAddonAfter.getAttribute("class"))
     }
 }

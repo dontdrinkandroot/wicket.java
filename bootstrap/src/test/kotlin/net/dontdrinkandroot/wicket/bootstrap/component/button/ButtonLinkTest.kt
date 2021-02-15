@@ -10,11 +10,7 @@ class ButtonLinkTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: ButtonLink<Void> = object : ButtonLink<Void>("id", bodyModel = Model("Label")) {
-            override fun onClick() {
-                /* Noop */
-            }
-        }
+        val component: ButtonLink<Void> = ButtonLink<Void>("id", bodyModel = Model("Label"), onClickHandler = {})
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
         Assertions.assertEquals(
             "<wicket:container wicket:id=\"id\" class=\"btn btn-secondary\">Label</wicket:container>",

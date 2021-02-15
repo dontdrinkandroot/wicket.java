@@ -35,10 +35,10 @@ abstract class InputGroup<T, M, F : FormComponent<M>> constructor(
         this.add(CssClassAppender(BootstrapCssClass.INPUT_GROUP))
         this.add(formComponent)
 
-        inputGroupPrepend = createInputGroupPrepend(INPUT_GROUP_PREPEND_ID)
+        inputGroupPrepend = createAddonPrepend(INPUT_GROUP_PREPEND_ID)
         this.add(inputGroupPrepend)
 
-        inputGroupAppend = createInputGroupAppend(INPUT_GROUP_APPEND_ID)
+        inputGroupAppend = createAddonAppend(INPUT_GROUP_APPEND_ID)
         this.add(inputGroupAppend)
     }
 
@@ -48,9 +48,9 @@ abstract class InputGroup<T, M, F : FormComponent<M>> constructor(
         this.renderBodyOnly = !hasAddon
     }
 
-    protected open fun createInputGroupPrepend(id: String): Component = WebMarkupContainer(id).setVisible(false)
+    protected open fun createAddonPrepend(id: String): Component = WebMarkupContainer(id).setVisible(false)
 
-    protected open fun createInputGroupAppend(id: String): Component = WebMarkupContainer(id).setVisible(false)
+    protected open fun createAddonAppend(id: String): Component = WebMarkupContainer(id).setVisible(false)
 
     protected abstract fun createFormComponent(id: String): F
 

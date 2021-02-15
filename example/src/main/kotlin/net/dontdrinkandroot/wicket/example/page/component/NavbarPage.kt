@@ -83,12 +83,11 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
                 collapseItemView.add(form)
                 val text = NavbarText(collapseItemView.newChildId(), Model.of("Text"))
                 collapseItemView.add(text)
-                val button: NavbarButton<*> = object :
-                    NavbarButton<Void>(collapseItemView.newChildId(), alignmentModel = NavbarAlignment.RIGHT.model()) {
-                    override fun onClick() {
-                        /* Noop */
-                    }
-                }
+                val button: NavbarButton<Void> =
+                    NavbarButton(
+                        collapseItemView.newChildId(),
+                        alignmentModel = NavbarAlignment.RIGHT.model(),
+                        onClickHandler = {})
                 button.body = Model.of("Button")
                 collapseItemView.add(button)
             }

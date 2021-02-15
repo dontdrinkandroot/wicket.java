@@ -10,11 +10,11 @@ open class FormGroupInputText(id: String, model: IModel<String>, labelModel: IMo
 
     override fun createInputGroup(id: String): InputGroupText {
         return object : InputGroupText(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupInputText.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupInputText.createInputGroupAppend(id)
             }
         }

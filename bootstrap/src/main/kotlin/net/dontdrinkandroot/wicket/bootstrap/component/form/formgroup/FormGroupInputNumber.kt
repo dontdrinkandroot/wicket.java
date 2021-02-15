@@ -14,11 +14,11 @@ class FormGroupInputNumber<N>(id: String, model: IModel<N>, labelModel: IModel<S
 
     override fun createInputGroup(id: String): InputGroupNumber<N> {
         return object : InputGroupNumber<N>(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupInputNumber.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupInputNumber.createInputGroupAppend(id)
             }
         }

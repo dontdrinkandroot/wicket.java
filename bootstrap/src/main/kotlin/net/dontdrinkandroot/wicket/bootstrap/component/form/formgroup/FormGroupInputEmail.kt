@@ -10,11 +10,11 @@ class FormGroupInputEmail(id: String, model: IModel<String>, labelModel: IModel<
 
     override fun createInputGroup(id: String): InputGroupEmail {
         return object : InputGroupEmail(id, model) {
-            override fun createInputGroupPrepend(id: String): Component {
+            override fun createAddonPrepend(id: String): Component {
                 return this@FormGroupInputEmail.createInputGroupPrepend(id)
             }
 
-            override fun createInputGroupAppend(id: String): Component {
+            override fun createAddonAppend(id: String): Component {
                 return this@FormGroupInputEmail.createInputGroupAppend(id)
             }
         }
