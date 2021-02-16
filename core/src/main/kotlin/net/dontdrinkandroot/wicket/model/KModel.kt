@@ -13,3 +13,12 @@ interface KModel<T> : IModel<T> {
 }
 
 class BasicKModel<T>(override var value: T) : KModel<T>
+
+class WrappedKModel<T>(private val model: IModel<T>) : KModel<T> {
+
+    override var value: T
+        get() = model.getObject()
+        set(value) {
+            model.setObject(value)
+        }
+}
