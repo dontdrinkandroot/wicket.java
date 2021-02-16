@@ -8,4 +8,6 @@ class OutputMarkupPlaceholderTagBehavior : Behavior() {
     override fun bind(component: Component) {
         component.outputMarkupPlaceholderTag = true
     }
+
+    override fun isTemporary(component: Component) = true
 }
