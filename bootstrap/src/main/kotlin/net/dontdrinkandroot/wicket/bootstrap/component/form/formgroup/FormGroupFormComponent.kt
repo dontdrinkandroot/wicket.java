@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel
  * @param <M> Type of the FormComponent Model Object.
  * @param <F> Type of the [FormComponent]
  */
-abstract class FormGroupFormComponent<T, M, F : FormComponent<M>> @JvmOverloads constructor(
+abstract class FormGroupFormComponent<T, M, F : FormComponent<M>> constructor(
     id: String,
     model: IModel<T>,
     labelModel: IModel<String>,

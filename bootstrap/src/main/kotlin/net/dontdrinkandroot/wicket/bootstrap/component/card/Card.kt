@@ -1,10 +1,7 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.panel
+package net.dontdrinkandroot.wicket.bootstrap.component.card
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.behavior.PanelBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
-import net.dontdrinkandroot.wicket.bootstrap.css.PanelStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -13,15 +10,17 @@ import org.apache.wicket.model.IModel
 /**
  * @param <T> Type of the Model Object.
  */
-abstract class Panel<T> @JvmOverloads constructor(
+abstract class Card<T> constructor(
     id: String,
     model: IModel<T>? = null,
-    styleModel: IModel<PanelStyle> = PanelStyle.DEFAULT.model()
 ) : GenericPanel<T>(id, model) {
 
-    private val panelBehavior = PanelBehavior(styleModel)
+    val BODY_ID = "body"
+    val HEADER_ID = "header"
+    val FOOTER_ID = "footer"
+    val AFTER_BODY_ID = "afterBody"
 
-    protected lateinit var heading: Component
+    protected lateinit var header: Component
 
     protected lateinit var footer: Component
 
@@ -29,18 +28,21 @@ abstract class Panel<T> @JvmOverloads constructor(
 
     override fun onInitialize() {
         super.onInitialize()
-        this.add(panelBehavior)
-        heading = createHeading(HEADING_ID)
-        heading.add(CssClassAppender(BootstrapCssClass.PANEL_HEADING))
-        this.add(heading)
+        add(CssClassAppender(BootstrapCssClass.CARD))
+
+        header = createHeader(HEADER_ID)
+        header.add(CssClassAppender(BootstrapCssClass.CARD_HEADER))
+        this.add(header)
+
         afterBody = createAfterBody(AFTER_BODY_ID)
         this.add(afterBody)
+
         footer = createFooter(FOOTER_ID)
-        footer.add(CssClassAppender(BootstrapCssClass.PANEL_FOOTER))
+        footer.add(CssClassAppender(BootstrapCssClass.CARD_FOOTER))
         this.add(footer)
     }
 
-    protected open fun createHeading(id: String): Component {
+    protected open fun createHeader(id: String): Component {
         val headingContainer = WebMarkupContainer(id)
         headingContainer.isVisible = false
         return headingContainer
@@ -56,15 +58,5 @@ abstract class Panel<T> @JvmOverloads constructor(
         val footerContainer = WebMarkupContainer(id)
         footerContainer.isVisible = false
         return footerContainer
-    }
-
-    protected fun createStyleModel(): IModel<PanelStyle> = PanelStyle.DEFAULT.model()
-
-    companion object {
-
-        const val BODY_ID = "body"
-        const val HEADING_ID = "heading"
-        const val FOOTER_ID = "footer"
-        const val AFTER_BODY_ID = "afterBody"
     }
 }

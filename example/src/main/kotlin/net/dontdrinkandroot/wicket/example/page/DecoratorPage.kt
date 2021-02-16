@@ -110,8 +110,8 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
-                        labelModel = "Panels".model(),
-                        pageClass = PanelPage::class.java
+                        labelModel = "Cards".model(),
+                        pageClass = CardPage::class.java
                     )
                 )
                 itemView.add(

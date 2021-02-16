@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.panel
+package net.dontdrinkandroot.wicket.bootstrap.component.card
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SubmitLabelButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
@@ -10,12 +10,12 @@ import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class RepeatingAjaxFormPanelTest : AbstractWicketTest() {
+class RepeatingAjaxFormCardTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: RepeatingAjaxFormPanel<Void> =
-            object : RepeatingAjaxFormPanel<Void>("id", null, Model("title")) {
+        val component: RepeatingAjaxFormCard<Void> =
+            object : RepeatingAjaxFormCard<Void>("id", null, Model("title")) {
                 override fun populateFormGroups(formGroupView: RepeatingView) {
                     super.populateFormGroups(formGroupView)
                     formGroupView.add(
@@ -34,7 +34,6 @@ class RepeatingAjaxFormPanelTest : AbstractWicketTest() {
             }
         val componentMarkup = ComponentRenderer.renderComponent(component)
         val formTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id")
-        Assertions.assertTrue(formTester.getAttributeContains("class", "panel"))
-        Assertions.assertTrue(formTester.getAttributeContains("class", "panel-default"))
+        Assertions.assertTrue(formTester.getAttributeContains("class", "card"))
     }
 }

@@ -32,7 +32,7 @@ class SmokeTest : AbstractWicketTest()
         testPage(FormGroupPage::class.java)
         testPage(PaginationPage::class.java)
         testPage(AjaxFormPage::class.java)
-        testPage(PanelPage::class.java)
+        testPage(CardPage::class.java)
     }
 
     protected fun <T : Page?> testPage(pageClass: Class<T>)

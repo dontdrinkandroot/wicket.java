@@ -21,7 +21,6 @@ class ProgressBar : GenericPanel<Int> {
     var isStriped = false
         private set
 
-    @JvmOverloads
     constructor(id: String, model: IModel<Int> = Model(0)) : super(id, model)
 
     constructor(id: String, model: IModel<Int>, striped: Boolean) : super(id, model) {

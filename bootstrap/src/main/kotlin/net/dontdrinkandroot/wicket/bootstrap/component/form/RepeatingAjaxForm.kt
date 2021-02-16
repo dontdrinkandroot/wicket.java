@@ -5,7 +5,7 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior
 import org.apache.wicket.model.IModel
 
-open class RepeatingAjaxForm<T> @JvmOverloads constructor(id: String, model: IModel<T>? = null) :
+open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null) :
     RepeatingForm<T>(id, model) {
 
     init {

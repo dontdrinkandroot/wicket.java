@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.panel
+package net.dontdrinkandroot.wicket.bootstrap.component.card
 
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SubmitLabelButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
@@ -14,7 +14,7 @@ class RepeatingFormPanelTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: RepeatingFormPanel<Void> = object : RepeatingFormPanel<Void>("id", Model("title"), null) {
+        val component: RepeatingFormCard<Void> = object : RepeatingFormCard<Void>("id", Model("title"), null) {
             override fun populateFormGroups(formGroupView: RepeatingView) {
                 super.populateFormGroups(formGroupView)
                 formGroupView.add(
@@ -33,7 +33,6 @@ class RepeatingFormPanelTest : AbstractWicketTest() {
         }
         val componentMarkup = ComponentRenderer.renderComponent(component)
         val formTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id")
-        Assertions.assertTrue(formTester.getAttributeContains("class", "panel"))
-        Assertions.assertTrue(formTester.getAttributeContains("class", "panel-default"))
+        Assertions.assertTrue(formTester.getAttributeContains("class", "card"))
     }
 }

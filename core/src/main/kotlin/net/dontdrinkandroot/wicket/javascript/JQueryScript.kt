@@ -65,7 +65,6 @@ class JQueryScript : CharSequence {
      * @param properties A map of CSS properties that the animation will move toward.
      * @return This script for chaining.
      */
-    @JvmOverloads
     fun animate(
         properties: Properties?,
         duration: Duration? = null,

@@ -5,7 +5,7 @@ import org.apache.wicket.model.IModel
 /**
  * [AbstractItem] that contains a Text.
  */
-open class AbstractLabeledItem<T> @JvmOverloads constructor(
+open class AbstractLabeledItem<T> constructor(
     id: String,
     model: IModel<T>? = null,
     private val labelModel: IModel<String>

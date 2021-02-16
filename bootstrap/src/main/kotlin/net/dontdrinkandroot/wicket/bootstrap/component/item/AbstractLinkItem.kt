@@ -14,7 +14,7 @@ import org.apache.wicket.model.Model
  * @param <T> Type of the model object.
  * @param <L> Type of the [AbstractLink].
  */
-abstract class AbstractLinkItem<T, L : AbstractLink> @JvmOverloads constructor(
+abstract class AbstractLinkItem<T, L : AbstractLink> constructor(
     id: String,
     model: IModel<T>? = null,
     labelModel: IModel<String>,

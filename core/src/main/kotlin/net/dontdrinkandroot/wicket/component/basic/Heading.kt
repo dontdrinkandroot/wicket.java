@@ -5,7 +5,8 @@ import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.model.IModel
 
-class Heading(id: String, model: IModel<String>, private val headingLevelModel: IModel<Level>) : Label(id, model) {
+class Heading(id: String, model: IModel<String>, private val headingLevelModel: IModel<Level> = Level.H1.model()) :
+    Label(id, model) {
 
     constructor(id: String, heading: String) : this(id, heading.model(), Level.H1.model())
 

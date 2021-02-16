@@ -10,7 +10,7 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-class ToolTipBehavior @JvmOverloads constructor(
+class ToolTipBehavior constructor(
     textModel: IModel<String>,
     private val positionModel: IModel<Position> = Position.TOP.model(),
     delayModel: IModel<Int> = Model.of(0)
