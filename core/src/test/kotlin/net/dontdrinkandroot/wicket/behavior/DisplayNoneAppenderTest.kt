@@ -14,7 +14,7 @@ class DisplayNoneAppenderTest : AbstractWicketTest() {
         container.add(DisplayNoneAppender())
         val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" style=\"display: none\"></wicket:container>",
+            """<wicket:container wicket:id="id" style="display: none"></wicket:container>""",
             componentMarkup.toString()
         )
     }

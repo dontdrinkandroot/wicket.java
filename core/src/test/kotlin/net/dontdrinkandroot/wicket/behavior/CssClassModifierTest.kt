@@ -18,7 +18,7 @@ class CssClassModifierTest : AbstractWicketTest() {
         container.add(CssClassModifier("testone"))
         val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
+            """<wicket:container wicket:id="id" class="testone"></wicket:container>""",
             componentMarkup.toString()
         )
     }
@@ -29,7 +29,7 @@ class CssClassModifierTest : AbstractWicketTest() {
         container.add(CssClassModifier(StringCssClass("testone")))
         val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" class=\"testone\"></wicket:container>",
+            """<wicket:container wicket:id="id" class="testone"></wicket:container>""",
             componentMarkup.toString()
         )
     }

@@ -16,7 +16,7 @@ class ForComponentIdBehaviorTest : AbstractWicketTest() {
         component2.add(ForComponentIdBehavior(component1))
         val componentMarkup = ComponentRenderer.renderComponent(component2)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" for=\"testid\"></wicket:container>",
+            """<wicket:container wicket:id="id" for="testid"></wicket:container>""",
             componentMarkup.toString()
         )
     }

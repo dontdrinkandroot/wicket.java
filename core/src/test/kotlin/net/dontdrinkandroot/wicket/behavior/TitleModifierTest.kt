@@ -28,13 +28,13 @@ class TitleModifierTest : AbstractWicketTest() {
         container.add(TitleModifier(classModel))
         var componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" title=\"testone\"></wicket:container>",
+            """<wicket:container wicket:id="id" title="testone"></wicket:container>""",
             componentMarkup.toString()
         )
         classModel.setObject("testtwo")
         componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
-            "<wicket:container wicket:id=\"id\" title=\"testtwo\"></wicket:container>",
+            """<wicket:container wicket:id="id" title="testtwo"></wicket:container>""",
             componentMarkup.toString()
         )
     }

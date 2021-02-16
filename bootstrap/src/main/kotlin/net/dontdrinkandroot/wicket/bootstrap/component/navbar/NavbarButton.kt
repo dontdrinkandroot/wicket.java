@@ -13,13 +13,11 @@ import org.apache.wicket.model.Model
 class NavbarButton<T>(
     id: String,
     model: IModel<T>? = null,
-    visibleModel: IModel<Boolean> = Model(true),
-    enabledModel: IModel<Boolean> = Model(true),
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
     onClickHandler: (context: Link<T>) -> Any?,
     alignmentModel: IModel<NavbarAlignment> = NavbarAlignment.LEFT.model()
-) : ButtonLink<T>(id, model, visibleModel, enabledModel, behaviors, bodyModel, onClickHandler) {
+) : ButtonLink<T>(id, model, behaviors, bodyModel, onClickHandler) {
 
     init {
         this.add(CssClassAppender(BootstrapCssClass.NAVBAR_BTN))

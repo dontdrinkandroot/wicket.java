@@ -11,7 +11,7 @@ class EmptyModelInvisibleBehavior : Behavior()
     override fun onConfigure(component: Component)
     {
         super.onConfigure(component)
-        val modelObject = component.defaultModel?.`object`
+        val modelObject = component.defaultModel?.getObject()
         component.isVisible = null != modelObject && (modelObject !is String || modelObject.isNotEmpty())
     }
 }

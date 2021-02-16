@@ -14,14 +14,12 @@ import org.apache.wicket.model.Model
 open class ButtonLink<T>(
     id: String,
     model: IModel<T>? = null,
-    visibleModel: IModel<Boolean> = Model(true),
-    enabledModel: IModel<Boolean> = Model(true),
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
     onClickHandler: (context: Link<T>) -> Any?,
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
-) : Link<T>(id, model, visibleModel, enabledModel, behaviors, bodyModel, onClickHandler) {
+) : Link<T>(id, model, behaviors, bodyModel, onClickHandler) {
 
     protected var buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
 
