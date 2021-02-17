@@ -100,6 +100,7 @@ enum class BootstrapCssClass(override val classString: String) : CssClass {
     LIST_GROUP("list-group"),
     LIST_GROUP_ITEM("list-group-item"),
     LIST_INLINE("list-inline"),
+    LIST_INLINE_ITEM("list-inline-item"),
     LIST_UNSTYLED("list-unstyled"),
     LEAD("lead"),
     MODAL("modal"),

@@ -22,21 +22,26 @@ class KModelTest {
     private class WebMarkupContainer<T>(id: String, model: KModel<T>) : GenericWebMarkupContainer<T>(id, model) {
 
         override fun getAssociatedMarkup(): Markup {
-            this.kModel.value?.let { println(it) }
+            this.kModel.value.let { println(it) }
             return super.getAssociatedMarkup()
         }
     }
 
-    fun <T> print(model: KModel<T>) {
-        if (null == model.value) println("NULL") else println(model.value)
+    private class Printer<T>(val model: KModel<T>) {
+
+        fun print() {
+            model.value.let { println(it) }
+//            if (null == model.value) println("NULL") else println(model.value)
+        }
     }
 
     @Test
     fun test() {
         val nullableModel: KModel<String?> = BasicKModel(null)
         val nonNullableModel: KModel<String> = BasicKModel("value")
-        print(nullableModel)
-        print(nonNullableModel)
+
+        Printer(nullableModel).print()
+        Printer(nonNullableModel).print()
 
         val exampleObject = ExampleObject(666, "Name", 39)
 
@@ -51,8 +56,8 @@ class KModelTest {
         val ageModel: KModel<Int?> = parentModel.kProperty(ExampleObject::age)
         Assertions.assertEquals(39, ageModel.value)
 
-        val cont1 = WebMarkupContainer("bla", idModel)
-        val cont2 = WebMarkupContainer("bla", ageModel)
+//        val cont1 = WebMarkupContainer("bla", idModel)
+//        val cont2 = WebMarkupContainer("bla", ageModel)
 
         val writableNameModel: KModel<String> = parentModel.writableKProperty(ExampleObject::name)
         writableNameModel.value = "ChangedName"

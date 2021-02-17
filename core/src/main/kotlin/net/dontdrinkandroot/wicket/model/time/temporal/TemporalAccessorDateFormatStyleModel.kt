@@ -9,7 +9,7 @@ import java.time.format.FormatStyle
 import java.time.temporal.TemporalAccessor
 import java.util.*
 
-class TemporalAccessorDateTimeFormatStyleModel<T : TemporalAccessor>(
+class TemporalAccessorDateFormatStyleModel<T : TemporalAccessor>(
     parentModel: IModel<T>,
     private val formatStyle: FormatStyle,
     private val locale: Locale = Locale.ENGLISH,
@@ -17,12 +17,12 @@ class TemporalAccessorDateTimeFormatStyleModel<T : TemporalAccessor>(
 ) : AbstractChainedModel<T, String>(parentModel) {
 
     override fun getValue(parentValue: T?) = parentValue?.let {
-        DateTimeFormatter.ofLocalizedDateTime(formatStyle).withLocale(locale).withZone(zoneId).format(it)
+        DateTimeFormatter.ofLocalizedDate(formatStyle).withLocale(locale).withZone(zoneId).format(it)
     }
 }
 
-fun <T : TemporalAccessor> IModel<T>.formatDateTime(
+fun <T : TemporalAccessor> IModel<T>.formatDate(
     formatStyle: FormatStyle,
     locale: Locale = Locale.ENGLISH,
     zoneId: ZoneId = ZoneId.from(ZoneOffset.UTC)
-): IModel<String> = TemporalAccessorDateTimeFormatStyleModel(this, formatStyle, locale, zoneId)
+): IModel<String> = TemporalAccessorDateFormatStyleModel(this, formatStyle, locale, zoneId)

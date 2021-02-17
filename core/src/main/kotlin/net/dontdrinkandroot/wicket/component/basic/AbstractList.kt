@@ -2,15 +2,24 @@ package net.dontdrinkandroot.wicket.component.basic
 
 import net.dontdrinkandroot.wicket.model.ListItemModel
 import org.apache.wicket.Component
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.util.string.Strings
 
-abstract class AbstractList<T>(id: String, model: IModel<List<T>>? = null) : GenericPanel<List<T>>(id, model) {
+abstract class AbstractList<T>(
+    id: String,
+    model: IModel<List<T>>? = null,
+    behaviors: Collection<Behavior> = emptyList(),
+) : GenericPanel<List<T>>(id, model) {
 
-    private var itemView: RepeatingView? = null
+    init {
+        behaviors.forEach { this.add(it) }
+    }
+
+    private lateinit var itemView: RepeatingView
 
     override fun onInitialize() {
         super.onInitialize()
@@ -18,7 +27,7 @@ abstract class AbstractList<T>(id: String, model: IModel<List<T>>? = null) : Gen
             override fun onPopulate() {
                 this.removeAll()
                 if (model != null && model.getObject() != null) {
-                    for (idx in model.getObject()!!.indices) {
+                    for (idx in model.getObject().indices) {
                         val itemModel: IModel<T> = ListItemModel(model, idx)
                         val listComponent = createListComponent(newChildId(), itemModel)
                         processListComponent(listComponent)
