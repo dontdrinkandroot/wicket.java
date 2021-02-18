@@ -8,7 +8,7 @@ import net.dontdrinkandroot.wicket.markup.html.list.ListView as DdrListView
 class ListView<T>(
     id: String,
     model: IModel<List<T>>? = null,
-    private val populateItemHandler: (context: DdrListView<T>, item: ListItem<T>) -> Any?
+    private val populateItemHandler: DdrListView<T>.(item: ListItem<T>) -> Any?
 ) : ListView<T>(id, model) {
 
     override fun populateItem(item: ListItem<T>) {

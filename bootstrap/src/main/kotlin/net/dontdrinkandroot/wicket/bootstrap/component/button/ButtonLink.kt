@@ -16,7 +16,7 @@ open class ButtonLink<T>(
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    onClickHandler: (context: Link<T>) -> Any?,
+    onClickHandler: Link<T>.() -> Any?,
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : Link<T>(id, model, behaviors, bodyModel, onClickHandler) {
