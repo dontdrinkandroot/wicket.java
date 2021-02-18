@@ -11,7 +11,7 @@ open class Link<T>(
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    private val onClickHandler: (context: DdrLink<T>) -> Any?
+    private val onClickHandler: DdrLink<T>.() -> Any?
 ) : Link<T>(id, model) {
 
     init {
