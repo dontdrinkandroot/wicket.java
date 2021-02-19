@@ -10,7 +10,7 @@ class AjaxLink<T>(
     id: String,
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
-    private val onClickHandler: (context: DdrAjaxLink<T>, target: AjaxRequestTarget?) -> Any?
+    private val onClickHandler: DdrAjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
 ) : AjaxLink<T>(id, model) {
 
     init {

@@ -17,5 +17,5 @@ class DecimalFormatModel<T : Number>(
     }
 }
 
-fun <T : Number> IModel<T>.decimalFormat(locale: Locale = Locale.ENGLISH, default: String = "n/a"): IModel<String> =
+fun <T : Number> IModel<T>.formatDecimal(locale: Locale = Locale.ENGLISH, default: String = "n/a"): IModel<String> =
     DecimalFormatModel(this, locale, default)
