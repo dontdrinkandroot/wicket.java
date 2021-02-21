@@ -6,11 +6,11 @@ import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ButtonLinkTest : AbstractWicketTest() {
+class ButtonTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: ButtonLink<Void> = ButtonLink<Void>("id", bodyModel = Model("Label"), onClickHandler = {})
+        val component: Button<Void> = Button<Void>("id", bodyModel = Model("Label"), onClickHandler = {})
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
         Assertions.assertEquals(
             "<wicket:container wicket:id=\"id\" class=\"btn btn-secondary\">Label</wicket:container>",

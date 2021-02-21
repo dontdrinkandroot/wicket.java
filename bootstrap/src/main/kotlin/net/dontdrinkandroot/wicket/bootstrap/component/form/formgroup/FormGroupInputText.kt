@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.TextField
 import org.apache.wicket.model.IModel
 
 open class FormGroupInputText(id: String, model: IModel<String>, labelModel: IModel<String>) :
-    FormGroupInputGroup<String, String, TextField<String>, InputGroupText>(id, labelModel, model) {
+    FormGroupInputGroup<String, String, TextField<String>, InputGroupText>(id, model, labelModel) {
 
     override fun createInputGroup(id: String): InputGroupText {
         return object : InputGroupText(id, model) {

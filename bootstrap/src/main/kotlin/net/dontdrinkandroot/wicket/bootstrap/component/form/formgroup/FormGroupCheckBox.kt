@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.form.CheckBox
 import org.apache.wicket.model.IModel
 
-class FormGroupCheckBox(id: String, labelModel: IModel<String>, model: IModel<Boolean>) :
+class FormGroupCheckBox(id: String, model: IModel<Boolean>, labelModel: IModel<String>) :
     FormGroupFormComponent<Boolean, Boolean, CheckBox>(id, model, labelModel) {
 
     private lateinit var offset: WebMarkupContainer

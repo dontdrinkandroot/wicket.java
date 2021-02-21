@@ -11,7 +11,7 @@ import org.apache.wicket.model.Model
 /**
  * @param <T> Type of the model object.
  */
-open class ButtonLink<T>(
+open class Button<T>(
     id: String,
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),

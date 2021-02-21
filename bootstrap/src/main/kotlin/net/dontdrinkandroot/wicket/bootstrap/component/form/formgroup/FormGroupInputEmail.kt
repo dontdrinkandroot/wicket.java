@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.EmailTextField
 import org.apache.wicket.model.IModel
 
 class FormGroupInputEmail(id: String, model: IModel<String>, labelModel: IModel<String>) :
-    FormGroupInputGroup<String, String, EmailTextField, InputGroupEmail>(id, labelModel, model) {
+    FormGroupInputGroup<String, String, EmailTextField, InputGroupEmail>(id, model, labelModel) {
 
     override fun createInputGroup(id: String): InputGroupEmail {
         return object : InputGroupEmail(id, model) {

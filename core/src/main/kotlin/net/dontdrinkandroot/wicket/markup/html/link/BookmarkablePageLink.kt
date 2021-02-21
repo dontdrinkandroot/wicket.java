@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
-class BookmarkablePageLink<T>(
+open class BookmarkablePageLink<T>(
     id: String,
     model: IModel<T>? = null,
     bodyModel: IModel<String> = Model(null),

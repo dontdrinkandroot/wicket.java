@@ -5,7 +5,7 @@ import kotlin.reflect.KFunction1
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
-class MutablePropertyModel<P, T>(parentModel: IModel<P>, private val property: KMutableProperty1<P, T>) :
+class MutablePropertyModel<P, T>(parentModel: IModel<P>, private val property: KMutableProperty1<P, T?>) :
     AbstractChainedModel<P, T>(parentModel) {
 
     override fun getValue(parentValue: P?): T? = parentValue?.let { property.get(it) }
@@ -18,7 +18,7 @@ class MutablePropertyModel<P, T>(parentModel: IModel<P>, private val property: K
     }
 }
 
-fun <P, T> IModel<T>.writableProperty(property: KMutableProperty1<T, P>): IModel<P> =
+fun <P, T> IModel<T>.writableProperty(property: KMutableProperty1<T, P?>): IModel<P> =
     MutablePropertyModel(this, property)
 
 class PropertyModel<P, T>(parentModel: IModel<P>, private val property: KProperty1<P, T?>) :

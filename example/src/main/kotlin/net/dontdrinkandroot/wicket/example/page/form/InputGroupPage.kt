@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.example.page.form
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink
+import net.dontdrinkandroot.wicket.bootstrap.component.button.Button
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupText
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextLabel
 import net.dontdrinkandroot.wicket.model.model
@@ -21,10 +21,10 @@ class InputGroupPage(parameters: PageParameters) : FormPage(parameters) {
 
         val buttons: InputGroupText = object : InputGroupText("buttons", Model.of("")) {
             override fun createAddonPrepend(id: String): Component =
-                ButtonLink<Void>(id, bodyModel = Model("Prepend"), onClickHandler = {})
+                Button<Void>(id, bodyModel = Model("Prepend"), onClickHandler = {})
 
             override fun createAddonAppend(id: String): Component =
-                ButtonLink<Void>(id, bodyModel = Model("Append"), onClickHandler = {})
+                Button<Void>(id, bodyModel = Model("Append"), onClickHandler = {})
         }
         this.add(buttons)
     }

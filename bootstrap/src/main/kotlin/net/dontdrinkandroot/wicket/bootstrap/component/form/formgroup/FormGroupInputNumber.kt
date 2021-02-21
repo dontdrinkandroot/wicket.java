@@ -9,7 +9,7 @@ import org.apache.wicket.model.IModel
  * @param <N> Type of the Number.
  */
 class FormGroupInputNumber<N>(id: String, model: IModel<N>, labelModel: IModel<String>) :
-    FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumber<N>>(id, labelModel, model)
+    FormGroupInputGroup<N, N, NumberTextField<N>, InputGroupNumber<N>>(id, model, labelModel)
         where N : Number, N : Comparable<N> {
 
     override fun createInputGroup(id: String): InputGroupNumber<N> {

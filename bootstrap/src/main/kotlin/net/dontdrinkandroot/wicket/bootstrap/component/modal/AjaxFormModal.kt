@@ -54,14 +54,14 @@ abstract class AjaxFormModal<T>(id: String, model: IModel<T>? = null) : FormModa
      * @param target The current AjaxRequestTarget or null if not submitted via ajax
      * @see AjaxFormSubmitBehavior.onSubmit
      */
-    protected fun onSubmit(target: AjaxRequestTarget?) {
+    protected open fun onSubmit(target: AjaxRequestTarget?) {
         /* Hook */
     }
 
     /**
      * @see AjaxFormSubmitBehavior.onAfterSubmit
      */
-    protected fun onAfterSubmit(target: AjaxRequestTarget?) {
+    protected open fun onAfterSubmit(target: AjaxRequestTarget?) {
         target?.appendJavaScript(hideScript)
     }
 

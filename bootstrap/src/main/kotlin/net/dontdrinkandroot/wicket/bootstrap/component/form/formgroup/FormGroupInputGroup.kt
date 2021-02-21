@@ -16,8 +16,8 @@ import org.apache.wicket.model.IModel
  */
 abstract class FormGroupInputGroup<T, M, F : FormComponent<M>, I : InputGroup<T, M, F>>(
     id: String,
-    labelModel: IModel<String>,
-    model: IModel<T>
+    model: IModel<T>,
+    labelModel: IModel<String>
 ) : FormGroupValidatable<T, M, F>(id, model, labelModel) {
 
     private val inputGroup: InputGroup<T, M, F>

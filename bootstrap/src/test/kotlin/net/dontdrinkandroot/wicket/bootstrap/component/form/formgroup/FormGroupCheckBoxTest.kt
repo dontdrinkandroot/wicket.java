@@ -13,7 +13,7 @@ class FormGroupCheckBoxTest : AbstractWicketTest() {
     @Test
     fun testDefaultMarkup() {
         val formPanel = TestFormPanel("id")
-        val formGroup = FormGroupCheckBox("formGroup", Model("Label"), Model.of(true))
+        val formGroup = FormGroupCheckBox("formGroup", Model.of(true), Model("Label"))
         formPanel.form.add(formGroup)
         val componentMarkup = ComponentRenderer.renderComponent(formPanel)
         val formGroupTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formGroup")

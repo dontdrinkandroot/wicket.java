@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel
 /**
  * @param <T> Type of the model object.
  */
-class FormGroupTextArea<T>(id: String, labelModel: IModel<String>, model: IModel<T>) :
+class FormGroupTextArea<T>(id: String, model: IModel<T>, labelModel: IModel<String>) :
     FormGroupFormComponent<T, T, TextArea<T>>(id, model, labelModel) {
 
     private var rows = 5

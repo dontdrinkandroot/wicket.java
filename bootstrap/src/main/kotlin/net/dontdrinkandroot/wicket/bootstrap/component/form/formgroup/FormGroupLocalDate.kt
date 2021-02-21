@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel
 import java.time.LocalDate
 
 open class FormGroupLocalDate(id: String, model: IModel<LocalDate>, labelModel: IModel<String>) :
-    FormGroupInputGroup<LocalDate, LocalDate, LocalDateTextField, InputGroupLocalDate>(id, labelModel, model) {
+    FormGroupInputGroup<LocalDate, LocalDate, LocalDateTextField, InputGroupLocalDate>(id, model, labelModel) {
 
     override fun createInputGroup(id: String): InputGroup<LocalDate, LocalDate, LocalDateTextField> {
         return object : InputGroupLocalDate(id, model) {

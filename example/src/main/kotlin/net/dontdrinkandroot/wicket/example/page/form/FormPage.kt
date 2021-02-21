@@ -69,8 +69,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupTextArea = FormGroupTextArea(
             formGroupView.newChildId(),
-            FormGroupTextArea::class.java.simpleName.model(),
-            Model.of("")
+            Model.of(""),
+            FormGroupTextArea::class.java.simpleName.model()
         )
         formGroupTextArea.setRequired(true)
         formGroupView.add(formGroupTextArea)
@@ -106,8 +106,8 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
 
         val formGroupCheckBox = FormGroupCheckBox(
             formGroupView.newChildId(),
-            FormGroupCheckBox::class.java.simpleName.model(),
-            Model()
+            Model(),
+            FormGroupCheckBox::class.java.simpleName.model()
         )
         formGroupView.add(formGroupCheckBox)
 

@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.form.UrlTextField
 import org.apache.wicket.model.IModel
 
 class FormGroupInputUrl(id: String, model: IModel<String>, labelModel: IModel<String>) :
-    FormGroupInputGroup<String, String, UrlTextField, InputGroupUrl>(id, labelModel, model) {
+    FormGroupInputGroup<String, String, UrlTextField, InputGroupUrl>(id, model, labelModel) {
 
     override fun createInputGroup(id: String): InputGroupUrl {
         return object : InputGroupUrl(id, model) {

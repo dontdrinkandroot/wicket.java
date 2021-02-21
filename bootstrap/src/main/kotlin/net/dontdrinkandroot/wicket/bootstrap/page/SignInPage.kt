@@ -70,7 +70,7 @@ abstract class SignInPage(parameters: PageParameters) : BootstrapPage<Void>(para
         formGroupPassword.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         form.add(formGroupPassword)
 
-        val formGroupRememberMe = FormGroupCheckBox("rememberMe", createRememberMeLabelModel(), rememberMeModel)
+        val formGroupRememberMe = FormGroupCheckBox("rememberMe", rememberMeModel, createRememberMeLabelModel())
         formGroupRememberMe.isVisible = isRememberMeEnabled
         form.add(formGroupRememberMe)
 

@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.PasswordTextField
 import org.apache.wicket.model.IModel
 
 class FormGroupInputPassword(id: String, model: IModel<String>, labelModel: IModel<String>) :
-    FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>(id, labelModel, model) {
+    FormGroupInputGroup<String, String, PasswordTextField, InputGroupPassword>(id, model, labelModel) {
 
     override fun createInputGroup(id: String): InputGroup<String, String, PasswordTextField> {
         return object : InputGroupPassword(id, model) {

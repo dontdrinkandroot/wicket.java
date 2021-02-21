@@ -10,8 +10,8 @@ import java.time.LocalDateTime
 class FormGroupLocalDateTime(id: String, model: IModel<LocalDateTime>, labelModel: IModel<String>) :
     FormGroupInputGroup<LocalDateTime, LocalDateTime, LocalDateTimeTextField, InputGroupLocalDateTime>(
         id,
-        labelModel,
-        model
+        model,
+        labelModel
     ) {
 
     override fun createInputGroup(id: String): InputGroup<LocalDateTime, LocalDateTime, LocalDateTimeTextField> {

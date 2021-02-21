@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonLink
+import net.dontdrinkandroot.wicket.bootstrap.component.button.Button
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
 import net.dontdrinkandroot.wicket.markup.html.link.Link
@@ -17,7 +17,7 @@ class NavbarButton<T>(
     bodyModel: IModel<String> = Model(null),
     onClickHandler: (context: Link<T>) -> Any?,
     alignmentModel: IModel<NavbarAlignment> = NavbarAlignment.LEFT.model()
-) : ButtonLink<T>(id, model, behaviors, bodyModel, onClickHandler) {
+) : Button<T>(id, model, behaviors, bodyModel, onClickHandler) {
 
     init {
         this.add(CssClassAppender(BootstrapCssClass.NAVBAR_BTN))
