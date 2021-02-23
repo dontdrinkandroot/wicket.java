@@ -5,7 +5,7 @@ import org.apache.wicket.model.LoadableDetachableModel
 import org.apache.wicket.model.Model
 import java.io.Serializable
 
-fun <T : Serializable> T.model(): IModel<T> = Model(this)
+fun <T : Serializable?> T.model(): IModel<T> = Model(this)
 
 var <T> IModel<T>.value: T?
     get() = `object`

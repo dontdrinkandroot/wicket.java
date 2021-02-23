@@ -2,6 +2,8 @@ package net.dontdrinkandroot.wicket.model
 
 import org.apache.wicket.model.IModel
 
+fun <T : Any?> T.kModel() = BasicKModel(this)
+
 interface KModel<T> : IModel<T> {
 
     var value: T

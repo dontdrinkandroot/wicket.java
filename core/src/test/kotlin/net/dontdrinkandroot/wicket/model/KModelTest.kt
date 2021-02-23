@@ -1,8 +1,8 @@
 package net.dontdrinkandroot.wicket.model
 
 import org.apache.wicket.IGenericComponent
-import org.apache.wicket.markup.Markup
-import org.apache.wicket.markup.html.GenericWebMarkupContainer
+import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.io.Serializable
@@ -19,29 +19,34 @@ class KModelTest {
 
     private data class ExampleObject(val id: Int, var name: String, var age: Int?) : Serializable
 
-    private class WebMarkupContainer<T>(id: String, model: KModel<T>) : GenericWebMarkupContainer<T>(id, model) {
+    private class IModelPrinter<T : String?>(val model: IModel<T>) {
 
-        override fun getAssociatedMarkup(): Markup {
-            this.kModel.value.let { println(it) }
-            return super.getAssociatedMarkup()
+        fun print() {
+            if (null == model.value) println("NULL") else println(model.value)
         }
     }
 
-    private class Printer<T>(val model: KModel<T>) {
+    private class KModelPrinter<T : String?>(val model: KModel<T>) {
 
         fun print() {
-            model.value.let { println(it) }
-//            if (null == model.value) println("NULL") else println(model.value)
+            if (null == model.value) println("NULL") else println(model.value)
         }
     }
 
     @Test
     fun test() {
-        val nullableModel: KModel<String?> = BasicKModel(null)
-        val nonNullableModel: KModel<String> = BasicKModel("value")
 
-        Printer(nullableModel).print()
-        Printer(nonNullableModel).print()
+        val nullableIModel: IModel<String?> = Model(null)
+        val nonNullableIModel: IModel<String> = Model("value")
+
+        IModelPrinter(nullableIModel).print()
+        IModelPrinter(nonNullableIModel).print()
+
+        val nullableKModel: KModel<String?> = BasicKModel(null)
+        val nonNullableKModel: KModel<String> = BasicKModel("value")
+
+        KModelPrinter(nullableKModel).print()
+        KModelPrinter(nonNullableKModel).print()
 
         val exampleObject = ExampleObject(666, "Name", 39)
 
@@ -55,9 +60,6 @@ class KModelTest {
 
         val ageModel: KModel<Int?> = parentModel.kProperty(ExampleObject::age)
         Assertions.assertEquals(39, ageModel.value)
-
-//        val cont1 = WebMarkupContainer("bla", idModel)
-//        val cont2 = WebMarkupContainer("bla", ageModel)
 
         val writableNameModel: KModel<String> = parentModel.writableKProperty(ExampleObject::name)
         writableNameModel.value = "ChangedName"
@@ -74,6 +76,15 @@ class KModelTest {
         val nullParentModel: KModel<ExampleObject?> = BasicKModel(null)
 
         Assertions.assertNull(nullParentModel.optionalKProperty(ExampleObject::id).value)
+    }
+
+    fun textModelExtension() {
+        val nonNullable: KModel<String> = "value".kModel()
+        // nonNullable.setObject(null) Expected not to work
+        // val nonNullableWithNull: IModel<String> = null.model() Expected not to work
+        val nullable: KModel<String?> = "value".kModel()
+        nullable.setObject(null)
+        val nullableWithNull: IModel<String?> = null.kModel()
     }
 
     private fun <T, P> KModel<T>.writableKProperty(kMutableProperty1: KMutableProperty1<T, P>): KModel<P> =
