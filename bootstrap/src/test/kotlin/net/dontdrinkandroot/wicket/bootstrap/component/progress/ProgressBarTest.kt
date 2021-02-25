@@ -27,14 +27,7 @@ class ProgressBarTest : AbstractWicketTest() {
 
     @Test
     fun testStripedAnimatedMarkup() {
-        val component = ProgressBar("id", Model.of(33))
-        Assertions.assertFalse(component.isStriped)
-        component.setStriped(true)
-        Assertions.assertTrue(component.isStriped)
-        Assertions.assertFalse(component.isAnimated)
-        component.setAnimated(true)
-        Assertions.assertTrue(component.isAnimated)
-        Assertions.assertTrue(component.isAnimated)
+        val component = ProgressBar("id", Model.of(33), stripedModel = Model(true), animatedModel = Model(true))
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
         val componentTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id")
         Assertions.assertTrue(componentTester.getAttributeContains("class", "progress"))

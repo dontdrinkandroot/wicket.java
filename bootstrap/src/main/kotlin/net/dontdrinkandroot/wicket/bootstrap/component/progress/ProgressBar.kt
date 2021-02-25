@@ -10,27 +10,15 @@ import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-class ProgressBar : GenericPanel<Int> {
+class ProgressBar(
+    id: String,
+    model: IModel<Int>,
+    val animatedModel: IModel<Boolean> = Model(false),
+    val stripedModel: IModel<Boolean> = Model(false)
+) : GenericPanel<Int>(id, model) {
 
     lateinit var bar: WebMarkupContainer
         private set
-
-    var isAnimated = false
-        private set
-
-    var isStriped = false
-        private set
-
-    constructor(id: String, model: IModel<Int> = Model(0)) : super(id, model)
-
-    constructor(id: String, model: IModel<Int>, striped: Boolean) : super(id, model) {
-        isStriped = striped
-    }
-
-    constructor(id: String, model: IModel<Int>, striped: Boolean, animated: Boolean) : super(id, model) {
-        isAnimated = animated
-        isStriped = striped
-    }
 
     override fun onInitialize() {
         super.onInitialize()
@@ -40,27 +28,23 @@ class ProgressBar : GenericPanel<Int> {
         bar.add(AttributeModifier("style") { String.format("width: %d%%;", this@ProgressBar.modelObject) })
 
         /* Animated */
-        bar.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.PROGRESS_BAR_ANIMATED, { isAnimated })))
+        bar.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.PROGRESS_BAR_ANIMATED, animatedModel)))
 
         /* Striped */
-        bar.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.PROGRESS_BAR_STRIPED, { isStriped })))
+        bar.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.PROGRESS_BAR_STRIPED, stripedModel)))
 
         bar.outputMarkupId = true
         this.add(bar)
     }
 
-    fun setAnimated(animated: Boolean): ProgressBar {
-        isAnimated = animated
-        return this
-    }
-
-    fun setStriped(striped: Boolean): ProgressBar {
-        isStriped = striped
-        return this
-    }
-
     fun update(target: AjaxRequestTarget) {
         target.appendJavaScript(String.format("$('#%s').css({width: '%d%%'});", bar.markupId, this.modelObject))
         target.appendJavaScript(String.format("$('#%s').attr('aria-valuenow', %d);", bar.markupId, this.modelObject))
+    }
+
+    override fun detachModels() {
+        super.detachModels()
+        animatedModel.detach()
+        stripedModel.detach()
     }
 }
