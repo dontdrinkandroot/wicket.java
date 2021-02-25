@@ -9,8 +9,8 @@ open class OrderedList<T>(
     id: String,
     model: IModel<List<T>>? = null,
     behaviors: Collection<Behavior> = emptyList(),
-    createItemComponentHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
-) : AbstractList<T>(id, model, behaviors, createItemComponentHandler) {
+    createItemHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
+) : AbstractList<T>(id, model, behaviors, createItemHandler) {
 
     override fun onComponentTag(tag: ComponentTag) {
         tag.name = "ol"

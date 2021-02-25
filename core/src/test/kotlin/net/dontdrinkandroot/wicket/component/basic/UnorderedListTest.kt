@@ -19,7 +19,7 @@ class UnorderedListTest : AbstractWicketTest() {
                 val component = UnorderedList<String>(
                     componentView.newChildId(),
                     ListModel(Arrays.asList("Alpha", "Beta", "Gamma")),
-                    createItemComponentHandler = { id, model -> Label(id, model) }
+                    createItemHandler = { id, model -> Label(id, model) }
                 )
                 componentView.add(component)
             }

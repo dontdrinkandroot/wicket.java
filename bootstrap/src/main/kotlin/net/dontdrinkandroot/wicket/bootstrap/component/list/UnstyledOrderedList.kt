@@ -15,8 +15,8 @@ open class UnstyledOrderedList<T>(
     id: String,
     model: IModel<List<T>>? = null,
     behaviors: Collection<Behavior> = emptyList(),
-    createItemComponentHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
-) : OrderedList<T>(id, model, behaviors, createItemComponentHandler) {
+    createItemHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
+) : OrderedList<T>(id, model, behaviors, createItemHandler) {
 
     override fun onInitialize() {
         super.onInitialize()

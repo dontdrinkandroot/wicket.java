@@ -19,7 +19,7 @@ class OrderedListTest : AbstractWicketTest() {
                 val component = OrderedList(
                     componentView.newChildId(),
                     ListModel(Arrays.asList("Alpha", "Beta", "Gamma")),
-                    createItemComponentHandler = { id, model ->
+                    createItemHandler = { id, model ->
                         Label(id, model)
                     })
                 componentView.add(component)
