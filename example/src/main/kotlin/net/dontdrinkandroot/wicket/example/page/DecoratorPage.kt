@@ -49,22 +49,16 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
             override fun populateCollapseItems(collapseItemView: RepeatingView) {
                 super.populateCollapseItems(collapseItemView)
                 val leftItems: RepeatingNavbarNav<*> =
-                    object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
-                        override fun populateItems(itemView: RepeatingView) {
-                            super.populateItems(itemView)
-                            populateNavbarLeftItems(itemView)
-                        }
-                    }
+                    RepeatingNavbarNav<Void?>(collapseItemView.newChildId(), populateItemsHandler = { itemView ->
+                        populateNavbarLeftItems(itemView)
+                    })
                 leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
                 collapseItemView.add(leftItems)
                 val rightItems: RepeatingNavbarNav<*> =
-                    object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
-                        override fun populateItems(itemView: RepeatingView) {
-                            super.populateItems(itemView)
-                            itemView.add(ThemeDropdownItem(itemView.newChildId()))
-                            itemView.add(BuildInfoItem(itemView.newChildId()))
-                        }
-                    }
+                    RepeatingNavbarNav<Void?>(collapseItemView.newChildId(), populateItemsHandler = { itemView ->
+                        itemView.add(ThemeDropdownItem(itemView.newChildId()))
+                        itemView.add(BuildInfoItem(itemView.newChildId()))
+                    })
                 collapseItemView.add(rightItems)
             }
         }

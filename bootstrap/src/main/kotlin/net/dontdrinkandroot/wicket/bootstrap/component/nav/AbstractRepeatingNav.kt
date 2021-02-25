@@ -7,7 +7,11 @@ import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 
-open class AbstractRepeatingNav<T>(id: String, model: IModel<T>? = null) : GenericPanel<T>(id, model), ItemContainer {
+open class AbstractRepeatingNav<T>(
+    id: String,
+    model: IModel<T>? = null,
+    private val populateItemsHandler: AbstractRepeatingNav<T>.(itemView: RepeatingView) -> Any?
+) : GenericPanel<T>(id, model), ItemContainer {
 
     override val itemClass: CssClass
         get() = BootstrapCssClass.NAV_ITEM
@@ -18,11 +22,7 @@ open class AbstractRepeatingNav<T>(id: String, model: IModel<T>? = null) : Gener
     override fun onInitialize() {
         super.onInitialize()
         val itemView = RepeatingView("item")
-        populateItems(itemView)
+        populateItemsHandler(itemView)
         this.add(itemView)
-    }
-
-    protected open fun populateItems(itemView: RepeatingView) {
-        /* Hook */
     }
 }

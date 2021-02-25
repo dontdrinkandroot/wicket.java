@@ -4,8 +4,14 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.AbstractRepeatingNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import org.apache.wicket.markup.ComponentTag
+import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.IModel
 
-open class RepeatingNavbarNav<T>(id: String) : AbstractRepeatingNav<T>(id) {
+class RepeatingNavbarNav<T>(
+    id: String,
+    model: IModel<T>? = null,
+    populateItemsHandler: AbstractRepeatingNav<T>.(itemView: RepeatingView) -> Any?
+) : AbstractRepeatingNav<T>(id, model, populateItemsHandler) {
 
     override fun onInitialize() {
         super.onInitialize()

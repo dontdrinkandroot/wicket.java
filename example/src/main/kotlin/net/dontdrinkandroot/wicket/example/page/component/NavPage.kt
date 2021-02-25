@@ -22,55 +22,54 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
     override fun onInitialize() {
         super.onInitialize()
 
-        val tabsDefault = object : RepeatingNavTabs<Void>("tabsDefault") {
-            override fun populateItems(itemView: RepeatingView) {
-                this@NavPage.populateItems(itemView)
-            }
-        }
+        val tabsDefault = RepeatingNavTabs<Void>("tabsDefault", populateItemsHandler = { itemView ->
+            this@NavPage.populateItems(itemView)
+        })
         this.add(tabsDefault)
 
-        val tabsJustified =
-            object : RepeatingNavTabs<Void>("tabsJustified", itemAlignment = NavItemAlignment.JUSTIFIED) {
-                override fun populateItems(itemView: RepeatingView) {
-                    this@NavPage.populateItems(itemView)
-                }
-            }
+        val tabsJustified = RepeatingNavTabs<Void>(
+            "tabsJustified",
+            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
+            populateItemsHandler = { itemView ->
+                this@NavPage.populateItems(itemView)
+            })
         this.add(tabsJustified)
 
-        val tabsFill = object : RepeatingNavTabs<Void>("tabsFill", itemAlignment = NavItemAlignment.FILL) {
-            override fun populateItems(itemView: RepeatingView) {
+        val tabsFill = RepeatingNavTabs<Void>(
+            "tabsFill",
+            itemAlignmentModel = Model(NavItemAlignment.FILL),
+            populateItemsHandler = { itemView ->
                 this@NavPage.populateItems(itemView)
-            }
-        }
+            })
         this.add(tabsFill)
 
-        val pillsDefault = object : RepeatingNavPills<Void>("pillsDefault") {
-            override fun populateItems(itemView: RepeatingView) {
-                this@NavPage.populateItems(itemView)
-            }
-        }
+        val pillsDefault = RepeatingNavPills<Void>("pillsDefault", populateItemsHandler = { itemView ->
+            this@NavPage.populateItems(itemView)
+        })
         this.add(pillsDefault)
 
-        val pillsJustified =
-            object : RepeatingNavPills<Void>("pillsJustified", itemAlignment = NavItemAlignment.JUSTIFIED) {
-                override fun populateItems(itemView: RepeatingView) {
-                    this@NavPage.populateItems(itemView)
-                }
-            }
+        val pillsJustified = RepeatingNavPills<Void>(
+            "pillsJustified",
+            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
+            populateItemsHandler = { itemView ->
+                this@NavPage.populateItems(itemView)
+            })
         this.add(pillsJustified)
 
-        val pillsFill = object : RepeatingNavPills<Void>("pillsFill", itemAlignment = NavItemAlignment.FILL) {
-            override fun populateItems(itemView: RepeatingView) {
+        val pillsFill = RepeatingNavPills<Void>(
+            "pillsFill",
+            itemAlignmentModel = Model(NavItemAlignment.FILL),
+            populateItemsHandler = { itemView ->
                 this@NavPage.populateItems(itemView)
-            }
-        }
+            })
         this.add(pillsFill)
 
-        val pillsColumn = object : RepeatingNavPills<Void>("pillsColumn", itemAlignment = NavItemAlignment.FILL) {
-            override fun populateItems(itemView: RepeatingView) {
+        val pillsColumn = RepeatingNavPills<Void>(
+            "pillsColumn",
+            itemAlignmentModel = Model(NavItemAlignment.FILL),
+            populateItemsHandler = { itemView ->
                 this@NavPage.populateItems(itemView)
-            }
-        }
+            })
         pillsColumn.add(CssClassAppender(Flex.COLUMN))
         this.add(pillsColumn)
     }

@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.example.page.form
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.item.AjaxLinkItem
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavTabs
+import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
@@ -19,7 +19,7 @@ class FormGroupPage(parameters: PageParameters) : FormPage(parameters) {
     override fun onInitialize() {
         super.onInitialize()
 
-        val styleNav = repeatingNavTabs<Void>("styleNav", { itemView ->
+        val styleNav = RepeatingNavTabs<Void>("styleNav", populateItemsHandler = { itemView ->
             itemView.add(object : AjaxLinkItem<Void>(itemView.newChildId(), labelModel = "Default".model()) {
                 override fun onClick(target: AjaxRequestTarget?) {
                     formStyleBehavior.reset()

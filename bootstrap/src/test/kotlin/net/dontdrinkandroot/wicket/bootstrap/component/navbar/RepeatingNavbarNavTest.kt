@@ -5,7 +5,6 @@ import net.dontdrinkandroot.wicket.bootstrap.page.SignInPage
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.core.util.string.ComponentRenderer
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -14,17 +13,15 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component = object : RepeatingNavbarNav<Void>("id") {
-            override fun populateItems(itemView: RepeatingView) {
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Item".model(),
-                        pageClass = SignInPage::class.java
-                    )
+        val component = RepeatingNavbarNav<Void>("id", populateItemsHandler = { itemView ->
+            itemView.add(
+                BookmarkablePageLinkItem<Void>(
+                    itemView.newChildId(),
+                    labelModel = "Item".model(),
+                    pageClass = SignInPage::class.java
                 )
-            }
-        }
+            )
+        })
         val markup = ComponentRenderer.renderComponent(component).toString()
 
         val navbarTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")

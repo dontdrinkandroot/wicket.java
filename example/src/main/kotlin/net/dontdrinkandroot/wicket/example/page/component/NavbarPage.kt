@@ -46,39 +46,40 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
 
             override fun populateCollapseItems(collapseItemView: RepeatingView) {
                 super.populateCollapseItems(collapseItemView)
-                collapseItemView.add(object : RepeatingNavbarNav<Void?>(collapseItemView.newChildId()) {
-                    override fun populateItems(itemView: RepeatingView) {
-                        super.populateItems(itemView)
-                        itemView.add(object :
-                            RepeatingDropdownItem<Void?>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
-                            override fun populateItems(itemView: RepeatingView) {
-                                itemView.add(
-                                    BookmarkablePageLinkItem<Void>(
-                                        itemView.newChildId(),
-                                        labelModel = Model.of("Action"),
-                                        pageClass = HomePage::class.java
+                collapseItemView.add(
+                    RepeatingNavbarNav<Void>(
+                        collapseItemView.newChildId(),
+                        populateItemsHandler = { itemView ->
+                            itemView.add(object :
+                                RepeatingDropdownItem<Void>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
+                                override fun populateItems(itemView: RepeatingView) {
+                                    itemView.add(
+                                        BookmarkablePageLinkItem<Void>(
+                                            itemView.newChildId(),
+                                            labelModel = Model.of("Action"),
+                                            pageClass = HomePage::class.java
+                                        )
                                     )
-                                )
-                                itemView.add(DropdownDividerItem(itemView.newChildId()))
-                                itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
-                                itemView.add(
-                                    BookmarkablePageLinkItem<Void>(
-                                        itemView.newChildId(),
-                                        labelModel = Model.of("Another Action"),
-                                        pageClass = HomePage::class.java
+                                    itemView.add(DropdownDividerItem(itemView.newChildId()))
+                                    itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
+                                    itemView.add(
+                                        BookmarkablePageLinkItem<Void>(
+                                            itemView.newChildId(),
+                                            labelModel = Model.of("Another Action"),
+                                            pageClass = HomePage::class.java
+                                        )
                                     )
+                                }
+                            })
+                            itemView.add(
+                                BookmarkablePageLinkItem<Void>(
+                                    itemView.newChildId(),
+                                    labelModel = Model.of("Link"),
+                                    pageClass = NavbarPage::class.java
                                 )
-                            }
-                        })
-                        itemView.add(
-                            BookmarkablePageLinkItem<Void>(
-                                itemView.newChildId(),
-                                labelModel = Model.of("Link"),
-                                pageClass = NavbarPage::class.java
                             )
-                        )
-                    }
-                })
+                        })
+                )
                 val form = NavbarForm(collapseItemView.newChildId())
                 collapseItemView.add(form)
                 val text = NavbarText(collapseItemView.newChildId(), Model.of("Text"))

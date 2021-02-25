@@ -25,11 +25,11 @@ class ProgressBarPage(parameters: PageParameters) : ComponentPage(parameters) {
         defaultBar.add(CssClassAppender(Spacing.MARGIN_BOTTOM_HALF))
         this.add(defaultBar)
 
-        val stripedBar = ProgressBar("stripedBar", valueModel, true, false)
+        val stripedBar = ProgressBar("stripedBar", valueModel, Model(true), Model(false))
         stripedBar.add(CssClassAppender(Spacing.MARGIN_BOTTOM_HALF))
         this.add(stripedBar)
 
-        val animatedBar = ProgressBar("animatedBar", valueModel, true, true)
+        val animatedBar = ProgressBar("animatedBar", valueModel, Model(true), Model(true))
         animatedBar.add(CssClassAppender(Spacing.MARGIN_BOTTOM_HALF))
         this.add(animatedBar)
 
