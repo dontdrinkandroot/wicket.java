@@ -13,6 +13,7 @@ abstract class AbstractList<T>(
     id: String,
     model: IModel<List<T>>? = null,
     behaviors: Collection<Behavior> = emptyList(),
+    private val createItemComponentHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
 ) : GenericPanel<List<T>>(id, model) {
 
     init {
@@ -29,7 +30,7 @@ abstract class AbstractList<T>(
                 if (model != null && model.getObject() != null) {
                     for (idx in model.getObject().indices) {
                         val itemModel: IModel<T> = ListItemModel(model, idx)
-                        val listComponent = createListComponent(newChildId(), itemModel)
+                        val listComponent = createItemComponentHandler(newChildId(), itemModel)
                         processListComponent(listComponent)
                         this.add(listComponent)
                     }
@@ -64,6 +65,4 @@ abstract class AbstractList<T>(
     protected open fun processListComponent(listComponent: Component) {
         /* Override to apply styles to list component */
     }
-
-    protected abstract fun createListComponent(id: String, model: IModel<T>): Component
 }

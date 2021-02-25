@@ -2,10 +2,8 @@ package net.dontdrinkandroot.wicket.component.basic
 
 import net.dontdrinkandroot.wicket.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.test.TestPage
-import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
-import org.apache.wicket.model.IModel
 import org.apache.wicket.model.util.ListModel
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
@@ -18,14 +16,11 @@ class UnorderedListTest : AbstractWicketTest() {
     fun testDefault() {
         val page: TestPage = object : TestPage() {
             override fun populateComponents(componentView: RepeatingView) {
-                val component: UnorderedList<String> = object : UnorderedList<String>(
+                val component = UnorderedList<String>(
                     componentView.newChildId(),
-                    ListModel(Arrays.asList("Alpha", "Beta", "Gamma"))
-                ) {
-                    override fun createListComponent(id: String, model: IModel<String>): Component {
-                        return Label(id, model)
-                    }
-                }
+                    ListModel(Arrays.asList("Alpha", "Beta", "Gamma")),
+                    createItemComponentHandler = { id, model -> Label(id, model) }
+                )
                 componentView.add(component)
             }
         }
