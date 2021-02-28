@@ -15,7 +15,7 @@ import org.apache.wicket.model.IModel
  */
 abstract class InputGroup<T, M, F : FormComponent<M>> constructor(
     id: String,
-    model: IModel<T>? = null
+    model: IModel<T>? = null,
 ) : GenericPanel<T>(id, model) {
 
     private lateinit var inputGroupPrepend: Component

@@ -5,8 +5,7 @@ import org.apache.wicket.ajax.attributes.AjaxRequestAttributes
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior
 import org.apache.wicket.model.IModel
 
-open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null) :
-    RepeatingForm<T>(id, model) {
+open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null) : RepeatingForm<T>(id, model) {
 
     init {
         createSubmitBehavior()
@@ -37,18 +36,14 @@ open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null
     }
 
     override fun onError() {
-        val target = this.requestCycle.find(
-            AjaxRequestTarget::class.java
-        )
+        val target = this.requestCycle.find(AjaxRequestTarget::class.java)
         if (!target.isPresent) {
             this.onError(null)
         }
     }
 
     override fun onSubmit() {
-        val target = this.requestCycle.find(
-            AjaxRequestTarget::class.java
-        )
+        val target = this.requestCycle.find(AjaxRequestTarget::class.java)
         if (!target.isPresent) {
             this.onSubmit(null)
             onAfterSubmit(null)

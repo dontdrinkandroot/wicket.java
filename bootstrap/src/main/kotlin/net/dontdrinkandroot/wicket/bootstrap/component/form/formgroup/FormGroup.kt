@@ -54,9 +54,7 @@ open class FormGroup<T>(id: String, model: IModel<T>, protected var labelModel: 
         return label
     }
 
-    protected fun createContainer(id: String): WebMarkupContainer {
-        return WebMarkupContainer(id)
-    }
+    protected fun createContainer(id: String): WebMarkupContainer = WebMarkupContainer(id)
 
     fun setLabelScreenReaderOnly(labelScreenReaderOnly: Boolean): FormGroup<T> {
         labelScreenReaderOnlyModel.setObject(labelScreenReaderOnly)
