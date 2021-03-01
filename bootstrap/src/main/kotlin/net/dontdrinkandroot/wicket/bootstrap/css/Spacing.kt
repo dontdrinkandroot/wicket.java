@@ -12,12 +12,10 @@ class Spacing(
     override val classString: String
         get() {
             val classString = StringBuilder(property.value)
-            if (null != sides) {
-                classString.append(sides!!.value)
-            }
-            if (null != breakpoint) {
+            sides?.let { classString.append(it.value) }
+            breakpoint?.let {
                 classString.append("-")
-                classString.append(breakpoint!!.classString)
+                classString.append(it.classString)
             }
             classString.append("-")
             classString.append(size.value)
@@ -50,7 +48,8 @@ class Spacing(
 
     companion object {
 
-        val MARGIN_BOTTOM_HALF = Spacing(Spacing.Property.MARGIN, Spacing.Size.HALF, Spacing.Side.BOTTOM)
-        val MARGIN_BOTTOM_FULL = Spacing(Spacing.Property.MARGIN, Spacing.Size.FULL, Spacing.Side.BOTTOM)
+        val MARGIN_BOTTOM_HALF = Spacing(Property.MARGIN, Size.HALF, Side.BOTTOM)
+        val MARGIN_BOTTOM_FULL = Spacing(Property.MARGIN, Size.FULL, Side.BOTTOM)
+        val MARGIN_END_AUTO = Spacing(Property.MARGIN, Size.AUTO, Side.END)
     }
 }

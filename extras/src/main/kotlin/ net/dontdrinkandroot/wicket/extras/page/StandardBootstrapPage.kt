@@ -77,7 +77,7 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         /* Overwrite in order to add primary actions */
     }
 
-    protected open fun createNavbar(id: String): Navbar = Navbar(id)
+    protected open fun createNavbar(id: String): Navbar = Navbar(id) {}
 
     protected fun createFooter(id: String) = WebMarkupContainer(id).setVisible(false)
 

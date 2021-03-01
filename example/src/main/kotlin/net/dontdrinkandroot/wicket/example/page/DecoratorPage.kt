@@ -16,13 +16,12 @@ import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
+import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.model.model
-import org.apache.wicket.Component
 import org.apache.wicket.markup.head.CssContentHeaderItem
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem
 import org.apache.wicket.markup.head.IHeaderResponse
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem
-import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -38,33 +37,28 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     override fun createPageTitlePrefixModel() = "wicket.example".model()
 
-    override fun createNavbar(id: String): Navbar {
-        val navbar: Navbar = object : Navbar(id) {
-            override fun createBrand(id: String): Component {
-                val brandLink: BookmarkablePageLink<Void> = BookmarkablePageLink(id, HomePage::class.java)
-                brandLink.body = Model.of("wicket.example")
-                return brandLink
-            }
-
-            override fun populateCollapseItems(collapseItemView: RepeatingView) {
-                super.populateCollapseItems(collapseItemView)
-                val leftItems: RepeatingNavbarNav<*> =
-                    RepeatingNavbarNav<Void?>(collapseItemView.newChildId(), populateItemsHandler = { itemView ->
-                        populateNavbarLeftItems(itemView)
-                    })
-                leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
-                collapseItemView.add(leftItems)
-                val rightItems: RepeatingNavbarNav<*> =
-                    RepeatingNavbarNav<Void?>(collapseItemView.newChildId(), populateItemsHandler = { itemView ->
-                        itemView.add(ThemeDropdownItem(itemView.newChildId()))
-                        itemView.add(BuildInfoItem(itemView.newChildId()))
-                    })
-                collapseItemView.add(rightItems)
-            }
+    override fun createNavbar(id: String) = Navbar(
+        id,
+        positionModel = Model(NavbarPosition.FIXED_TOP),
+        behaviors = listOf(CssClassAppender(BackgroundColor.LIGHT)),
+        createBrandHandler = { id ->
+            BookmarkablePageLink<Void>(
+                id,
+                pageClass = HomePage::class.java,
+                bodyModel = Model("wicket.example")
+            )
         }
-        navbar.setPosition(NavbarPosition.FIXED_TOP)
-        navbar.add(CssClassAppender(BackgroundColor.LIGHT))
-        return navbar
+    ) { collapseItemView ->
+        val leftItems = RepeatingNavbarNav<Void>(collapseItemView.newChildId()) { itemView ->
+            populateNavbarLeftItems(itemView)
+        }
+        leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
+        collapseItemView.add(leftItems)
+        val rightItems = RepeatingNavbarNav<Void>(collapseItemView.newChildId()) { itemView ->
+            itemView.add(ThemeDropdownItem(itemView.newChildId()))
+            itemView.add(BuildInfoItem(itemView.newChildId()))
+        }
+        collapseItemView.add(rightItems)
     }
 
     protected fun populateNavbarLeftItems(leftItemView: RepeatingView) {

@@ -13,7 +13,7 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component = RepeatingNavbarNav<Void>("id", populateItemsHandler = { itemView ->
+        val component = RepeatingNavbarNav<Void>("id") { itemView ->
             itemView.add(
                 BookmarkablePageLinkItem<Void>(
                     itemView.newChildId(),
@@ -21,7 +21,7 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
                     pageClass = SignInPage::class.java
                 )
             )
-        })
+        }
         val markup = ComponentRenderer.renderComponent(component).toString()
 
         val navbarTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")

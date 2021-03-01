@@ -35,14 +35,10 @@ class ModalRequestBehavior(private val targetId: String) : Behavior() {
         }
     }
 
-    private fun extractModal(modalRequest: ModalRequest): Modal<*> {
-        if (modalRequest is OpenModalRequest) {
-            return this.createModal(modalRequest)
-        }
-        if (modalRequest is CreateAndOpenModalRequest<*, *>) {
-            return this.createModal(modalRequest)
-        }
-        throw WicketRuntimeException(
+    private fun extractModal(modalRequest: ModalRequest): Modal<*> = when (modalRequest) {
+        is OpenModalRequest -> this.createModal(modalRequest)
+        is CreateAndOpenModalRequest<*, *> -> this.createModal(modalRequest)
+        else -> throw WicketRuntimeException(
             String.format(
                 "Unknown Modal Request: %s",
                 modalRequest.javaClass.canonicalName
@@ -52,9 +48,7 @@ class ModalRequestBehavior(private val targetId: String) : Behavior() {
 
     private fun createModal(openModalRequest: OpenModalRequest): Modal<*> {
         val modal = openModalRequest.modal
-        if (targetId != modal.id) {
-            throw WicketRuntimeException("Unexpected Modal ID")
-        }
+        if (targetId != modal.id) throw WicketRuntimeException("Unexpected Modal ID")
         return modal
     }
 

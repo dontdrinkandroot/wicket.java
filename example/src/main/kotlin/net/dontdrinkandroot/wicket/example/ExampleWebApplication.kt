@@ -22,28 +22,25 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-open class ExampleWebApplication : WicketBootStandardWebApplication()
-{
+open class ExampleWebApplication : WicketBootStandardWebApplication() {
+
     private val logger = LoggerFactory.getLogger(this.javaClass)
     lateinit var buildProperties: Properties
         private set
 
-    override fun getHomePage(): Class<out Page?>
-    {
+    override fun getHomePage(): Class<out Page?> {
         return HomePage::class.java
     }
 
-    override fun init()
-    {
+    override fun init() {
         super.init()
         javaScriptLibrarySettings.jQueryReference =
             UrlResourceReference(Url.parse("https://code.jquery.com/jquery-2.2.4.min.js"))
-        try
-        {
+
+        try {
             buildProperties = Properties()
             buildProperties.load(this.javaClass.classLoader.getResourceAsStream("build.properties"))
-        } catch (e: Exception)
-        {
+        } catch (e: Exception) {
             this.logger.warn("Could not load build properties: {}", e.message)
         }
         mountPage("css", CssPage::class.java)
@@ -66,16 +63,14 @@ open class ExampleWebApplication : WicketBootStandardWebApplication()
         mountPage("components/breadcrumbs", BreadcrumbPage::class.java)
     }
 
-    override fun newSession(request: Request, response: Response): Session
-    {
+    override fun newSession(request: Request, response: Response): Session {
         return ExampleWebSession(request)
     }
 
-    companion object
-    {
+    companion object {
+
         @JvmStatic
-        fun get(): ExampleWebApplication
-        {
+        fun get(): ExampleWebApplication {
             return WebApplication.get() as ExampleWebApplication
         }
     }

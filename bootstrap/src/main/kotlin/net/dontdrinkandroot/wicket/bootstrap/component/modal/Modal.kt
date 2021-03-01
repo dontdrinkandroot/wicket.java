@@ -42,8 +42,5 @@ abstract class Modal<T>(id: String, model: IModel<T>? = null) : GenericPanel<T>(
     val showScript: CharSequence
         get() = "new bootstrap.Modal(document.getElementById('$markupId')).show()"
 
-    val toggleScript: CharSequence
-        get() = String.format("$('#%s').modal('toggle');", this.markupId)
-
     protected abstract fun createHeadingModel(): IModel<String>
 }
