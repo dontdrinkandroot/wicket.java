@@ -18,8 +18,10 @@ open class Navbar(
     positionModel: IModel<NavbarPosition?> = Model(null),
     styleModel: IModel<NavbarStyle> = NavbarStyle.LIGHT.model(),
     expandModel: IModel<NavbarExpand> = NavbarExpand.LG.model(),
-    containerStyleModel: IModel<ContainerStyle> = ContainerStyle.DEFAULT.model(),
-    createBrandHandler: Navbar.(id: String) -> Component = { id -> WebMarkupContainer(id).also { isVisible = false } },
+    containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
+    createBrandHandler: Navbar.(id: String) -> Component = { id ->
+        WebMarkupContainer(id).apply { isVisible = false }
+    },
     populateCollapseItemsHandler: Navbar.(collapseItemView: RepeatingView) -> Any?
 ) : Panel(id) {
 
@@ -30,10 +32,11 @@ open class Navbar(
         this.add(CssClassAppender(expandModel))
 
         val container = WebMarkupContainer("container")
-        container.add(CssClassAppender(containerStyleModel.getObject()))
+        container.add(CssClassAppender(containerStyleModel))
         this.add(container)
 
-        container.add(createBrandHandler("navbarBrand"))
+        val brand = createBrandHandler("navbarBrand")
+        container.add(brand)
 
         val navbarCollapse = WebMarkupContainer("navbarCollapse")
         navbarCollapse.outputMarkupId = true
