@@ -33,9 +33,10 @@ class AjaxFormModalTest : AbstractWicketTest() {
 
     @Test
     fun testSubmit() {
-        val testStringModel: IModel<String> = Model()
-        val component: AjaxFormModal<String> =
-            object : AjaxFormModal<String>(FormTestPage.COMPONENT_ID, testStringModel) {
+        val testStringModel: IModel<String?> = Model()
+
+        val component: AjaxFormModal<String?> =
+            object : AjaxFormModal<String?>(FormTestPage.COMPONENT_ID, testStringModel) {
                 override fun createHeadingModel(): IModel<String> {
                     return Model.of("Heading")
                 }

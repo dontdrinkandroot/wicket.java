@@ -16,8 +16,8 @@ class InputGroupAddonTest : AbstractWicketTest() {
     @Test
     fun testMarkup() {
         val formPanel = TestFormPanel("id")
-        val formGroupInputText: FormGroupInputText =
-            object : FormGroupInputText("formGroup", Model.of("Value"), Model("Label")) {
+        val formGroupInputText: FormGroupInputText<String> =
+            object : FormGroupInputText<String>("formGroup", Model.of("Value"), Model("Label")) {
                 override fun createInputGroupPrepend(id: String): Component =
                     InputGroupTextLabel(id, Model.of("Label"))
 

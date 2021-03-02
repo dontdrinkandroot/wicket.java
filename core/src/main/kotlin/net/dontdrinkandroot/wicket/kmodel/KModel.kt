@@ -14,6 +14,9 @@ import kotlin.reflect.KProperty1
 
 fun <T : Any?> T.kModel() = ValueKModel(this)
 
+@Suppress("UNCHECKED_CAST")
+fun <T> KModel<T>.nullable(): KModel<T?> = this as KModel<T?>
+
 interface KModel<T> : IModel<T> {
 
     val value: T
