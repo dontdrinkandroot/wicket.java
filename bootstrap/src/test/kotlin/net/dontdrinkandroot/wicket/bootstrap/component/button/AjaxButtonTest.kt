@@ -10,9 +10,7 @@ class AjaxButtonTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: AjaxButton<Void> = AjaxButton("id", bodyModel = Model("Label"), onClickHandler = {
-            /* Noop */
-        })
+        val component: AjaxButton<Void> = ajaxButton("id", bodyModel = Model("Label")) {}
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
         Assertions.assertEquals(
             """<wicket:container wicket:id="id" id="id1" class="btn btn-secondary">Label</wicket:container>""",

@@ -27,6 +27,7 @@ abstract class DropdownButton<T>(
     buttonSizeModel: IModel<ButtonSize> = Model(null),
     prependIconModel: IModel<CssClass> = Model(null),
     appendIconModel: IModel<CssClass> = Model(null),
+    private val dropdownAlignmentModel: IModel<DropdownAlignment?> = Model(null),
 ) : GenericPanel<T>(id, model) {
 
     protected var buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
@@ -51,11 +52,9 @@ abstract class DropdownButton<T>(
         menu = createDropdownMenu("menu")
     }
 
-    protected fun createDropdownMenu(id: String): DropdownMenu {
-        return object : DropdownMenu(id) {
-            override fun populateItems(itemView: RepeatingView) {
-                this@DropdownButton.populateItems(itemView)
-            }
+    protected fun createDropdownMenu(id: String) = object : DropdownMenu(id, dropdownAlignmentModel) {
+        override fun populateItems(itemView: RepeatingView) {
+            this@DropdownButton.populateItems(itemView)
         }
     }
 
@@ -65,11 +64,6 @@ abstract class DropdownButton<T>(
         toggle.add(iconBehavior)
         this.add(toggle)
         this.add(menu)
-    }
-
-    fun setDropdownAlignment(alignment: DropdownAlignment): DropdownButton<T> {
-        menu.setAlignment(alignment)
-        return this
     }
 
     protected abstract fun populateItems(itemView: RepeatingView)

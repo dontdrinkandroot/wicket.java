@@ -13,13 +13,14 @@ class FormGroupAjaxValidationBehaviorTest : AbstractWicketTest() {
 
     @Test
     fun testError() {
-        val page: FormGroupTestPage<FormGroupInputEmail> = object : FormGroupTestPage<FormGroupInputEmail>() {
-            override fun createFormGroup(id: String): FormGroupInputEmail {
-                val formGroup = FormGroupInputEmail(id, Model(), Model("Label"))
-                formGroup.addAjaxValidation("blur")
-                return formGroup
+        val page: FormGroupTestPage<FormGroupInputEmail<String>> =
+            object : FormGroupTestPage<FormGroupInputEmail<String>>() {
+                override fun createFormGroup(id: String): FormGroupInputEmail<String> {
+                    val formGroup = FormGroupInputEmail(id, Model(), Model("Label"))
+                    formGroup.addAjaxValidation("blur")
+                    return formGroup
+                }
             }
-        }
         tester.startPage(page)
         val formTester = tester.newFormTester("form", false)
         formTester.setValue("formGroup:container:inputGroup:formComponent", "invalid")

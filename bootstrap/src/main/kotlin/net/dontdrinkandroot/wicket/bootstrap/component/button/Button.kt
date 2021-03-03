@@ -11,15 +11,14 @@ import org.apache.wicket.model.Model
 /**
  * @param <T> Type of the model object.
  */
-open class Button<T>(
+abstract class Button<T>(
     id: String,
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    onClickHandler: Link<T>.() -> Any?,
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
-) : Link<T>(id, model, behaviors, bodyModel, onClickHandler) {
+) : Link<T>(id, model, behaviors, bodyModel) {
 
     protected var buttonBehavior = ButtonBehavior(buttonStyleModel, buttonSizeModel)
 
@@ -27,4 +26,26 @@ open class Button<T>(
         super.onInitialize()
         this.add(buttonBehavior)
     }
+}
+
+fun <T> button(
+    id: String,
+    model: IModel<T>? = null,
+    behaviors: Collection<Behavior> = emptyList(),
+    bodyModel: IModel<String> = Model(null),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+    onClickHandler: Button<T>.() -> Any?
+) = object : Button<T>(
+    id,
+    model,
+    behaviors = behaviors,
+    bodyModel = bodyModel,
+    buttonStyleModel = buttonStyleModel,
+    buttonSizeModel = buttonSizeModel
+) {
+    override fun onClick() {
+        onClickHandler()
+    }
+
 }

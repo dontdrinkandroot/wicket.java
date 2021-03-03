@@ -22,14 +22,14 @@ interface KModel<T> : IModel<T> {
     val value: T
 
     override fun getObject(): T = value
-    override fun setObject(value: T): Unit = throw UnsupportedOperationException("Readonly")
+    override fun setObject(`object`: T): Unit = throw UnsupportedOperationException("Readonly")
 }
 
 interface WriteableKModel<T> : KModel<T> {
 
     override var value: T
 
-    override fun setObject(value: T) {
+    override fun setObject(`object`: T) {
         this.value = `object`
     }
 }
@@ -67,6 +67,15 @@ fun <T> KModel<T?>.default(defaultValue: T) = object : KModel<T> {
     }
 }
 
+fun <P, T> KModel<P>.chain(getChain: (P) -> T): KModel<T> = object : KModel<T> {
+    override val value: T
+        get() = getChain(this@chain.value)
+
+    override fun detach() {
+        this@chain.detach()
+    }
+}
+
 fun <T, P> KModel<T>.property(kProperty1: KProperty1<T, P>): KModel<P> = object : KModel<P> {
     override val value: P
         get() = kProperty1.getValue(this@property.value, kProperty1)
@@ -101,6 +110,9 @@ val <T, C : IGenericComponent<T, *>> IGenericComponent<T, C>.kModel: KModel<T>
         is KModel -> this.model as KModel<T>
         else -> WrappedKModel<T>(this.model)
     }
+
+val <T, C : IGenericComponent<T, *>> IGenericComponent<T, C>.kModelValue: T
+    get() = this.kModel.value
 
 fun <T : String?> KModel<T>.capitalize(): KModel<String?> = object : KModel<String?> {
     override val value: String?

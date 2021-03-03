@@ -11,12 +11,12 @@ import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-abstract class DropdownMenu(id: String) : Panel(id), ItemContainer {
+abstract class DropdownMenu(
+    id: String,
+    alignmentModel: IModel<DropdownAlignment?> = Model(null),
+) : Panel(id), ItemContainer {
 
-    private val alignmentModel: IModel<DropdownAlignment?> = Model(null)
-
-    override fun onInitialize() {
-        super.onInitialize()
+    init {
         this.add(CssClassAppender(BootstrapCssClass.DROPDOWN_MENU))
         this.add(CssClassAppender(alignmentModel))
         this.add(AttributeModifier("role", Model.of("menu")))
@@ -29,10 +29,15 @@ abstract class DropdownMenu(id: String) : Panel(id), ItemContainer {
     override val linkClass: CssClass?
         get() = BootstrapCssClass.DROPDOWN_ITEM
 
-    fun setAlignment(alignment: DropdownAlignment): DropdownMenu {
-        alignmentModel.setObject(alignment)
-        return this
-    }
+    abstract fun populateItems(itemView: RepeatingView)
+}
 
-    protected abstract fun populateItems(itemView: RepeatingView)
+fun dropdownMenu(
+    id: String,
+    alignmentModel: IModel<DropdownAlignment?> = Model(null),
+    populateItemsHandler: DropdownMenu.(itemView: RepeatingView) -> Any?
+) = object : DropdownMenu(id, alignmentModel) {
+    override fun populateItems(itemView: RepeatingView) {
+        populateItemsHandler(itemView)
+    }
 }

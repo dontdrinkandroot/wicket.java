@@ -11,9 +11,9 @@ import org.apache.wicket.markup.html.link.StatelessLink
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 
-class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void?>(
+class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void>(
     id,
-    labelModel = ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name })
+    labelModel = ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name }),
 ) {
 
     override fun populateItems(itemView: RepeatingView) {
@@ -22,7 +22,7 @@ class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void?>(
         }
     }
 
-    protected fun createThemeLinkItem(id: String, theme: Theme): AbstractLinkItem<*, *> {
+    private fun createThemeLinkItem(id: String, theme: Theme): AbstractLinkItem<*, *> {
         return object : AbstractLinkItem<Void, StatelessLink<Void>>(id, labelModel = Model.of(theme.name)) {
             override fun createLink(id: String): StatelessLink<Void> {
                 return object : StatelessLink<Void>(id) {

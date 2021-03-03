@@ -10,16 +10,25 @@ import org.apache.wicket.model.IModel
 abstract class RepeatingDropdownItem<T>(
     id: String,
     model: IModel<T>? = null,
-    labelModel: IModel<String>
+    labelModel: IModel<String>,
 ) : DropdownItem<T>(id, model, labelModel) {
 
-    override fun createDropdownMenu(id: String): DropdownMenu {
-        return object : DropdownMenu(id) {
-            override fun populateItems(itemView: RepeatingView) {
-                this@RepeatingDropdownItem.populateItems(itemView)
-            }
+    override fun createDropdownMenu(id: String) = object : DropdownMenu(id) {
+        override fun populateItems(itemView: RepeatingView) {
+            this@RepeatingDropdownItem.populateItems(itemView)
         }
     }
 
-    protected abstract fun populateItems(itemView: RepeatingView)
+    abstract fun populateItems(itemView: RepeatingView)
+}
+
+fun <T> repeatingDropdownItem(
+    id: String,
+    model: IModel<T>? = null,
+    labelModel: IModel<String>,
+    populateItemsHandler: RepeatingDropdownItem<T>.(itemView: RepeatingView) -> Any?
+) = object : RepeatingDropdownItem<T>(id, model, labelModel) {
+    override fun populateItems(itemView: RepeatingView) {
+        populateItemsHandler(itemView)
+    }
 }

@@ -13,18 +13,55 @@ import org.apache.wicket.model.Model
 /**
  * @param <T> Type of the model object.
  */
-class AjaxButton<T>(
+abstract class AjaxButton<T>(
     id: String,
     model: IModel<T>? = null,
     behaviors: List<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?,
     buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
-) : AjaxLink<T>(id, model, behaviors, bodyModel, onClickHandler) {
+) : AjaxLink<T>(id, model, behaviors, bodyModel) {
 
     init {
         behaviors.forEach { add(it) }
         add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
+    }
+}
+
+fun <T> ajaxButton(
+    id: String,
+    model: IModel<T>? = null,
+    behaviors: List<Behavior> = emptyList(),
+    bodyModel: IModel<String> = Model(null),
+    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+    onClickHandler: AjaxButton<T>.(target: AjaxRequestTarget?) -> Any?
+) = object : AjaxButton<T>(
+    id,
+    model,
+    behaviors = behaviors,
+    bodyModel = bodyModel,
+    buttonStyleModel = buttonStyleModel,
+    buttonSizeModel = buttonSizeModel
+) {
+    override fun onClick(target: AjaxRequestTarget?) {
+        onClickHandler(target)
+    }
+}
+
+fun ajaxButton(
+    id: String,
+    bodyModel: IModel<String> = Model(null),
+    buttonStyle: ButtonStyle = ButtonStyle.SECONDARY,
+    buttonSize: ButtonSize? = null,
+    onClickHandler: AjaxButton<Void>.(target: AjaxRequestTarget?) -> Any?
+) = object : AjaxButton<Void>(
+    id,
+    bodyModel = bodyModel,
+    buttonStyleModel = Model(buttonStyle),
+    buttonSizeModel = Model(buttonSize)
+) {
+    override fun onClick(target: AjaxRequestTarget?) {
+        onClickHandler(target)
     }
 }

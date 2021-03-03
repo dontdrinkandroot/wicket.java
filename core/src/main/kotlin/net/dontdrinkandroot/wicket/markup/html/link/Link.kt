@@ -1,25 +1,31 @@
 package net.dontdrinkandroot.wicket.markup.html.link
 
 import org.apache.wicket.behavior.Behavior
-import org.apache.wicket.markup.html.link.Link
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
-import net.dontdrinkandroot.wicket.markup.html.link.Link as DdrLink
+import org.apache.wicket.markup.html.link.Link as WicketLink
 
-open class Link<T>(
+abstract class Link<T>(
     id: String,
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    private val onClickHandler: DdrLink<T>.() -> Any?
-) : Link<T>(id, model) {
+) : WicketLink<T>(id, model) {
 
     init {
         body = bodyModel
         behaviors.forEach { this.add(it) }
     }
+}
 
-    final override fun onClick() {
+fun <T> link(
+    id: String,
+    model: IModel<T>? = null,
+    behaviors: Collection<Behavior> = emptyList(),
+    bodyModel: IModel<String> = Model(null),
+    onClickHandler: Link<T>.() -> Any?
+) = object : Link<T>(id, model, behaviors = behaviors, bodyModel = bodyModel) {
+    override fun onClick() {
         onClickHandler(this)
     }
 }

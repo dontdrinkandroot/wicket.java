@@ -7,6 +7,6 @@ import net.dontdrinkandroot.wicket.css.CssClass
  */
 enum class DropdownAlignment(override val classString: String) : CssClass {
 
-    LEFT("dropdown-menu-left"),
-    RIGHT("dropdown-menu-right");
+    START("dropdown-menu-start"),
+    END("dropdown-menu-end");
 }

@@ -13,6 +13,7 @@ enum class FontAwesome5IconClass(override val classString: String) : CssClass {
     FILE("fa-file"),
     PAUSE("fa-pause"),
     PLUS("fa-plus"),
+    TRASH("fa-trash"),
     UNDO("fa-undo");
 
     fun createIcon(style: FontAwesome5Icon.Style = FontAwesome5Icon.Style.SOLID): FontAwesome5Icon =

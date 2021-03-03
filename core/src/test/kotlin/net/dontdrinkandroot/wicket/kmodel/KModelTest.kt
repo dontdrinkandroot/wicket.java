@@ -35,11 +35,17 @@ class KModelTest {
         val parentModel: KModel<ExampleObject> = ValueKModel(exampleObject)
 
         val nameModel: WriteableKModel<String> = parentModel.writableProperty(ExampleObject::name)
+
         Assertions.assertEquals("Name", nameModel.value)
         nameModel.value = "ChangedName"
         Assertions.assertEquals("ChangedName", nameModel.value)
         Assertions.assertEquals("ChangedName", nameModel.getObject())
         Assertions.assertEquals("ChangedName", exampleObject.name)
+
+        nameModel.setObject("ChangedNameAgain")
+        Assertions.assertEquals("ChangedNameAgain", nameModel.value)
+        Assertions.assertEquals("ChangedNameAgain", nameModel.getObject())
+        Assertions.assertEquals("ChangedNameAgain", exampleObject.name)
 
         val ageModel: WriteableKModel<Int?> = parentModel.writableProperty(ExampleObject::age)
         Assertions.assertEquals(39, ageModel.value)
