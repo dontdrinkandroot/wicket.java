@@ -19,11 +19,11 @@ class ButtonBehavior constructor(
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : CompositeBehavior(CssClassAppender(BootstrapCssClass.BTN), DisabledCssBehavior()) {
 
-    constructor(buttonStyle: ButtonStyle) : this(buttonStyleModel = buttonStyle.model())
+    constructor(buttonStyle: ButtonStyle?) : this(buttonStyleModel = Model(buttonStyle))
 
-    constructor(buttonSize: ButtonSize) : this(buttonSizeModel = buttonSize.model())
+    constructor(buttonSize: ButtonSize?) : this(buttonSizeModel = Model(buttonSize))
 
-    constructor(buttonStyle: ButtonStyle, buttonSize: ButtonSize) : this(buttonStyle.model(), buttonSize.model())
+    constructor(buttonStyle: ButtonStyle?, buttonSize: ButtonSize?) : this(Model(buttonStyle), Model(buttonSize))
 
     init {
         addBehavior(CssClassAppender(buttonStyleModel))

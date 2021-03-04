@@ -11,3 +11,5 @@ class OutputMarkupIdBehavior : Behavior() {
 
     override fun isTemporary(component: Component) = true
 }
+
+fun outputMarkupId() = OutputMarkupIdBehavior()

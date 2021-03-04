@@ -15,3 +15,7 @@ open class CssClassAppender : AttributeAppender {
     constructor(cssClass: CssClass) : super("class", Model(cssClass.classString), " ")
     constructor(cssClassModel: IModel<out CssClass?>) : super("class", CssClassClassStringModel(cssClassModel), " ")
 }
+
+fun cssClass(cssClass: CssClass) = CssClassAppender(cssClass)
+
+fun cssClasses(vararg cssClasses: CssClass) = CompositeBehavior(cssClasses.map { CssClassAppender(it) }.toMutableList())

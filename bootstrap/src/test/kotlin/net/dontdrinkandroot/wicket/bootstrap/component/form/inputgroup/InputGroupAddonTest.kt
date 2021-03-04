@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup
 
-import net.dontdrinkandroot.wicket.bootstrap.component.button.button
+import net.dontdrinkandroot.wicket.bootstrap.component.button.buttonLink
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
 import net.dontdrinkandroot.wicket.bootstrap.test.TestFormPanel
@@ -22,7 +22,7 @@ class InputGroupAddonTest : AbstractWicketTest() {
                     InputGroupTextLabel(id, Model.of("Label"))
 
                 override fun createInputGroupAppend(id: String): Component =
-                    button<Void>(id, bodyModel = Model("Button")) {}
+                    buttonLink<Void>(id, bodyModel = Model("Button")) {}
             }
         formPanel.form.add(formGroupInputText)
         val componentMarkup = ComponentRenderer.renderComponent(formGroupInputText)

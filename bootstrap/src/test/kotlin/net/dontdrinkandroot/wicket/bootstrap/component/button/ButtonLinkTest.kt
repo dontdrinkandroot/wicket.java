@@ -6,14 +6,14 @@ import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class AjaxButtonTest : AbstractWicketTest() {
+class ButtonLinkTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: AjaxButton<Void> = ajaxButton("id", bodyModel = Model("Label")) {}
+        val component = buttonLink<Void>("id", bodyModel = Model("Label")) {}
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
         Assertions.assertEquals(
-            """<wicket:container wicket:id="id" id="id1" class="btn btn-secondary">Label</wicket:container>""",
+            """<wicket:container wicket:id="id" class="btn btn-secondary">Label</wicket:container>""",
             componentMarkup
         )
     }

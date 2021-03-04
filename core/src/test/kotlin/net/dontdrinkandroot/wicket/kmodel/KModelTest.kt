@@ -15,7 +15,7 @@ class KModelTest {
     fun testKProperty() {
         val exampleObject = ExampleObject(666, "Name", 39)
 
-        val parentModel: KModel<ExampleObject> = ValueKModel(exampleObject)
+        val parentModel: KModel<ExampleObject> = kModel(exampleObject)
 
         val idModel: KModel<Int> = parentModel.property(ExampleObject::id)
         Assertions.assertEquals(666, idModel.value)
@@ -32,7 +32,7 @@ class KModelTest {
 
         val exampleObject = ExampleObject(666, "Name", 39)
 
-        val parentModel: KModel<ExampleObject> = ValueKModel(exampleObject)
+        val parentModel: KModel<ExampleObject> = kModel(exampleObject)
 
         val nameModel: WriteableKModel<String> = parentModel.writableProperty(ExampleObject::name)
 
@@ -54,21 +54,21 @@ class KModelTest {
         Assertions.assertEquals(null, ageModel.getObject())
         Assertions.assertEquals(null, exampleObject.age)
 
-        val nullParentModel: KModel<ExampleObject?> = ValueKModel(null)
+        val nullParentModel: KModel<ExampleObject?> = kModel(null)
 
         Assertions.assertNull(nullParentModel.optionalProperty(ExampleObject::id).value)
     }
 
     @Test
-    fun testModelExtension() {
-        val nonNullableModel: KModel<String> = "value".kModel()
+    fun testFunctionConstruction() {
+        val nonNullableModel: KModel<String> = kModel("value")
         Assertions.assertEquals("value", nonNullableModel.getObject())
         //nonNullable.setObject(null) // Expected not to compile
         //val nonNullableWithNull: IModel<String> = null.model() // Expected not to compile
-        val nullableModel: KModel<String?> = "value".kModel()
+        val nullableModel: KModel<String?> = kModel("value")
         Assertions.assertEquals("value", nullableModel.getObject())
         nullableModel.setObject(null)
-        val nullableWithNullModel: IModel<String?> = null.kModel()
+        val nullableWithNullModel: IModel<String?> = kModel(null)
         Assertions.assertNull(nullableWithNullModel.value)
     }
 

@@ -7,7 +7,7 @@ import org.apache.wicket.model.IModel
 class Label<T>(
     id: String,
     model: IModel<T>? = null,
-    behaviors: Collection<Behavior> = emptyList(),
+    vararg behaviors: Behavior
 ) : Label(id, model) {
 
     init {

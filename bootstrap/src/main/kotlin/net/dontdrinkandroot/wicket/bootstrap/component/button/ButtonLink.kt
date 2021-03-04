@@ -1,27 +1,26 @@
-package net.dontdrinkandroot.wicket.bootstrap.component.navbar
+package net.dontdrinkandroot.wicket.bootstrap.component.button
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
-import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
-import net.dontdrinkandroot.wicket.model.model
+import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
+import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.Link
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-inline fun <T> NavbarButtonLink(
+inline fun <T> buttonLink(
     id: String,
     model: IModel<T>? = null,
     behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
-    alignmentModel: IModel<NavbarAlignment> = NavbarAlignment.LEFT.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
     crossinline onClickHandler: Link<T>.() -> Any?
 ) = object : Link<T>(id, model) {
     init {
         body = bodyModel
         behaviors.forEach { this.add(it) }
-        this.add(CssClassAppender(BootstrapCssClass.NAVBAR_BTN))
-        this.add(CssClassAppender(alignmentModel))
+        this.add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
     }
 
     override fun onClick() {

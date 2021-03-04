@@ -6,9 +6,9 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarButtonLink
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarText
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbarButton
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle
@@ -82,7 +82,7 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         collapseItemView.add(form)
         val text = NavbarText(collapseItemView.newChildId(), Model.of("Text"))
         collapseItemView.add(text)
-        collapseItemView.add(navbarButton<Void>(
+        collapseItemView.add(NavbarButtonLink<Void>(
             collapseItemView.newChildId(),
             bodyModel = Model("Button"),
             alignmentModel = NavbarAlignment.RIGHT.model()

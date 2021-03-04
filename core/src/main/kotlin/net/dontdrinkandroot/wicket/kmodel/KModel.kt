@@ -12,8 +12,6 @@ import kotlin.reflect.KFunction1
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
-fun <T : Any?> T.kModel() = ValueKModel(this)
-
 @Suppress("UNCHECKED_CAST")
 fun <T> KModel<T>.nullable(): KModel<T?> = this as KModel<T?>
 
@@ -35,6 +33,8 @@ interface WriteableKModel<T> : KModel<T> {
 }
 
 class ValueKModel<T>(override var value: T) : WriteableKModel<T>
+
+fun <T> kModel(value: T) = ValueKModel(value)
 
 class WrappedKModel<T>(private val model: IModel<T>) : WriteableKModel<T> {
 

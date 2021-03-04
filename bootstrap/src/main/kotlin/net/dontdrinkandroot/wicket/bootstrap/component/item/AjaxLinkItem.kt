@@ -10,8 +10,7 @@ abstract class AjaxLinkItem<T>(
     id: String, model: IModel<T>? = null, labelModel: IModel<String>,
     prependIconModel: IModel<CssClass> = Model(null),
     appendIconModel: IModel<CssClass> = Model(null)
-) :
-    AbstractLinkItem<T, AjaxLink<T>>(id, model, labelModel, prependIconModel, appendIconModel) {
+) : AbstractLinkItem<T, AjaxLink<T>>(id, model, labelModel, prependIconModel, appendIconModel) {
 
     override fun createLink(id: String): AjaxLink<T> {
         return object : AjaxLink<T>(id, this.model) {

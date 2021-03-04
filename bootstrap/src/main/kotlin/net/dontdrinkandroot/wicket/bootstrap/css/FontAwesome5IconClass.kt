@@ -8,14 +8,21 @@ enum class FontAwesome5IconClass(override val classString: String) : CssClass {
     ANGLE_RIGHT("fa-angle-right"),
     ANGLE_DOUBLE_RIGHT("fa-angle-double-right"),
     ARROWS_ALT_H("fa-arrows-alt-h"),
+    DOWNLOAD("fa-download"),
     EDIT("fa-edit"),
     ELLIPSIS_V("fa-ellipsis-v"),
     FILE("fa-file"),
+    LOCK("fa-lock"),
     PAUSE("fa-pause"),
+    PEN("fa-pen"),
     PLUS("fa-plus"),
+    PRINT("fa-print"),
     TRASH("fa-trash"),
     UNDO("fa-undo");
 
-    fun createIcon(style: FontAwesome5Icon.Style = FontAwesome5Icon.Style.SOLID): FontAwesome5Icon =
-        FontAwesome5Icon(this, style)
+    fun createIcon(
+        style: FontAwesome5Icon.Style = FontAwesome5Icon.Style.SOLID,
+        fixedWidth: Boolean = false
+    ): FontAwesome5Icon =
+        FontAwesome5Icon(this, style = style, fixedWidth = fixedWidth)
 }
