@@ -27,3 +27,22 @@ inline fun <T> buttonLink(
         onClickHandler()
     }
 }
+
+inline fun buttonLink(
+    id: String,
+    bodyModel: IModel<String> = Model(null),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+    vararg behaviors: Behavior,
+    crossinline onClickHandler: Link<Void>.() -> Any?
+) = object : Link<Void>(id) {
+    init {
+        body = bodyModel
+        behaviors.forEach { this.add(it) }
+        this.add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
+    }
+
+    override fun onClick() {
+        onClickHandler()
+    }
+}

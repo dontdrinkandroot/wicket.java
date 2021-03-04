@@ -8,7 +8,6 @@ import org.apache.wicket.model.util.ListModel
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import java.util.*
 
 class UnorderedListTest : AbstractWicketTest() {
 
@@ -16,12 +15,10 @@ class UnorderedListTest : AbstractWicketTest() {
     fun testDefault() {
         val page: TestPage = object : TestPage() {
             override fun populateComponents(componentView: RepeatingView) {
-                val component = UnorderedList<String>(
+                componentView.add(unorderedList(
                     componentView.newChildId(),
-                    ListModel(Arrays.asList("Alpha", "Beta", "Gamma")),
-                    createItemHandler = { id, model -> Label(id, model) }
-                )
-                componentView.add(component)
+                    ListModel(listOf("Alpha", "Beta", "Gamma"))
+                ) { id, model -> Label(id, model) })
             }
         }
         tester.startPage(page)

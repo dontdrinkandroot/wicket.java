@@ -21,3 +21,19 @@ inline fun <T> link(
         onClickHandler(this)
     }
 }
+
+inline fun link(
+    id: String,
+    bodyModel: IModel<String> = Model(null),
+    vararg behaviors: Behavior,
+    crossinline onClickHandler: Link<Void>.() -> Any?
+) = object : Link<Void>(id) {
+    init {
+        body = bodyModel
+        behaviors.forEach { this.add(it) }
+    }
+
+    override fun onClick() {
+        onClickHandler(this)
+    }
+}

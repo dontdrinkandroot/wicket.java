@@ -12,8 +12,7 @@ import org.apache.wicket.util.string.Strings
 abstract class AbstractList<T>(
     id: String,
     model: IModel<List<T>>? = null,
-    behaviors: Collection<Behavior> = emptyList(),
-    private val createItemHandler: AbstractList<T>.(id: String, model: IModel<T>) -> Component
+    vararg behaviors: Behavior,
 ) : GenericPanel<List<T>>(id, model) {
 
     init {
@@ -30,7 +29,7 @@ abstract class AbstractList<T>(
                 if (model != null && model.getObject() != null) {
                     for (idx in model.getObject().indices) {
                         val itemModel: IModel<T> = ListItemModel(model, idx)
-                        val listComponent = createItemHandler(newChildId(), itemModel)
+                        val listComponent = createItem(newChildId(), itemModel)
                         processListComponent(listComponent)
                         this.add(listComponent)
                     }
@@ -65,4 +64,6 @@ abstract class AbstractList<T>(
     protected open fun processListComponent(listComponent: Component) {
         /* Override to apply styles to list component */
     }
+
+    protected abstract fun createItem(id: String, model: IModel<T>): Component
 }
