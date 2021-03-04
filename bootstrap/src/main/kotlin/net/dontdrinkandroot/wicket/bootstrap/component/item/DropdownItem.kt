@@ -4,11 +4,17 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
-abstract class DropdownItem<T>(id: String, model: IModel<T>? = null, labelModel: IModel<String>) :
-    AbstractLinkItem<T, AbstractLink>(id, model, labelModel) {
+abstract class DropdownItem<T>(
+    id: String,
+    model: IModel<T>? = null,
+    labelModel: IModel<String>,
+    vararg linkBehaviors: Behavior,
+) : AbstractLinkItem<T, AbstractLink>(id, model, labelModel, Model(null), Model(null), emptyArray(), *linkBehaviors) {
 
     protected lateinit var dropdownMenu: DropdownMenu
 

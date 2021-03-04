@@ -1,12 +1,12 @@
 package net.dontdrinkandroot.wicket.example.page
 
 import ` net`.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.behavior.cssClass
-import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
-import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
+import net.dontdrinkandroot.wicket.bootstrap.behavior.active
+import net.dontdrinkandroot.wicket.bootstrap.component.item.dropdown
+import net.dontdrinkandroot.wicket.bootstrap.component.item.pageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.repeatingNavbarNav
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
@@ -23,7 +23,6 @@ import org.apache.wicket.markup.head.CssContentHeaderItem
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem
 import org.apache.wicket.markup.head.IHeaderResponse
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
@@ -49,166 +48,35 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
             )
         },
         behaviors = arrayOf(cssClass(BackgroundColor.LIGHT))
-    ) { collapseItemView ->
-        val leftItems = repeatingNavbarNav(collapseItemView.newChildId()) { itemView ->
-            populateNavbarLeftItems(itemView)
-        }
-        leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
-        collapseItemView.add(leftItems)
-        val rightItems = repeatingNavbarNav(collapseItemView.newChildId()) { itemView ->
-            itemView.add(ThemeDropdownItem(itemView.newChildId()))
-            itemView.add(BuildInfoItem(itemView.newChildId()))
-        }
-        collapseItemView.add(rightItems)
-    }
-
-    protected fun populateNavbarLeftItems(leftItemView: RepeatingView) {
-        leftItemView.add(
-            BookmarkablePageLinkItem<Void>(
-                leftItemView.newChildId(),
-                labelModel = "Getting Started".model(),
-                pageClass = GettingStartedPage::class
-            )
-        )
-        leftItemView.add(
-            BookmarkablePageLinkItem<Void>(
-                leftItemView.newChildId(),
-                labelModel = "CSS".model(),
-                pageClass = CssPage::class
-            )
-        )
-        leftItemView.add(
-            BookmarkablePageLinkItem<Void>(
-                leftItemView.newChildId(),
-                labelModel = "The Grid".model(),
-                pageClass = GridPage::class
-            )
-        )
-        leftItemView.add(object : RepeatingDropdownItem<Void>(
-            leftItemView.newChildId(),
-            labelModel = "Components".model()
-        ) {
-            override fun populateItems(itemView: RepeatingView) {
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Buttons".model(),
-                        pageClass = ButtonPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Cards".model(),
-                        pageClass = CardPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Navs".model(),
-                        pageClass = NavPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Navbars".model(),
-                        pageClass = NavbarPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Breadcrumbs".model(),
-                        pageClass = BreadcrumbPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Badges".model(),
-                        pageClass = BadgePage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Alerts and Feedback".model(),
-                        pageClass = AlertPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Progress Bars".model(),
-                        pageClass = ProgressBarPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Pagination".model(),
-                        pageClass = PaginationPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Dropdowns".model(),
-                        pageClass = DropdownPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Modals".model(),
-                        pageClass = ModalPage::class
-                    )
-                )
+    ) {
+        navbarNav(cssClass(Spacing.MARGIN_END_AUTO)) {
+            pageLink("Getting Started", GettingStartedPage::class)
+            pageLink("CSS", CssPage::class)
+            pageLink("The Grid", GridPage::class)
+            dropdown("Components", active { this.page is ComponentPage }) {
+                pageLink("Buttons", ButtonPage::class)
+                pageLink("Cards", CardPage::class)
+                pageLink("Navs", NavPage::class)
+                pageLink("Navbars", NavbarPage::class)
+                pageLink("Breadcrumbs", BreadcrumbPage::class)
+                pageLink("Badges", BadgePage::class)
+                pageLink("Alerts and Feedback", AlertPage::class)
+                pageLink("Progress Bars", ProgressBarPage::class)
+                pageLink("Pagination", PaginationPage::class)
+                pageLink("Dropdowns", DropdownPage::class)
+                pageLink("Modals", ModalPage::class)
             }
-
-            override val active: Boolean
-                get() = this.page is ComponentPage
-        })
-        leftItemView.add(object : RepeatingDropdownItem<Void?>(
-            leftItemView.newChildId(),
-            labelModel = Model.of("Forms")
-        ) {
-            override fun populateItems(itemView: RepeatingView) {
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Form Groups and Form Styles".model(),
-                        pageClass = FormGroupPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Input Groups".model(),
-                        pageClass = InputGroupPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Validations".model(),
-                        pageClass = ValidationPage::class
-                    )
-                )
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = "Ajax Forms".model(),
-                        pageClass = AjaxFormPage::class
-                    )
-                )
+            dropdown("Forms", active { this.page is FormPage }) {
+                pageLink("Form Groups and Form Styles", FormGroupPage::class)
+                pageLink("Input Groups", InputGroupPage::class)
+                pageLink("Validations", ValidationPage::class)
+                pageLink("Ajax Forms", AjaxFormPage::class)
             }
-
-            override val active: Boolean
-                get() = this.page is FormPage
-        })
+        }
+        navbarNav {
+            add(ThemeDropdownItem(newChildId()))
+            add(BuildInfoItem(newChildId()))
+        }
     }
 
     override fun renderHead(response: IHeaderResponse) {

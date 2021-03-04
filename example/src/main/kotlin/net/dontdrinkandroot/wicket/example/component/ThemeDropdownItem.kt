@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.example.component
 
 import net.dontdrinkandroot.wicket.bootstrap.component.item.AbstractLinkItem
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
 import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.model.Theme
@@ -8,7 +9,6 @@ import net.dontdrinkandroot.wicket.example.model.availableThemes
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
 import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.link.StatelessLink
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 
 class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void>(
@@ -16,7 +16,7 @@ class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void>(
     labelModel = ConcatenatingStringModel("Theme".model(), ": ", { getCurrentSession().currentTheme!!.name }),
 ) {
 
-    override fun populateItems(itemView: RepeatingView) {
+    override fun populateItems(itemView: ItemView) {
         for (theme in availableThemes()) {
             itemView.add(createThemeLinkItem(itemView.newChildId(), theme))
         }

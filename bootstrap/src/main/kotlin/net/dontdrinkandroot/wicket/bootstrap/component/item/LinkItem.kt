@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
 import net.dontdrinkandroot.wicket.css.CssClass
+import net.dontdrinkandroot.wicket.kmodel.kModel
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.Link
 import org.apache.wicket.model.IModel
@@ -12,8 +13,15 @@ abstract class LinkItem<T>(
     labelModel: IModel<String>,
     prependIconModel: IModel<CssClass> = Model(null),
     appendIconModel: IModel<CssClass> = Model(null),
-    private val linkBehaviors: List<Behavior> = emptyList()
-) : AbstractLinkItem<T, Link<T>>(id, model, labelModel, prependIconModel, appendIconModel) {
+    vararg linkBehaviors: Behavior
+) : AbstractLinkItem<T, Link<T>>(
+    id,
+    model,
+    labelModel,
+    prependIconModel,
+    appendIconModel,
+    linkBehaviors = linkBehaviors
+) {
 
     override fun createLink(id: String): Link<T> {
         val link = object : Link<T>(id, this.model) {
@@ -21,7 +29,6 @@ abstract class LinkItem<T>(
                 this@LinkItem.onClick()
             }
         }
-        linkBehaviors.forEach { link.add(it) }
         return link
     }
 
@@ -34,7 +41,7 @@ fun <T> linkItem(
     labelModel: IModel<String>,
     prependIconModel: IModel<CssClass> = Model(null),
     appendIconModel: IModel<CssClass> = Model(null),
-    linkBehaviors: List<Behavior> = emptyList(),
+    vararg linkBehaviors: Behavior,
     onClickHandler: LinkItem<T>.() -> Any?
 ) = object : LinkItem<T>(
     id,
@@ -47,4 +54,12 @@ fun <T> linkItem(
     override fun onClick() {
         onClickHandler()
     }
+}
+
+fun ItemView.link(label: String, vararg linkBehaviors: Behavior, onClickHandler: LinkItem<Void>.() -> Any?) {
+    this.add(object : LinkItem<Void>(this.newChildId(), null, kModel(label), linkBehaviors = linkBehaviors) {
+        override fun onClick() {
+            onClickHandler()
+        }
+    })
 }

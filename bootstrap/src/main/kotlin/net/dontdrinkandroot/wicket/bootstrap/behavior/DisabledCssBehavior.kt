@@ -18,3 +18,5 @@ class DisabledCssBehavior : Behavior() {
         }
     }
 }
+
+fun disabledCss() = DisabledCssBehavior()

@@ -15,6 +15,8 @@ import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
+class NavbarCollapseView(id: String) : RepeatingView(id)
+
 abstract class Navbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
@@ -43,7 +45,7 @@ abstract class Navbar(
         navbarToggle.add(AttributeModifier("data-bs-target") { "#${navbarCollapse.markupId}" })
         container.add(navbarToggle)
 
-        val collapseItemView = RepeatingView("navbarCollapseItem")
+        val collapseItemView = NavbarCollapseView("navbarCollapseItem")
         populateCollapseItems(collapseItemView)
         navbarCollapse.add(collapseItemView)
 
@@ -54,7 +56,7 @@ abstract class Navbar(
 
     protected open fun createNavbarToggler(id: String): Component = NavbarToggler(id)
 
-    abstract fun populateCollapseItems(repeatingView: RepeatingView)
+    abstract fun populateCollapseItems(collapseView: NavbarCollapseView)
 }
 
 fun navbar(
@@ -65,12 +67,12 @@ fun navbar(
     containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     createBrandHandler: Navbar.(id: String) -> Component = { id -> webMarkupContainer(id, invisible()) },
     vararg behaviors: Behavior,
-    populateCollapseItemsHandler: Navbar.(collapseItemView: RepeatingView) -> Any?
+    populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) = object : Navbar(id, positionModel, styleModel, expandModel, containerStyleModel, *behaviors) {
 
     override fun createBrand(id: String) = createBrandHandler(id)
 
-    override fun populateCollapseItems(repeatingView: RepeatingView) {
-        populateCollapseItemsHandler(repeatingView)
+    override fun populateCollapseItems(collapseView: NavbarCollapseView) {
+        populateCollapseItemsHandler(collapseView)
     }
 }

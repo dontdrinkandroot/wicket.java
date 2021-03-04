@@ -1,10 +1,10 @@
 package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
-import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
-import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
-import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
+import net.dontdrinkandroot.wicket.bootstrap.component.item.divider
+import net.dontdrinkandroot.wicket.bootstrap.component.item.dropdown
+import net.dontdrinkandroot.wicket.bootstrap.component.item.header
+import net.dontdrinkandroot.wicket.bootstrap.component.item.pageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.*
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
@@ -13,7 +13,6 @@ import net.dontdrinkandroot.wicket.example.component.NavbarForm
 import net.dontdrinkandroot.wicket.example.page.HomePage
 import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.model.model
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
@@ -40,48 +39,25 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
             BookmarkablePageLink<Void>(id, pageClass = HomePage::class.java, bodyModel = Model("Brand"))
         }
     )
-    { collapseItemView ->
-        collapseItemView.add(
-            repeatingNavbarNav(
-                collapseItemView.newChildId()
-            )
-            { itemView ->
-                itemView.add(object :
-                    RepeatingDropdownItem<Void>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
-                    override fun populateItems(itemView: RepeatingView) {
-                        itemView.add(
-                            BookmarkablePageLinkItem<Void>(
-                                itemView.newChildId(),
-                                labelModel = Model.of("Action"),
-                                pageClass = HomePage::class
-                            )
-                        )
-                        itemView.add(DropdownDividerItem(itemView.newChildId()))
-                        itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
-                        itemView.add(
-                            BookmarkablePageLinkItem<Void>(
-                                itemView.newChildId(),
-                                labelModel = Model.of("Another Action"),
-                                pageClass = HomePage::class
-                            )
-                        )
-                    }
-                })
-                itemView.add(
-                    BookmarkablePageLinkItem<Void>(
-                        itemView.newChildId(),
-                        labelModel = Model.of("Link"),
-                        pageClass = NavbarPage::class
-                    )
-                )
+    {
+        navbarNav()
+        {
+            dropdown("Dropdown") {
+                pageLink("Action", HomePage::class)
+                divider()
+                header("A header")
+                pageLink("Another Action", HomePage::class)
             }
-        )
-        val form = NavbarForm(collapseItemView.newChildId())
-        collapseItemView.add(form)
-        val text = NavbarText(collapseItemView.newChildId(), Model.of("Text"))
-        collapseItemView.add(text)
-        collapseItemView.add(NavbarButtonLink<Void>(
-            collapseItemView.newChildId(),
+            pageLink("Link", NavbarPage::class)
+        }
+
+        val form = NavbarForm(newChildId())
+        add(form)
+
+        val text = NavbarText(newChildId(), Model.of("Text"))
+        add(text)
+        add(NavbarButtonLink<Void>(
+            newChildId(),
             bodyModel = Model("Button"),
             alignmentModel = NavbarAlignment.RIGHT.model()
         ) {})

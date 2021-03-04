@@ -1,9 +1,9 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.nav
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.NavPillsBehavior
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment
 import org.apache.wicket.behavior.Behavior
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
@@ -19,25 +19,25 @@ abstract class RepeatingNavPills<T>(
     }
 }
 
-inline fun <T> repeatingNavPills(
+fun <T> repeatingNavPills(
     id: String,
     model: IModel<T>? = null,
     itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
     vararg behaviors: Behavior,
-    crossinline populateItemsHandler: RepeatingNavPills<T>.(repeatingView: RepeatingView) -> Any?
+    populateItemsHandler: ItemView.() -> Any?
 ) = object : RepeatingNavPills<T>(id, model, itemAlignmentModel, *behaviors) {
-    override fun populateItems(repeatingView: RepeatingView) {
-        populateItemsHandler(repeatingView)
+    override fun populateItems(itemView: ItemView) {
+        populateItemsHandler(itemView)
     }
 }
 
-inline fun repeatingNavPills(
+fun repeatingNavPills(
     id: String,
     itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
     vararg behaviors: Behavior,
-    crossinline populateItemsHandler: RepeatingNavPills<Void>.(repeatingView: RepeatingView) -> Any?
+    populateItemsHandler: ItemView.() -> Any?
 ) = object : RepeatingNavPills<Void>(id, null, itemAlignmentModel, *behaviors) {
-    override fun populateItems(repeatingView: RepeatingView) {
-        populateItemsHandler(repeatingView)
+    override fun populateItems(itemView: ItemView) {
+        populateItemsHandler(itemView)
     }
 }

@@ -1,11 +1,10 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
-import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
+import net.dontdrinkandroot.wicket.bootstrap.behavior.disabledCss
 import net.dontdrinkandroot.wicket.css.CssClass
-import net.dontdrinkandroot.wicket.model.CssClassToggleModel
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -14,13 +13,15 @@ import org.apache.wicket.model.Model
  * @param <T> Type of the model object.
  * @param <L> Type of the [AbstractLink].
  */
-abstract class AbstractLinkItem<T, L : AbstractLink> constructor(
+abstract class AbstractLinkItem<T, L : AbstractLink>(
     id: String,
     model: IModel<T>? = null,
     labelModel: IModel<String>,
     val prependIconModel: IModel<CssClass> = Model(null),
-    val appendIconModel: IModel<CssClass> = Model(null)
-) : AbstractLabeledItem<T>(id, model, labelModel) {
+    val appendIconModel: IModel<CssClass> = Model(null),
+    val behaviors: Array<out Behavior> = emptyArray(),
+    private vararg val linkBehaviors: Behavior,
+) : AbstractLabeledItem<T>(id, model, labelModel, *behaviors) {
 
     lateinit var link: L
         protected set
@@ -30,12 +31,10 @@ abstract class AbstractLinkItem<T, L : AbstractLink> constructor(
 
         link = createLink("link")
         link.body = this.label
-        this.add(DisabledCssBehavior())
+        this.add(disabledCss())
         link.add(IconBehavior(prependIconModel, appendIconModel))
+        link.add(*linkBehaviors)
         this.add(link)
-
-        /* Link is also active if item is active */
-        link.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.ACTIVE, { active })))
 
         /* If direct parent or parent of parent is item append the link class */
         link.add(CssClassAppender {

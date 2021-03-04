@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
+import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.dropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
@@ -15,18 +16,15 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
 
     override fun onInitialize() {
         super.onInitialize()
-        val dropdownMenu: DropdownMenu = object : DropdownMenu("dropdownMenu") {
-            override fun populateItems(itemView: RepeatingView) {
-                this@DropdownPage.populateItems(itemView)
-            }
+        val dropdownMenu: DropdownMenu = dropdownMenu("dropdownMenu") {
+            this@DropdownPage.populateItems(this)
         }
         this.add(dropdownMenu)
     }
 
     override fun createPageHeadingModel() = "Dropdowns".model()
 
-    protected fun populateItems(itemView: RepeatingView)
-    {
+    protected fun populateItems(itemView: RepeatingView) {
         itemView.add(
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),

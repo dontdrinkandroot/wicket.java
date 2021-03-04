@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
@@ -40,7 +41,8 @@ abstract class SplitDropdownButton<T>(
     }
 
     protected fun createDropdownMenu(id: String) = object : DropdownMenu(id) {
-        override fun populateItems(itemView: RepeatingView) {
+
+        override fun populateItems(itemView: ItemView) {
             this@SplitDropdownButton.populateItems(itemView)
         }
     }

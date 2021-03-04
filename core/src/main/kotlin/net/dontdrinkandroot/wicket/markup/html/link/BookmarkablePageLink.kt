@@ -24,7 +24,7 @@ open class BookmarkablePageLink<T>(
     }
 }
 
-fun bookmarkablePageLink(
+fun pageLink(
     id: String,
     pageClass: KClass<out Page>,
     pageParameters: PageParameters? = null,

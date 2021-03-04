@@ -13,10 +13,10 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component = repeatingNavbarNav("id") { itemView ->
-            itemView.add(
+        val component = repeatingNavbarNav("id") {
+            add(
                 BookmarkablePageLinkItem<Void>(
-                    itemView.newChildId(),
+                    newChildId(),
                     labelModel = "Item".model(),
                     pageClass = SignInPage::class
                 )

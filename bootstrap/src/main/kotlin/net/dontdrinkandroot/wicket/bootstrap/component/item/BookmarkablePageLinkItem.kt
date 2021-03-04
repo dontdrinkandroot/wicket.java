@@ -1,6 +1,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.css.CssClass
+import net.dontdrinkandroot.wicket.kmodel.kModel
 import org.apache.wicket.Page
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.IModel
@@ -18,9 +20,6 @@ open class BookmarkablePageLinkItem<T>(
     private val pageParameters: PageParameters? = null
 ) : AbstractLinkItem<T, BookmarkablePageLink<T>>(id, model, labelModel, prependIconModel, appendIconModel) {
 
-    override val active: Boolean
-        get() = this.page.javaClass.isAssignableFrom(link.pageClass)
-
     override fun createLink(id: String): BookmarkablePageLink<T> {
         val link: BookmarkablePageLink<T> = object : BookmarkablePageLink<T>(id, pageClass.java) {
             override fun getPageParameters(): PageParameters {
@@ -32,7 +31,11 @@ open class BookmarkablePageLinkItem<T>(
             }
         }
         link.model = model
+        link.add(active { this.page.javaClass.isAssignableFrom(link.pageClass) })
         return link
     }
+}
 
+fun ItemView.pageLink(label: String, pageClass: KClass<out Page>) {
+    add(BookmarkablePageLinkItem<Void>(newChildId(), labelModel = kModel(label), pageClass = pageClass))
 }
