@@ -32,3 +32,13 @@ fun <T> repeatingDropdownItem(
         populateItemsHandler(itemView)
     }
 }
+
+fun repeatingDropdownItem(
+    id: String,
+    labelModel: IModel<String>,
+    populateItemsHandler: RepeatingDropdownItem<Void>.(itemView: RepeatingView) -> Any?
+) = object : RepeatingDropdownItem<Void>(id, null, labelModel) {
+    override fun populateItems(itemView: RepeatingView) {
+        populateItemsHandler(itemView)
+    }
+}

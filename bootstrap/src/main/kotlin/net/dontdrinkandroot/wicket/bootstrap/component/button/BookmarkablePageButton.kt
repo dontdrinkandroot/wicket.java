@@ -18,16 +18,16 @@ open class BookmarkablePageButton<T>(
     id: String,
     model: IModel<T>? = null,
     bodyModel: IModel<String> = Model(null),
-    behaviors: List<Behavior> = emptyList(),
     pageClass: Class<out Page>,
     pageParameters: PageParameters? = null,
     buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
-    buttonSizeModel: IModel<ButtonSize> = Model(null)
+    buttonSizeModel: IModel<ButtonSize> = Model(null),
+    vararg behaviors: Behavior,
 ) : BookmarkablePageLink<T>(id, pageClass, pageParameters) {
 
     init {
         body = bodyModel
-        behaviors.forEach { add(it) }
         add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
+        add(*behaviors)
     }
 }

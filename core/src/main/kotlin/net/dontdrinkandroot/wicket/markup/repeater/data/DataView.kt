@@ -12,7 +12,7 @@ inline fun <T> dataView(
     crossinline populateItemHandler: Item<T>.(dataView: DataView<T>) -> Any?
 ) = object : DataView<T>(id, dataProvider) {
     init {
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun populateItem(item: Item<T>) {
@@ -28,7 +28,7 @@ inline fun <T> dataView(
     crossinline populateItemHandler: Item<T>.(dataView: DataView<T>) -> Any?
 ) = object : DataView<T>(id, dataProvider, itemsPerPage) {
     init {
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun populateItem(item: Item<T>) {

@@ -15,7 +15,7 @@ inline fun <T> ajaxLink(
 ) = object : AjaxLink<T>(id, model) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
     }
 
     override fun onClick(target: AjaxRequestTarget?) {

@@ -11,15 +11,15 @@ import org.apache.wicket.model.Model
 inline fun <T> buttonLink(
     id: String,
     model: IModel<T>? = null,
-    behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null),
+    vararg behaviors: Behavior,
     crossinline onClickHandler: Link<T>.() -> Any?
 ) = object : Link<T>(id, model) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
         this.add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
     }
 
@@ -38,7 +38,7 @@ inline fun buttonLink(
 ) = object : Link<Void>(id) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
         this.add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
     }
 

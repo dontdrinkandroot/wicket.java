@@ -80,7 +80,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
                 labelModel = "This is a link".model(),
-                pageClass = ButtonPage::class.java
+                pageClass = ButtonPage::class
             )
         )
     }

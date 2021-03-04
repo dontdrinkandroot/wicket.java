@@ -12,7 +12,7 @@ inline fun ajaxCheckBox(
     crossinline onUpdateHandler: AjaxCheckBox.(target: AjaxRequestTarget?) -> Any?
 ) = object : AjaxCheckBox(id, model) {
     init {
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun onUpdate(target: AjaxRequestTarget?) {

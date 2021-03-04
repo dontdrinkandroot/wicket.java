@@ -5,10 +5,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarButtonLink
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.NavbarText
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.*
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle
@@ -36,7 +33,7 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         this.add(navbarDark)
     }
 
-    protected fun createExampleNavbar(id: String, styleModel: IModel<NavbarStyle> = Model(null)): Navbar = Navbar(
+    protected fun createExampleNavbar(id: String, styleModel: IModel<NavbarStyle> = Model(null)): Navbar = navbar(
         id,
         styleModel = styleModel,
         createBrandHandler = { id ->
@@ -45,38 +42,39 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
     )
     { collapseItemView ->
         collapseItemView.add(
-            RepeatingNavbarNav<Void>(
-                collapseItemView.newChildId(),
-                populateItemsHandler = { itemView ->
-                    itemView.add(object :
-                        RepeatingDropdownItem<Void>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
-                        override fun populateItems(itemView: RepeatingView) {
-                            itemView.add(
-                                BookmarkablePageLinkItem<Void>(
-                                    itemView.newChildId(),
-                                    labelModel = Model.of("Action"),
-                                    pageClass = HomePage::class.java
-                                )
+            repeatingNavbarNav(
+                collapseItemView.newChildId()
+            )
+            { itemView ->
+                itemView.add(object :
+                    RepeatingDropdownItem<Void>(itemView.newChildId(), labelModel = Model.of("Dropdown")) {
+                    override fun populateItems(itemView: RepeatingView) {
+                        itemView.add(
+                            BookmarkablePageLinkItem<Void>(
+                                itemView.newChildId(),
+                                labelModel = Model.of("Action"),
+                                pageClass = HomePage::class
                             )
-                            itemView.add(DropdownDividerItem(itemView.newChildId()))
-                            itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
-                            itemView.add(
-                                BookmarkablePageLinkItem<Void>(
-                                    itemView.newChildId(),
-                                    labelModel = Model.of("Another Action"),
-                                    pageClass = HomePage::class.java
-                                )
-                            )
-                        }
-                    })
-                    itemView.add(
-                        BookmarkablePageLinkItem<Void>(
-                            itemView.newChildId(),
-                            labelModel = Model.of("Link"),
-                            pageClass = NavbarPage::class.java
                         )
-                    )
+                        itemView.add(DropdownDividerItem(itemView.newChildId()))
+                        itemView.add(DropdownHeaderItem(itemView.newChildId(), Model.of("A Header")))
+                        itemView.add(
+                            BookmarkablePageLinkItem<Void>(
+                                itemView.newChildId(),
+                                labelModel = Model.of("Another Action"),
+                                pageClass = HomePage::class
+                            )
+                        )
+                    }
                 })
+                itemView.add(
+                    BookmarkablePageLinkItem<Void>(
+                        itemView.newChildId(),
+                        labelModel = Model.of("Link"),
+                        pageClass = NavbarPage::class
+                    )
+                )
+            }
         )
         val form = NavbarForm(collapseItemView.newChildId())
         collapseItemView.add(form)

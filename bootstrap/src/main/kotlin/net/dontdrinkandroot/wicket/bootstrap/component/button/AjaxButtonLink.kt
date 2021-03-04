@@ -13,16 +13,16 @@ import org.apache.wicket.model.Model
 inline fun <T> ajaxButtonLink(
     id: String,
     model: IModel<T>? = null,
-    behaviors: List<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
     buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
     buttonSizeModel: IModel<ButtonSize> = Model(null),
+    vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
 ) = object : AjaxLink<T>(id, model) {
     init {
         body = bodyModel
-        behaviors.forEach { add(it) }
         add(ButtonBehavior(buttonStyleModel, buttonSizeModel))
+        add(*behaviors)
     }
 
     override fun onClick(target: AjaxRequestTarget?) {
@@ -35,12 +35,13 @@ inline fun ajaxButtonLink(
     bodyModel: IModel<String> = Model(null),
     buttonStyle: ButtonStyle = ButtonStyle.SECONDARY,
     buttonSize: ButtonSize? = null,
+    vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<Any>.(target: AjaxRequestTarget?) -> Any?
 ) = object : AjaxLink<Any>(id) {
     init {
         body = bodyModel
-        behaviors.forEach { add(it) }
         add(ButtonBehavior(Model(buttonStyle), Model(buttonSize)))
+        add(*behaviors)
     }
 
     override fun onClick(target: AjaxRequestTarget?) {

@@ -5,8 +5,8 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.DisabledCssBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.LinkItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavPills
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.RepeatingNavTabs
+import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavPills
+import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.Flex
 import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment
 import net.dontdrinkandroot.wicket.example.page.HomePage
@@ -22,54 +22,45 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
     override fun onInitialize() {
         super.onInitialize()
 
-        val tabsDefault = RepeatingNavTabs<Void>("tabsDefault", populateItemsHandler = { itemView ->
-            this@NavPage.populateItems(itemView)
-        })
+        val tabsDefault = repeatingNavTabs("tabsDefault") { itemView -> this@NavPage.populateItems(itemView) }
         this.add(tabsDefault)
 
-        val tabsJustified = RepeatingNavTabs<Void>(
+        val tabsJustified = repeatingNavTabs(
             "tabsJustified",
-            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
-            populateItemsHandler = { itemView ->
-                this@NavPage.populateItems(itemView)
-            })
+            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED)
+        )
+        { itemView -> this@NavPage.populateItems(itemView) }
         this.add(tabsJustified)
 
-        val tabsFill = RepeatingNavTabs<Void>(
+        val tabsFill = repeatingNavTabs(
             "tabsFill",
-            itemAlignmentModel = Model(NavItemAlignment.FILL),
-            populateItemsHandler = { itemView ->
-                this@NavPage.populateItems(itemView)
-            })
+            itemAlignmentModel = Model(NavItemAlignment.FILL)
+        )
+        { itemView -> this@NavPage.populateItems(itemView) }
         this.add(tabsFill)
 
-        val pillsDefault = RepeatingNavPills<Void>("pillsDefault", populateItemsHandler = { itemView ->
-            this@NavPage.populateItems(itemView)
-        })
+        val pillsDefault = repeatingNavPills("pillsDefault") { itemView -> this@NavPage.populateItems(itemView) }
         this.add(pillsDefault)
 
-        val pillsJustified = RepeatingNavPills<Void>(
+        val pillsJustified = repeatingNavPills(
             "pillsJustified",
-            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
-            populateItemsHandler = { itemView ->
-                this@NavPage.populateItems(itemView)
-            })
+            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED)
+        )
+        { itemView -> this@NavPage.populateItems(itemView) }
         this.add(pillsJustified)
 
-        val pillsFill = RepeatingNavPills<Void>(
+        val pillsFill = repeatingNavPills(
             "pillsFill",
-            itemAlignmentModel = Model(NavItemAlignment.FILL),
-            populateItemsHandler = { itemView ->
-                this@NavPage.populateItems(itemView)
-            })
+            itemAlignmentModel = Model(NavItemAlignment.FILL)
+        )
+        { itemView -> this@NavPage.populateItems(itemView) }
         this.add(pillsFill)
 
-        val pillsColumn = RepeatingNavPills<Void>(
+        val pillsColumn = repeatingNavPills(
             "pillsColumn",
-            itemAlignmentModel = Model(NavItemAlignment.FILL),
-            populateItemsHandler = { itemView ->
-                this@NavPage.populateItems(itemView)
-            })
+            itemAlignmentModel = Model(NavItemAlignment.FILL)
+        )
+        { itemView -> this@NavPage.populateItems(itemView) }
         pillsColumn.add(CssClassAppender(Flex.COLUMN))
         this.add(pillsColumn)
     }
@@ -89,7 +80,7 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "A Link".model(),
-                        pageClass = HomePage::class.java
+                        pageClass = HomePage::class
                     )
                 )
             }

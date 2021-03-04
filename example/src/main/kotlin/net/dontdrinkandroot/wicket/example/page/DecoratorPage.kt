@@ -2,10 +2,11 @@ package net.dontdrinkandroot.wicket.example.page
 
 import ` net`.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
+import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.RepeatingDropdownItem
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.RepeatingNavbarNav
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.repeatingNavbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
@@ -37,24 +38,24 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     override fun createPageTitlePrefixModel() = "wicket.example".model()
 
-    override fun createNavbar(id: String) = Navbar(
+    override fun createNavbar(id: String) = navbar(
         id,
         positionModel = Model(NavbarPosition.FIXED_TOP),
-        behaviors = listOf(CssClassAppender(BackgroundColor.LIGHT)),
         createBrandHandler = { id ->
             BookmarkablePageLink<Void>(
                 id,
                 pageClass = HomePage::class.java,
                 bodyModel = Model("wicket.example")
             )
-        }
+        },
+        behaviors = arrayOf(cssClass(BackgroundColor.LIGHT))
     ) { collapseItemView ->
-        val leftItems = RepeatingNavbarNav<Void>(collapseItemView.newChildId()) { itemView ->
+        val leftItems = repeatingNavbarNav(collapseItemView.newChildId()) { itemView ->
             populateNavbarLeftItems(itemView)
         }
         leftItems.add(CssClassAppender(Spacing(Spacing.Property.MARGIN, Spacing.Size.AUTO, Spacing.Side.END)))
         collapseItemView.add(leftItems)
-        val rightItems = RepeatingNavbarNav<Void>(collapseItemView.newChildId()) { itemView ->
+        val rightItems = repeatingNavbarNav(collapseItemView.newChildId()) { itemView ->
             itemView.add(ThemeDropdownItem(itemView.newChildId()))
             itemView.add(BuildInfoItem(itemView.newChildId()))
         }
@@ -66,21 +67,21 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
             BookmarkablePageLinkItem<Void>(
                 leftItemView.newChildId(),
                 labelModel = "Getting Started".model(),
-                pageClass = GettingStartedPage::class.java
+                pageClass = GettingStartedPage::class
             )
         )
         leftItemView.add(
             BookmarkablePageLinkItem<Void>(
                 leftItemView.newChildId(),
                 labelModel = "CSS".model(),
-                pageClass = CssPage::class.java
+                pageClass = CssPage::class
             )
         )
         leftItemView.add(
             BookmarkablePageLinkItem<Void>(
                 leftItemView.newChildId(),
                 labelModel = "The Grid".model(),
-                pageClass = GridPage::class.java
+                pageClass = GridPage::class
             )
         )
         leftItemView.add(object : RepeatingDropdownItem<Void>(
@@ -92,77 +93,77 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Buttons".model(),
-                        pageClass = ButtonPage::class.java
+                        pageClass = ButtonPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Cards".model(),
-                        pageClass = CardPage::class.java
+                        pageClass = CardPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Navs".model(),
-                        pageClass = NavPage::class.java
+                        pageClass = NavPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Navbars".model(),
-                        pageClass = NavbarPage::class.java
+                        pageClass = NavbarPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Breadcrumbs".model(),
-                        pageClass = BreadcrumbPage::class.java
+                        pageClass = BreadcrumbPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Badges".model(),
-                        pageClass = BadgePage::class.java
+                        pageClass = BadgePage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Alerts and Feedback".model(),
-                        pageClass = AlertPage::class.java
+                        pageClass = AlertPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Progress Bars".model(),
-                        pageClass = ProgressBarPage::class.java
+                        pageClass = ProgressBarPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Pagination".model(),
-                        pageClass = PaginationPage::class.java
+                        pageClass = PaginationPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Dropdowns".model(),
-                        pageClass = DropdownPage::class.java
+                        pageClass = DropdownPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Modals".model(),
-                        pageClass = ModalPage::class.java
+                        pageClass = ModalPage::class
                     )
                 )
             }
@@ -179,28 +180,28 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Form Groups and Form Styles".model(),
-                        pageClass = FormGroupPage::class.java
+                        pageClass = FormGroupPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Input Groups".model(),
-                        pageClass = InputGroupPage::class.java
+                        pageClass = InputGroupPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Validations".model(),
-                        pageClass = ValidationPage::class.java
+                        pageClass = ValidationPage::class
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = "Ajax Forms".model(),
-                        pageClass = AjaxFormPage::class.java
+                        pageClass = AjaxFormPage::class
                     )
                 )
             }

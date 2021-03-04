@@ -14,7 +14,7 @@ inline fun <T> link(
 ) = object : Link<T>(id, model) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
     }
 
     override fun onClick() {
@@ -30,7 +30,7 @@ inline fun link(
 ) = object : Link<Void>(id) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
     }
 
     override fun onClick() {

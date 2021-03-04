@@ -9,14 +9,14 @@ import org.apache.wicket.model.IModel
 class RepeatingPanel<T>(
     id: String,
     model: IModel<T>? = null,
-    behaviors: Collection<Behavior> = emptyList(),
-    populateChildrenHandler: RepeatingPanel<T>.(childView: RepeatingView) -> Component
+    populateChildrenHandler: RepeatingPanel<T>.(childView: RepeatingView) -> Component,
+    vararg behaviors: Behavior
 ) : GenericPanel<T>(id, model) {
 
     init {
         val childView = RepeatingView("child")
         populateChildrenHandler(childView)
         add(childView)
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 }

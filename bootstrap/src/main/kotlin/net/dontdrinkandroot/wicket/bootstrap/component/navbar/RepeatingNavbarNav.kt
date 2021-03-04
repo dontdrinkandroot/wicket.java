@@ -8,20 +8,40 @@ import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 
-class RepeatingNavbarNav<T>(
+abstract class RepeatingNavbarNav<T>(
     id: String,
     model: IModel<T>? = null,
-    behaviors: List<Behavior> = emptyList(),
-    populateItemsHandler: AbstractRepeatingNav<T>.(itemView: RepeatingView) -> Any?
-) : AbstractRepeatingNav<T>(id, model, populateItemsHandler) {
+    vararg behaviors: Behavior
+) : AbstractRepeatingNav<T>(id, model, *behaviors) {
 
     init {
         add(CssClassAppender(BootstrapCssClass.NAVBAR_NAV))
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun onComponentTag(tag: ComponentTag) {
         tag.name = "ul"
         super.onComponentTag(tag)
+    }
+}
+
+inline fun <T> repeatingNavbarNav(
+    id: String,
+    model: IModel<T>? = null,
+    vararg behaviors: Behavior,
+    crossinline populateItemsHandler: RepeatingNavbarNav<T>.(repeatingView: RepeatingView) -> Any?
+) = object : RepeatingNavbarNav<T>(id, model, *behaviors) {
+    override fun populateItems(repeatingView: RepeatingView) {
+        populateItemsHandler(repeatingView)
+    }
+}
+
+inline fun repeatingNavbarNav(
+    id: String,
+    vararg behaviors: Behavior,
+    crossinline populateItemsHandler: RepeatingNavbarNav<Void>.(repeatingView: RepeatingView) -> Any?
+) = object : RepeatingNavbarNav<Void>(id, null, *behaviors) {
+    override fun populateItems(repeatingView: RepeatingView) {
+        populateItemsHandler(repeatingView)
     }
 }

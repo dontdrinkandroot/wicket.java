@@ -2,18 +2,42 @@ package net.dontdrinkandroot.wicket.bootstrap.component.nav
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.NavTabsBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-class RepeatingNavTabs<T> constructor(
+abstract class RepeatingNavTabs<T>(
     id: String,
     model: IModel<T>? = null,
-    populateItemsHandler: AbstractRepeatingNav<T>.(itemView: RepeatingView) -> Any?,
-    itemAlignmentModel: IModel<NavItemAlignment> = Model(null)
-) : AbstractRepeatingNav<T>(id, model, populateItemsHandler) {
+    itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
+    vararg behaviors: Behavior
+) : AbstractRepeatingNav<T>(id, model, *behaviors) {
 
     init {
         this.add(NavTabsBehavior(itemAlignmentModel))
+    }
+}
+
+inline fun <T> repeatingNavTabs(
+    id: String,
+    model: IModel<T>? = null,
+    itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
+    vararg behaviors: Behavior,
+    crossinline populateItemsHandler: RepeatingNavTabs<T>.(repeatingView: RepeatingView) -> Any?
+) = object : RepeatingNavTabs<T>(id, model, itemAlignmentModel, *behaviors) {
+    override fun populateItems(repeatingView: RepeatingView) {
+        populateItemsHandler(repeatingView)
+    }
+}
+
+inline fun repeatingNavTabs(
+    id: String,
+    itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
+    vararg behaviors: Behavior,
+    crossinline populateItemsHandler: RepeatingNavTabs<Void>.(repeatingView: RepeatingView) -> Any?
+) = object : RepeatingNavTabs<Void>(id, null, itemAlignmentModel, *behaviors) {
+    override fun populateItems(repeatingView: RepeatingView) {
+        populateItemsHandler(repeatingView)
     }
 }

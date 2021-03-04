@@ -3,15 +3,20 @@ package net.dontdrinkandroot.wicket.bootstrap.component.nav
 import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemContainer
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.css.CssClass
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 
-open class AbstractRepeatingNav<T>(
+abstract class AbstractRepeatingNav<T>(
     id: String,
     model: IModel<T>? = null,
-    private val populateItemsHandler: AbstractRepeatingNav<T>.(itemView: RepeatingView) -> Any?
+    vararg behaviors: Behavior
 ) : GenericPanel<T>(id, model), ItemContainer {
+
+    init {
+        add(*behaviors)
+    }
 
     override val itemClass: CssClass
         get() = BootstrapCssClass.NAV_ITEM
@@ -22,7 +27,9 @@ open class AbstractRepeatingNav<T>(
     override fun onInitialize() {
         super.onInitialize()
         val itemView = RepeatingView("item")
-        populateItemsHandler(itemView)
+        populateItems(itemView)
         this.add(itemView)
     }
+
+    abstract fun populateItems(repeatingView: RepeatingView)
 }

@@ -42,7 +42,7 @@ inline fun <T> repeatingDataView(
     crossinline createChildHandler: RepeatingDataView<T>.(id: String, model: IModel<T>) -> Component
 ) = object : RepeatingDataView<T>(id, dataProvider, itemsPerPage) {
     init {
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun createChild(id: String, model: IModel<T>) = createChildHandler(id, model)

@@ -16,7 +16,7 @@ abstract class AbstractList<T>(
 ) : GenericPanel<List<T>>(id, model) {
 
     init {
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
     }
 
     private lateinit var itemView: RepeatingView

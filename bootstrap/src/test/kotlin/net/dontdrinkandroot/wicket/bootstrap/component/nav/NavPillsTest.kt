@@ -12,7 +12,7 @@ class NavPillsTest : AbstractWicketTest() {
 
     @Test
     fun testDefaultMarkup() {
-        val component = RepeatingNavPills<Void>("id", populateItemsHandler = {})
+        val component = repeatingNavPills("id") {}
         val markup = ComponentRenderer.renderComponent(component).toString()
         val tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")
         Assertions.assertEquals("nav nav-pills", tagTester.getAttribute("class"))
@@ -21,7 +21,7 @@ class NavPillsTest : AbstractWicketTest() {
     @Test
     fun testFillMarkup() {
         val component: RepeatingNavPills<*> =
-            RepeatingNavPills<Void>("id", itemAlignmentModel = Model(NavItemAlignment.FILL), populateItemsHandler = {})
+            repeatingNavPills<Void>("id", itemAlignmentModel = Model(NavItemAlignment.FILL), populateItemsHandler = {})
         val markup = ComponentRenderer.renderComponent(component).toString()
         val tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")
         Assertions.assertEquals("nav nav-pills nav-fill", tagTester.getAttribute("class"))
@@ -30,7 +30,7 @@ class NavPillsTest : AbstractWicketTest() {
     @Test
     fun testJustifiedMarkup() {
         val component: RepeatingNavPills<*> =
-            RepeatingNavPills<Void>(
+            repeatingNavPills<Void>(
                 "id",
                 itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
                 populateItemsHandler = {})

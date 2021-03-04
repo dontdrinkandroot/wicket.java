@@ -11,6 +11,6 @@ class Label<T>(
 ) : Label(id, model) {
 
     init {
-        behaviors.forEach { this.add(it) }
+        add(*behaviors)
     }
 }

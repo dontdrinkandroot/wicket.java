@@ -3,6 +3,7 @@ package ` net`.dontdrinkandroot.wicket.extras.page
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ModalRequestBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
 import org.apache.wicket.Component
@@ -32,10 +33,14 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
     override fun onInitialize() {
         pageHeadingModel = createPageHeadingModel()
         super.onInitialize()
+
         this.add(createModal(MODAL_ID))
+
         val navBar = createNavbar("navbar")
         this.add(navBar)
+
         pageHeading = Label("pageHeading", pageHeadingModel)
+
         val primaryActionView = RepeatingView("primaryAction")
         populatePrimaryActions(primaryActionView)
         val pageHeader: WebMarkupContainer = object : WebMarkupContainer("pageHeader") {
@@ -77,7 +82,7 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         /* Overwrite in order to add primary actions */
     }
 
-    protected open fun createNavbar(id: String): Navbar = Navbar(id) {}
+    protected open fun createNavbar(id: String): Navbar = navbar(id) {}
 
     protected fun createFooter(id: String) = WebMarkupContainer(id).setVisible(false)
 

@@ -12,7 +12,7 @@ class BookmarkablePageLinkItemTest : AbstractWicketTest() {
     @Test
     fun testMarkup() {
         val component: BookmarkablePageLinkItem<*> =
-            BookmarkablePageLinkItem<Any?>("id", labelModel = "Label".model(), pageClass = TestHomePage::class.java)
+            BookmarkablePageLinkItem<Any?>("id", labelModel = "Label".model(), pageClass = TestHomePage::class)
         val componentMarkup = ComponentRenderer.renderComponent(component)
         Assertions.assertEquals(
             """<wicket:container wicket:id="id"><wicket:panel>

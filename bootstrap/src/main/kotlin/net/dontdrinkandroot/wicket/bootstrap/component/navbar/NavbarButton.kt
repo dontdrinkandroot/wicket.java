@@ -12,16 +12,16 @@ import org.apache.wicket.model.Model
 inline fun <T> NavbarButtonLink(
     id: String,
     model: IModel<T>? = null,
-    behaviors: Collection<Behavior> = emptyList(),
     bodyModel: IModel<String> = Model(null),
     alignmentModel: IModel<NavbarAlignment> = NavbarAlignment.LEFT.model(),
+    vararg behaviors: Behavior,
     crossinline onClickHandler: Link<T>.() -> Any?
 ) = object : Link<T>(id, model) {
     init {
         body = bodyModel
-        behaviors.forEach { this.add(it) }
         this.add(CssClassAppender(BootstrapCssClass.NAVBAR_BTN))
         this.add(CssClassAppender(alignmentModel))
+        add(*behaviors)
     }
 
     override fun onClick() {

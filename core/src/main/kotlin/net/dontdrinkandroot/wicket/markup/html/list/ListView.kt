@@ -12,7 +12,7 @@ inline fun <T> listView(
     crossinline populateItemHandler: ListView<T>.(item: ListItem<T>) -> Any?
 ) = object : ListView<T>(id, model) {
     init {
-        behaviors.forEach { add(it) }
+        add(*behaviors)
     }
 
     override fun populateItem(item: ListItem<T>) {

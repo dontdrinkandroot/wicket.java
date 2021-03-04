@@ -8,10 +8,10 @@ import org.apache.wicket.model.IModel
 fun webMarkupContainer(
     id: String,
     vararg behaviors: Behavior,
-) = WebMarkupContainer(id).apply { behaviors.forEach { add(it) } }
+) = WebMarkupContainer(id).apply { add(*behaviors) }
 
 fun <T> webMarkupContainer(
     id: String,
     model: IModel<T>? = null,
     vararg behaviors: Behavior,
-) = GenericWebMarkupContainer<T>(id, model).apply { behaviors.forEach { add(it) } }
+) = GenericWebMarkupContainer<T>(id, model).apply { add(*behaviors) }
