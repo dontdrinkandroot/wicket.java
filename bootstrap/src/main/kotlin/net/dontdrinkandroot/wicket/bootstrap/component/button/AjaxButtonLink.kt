@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.behavior.Behavior
@@ -14,7 +13,7 @@ inline fun <T> ajaxButtonLink(
     id: String,
     model: IModel<T>? = null,
     bodyModel: IModel<String> = Model(null),
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?

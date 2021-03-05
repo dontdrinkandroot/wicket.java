@@ -3,8 +3,8 @@ package net.dontdrinkandroot.wicket.bootstrap.component.navbar
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
 import net.dontdrinkandroot.wicket.bootstrap.page.SignInPage
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.core.util.string.ComponentRenderer
+import org.apache.wicket.model.Model
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -17,7 +17,7 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
             add(
                 BookmarkablePageLinkItem<Void>(
                     newChildId(),
-                    labelModel = "Item".model(),
+                    labelModel = Model("Item"),
                     pageClass = SignInPage::class
                 )
             )

@@ -9,7 +9,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
@@ -19,7 +18,7 @@ import java.util.*
 
 class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel() = "Buttons".model()
+    override fun createPageHeadingModel() = Model("Buttons")
 
     override fun onInitialize() {
         super.onInitialize()
@@ -79,7 +78,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
         itemView.add(
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                labelModel = "This is a link".model(),
+                labelModel = Model("This is a link"),
                 pageClass = ButtonPage::class
             )
         )

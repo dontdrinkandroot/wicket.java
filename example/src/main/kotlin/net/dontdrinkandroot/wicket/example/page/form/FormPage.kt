@@ -10,7 +10,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesome4IconClass
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
 import net.dontdrinkandroot.wicket.example.page.DecoratorPage
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.Form
@@ -24,7 +23,7 @@ import java.util.*
 abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parameters) {
 
     override fun createPageTitlePrefixModel() =
-        ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", "Forms".model())
+        ConcatenatingStringModel(super.createPageTitlePrefixModel(), " - ", Model("Forms"))
 
     protected fun populateFormGroups(form: Form<Void>, formGroupView: RepeatingView) {
         val choices = Arrays.asList("Apple", "Banana", "Pear")
@@ -32,14 +31,14 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupStatic = FormGroupStatic(
             formGroupView.newChildId(),
             Model.of("A static label"),
-            FormGroupStatic::class.java.simpleName.model()
+            Model(FormGroupStatic::class.java.simpleName)
         )
         formGroupView.add(formGroupStatic)
 
         val formGroupTextField = FormGroupInputText(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupInputText::class.java.simpleName.model()
+            Model(FormGroupInputText::class.java.simpleName)
         )
         formGroupTextField.formComponent.isRequired = true
         formGroupTextField.addAjaxValidation("input")
@@ -49,28 +48,28 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupPasswordTextField = FormGroupInputPassword(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupInputPassword::class.java.simpleName.model()
+            Model(FormGroupInputPassword::class.java.simpleName)
         )
         formGroupView.add(formGroupPasswordTextField)
 
         val formGroupEmailTextField = FormGroupInputEmail(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupInputEmail::class.java.simpleName.model()
+            Model(FormGroupInputEmail::class.java.simpleName)
         )
         formGroupView.add(formGroupEmailTextField)
 
         val formGroupUrlTextField = FormGroupInputUrl(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupInputUrl::class.java.simpleName.model()
+            Model(FormGroupInputUrl::class.java.simpleName)
         )
         formGroupView.add(formGroupUrlTextField)
 
         val formGroupTextArea = FormGroupTextArea(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupTextArea::class.java.simpleName.model()
+            Model(FormGroupTextArea::class.java.simpleName)
         )
         formGroupTextArea.setRequired(true)
         formGroupView.add(formGroupTextArea)
@@ -78,7 +77,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupLocalDate: FormGroupLocalDate = object : FormGroupLocalDate(
             formGroupView.newChildId(),
             Model.of(LocalDate.now()),
-            FormGroupLocalDate::class.java.simpleName.model()
+            Model(FormGroupLocalDate::class.java.simpleName)
         ) {
             override fun createInputGroupAppend(id: String): Component {
                 val after = InputGroupTextLabel(id)
@@ -93,28 +92,28 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupLocalTime = FormGroupLocalTime(
             formGroupView.newChildId(),
             Model(),
-            FormGroupLocalTime::class.java.simpleName.model()
+            Model(FormGroupLocalTime::class.java.simpleName)
         )
         formGroupView.add(formGroupLocalTime)
 
         val formGroupLocalDateTime = FormGroupLocalDateTime(
             formGroupView.newChildId(),
             Model(),
-            FormGroupLocalDateTime::class.java.simpleName.model()
+            Model(FormGroupLocalDateTime::class.java.simpleName)
         )
         formGroupView.add(formGroupLocalDateTime)
 
         val formGroupCheckBox = FormGroupCheckBox(
             formGroupView.newChildId(),
             Model(),
-            FormGroupCheckBox::class.java.simpleName.model()
+            Model(FormGroupCheckBox::class.java.simpleName)
         )
         formGroupView.add(formGroupCheckBox)
 
         val formGroupRadioChoice = FormGroupRadioChoice(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupRadioChoice::class.java.simpleName.model(),
+            Model(FormGroupRadioChoice::class.java.simpleName),
             ListModel(choices)
         )
         formGroupView.add(formGroupRadioChoice)
@@ -122,7 +121,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupSelect = FormGroupSelect(
             formGroupView.newChildId(),
             Model.of(""),
-            FormGroupSelect::class.java.simpleName.model(),
+            Model(FormGroupSelect::class.java.simpleName),
             ListModel(choices)
         )
         formGroupSelect.setRequired(false)
@@ -132,7 +131,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         val formGroupInputFile = FormGroupInputFile(
             formGroupView.newChildId(),
             ListModel(),
-            FormGroupInputFile::class.java.simpleName.model()
+            Model(FormGroupInputFile::class.java.simpleName)
         )
         formGroupView.add(formGroupInputFile)
 

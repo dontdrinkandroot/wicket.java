@@ -1,8 +1,8 @@
 package net.dontdrinkandroot.wicket.example.page
 
-import net.dontdrinkandroot.wicket.model.model
+import org.apache.wicket.model.Model
 
 class GettingStartedPage : DecoratorPage<Void>() {
 
-    override fun createPageHeadingModel() = "Getting started".model()
+    override fun createPageHeadingModel() = Model("Getting started")
 }

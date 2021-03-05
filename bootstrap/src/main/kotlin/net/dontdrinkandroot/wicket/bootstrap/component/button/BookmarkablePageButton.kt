@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Page
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
@@ -20,7 +19,7 @@ open class BookmarkablePageButton<T>(
     bodyModel: IModel<String> = Model(null),
     pageClass: Class<out Page>,
     pageParameters: PageParameters? = null,
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null),
     vararg behaviors: Behavior,
 ) : BookmarkablePageLink<T>(id, pageClass, pageParameters) {

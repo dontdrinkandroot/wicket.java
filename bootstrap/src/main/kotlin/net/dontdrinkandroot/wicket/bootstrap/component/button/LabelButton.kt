@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -14,7 +13,7 @@ import org.apache.wicket.model.Model
 class LabelButton(
     id: String,
     model: IModel<*>? = null,
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : Label(id, model) {
 

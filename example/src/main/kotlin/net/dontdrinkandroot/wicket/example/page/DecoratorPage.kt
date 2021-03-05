@@ -18,7 +18,6 @@ import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
 import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.head.CssContentHeaderItem
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem
 import org.apache.wicket.markup.head.IHeaderResponse
@@ -35,7 +34,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     constructor(model: IModel<T>?) : super(model)
 
-    override fun createPageTitlePrefixModel() = "wicket.example".model()
+    override fun createPageTitlePrefixModel(): IModel<String> = Model("wicket.example")
 
     override fun createNavbar(id: String) = navbar(
         id,

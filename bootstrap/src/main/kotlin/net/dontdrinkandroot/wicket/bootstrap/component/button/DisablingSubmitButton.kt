@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.ajax.attributes.AjaxCallListener
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes
@@ -14,7 +13,7 @@ class DisablingSubmitButton(
     id: String,
     form: Form<*>? = null,
     labelModel: IModel<String>? = null,
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.PRIMARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.PRIMARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : AjaxSubmitButton(id, form, labelModel, buttonStyleModel, buttonSizeModel) {
 

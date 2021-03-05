@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.bootstrap.component.button
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink
 import org.apache.wicket.markup.html.form.Form
@@ -14,7 +13,7 @@ open class AjaxSubmitButton(
     id: String,
     form: Form<*>? = null,
     labelModel: IModel<String>? = null,
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.PRIMARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.PRIMARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : AjaxSubmitLink(id, form) {
 

@@ -32,9 +32,16 @@ interface WriteableKModel<T> : KModel<T> {
     }
 }
 
-class ValueKModel<T>(override var value: T) : WriteableKModel<T>
+class ValueKModel<T>(override val value: T) : KModel<T>
 
-fun <T> kModel(value: T) = ValueKModel(value)
+class WritableValueKModel<T>(override var value: T) : WriteableKModel<T>
+
+@Deprecated("User model() or writeableModel() instead")
+fun <T> kModel(value: T) = WritableValueKModel(value)
+
+fun <T> model(value: T) = ValueKModel(value)
+
+fun <T> writableModel(value: T) = WritableValueKModel(value)
 
 class WrappedKModel<T>(private val model: IModel<T>) : WriteableKModel<T> {
 

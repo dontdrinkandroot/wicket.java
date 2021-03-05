@@ -12,14 +12,13 @@ import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle
 import net.dontdrinkandroot.wicket.example.component.NavbarForm
 import net.dontdrinkandroot.wicket.example.page.HomePage
 import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel() = "Navbars".model()
+    override fun createPageHeadingModel() = Model("Navbars")
 
     override fun onInitialize() {
         super.onInitialize()
@@ -59,7 +58,7 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         add(NavbarButtonLink<Void>(
             newChildId(),
             bodyModel = Model("Button"),
-            alignmentModel = NavbarAlignment.RIGHT.model()
+            alignmentModel = Model(NavbarAlignment.RIGHT)
         ) {})
     }
 }

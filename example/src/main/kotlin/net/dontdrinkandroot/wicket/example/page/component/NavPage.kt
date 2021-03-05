@@ -10,13 +10,12 @@ import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.Flex
 import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment
 import net.dontdrinkandroot.wicket.example.page.HomePage
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel() = "Navs".model()
+    override fun createPageHeadingModel() = Model("Navs")
 
     override fun onInitialize() {
         super.onInitialize()

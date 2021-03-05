@@ -3,11 +3,11 @@ package net.dontdrinkandroot.wicket.example.page
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.*
 import net.dontdrinkandroot.wicket.example.component.ColumnPanel
 import net.dontdrinkandroot.wicket.example.component.OffsetPanel
-import net.dontdrinkandroot.wicket.model.model
+import org.apache.wicket.model.Model
 
 class GridPage : DecoratorPage<Void>() {
 
-    override fun createPageHeadingModel() = "The Grid".model()
+    override fun createPageHeadingModel() = Model("The Grid")
 
     override fun onInitialize() {
         super.onInitialize()

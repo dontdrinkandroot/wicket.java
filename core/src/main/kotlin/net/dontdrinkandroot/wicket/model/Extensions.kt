@@ -2,10 +2,7 @@ package net.dontdrinkandroot.wicket.model
 
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.LoadableDetachableModel
-import org.apache.wicket.model.Model
-import java.io.Serializable
-
-fun <T : Serializable?> T.model(): IModel<T> = Model(this)
+import org.apache.wicket.model.StringResourceModel
 
 var <T> IModel<T>.value: T?
     get() = `object`
@@ -50,3 +47,5 @@ fun <T> IModel<List<T>>.joinToString(
 fun IModel<String>.capitalize() = object : AbstractChainedModel<String, String>(this) {
     override fun getValue(parentValue: String?) = parentValue?.capitalize()
 }
+
+fun localize(resourceKey: String) = StringResourceModel(resourceKey)

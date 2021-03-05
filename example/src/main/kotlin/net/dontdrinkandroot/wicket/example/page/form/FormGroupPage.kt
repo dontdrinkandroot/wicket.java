@@ -5,16 +5,16 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.item.ajaxLink
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.repeater.RepeatingView
+import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class FormGroupPage(parameters: PageParameters) : FormPage(parameters) {
 
     private var formStyleBehavior = FormStyleBehavior().setHorizontal(ColumnSizeStack.FORM_DEFAULT)
 
-    override fun createPageHeadingModel() = "Form Groups and Form Styles".model()
+    override fun createPageHeadingModel() = Model("Form Groups and Form Styles")
 
     override fun onInitialize() {
         super.onInitialize()

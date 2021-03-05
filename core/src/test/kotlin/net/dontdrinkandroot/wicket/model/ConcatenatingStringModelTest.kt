@@ -14,25 +14,25 @@ class ConcatenatingStringModelTest {
 //        concatenatingStringModel = ConcatenatingStringModel(null.kModel(), null as String)
 //        Assertions.assertEquals("", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), null)
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), null)
         Assertions.assertEquals("Parent", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), Model(null))
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), Model(null))
         Assertions.assertEquals("Parent", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child")
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), "Child")
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child".model())
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), Model("Child"))
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child")
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), "Child")
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "Child".model())
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), Model("Child"))
         Assertions.assertEquals("ParentChild", concatenatingStringModel.getObject())
 
-        concatenatingStringModel = ConcatenatingStringModel("Parent".model(), "-", "Child".model())
+        concatenatingStringModel = ConcatenatingStringModel(Model("Parent"), "-", Model("Child"))
         Assertions.assertEquals("Parent-Child", concatenatingStringModel.getObject())
     }
 

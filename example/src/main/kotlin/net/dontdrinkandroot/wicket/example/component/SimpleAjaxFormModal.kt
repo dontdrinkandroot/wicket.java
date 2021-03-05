@@ -4,7 +4,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.SubmitLabelButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupStatic
 import net.dontdrinkandroot.wicket.bootstrap.component.modal.AjaxFormModal
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -17,14 +16,14 @@ class SimpleAjaxFormModal(id: String) : AjaxFormModal<Void>(id) {
         formGroupView.add(
             FormGroupStatic(
                 formGroupView.newChildId(),
-                Model.of("A static label"),
-                FormGroupStatic::class.java.simpleName.model()
+                Model("A static label"),
+                Model(FormGroupStatic::class.java.simpleName)
             )
         )
         val formGroupInputText = FormGroupInputText(
             formGroupView.newChildId(),
-            Model.of(""),
-            FormGroupInputText::class.java.simpleName.model()
+            Model(""),
+            Model(FormGroupInputText::class.java.simpleName)
         )
         formGroupInputText.setRequired(true)
         formGroupInputText.addAjaxValidation()

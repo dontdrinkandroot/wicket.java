@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.BadgeBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BadgeStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
@@ -10,7 +9,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class BadgePage(parameters: PageParameters) : ComponentPage(parameters) {
 
-    override fun createPageHeadingModel() = "Badges".model()
+    override fun createPageHeadingModel() = Model("Badges")
 
     override fun onInitialize() {
         super.onInitialize()

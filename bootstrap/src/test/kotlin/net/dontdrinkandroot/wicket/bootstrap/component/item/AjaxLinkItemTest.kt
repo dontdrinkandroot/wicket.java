@@ -1,9 +1,9 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.core.util.string.ComponentRenderer
+import org.apache.wicket.model.Model
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -11,7 +11,7 @@ class AjaxLinkItemTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: AjaxLinkItem<*> = object : AjaxLinkItem<Any?>("id", labelModel = "Label".model()) {
+        val component: AjaxLinkItem<*> = object : AjaxLinkItem<Any?>("id", labelModel = Model("Label")) {
             override fun onClick(target: AjaxRequestTarget?) {
                 /* Noop */
             }

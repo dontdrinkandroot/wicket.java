@@ -3,7 +3,6 @@ package net.dontdrinkandroot.wicket.example.page
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.behavior.TitleModifier
 import net.dontdrinkandroot.wicket.bootstrap.css.*
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
@@ -11,7 +10,7 @@ import org.apache.wicket.model.Model
 
 class CssPage : DecoratorPage<Void>() {
 
-    override fun createPageHeadingModel() = "Css".model()
+    override fun createPageHeadingModel() = Model("Css")
 
     override fun onInitialize() {
         super.onInitialize()

@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.behavior.invisible
 import net.dontdrinkandroot.wicket.behavior.outputMarkupId
 import net.dontdrinkandroot.wicket.bootstrap.css.*
 import net.dontdrinkandroot.wicket.markup.html.webMarkupContainer
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior
@@ -20,8 +19,8 @@ class NavbarCollapseView(id: String) : RepeatingView(id)
 abstract class Navbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
-    styleModel: IModel<NavbarStyle> = NavbarStyle.LIGHT.model(),
-    expandModel: IModel<NavbarExpand> = NavbarExpand.LG.model(),
+    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     vararg behaviors: Behavior
 ) : Panel(id) {
@@ -62,8 +61,8 @@ abstract class Navbar(
 fun navbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
-    styleModel: IModel<NavbarStyle> = NavbarStyle.LIGHT.model(),
-    expandModel: IModel<NavbarExpand> = NavbarExpand.LG.model(),
+    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     createBrandHandler: Navbar.(id: String) -> Component = { id -> webMarkupContainer(id, invisible()) },
     vararg behaviors: Behavior,

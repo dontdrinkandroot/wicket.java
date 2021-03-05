@@ -2,7 +2,6 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.AlertBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.AlertStyle
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
@@ -32,5 +31,5 @@ class AlertPage(parameters: PageParameters) : ComponentPage(parameters) {
         fatal("Fatal Message")
     }
 
-    override fun createPageHeadingModel() = "Alerts and Feedback".model()
+    override fun createPageHeadingModel() = Model("Alerts and Feedback")
 }

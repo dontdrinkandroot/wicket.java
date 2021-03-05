@@ -6,17 +6,17 @@ import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormLabelSizeBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormRowBehavior
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.Component
 import org.apache.wicket.markup.html.WebMarkupContainer
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 open class FormGroup<T>(id: String, model: IModel<T>, protected var labelModel: IModel<String>) :
     GenericPanel<T>(id, model) {
 
-    private val labelScreenReaderOnlyModel = false.model()
+    private val labelScreenReaderOnlyModel = Model(false)
 
     protected lateinit var label: Component
 

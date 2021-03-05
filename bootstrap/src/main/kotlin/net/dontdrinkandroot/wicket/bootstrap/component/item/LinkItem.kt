@@ -38,16 +38,16 @@ abstract class LinkItem<T>(
 fun <T> linkItem(
     id: String,
     model: IModel<T>? = null,
-    labelModel: IModel<String>,
-    prependIconModel: IModel<CssClass> = Model(null),
+    label: IModel<String>,
+    prependIcon: IModel<CssClass> = Model(null),
     appendIconModel: IModel<CssClass> = Model(null),
     vararg linkBehaviors: Behavior,
     onClickHandler: LinkItem<T>.() -> Any?
 ) = object : LinkItem<T>(
     id,
     model,
-    labelModel = labelModel,
-    prependIconModel = prependIconModel,
+    labelModel = label,
+    prependIconModel = prependIcon,
     appendIconModel = appendIconModel,
     linkBehaviors = linkBehaviors
 ) {

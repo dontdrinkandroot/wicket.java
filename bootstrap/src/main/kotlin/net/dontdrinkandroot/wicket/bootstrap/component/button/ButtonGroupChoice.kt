@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.model.CssClassToggleModel
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.markup.html.panel.GenericPanel
@@ -22,7 +21,7 @@ class ButtonGroupChoice<T>(
     id: String,
     model: IModel<T>?,
     choicesModel: IModel<List<T>>,
-    buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+    buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null)
 ) : GenericPanel<T>(id, model) {
 
@@ -31,7 +30,7 @@ class ButtonGroupChoice<T>(
     constructor(
         id: String, model: IModel<T>?,
         choices: List<T>?,
-        buttonStyleModel: IModel<ButtonStyle> = ButtonStyle.SECONDARY.model(),
+        buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
         buttonSizeModel: IModel<ButtonSize> = Model(null)
     ) : this(id, model, ListModel<T>(choices), buttonStyleModel, buttonSizeModel)
 

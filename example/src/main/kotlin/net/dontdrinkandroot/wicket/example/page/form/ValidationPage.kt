@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupA
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputEmail
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
-import net.dontdrinkandroot.wicket.model.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.repeater.RepeatingView
@@ -15,7 +14,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters
 
 class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
 
-    override fun createPageHeadingModel() = "Validations".model()
+    override fun createPageHeadingModel() = Model("Validations")
 
     override fun onInitialize() {
         super.onInitialize()
@@ -27,18 +26,18 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         this.add(stateFormGroupView)
 
         val formGroupInputTextSuccess =
-            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Success".model())
+            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), Model("Success"))
         formGroupInputTextSuccess.formComponent.success("Success message")
         formGroupInputTextSuccess.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextSuccess)
 
         val formGroupInputTextWarn =
-            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Warning".model())
+            FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), Model("Warning"))
         formGroupInputTextWarn.formComponent.warn("Warn message")
         formGroupInputTextWarn.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextWarn)
 
-        val formGroupInputTextError = FormGroupInputText(stateFormGroupView.newChildId(), Model.of(""), "Error".model())
+        val formGroupInputTextError = FormGroupInputText(stateFormGroupView.newChildId(), Model(""), Model("Error"))
         formGroupInputTextError.formComponent.error("Error message")
         formGroupInputTextError.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL))
         stateFormGroupView.add(formGroupInputTextError)
@@ -48,7 +47,7 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         val validationFormGroup = FormGroupInputEmail(
             formGroupView.newChildId(),
             Model(""),
-            "Validation (email)".model()
+            Model("Validation (email)")
         )
         validationFormGroup.setRequired(true)
         validationFormGroup.addAjaxValidation("input")
@@ -58,7 +57,7 @@ class ValidationPage(parameters: PageParameters) : FormPage(parameters) {
         val ajaxValidationFormGroup = FormGroupInputEmail(
             formGroupView.newChildId(),
             Model("Type to see what's happening"),
-            "Ajax Validation (email)".model()
+            Model("Ajax Validation (email)")
         )
         ajaxValidationFormGroup.setRequired(true)
         ajaxValidationFormGroup.addAjaxValidation("input")
