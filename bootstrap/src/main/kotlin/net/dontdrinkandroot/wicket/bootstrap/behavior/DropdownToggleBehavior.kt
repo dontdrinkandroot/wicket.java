@@ -16,3 +16,5 @@ class DropdownToggleBehavior : CompositeBehavior(
     AriaModifier(Aria.HASPOPUP, "true"),
     AriaModifier(Aria.EXPANDED, "false")
 )
+
+fun dropdownToggle() = DropdownToggleBehavior()

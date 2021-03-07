@@ -7,7 +7,6 @@ import org.apache.wicket.markup.transformer.AbstractTransformerBehavior
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.util.string.Strings
-import java.lang.StringBuffer
 import java.util.regex.Pattern
 
 /**
@@ -74,3 +73,6 @@ class IconBehavior(
     private fun renderIcon(iconModel: IModel<CssClass>): String =
         "<span class=\"${iconModel.getObject()!!.classString}\"></span>"
 }
+
+fun icon(prependIcon: CssClass? = null, appendIcon: CssClass? = null) =
+    IconBehavior(Model(prependIcon), Model(appendIcon))

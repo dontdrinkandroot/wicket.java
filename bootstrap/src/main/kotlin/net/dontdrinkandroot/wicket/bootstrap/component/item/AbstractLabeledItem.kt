@@ -9,9 +9,9 @@ import org.apache.wicket.model.IModel
 open class AbstractLabeledItem<T> constructor(
     id: String,
     model: IModel<T>? = null,
-    private val labelModel: IModel<String>,
+    private val label: IModel<String>,
     vararg behaviors: Behavior,
 ) : AbstractItem<T>(id, model, *behaviors), LabeledItem {
 
-    override fun getLabel() = labelModel
+    override fun getLabel() = label
 }

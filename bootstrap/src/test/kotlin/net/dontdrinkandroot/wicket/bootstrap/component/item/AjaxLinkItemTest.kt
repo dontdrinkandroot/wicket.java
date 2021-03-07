@@ -11,7 +11,7 @@ class AjaxLinkItemTest : AbstractWicketTest() {
 
     @Test
     fun testMarkup() {
-        val component: AjaxLinkItem<*> = object : AjaxLinkItem<Any?>("id", labelModel = Model("Label")) {
+        val component: AjaxLinkItem<*> = object : AjaxLinkItem<Any?>("id", label = Model("Label")) {
             override fun onClick(target: AjaxRequestTarget?) {
                 /* Noop */
             }

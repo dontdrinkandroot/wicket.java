@@ -1,13 +1,10 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.disabledCss
-import net.dontdrinkandroot.wicket.css.CssClass
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 
 /**
  * @param <T> Type of the model object.
@@ -16,12 +13,10 @@ import org.apache.wicket.model.Model
 abstract class AbstractLinkItem<T, L : AbstractLink>(
     id: String,
     model: IModel<T>? = null,
-    labelModel: IModel<String>,
-    val prependIconModel: IModel<CssClass> = Model(null),
-    val appendIconModel: IModel<CssClass> = Model(null),
+    label: IModel<String>,
     val behaviors: Array<out Behavior> = emptyArray(),
     private vararg val linkBehaviors: Behavior,
-) : AbstractLabeledItem<T>(id, model, labelModel, *behaviors) {
+) : AbstractLabeledItem<T>(id, model, label, *behaviors) {
 
     lateinit var link: L
         protected set
@@ -32,7 +27,6 @@ abstract class AbstractLinkItem<T, L : AbstractLink>(
         link = createLink("link")
         link.body = this.label
         this.add(disabledCss())
-        link.add(IconBehavior(prependIconModel, appendIconModel))
         link.add(*linkBehaviors)
         this.add(link)
 

@@ -17,7 +17,7 @@ class RepeatingNavbarNavTest : AbstractWicketTest() {
             add(
                 BookmarkablePageLinkItem<Void>(
                     newChildId(),
-                    labelModel = Model("Item"),
+                    label = Model("Item"),
                     pageClass = SignInPage::class.java
                 )
             )

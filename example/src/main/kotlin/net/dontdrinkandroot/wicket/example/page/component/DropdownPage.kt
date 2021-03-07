@@ -6,7 +6,6 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLink
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownDividerItem
 import net.dontdrinkandroot.wicket.bootstrap.component.item.DropdownHeaderItem
 import net.dontdrinkandroot.wicket.example.page.HomePage
-import net.dontdrinkandroot.wicket.example.page.component.DropdownPage
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
@@ -27,7 +26,7 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
         itemView.add(
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                labelModel = Model("Action"),
+                label = Model("Action"),
                 pageClass = HomePage::class.java
             )
         )
@@ -36,7 +35,7 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
         itemView.add(
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
-                labelModel = Model("Another Action"),
+                label = Model("Another Action"),
                 pageClass = DropdownPage::class.java
             )
         )

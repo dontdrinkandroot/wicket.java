@@ -22,7 +22,7 @@ class ThemeDropdownItem(id: String) : RepeatingDropdownItem<Void>(
     }
 
     private fun createThemeLinkItem(id: String, theme: Theme): AbstractLinkItem<*, *> {
-        return object : AbstractLinkItem<Void, StatelessLink<Void>>(id, labelModel = Model.of(theme.name)) {
+        return object : AbstractLinkItem<Void, StatelessLink<Void>>(id, label = Model.of(theme.name)) {
             override fun createLink(id: String): StatelessLink<Void> {
                 return object : StatelessLink<Void>(id) {
                     override fun onClick() {

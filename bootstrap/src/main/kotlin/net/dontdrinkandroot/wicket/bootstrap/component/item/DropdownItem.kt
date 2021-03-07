@@ -7,14 +7,13 @@ import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
-import org.apache.wicket.model.Model
 
 abstract class DropdownItem<T>(
     id: String,
     model: IModel<T>? = null,
-    labelModel: IModel<String>,
+    label: IModel<String>,
     vararg linkBehaviors: Behavior,
-) : AbstractLinkItem<T, AbstractLink>(id, model, labelModel, Model(null), Model(null), emptyArray(), *linkBehaviors) {
+) : AbstractLinkItem<T, AbstractLink>(id, model, label, emptyArray(), *linkBehaviors) {
 
     protected lateinit var dropdownMenu: DropdownMenu
 
