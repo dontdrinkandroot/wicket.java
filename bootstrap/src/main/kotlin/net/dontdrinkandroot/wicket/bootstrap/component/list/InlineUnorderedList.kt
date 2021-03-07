@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.component.basic.UnorderedList
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
 
@@ -23,11 +24,20 @@ abstract class InlineUnorderedList<T>(
     }
 }
 
-inline fun <T> inlineUnorderedList(
+inline fun <T> createInlineUnorderedList(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
     crossinline createItemHandler: InlineUnorderedList<T>.(id: String, model: IModel<T>) -> Component
 ) = object : InlineUnorderedList<T>(id, model, *behaviors) {
     override fun createItem(id: String, model: IModel<T>) = createItemHandler(id, model)
+}
+
+inline fun <T> MarkupContainer.inlineUnorderedList(
+    id: String,
+    model: IModel<List<T>>? = null,
+    vararg behaviors: Behavior,
+    crossinline createItemHandler: InlineUnorderedList<T>.(id: String, model: IModel<T>) -> Component
+) {
+    add(createInlineUnorderedList(id, model, behaviors = behaviors, createItemHandler))
 }

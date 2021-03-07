@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.component.basic.UnorderedList
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
 
@@ -24,11 +25,20 @@ abstract class ListGroup<T>(
     }
 }
 
-inline fun <T> listGroup(
+inline fun <T> createListGroup(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
     crossinline createItemHandler: ListGroup<T>.(id: String, model: IModel<T>) -> Component
 ) = object : ListGroup<T>(id, model, *behaviors) {
     override fun createItem(id: String, model: IModel<T>) = createItemHandler(id, model)
+}
+
+inline fun <T> MarkupContainer.listGroup(
+    id: String,
+    model: IModel<List<T>>? = null,
+    vararg behaviors: Behavior,
+    crossinline createItemHandler: ListGroup<T>.(id: String, model: IModel<T>) -> Component
+) {
+    add(createListGroup(id, model, behaviors = behaviors, createItemHandler))
 }

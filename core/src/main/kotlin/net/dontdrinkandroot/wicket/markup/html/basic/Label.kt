@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.markup.html.basic
 
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.model.IModel
@@ -13,4 +14,12 @@ class Label<T>(
     init {
         add(*behaviors)
     }
+}
+
+fun <T> MarkupContainer.label(
+    id: String,
+    model: IModel<T>? = null,
+    vararg behaviors: Behavior
+) {
+    add(Label(id, model, *behaviors))
 }

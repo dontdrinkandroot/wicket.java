@@ -1,11 +1,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.behavior.cssClass
+import net.dontdrinkandroot.wicket.behavior.appendCssClass
 import net.dontdrinkandroot.wicket.behavior.invisible
 import net.dontdrinkandroot.wicket.behavior.outputMarkupId
 import net.dontdrinkandroot.wicket.bootstrap.css.*
-import net.dontdrinkandroot.wicket.markup.html.webMarkupContainer
+import net.dontdrinkandroot.wicket.markup.html.markupContainer
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior
@@ -26,18 +26,18 @@ abstract class Navbar(
 ) : Panel(id) {
 
     init {
-        this.add(cssClass(BootstrapCssClass.NAVBAR))
-        this.add(cssClass(styleModel))
-        this.add(cssClass(positionModel))
-        this.add(cssClass(expandModel))
+        this.add(appendCssClass(BootstrapCssClass.NAVBAR))
+        this.add(appendCssClass(styleModel))
+        this.add(appendCssClass(positionModel))
+        this.add(appendCssClass(expandModel))
 
-        val container = webMarkupContainer("container", CssClassAppender(containerStyleModel))
+        val container = markupContainer("container", CssClassAppender(containerStyleModel))
         this.add(container)
 
         val brand = createBrand("navbarBrand")
         container.add(brand)
 
-        val navbarCollapse = webMarkupContainer("navbarCollapse", outputMarkupId())
+        val navbarCollapse = markupContainer("navbarCollapse", outputMarkupId())
         container.add(navbarCollapse)
 
         val navbarToggle = createNavbarToggler("navbarToggler")
@@ -51,7 +51,7 @@ abstract class Navbar(
         add(*behaviors)
     }
 
-    protected open fun createBrand(id: String): Component = webMarkupContainer(id, invisible())
+    protected open fun createBrand(id: String): Component = markupContainer(id, invisible())
 
     protected open fun createNavbarToggler(id: String): Component = NavbarToggler(id)
 
@@ -64,7 +64,7 @@ fun navbar(
     styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
     expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
-    createBrandHandler: Navbar.(id: String) -> Component = { id -> webMarkupContainer(id, invisible()) },
+    createBrandHandler: Navbar.(id: String) -> Component = { id -> markupContainer(id, invisible()) },
     vararg behaviors: Behavior,
     populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) = object : Navbar(id, positionModel, styleModel, expandModel, containerStyleModel, *behaviors) {

@@ -2,6 +2,7 @@ package net.dontdrinkandroot.wicket.behavior
 
 import net.dontdrinkandroot.wicket.css.CssClass
 import net.dontdrinkandroot.wicket.model.CssClassClassStringModel
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.AttributeAppender
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -16,8 +17,12 @@ open class CssClassAppender : AttributeAppender {
     constructor(cssClassModel: IModel<out CssClass?>) : super("class", CssClassClassStringModel(cssClassModel), " ")
 }
 
-fun cssClass(cssClassModel: IModel<out CssClass?>) = CssClassAppender(cssClassModel)
+fun appendCssClass(cssClassModel: IModel<out CssClass?>) = CssClassAppender(cssClassModel)
 
-fun cssClass(cssClass: CssClass) = CssClassAppender(cssClass)
+fun appendCssClass(cssClass: CssClass) = CssClassAppender(cssClass)
+
+fun MarkupContainer.cssClass(cssClass: CssClass) {
+    add(CssClassAppender(cssClass))
+}
 
 fun cssClasses(vararg cssClasses: CssClass) = CompositeBehavior(cssClasses.map { CssClassAppender(it) }.toMutableList())

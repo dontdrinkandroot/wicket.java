@@ -19,14 +19,14 @@ class BreadcrumbPage(parameters: PageParameters) : ComponentPage(parameters) {
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = Model("Examples"),
-                        pageClass = HomePage::class
+                        pageClass = HomePage::class.java
                     )
                 )
                 itemView.add(
                     BookmarkablePageLinkItem<Void>(
                         itemView.newChildId(),
                         labelModel = Model("Breadcrumbs"),
-                        pageClass = BreadcrumbPage::class
+                        pageClass = BreadcrumbPage::class.java
                     )
                 )
             }

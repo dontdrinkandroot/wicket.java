@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.example.page
 
 import ` net`.dontdrinkandroot.wicket.extras.page.StandardBootstrapPage
-import net.dontdrinkandroot.wicket.behavior.cssClass
+import net.dontdrinkandroot.wicket.behavior.appendCssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.component.item.dropdown
 import net.dontdrinkandroot.wicket.bootstrap.component.item.pageLink
@@ -17,7 +17,7 @@ import net.dontdrinkandroot.wicket.example.getCurrentSession
 import net.dontdrinkandroot.wicket.example.headeritem.HighlightJsInitHeaderItem
 import net.dontdrinkandroot.wicket.example.page.component.*
 import net.dontdrinkandroot.wicket.example.page.form.*
-import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
+import net.dontdrinkandroot.wicket.markup.html.link.createPageLink
 import org.apache.wicket.markup.head.CssContentHeaderItem
 import org.apache.wicket.markup.head.CssUrlReferenceHeaderItem
 import org.apache.wicket.markup.head.IHeaderResponse
@@ -40,36 +40,36 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
         id,
         positionModel = Model(NavbarPosition.FIXED_TOP),
         createBrandHandler = { id ->
-            BookmarkablePageLink<Void>(
+            createPageLink(
                 id,
                 pageClass = HomePage::class.java,
-                bodyModel = Model("wicket.example")
+                label = Model("wicket.example")
             )
         },
-        behaviors = arrayOf(cssClass(BackgroundColor.LIGHT))
+        behaviors = arrayOf(appendCssClass(BackgroundColor.LIGHT))
     ) {
-        navbarNav(cssClass(Spacing.MARGIN_END_AUTO)) {
-            pageLink("Getting Started", GettingStartedPage::class)
-            pageLink("CSS", CssPage::class)
-            pageLink("The Grid", GridPage::class)
+        navbarNav(appendCssClass(Spacing.MARGIN_END_AUTO)) {
+            pageLink("Getting Started", GettingStartedPage::class.java)
+            pageLink("CSS", CssPage::class.java)
+            pageLink("The Grid", GridPage::class.java)
             dropdown("Components", active { this.page is ComponentPage }) {
-                pageLink("Buttons", ButtonPage::class)
-                pageLink("Cards", CardPage::class)
-                pageLink("Navs", NavPage::class)
-                pageLink("Navbars", NavbarPage::class)
-                pageLink("Breadcrumbs", BreadcrumbPage::class)
-                pageLink("Badges", BadgePage::class)
-                pageLink("Alerts and Feedback", AlertPage::class)
-                pageLink("Progress Bars", ProgressBarPage::class)
-                pageLink("Pagination", PaginationPage::class)
-                pageLink("Dropdowns", DropdownPage::class)
-                pageLink("Modals", ModalPage::class)
+                pageLink("Buttons", ButtonPage::class.java)
+                pageLink("Cards", CardPage::class.java)
+                pageLink("Navs", NavPage::class.java)
+                pageLink("Navbars", NavbarPage::class.java)
+                pageLink("Breadcrumbs", BreadcrumbPage::class.java)
+                pageLink("Badges", BadgePage::class.java)
+                pageLink("Alerts and Feedback", AlertPage::class.java)
+                pageLink("Progress Bars", ProgressBarPage::class.java)
+                pageLink("Pagination", PaginationPage::class.java)
+                pageLink("Dropdowns", DropdownPage::class.java)
+                pageLink("Modals", ModalPage::class.java)
             }
             dropdown("Forms", active { this.page is FormPage }) {
-                pageLink("Form Groups and Form Styles", FormGroupPage::class)
-                pageLink("Input Groups", InputGroupPage::class)
-                pageLink("Validations", ValidationPage::class)
-                pageLink("Ajax Forms", AjaxFormPage::class)
+                pageLink("Form Groups and Form Styles", FormGroupPage::class.java)
+                pageLink("Input Groups", InputGroupPage::class.java)
+                pageLink("Validations", ValidationPage::class.java)
+                pageLink("Ajax Forms", AjaxFormPage::class.java)
             }
         }
         navbarNav {

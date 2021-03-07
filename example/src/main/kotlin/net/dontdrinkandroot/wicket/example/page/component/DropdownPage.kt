@@ -28,7 +28,7 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
                 labelModel = Model("Action"),
-                pageClass = HomePage::class
+                pageClass = HomePage::class.java
             )
         )
         itemView.add(DropdownDividerItem(itemView.newChildId()))
@@ -37,7 +37,7 @@ class DropdownPage(parameters: PageParameters) : ComponentPage(parameters) {
             BookmarkablePageLinkItem<Void>(
                 itemView.newChildId(),
                 labelModel = Model("Another Action"),
-                pageClass = DropdownPage::class
+                pageClass = DropdownPage::class.java
             )
         )
     }

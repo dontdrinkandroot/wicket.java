@@ -11,7 +11,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.NavbarAlignment
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarStyle
 import net.dontdrinkandroot.wicket.example.component.NavbarForm
 import net.dontdrinkandroot.wicket.example.page.HomePage
-import net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink
+import net.dontdrinkandroot.wicket.markup.html.link.createPageLink
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
@@ -35,19 +35,19 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         id,
         styleModel = styleModel,
         createBrandHandler = { id ->
-            BookmarkablePageLink<Void>(id, pageClass = HomePage::class.java, bodyModel = Model("Brand"))
+            createPageLink(id, pageClass = HomePage::class.java, label = Model("Brand"))
         }
     )
     {
         navbarNav()
         {
             dropdown("Dropdown") {
-                pageLink("Action", HomePage::class)
+                pageLink("Action", HomePage::class.java)
                 divider()
                 header("A header")
-                pageLink("Another Action", HomePage::class)
+                pageLink("Another Action", HomePage::class.java)
             }
-            pageLink("Link", NavbarPage::class)
+            pageLink("Link", NavbarPage::class.java)
         }
 
         val form = NavbarForm(newChildId())
