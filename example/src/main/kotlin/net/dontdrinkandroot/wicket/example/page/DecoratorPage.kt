@@ -5,7 +5,7 @@ import net.dontdrinkandroot.wicket.behavior.appendCssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.component.item.dropdown
 import net.dontdrinkandroot.wicket.bootstrap.component.item.pageLink
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.createNavbar
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
@@ -36,7 +36,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     override fun createPageTitlePrefixModel(): IModel<String> = Model("wicket.example")
 
-    override fun createNavbar(id: String) = navbar(
+    override fun createNavbar(id: String) = createNavbar(
         id,
         positionModel = Model(NavbarPosition.FIXED_TOP),
         createBrandHandler = { id ->
@@ -52,7 +52,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
             pageLink("Getting Started", GettingStartedPage::class.java)
             pageLink("CSS", CssPage::class.java)
             pageLink("The Grid", GridPage::class.java)
-            dropdown("Components", active { this.page is ComponentPage }) {
+            dropdown("Components", active { page is ComponentPage }) {
                 pageLink("Buttons", ButtonPage::class.java)
                 pageLink("Cards", CardPage::class.java)
                 pageLink("Navs", NavPage::class.java)
@@ -65,7 +65,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
                 pageLink("Dropdowns", DropdownPage::class.java)
                 pageLink("Modals", ModalPage::class.java)
             }
-            dropdown("Forms", active { this.page is FormPage }) {
+            dropdown("Forms", active { page is FormPage }) {
                 pageLink("Form Groups and Form Styles", FormGroupPage::class.java)
                 pageLink("Input Groups", InputGroupPage::class.java)
                 pageLink("Validations", ValidationPage::class.java)

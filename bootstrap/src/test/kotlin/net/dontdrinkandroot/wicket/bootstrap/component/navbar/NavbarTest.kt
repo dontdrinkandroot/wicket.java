@@ -13,7 +13,7 @@ class NavbarTest : AbstractWicketTest() {
 
     @Test
     fun testDefaultMarkup() {
-        val component = navbar("id") {}
+        val component = createNavbar("id") {}
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
 
         var tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id")
@@ -28,7 +28,7 @@ class NavbarTest : AbstractWicketTest() {
     @Test
     fun testPositioningAndStyle() {
         val component =
-            navbar("id", positionModel = Model(NavbarPosition.FIXED_TOP), styleModel = Model(NavbarStyle.DARK)) {}
+            createNavbar("id", positionModel = Model(NavbarPosition.FIXED_TOP), styleModel = Model(NavbarStyle.DARK)) {}
         val componentMarkup = ComponentRenderer.renderComponent(component).toString()
 
         var tagTester = TagTester.createTagByAttribute(componentMarkup, "wicket:id", "id")

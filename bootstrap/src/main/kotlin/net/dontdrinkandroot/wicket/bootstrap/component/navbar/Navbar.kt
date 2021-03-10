@@ -8,6 +8,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.*
 import net.dontdrinkandroot.wicket.markup.html.createMarkupContainer
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.panel.Panel
 import org.apache.wicket.markup.repeater.RepeatingView
@@ -58,15 +59,15 @@ abstract class Navbar(
     abstract fun populateCollapseItems(collapseView: NavbarCollapseView)
 }
 
-fun navbar(
+inline fun createNavbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
     styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
     expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
-    createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
+    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
     vararg behaviors: Behavior,
-    populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
+    crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) = object : Navbar(id, positionModel, styleModel, expandModel, containerStyleModel, *behaviors) {
 
     override fun createBrand(id: String) = createBrandHandler(id)
@@ -74,4 +75,28 @@ fun navbar(
     override fun populateCollapseItems(collapseView: NavbarCollapseView) {
         populateCollapseItemsHandler(collapseView)
     }
+}
+
+inline fun MarkupContainer.navbar(
+    id: String,
+    positionModel: IModel<NavbarPosition?> = Model(null),
+    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
+    containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
+    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
+    vararg behaviors: Behavior,
+    crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
+) {
+    add(
+        createNavbar(
+            id,
+            positionModel,
+            styleModel,
+            expandModel,
+            containerStyleModel,
+            createBrandHandler,
+            behaviors = behaviors,
+            populateCollapseItemsHandler
+        )
+    )
 }
