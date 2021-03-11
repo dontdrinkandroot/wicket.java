@@ -1,9 +1,9 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button
 
-import net.dontdrinkandroot.wicket.behavior.CssClassAppender
+import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
-import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
+import net.dontdrinkandroot.wicket.bootstrap.behavior.dropdownToggle
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
@@ -11,9 +11,9 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
 import net.dontdrinkandroot.wicket.css.CssClass
+import net.dontdrinkandroot.wicket.markup.html.basic.createLabel
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
@@ -23,7 +23,7 @@ import org.apache.wicket.model.Model
 abstract class DropdownButton<T>(
     id: String,
     model: IModel<T>? = null,
-    private var labelModel: IModel<String>?,
+    private var label: IModel<String>?,
     buttonStyleModel: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
     buttonSizeModel: IModel<ButtonSize> = Model(null),
     prependIconModel: IModel<CssClass> = Model(null),
@@ -44,12 +44,11 @@ abstract class DropdownButton<T>(
 
     init {
         createComponents()
-        add(CssClassAppender(BootstrapCssClass.DROPDOWN))
+        cssClass(BootstrapCssClass.DROPDOWN)
     }
 
     protected fun createComponents() {
-        toggle = Label("toggle", labelModel)
-        toggle.add(DropdownToggleBehavior())
+        toggle = createLabel("toggle", label, dropdownToggle())
         menu = createDropdownMenu("menu")
     }
 
@@ -67,5 +66,5 @@ abstract class DropdownButton<T>(
         this.add(menu)
     }
 
-    protected abstract fun populateItems(itemView: RepeatingView)
+    protected abstract fun populateItems(itemView: ItemView)
 }

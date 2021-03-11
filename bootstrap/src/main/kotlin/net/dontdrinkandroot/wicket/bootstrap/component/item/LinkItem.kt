@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.kmodel.model
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.Link
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 abstract class LinkItem<T>(
     id: String,
@@ -29,12 +30,12 @@ abstract class LinkItem<T>(
     protected abstract fun onClick()
 }
 
-fun <T> linkItem(
+inline fun <T> createLinkItem(
     id: String,
     model: IModel<T>? = null,
     label: IModel<String>,
     vararg linkBehaviors: Behavior,
-    onClickHandler: LinkItem<T>.() -> Any?
+    crossinline onClickHandler: LinkItem<T>.() -> Any?
 ) = object : LinkItem<T>(
     id,
     model,
@@ -65,4 +66,13 @@ fun <T> ItemView.link(
             onClickHandler()
         }
     })
+}
+
+inline fun <T> ItemView.link(
+    label: String,
+    model: IModel<T>,
+    vararg linkBehaviors: Behavior,
+    crossinline onClickHandler: LinkItem<T>.() -> Any?
+) {
+    add(createLinkItem(newChildId(), model, Model(label), linkBehaviors = *linkBehaviors, onClickHandler))
 }

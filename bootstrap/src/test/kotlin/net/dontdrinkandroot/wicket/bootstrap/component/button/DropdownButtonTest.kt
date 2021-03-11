@@ -1,8 +1,8 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button
 
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.test.AbstractWicketTest
 import org.apache.wicket.core.util.string.ComponentRenderer
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 import org.apache.wicket.util.tester.TagTester
 import org.junit.jupiter.api.Assertions
@@ -13,7 +13,7 @@ class DropdownButtonTest : AbstractWicketTest() {
     @Test
     fun testDefault() {
         val component: DropdownButton<Void> = object : DropdownButton<Void>("id", null, Model.of("LabelText")) {
-            override fun populateItems(itemView: RepeatingView) {}
+            override fun populateItems(itemView: ItemView) {}
         }
         val componentMarkup = ComponentRenderer.renderComponent(component)
         val componentTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "id")

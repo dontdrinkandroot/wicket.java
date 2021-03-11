@@ -6,6 +6,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.button.ButtonGroupChoice
 import net.dontdrinkandroot.wicket.bootstrap.component.button.DropdownButton
 import net.dontdrinkandroot.wicket.bootstrap.component.button.SplitDropdownButton
 import net.dontdrinkandroot.wicket.bootstrap.component.item.BookmarkablePageLinkItem
+import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
@@ -43,7 +44,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
 
         val dropdownButton: DropdownButton<Void> =
             object : DropdownButton<Void>("dropdownButton", null, Model.of("My Label")) {
-                override fun populateItems(itemView: RepeatingView) {
+                override fun populateItems(itemView: ItemView) {
                     populateDropdownItems(itemView)
                 }
             }
@@ -51,7 +52,7 @@ class ButtonPage(parameters: PageParameters) : ComponentPage(parameters) {
 
         val dropupButton: DropdownButton<Void> =
             object : DropdownButton<Void>("dropupButton", null, Model.of("DropUp")) {
-                override fun populateItems(itemView: RepeatingView) {
+                override fun populateItems(itemView: ItemView) {
                     populateDropdownItems(itemView)
                 }
             }
