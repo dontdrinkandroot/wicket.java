@@ -7,6 +7,7 @@ class MarkupIdBehavior(private val id: String) : Behavior() {
 
     override fun bind(component: Component) {
         component.markupId = id
+        component.outputMarkupId = true
     }
 
     override fun isTemporary(component: Component) = true

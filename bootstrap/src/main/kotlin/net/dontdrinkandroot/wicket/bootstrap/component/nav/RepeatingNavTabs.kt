@@ -19,19 +19,19 @@ abstract class RepeatingNavTabs<T>(
     }
 }
 
-fun <T> repeatingNavTabs(
+fun <T> createRepeatingNavTabs(
     id: String,
     model: IModel<T>? = null,
     itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
     vararg behaviors: Behavior,
-    populateItemsHandler: ItemView.() -> Any?
+    populateItemsHandler: ItemView.(repeatingNavTabs: RepeatingNavTabs<T>) -> Any?
 ) = object : RepeatingNavTabs<T>(id, model, itemAlignmentModel, *behaviors) {
     override fun populateItems(itemView: ItemView) {
-        populateItemsHandler(itemView)
+        populateItemsHandler(itemView, this)
     }
 }
 
-fun repeatingNavTabs(
+fun createRepeatingNavTabs(
     id: String,
     itemAlignmentModel: IModel<NavItemAlignment> = Model(null),
     vararg behaviors: Behavior,

@@ -1,4 +1,4 @@
-package net.dontdrinkandroot.wicket.markup.html
+package net.dontdrinkandroot.wicket.markup.html.panel
 
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior

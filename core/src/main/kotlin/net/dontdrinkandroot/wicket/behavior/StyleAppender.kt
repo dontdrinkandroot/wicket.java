@@ -7,8 +7,7 @@ import org.apache.wicket.model.Model
 /**
  * Appends the given style to the style attribute of an element.
  */
-open class StyleAppender : AttributeAppender
-{
+open class StyleAppender : AttributeAppender {
 
     constructor(style: String?) : super("style", Model(style), ";")
 

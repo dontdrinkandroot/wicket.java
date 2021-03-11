@@ -5,8 +5,8 @@ import net.dontdrinkandroot.wicket.behavior.disabled
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.behavior.disabledCss
 import net.dontdrinkandroot.wicket.bootstrap.component.item.*
+import net.dontdrinkandroot.wicket.bootstrap.component.nav.createRepeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavPills
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.repeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.Flex
 import net.dontdrinkandroot.wicket.bootstrap.css.NavItemAlignment
 import net.dontdrinkandroot.wicket.example.page.HomePage
@@ -20,17 +20,17 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
     override fun onInitialize() {
         super.onInitialize()
 
-        val tabsDefault = repeatingNavTabs("tabsDefault") { this@NavPage.populateItems(this) }
+        val tabsDefault = createRepeatingNavTabs("tabsDefault") { this@NavPage.populateItems(this) }
         this.add(tabsDefault)
 
-        val tabsJustified = repeatingNavTabs(
+        val tabsJustified = createRepeatingNavTabs(
             "tabsJustified",
             itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED)
         )
         { this@NavPage.populateItems(this) }
         this.add(tabsJustified)
 
-        val tabsFill = repeatingNavTabs(
+        val tabsFill = createRepeatingNavTabs(
             "tabsFill",
             itemAlignmentModel = Model(NavItemAlignment.FILL)
         )
