@@ -11,7 +11,3 @@ class DropdownDividerItem(id: String) : WebMarkupContainer(id), Item {
         this.add(AttributeModifier("role", "separator"))
     }
 }
-
-fun ItemView.divider() {
-    this.add(DropdownDividerItem(newChildId()))
-}
