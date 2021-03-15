@@ -59,7 +59,7 @@ abstract class Navbar(
     abstract fun populateCollapseItems(collapseView: NavbarCollapseView)
 }
 
-inline fun createNavbar(
+inline fun navbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
     styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
@@ -77,7 +77,7 @@ inline fun createNavbar(
     }
 }
 
-inline fun MarkupContainer.navbar(
+inline fun MarkupContainer.addNavbar(
     id: String,
     positionModel: IModel<NavbarPosition?> = Model(null),
     styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
@@ -88,7 +88,7 @@ inline fun MarkupContainer.navbar(
     crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) {
     add(
-        createNavbar(
+        navbar(
             id,
             positionModel,
             styleModel,

@@ -5,7 +5,7 @@ import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.component.item.addDropdown
 import net.dontdrinkandroot.wicket.bootstrap.component.item.addPageLink
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.createNavbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
@@ -36,7 +36,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     override fun createPageTitlePrefixModel(): IModel<String> = Model("wicket.example")
 
-    override fun createNavbar(id: String) = createNavbar(
+    override fun createNavbar(id: String) = navbar(
         id,
         positionModel = Model(NavbarPosition.FIXED_TOP),
         createBrandHandler = { id ->

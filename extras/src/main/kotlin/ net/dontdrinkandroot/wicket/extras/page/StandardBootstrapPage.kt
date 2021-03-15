@@ -3,7 +3,7 @@ package ` net`.dontdrinkandroot.wicket.extras.page
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ModalRequestBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.Navbar
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.createNavbar
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
 import net.dontdrinkandroot.wicket.bootstrap.page.BootstrapPage
 import net.dontdrinkandroot.wicket.model.ConcatenatingStringModel
 import org.apache.wicket.Component
@@ -82,7 +82,7 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         /* Overwrite in order to add primary actions */
     }
 
-    protected open fun createNavbar(id: String): Navbar = createNavbar(id) {}
+    protected open fun createNavbar(id: String): Navbar = navbar(id) {}
 
     protected fun createFooter(id: String) = WebMarkupContainer(id).setVisible(false)
 

@@ -31,7 +31,7 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         this.add(navbarDark)
     }
 
-    protected fun createExampleNavbar(id: String, styleModel: IModel<NavbarStyle> = Model(null)): Navbar = createNavbar(
+    protected fun createExampleNavbar(id: String, styleModel: IModel<NavbarStyle> = Model(null)): Navbar = navbar(
         id,
         styleModel = styleModel,
         createBrandHandler = { id ->
