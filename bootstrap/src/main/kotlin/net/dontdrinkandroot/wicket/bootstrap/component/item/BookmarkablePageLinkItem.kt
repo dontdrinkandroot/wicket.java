@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
+import net.dontdrinkandroot.wicket.kmodel.model
 import org.apache.wicket.Page
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
@@ -29,4 +30,29 @@ open class BookmarkablePageLinkItem<T>(
 //        link.add(active { this.page.javaClass.isAssignableFrom(link.pageClass) })
         return link
     }
+}
+
+fun ItemView.addPageLink(label: String, pageClass: Class<out Page>) {
+    add(BookmarkablePageLinkItem<Void>(newChildId(), label = model(label), pageClass = pageClass))
+}
+
+fun ItemView.addPageLink(
+    label: String,
+    pageClass: Class<out Page>,
+    pageParameters: PageParameters?,
+    vararg linkBehaviors: Behavior
+) {
+    add(
+        BookmarkablePageLinkItem<Void>(
+            newChildId(),
+            label = model(label),
+            pageClass = pageClass,
+            pageParameters = pageParameters,
+            linkBehaviors = *linkBehaviors
+        )
+    )
+}
+
+fun ItemView.addPageLink(label: IModel<String>, pageClass: Class<out Page>) {
+    add(BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass))
 }

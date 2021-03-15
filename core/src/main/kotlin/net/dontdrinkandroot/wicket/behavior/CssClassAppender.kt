@@ -17,11 +17,11 @@ open class CssClassAppender : AttributeAppender {
     constructor(cssClassModel: IModel<out CssClass?>) : super("class", CssClassClassStringModel(cssClassModel), " ")
 }
 
-fun appendCssClass(cssClassModel: IModel<out CssClass?>) = CssClassAppender(cssClassModel)
+fun cssClass(cssClassModel: IModel<out CssClass?>) = CssClassAppender(cssClassModel)
 
-fun appendCssClass(cssClass: CssClass) = CssClassAppender(cssClass)
+fun cssClass(cssClass: CssClass) = CssClassAppender(cssClass)
 
-fun MarkupContainer.cssClass(cssClass: CssClass) {
+fun MarkupContainer.addCssClass(cssClass: CssClass) {
     add(CssClassAppender(cssClass))
 }
 

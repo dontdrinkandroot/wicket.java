@@ -17,7 +17,7 @@ class Label<T>(
     }
 }
 
-fun <T> createLabel(
+fun <T> label(
     id: String,
     model: IModel<T>? = null,
     vararg behaviors: Behavior
@@ -28,10 +28,10 @@ fun <T> createLabel(
     }
 }
 
-fun <T> MarkupContainer.label(
+fun <T> MarkupContainer.addLabel(
     id: String,
     model: IModel<T>? = null,
     vararg behaviors: Behavior
 ) {
-    add(createLabel(id, model, *behaviors))
+    add(label(id, model, *behaviors))
 }

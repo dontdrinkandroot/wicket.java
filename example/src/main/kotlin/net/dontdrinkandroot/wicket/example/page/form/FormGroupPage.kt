@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.example.page.form
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior
-import net.dontdrinkandroot.wicket.bootstrap.component.item.ajaxLink
+import net.dontdrinkandroot.wicket.bootstrap.component.item.addAjaxLink
 import net.dontdrinkandroot.wicket.bootstrap.component.nav.createRepeatingNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack
 import org.apache.wicket.markup.html.form.Form
@@ -21,17 +21,17 @@ class FormGroupPage(parameters: PageParameters) : FormPage(parameters) {
 
         val styleNav = createRepeatingNavTabs("styleNav")
         {
-            ajaxLink("Default",
+            addAjaxLink("Default",
                 active { !formStyleBehavior.isInline && !formStyleBehavior.isHorizontal }) {
                 formStyleBehavior.reset()
                 this.setResponsePage(this.page)
             }
-            ajaxLink("Horizontal",
+            addAjaxLink("Horizontal",
                 active { formStyleBehavior.isHorizontal }) {
                 formStyleBehavior.setHorizontal(ColumnSizeStack.FORM_DEFAULT)
                 this.setResponsePage(this.page)
             }
-            ajaxLink("Inline",
+            addAjaxLink("Inline",
                 active { formStyleBehavior.isInline }) {
                 formStyleBehavior.isInline = true
                 this.setResponsePage(this.page)

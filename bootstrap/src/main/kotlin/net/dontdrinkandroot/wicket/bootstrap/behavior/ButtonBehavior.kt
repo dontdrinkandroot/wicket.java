@@ -53,3 +53,10 @@ class ButtonBehavior constructor(
         }
     }
 }
+
+fun button(
+    buttonStyle: IModel<ButtonStyle> = Model(ButtonStyle.SECONDARY),
+    buttonSize: IModel<ButtonSize> = Model(null)
+) = ButtonBehavior(buttonStyle, buttonSize)
+
+fun button(buttonStyle: ButtonStyle) = ButtonBehavior(Model(buttonStyle))

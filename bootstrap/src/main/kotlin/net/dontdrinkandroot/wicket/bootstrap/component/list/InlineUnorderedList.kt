@@ -24,7 +24,7 @@ abstract class InlineUnorderedList<T>(
     }
 }
 
-inline fun <T> createInlineUnorderedList(
+inline fun <T> inlineUnorderedList(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
@@ -33,11 +33,11 @@ inline fun <T> createInlineUnorderedList(
     override fun createItem(id: String, model: IModel<T>) = createItemHandler(id, model)
 }
 
-inline fun <T> MarkupContainer.inlineUnorderedList(
+inline fun <T> MarkupContainer.addInlineUnorderedList(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
     crossinline createItemHandler: InlineUnorderedList<T>.(id: String, model: IModel<T>) -> Component
 ) {
-    add(createInlineUnorderedList(id, model, behaviors = behaviors, createItemHandler))
+    add(inlineUnorderedList(id, model, behaviors = behaviors, createItemHandler))
 }

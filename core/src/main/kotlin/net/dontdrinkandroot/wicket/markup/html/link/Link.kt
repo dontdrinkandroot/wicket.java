@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.link.Link
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-inline fun <T> createLink(
+inline fun <T> link(
     id: String,
     model: IModel<T>? = null,
     label: IModel<String> = Model(null),
@@ -23,7 +23,7 @@ inline fun <T> createLink(
     }
 }
 
-inline fun createLink(
+inline fun link(
     id: String,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
@@ -39,21 +39,21 @@ inline fun createLink(
     }
 }
 
-inline fun <T> MarkupContainer.link(
+inline fun <T> MarkupContainer.addLink(
     id: String,
     model: IModel<T>? = null,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<T>.() -> Any?
 ) {
-    add(createLink(id, model, label, behaviors = behaviors, onClickHandler))
+    add(link(id, model, label, behaviors = behaviors, onClickHandler))
 }
 
-inline fun MarkupContainer.link(
+inline fun MarkupContainer.addLink(
     id: String,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<Void>.() -> Any?
 ) {
-    add(createLink(id, label, behaviors = behaviors, onClickHandler))
+    add(link(id, label, behaviors = behaviors, onClickHandler))
 }

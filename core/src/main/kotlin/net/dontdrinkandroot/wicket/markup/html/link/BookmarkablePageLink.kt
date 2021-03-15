@@ -8,7 +8,7 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
-fun createPageLink(
+fun pageLink(
     id: String,
     pageClass: Class<out Page>,
     pageParameters: PageParameters? = null,
@@ -21,12 +21,12 @@ fun createPageLink(
     }
 }
 
-fun MarkupContainer.pageLink(
+fun MarkupContainer.addPageLink(
     id: String,
     pageClass: Class<out Page>,
     pageParameters: PageParameters? = null,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior
 ) {
-    add(createPageLink(id, pageClass, pageParameters, label, *behaviors))
+    add(pageLink(id, pageClass, pageParameters, label, *behaviors))
 }

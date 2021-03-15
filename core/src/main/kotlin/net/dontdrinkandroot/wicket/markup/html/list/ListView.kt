@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.list.ListItem
 import org.apache.wicket.markup.html.list.ListView
 import org.apache.wicket.model.IModel
 
-inline fun <T> createListView(
+inline fun <T> listView(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
@@ -21,11 +21,11 @@ inline fun <T> createListView(
     }
 }
 
-inline fun <T> MarkupContainer.listView(
+inline fun <T> MarkupContainer.addListView(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
     crossinline populateItemHandler: ListItem<T>.() -> Any?
 ) {
-    add(createListView(id, model, behaviors = behaviors, populateItemHandler))
+    add(listView(id, model, behaviors = behaviors, populateItemHandler))
 }

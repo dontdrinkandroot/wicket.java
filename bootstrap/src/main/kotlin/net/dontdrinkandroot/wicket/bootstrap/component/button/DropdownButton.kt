@@ -1,6 +1,6 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.button
 
-import net.dontdrinkandroot.wicket.behavior.cssClass
+import net.dontdrinkandroot.wicket.behavior.addCssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.dropdownToggle
@@ -11,7 +11,7 @@ import net.dontdrinkandroot.wicket.bootstrap.css.ButtonSize
 import net.dontdrinkandroot.wicket.bootstrap.css.ButtonStyle
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
 import net.dontdrinkandroot.wicket.css.CssClass
-import net.dontdrinkandroot.wicket.markup.html.basic.createLabel
+import net.dontdrinkandroot.wicket.markup.html.basic.label
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.panel.GenericPanel
 import org.apache.wicket.model.IModel
@@ -44,11 +44,11 @@ abstract class DropdownButton<T>(
 
     init {
         createComponents()
-        cssClass(BootstrapCssClass.DROPDOWN)
+        addCssClass(BootstrapCssClass.DROPDOWN)
     }
 
     protected fun createComponents() {
-        toggle = createLabel("toggle", label, dropdownToggle())
+        toggle = label("toggle", label, dropdownToggle())
         menu = createDropdownMenu("menu")
     }
 

@@ -6,7 +6,7 @@ import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
 
-inline fun createAjaxCheckBox(
+inline fun ajaxCheckbox(
     id: String,
     model: IModel<Boolean>,
     vararg behaviors: Behavior,
@@ -21,11 +21,11 @@ inline fun createAjaxCheckBox(
     }
 }
 
-inline fun MarkupContainer.ajaxCheckbox(
+inline fun MarkupContainer.addAjaxCheckbox(
     id: String,
     model: IModel<Boolean>,
     vararg behaviors: Behavior,
     crossinline onUpdateHandler: AjaxCheckBox.(target: AjaxRequestTarget?) -> Any?
 ) {
-    add(createAjaxCheckBox(id, model, behaviors = behaviors, onUpdateHandler))
+    add(ajaxCheckbox(id, model, behaviors = behaviors, onUpdateHandler))
 }

@@ -4,6 +4,7 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
+import net.dontdrinkandroot.wicket.kmodel.model
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
@@ -31,4 +32,12 @@ abstract class DropdownItem<T>(
     }
 
     protected abstract fun createDropdownMenu(id: String): DropdownMenu
+}
+
+fun ItemView.addDropdown(label: String, vararg linkBehaviors: Behavior, populateItemsHandler: ItemView.() -> Any?) {
+    this.add(object : RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), *linkBehaviors) {
+        override fun populateItems(itemView: ItemView) {
+            populateItemsHandler(itemView)
+        }
+    })
 }

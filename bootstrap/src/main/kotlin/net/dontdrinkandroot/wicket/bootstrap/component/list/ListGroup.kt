@@ -25,7 +25,7 @@ abstract class ListGroup<T>(
     }
 }
 
-inline fun <T> createListGroup(
+inline fun <T> listGroup(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
@@ -34,11 +34,11 @@ inline fun <T> createListGroup(
     override fun createItem(id: String, model: IModel<T>) = createItemHandler(id, model)
 }
 
-inline fun <T> MarkupContainer.listGroup(
+inline fun <T> MarkupContainer.addListGroup(
     id: String,
     model: IModel<List<T>>? = null,
     vararg behaviors: Behavior,
     crossinline createItemHandler: ListGroup<T>.(id: String, model: IModel<T>) -> Component
 ) {
-    add(createListGroup(id, model, behaviors = behaviors, createItemHandler))
+    add(listGroup(id, model, behaviors = behaviors, createItemHandler))
 }

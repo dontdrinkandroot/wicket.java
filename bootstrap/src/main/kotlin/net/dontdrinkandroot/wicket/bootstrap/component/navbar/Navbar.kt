@@ -1,7 +1,7 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.navbar
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
-import net.dontdrinkandroot.wicket.behavior.appendCssClass
+import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.behavior.invisible
 import net.dontdrinkandroot.wicket.behavior.outputMarkupId
 import net.dontdrinkandroot.wicket.bootstrap.css.*
@@ -27,10 +27,10 @@ abstract class Navbar(
 ) : Panel(id) {
 
     init {
-        this.add(appendCssClass(BootstrapCssClass.NAVBAR))
-        this.add(appendCssClass(styleModel))
-        this.add(appendCssClass(positionModel))
-        this.add(appendCssClass(expandModel))
+        this.add(cssClass(BootstrapCssClass.NAVBAR))
+        this.add(cssClass(styleModel))
+        this.add(cssClass(positionModel))
+        this.add(cssClass(expandModel))
 
         val container = createMarkupContainer("container", CssClassAppender(containerStyleModel))
         this.add(container)

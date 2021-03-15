@@ -24,7 +24,7 @@ abstract class RepeatingDropdownItem<T>(
     abstract fun populateItems(itemView: ItemView)
 }
 
-fun <T> createRepeatingDropdownItem(
+fun <T> repeatingDropdownItem(
     id: String,
     model: IModel<T>? = null,
     labelModel: IModel<String>,
@@ -36,7 +36,7 @@ fun <T> createRepeatingDropdownItem(
     }
 }
 
-fun createRepeatingDropdownItem(
+fun repeatingDropdownItem(
     id: String,
     labelModel: IModel<String>,
     vararg behaviors: Behavior,
