@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.behavior
 
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.ComponentTag
 
@@ -12,6 +13,11 @@ class TagNameModifier(private val tagName: String) : Behavior() {
 
     override fun onComponentTag(component: Component, tag: ComponentTag) {
         tag.name = tagName
-        super.onComponentTag(component, tag)
     }
+}
+
+fun tagName(tagName: String) = TagNameModifier(tagName)
+
+fun MarkupContainer.setTagName(tagName: String) {
+    add(tagName(tagName))
 }

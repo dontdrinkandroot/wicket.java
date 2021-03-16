@@ -11,7 +11,7 @@ class TagNameModifierTest : AbstractWicketTest() {
     @Test
     fun testModelConstructor() {
         val container = WebMarkupContainer("id")
-        container.add(TagNameModifier("div"))
+        container.setTagName("div")
         val componentMarkup = ComponentRenderer.renderComponent(container)
         Assertions.assertEquals(
             """<wicket:div wicket:id="id"></wicket:div>""",
