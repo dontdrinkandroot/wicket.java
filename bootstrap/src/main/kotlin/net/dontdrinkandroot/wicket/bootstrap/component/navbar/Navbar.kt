@@ -19,20 +19,20 @@ class NavbarCollapseView(id: String) : RepeatingView(id)
 
 abstract class Navbar(
     id: String,
-    positionModel: IModel<NavbarPosition?> = Model(null),
-    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
-    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
-    containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
+    position: IModel<NavbarPosition?> = Model(null),
+    style: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expand: IModel<NavbarExpand> = Model(NavbarExpand.LG),
+    containerStyle: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     vararg behaviors: Behavior
 ) : Panel(id) {
 
     init {
         this.add(cssClass(BootstrapCssClass.NAVBAR))
-        this.add(cssClass(styleModel))
-        this.add(cssClass(positionModel))
-        this.add(cssClass(expandModel))
+        this.add(cssClass(style))
+        this.add(cssClass(position))
+        this.add(cssClass(expand))
 
-        val container = createMarkupContainer("container", CssClassAppender(containerStyleModel))
+        val container = createMarkupContainer("container", CssClassAppender(containerStyle))
         this.add(container)
 
         val brand = createBrand("navbarBrand")
@@ -61,14 +61,14 @@ abstract class Navbar(
 
 inline fun navbar(
     id: String,
-    positionModel: IModel<NavbarPosition?> = Model(null),
-    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
-    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
-    containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
+    position: IModel<NavbarPosition?> = Model(null),
+    style: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expand: IModel<NavbarExpand> = Model(NavbarExpand.LG),
+    containerStyle: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
     vararg behaviors: Behavior,
     crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
-) = object : Navbar(id, positionModel, styleModel, expandModel, containerStyleModel, *behaviors) {
+) = object : Navbar(id, position, style, expand, containerStyle, *behaviors) {
 
     override fun createBrand(id: String) = createBrandHandler(id)
 
@@ -79,10 +79,10 @@ inline fun navbar(
 
 inline fun MarkupContainer.addNavbar(
     id: String,
-    positionModel: IModel<NavbarPosition?> = Model(null),
-    styleModel: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
-    expandModel: IModel<NavbarExpand> = Model(NavbarExpand.LG),
-    containerStyleModel: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
+    position: IModel<NavbarPosition?> = Model(null),
+    style: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
+    expand: IModel<NavbarExpand> = Model(NavbarExpand.LG),
+    containerStyle: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
     crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
     vararg behaviors: Behavior,
     crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
@@ -90,10 +90,10 @@ inline fun MarkupContainer.addNavbar(
     add(
         navbar(
             id,
-            positionModel,
-            styleModel,
-            expandModel,
-            containerStyleModel,
+            position,
+            style,
+            expand,
+            containerStyle,
             createBrandHandler,
             behaviors = behaviors,
             populateCollapseItemsHandler

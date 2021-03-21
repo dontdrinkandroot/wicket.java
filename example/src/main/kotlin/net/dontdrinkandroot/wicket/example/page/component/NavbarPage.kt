@@ -33,7 +33,7 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
 
     protected fun createExampleNavbar(id: String, styleModel: IModel<NavbarStyle> = Model(null)): Navbar = navbar(
         id,
-        styleModel = styleModel,
+        style = styleModel,
         createBrandHandler = { id ->
             pageLink(id, pageClass = HomePage::class.java, label = Model("Brand"))
         }

@@ -38,7 +38,7 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
 
     override fun createNavbar(id: String) = navbar(
         id,
-        positionModel = Model(NavbarPosition.FIXED_TOP),
+        position = Model(NavbarPosition.FIXED_TOP),
         createBrandHandler = { id ->
             pageLink(
                 id,
