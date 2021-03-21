@@ -7,15 +7,15 @@ import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 
-inline fun <T> createAjaxLink(
+inline fun <T> ajaxLink(
     id: String,
     model: IModel<T>? = null,
-    bodyModel: IModel<String> = Model(null),
+    label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
 ) = object : AjaxLink<T>(id, model) {
     init {
-        body = bodyModel
+        body = label
         add(*behaviors)
     }
 
@@ -24,29 +24,29 @@ inline fun <T> createAjaxLink(
     }
 }
 
-inline fun <T> MarkupContainer.ajaxLink(
+inline fun <T> MarkupContainer.addAjaxLink(
     id: String,
     model: IModel<T>? = null,
-    bodyModel: IModel<String> = Model(null),
+    label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
 ) {
-    add(createAjaxLink(id, model, bodyModel, behaviors = behaviors, onClickHandler))
+    add(ajaxLink(id, model, label, behaviors = behaviors, onClickHandler))
 }
 
-inline fun MarkupContainer.ajaxLink(
+inline fun MarkupContainer.addAjaxLink(
     id: String,
-    bodyModel: IModel<String> = Model(null),
+    label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<Void>.(target: AjaxRequestTarget?) -> Any?
 ) {
-    add(createAjaxLink(id, null, bodyModel, behaviors = behaviors, onClickHandler))
+    add(ajaxLink(id, null, label, behaviors = behaviors, onClickHandler))
 }
 
-inline fun MarkupContainer.ajaxLink(
+inline fun MarkupContainer.addAjaxLink(
     id: String,
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<Void>.(target: AjaxRequestTarget?) -> Any?
 ) {
-    add(createAjaxLink(id, null, Model(null), behaviors = behaviors, onClickHandler))
+    add(ajaxLink(id, null, Model(null), behaviors = behaviors, onClickHandler))
 }
