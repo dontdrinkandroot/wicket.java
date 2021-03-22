@@ -35,19 +35,19 @@ class NavbarPage(parameters: PageParameters) : ComponentPage(parameters) {
         id,
         style = styleModel,
         createBrandHandler = { id ->
-            pageLink(id, pageClass = HomePage::class.java, label = Model("Brand"))
+            pageLink(id, pageClass = HomePage::class, label = Model("Brand"))
         }
     )
     {
-        navbarNav()
+        addNavbarNav()
         {
             addDropdown("Dropdown") {
-                addPageLink("Action", HomePage::class.java)
+                addPageLink("Action", HomePage::class)
                 addDivider()
                 addHeader("A header")
-                addPageLink("Another Action", HomePage::class.java)
+                addPageLink("Another Action", HomePage::class)
             }
-            addPageLink("Link", NavbarPage::class.java)
+            addPageLink("Link", NavbarPage::class)
         }
 
         val form = NavbarForm(newChildId())

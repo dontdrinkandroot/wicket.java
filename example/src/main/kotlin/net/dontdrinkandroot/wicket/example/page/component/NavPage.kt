@@ -66,7 +66,7 @@ class NavPage(parameters: PageParameters) : ComponentPage(parameters) {
     protected fun populateItems(itemView: ItemView) {
         itemView.addLink("Active", active { true }) {}
         itemView.addDropdown("Dropdown") {
-            addPageLink("A link", HomePage::class.java)
+            addPageLink("A link", HomePage::class)
         }
         itemView.addLink("Disabled", disabled(), disabledCss()) {}
     }

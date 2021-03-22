@@ -6,6 +6,7 @@ import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.IModel
 import org.apache.wicket.request.mapper.parameter.PageParameters
+import kotlin.reflect.KClass
 
 open class BookmarkablePageLinkItem<T>(
     id: String,
@@ -32,8 +33,8 @@ open class BookmarkablePageLinkItem<T>(
     }
 }
 
-fun ItemView.addPageLink(label: String, pageClass: Class<out Page>) {
-    add(BookmarkablePageLinkItem<Void>(newChildId(), label = model(label), pageClass = pageClass))
+fun ItemView.addPageLink(label: String, pageClass: KClass<out Page>) {
+    add(BookmarkablePageLinkItem<Void>(newChildId(), label = model(label), pageClass = pageClass.java))
 }
 
 fun ItemView.addPageLink(
@@ -53,6 +54,6 @@ fun ItemView.addPageLink(
     )
 }
 
-fun ItemView.addPageLink(label: IModel<String>, pageClass: Class<out Page>) {
-    add(BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass))
+fun ItemView.addPageLink(label: IModel<String>, pageClass: KClass<out Page>) {
+    add(BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass.java))
 }

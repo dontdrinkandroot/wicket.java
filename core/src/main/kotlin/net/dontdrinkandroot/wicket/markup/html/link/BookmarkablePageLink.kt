@@ -7,23 +7,33 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
+import kotlin.reflect.KClass
 
-fun pageLink(
+class BookmarkablePageLink(
     id: String,
-    pageClass: Class<out Page>,
+    pageClass: KClass<out Page>,
     pageParameters: PageParameters? = null,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior
-) = object : BookmarkablePageLink<Void>(id, pageClass, pageParameters) {
+) : BookmarkablePageLink<Void>(id, pageClass.java, pageParameters) {
+
     init {
         body = label
         add(*behaviors)
     }
 }
 
-fun MarkupContainer.addPageLink(
+inline fun pageLink(
     id: String,
-    pageClass: Class<out Page>,
+    pageClass: KClass<out Page>,
+    pageParameters: PageParameters? = null,
+    label: IModel<String> = Model(null),
+    vararg behaviors: Behavior
+) = BookmarkablePageLink(id, pageClass, pageParameters, label, *behaviors)
+
+inline fun MarkupContainer.addPageLink(
+    id: String,
+    pageClass: KClass<out Page>,
     pageParameters: PageParameters? = null,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior

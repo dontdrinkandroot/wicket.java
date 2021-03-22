@@ -5,8 +5,8 @@ import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.component.item.addDropdown
 import net.dontdrinkandroot.wicket.bootstrap.component.item.addPageLink
+import net.dontdrinkandroot.wicket.bootstrap.component.navbar.addNavbarNav
 import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbar
-import net.dontdrinkandroot.wicket.bootstrap.component.navbar.navbarNav
 import net.dontdrinkandroot.wicket.bootstrap.css.BackgroundColor
 import net.dontdrinkandroot.wicket.bootstrap.css.NavbarPosition
 import net.dontdrinkandroot.wicket.bootstrap.css.Spacing
@@ -42,37 +42,37 @@ abstract class DecoratorPage<T> : StandardBootstrapPage<T> {
         createBrandHandler = { id ->
             pageLink(
                 id,
-                pageClass = HomePage::class.java,
+                pageClass = HomePage::class,
                 label = Model("wicket.example")
             )
         },
         behaviors = arrayOf(cssClass(BackgroundColor.LIGHT))
     ) {
-        navbarNav(cssClass(Spacing.MARGIN_END_AUTO)) {
-            addPageLink("Getting Started", GettingStartedPage::class.java)
-            addPageLink("CSS", CssPage::class.java)
-            addPageLink("The Grid", GridPage::class.java)
+        addNavbarNav(cssClass(Spacing.MARGIN_END_AUTO)) {
+            addPageLink("Getting Started", GettingStartedPage::class)
+            addPageLink("CSS", CssPage::class)
+            addPageLink("The Grid", GridPage::class)
             addDropdown("Components", active { page is ComponentPage }) {
-                addPageLink("Buttons", ButtonPage::class.java)
-                addPageLink("Cards", CardPage::class.java)
-                addPageLink("Navs", NavPage::class.java)
-                addPageLink("Navbars", NavbarPage::class.java)
-                addPageLink("Breadcrumbs", BreadcrumbPage::class.java)
-                addPageLink("Badges", BadgePage::class.java)
-                addPageLink("Alerts and Feedback", AlertPage::class.java)
-                addPageLink("Progress Bars", ProgressBarPage::class.java)
-                addPageLink("Pagination", PaginationPage::class.java)
-                addPageLink("Dropdowns", DropdownPage::class.java)
-                addPageLink("Modals", ModalPage::class.java)
+                addPageLink("Buttons", ButtonPage::class)
+                addPageLink("Cards", CardPage::class)
+                addPageLink("Navs", NavPage::class)
+                addPageLink("Navbars", NavbarPage::class)
+                addPageLink("Breadcrumbs", BreadcrumbPage::class)
+                addPageLink("Badges", BadgePage::class)
+                addPageLink("Alerts and Feedback", AlertPage::class)
+                addPageLink("Progress Bars", ProgressBarPage::class)
+                addPageLink("Pagination", PaginationPage::class)
+                addPageLink("Dropdowns", DropdownPage::class)
+                addPageLink("Modals", ModalPage::class)
             }
             addDropdown("Forms", active { page is FormPage }) {
-                addPageLink("Form Groups and Form Styles", FormGroupPage::class.java)
-                addPageLink("Input Groups", InputGroupPage::class.java)
-                addPageLink("Validations", ValidationPage::class.java)
-                addPageLink("Ajax Forms", AjaxFormPage::class.java)
+                addPageLink("Form Groups and Form Styles", FormGroupPage::class)
+                addPageLink("Input Groups", InputGroupPage::class)
+                addPageLink("Validations", ValidationPage::class)
+                addPageLink("Ajax Forms", AjaxFormPage::class)
             }
         }
-        navbarNav {
+        addNavbarNav {
             add(ThemeDropdownItem(newChildId()))
             add(BuildInfoItem(newChildId()))
         }

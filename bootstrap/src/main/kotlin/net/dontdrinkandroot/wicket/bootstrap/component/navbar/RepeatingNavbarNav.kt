@@ -46,7 +46,7 @@ fun repeatingNavbarNav(
     }
 }
 
-fun NavbarCollapseView.navbarNav(
+fun NavbarCollapseView.addNavbarNav(
     vararg behaviors: Behavior,
     populateItemsHandler: ItemView.() -> Any?
 ) {

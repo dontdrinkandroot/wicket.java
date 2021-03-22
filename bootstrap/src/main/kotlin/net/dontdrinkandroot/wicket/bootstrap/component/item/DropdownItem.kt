@@ -4,10 +4,12 @@ import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.DropdownToggleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.dropdown.DropdownMenu
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
+import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
 import net.dontdrinkandroot.wicket.kmodel.model
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.AbstractLink
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 abstract class DropdownItem<T>(
     id: String,
@@ -34,8 +36,27 @@ abstract class DropdownItem<T>(
     protected abstract fun createDropdownMenu(id: String): DropdownMenu
 }
 
-fun ItemView.addDropdown(label: String, vararg linkBehaviors: Behavior, populateItemsHandler: ItemView.() -> Any?) {
-    this.add(object : RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), *linkBehaviors) {
+fun ItemView.addDropdown(
+    label: String,
+    dropdownAlignment: DropdownAlignment? = null,
+    vararg linkBehaviors: Behavior,
+    populateItemsHandler: ItemView.() -> Any?
+) {
+    this.add(object :
+        RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), Model(dropdownAlignment), *linkBehaviors) {
+        override fun populateItems(itemView: ItemView) {
+            populateItemsHandler(itemView)
+        }
+    })
+}
+
+fun ItemView.addDropdown(
+    label: String,
+    vararg linkBehaviors: Behavior,
+    populateItemsHandler: ItemView.() -> Any?
+) {
+    this.add(object :
+        RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), Model(null), *linkBehaviors) {
         override fun populateItems(itemView: ItemView) {
             populateItemsHandler(itemView)
         }
