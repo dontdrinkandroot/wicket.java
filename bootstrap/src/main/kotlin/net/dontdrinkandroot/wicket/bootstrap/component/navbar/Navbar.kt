@@ -5,7 +5,7 @@ import net.dontdrinkandroot.wicket.behavior.cssClass
 import net.dontdrinkandroot.wicket.behavior.invisible
 import net.dontdrinkandroot.wicket.behavior.outputMarkupId
 import net.dontdrinkandroot.wicket.bootstrap.css.*
-import net.dontdrinkandroot.wicket.markup.html.createMarkupContainer
+import net.dontdrinkandroot.wicket.markup.html.markupContainer
 import org.apache.wicket.AttributeModifier
 import org.apache.wicket.Component
 import org.apache.wicket.MarkupContainer
@@ -32,13 +32,13 @@ abstract class Navbar(
         this.add(cssClass(position))
         this.add(cssClass(expand))
 
-        val container = createMarkupContainer("container", CssClassAppender(containerStyle))
+        val container = markupContainer("container", CssClassAppender(containerStyle))
         this.add(container)
 
         val brand = createBrand("navbarBrand")
         container.add(brand)
 
-        val navbarCollapse = createMarkupContainer("navbarCollapse", outputMarkupId())
+        val navbarCollapse = markupContainer("navbarCollapse", outputMarkupId())
         container.add(navbarCollapse)
 
         val navbarToggle = createNavbarToggler("navbarToggler")
@@ -52,7 +52,7 @@ abstract class Navbar(
         add(*behaviors)
     }
 
-    protected open fun createBrand(id: String): Component = createMarkupContainer(id, invisible())
+    protected open fun createBrand(id: String): Component = markupContainer(id, invisible())
 
     protected open fun createNavbarToggler(id: String): Component = NavbarToggler(id)
 
@@ -65,7 +65,7 @@ inline fun navbar(
     style: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
     expand: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyle: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
-    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
+    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> markupContainer(id, invisible()) },
     vararg behaviors: Behavior,
     crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) = object : Navbar(id, position, style, expand, containerStyle, *behaviors) {
@@ -83,7 +83,7 @@ inline fun MarkupContainer.addNavbar(
     style: IModel<NavbarStyle> = Model(NavbarStyle.LIGHT),
     expand: IModel<NavbarExpand> = Model(NavbarExpand.LG),
     containerStyle: IModel<ContainerStyle> = Model(ContainerStyle.DEFAULT),
-    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> createMarkupContainer(id, invisible()) },
+    crossinline createBrandHandler: Navbar.(id: String) -> Component = { id -> markupContainer(id, invisible()) },
     vararg behaviors: Behavior,
     crossinline populateCollapseItemsHandler: NavbarCollapseView.() -> Any?
 ) {
