@@ -6,6 +6,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupA
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize
 import org.apache.wicket.Component
 import org.apache.wicket.IQueueRegion
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.panel.FeedbackPanel
@@ -71,4 +72,28 @@ open class RepeatingForm<T>(id: String, model: IModel<T>? = null) : Form<T>(id, 
         formStyleBehavior.isInline = inline
         return this
     }
+}
+
+inline fun <T> MarkupContainer.addForm(
+    id: String,
+    model: IModel<T>,
+    crossinline submitHandler: RepeatingForm<T>.() -> Any? = {},
+    crossinline populateActionsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any? = {},
+    crossinline populateFormGroupsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any?
+): RepeatingForm<T> {
+    val form = object : RepeatingForm<T>(id, model) {
+        override fun populateActions(buttonView: RepeatingView) {
+            populateActionsHandler(buttonView, this)
+        }
+
+        override fun populateFormGroups(formGroupView: RepeatingView) {
+            populateFormGroupsHandler(formGroupView, this)
+        }
+
+        override fun onSubmit() {
+            submitHandler()
+        }
+    }
+    add(form)
+    return form
 }

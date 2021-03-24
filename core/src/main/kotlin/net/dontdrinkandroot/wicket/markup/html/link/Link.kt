@@ -57,3 +57,11 @@ inline fun MarkupContainer.addLink(
 ) {
     add(link(id, label, behaviors = behaviors, onClickHandler))
 }
+
+inline fun MarkupContainer.addLink(
+    id: String,
+    vararg behaviors: Behavior,
+    crossinline onClickHandler: Link<Void>.() -> Any?
+) {
+    add(link(id, Model(null), behaviors = behaviors, onClickHandler))
+}

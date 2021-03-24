@@ -12,3 +12,5 @@ class TitleModifier : AttributeModifier {
     constructor(replaceModel: IModel<*>?) : super("title", replaceModel)
     constructor(titleString: String) : super("title", Model<String>(titleString))
 }
+
+fun title(titleString: String) = TitleModifier(titleString)
