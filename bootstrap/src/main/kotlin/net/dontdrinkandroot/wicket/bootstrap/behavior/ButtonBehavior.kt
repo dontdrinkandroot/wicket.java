@@ -60,3 +60,5 @@ fun button(
 ) = ButtonBehavior(buttonStyle, buttonSize)
 
 fun button(buttonStyle: ButtonStyle) = ButtonBehavior(Model(buttonStyle))
+
+fun button(buttonStyle: ButtonStyle, buttonSize: ButtonSize) = ButtonBehavior(Model(buttonStyle), Model(buttonSize))
