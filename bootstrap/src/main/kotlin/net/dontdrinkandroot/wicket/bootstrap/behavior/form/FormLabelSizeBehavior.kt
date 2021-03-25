@@ -15,14 +15,14 @@ class FormLabelSizeBehavior : Behavior() {
         component.add(CssClassAppender(IModel<CssClass> {
             val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
             when {
-                null != formStyleBehavior && formStyleBehavior.isHorizontal -> formStyleBehavior.labelSize
+                null != formStyleBehavior && formStyleBehavior.horizontal -> formStyleBehavior.labelSize
                 else -> null
             }
         }))
         component.add(CssClassAppender(IModel<CssClass> {
             val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
             when {
-                null != formStyleBehavior && formStyleBehavior.isHorizontal -> BootstrapCssClass.COL_FORM_LABEL
+                null != formStyleBehavior && formStyleBehavior.horizontal -> BootstrapCssClass.COL_FORM_LABEL
                 else -> null
             }
         }))

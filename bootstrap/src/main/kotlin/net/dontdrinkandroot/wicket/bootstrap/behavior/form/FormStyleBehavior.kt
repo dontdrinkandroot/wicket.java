@@ -2,6 +2,7 @@ package net.dontdrinkandroot.wicket.bootstrap.behavior.form
 
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize
+import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.ComponentTag
@@ -20,13 +21,13 @@ class FormStyleBehavior : Behavior() {
     var containerSize: ColumnSize? = null
         private set
 
-    var isInline = false
+    var inline = false
         set(value) {
             field = value
             containerSize = null
         }
 
-    val isHorizontal: Boolean
+    val horizontal: Boolean
         get() = null != containerSize
 
     /**
@@ -34,13 +35,13 @@ class FormStyleBehavior : Behavior() {
      * component will be computed.
      */
     fun setHorizontal(containerSize: ColumnSize): FormStyleBehavior {
-        isInline = false
+        inline = false
         this.containerSize = containerSize
         return this
     }
 
     fun reset() {
-        isInline = false
+        inline = false
         containerSize = null
     }
 
@@ -49,11 +50,16 @@ class FormStyleBehavior : Behavior() {
 
     override fun onComponentTag(component: Component, tag: ComponentTag) {
         super.onComponentTag(component, tag)
-        if (isHorizontal) {
+        if (horizontal) {
             tag.append("class", BootstrapCssClass.FORM_HORIZONTAL.classString, " ")
         }
-        if (isInline) {
+        if (inline) {
             tag.append("class", BootstrapCssClass.FORM_INLINE.classString, " ")
         }
     }
 }
+
+inline fun inlineForm() = FormStyleBehavior().apply { inline = true }
+
+inline fun horizontalForm(containerSize: ColumnSize = ColumnSizeStack.FORM_DEFAULT) =
+    FormStyleBehavior().apply { setHorizontal(containerSize) }

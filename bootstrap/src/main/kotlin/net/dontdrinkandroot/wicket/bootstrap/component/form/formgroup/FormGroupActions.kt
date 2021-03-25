@@ -30,3 +30,13 @@ open class FormGroupActions<T>(
         /* Hook */
     }
 }
+
+inline fun RepeatingView.addActions(crossinline actions: RepeatingView.(component: FormGroupActions<Void>) -> Any?): FormGroupActions<Void> {
+    val formGroupActions = object : FormGroupActions<Void>(newChildId()) {
+        override fun populateActions(actionView: RepeatingView) {
+            actions(actionView, this)
+        }
+    }
+    add(formGroupActions)
+    return formGroupActions
+}

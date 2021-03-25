@@ -1,5 +1,6 @@
 package net.dontdrinkandroot.wicket.example.component
 
+import net.dontdrinkandroot.wicket.bootstrap.behavior.form.inlineForm
 import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.RepeatingForm
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupInputText
@@ -10,7 +11,7 @@ class NavbarForm(id: String) : RepeatingForm<Void>(id) {
 
     override fun onInitialize() {
         super.onInitialize()
-        setInline(true)
+        add(inlineForm())
     }
 
     override fun populateFormGroups(formGroupView: RepeatingView) {

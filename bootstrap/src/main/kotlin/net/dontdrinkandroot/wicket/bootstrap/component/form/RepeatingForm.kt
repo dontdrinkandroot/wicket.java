@@ -1,12 +1,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form
 
-import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FencedFeedbackPanel
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.FormGroupActions
-import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSize
 import org.apache.wicket.Component
 import org.apache.wicket.IQueueRegion
 import org.apache.wicket.MarkupContainer
+import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.ComponentTag
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.panel.FeedbackPanel
@@ -20,17 +19,15 @@ import org.apache.wicket.model.IModel
  */
 open class RepeatingForm<T>(id: String, model: IModel<T>? = null) : Form<T>(id, model), IQueueRegion {
 
-    private val formStyleBehavior = FormStyleBehavior()
-
     lateinit var feedbackPanel: FeedbackPanel
         private set
 
     override fun onInitialize() {
         super.onInitialize()
-        this.add(formStyleBehavior)
-        feedbackPanel = FencedFeedbackPanel("feedback", this)
-        feedbackPanel.outputMarkupId = true
-        this.add(feedbackPanel)
+        feedbackPanel = FencedFeedbackPanel("feedback", this).apply {
+            outputMarkupId = true
+        }
+        add(feedbackPanel)
         val formGroupView = RepeatingView("formGroup")
         populateFormGroups(formGroupView)
         this.add(formGroupView)
@@ -46,9 +43,7 @@ open class RepeatingForm<T>(id: String, model: IModel<T>? = null) : Form<T>(id, 
         }
     }
 
-    override fun newMarkupSourcingStrategy(): IMarkupSourcingStrategy {
-        return PanelMarkupSourcingStrategy(false)
-    }
+    override fun newMarkupSourcingStrategy(): IMarkupSourcingStrategy = PanelMarkupSourcingStrategy(false)
 
     override fun onComponentTag(tag: ComponentTag) {
         tag.name = "form"
@@ -62,52 +57,49 @@ open class RepeatingForm<T>(id: String, model: IModel<T>? = null) : Form<T>(id, 
     protected open fun populateActions(buttonView: RepeatingView) {
         /* Hook */
     }
-
-    fun setHorizontal(containerSize: ColumnSize): RepeatingForm<T> {
-        formStyleBehavior.setHorizontal(containerSize)
-        return this
-    }
-
-    fun setInline(inline: Boolean): RepeatingForm<T> {
-        formStyleBehavior.isInline = inline
-        return this
-    }
 }
 
 inline fun <T> MarkupContainer.addForm(
     id: String,
     model: IModel<T>,
-    crossinline submitHandler: RepeatingForm<T>.() -> Any? = {},
-    crossinline populateActionsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any? = {},
-    crossinline populateFormGroupsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any?
+    crossinline formGroups: RepeatingView.(component: RepeatingForm<T>) -> Any?,
+    vararg behaviors: Behavior,
+    crossinline submit: RepeatingForm<T>.() -> Any? = {}
 ): RepeatingForm<T> {
     val form = object : RepeatingForm<T>(id, model) {
-        override fun populateActions(buttonView: RepeatingView) {
-            populateActionsHandler(buttonView, this)
-        }
 
         override fun populateFormGroups(formGroupView: RepeatingView) {
-            populateFormGroupsHandler(formGroupView, this)
+            formGroups(formGroupView, this)
         }
 
         override fun onSubmit() {
-            submitHandler()
+            submit()
         }
+    }.apply {
+        add(*behaviors)
     }
     add(form)
     return form
 }
 
-inline fun <T> MarkupContainer.addHorizontalForm(
+inline fun MarkupContainer.addForm(
     id: String,
-    model: IModel<T>,
-    containerSize: ColumnSize,
-    crossinline submitHandler: RepeatingForm<T>.() -> Any? = {},
-    crossinline populateActionsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any? = {},
-    crossinline populateFormGroupsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any?
-): RepeatingForm<T> =
-    addForm(id, model, submitHandler, populateActionsHandler, populateFormGroupsHandler).apply {
-        setHorizontal(
-            containerSize
-        )
+    crossinline formGroups: RepeatingView.(component: RepeatingForm<Void>) -> Any?,
+    vararg behaviors: Behavior,
+    crossinline submit: RepeatingForm<Void>.() -> Any? = {}
+): RepeatingForm<Void> {
+    val form = object : RepeatingForm<Void>(id) {
+
+        override fun populateFormGroups(formGroupView: RepeatingView) {
+            formGroups(formGroupView, this)
+        }
+
+        override fun onSubmit() {
+            submit()
+        }
+    }.apply {
+        add(*behaviors)
     }
+    add(form)
+    return form
+}

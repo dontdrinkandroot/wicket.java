@@ -14,7 +14,7 @@ class InlineFormScreenReaderOnlyLabelBehavior : Behavior() {
         super.bind(component)
         component.add(CssClassAppender(IModel<CssClass> {
             val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
-            if (null != formStyleBehavior && formStyleBehavior.isInline) BootstrapCssClass.SR_ONLY
+            if (null != formStyleBehavior && formStyleBehavior.inline) BootstrapCssClass.SR_ONLY
             null
         }))
     }

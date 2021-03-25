@@ -3,7 +3,7 @@ package net.dontdrinkandroot.wicket.example.page.form
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.bootstrap.behavior.ButtonBehavior
 import net.dontdrinkandroot.wicket.bootstrap.behavior.IconBehavior
-import net.dontdrinkandroot.wicket.bootstrap.component.button.AjaxSubmitButton
+import net.dontdrinkandroot.wicket.bootstrap.component.button.addSubmitButton
 import net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup.*
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupTextLabel
 import net.dontdrinkandroot.wicket.bootstrap.css.FontAwesome4IconClass
@@ -42,7 +42,7 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         )
         formGroupTextField.formComponent.isRequired = true
         formGroupTextField.addAjaxValidation("input")
-        formGroupTextField.setHelpText("A help text")
+        formGroupTextField.setFormText("A help text")
         formGroupView.add(formGroupTextField)
 
         val formGroupPasswordTextField = FormGroupInputPassword(
@@ -84,9 +84,10 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
                 after.add(IconBehavior(FontAwesome4IconClass.CALENDAR_O.createIcon()))
                 return after
             }
+        }.apply {
+            formComponent.setMin(LocalDate.now().withMonth(1).withDayOfMonth(1))
+            formComponent.setMax(LocalDate.now().withMonth(12).withDayOfMonth(31))
         }
-        formGroupLocalDate.formComponent.setMin(LocalDate.now().withMonth(1).withDayOfMonth(1))
-        formGroupLocalDate.formComponent.setMax(LocalDate.now().withMonth(12).withDayOfMonth(31))
         formGroupView.add(formGroupLocalDate)
 
         val formGroupLocalTime = FormGroupLocalTime(
@@ -103,12 +104,13 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         )
         formGroupView.add(formGroupLocalDateTime)
 
-        val formGroupCheckBox = FormGroupCheckBox(
-            formGroupView.newChildId(),
-            Model(),
-            Model(FormGroupCheckBox::class.java.simpleName)
+        formGroupView.add(
+            FormGroupCheckBox(
+                formGroupView.newChildId(),
+                Model(),
+                Model(FormGroupCheckBox::class.java.simpleName)
+            )
         )
-        formGroupView.add(formGroupCheckBox)
 
         val formGroupRadioChoice = FormGroupRadioChoice(
             formGroupView.newChildId(),
@@ -135,17 +137,10 @@ abstract class FormPage(parameters: PageParameters) : DecoratorPage<Void>(parame
         )
         formGroupView.add(formGroupInputFile)
 
-        val formGroupActions: FormGroupActions<Void> = object : FormGroupActions<Void>(formGroupView.newChildId()) {
-            override fun populateActions(actionView: RepeatingView) {
-                val submitButton = AjaxSubmitButton(actionView.newChildId())
-                submitButton.body = Model.of("Submit")
-                actionView.add(submitButton)
-                val cancelButton = Label(actionView.newChildId(), "Cancel")
-                cancelButton.add(ButtonBehavior())
-                actionView.add(cancelButton)
-            }
+        formGroupView.addActions {
+            addSubmitButton("Submit")
+            add(Label(newChildId(), "Cancel").apply { add(ButtonBehavior()) })
         }
-        formGroupView.add(formGroupActions)
 
         formGroupView.forEach { it.add(CssClassAppender(Spacing.MARGIN_BOTTOM_FULL)) }
     }

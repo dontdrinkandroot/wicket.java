@@ -45,7 +45,8 @@ class FormGroupInputTextTest : AbstractWicketTest() {
             TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "formComponent")
         Assertions.assertTrue(formComponentTester.getAttributeContains("required", "required"))
         Assertions.assertTrue(formComponentTester.getAttributeContains("class", "is-invalid"))
-        val helpBlockTester = TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "helpBlock")
+        val helpBlockTester =
+            TagTester.createTagByAttribute(componentMarkup.toString(), "wicket:id", "validationFeedback")
         Assertions.assertNotNull(helpBlockTester)
         val messagesTesters =
             TagTester.createTagsByAttribute(componentMarkup.toString(), "wicket:id", "messages", false)

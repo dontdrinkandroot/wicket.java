@@ -10,13 +10,13 @@ class FormContainerSizeBehavior : Behavior() {
     override fun onConfigure(component: Component) {
         super.onConfigure(component)
         val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
-        component.renderBodyOnly = null == formStyleBehavior || formStyleBehavior.isInline
+        component.renderBodyOnly = null == formStyleBehavior || formStyleBehavior.inline
     }
 
     override fun onComponentTag(component: Component, tag: ComponentTag) {
         super.onComponentTag(component, tag)
         val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
-        if (null != formStyleBehavior && formStyleBehavior.isHorizontal) {
+        if (null != formStyleBehavior && formStyleBehavior.horizontal) {
             tag.append("class", formStyleBehavior.containerSize!!.classString, " ")
         }
     }

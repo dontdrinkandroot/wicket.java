@@ -11,6 +11,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters
 class AjaxFormPage(parameters: PageParameters) : FormPage(parameters) {
 
     private var submitCount = 0
+
     override fun createPageHeadingModel() = Model("Ajax Form")
 
     override fun onInitialize() {

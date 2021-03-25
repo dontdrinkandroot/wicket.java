@@ -12,7 +12,7 @@ class FormRowBehavior : Behavior() {
         super.bind(component)
         component.add(CssClassAppender {
             val formStyleBehavior = component.findClosestBehavior(FormStyleBehavior::class)
-            if (null != formStyleBehavior && formStyleBehavior.isHorizontal)
+            if (null != formStyleBehavior && formStyleBehavior.horizontal)
                 BootstrapCssClass.ROW
             else
                 null

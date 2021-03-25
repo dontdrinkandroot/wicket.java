@@ -30,7 +30,7 @@ abstract class FormGroupFormComponent<T, M, F : FormComponent<M>> constructor(
     override fun addComponents() {
         super.addComponents()
         container.add(formComponent)
-        container.add(helpBlock)
+        container.add(validationFeedbackPanel)
     }
 
     protected abstract fun createFormComponent(id: String): F

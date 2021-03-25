@@ -16,4 +16,6 @@ class VisibleBehavior(private val visibleModel: IModel<Boolean>) : Behavior() {
     }
 }
 
-fun invisible() = VisibleBehavior(Model(false))
+inline fun visible(visibleModel: IModel<Boolean>) = VisibleBehavior(visibleModel)
+
+inline fun invisible() = VisibleBehavior(Model(false))

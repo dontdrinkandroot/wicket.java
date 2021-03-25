@@ -32,13 +32,13 @@ inline fun <T : String?> RepeatingView.addInputText(
     label: IModel<String>,
     required: Boolean = false,
     ajaxValidation: Boolean = false,
-    helpText: String? = null,
+    formText: String? = null,
     validators: List<IValidator<T>> = emptyList()
 ): FormGroupInputText<T> {
     val formGroupInputText = FormGroupInputText(newChildId(), model, label).apply {
         setRequired(required)
         if (ajaxValidation) addAjaxValidation()
-        helpText?.let { setHelpText(helpText) }
+        formText?.let { setFormText(formText) }
         validators.forEach { addValidator(it) }
     }
     add(formGroupInputText)
@@ -49,13 +49,13 @@ inline fun <reified P, T : String?> RepeatingView.addInputText(
     model: IModel<P>,
     property: KMutableProperty1<P, T>,
     ajaxValidation: Boolean = false,
-    helpText: String? = null,
+    formText: String? = null,
 ): FormGroupInputText<T> {
     val resourceKey = P::class.qualifiedName + "." + property.name
     val formGroupInputText =
         FormGroupInputText(newChildId(), model.writeableProperty(property), localize(resourceKey)).apply {
             if (ajaxValidation) addAjaxValidation()
-            helpText?.let { setHelpText(helpText) }
+            formText?.let { setFormText(formText) }
             addValidator(PropertyValidator())
         }
     add(formGroupInputText)

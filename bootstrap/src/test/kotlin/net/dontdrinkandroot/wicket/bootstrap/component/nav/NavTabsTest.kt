@@ -12,7 +12,7 @@ class NavTabsTest : AbstractWicketTest() {
 
     @Test
     fun testDefaultMarkup() {
-        val component: RepeatingNavTabs<*> = createRepeatingNavTabs("id") {}
+        val component: RepeatingNavTabs<*> = navTabs("id") {}
         val markup = ComponentRenderer.renderComponent(component).toString()
         val tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")
         Assertions.assertEquals("nav nav-tabs", tagTester.getAttribute("class"))
@@ -20,9 +20,9 @@ class NavTabsTest : AbstractWicketTest() {
 
     @Test
     fun testJustifiedMarkup() {
-        val component: RepeatingNavTabs<*> = createRepeatingNavTabs<Any?>(
+        val component: RepeatingNavTabs<*> = navTabs<Any?>(
             "id",
-            itemAlignmentModel = Model(NavItemAlignment.JUSTIFIED),
+            itemAlignment = Model(NavItemAlignment.JUSTIFIED),
             populateItemsHandler = {})
         val markup = ComponentRenderer.renderComponent(component).toString()
         val tagTester = TagTester.createTagByAttribute(markup, "wicket:id", "id")

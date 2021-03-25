@@ -38,7 +38,7 @@ class FormGroupAjaxValidationBehavior(
             target.appendJavaScript(
                 JQueryScript(formGroup.formComponent).addClass(validationState.classString).toString()
             )
-            target.add(formGroup.helpBlock)
+            target.add(formGroup.validationFeedbackPanel)
         }
     }
 

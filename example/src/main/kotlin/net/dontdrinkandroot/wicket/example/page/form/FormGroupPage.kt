@@ -2,11 +2,10 @@ package net.dontdrinkandroot.wicket.example.page.form
 
 import net.dontdrinkandroot.wicket.bootstrap.behavior.active
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormStyleBehavior
+import net.dontdrinkandroot.wicket.bootstrap.component.form.addForm
 import net.dontdrinkandroot.wicket.bootstrap.component.item.addAjaxLink
-import net.dontdrinkandroot.wicket.bootstrap.component.nav.createRepeatingNavTabs
+import net.dontdrinkandroot.wicket.bootstrap.component.nav.addNavTabs
 import net.dontdrinkandroot.wicket.bootstrap.css.grid.ColumnSizeStack
-import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
@@ -19,32 +18,31 @@ class FormGroupPage(parameters: PageParameters) : FormPage(parameters) {
     override fun onInitialize() {
         super.onInitialize()
 
-        val styleNav = createRepeatingNavTabs("styleNav")
+        addNavTabs("styleNav")
         {
             addAjaxLink("Default",
-                active { !formStyleBehavior.isInline && !formStyleBehavior.isHorizontal }) {
+                active { !formStyleBehavior.inline && !formStyleBehavior.horizontal }) {
                 formStyleBehavior.reset()
-                this.setResponsePage(this.page)
+                setResponsePage(page)
             }
             addAjaxLink("Horizontal",
-                active { formStyleBehavior.isHorizontal }) {
+                active { formStyleBehavior.horizontal }) {
                 formStyleBehavior.setHorizontal(ColumnSizeStack.FORM_DEFAULT)
-                this.setResponsePage(this.page)
+                setResponsePage(page)
             }
             addAjaxLink("Inline",
-                active { formStyleBehavior.isInline }) {
-                formStyleBehavior.isInline = true
-                this.setResponsePage(this.page)
+                active { formStyleBehavior.inline }) {
+                formStyleBehavior.inline = true
+                setResponsePage(page)
             }
         }
-        this.add(styleNav)
 
-        val form = Form<Void>("form")
-        form.add(formStyleBehavior)
-        this.add(form)
-
-        val formGroupView = RepeatingView("formGroup")
-        populateFormGroups(form, formGroupView)
-        form.add(formGroupView)
+        addForm(
+            "form",
+            { component -> populateFormGroups(component, this) },
+            formStyleBehavior
+        ) {
+            success("Form is valid")
+        }
     }
 }

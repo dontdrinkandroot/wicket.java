@@ -2,12 +2,17 @@ package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup
 
 import net.dontdrinkandroot.wicket.behavior.CssClassAppender
 import net.dontdrinkandroot.wicket.behavior.ForComponentIdBehavior
+import net.dontdrinkandroot.wicket.behavior.cssClass
+import net.dontdrinkandroot.wicket.behavior.visible
 import net.dontdrinkandroot.wicket.bootstrap.behavior.form.FormGroupAjaxValidationBehavior
 import net.dontdrinkandroot.wicket.bootstrap.component.feedback.FormValidationFeedbackPanel
+import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.ValidationState
+import net.dontdrinkandroot.wicket.markup.html.basic.label
 import org.apache.wicket.Component
 import org.apache.wicket.ajax.attributes.ThrottlingSettings
 import org.apache.wicket.feedback.FeedbackMessage
+import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.FormComponent
 import org.apache.wicket.model.IModel
 import org.apache.wicket.model.Model
@@ -23,22 +28,26 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
     id: String,
     model: IModel<T>,
     labelModel: IModel<String>,
-    val helpTextModel: IModel<String> = Model(null)
+    val formText: IModel<String> = Model(null)
 ) : FormGroup<T>(id, model, labelModel) {
 
-    lateinit var helpBlock: FormValidationFeedbackPanel
+    lateinit var formTextLabel: Label
+
+    lateinit var validationFeedbackPanel: FormValidationFeedbackPanel
         protected set
 
     override fun createComponents() {
         super.createComponents()
-        helpBlock = FormValidationFeedbackPanel("helpBlock", this, helpTextModel)
-        helpBlock.outputMarkupId = true
+        formTextLabel = label("formText", formText, cssClass(BootstrapCssClass.FORM_TEXT), visible(formText.isPresent))
+        validationFeedbackPanel = FormValidationFeedbackPanel("validationFeedback", this)
+        validationFeedbackPanel.outputMarkupId = true
         formComponent.add(CssClassAppender { validationState })
     }
 
     override fun addComponents() {
         super.addComponents()
-        container.add(helpBlock)
+        container.add(formTextLabel)
+        container.add(validationFeedbackPanel)
     }
 
     override fun createLabel(id: String): Component {
@@ -65,8 +74,8 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
         get() = when {
             !formComponent.isValid -> ValidationState.INVALID
 //            formComponent. formComponent.isValid -> ValidationState.VALID
-            helpBlock.anyMessage(FeedbackMessage.ERROR) -> ValidationState.INVALID
-            helpBlock.anyMessage(FeedbackMessage.SUCCESS) -> ValidationState.VALID
+            validationFeedbackPanel.anyMessage(FeedbackMessage.ERROR) -> ValidationState.INVALID
+            validationFeedbackPanel.anyMessage(FeedbackMessage.SUCCESS) -> ValidationState.VALID
             else -> null
         }
 
@@ -74,8 +83,8 @@ abstract class FormGroupValidatable<T, M, F : FormComponent<M>>(
         formComponent.add(validator)
     }
 
-    fun setHelpText(helpText: String?) {
-        this.helpTextModel.setObject(helpText)
+    fun setFormText(formText: String?) {
+        this.formText.setObject(formText)
     }
 
     abstract val formComponent: F

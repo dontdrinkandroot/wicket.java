@@ -22,7 +22,8 @@ class FormGroupCheckBox(id: String, model: IModel<Boolean>, labelModel: IModel<S
     override fun addComponents() {
         this.add(offset)
         this.add(container)
-        container.add(helpBlock)
+        container.add(formTextLabel)
+        container.add(validationFeedbackPanel)
         container.add(label)
         container.add(formComponent)
     }
