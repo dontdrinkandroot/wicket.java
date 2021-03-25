@@ -30,9 +30,7 @@ class IntegerRangeListModel(min: Int, max: Int) : IModel<List<Int>> {
 
     private fun updateList() {
         list = mutableListOf()
-        for (i in min..max) {
-            list.add(i)
-        }
+        for (i in min..max) list.add(i)
     }
 
     override fun getObject(): List<Int> = list
