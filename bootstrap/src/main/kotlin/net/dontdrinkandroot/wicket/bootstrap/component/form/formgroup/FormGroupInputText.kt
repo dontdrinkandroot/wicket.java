@@ -1,10 +1,15 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form.formgroup
 
 import net.dontdrinkandroot.wicket.bootstrap.component.form.inputgroup.InputGroupText
+import net.dontdrinkandroot.wicket.model.localize
+import net.dontdrinkandroot.wicket.model.writeableProperty
 import org.apache.wicket.Component
+import org.apache.wicket.bean.validation.PropertyValidator
 import org.apache.wicket.markup.html.form.TextField
 import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
+import org.apache.wicket.validation.IValidator
+import kotlin.reflect.KMutableProperty1
 
 open class FormGroupInputText<T : String?>(id: String, model: IModel<T>, labelModel: IModel<String>) :
     FormGroupInputGroup<T, T, TextField<T>, InputGroupText<T>>(id, model, labelModel) {
@@ -27,13 +32,32 @@ inline fun <T : String?> RepeatingView.addInputText(
     label: IModel<String>,
     required: Boolean = false,
     ajaxValidation: Boolean = false,
-    helpText: String? = null
+    helpText: String? = null,
+    validators: List<IValidator<T>> = emptyList()
 ): FormGroupInputText<T> {
     val formGroupInputText = FormGroupInputText(newChildId(), model, label).apply {
         setRequired(required)
         if (ajaxValidation) addAjaxValidation()
         helpText?.let { setHelpText(helpText) }
+        validators.forEach { addValidator(it) }
     }
+    add(formGroupInputText)
+    return formGroupInputText
+}
+
+inline fun <reified P, T : String?> RepeatingView.addInputText(
+    model: IModel<P>,
+    property: KMutableProperty1<P, T>,
+    ajaxValidation: Boolean = false,
+    helpText: String? = null,
+): FormGroupInputText<T> {
+    val resourceKey = P::class.qualifiedName + "." + property.name
+    val formGroupInputText =
+        FormGroupInputText(newChildId(), model.writeableProperty(property), localize(resourceKey)).apply {
+            if (ajaxValidation) addAjaxValidation()
+            helpText?.let { setHelpText(helpText) }
+            addValidator(PropertyValidator())
+        }
     add(formGroupInputText)
     return formGroupInputText
 }

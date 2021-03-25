@@ -97,3 +97,17 @@ inline fun <T> MarkupContainer.addForm(
     add(form)
     return form
 }
+
+inline fun <T> MarkupContainer.addHorizontalForm(
+    id: String,
+    model: IModel<T>,
+    containerSize: ColumnSize,
+    crossinline submitHandler: RepeatingForm<T>.() -> Any? = {},
+    crossinline populateActionsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any? = {},
+    crossinline populateFormGroupsHandler: RepeatingView.(component: RepeatingForm<T>) -> Any?
+): RepeatingForm<T> =
+    addForm(id, model, submitHandler, populateActionsHandler, populateFormGroupsHandler).apply {
+        setHorizontal(
+            containerSize
+        )
+    }
