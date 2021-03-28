@@ -37,6 +37,8 @@ inline fun MarkupContainer.addPageLink(
     pageParameters: PageParameters? = null,
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior
-) {
-    add(pageLink(id, pageClass, pageParameters, label, *behaviors))
+): net.dontdrinkandroot.wicket.markup.html.link.BookmarkablePageLink {
+    val pageLink = pageLink(id, pageClass, pageParameters, label, *behaviors)
+    add(pageLink)
+    return pageLink
 }
