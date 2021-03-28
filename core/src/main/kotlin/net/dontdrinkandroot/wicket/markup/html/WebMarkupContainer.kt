@@ -16,6 +16,8 @@ inline fun <T> markupContainer(
 ): GenericWebMarkupContainer<T> =
     GenericWebMarkupContainer<T>(id, model).apply { add(*behaviors) }
 
-inline fun MarkupContainer.addMarkupContainer(id: String, vararg behaviors: Behavior) {
-    add(WebMarkupContainer(id).apply { add(*behaviors) })
+inline fun MarkupContainer.addMarkupContainer(id: String, vararg behaviors: Behavior): WebMarkupContainer {
+    val webMarkupContainer = WebMarkupContainer(id).apply { add(*behaviors) }
+    add(webMarkupContainer)
+    return webMarkupContainer
 }

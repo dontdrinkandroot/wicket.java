@@ -1,9 +1,9 @@
 package net.dontdrinkandroot.wicket.behavior
 
-import net.dontdrinkandroot.wicket.kmodel.kModel
 import org.apache.wicket.Component
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 class EnabledBehavior(private val enabledModel: IModel<Boolean>) : Behavior() {
 
@@ -16,6 +16,6 @@ class EnabledBehavior(private val enabledModel: IModel<Boolean>) : Behavior() {
     }
 }
 
-fun enabled(enabled: Boolean) = EnabledBehavior(kModel(enabled))
+fun enabled(enabled: Boolean) = EnabledBehavior(Model(enabled))
 
-fun disabled() = EnabledBehavior(kModel(false))
+fun disabled() = EnabledBehavior(Model(false))

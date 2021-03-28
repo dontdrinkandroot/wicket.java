@@ -9,10 +9,9 @@ import java.time.LocalTime
 open class LocalTimeTextField(id: String, model: IModel<LocalTime>? = null) :
     AbstractTemporalAccessorTextField<LocalTime>(id, model, LocalTime::class.java) {
 
-    override fun createConverter(type: Class<*>): IConverter<*>? {
-        return if (LocalDate::class.java.isAssignableFrom(type)) {
-            LocalTimeConverter()
-        } else null
+    override fun createConverter(type: Class<*>): IConverter<*>? = when {
+        LocalDate::class.java.isAssignableFrom(type) -> LocalTimeConverter()
+        else -> null
     }
 
     override fun getInputTypes(): Array<String> = arrayOf("text", "time")

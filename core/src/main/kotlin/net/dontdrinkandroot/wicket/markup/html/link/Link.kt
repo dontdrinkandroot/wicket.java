@@ -13,14 +13,12 @@ inline fun <T> link(
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<T>.() -> Any?
 ) = object : Link<T>(id, model) {
-    init {
-        body = label
-        add(*behaviors)
-    }
-
     override fun onClick() {
         onClickHandler(this)
     }
+}.apply {
+    body = label
+    add(*behaviors)
 }
 
 inline fun link(
@@ -29,14 +27,12 @@ inline fun link(
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<Void>.() -> Any?
 ) = object : Link<Void>(id) {
-    init {
-        body = label
-        add(*behaviors)
-    }
-
     override fun onClick() {
         onClickHandler(this)
     }
+}.apply {
+    body = label
+    add(*behaviors)
 }
 
 inline fun <T> MarkupContainer.addLink(
@@ -45,8 +41,10 @@ inline fun <T> MarkupContainer.addLink(
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<T>.() -> Any?
-) {
-    add(link(id, model, label, behaviors = behaviors, onClickHandler))
+): Link<T> {
+    val link = link(id, model, label, behaviors = behaviors, onClickHandler)
+    add(link)
+    return link
 }
 
 inline fun MarkupContainer.addLink(
@@ -54,14 +52,18 @@ inline fun MarkupContainer.addLink(
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<Void>.() -> Any?
-) {
-    add(link(id, label, behaviors = behaviors, onClickHandler))
+): Link<Void> {
+    val link = link(id, label, behaviors = behaviors, onClickHandler)
+    add(link)
+    return link
 }
 
 inline fun MarkupContainer.addLink(
     id: String,
     vararg behaviors: Behavior,
     crossinline onClickHandler: Link<Void>.() -> Any?
-) {
-    add(link(id, Model(null), behaviors = behaviors, onClickHandler))
+): Link<Void> {
+    val link = link(id, Model(null), behaviors = behaviors, onClickHandler)
+    add(link)
+    return link
 }

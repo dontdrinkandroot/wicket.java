@@ -18,6 +18,8 @@ class TagNameModifier(private val tagName: String) : Behavior() {
 
 fun tagName(tagName: String) = TagNameModifier(tagName)
 
-fun MarkupContainer.setTagName(tagName: String) {
-    add(tagName(tagName))
+fun MarkupContainer.setTagName(tagName: String): TagNameModifier {
+    val tagNameModifier = TagNameModifier(tagName)
+    add(tagNameModifier)
+    return tagNameModifier
 }

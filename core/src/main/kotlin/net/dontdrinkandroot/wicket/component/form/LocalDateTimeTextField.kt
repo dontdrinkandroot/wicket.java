@@ -5,8 +5,8 @@ import org.apache.wicket.model.IModel
 import org.apache.wicket.util.convert.IConverter
 import java.time.LocalDateTime
 
-open class LocalDateTimeTextField : AbstractTemporalAccessorTextField<LocalDateTime> {
-    constructor(id: String, model: IModel<LocalDateTime>? = null) : super(id, model, LocalDateTime::class.java)
+open class LocalDateTimeTextField(id: String, model: IModel<LocalDateTime>? = null) :
+    AbstractTemporalAccessorTextField<LocalDateTime>(id, model, LocalDateTime::class.java) {
 
     override fun createConverter(type: Class<*>): IConverter<*>? {
         return if (LocalDateTime::class.java.isAssignableFrom(type)) {

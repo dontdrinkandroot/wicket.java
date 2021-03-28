@@ -2,7 +2,7 @@ package net.dontdrinkandroot.wicket.example.page.component
 
 import net.dontdrinkandroot.wicket.bootstrap.component.card.PlainCard
 import net.dontdrinkandroot.wicket.component.basic.Heading
-import net.dontdrinkandroot.wicket.markup.html.basic.Label
+import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 
