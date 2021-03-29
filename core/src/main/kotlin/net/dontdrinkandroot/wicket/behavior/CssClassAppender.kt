@@ -25,4 +25,8 @@ fun MarkupContainer.addCssClass(cssClass: CssClass) {
     add(CssClassAppender(cssClass))
 }
 
+fun MarkupContainer.addCssClass(cssClass: String) {
+    add(CssClassAppender(cssClass))
+}
+
 fun cssClasses(vararg cssClasses: CssClass) = CompositeBehavior(cssClasses.map { CssClassAppender(it) }.toMutableList())
