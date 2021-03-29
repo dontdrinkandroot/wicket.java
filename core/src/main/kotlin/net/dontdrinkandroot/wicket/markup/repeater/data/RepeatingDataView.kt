@@ -1,6 +1,7 @@
 package net.dontdrinkandroot.wicket.markup.repeater.data
 
 import org.apache.wicket.Component
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.navigation.paging.IPageable
 import org.apache.wicket.markup.html.panel.Panel
@@ -46,4 +47,16 @@ inline fun <T> repeatingDataView(
     }
 
     override fun createChild(id: String, model: IModel<T>) = createChildHandler(id, model)
+}
+
+inline fun <T> MarkupContainer.addRepeatingDataView(
+    id: String,
+    dataProvider: IDataProvider<T>,
+    itemsPerPage: Long,
+    vararg behaviors: Behavior,
+    crossinline createChildHandler: RepeatingDataView<T>.(id: String, model: IModel<T>) -> Component
+): RepeatingDataView<T> {
+    val repeatingDataView = repeatingDataView(id, dataProvider, itemsPerPage, behaviors = behaviors, createChildHandler)
+    add(repeatingDataView)
+    return repeatingDataView
 }
