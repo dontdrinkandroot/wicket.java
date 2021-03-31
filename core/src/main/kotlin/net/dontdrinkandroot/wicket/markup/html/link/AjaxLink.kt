@@ -13,15 +13,13 @@ inline fun <T> ajaxLink(
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
-) = object : AjaxLink<T>(id, model) {
-    init {
-        body = label
-        add(*behaviors)
-    }
-
+): AjaxLink<T> = object : AjaxLink<T>(id, model) {
     override fun onClick(target: AjaxRequestTarget?) {
         onClickHandler(target)
     }
+}.apply {
+    body = label
+    add(*behaviors)
 }
 
 inline fun <T> MarkupContainer.addAjaxLink(
@@ -30,8 +28,10 @@ inline fun <T> MarkupContainer.addAjaxLink(
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<T>.(target: AjaxRequestTarget?) -> Any?
-) {
-    add(ajaxLink(id, model, label, behaviors = behaviors, onClickHandler))
+): AjaxLink<T> {
+    val ajaxLink = ajaxLink(id, model, label, behaviors = behaviors, onClickHandler)
+    add(ajaxLink)
+    return ajaxLink
 }
 
 inline fun MarkupContainer.addAjaxLink(
@@ -39,14 +39,18 @@ inline fun MarkupContainer.addAjaxLink(
     label: IModel<String> = Model(null),
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<Void>.(target: AjaxRequestTarget?) -> Any?
-) {
-    add(ajaxLink(id, null, label, behaviors = behaviors, onClickHandler))
+): AjaxLink<Void> {
+    val ajaxLink = ajaxLink(id, null, label, behaviors = behaviors, onClickHandler)
+    add(ajaxLink)
+    return ajaxLink
 }
 
 inline fun MarkupContainer.addAjaxLink(
     id: String,
     vararg behaviors: Behavior,
     crossinline onClickHandler: AjaxLink<Void>.(target: AjaxRequestTarget?) -> Any?
-) {
-    add(ajaxLink(id, null, Model(null), behaviors = behaviors, onClickHandler))
+): AjaxLink<Void> {
+    val ajaxLink = ajaxLink(id, null, Model(null), behaviors = behaviors, onClickHandler)
+    add(ajaxLink)
+    return ajaxLink
 }
