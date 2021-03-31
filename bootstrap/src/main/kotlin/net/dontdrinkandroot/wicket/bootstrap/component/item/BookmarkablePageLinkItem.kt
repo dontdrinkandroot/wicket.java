@@ -33,27 +33,33 @@ open class BookmarkablePageLinkItem<T>(
     }
 }
 
-fun ItemView.addPageLink(label: String, pageClass: KClass<out Page>) {
-    add(BookmarkablePageLinkItem<Void>(newChildId(), label = model(label), pageClass = pageClass.java))
+inline fun ItemView.addPageLink(label: String, pageClass: KClass<out Page>): BookmarkablePageLinkItem<Void> {
+    val bookmarkablePageLinkItem =
+        BookmarkablePageLinkItem<Void>(newChildId(), label = model(label), pageClass = pageClass.java)
+    add(bookmarkablePageLinkItem)
+    return bookmarkablePageLinkItem
 }
 
-fun ItemView.addPageLink(
+inline fun ItemView.addPageLink(
     label: String,
-    pageClass: Class<out Page>,
+    pageClass: KClass<out Page>,
     pageParameters: PageParameters?,
     vararg linkBehaviors: Behavior
-) {
-    add(
-        BookmarkablePageLinkItem<Void>(
-            newChildId(),
-            label = model(label),
-            pageClass = pageClass,
-            pageParameters = pageParameters,
-            linkBehaviors = *linkBehaviors
-        )
+): BookmarkablePageLinkItem<Void> {
+    val bookmarkablePageLinkItem = BookmarkablePageLinkItem<Void>(
+        newChildId(),
+        label = model(label),
+        pageClass = pageClass.java,
+        pageParameters = pageParameters,
+        linkBehaviors = *linkBehaviors
     )
+    add(bookmarkablePageLinkItem)
+    return bookmarkablePageLinkItem
 }
 
-fun ItemView.addPageLink(label: IModel<String>, pageClass: KClass<out Page>) {
-    add(BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass.java))
+inline fun ItemView.addPageLink(label: IModel<String>, pageClass: KClass<out Page>): BookmarkablePageLinkItem<Void> {
+    val bookmarkablePageLinkItem =
+        BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass.java)
+    add(bookmarkablePageLinkItem)
+    return bookmarkablePageLinkItem
 }

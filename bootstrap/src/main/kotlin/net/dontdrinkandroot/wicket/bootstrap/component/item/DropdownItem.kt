@@ -36,29 +36,49 @@ abstract class DropdownItem<T>(
     protected abstract fun createDropdownMenu(id: String): DropdownMenu
 }
 
-fun ItemView.addDropdown(
+inline fun ItemView.addDropdown(
     label: String,
     dropdownAlignment: DropdownAlignment? = null,
     vararg linkBehaviors: Behavior,
-    populateItemsHandler: ItemView.() -> Any?
-) {
-    this.add(object :
+    crossinline populateItemsHandler: ItemView.() -> Any?
+): RepeatingDropdownItem<Void> {
+    val repeatingDropdownItem = object :
         RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), Model(dropdownAlignment), *linkBehaviors) {
         override fun populateItems(itemView: ItemView) {
             populateItemsHandler(itemView)
         }
-    })
+    }
+    this.add(repeatingDropdownItem)
+    return repeatingDropdownItem
 }
 
-fun ItemView.addDropdown(
+inline fun ItemView.addDropdown(
     label: String,
     vararg linkBehaviors: Behavior,
-    populateItemsHandler: ItemView.() -> Any?
-) {
-    this.add(object :
+    crossinline populateItemsHandler: ItemView.() -> Any?
+): RepeatingDropdownItem<Void> {
+    val repeatingDropdownItem = object :
         RepeatingDropdownItem<Void>(this.newChildId(), null, model(label), Model(null), *linkBehaviors) {
         override fun populateItems(itemView: ItemView) {
             populateItemsHandler(itemView)
         }
-    })
+    }
+    this.add(repeatingDropdownItem)
+    return repeatingDropdownItem
+}
+
+inline fun ItemView.addDropdown(
+    label: IModel<String>,
+    dropdownAlignment: DropdownAlignment? = null,
+    vararg linkBehaviors: Behavior,
+    crossinline populateItemsHandler: ItemView.() -> Any?
+): RepeatingDropdownItem<Void> {
+    val repeatingDropdownItem = object :
+        RepeatingDropdownItem<Void>(this.newChildId(), null, label, Model(dropdownAlignment), *linkBehaviors) {
+        override fun populateItems(itemView: ItemView) {
+            populateItemsHandler(itemView)
+        }
+    }
+    this.add(repeatingDropdownItem)
+    return repeatingDropdownItem
 }
