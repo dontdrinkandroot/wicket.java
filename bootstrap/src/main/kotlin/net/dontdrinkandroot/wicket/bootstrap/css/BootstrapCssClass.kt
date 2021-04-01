@@ -109,6 +109,7 @@ enum class BootstrapCssClass(override val classString: String) : CssClass {
     NAV_ITEM("nav-item"),
     NAV_LINK("nav-link"),
     NAVBAR("navbar"),
+    NAVBAR_BRAND("navbar-brand"),
     NAVBAR_BTN("navbar-btn"),
     NAVBAR_FORM("navbar-form"),
     NAVBAR_NAV("navbar-nav"),
