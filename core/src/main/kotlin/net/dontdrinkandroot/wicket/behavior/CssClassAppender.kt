@@ -21,6 +21,8 @@ fun cssClass(cssClassModel: IModel<out CssClass?>) = CssClassAppender(cssClassMo
 
 fun cssClass(cssClass: CssClass) = CssClassAppender(cssClass)
 
+fun cssClass(cssClass: String) = CssClassAppender(cssClass)
+
 fun MarkupContainer.addCssClass(cssClass: CssClass) {
     add(CssClassAppender(cssClass))
 }
