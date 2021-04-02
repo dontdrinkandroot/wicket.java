@@ -32,13 +32,13 @@ inline fun <reified P, T : String?> RepeatingView.addTextArea(
     ajaxValidation: Boolean = false,
     formText: String? = null,
 ): FormGroupTextArea<T> {
-    val resourceKey = P::class.qualifiedName + "." + property.name
-    val formGroupInputText =
+    val resourceKey = "${P::class.qualifiedName}.${property.name}"
+    val formGroup =
         FormGroupTextArea(newChildId(), model.writeableProperty(property), localize(resourceKey)).apply {
             if (ajaxValidation) addAjaxValidation()
             formText?.let { setFormText(formText) }
             addValidator(PropertyValidator())
         }
-    add(formGroupInputText)
-    return formGroupInputText
+    add(formGroup)
+    return formGroup
 }

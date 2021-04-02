@@ -51,7 +51,7 @@ inline fun <reified P, T : String?> RepeatingView.addInputText(
     ajaxValidation: Boolean = false,
     formText: String? = null,
 ): FormGroupInputText<T> {
-    val resourceKey = P::class.qualifiedName + "." + property.name
+    val resourceKey = "${P::class.qualifiedName}.${property.name}"
     val formGroupInputText =
         FormGroupInputText(newChildId(), model.writeableProperty(property), localize(resourceKey)).apply {
             if (ajaxValidation) addAjaxValidation()
