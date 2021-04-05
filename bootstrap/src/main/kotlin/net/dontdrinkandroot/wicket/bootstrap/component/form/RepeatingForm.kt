@@ -75,9 +75,7 @@ inline fun <T> MarkupContainer.addForm(
         override fun onSubmit() {
             submit()
         }
-    }.apply {
-        add(*behaviors)
-    }
+    }.apply { add(*behaviors) }
     add(form)
     return form
 }
