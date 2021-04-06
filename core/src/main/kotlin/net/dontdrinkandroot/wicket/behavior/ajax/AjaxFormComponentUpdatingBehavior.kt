@@ -7,7 +7,7 @@ import org.apache.wicket.util.lang.Checks
 
 inline fun ajaxUpdate(
     event: String,
-    crossinline updateAjaxAttributesHandler: AjaxRequestAttributes.(behavior: AjaxFormComponentUpdatingBehavior) -> Unit,
+    crossinline updateAjaxAttributesHandler: AjaxRequestAttributes.(behavior: AjaxFormComponentUpdatingBehavior) -> Unit = {},
     crossinline onUpdateHandler: AjaxFormComponentUpdatingBehavior.(target: AjaxRequestTarget) -> Unit
 ): AjaxFormComponentUpdatingBehavior = object : AjaxFormComponentUpdatingBehavior(event) {
     override fun onUpdate(target: AjaxRequestTarget) {
