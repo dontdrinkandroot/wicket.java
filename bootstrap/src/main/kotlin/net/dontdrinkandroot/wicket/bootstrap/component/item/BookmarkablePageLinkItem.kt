@@ -5,6 +5,7 @@ import org.apache.wicket.Page
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.link.BookmarkablePageLink
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 import org.apache.wicket.request.mapper.parameter.PageParameters
 import kotlin.reflect.KClass
 
@@ -57,9 +58,34 @@ inline fun ItemView.addPageLink(
     return bookmarkablePageLinkItem
 }
 
-inline fun ItemView.addPageLink(label: IModel<String>, pageClass: KClass<out Page>): BookmarkablePageLinkItem<Void> {
+inline fun ItemView.addPageLink(
+    label: IModel<String>,
+    pageClass: KClass<out Page>,
+    vararg linkBehaviors: Behavior
+): BookmarkablePageLinkItem<Void> {
     val bookmarkablePageLinkItem =
-        BookmarkablePageLinkItem<Void>(newChildId(), label = label, pageClass = pageClass.java)
+        BookmarkablePageLinkItem<Void>(
+            newChildId(),
+            label = label,
+            pageClass = pageClass.java,
+            linkBehaviors = linkBehaviors
+        )
+    add(bookmarkablePageLinkItem)
+    return bookmarkablePageLinkItem
+}
+
+inline fun ItemView.addPageLink(
+    label: String,
+    pageClass: KClass<out Page>,
+    vararg linkBehaviors: Behavior
+): BookmarkablePageLinkItem<Void> {
+    val bookmarkablePageLinkItem =
+        BookmarkablePageLinkItem<Void>(
+            newChildId(),
+            label = Model(label),
+            pageClass = pageClass.java,
+            linkBehaviors = linkBehaviors
+        )
     add(bookmarkablePageLinkItem)
     return bookmarkablePageLinkItem
 }

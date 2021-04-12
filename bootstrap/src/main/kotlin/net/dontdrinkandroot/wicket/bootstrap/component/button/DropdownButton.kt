@@ -62,6 +62,23 @@ inline fun <T> MarkupContainer.addDropdownButton(
     return dropdownButton
 }
 
+inline fun <T> dropdownButton(
+    id: String,
+    model: IModel<T>,
+    dropdownAlignment: DropdownAlignment,
+    vararg toggleBehaviors: Behavior,
+    crossinline populateItemsHandler: ItemView.(DropdownButton<T>) -> Unit
+): DropdownButton<T> = object : DropdownButton<T>(
+    id = id,
+    model = model,
+    dropdownAlignmentModel = Model(dropdownAlignment),
+    toggleBehaviors = toggleBehaviors
+) {
+    override fun populateItems(itemView: ItemView) {
+        populateItemsHandler(itemView, this)
+    }
+}
+
 inline fun <T> MarkupContainer.addDropdownButton(
     id: String,
     model: IModel<T>,
@@ -69,16 +86,8 @@ inline fun <T> MarkupContainer.addDropdownButton(
     vararg toggleBehaviors: Behavior,
     crossinline populateItemsHandler: ItemView.(DropdownButton<T>) -> Unit
 ): DropdownButton<T> {
-    val dropdownButton = object : DropdownButton<T>(
-        id = id,
-        model = model,
-        dropdownAlignmentModel = Model(dropdownAlignment),
-        toggleBehaviors = toggleBehaviors
-    ) {
-        override fun populateItems(itemView: ItemView) {
-            populateItemsHandler(itemView, this)
-        }
-    }
+    val dropdownButton =
+        dropdownButton(id, model, dropdownAlignment, toggleBehaviors = toggleBehaviors, populateItemsHandler)
     add(dropdownButton)
     return dropdownButton
 }

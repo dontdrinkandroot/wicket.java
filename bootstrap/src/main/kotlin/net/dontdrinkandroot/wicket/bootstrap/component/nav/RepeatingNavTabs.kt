@@ -53,3 +53,13 @@ inline fun MarkupContainer.addNavTabs(
     add(repeatingNavTabs)
     return repeatingNavTabs
 }
+
+inline fun MarkupContainer.addNavTabs(
+    id: String,
+    vararg behaviors: Behavior,
+    crossinline populateItemsHandler: ItemView.() -> Any?
+): RepeatingNavTabs<Void> {
+    val repeatingNavTabs = navTabs(id, Model(null), behaviors = behaviors, populateItemsHandler)
+    add(repeatingNavTabs)
+    return repeatingNavTabs
+}
