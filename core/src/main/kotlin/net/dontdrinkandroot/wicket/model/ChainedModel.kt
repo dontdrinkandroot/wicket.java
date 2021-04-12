@@ -27,3 +27,8 @@ fun <P, T> IModel<P>.chain(getChain: (P?) -> T, setChain: (P?, T?) -> Unit = { _
         override fun getValue(parentValue: P?): T = getChain(parentValue)
         override fun setObject(value: T?) = setChain(this.parent.getObject(), value)
     }
+
+inline fun <P, T> IModel<P>.chain(crossinline getChain: P?.() -> T): IModel<T> =
+    object : AbstractChainedModel<P, T>(this) {
+        override fun getValue(parentValue: P?): T = getChain(parentValue)
+    }
