@@ -6,7 +6,8 @@ class FontAwesome5Icon(
     private val iconClass: FontAwesome5IconClass,
     val style: Style = Style.SOLID,
     var fixedWidth: Boolean = false,
-    var spinning: Boolean = false
+    var spin: Boolean = false,
+    var pulse: Boolean = false
 ) : CssClass {
 
     override val classString: String
@@ -15,7 +16,8 @@ class FontAwesome5Icon(
             builder.append(" ")
             builder.append(iconClass.classString)
             if (fixedWidth) builder.append(" fa-fw")
-            if (spinning) builder.append(" fa-spin")
+            if (spin) builder.append(" fa-spin")
+            if (pulse) builder.append(" fa-pulse")
             return builder.toString()
         }
 

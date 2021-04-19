@@ -17,6 +17,7 @@ enum class FontAwesome5IconClass(override val classString: String) : CssClass {
     PEN("fa-pen"),
     PLUS("fa-plus"),
     PRINT("fa-print"),
+    SPINNER("fa-spinner"),
     TIMES("fa-times"),
     TRASH("fa-trash"),
     UNDO("fa-undo"),
@@ -24,7 +25,9 @@ enum class FontAwesome5IconClass(override val classString: String) : CssClass {
 
     fun createIcon(
         style: FontAwesome5Icon.Style = FontAwesome5Icon.Style.SOLID,
-        fixedWidth: Boolean = false
+        fixedWidth: Boolean = false,
+        spin: Boolean = false,
+        pulse: Boolean = false
     ): FontAwesome5Icon =
-        FontAwesome5Icon(this, style = style, fixedWidth = fixedWidth)
+        FontAwesome5Icon(this, style = style, fixedWidth = fixedWidth, spin = spin, pulse = pulse)
 }
