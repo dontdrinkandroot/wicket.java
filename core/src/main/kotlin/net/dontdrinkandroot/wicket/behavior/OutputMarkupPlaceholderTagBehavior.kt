@@ -11,3 +11,5 @@ class OutputMarkupPlaceholderTagBehavior : Behavior() {
 
     override fun isTemporary(component: Component) = true
 }
+
+fun outputMarkupPlaceholderTag() = OutputMarkupPlaceholderTagBehavior()
