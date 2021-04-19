@@ -8,10 +8,12 @@ import java.time.Duration
 inline fun MarkupContainer.addAjaxTimer(
     duration: Duration,
     crossinline onTimerHandler: (target: AjaxRequestTarget) -> Unit
-) {
+): AbstractAjaxTimerBehavior {
     val behavior = object : AbstractAjaxTimerBehavior(duration) {
         override fun onTimer(target: AjaxRequestTarget) {
             onTimerHandler(target)
         }
     }
+    add(behavior)
+    return behavior
 }
