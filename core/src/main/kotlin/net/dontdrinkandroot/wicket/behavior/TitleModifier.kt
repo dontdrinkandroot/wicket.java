@@ -9,8 +9,10 @@ import org.apache.wicket.model.Model
  */
 class TitleModifier : AttributeModifier {
 
-    constructor(replaceModel: IModel<*>?) : super("title", replaceModel)
-    constructor(titleString: String) : super("title", Model<String>(titleString))
+    constructor(title: IModel<*>?) : super("title", title)
+    constructor(title: String) : super("title", Model<String>(title))
 }
 
-fun title(titleString: String) = TitleModifier(titleString)
+fun title(title: String) = TitleModifier(title)
+
+fun title(title: IModel<String>) = TitleModifier(title)
