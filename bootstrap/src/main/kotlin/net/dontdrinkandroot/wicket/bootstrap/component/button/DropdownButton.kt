@@ -7,6 +7,7 @@ import net.dontdrinkandroot.wicket.bootstrap.component.item.ItemView
 import net.dontdrinkandroot.wicket.bootstrap.css.BootstrapCssClass
 import net.dontdrinkandroot.wicket.bootstrap.css.DropdownAlignment
 import net.dontdrinkandroot.wicket.markup.html.basic.label
+import org.apache.wicket.IGenericComponent
 import org.apache.wicket.MarkupContainer
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.markup.html.basic.Label
@@ -86,6 +87,18 @@ inline fun <T> MarkupContainer.addDropdownButton(
     vararg toggleBehaviors: Behavior,
     crossinline populateItemsHandler: ItemView.(DropdownButton<T>) -> Unit
 ): DropdownButton<T> {
+    val dropdownButton =
+        dropdownButton(id, model, dropdownAlignment, toggleBehaviors = toggleBehaviors, populateItemsHandler)
+    add(dropdownButton)
+    return dropdownButton
+}
+
+inline fun <T, C> C.addDropdownButton(
+    id: String,
+    dropdownAlignment: DropdownAlignment,
+    vararg toggleBehaviors: Behavior,
+    crossinline populateItemsHandler: ItemView.(DropdownButton<T>) -> Unit
+): DropdownButton<T> where C : MarkupContainer, C : IGenericComponent<T, C> {
     val dropdownButton =
         dropdownButton(id, model, dropdownAlignment, toggleBehaviors = toggleBehaviors, populateItemsHandler)
     add(dropdownButton)
