@@ -27,7 +27,7 @@ class ProgressBar(
         bar.add(AttributeModifier("aria-valuenow", this.model))
         bar.add(AttributeModifier("style") {
             String.format(
-                "width:%d%%;",
+                "width: %d%%;",
                 this@ProgressBar.modelObject
             )
         })
