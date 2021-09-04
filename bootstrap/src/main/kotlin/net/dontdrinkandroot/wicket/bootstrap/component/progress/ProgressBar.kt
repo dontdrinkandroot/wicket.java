@@ -25,7 +25,12 @@ class ProgressBar(
         this.add(CssClassAppender(BootstrapCssClass.PROGRESS))
         bar = WebMarkupContainer("bar")
         bar.add(AttributeModifier("aria-valuenow", this.model))
-        bar.add(AttributeModifier("style") { String.format("width: %d%%;", this@ProgressBar.modelObject) })
+        bar.add(AttributeModifier("style") {
+            String.format(
+                "width:%d%%;",
+                this@ProgressBar.modelObject
+            )
+        })
 
         /* Animated */
         bar.add(CssClassAppender(CssClassToggleModel(BootstrapCssClass.PROGRESS_BAR_ANIMATED, animatedModel)))

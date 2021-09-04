@@ -10,7 +10,7 @@ class FormGroupCheckBoxMultipleChoice<T>(
     id: String,
     model: IModel<out Collection<T>>,
     labelModel: IModel<String>,
-    choices: List<T>? = null,
+    choices: List<T>,
     choiceRenderer: IChoiceRenderer<T> = ChoiceRenderer()
 ) : FormGroupFormComponent<Collection<T>, Collection<T>, CheckBoxMultipleChoice<T>>(
     id, (model as IModel<Collection<T>>), labelModel
@@ -22,7 +22,7 @@ class FormGroupCheckBoxMultipleChoice<T>(
     }
 
     override fun createFormComponent(id: String): CheckBoxMultipleChoice<T> {
-        val formComponent = CheckBoxMultipleChoice(id, this.model, null as List<T>)
+        val formComponent = CheckBoxMultipleChoice(id, this.model, emptyList())
         formComponent.prefix = "<div class=\"checkbox\">"
         formComponent.suffix = "</div>"
         formComponent.setLabelPosition(AbstractChoice.LabelPosition.WRAP_AFTER)

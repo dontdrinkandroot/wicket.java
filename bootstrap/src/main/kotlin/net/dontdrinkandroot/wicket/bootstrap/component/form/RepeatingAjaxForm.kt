@@ -1,8 +1,11 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.form
 
+import org.apache.wicket.MarkupContainer
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior
+import org.apache.wicket.behavior.Behavior
+import org.apache.wicket.markup.repeater.RepeatingView
 import org.apache.wicket.model.IModel
 
 open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null) : RepeatingForm<T>(id, model) {
@@ -67,4 +70,26 @@ open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null
     protected open fun onError(target: AjaxRequestTarget?) {
         target?.add(this)
     }
+}
+
+inline fun MarkupContainer.addAjaxForm(
+    id: String,
+    crossinline formGroups: RepeatingView.(component: RepeatingAjaxForm<Void>) -> Any?,
+    vararg behaviors: Behavior,
+    crossinline submit: RepeatingAjaxForm<Void>.(target: AjaxRequestTarget?) -> Any? = {}
+): RepeatingForm<Void> {
+    val form = object : RepeatingAjaxForm<Void>(id) {
+
+        override fun populateFormGroups(formGroupView: RepeatingView) {
+            formGroups(formGroupView, this)
+        }
+
+        override fun onSubmit(target: AjaxRequestTarget?) {
+            submit(target)
+        }
+    }.apply {
+        add(*behaviors)
+    }
+    add(form)
+    return form
 }
