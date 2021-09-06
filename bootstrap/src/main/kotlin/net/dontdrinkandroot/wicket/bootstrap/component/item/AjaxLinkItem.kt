@@ -1,10 +1,10 @@
 package net.dontdrinkandroot.wicket.bootstrap.component.item
 
-import net.dontdrinkandroot.wicket.kmodel.model
 import org.apache.wicket.ajax.AjaxRequestTarget
 import org.apache.wicket.ajax.markup.html.AjaxLink
 import org.apache.wicket.behavior.Behavior
 import org.apache.wicket.model.IModel
+import org.apache.wicket.model.Model
 
 abstract class AjaxLinkItem<T>(
     id: String,
@@ -24,14 +24,41 @@ abstract class AjaxLinkItem<T>(
     protected abstract fun onClick(target: AjaxRequestTarget?)
 }
 
-fun ItemView.addAjaxLink(
+inline fun <T> ajaxLinkItem(
+    id: String,
+    model: IModel<T>? = null,
+    label: IModel<String>,
+    vararg linkBehaviors: Behavior,
+    crossinline onClickHandler: AjaxLinkItem<T>.(target: AjaxRequestTarget?) -> Any?
+) = object : AjaxLinkItem<T>(
+    id,
+    model,
+    label,
+    linkBehaviors = linkBehaviors
+) {
+    override fun onClick(target: AjaxRequestTarget?) {
+        onClickHandler(target)
+    }
+}
+
+inline fun ItemView.addAjaxLink(
     label: String,
     vararg linkBehaviors: Behavior,
-    onClickHandler: AjaxLinkItem<Void>.(target: AjaxRequestTarget?) -> Any?
-) {
-    add(object : AjaxLinkItem<Void>(newChildId(), null, model(label), linkBehaviors = linkBehaviors) {
-        override fun onClick(target: AjaxRequestTarget?) {
-            onClickHandler(target)
-        }
-    })
+    crossinline onClickHandler: AjaxLinkItem<Void>.(target: AjaxRequestTarget?) -> Any?
+): AjaxLinkItem<Void> {
+    val linkItem = ajaxLinkItem(newChildId(), null, Model(label), linkBehaviors = linkBehaviors, onClickHandler)
+    add(linkItem)
+    return linkItem
 }
+
+inline fun <T> ItemView.addAjaxLink(
+    label: String,
+    model: IModel<T>,
+    vararg linkBehaviors: Behavior,
+    crossinline onClickHandler: AjaxLinkItem<T>.(target: AjaxRequestTarget?) -> Any?
+): AjaxLinkItem<T> {
+    val linkItem = ajaxLinkItem(newChildId(), model, Model(label), linkBehaviors = linkBehaviors, onClickHandler)
+    add(linkItem)
+    return linkItem
+}
+

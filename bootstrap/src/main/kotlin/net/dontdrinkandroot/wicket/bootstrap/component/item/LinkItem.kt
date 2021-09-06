@@ -65,6 +65,10 @@ inline fun <T> ItemView.addLink(
     add(linkItem(newChildId(), model, Model(label), linkBehaviors = linkBehaviors, onClickHandler))
 }
 
-fun ItemView.addLink(label: String, vararg linkBehaviors: Behavior, onClickHandler: LinkItem<Void>.() -> Any?) {
+inline fun ItemView.addLink(
+    label: String,
+    vararg linkBehaviors: Behavior,
+    crossinline onClickHandler: LinkItem<Void>.() -> Any?
+) {
     add(linkItem(newChildId(), null, model(label), linkBehaviors = linkBehaviors, onClickHandler))
 }
