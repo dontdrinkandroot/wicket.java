@@ -19,6 +19,7 @@ open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null
             override fun updateAjaxAttributes(attributes: AjaxRequestAttributes) {
                 super.updateAjaxAttributes(attributes)
                 attributes.isPreventDefault = true
+                this@RepeatingAjaxForm.updateAjaxAttributes(attributes)
             }
 
             override fun onError(target: AjaxRequestTarget) {
@@ -67,6 +68,10 @@ open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null
         /* Hook */
     }
 
+    protected open fun updateAjaxAttributes(attributes: AjaxRequestAttributes) {
+        /* Hook */
+    }
+
     protected open fun onError(target: AjaxRequestTarget?) {
         target?.add(this)
     }
@@ -75,6 +80,7 @@ open class RepeatingAjaxForm<T> constructor(id: String, model: IModel<T>? = null
 inline fun MarkupContainer.addAjaxForm(
     id: String,
     crossinline formGroups: RepeatingView.(component: RepeatingAjaxForm<Void>) -> Any?,
+    crossinline updateAjaxAttributesHandler: AjaxRequestAttributes.(form: RepeatingAjaxForm<Void>) -> Unit = {},
     vararg behaviors: Behavior,
     crossinline submit: RepeatingAjaxForm<Void>.(target: AjaxRequestTarget?) -> Any? = {}
 ): RepeatingForm<Void> {
@@ -87,6 +93,11 @@ inline fun MarkupContainer.addAjaxForm(
         override fun onSubmit(target: AjaxRequestTarget?) {
             submit(target)
         }
+
+        override fun updateAjaxAttributes(attributes: AjaxRequestAttributes) {
+            updateAjaxAttributesHandler(attributes, this)
+        }
+
     }.apply {
         add(*behaviors)
     }
