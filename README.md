@@ -11,7 +11,7 @@ About
 Useful [Apache Wicket](https://wicket.apache.org/) core extensions and easy to
 use [Twitter Bootstrap](https://getbootstrap.com) bindings.
 
-* Wicket Version: 9.*
+* Wicket Version: 10.*
 * Bootstrap Version: 5.*
 
 Versioning

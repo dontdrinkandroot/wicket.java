@@ -46,8 +46,7 @@ abstract class StandardBootstrapPage<T> : BootstrapPage<T> {
         val pageHeader: WebMarkupContainer = object : WebMarkupContainer("pageHeader") {
             override fun onConfigure() {
                 super.onConfigure()
-                val hasHeading = (null != pageHeadingModel
-                        && !Strings.isEmpty(pageHeadingModel.getObject()))
+                val hasHeading = (!Strings.isEmpty(pageHeadingModel.getObject()))
                 val hasPrimaryActions = primaryActionView.size() > 0
                 this.isVisible = hasHeading || hasPrimaryActions
             }
